@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { MoveRight } from "lucide-react";
 
+
 const RecentPost = () => {
 
     const posts = [
@@ -10,7 +11,7 @@ const RecentPost = () => {
             desc: `Discover how builders are regenerating the world, one block at a
                  time with stories that inspire, lessons that guide and impact you can feel.`,
             author: "ezekiel lawson",
-            image: "/research.png"
+            image: "/logo.jpg"
         },
         {
             title: "Latest Research",
@@ -31,7 +32,7 @@ const RecentPost = () => {
   return (
     <div className="bg-white p-[5%] mb-20 lg:mb-0">
             <header className="flex items-center justify-between">
-                <h1 className="text-4xl font-bold text-[#7F7F7F]">Recent Post</h1>
+                <h1 className="text-2xl md:text-4xl font-bold text-[#7F7F7F]">Recent Post</h1>
                 <a href="" className="text-green-[#00CD5D] font-semibold flex items-center gap-3 justify-center">visit our blog <MoveRight /></a>
             </header>
 
@@ -49,7 +50,7 @@ const RecentPost = () => {
                         </div>
 
                         <div className="text-black space-y-2">
-                            <h1 className="capitalize font-bold text-4xl">{post.title}</h1>
+                            <h1 className="capitalize font-bold text-3xl lg:text-4xl">{post.title}</h1>
                             <p className="opacity-50">
                                 {post.desc}
                             </p>

@@ -11,12 +11,15 @@ import Footer from "@/components/Footer";
 import RecentPost from "@/components/recentPost";
 import FaqSection from "@/components/faq";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 
 
 export default function Home() {
 
     const [open, setOpen] = useState(false)
+    // const searchParams = useSearchParams()
+    // const modal = searchParams.get("modal")
 
   return (
     <div className="bg-white min-h-screen relative min-w-xs">
@@ -36,7 +39,7 @@ export default function Home() {
 
         <RecentPost />
 
-        <div className="px-[5%] bg-[#00CD5D] w-full py-16">
+        <div className="px-[5%] bg-cover bg-center w-full py-16" style={{backgroundImage: "url(/bgImg.jpg)"}}>
             <div className="flex items-center justify-center flex-col py-10 bg-black space-y-10 rounded-md">
                 <h1 className="text-white font-bold text-2xl lg:text-4xl w-2/3 text-center">
                     Explore past funding, discover new grants, and get real time alerts all in one place

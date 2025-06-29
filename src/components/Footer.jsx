@@ -6,8 +6,10 @@ const Footer = () => {
     
   return (
     <footer className="bg-black pt-[5%] px-[5%] pb-5 text-white flex items-center justify-between flex-wrap">
-        <div className="lg:w-2/3 w-full">
-            <h2 className="mb-20">ClearFund logo</h2>
+        <div className="lg:w-2/3 w-full mt-10 md:mt-0">
+            <div className="w-[40%] md:w-[30%] relative flex items-center mb-10">
+                <a href=""><img src="/projectLogo.png" alt="logo" /></a>
+            </div>
 
             <h2 className="text-3xl font-bold mb-5">Get the latest updates</h2>
             <p className="mb-3 text-white opacity-70">Subscribe to our newsletter and get all updates straight to your mailbox</p>

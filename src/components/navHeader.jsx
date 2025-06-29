@@ -1,3 +1,5 @@
+"use client"
+
 
 import {
   DropdownMenu,
@@ -7,12 +9,22 @@ import {
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
 
 const NavHeader = ({toggle, setToggle}) => {
   return (
     <nav className="px-[5%] flex justify-between items-center h-[8vh] sticky top-0 z-50 bg-white shadow">
-        <h1 className="text-2xl w-[25%]">ClearFund</h1>
+        <div className="lg:w-[15%] w-[40%] md:w-[30%] relative flex items-center">
+          {/* <Image
+            src={"/projectLogo.png"}
+            fill
+            alt="logo"
+            className="w-full h-auto"
+          /> */}
+          <a href=""><img src="/projectLogo.png" alt="logo" /></a>
+        </div>
 
         <ul className="md:flex w-[45%] gap-10 text-xl hidden">
             <li className="relative">
@@ -43,7 +55,7 @@ const NavHeader = ({toggle, setToggle}) => {
         </ul>
 
         <div className="flex gap-5 items-center " onClick={() => setToggle(!toggle)}>
-            <a href="#" className="bg-[#00CD5D] font-semibold hover:bg-purple-900 hover:text-white py-2 px-8 rounded-md">Sign in</a>
+            <Link href="/?route=login" className="bg-[#00CD5D] font-semibold hover:bg-purple-900 hover:text-white py-2 px-8 rounded-md">Sign in</Link>
         </div>
     </nav>
   )
