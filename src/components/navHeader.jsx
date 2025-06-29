@@ -18,8 +18,8 @@ const NavHeader = ({toggle, setToggle}) => {
             <li className="relative">
               <DropdownMenu>
                 <DropdownMenuTrigger className="outline-none">
-                    <div className="flex items-center justify-center">
-                      <span>Features</span> <ChevronDown />
+                    <div className="flex items-center justify-center group gap-2">
+                      <span>Features</span> <ChevronDown className="group-hover:rotate-180 transition-all"/>
                     </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className={"mt-3"}>
@@ -43,7 +43,7 @@ const NavHeader = ({toggle, setToggle}) => {
         </ul>
 
         <div className="flex gap-5 items-center " onClick={() => setToggle(!toggle)}>
-            <a href="#" className="bg-green-500 font-semibold hover:bg-purple-900 hover:text-white py-2 px-10 rounded-md">Sign in</a>
+            <a href="#" className="bg-[#00CD5D] font-semibold hover:bg-purple-900 hover:text-white py-2 px-8 rounded-md">Sign in</a>
         </div>
     </nav>
   )

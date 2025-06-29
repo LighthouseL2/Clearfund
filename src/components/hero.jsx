@@ -9,7 +9,7 @@ const HeroSection = ({toggle, setToggle}) => {
             alerts from Web3 grants platforms
         </p>
 
-        <button className="bg-green-500 font-semibold text-black px-5 py-3 rounded-md" onClick={() =>setToggle(!toggle)}>
+        <button className="bg-[#00CD5D] font-semibold text-black px-5 py-3 rounded-md" onClick={() =>setToggle(!toggle)}>
           Get started
         </button>
     </div>

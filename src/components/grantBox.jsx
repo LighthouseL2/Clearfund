@@ -77,7 +77,7 @@ const GrantBox = () => {
                         <p className="border py-1 px-3 w-fit mt-10 flex gap-4 text-[#7F7F7F]"><span className="font-bold text-black">{boxItem.amount}</span> {boxItem.coin}</p>
                     </div>
 
-                    <div className="py-5 border-t mt-3 rounded-b-md gap-5 flex px-[5%] text-green-500">
+                    <div className="py-5 border-t mt-3 rounded-b-md gap-5 flex px-[5%] text-[#00CD5D]">
                         <CornerDownRight/> <a href="#">Learn more</a>
                     </div>
                 </div>
@@ -86,7 +86,7 @@ const GrantBox = () => {
         </div>
 
         <div className="flex items-center justify-center py-10 mt-14">
-            <a href="" className="text-xl text-green-500 flex items-center gap-3">View All <ChevronRight /></a> 
+            <a href="" className="text-xl text-[#00CD5D] flex items-center gap-3">View All <ChevronRight /></a> 
         </div>
     </div>
   )

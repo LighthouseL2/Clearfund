@@ -32,7 +32,7 @@ const RecentPost = () => {
     <div className="bg-white p-[5%] mb-20 lg:mb-0">
             <header className="flex items-center justify-between">
                 <h1 className="text-4xl font-bold text-[#7F7F7F]">Recent Post</h1>
-                <a href="" className="text-green-500 font-semibold flex items-center gap-3 justify-center">visit our blog <MoveRight /></a>
+                <a href="" className="text-green-[#00CD5D] font-semibold flex items-center gap-3 justify-center">visit our blog <MoveRight /></a>
             </header>
 
             <div className="grid lg:grid-cols-3 gap-10 mt-20">
@@ -50,13 +50,13 @@ const RecentPost = () => {
 
                         <div className="text-black space-y-2">
                             <h1 className="capitalize font-bold text-4xl">{post.title}</h1>
-                            <p className="text-[#7F7F7F]">
+                            <p className="opacity-50">
                                 {post.desc}
                             </p>
-                            <div className="space-y-3 flex flex-col text-[#7F7F7F]">
-                                <p className="mt-5 capitalize">ezekiel lawson</p>
-                                <p className="flex justify-between"><span>June 23th, 2025 </span> 1 min Read</p>
-                                <a href="" className="text-red-600">Read more</a>
+                            <div className="space-y-3 flex flex-col ">
+                                <p className="mt-5 capitalize opacity-50">ezekiel lawson</p>
+                                <p className="flex justify-between opacity-50"><span>June 23th, 2025 </span> 1 min Read</p>
+                                <a href="" className="text-[#EC4B6A]">Read more</a>
                             </div>
                         </div>
                     </div>
