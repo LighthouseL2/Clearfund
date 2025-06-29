@@ -16,13 +16,13 @@ import { useState } from "react";
 
 export default function Home() {
 
-    const [toggle, setToggle] = useState(false)
+    const [open, setOpen] = useState(false)
 
   return (
     <div className="bg-white min-h-screen relative min-w-xs">
-        <NavHeader setToggle={setToggle} toggle={toggle}/>
+        <NavHeader setToggle={setOpen} toggle={open}/>
 
-        <HeroSection toggle={toggle} setToggle={setToggle}/>
+        <HeroSection open={open} setOpen={setOpen}/>
 
         <StatSection />
 
