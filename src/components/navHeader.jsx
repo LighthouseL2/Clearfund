@@ -9,7 +9,6 @@ import {
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 
@@ -23,7 +22,7 @@ const NavHeader = ({toggle, setToggle}) => {
             alt="logo"
             className="w-full h-auto"
           /> */}
-          <a href=""><img src="/projectLogo.png" alt="logo" /></a>
+          <Link href="/"><img src="/projectLogo.png" alt="logo" /></Link>
         </div>
 
         <ul className="md:flex w-[45%] gap-10 text-xl hidden">

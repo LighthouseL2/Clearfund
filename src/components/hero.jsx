@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 
 const HeroSection = ({open, setOpen}) => {
 
-    // const [login, setLogin] = useState("login")
+    
     const searchParams = useSearchParams()
     const modal = searchParams.get("route")
 //   const [reset, setReset] = useState(false)
@@ -36,9 +36,6 @@ const HeroSection = ({open, setOpen}) => {
             <ResetPassword open={open}  setOpen={setOpen}/>
           )
         }
-        {/* { modal === "login" && <LoginForm open={open} setOpen={setOpen}/>}
-        { modal === "signup" && <SignupForm open={open} setOpen={setOpen}/>}
-        { modal === "reset" && <ResetPassword open={open} setOpen={setOpen}/>} */}
     </div>
   )
 }

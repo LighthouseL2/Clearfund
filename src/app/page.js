@@ -10,7 +10,7 @@ import GrantBox from "@/components/grantBox";
 import Footer from "@/components/Footer";
 import RecentPost from "@/components/recentPost";
 import FaqSection from "@/components/faq";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 
@@ -18,14 +18,14 @@ import { useSearchParams } from "next/navigation";
 export default function Home() {
 
     const [open, setOpen] = useState(false)
-    // const searchParams = useSearchParams()
-    // const modal = searchParams.get("modal")
 
   return (
     <div className="bg-white min-h-screen relative min-w-xs">
         <NavHeader setToggle={setOpen} toggle={open}/>
 
-        <HeroSection open={open} setOpen={setOpen}/>
+        <Suspense fallback={<div>Loading...</div>}>
+            <HeroSection open={open} setOpen={setOpen}/>
+        </Suspense>
 
         <StatSection />
 

@@ -2,7 +2,6 @@
 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 import { Button } from './ui/button'
-import { useState } from 'react'
 import { DialogClose } from '@radix-ui/react-dialog'
 import { useRouter } from 'next/navigation'
 
@@ -41,7 +40,7 @@ const ResetPassword = ({open, setOpen}) => {
                   <DialogFooter className={"w-full text-center mt-10"}>
                     <div className='w-full space-y-5'>
                       <Button type={"submit"} className={"w-full block bg-green-500 text-black font-semibold"}>Submit</Button>
-                      <DialogClose className='hover:bg-red-500 w-full py-2 rounded-md hover:text-white' onClick={() => router.back() }>cancel</DialogClose>
+                      <DialogClose className='hover:bg-red-500 w-full py-2 rounded-md hover:text-white' onClick={() => router.push("/") }>cancel</DialogClose>
                     </div>
                   </DialogFooter>
                   
