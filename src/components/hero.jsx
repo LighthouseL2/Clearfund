@@ -7,6 +7,7 @@ import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import ResetPassword from './ResetPassword'
 import { useSearchParams } from "next/navigation";
+import Link from 'next/link'
 
 const HeroSection = ({open, setOpen}) => {
 
@@ -23,9 +24,14 @@ const HeroSection = ({open, setOpen}) => {
             alerts from Web3 grants platforms
         </p>
 
-        <Button className="bg-[#00CD5D] font-semibold text-black px-8 py-6 rounded-md" onClick={() =>setOpen(!open)}>
-          Get started
-        </Button>
+        
+        <Link
+          href="/?route=login"
+          className="bg-[#00CD5D] font-semibold text-black px-8 py-3 rounded-md"
+          onClick={() =>setOpen(!open)}
+          >
+            Get started
+        </Link>
 
         {
           modal === "login" ? (

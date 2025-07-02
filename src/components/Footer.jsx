@@ -15,7 +15,7 @@ const Footer = () => {
             <p className="mb-3 text-white opacity-70">Subscribe to our newsletter and get all updates straight to your mailbox</p>
             <form action="" className="border border-white opacity-70 rounded-md w-5/6 lg:w-3/6 flex mb-20">
                 <input type="text" className="outline-none w-2/3 p-3" placeholder="Enter your email"/>
-                <button className="w-1/3 bg-green-[#00CD5D] text-black border-0 rounded-r-md">Subscribe</button>
+                <button className="w-1/3 bg-[#00CD5D] text-white border-0 rounded-r-md">Subscribe</button>
             </form>
 
             

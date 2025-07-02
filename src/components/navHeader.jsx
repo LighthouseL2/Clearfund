@@ -14,7 +14,7 @@ import Link from "next/link"
 
 const NavHeader = ({toggle, setToggle}) => {
   return (
-    <nav className="px-[5%] flex justify-between items-center h-[8vh] sticky top-0 z-50 bg-white shadow">
+    <nav className="px-[5%] flex justify-between items-center h-[8vh] sticky top-0 z-50 bg-white ">
         <div className="lg:w-[15%] w-[40%] md:w-[30%] relative flex items-center">
           {/* <Image
             src={"/projectLogo.png"}

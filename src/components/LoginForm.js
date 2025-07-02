@@ -11,7 +11,7 @@ const LoginForm = ({open, setOpen }) => {
     <Dialog open={open} onOpenChange={setOpen}>
         <form>
             
-            <DialogContent className={"sm:max-w-[425px] max-w-[400px] p-10 bg-white"}>
+            <DialogContent className={"sm:max-w-[425px] max-w-[400px] p-10 bg-white  shadow-2xl"}>
                 <DialogHeader className={"space-y-10 bg-white"}>
                     <DialogTitle className={"text-center  text-3xl"}>Log In</DialogTitle>
 

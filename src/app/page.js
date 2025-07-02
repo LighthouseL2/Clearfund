@@ -20,7 +20,7 @@ export default function Home() {
     const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white min-h-screen relative min-w-xs">
+    <div className={`bg-white min-h-screen relative min-w-xs ${open && "blur"}`}>
         <NavHeader setToggle={setOpen} toggle={open}/>
 
         <Suspense fallback={<div>Loading...</div>}>
