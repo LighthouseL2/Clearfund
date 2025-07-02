@@ -10,7 +10,7 @@ const StatSection = () => {
                 fill
                 src={"/statImg.png"}
                 alt=""
-                className="lg:object-contain object-cover h-auto top-0"
+                className="object-contain h-auto top-0"
             />
         </div>
         <div className="flex flex-wrap w-full md:w-full lg:w-2/3 items-center justify-center
