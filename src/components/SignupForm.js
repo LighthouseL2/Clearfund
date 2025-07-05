@@ -5,10 +5,15 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { DialogClose } from '@radix-ui/react-dialog'
 import Link from 'next/link'
+import { Eye, EyeOff } from 'lucide-react'
+import Image from 'next/image'
 
 
 
 const SignupForm = ({ open, setOpen}) => {
+
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
               <form >
@@ -23,43 +28,69 @@ const SignupForm = ({ open, setOpen}) => {
 
                     <div className='space-y-5 flex justify-center flex-col items-center'>
                         <p>or <Link href="/?route=login" className='text-blue-600'>log in to your account</Link></p>
-                        <span>ClearFund</span>
+                        <Image
+                            width={154.32}
+                            height={33.07}
+                            src={"/projectLogo.png"}
+                            alt='clearfund logo'
+                        />
                     </div>
 
                     
                   </DialogHeader>
                   <div className='space-y-5'>
+
                     <div className='border border-black flex justify-center items-center py-3 rounded-md opacity-50'>
-                        <a href="#" className=''>Connect Wallet... Comming soon</a>
+                        <Link href="#" className='flex gap-2 items-center'>
+                            <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M11.3386 -0.0078125H15.1652C17.4252 -0.0078125 19.2155 -0.00781235 20.616 0.180317C22.0571 0.374595 23.224 0.782824 24.145 1.70257C25.2811 2.83995 25.6439 4.36221 25.7754 6.33818C26.4849 6.64927 27.021 7.30957 27.0788 8.1457C27.085 8.22071 27.085 8.30063 27.085 8.37441V13.1281C27.085 13.2018 27.085 13.2818 27.08 13.3555C27.021 14.1917 26.4849 14.8532 25.7754 15.1655C25.6439 17.1403 25.2811 18.6625 24.145 19.7999C23.224 20.7197 22.0571 21.1279 20.616 21.3222C19.2143 21.5103 17.4252 21.5103 15.1652 21.5103H11.3386C9.07862 21.5103 7.28831 21.5103 5.88779 21.3222C4.44669 21.1279 3.27979 20.7197 2.35882 19.7999C1.43907 18.8789 1.03084 17.712 0.836567 16.2709C0.648438 14.8692 0.648438 13.0801 0.648438 10.8201V10.6824C0.648438 8.42237 0.648438 6.63206 0.836567 5.23154C1.03084 3.79044 1.43907 2.62354 2.35882 1.70257C3.27979 0.782824 4.44669 0.374595 5.88779 0.180317C7.28954 -0.00781235 9.07862 -0.0078125 11.3386 -0.0078125ZM23.9101 15.3623H21.5271C18.8896 15.3623 16.6321 13.3605 16.6321 10.7512C16.6321 8.14201 18.8896 6.14022 21.5259 6.14022H23.9089C23.7687 4.49132 23.4527 3.61952 22.8391 3.00718C22.319 2.48706 21.6058 2.17474 20.3689 2.00874C19.1061 1.83906 17.4399 1.8366 15.0951 1.8366H11.4063C9.0614 1.8366 7.39651 1.83906 6.13125 2.00874C4.8955 2.17474 4.18232 2.48706 3.6622 3.00718C3.14208 3.5273 2.83099 4.24048 2.66499 5.47623C2.49531 6.74026 2.49285 8.40515 2.49285 10.75C2.49285 13.0949 2.49531 14.761 2.66499 16.025C2.83099 17.2608 3.14331 17.9739 3.66343 18.4941C4.18355 19.0142 4.89673 19.3265 6.13371 19.4925C7.39774 19.6622 9.06263 19.6647 11.4075 19.6647H15.0963C17.4412 19.6647 19.1073 19.6622 20.3713 19.4925C21.6071 19.3265 22.3202 19.0142 22.8404 18.4941C23.4539 17.8817 23.7699 17.0112 23.9101 15.361M5.56686 5.83282C5.56686 5.58823 5.66402 5.35366 5.83697 5.18072C6.00991 5.00777 6.24448 4.91061 6.48907 4.91061H11.4075C11.6521 4.91061 11.8866 5.00777 12.0596 5.18072C12.2325 5.35366 12.3297 5.58823 12.3297 5.83282C12.3297 6.0774 12.2325 6.31196 12.0596 6.48491C11.8866 6.65786 11.6521 6.75502 11.4075 6.75502H6.48907C6.24448 6.75502 6.00991 6.65786 5.83697 6.48491C5.66402 6.31196 5.56686 6.0774 5.56686 5.83282ZM24.8397 7.98463H21.5271C19.7762 7.98463 18.4765 9.28678 18.4765 10.7512C18.4765 12.2157 19.7762 13.5179 21.5259 13.5179H24.868C25.1213 13.5019 25.2307 13.331 25.2393 13.2277V8.27481C25.2307 8.17153 25.1213 8.00061 24.868 7.98586L24.8397 7.98463Z" fill="black" fillOpacity="0.5"/>
+                            </svg>
+                            <span className='text-[16px] font-medium'>Connect wallet..... Coming soon</span>
+                        </Link>
                     </div>
 
                     <div className='border border-black flex justify-center items-center py-3 rounded-md'>
-                        <a href="">Sign up with Google</a>
+                        <Link href="" className='flex items-center gap-2'>
+                            <Image
+                                src={"/google.png"}
+                                alt='google logo'
+                                width={23.11}
+                                height={23.11}
+                            />
+
+                            <span className='text-[16px] font-medium text-black/50'>Log in with Google</span>
+                        </Link>
                     </div>
 
-                    <span className='text-center block'>or</span>
+                    <span className='text-center block text-[16px] font-medium text-black/50'>or</span>
 
                     <div className='border-b border-black w-full'>
-                      <label htmlFor="email" className='opacity-60'>Email</label>
-                      <input type="text" className='w-full outline-none'/>
+                        <label htmlFor="email" className='opacity-60 text-[12px]'>Email</label>
+                        <input type="text" className='w-full outline-none'/>
                     </div>
 
-                    <div className='border-b border-black w-full'>
-                      <label htmlFor="password" className='opacity-60'>Password</label>
-                      <input type="password" className='w-full outline-none'/>
-                    </div>
+                    <div className='border-b border-black w-full relative'>
+                        <label htmlFor="password" className='opacity-60 text-[12px] block'>Password</label>
+                        <input type={`${showPassword ? "text" : "password"}`} className='w-[90%] outline-none py-2'/>
+                        {
+                            !showPassword ?
+                            <Eye className='absolute top-7 right-0 text-black/50' onClick={() => setShowPassword(true)}/>
+                            :
+                            <EyeOff className='absolute top-7 right-0 text-black/50' onClick={() => setShowPassword(false)}/>
+                        }
 
-                    {/* <div className='flex justify-end'>
-                      <a href="#" className='underline text-xs'>Forgot password</a>
-                    </div> */}
+                    </div>
 
                   </div>
-                  <DialogFooter className={"w-full text-center mt-5"}>
-                    <div className='w-full space-y-5'>
-                      <Button type={"submit"} className={"w-full block bg-green-500 text-black font-semibold"}>Sign up</Button>
-                      <p className='text-[14px]'>By signing up you agree with our <a href=""><span className='text-blue-500'>Terms </span>& <span className='text-blue-500'>Privacy Policy</span></a></p>
+
+                  <p className='text-[#FF3B30] text-[14px] w-[298px]'>You have already sign up with this email. Please login instead.</p>
+
+                  <DialogFooter className={"w-full text-center"}>
+                    <div className='w-full space-y-4'>
+                    <Button type={"submit"} className={"w-full block text-white bg-[#198038]  text-[16px] h-12"}>Continue</Button>
+                    <p className='text-[13px] text-black/50'>By signing up you agree with our<a href=""><span className='text-[#007AFF]'>Terms </span>& <span className='text-[#007AFF]'>Privacy Policy</span></a></p>
                     </div>
-                  </DialogFooter>
+                </DialogFooter>
                 </DialogContent>
               </form>
             </Dialog>

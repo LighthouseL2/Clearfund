@@ -15,10 +15,10 @@ const ResetPassword = ({open, setOpen}) => {
                 
                 <DialogContent className={"sm:max-w-[425px] max-w-[400px] p-10 bg-white"} showCloseButton={false}>
                   <DialogHeader className={"space-y-10 bg-white"}>
-                    <DialogTitle className={"text-3xl"}>Reset your password</DialogTitle>
+                    <DialogTitle className={"text-[16px] text-black/50 font-bold"}>Reset your password</DialogTitle>
 
                     
-                    <DialogDescription>
+                    <DialogDescription className={"text-[12px] text-black/50"}>
                         Enter your email and we will send you a password reset link
                     </DialogDescription>
 
@@ -27,23 +27,23 @@ const ResetPassword = ({open, setOpen}) => {
                   <div className='space-y-5'>
                     
 
-                    <div className='border-b border-black w-full space-y-10'>
-                      <label htmlFor="email" className='opacity-60 text-[14px]'>Email</label>
+                    <div className='border-b border-black w-full space-y-2'>
+                      <label htmlFor="email" className='text-black/50 text-[12px] block'>Your Email</label>
                       <input type="text" className='w-full outline-none '
                         placeholder='writeprovidence@gmail.com'
                       />
                     </div>
 
-                    
+
 
                   </div>
                   <DialogFooter className={"w-full text-center mt-10"}>
-                    <div className='w-full space-y-5'>
-                      <Button type={"submit"} className={"w-full block bg-green-500 text-black font-semibold"}>Submit</Button>
-                      <DialogClose className='hover:bg-red-500 w-full py-2 rounded-md hover:text-white' onClick={() => router.push("/") }>cancel</DialogClose>
+                    <div className='w-full space-y-5 text-[16px] font-medium'>
+                      <Button type={"submit"} className={"w-full block bg-[#198038] text-white h-12"}>Submit</Button>
+                      <DialogClose className='hover:bg-red-500 w-full h-12 rounded-md hover:text-white text-black/50' onClick={() => router.push("/") }>cancel</DialogClose>
                     </div>
                   </DialogFooter>
-                  
+
                 </DialogContent>
               </form>
             </Dialog>
