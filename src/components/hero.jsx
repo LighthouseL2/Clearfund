@@ -27,7 +27,7 @@ const HeroSection = ({open, setOpen}) => {
         
         <Link
           href="/?route=login"
-          className="bg-[#00CD5D] font-semibold text-white px-8 py-3 rounded-md text-[16px]"
+          className="bg-[#00CD5D] hover:bg-black font-semibold text-white px-8 py-3 rounded-md text-[16px]"
           onClick={() =>setOpen(!open)}
           >
             Get started

@@ -39,8 +39,8 @@ const ResetPassword = ({open, setOpen}) => {
                   </div>
                   <DialogFooter className={"w-full text-center mt-10"}>
                     <div className='w-full space-y-5 text-[16px] font-medium'>
-                      <Button type={"submit"} className={"w-full block bg-[#198038] text-white h-12"}>Submit</Button>
-                      <DialogClose className='hover:bg-red-500 w-full h-12 rounded-md hover:text-white text-black/50' onClick={() => router.push("/") }>cancel</DialogClose>
+                      <Button type={"submit"} className={"w-full block bg-[#198038] hover:bg-black text-white h-12"}>Submit</Button>
+                      <DialogClose className='w-full h-12 rounded-md hover:scale-105 text-black/50' onClick={() => router.push("/") }>cancel</DialogClose>
                     </div>
                   </DialogFooter>
 

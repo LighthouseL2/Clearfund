@@ -54,7 +54,7 @@ const NavHeader = ({toggle, setToggle}) => {
         </ul>
 
         <div className="flex gap-5 items-center " onClick={() => setToggle(!toggle)}>
-            <Link href="/?route=login" className="bg-[#00CD5D] font-semibold hover:bg-purple-900 text-white text-[16px] py-2 px-8 rounded-md">Sign in</Link>
+            <Link href="/?route=login" className="bg-[#00CD5D] font-semibold hover:bg-black text-white text-[16px] py-2 px-8 rounded-md">Sign in</Link>
         </div>
     </nav>
   )

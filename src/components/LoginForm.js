@@ -70,7 +70,7 @@ const LoginForm = ({open, setOpen }) => {
                         <label htmlFor="password" className='opacity-60 text-[12px] block'>Password</label>
                         <input type={`${showPassword ? "text" : "password"}`} className='w-[90%] outline-none py-2'/>
                         {
-                            !showPassword ? 
+                            !showPassword ?
                             <Eye className='absolute top-7 right-0 text-black/50' onClick={() => setShowPassword(true)}/>
                             :
                             <EyeOff className='absolute top-7 right-0 text-black/50' onClick={() => setShowPassword(false)}/>
@@ -88,7 +88,7 @@ const LoginForm = ({open, setOpen }) => {
 
                 <DialogFooter className={"w-full text-center"}>
                     <div className='w-full space-y-4'>
-                    <Button type={"submit"} className={"w-full block text-white bg-[#198038]  text-[16px] h-12"}>Continue</Button>
+                    <Button type={"submit"} className={"w-full block text-white bg-[#198038] hover:bg-black  text-[16px] h-12"}>Continue</Button>
                     <p className='text-[14px] text-black/50'>By logging in I agree to the <a href=""><span className='text-[#007AFF]'>Terms </span>& <span className='text-[#007AFF]'>Privacy Policy</span></a></p>
                     </div>
                 </DialogFooter>

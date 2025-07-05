@@ -45,7 +45,7 @@ export default function Home() {
                     Find ReFi projects, past grants, and new funding opportunities all in one place.
                 </h1>
 
-                <a href="#" className="block w-fit bg-white text-[16px] font-semibold text-black px-8 py-3 rounded-md">Try it free</a>
+                <a href="#" className="block w-fit bg-white text-[16px] hover:scale-105 transition-all font-semibold text-black px-8 py-3 rounded-md">Try it free</a>
             </div>
         </div>
 

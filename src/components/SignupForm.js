@@ -87,7 +87,7 @@ const SignupForm = ({ open, setOpen}) => {
 
                   <DialogFooter className={"w-full text-center"}>
                     <div className='w-full space-y-4'>
-                    <Button type={"submit"} className={"w-full block text-white bg-[#198038]  text-[16px] h-12"}>Continue</Button>
+                    <Button type={"submit"} className={"w-full block text-white bg-[#198038] hover:bg-black text-[16px] h-12"}>Continue</Button>
                     <p className='text-[13px] text-black/50'>By signing up you agree with our<a href=""><span className='text-[#007AFF]'>Terms </span>& <span className='text-[#007AFF]'>Privacy Policy</span></a></p>
                     </div>
                 </DialogFooter>
