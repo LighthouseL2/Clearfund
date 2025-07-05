@@ -38,12 +38,13 @@ const DiscoverBox = () => {
 
     
   return (
+
     <div className="bg-black px-[10%] py-[5%] space-y-20 flex flex-col items-center justify-center">
         <header className="capitalize text-2xl mt-5 md:mt-0 md:text-[45px] font-semibold text-white text-center">Discover Grants. Track Grants History. stay updated</header>
         <div className="h-full grid lg:grid-cols-2 gap-20 md:w-3/4 text-white mb-10 md:mb-0">
             {dicoverData.map((item, index) => (
                 <div className="bg-[#111111] w-full space-y-5 p-10 rounded-md hover:scale-105
-                    transition duration-300 ease-in-out hover:shadow-white hover:shadow-2xl" key={index}>
+                    transition duration-300 ease-in-out hover:shadow-[#00CD5D] hover:shadow-2xl" key={index}>
 
                     {item.icon}
 

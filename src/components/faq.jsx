@@ -27,7 +27,7 @@ const FaqSection = () => {
 
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10 bg-black p-[5%] text-white mb-10 lg:mb-0">
+    <div className="grid lg:grid-cols-2 gap-10 bg-black p-[5%] text-white pb-10 mb-10 lg:mb-0">
         <div className="w-full md:w-[425px] h-full">
             <h2 className="text-[36px] mb-10">Your questions, answered simply</h2>
             

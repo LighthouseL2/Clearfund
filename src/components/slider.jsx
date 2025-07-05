@@ -63,7 +63,7 @@ const SliderLogos = () => {
     
         const plugin = useRef(
             Autoplay({
-                delay: 4000,
+                delay: 6000,
                 stopOnInteraction: true
             })
         )
