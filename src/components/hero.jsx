@@ -18,7 +18,7 @@ const HeroSection = ({open, setOpen}) => {
 
   return (
     <div className="px-[5%] h-[80vh] flex justify-center items-center md:w-[85%] mx-auto text-center flex-col space-y-10">
-        <h1 className="capitalize text-3xl md:text-6xl font-extrabold tracking-wide ">Track Previous grants. explore new ones. get real-time Alerts.</h1>
+        <h1 className="capitalize text-3xl md:text-[64px] font-semibold tracking-wide ">Track Previous grants. explore new ones. get real-time Alerts.</h1>
         <p className="text-xl md:w-[60%]">
             Explore past grants data, find new funding oppourtunities and stay updated with real-time
             alerts from Web3 grants platforms
@@ -27,7 +27,7 @@ const HeroSection = ({open, setOpen}) => {
         
         <Link
           href="/?route=login"
-          className="bg-[#00CD5D] font-semibold text-black px-8 py-3 rounded-md"
+          className="bg-[#00CD5D] font-semibold text-white px-8 py-3 rounded-md text-[16px]"
           onClick={() =>setOpen(!open)}
           >
             Get started

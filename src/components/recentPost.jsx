@@ -11,7 +11,7 @@ const RecentPost = () => {
             desc: `Discover how builders are regenerating the world, one block at a
                  time with stories that inspire, lessons that guide and impact you can feel.`,
             author: "ezekiel lawson",
-            image: "/logo.jpg"
+            image: "/rig.png"
         },
         {
             title: "Latest Research",
@@ -29,17 +29,19 @@ const RecentPost = () => {
         },
     ]
 
+
+
   return (
     <div className="bg-white p-[5%] mb-20 lg:mb-0">
             <header className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-4xl font-bold text-[#7F7F7F]">Recent Post</h1>
-                <a href="" className="text-green-[#00CD5D] font-semibold flex items-center gap-3 justify-center">visit our blog <MoveRight /></a>
+                <h1 className="text-2xl md:text-4xl font-bold text-black opacity-30">Recent Post</h1>
+                <a href="" className="text-[#00CD5D] text-[18px] capitalize font-semibold flex items-center gap-1 justify-center">visit our blog <MoveRight /></a>
             </header>
 
-            <div className="grid lg:grid-cols-3 gap-10 mt-20">
+            <div className="grid lg:grid-cols-3 gap-10 mt-20 space-y-10 md:space-y-0">
                 {
                     posts && posts.length > 0 && posts.map((post, index) =>(
-                    <div className="rounded-md p-5 space-y-3 shadow-2xl" key={index}>
+                    <div className="rounded-md p-8 space-y-3 shadow-2xl" key={index}>
                         <div className="w-full h-52 relative rounded-md">
                             <Image
                                 src={post.image}
@@ -50,14 +52,14 @@ const RecentPost = () => {
                         </div>
 
                         <div className="text-black space-y-2">
-                            <h1 className="capitalize font-bold text-3xl lg:text-4xl">{post.title}</h1>
-                            <p className="opacity-50">
+                            <h1 className="capitalize font-semibold w-5/6 h-[58px] text-[28px]">{post.title}</h1>
+                            <p className="opacity-50 text-[16px] h-[80px] mt-10">
                                 {post.desc}
                             </p>
                             <div className="space-y-3 flex flex-col ">
-                                <p className="mt-5 capitalize opacity-50">ezekiel lawson</p>
-                                <p className="flex justify-between opacity-50"><span>June 23th, 2025 </span> 1 min Read</p>
-                                <a href="" className="text-[#EC4B6A]">Read more</a>
+                                <p className="mt-5 capitalize opacity-50 text-[14px]">ezekiel lawson</p>
+                                <p className="opacity-50 text-[14px]"><span>June 23th, 2025 </span>* 1 min Read</p>
+                                <a href="" className="text-[#EC4B6A] text-[16px] font-semibold uppercase">Read more</a>
                             </div>
                         </div>
                     </div>

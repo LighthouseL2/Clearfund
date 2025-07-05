@@ -6,7 +6,7 @@ const GrantBox = () => {
 
     const box = [
         {
-            image: "/disc2.jpg",
+            image: "/logo.jpg",
             title: "Epoch 8 cohort",
             network: "Octant",
             status: "Upcoming",
@@ -43,14 +43,14 @@ const GrantBox = () => {
   return (
     <div className="px-[5%]  py-[5%]">
         <header className="py-5 space-y-3">
-            <h1 className="font-bold text-3xl text-black">Recent Grant Rounds</h1>
-            <p className="text-[#7F7F7F]">Latest funding oppourtunities in ReFi ecosystem</p>
+            <h1 className="font-semibold text-[36px] text-black">Recent Grant Rounds</h1>
+            <p className="text-black opacity-50 text-[24px]">Latest funding oppourtunities in ReFi ecosystem</p>
         </header>
 
-        <div className="grid lg:grid-cols-3 w-full text-black gap-10 mt-10">
+        <div className="grid lg:grid-cols-3 w-full text-black gap-15 mt-10">
             {box && box.map((boxItem, index) => (
-                <div className="w-full shadow-2xl rounded-md" key={index}>
-                    <div className="h-20 relative">
+                <div className="w-full border rounded-md lg:h-[400px]" key={index}>
+                    <div className="h-[56px] relative">
                         <Image
                         fill
                         objectFit="cover"
@@ -60,25 +60,25 @@ const GrantBox = () => {
                         />
                     </div>
 
-                    <div className="mt-5 px-5">
+                    <div className="mt-10 px-8">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-xl font-semibold">{boxItem.title}</h3>
-                            <p className={`${boxItem.status === "Active" ? "bg-green-200" : "bg-purple-200"} rounded-full px-3`}>{boxItem.status}</p>
+                            <h3 className="text-[18px]">{boxItem.title}</h3>
+                            <p className={`${boxItem.status === "Active" ? "bg-[#D1F9E5] text-[#009951]" : "bg-[#E6F2FF] text-[#007AFF]"} rounded-full px-3`}>{boxItem.status}</p>
                         </div>
 
                         <div className="flex justify-between items-center mt-3">
-                            <a href="#" className="text-red-500 border-2 px-3 rounded-md">{boxItem.network}</a>
-                            <p>11-07-2025</p>
+                            <a href="#" className="text-red-500 border-1 px-2 rounded-md text-[16px]">{boxItem.network}</a>
+                            <p className="text-[12px]">11-07-2025</p>
                         </div>
 
-                        <p className="mt-5">
+                        <p className="mt-5 text-[14px]">
                             {boxItem.desc.slice(0, 150) + "..."}
                         </p>
                         <p className="border py-1 px-3 w-fit mt-10 flex gap-4 text-[#7F7F7F]"><span className="font-bold text-black">{boxItem.amount}</span> {boxItem.coin}</p>
                     </div>
 
-                    <div className="py-5 border-t mt-3 rounded-b-md gap-5 flex px-[5%] text-[#00CD5D]">
-                        <CornerDownRight/> <a href="#">Learn more</a>
+                    <div className="py-5 border-t mt-3 rounded-b-md gap-5 flex px-[10%] text-[#00CD5D] items-center">
+                        <CornerDownRight/> <a href="#" className="text-[16px] font-semibold">Learn more</a>
                     </div>
                 </div>
             ))}
@@ -86,7 +86,7 @@ const GrantBox = () => {
         </div>
 
         <div className="flex items-center justify-center py-10 mt-14">
-            <a href="" className="text-xl text-[#00CD5D] flex items-center gap-3">View All <ChevronRight /></a> 
+            <a href="" className="text-xl text-[#00CD5D] text-[18px] font-semibold flex items-center gap-3">View All <ChevronRight /></a> 
         </div>
     </div>
   )
