@@ -1,6 +1,4 @@
 import Link from "next/link"
-
-
 const Footer = () => {
 
     let today = new Date().getUTCFullYear()
@@ -71,8 +69,10 @@ const Footer = () => {
             <p className="text-[14px] opacity-70 text-white">© {today} ClearFund. All rights reserved</p>
 
             <div className="flex justify-between w-full  lg:w-1/3 gap-20 opacity-70 text-[14px] text-white">
-                <a href="">Privacy Policy</a>
-                <a href="">Terms and Conditions</a>
+            <Link href="/privacy-policy" className="">
+        Privacy Policy
+      </Link>
+      <Link href="/terms" className="">Terms and Conditions </Link>
             </div>
         </div>
     </footer>
