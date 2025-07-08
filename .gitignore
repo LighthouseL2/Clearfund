@@ -4,4 +4,4 @@ node_modules/
 
 .next/
 
-turbo/
+turbo/.DS_Store
