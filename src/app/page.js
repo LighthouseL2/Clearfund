@@ -12,6 +12,7 @@ import RecentPost from "@/components/recentPost";
 import FaqSection from "@/components/faq";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 
 
@@ -45,7 +46,10 @@ export default function Home() {
                     Find ReFi projects, past grants, and new funding opportunities all in one place.
                 </h1>
 
-                <a href="#" className="block w-fit bg-white text-[16px] hover:scale-105 transition-all font-semibold text-black px-8 py-3 rounded-md">Try it free</a>
+                <Link href="/"
+                    className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md" onClick={() => setToggle(!toggle)}>
+                        Try it free
+                </Link>
             </div>
         </div>
 

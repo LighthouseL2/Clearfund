@@ -1,7 +1,12 @@
 
+.gitignore
 
 node_modules/
 
 .next/
 
-turbo/.DS_Store
+.env
+
+turbo/
+# clerk configuration (can include secrets)
+/.clerk/

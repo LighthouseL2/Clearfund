@@ -16,7 +16,7 @@ const LoginForm = ({open, setOpen }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
         <form>
-            
+
             <DialogContent className={"sm:max-w-[425px] max-w-[400px] p-10 bg-white  shadow-2xl"}>
                 <DialogHeader className={"space-y-10 bg-white"}>
                     <DialogTitle className={"text-center font-bold  text-[18px] text-black/50"}>Log In</DialogTitle>
@@ -47,7 +47,7 @@ const LoginForm = ({open, setOpen }) => {
                     </div>
 
                     <div className='border border-black flex justify-center items-center py-3 rounded-md'>
-                        <Link href="" className='flex items-center gap-2'>
+                        <a href="http://localhost:8080/api/auth/google" target='_blank' className='flex items-center gap-2'>
                             <Image
                                 src={"/google.png"}
                                 alt='google logo'
@@ -56,7 +56,7 @@ const LoginForm = ({open, setOpen }) => {
                             />
 
                             <span className='text-[16px] font-medium text-black/50'>Log in with Google</span>
-                        </Link>
+                        </a>
                     </div>
 
                     <span className='text-center block text-[16px] font-medium text-black/50'>or</span>

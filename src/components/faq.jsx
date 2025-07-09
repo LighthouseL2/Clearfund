@@ -1,5 +1,6 @@
 
 import { Fragment } from "react";
+import Link from "next/link";
 
 const FaqSection = () => {
 
@@ -20,20 +21,23 @@ const FaqSection = () => {
         },
 
         {
-            question: "How does application help work?",
-            ans: `We walk you through each step of applying, making it easy to apply and submit application`
+            question: "How can I use ClearFund to discover ReFi projects?",
+            ans: `ClearFund features a curated directory of (ReFi) projects from across the Web3 ecosystem. You can browse by category, funding history, impact area. Each project profile includes mission details, funding rounds participated in, and links to learn more or get involved.`
         },
     ]
 
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10 bg-black p-[5%] text-white pb-10 mb-10 lg:mb-0">
+    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7%] text-white pt-[7%] mb-10 lg:mb-0">
         <div className="w-full md:w-[425px] h-full">
             <h2 className="text-[36px] mb-10">Your questions, answered simply</h2>
             
             <p className="text-[16px] mb-17">Quick answers to common funding questions</p>
-            <a href="" className="py-4 px-10 bg-[#198038] mt-10 text-white text-[16px] font-semibold rounded-md">Learn more</a>
-            
+        
+            <Link href="/?route=login"
+                className="w-[202.19px] flex items-center justify-center font-semibold bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
+                Learn More
+            </Link>
         </div>
 
         <div className="">

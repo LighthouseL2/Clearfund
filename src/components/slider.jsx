@@ -63,7 +63,7 @@ const SliderLogos = () => {
     
         const plugin = useRef(
             Autoplay({
-                delay: 6000,
+                delay: 1000,
                 stopOnInteraction: true
             })
         )
@@ -74,15 +74,13 @@ const SliderLogos = () => {
             }} plugins={[plugin.current]}>
             <CarouselContent className={"mx-[5%]"}>
                 {items.map((item, index) => (
-                    <CarouselItem key={index} className={"basis-1/3 lg:basis-1/3 flex items-center"}>
+                    <CarouselItem key={index} className={"basis-1/6 flex items-center"}>
                         <div className="p-1">
                             {item.name}
                         </div>
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            {/* <CarouselPrevious />
-            <CarouselNext /> */}
         </Carousel>
   )
 }
