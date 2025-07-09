@@ -17,14 +17,10 @@ const SignupForm = ({ open, setOpen}) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
               <form >
-                {/* <DialogTrigger asChild>
-                  <button className="bg-[#00CD5D] font-semibold text-black px-5 py-3 rounded-md" onClick={() =>setOpen(!open)}>
-                    Get started
-                  </button>
-                </DialogTrigger> */}
+                
                 <DialogContent className={"sm:max-w-[425px] max-w-[400px] p-10 bg-white"}>
                   <DialogHeader className={"space-y-10 bg-white"}>
-                    <DialogTitle className={"text-center  text-3xl"}>Sign up</DialogTitle>
+                    <DialogTitle className={"text-center font-bold  text-[18px] text-black/50"}>Sign up</DialogTitle>
 
                     <div className='space-y-5 flex justify-center flex-col items-center'>
                         <p>or <Link href="/?route=login" className='text-blue-600'>log in to your account</Link></p>
