@@ -24,14 +24,20 @@ const HeroSection = ({open, setOpen}) => {
             alerts from Web3 grants platforms
         </p>
 
+
+        <Link href="/?route=login"
+          className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
+            Get started
+        </Link>
+
         
-        <Link
+        {/* <Link
           href="/?route=login"
           className="bg-[#00CD5D] hover:bg-black font-semibold text-white px-8 py-3 rounded-md text-[16px]"
           onClick={() =>setOpen(!open)}
           >
             Get started
-        </Link>
+        </Link> */}
 
         {
           modal === "login" ? (

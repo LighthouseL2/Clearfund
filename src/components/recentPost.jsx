@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import Link from "next/link";
 import { MoveRight } from "lucide-react";
 
 
@@ -35,13 +36,18 @@ const RecentPost = () => {
     <div className="bg-white p-[5%] mb-20 lg:mb-0">
             <header className="flex items-center justify-between">
                 <h1 className="text-2xl md:text-4xl font-bold text-black opacity-30">Recent Post</h1>
-                <a href="" className="text-[#00CD5D] text-[18px] capitalize font-semibold flex items-center gap-1 justify-center">visit our blog <MoveRight /></a>
+                <Link href={"/"} className="text-[#095012]  text-[18px] capitalize font-semibold flex items-center gap-3 justify-center">visit our blog <span>
+                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.923828 0.626953L5.42383 5.12695L0.923828 9.62695" fill="#095012"/>
+                    </svg>
+
+                </span></Link>
             </header>
 
-            <div className="grid lg:grid-cols-3 gap-10 mt-20 space-y-10 md:space-y-0">
+            <div className="grid lg:grid-cols-3 gap-5 mt-20 space-y-10 md:space-y-0">
                 {
                     posts && posts.length > 0 && posts.map((post, index) =>(
-                    <div className="rounded-md p-8 space-y-3 shadow-2xl" key={index}>
+                    <div className="rounded-md p-8 space-y-3 shadow" key={index}>
                         <div className="w-full h-52 relative rounded-md">
                             <Image
                                 src={post.image}
@@ -53,7 +59,7 @@ const RecentPost = () => {
 
                         <div className="text-black space-y-2">
                             <h1 className="capitalize font-semibold w-5/6 h-[58px] text-[28px]">{post.title}</h1>
-                            <p className="opacity-50 text-[16px] h-[80px] mt-10">
+                            <p className="opacity-80 text-[16px] h-[80px] mt-10">
                                 {post.desc}
                             </p>
                             <div className="space-y-3 flex flex-col ">

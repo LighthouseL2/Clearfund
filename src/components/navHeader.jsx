@@ -26,8 +26,8 @@ const NavHeader = ({toggle, setToggle}) => {
         </div>
 
         <ul className="md:flex w-[45%] gap-10 hidden items-center">
-            <li className="relative">
-              <DropdownMenu>
+            <li className="relative text-[16px]">
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger className="outline-none">
                     <div className="flex items-center justify-center group gap-2">
                       <span className="text-[16px]">Features</span> <ChevronDown className="group-hover:rotate-180 transition-all"/>
@@ -47,15 +47,19 @@ const NavHeader = ({toggle, setToggle}) => {
                     Profile
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
+              <Link href={"/"}>Github</Link>
             </li>
-            <li className="text-[16px]">About</li>
-            <li className="text-[16px]">Blog</li>
+            <li className="text-[16px]"><Link href={"/"}>About</Link></li>
+            <li className="text-[16px]"><Link href={"/"}>Blog</Link></li>
         </ul>
 
-        <div className="flex gap-5 items-center " onClick={() => setToggle(!toggle)}>
-            <Link href="/?route=login" className="bg-[#00CD5D] font-semibold hover:bg-black text-white text-[16px] py-2 px-8 rounded-md">Sign in</Link>
-        </div>
+         
+        <Link href="/?route=login"
+          className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setToggle(!toggle)}>
+            Sign in
+        </Link>
+        
     </nav>
   )
 }

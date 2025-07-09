@@ -7,16 +7,55 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
+import { initialFormData } from '@/lib/config'
+
 
 
 const LoginForm = ({open, setOpen }) => {
 
     const [showPassword, setShowPassword] = useState(false)
+    
+    const [disabled, setDisabled] = useState(false)
+    const [errors, setErrors] = useState(null)
+
+    const [formData, setFormdata] = useState(initialFormData)
+
+
+    const validate = () => {
+        const newErrors = {}
+
+        if(!formData.password) {
+            newErrors.password = "Password cannot be empty"
+        }
+
+        console.log("validate")
+
+        if(!formData.email.trim()) {
+            newErrors.email = "Email is required"
+        }else {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            if(!emailRegex.test(formData.email)){
+                newErrors.email = "Enter a valid email"
+            }
+        }
+
+        setErrors(newErrors)
+        console.log(Object.keys(newErrors).length  === 0);
+        Object.keys(newErrors).length  === 0 ? setDisabled(false) : setDisabled(true)
+        return Object.keys(newErrors).length  === 0
+    }
+
+    const handleSubmit = async () => {
+        if(validate()){
+            // api call
+            console.log("Form is ok");
+        }
+    }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
         <form>
-            
+
             <DialogContent className={"sm:max-w-[425px] max-w-[400px] p-10 bg-white  shadow-2xl"}>
                 <DialogHeader className={"space-y-10 bg-white"}>
                     <DialogTitle className={"text-center font-bold  text-[18px] text-black/50"}>Log In</DialogTitle>
@@ -47,7 +86,7 @@ const LoginForm = ({open, setOpen }) => {
                     </div>
 
                     <div className='border border-black flex justify-center items-center py-3 rounded-md'>
-                        <Link href="" className='flex items-center gap-2'>
+                        <a href="http://localhost:8080/api/auth/google" target='_blank' className='flex items-center gap-2'>
                             <Image
                                 src={"/google.png"}
                                 alt='google logo'
@@ -56,19 +95,26 @@ const LoginForm = ({open, setOpen }) => {
                             />
 
                             <span className='text-[16px] font-medium text-black/50'>Log in with Google</span>
-                        </Link>
+                        </a>
                     </div>
 
                     <span className='text-center block text-[16px] font-medium text-black/50'>or</span>
 
                     <div className='border-b border-black w-full'>
                         <label htmlFor="email" className='opacity-60 text-[12px]'>Email</label>
-                        <input type="text" className='w-full outline-none'/>
+                        <input type="text" className='w-full outline-none'
+                            value={formData.email}
+                            onChange={(e) => setFormdata({...formData, email: e.target.value})}
+                        />
                     </div>
 
                     <div className='border-b border-black w-full relative'>
                         <label htmlFor="password" className='opacity-60 text-[12px] block'>Password</label>
-                        <input type={`${showPassword ? "text" : "password"}`} className='w-[90%] outline-none py-2'/>
+                        <input type={`${showPassword ? "text" : "password"}`}
+                            className='w-[90%] outline-none py-2'
+                                value={formData.password}
+                                onChange={(e) => setFormdata({...formData, password: e.target.value})}
+                            />
                         {
                             !showPassword ?
                             <Eye className='absolute top-7 right-0 text-black/50' onClick={() => setShowPassword(true)}/>
@@ -84,12 +130,16 @@ const LoginForm = ({open, setOpen }) => {
 
                 </div>
 
-                <p className='text-[#FF3B30] text-[14px] w-[298px]'> Incorrect email or password, please try again.</p>
+                {errors && 
+                    <p className='text-[#FF3B30] text-[14px] w-[298px]'> Incorrect email or password, please try again.</p>
+                }
 
                 <DialogFooter className={"w-full text-center"}>
                     <div className='w-full space-y-4'>
-                    <Button type={"submit"} className={"w-full block text-white bg-[#198038] hover:bg-black  text-[16px] h-12"}>Continue</Button>
-                    <p className='text-[14px] text-black/50'>By logging in I agree to the <a href=""><span className='text-[#007AFF]'>Terms </span>& <span className='text-[#007AFF]'>Privacy Policy</span></a></p>
+                        <Button type={"submit"} disabled={disabled} className={`w-full block text-white bg-[#198038] hover:bg-black  text-[16px] h-12 ${disabled && "cursor-none"}`}
+                            onClick={() => handleSubmit()}
+                        >Continue</Button>
+                        <p className='text-[14px] text-black/50'>By logging in I agree to the <a href=""><span className='text-[#007AFF]'>Terms </span>& <span className='text-[#007AFF]'>Privacy Policy</span></a></p>
                     </div>
                 </DialogFooter>
             </DialogContent>

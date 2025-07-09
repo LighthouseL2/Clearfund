@@ -28,9 +28,10 @@ const DiscoverBox = () => {
         },
 
         {
-            icon: <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M25.8419 8.78177L18.2944 1.23432C18.1942 1.13423 18.0753 1.05486 17.9444 1.00074C17.8135 0.946629 17.6732 0.918834 17.5316 0.918946H1.35848C1.07252 0.918946 0.798276 1.03254 0.596073 1.23475C0.39387 1.43695 0.280273 1.71119 0.280273 1.99715V18.1702C0.280393 18.4532 0.391726 18.7247 0.590258 18.9263L8.1377 26.4738C8.23799 26.5757 8.35756 26.6567 8.48945 26.712C8.62134 26.7673 8.76291 26.7958 8.90592 26.7959H25.079C25.365 26.7959 25.6392 26.6823 25.8414 26.4801C26.0436 26.2779 26.1572 26.0037 26.1572 25.7177V9.5446C26.1573 9.40296 26.1295 9.2627 26.0754 9.13181C26.0213 9.00092 25.9419 8.88197 25.8419 8.78177ZM18.6098 4.59967L22.4765 8.46639H18.6098V4.59967ZM7.82772 23.1152L3.961 19.2485H7.82772V23.1152ZM7.82772 17.092H2.43669V4.59967L7.82772 9.9907V17.092ZM3.961 3.07536H16.4534V8.46639H9.35203L3.961 3.07536ZM16.4534 10.6228V17.092H9.98413V10.6228H16.4534ZM9.98413 24.6395V19.2485H17.0855L22.4765 24.6395H9.98413ZM24.0008 23.1152L18.6098 17.7241V10.6228H24.0008V23.1152Z" fill="#00CD5D"/>
-                  </svg>,
+            icon: <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.9517 24.5C19.1872 24.5 24.2422 19.4451 24.2422 13.2095C24.2422 6.97389 19.1872 1.91895 12.9517 1.91895C6.71607 1.91895 1.66113 6.97389 1.66113 13.2095C1.66113 19.4451 6.71607 24.5 12.9517 24.5Z" stroke="#00CD5D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12.0816 10.3743L16.7145 9.44727L15.7874 14.0801C15.6904 14.5657 15.4518 15.0117 15.1018 15.362C14.7518 15.7123 14.3059 15.9511 13.8204 16.0485L9.1875 16.9743L10.1146 12.3414C10.2118 11.8561 10.4505 11.4103 10.8005 11.0603C11.1506 10.7103 11.5963 10.4716 12.0816 10.3743Z" stroke="#00CD5D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>,
             title: "Discover ReFi Projects",
             desc: "Browse and explore a curated directory of regenerative finance (ReFi) projects from across the Web3 space. Learn about their missions, activities, and impact areas."
         }
@@ -39,17 +40,17 @@ const DiscoverBox = () => {
     
   return (
 
-    <div className="bg-black px-[10%] py-[5%] space-y-20 flex flex-col items-center justify-center">
-        <header className="capitalize text-2xl mt-5 md:mt-0 md:text-[45px] font-semibold text-white text-center">Discover Grants. Track Grants History. stay updated</header>
-        <div className="h-full grid lg:grid-cols-2 gap-20 md:w-3/4 text-white mb-10 md:mb-0">
+    <div className="bg-black px-[10%] pt-[5%] pb-[7%] space-y-20 flex flex-col items-center justify-center">
+        <header className="capitalize mt-5 md:mt-0 md:text-[45px] font-semibold text-white text-center">Discover Grants. Track Grants History. stay updated</header>
+        <div className="h-full grid lg:grid-cols-2 gap-10 w-[90%]  text-white mb-10 md:mb-0">
             {dicoverData.map((item, index) => (
-                <div className="bg-[#111111] w-full space-y-5 p-10 rounded-md hover:scale-105
+                <div className="bg-[#111111] w-full p-10 rounded-md hover:scale-105
                     transition duration-300 ease-in-out hover:shadow-[#00CD5D] hover:shadow-2xl" key={index}>
 
-                    {item.icon}
+                    <span className='block mb-1'>{item.icon}</span>
 
 
-                    <h3 className="text-[22px] font-semibold">{item.title}</h3>
+                    <h3 className="text-[22px] font-semibold mb-5">{item.title}</h3>
                     <p className='text-[16px]'>{item.desc}</p>
                 </div>
             ))}
