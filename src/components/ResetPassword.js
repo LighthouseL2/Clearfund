@@ -29,7 +29,7 @@ const ResetPassword = ({open, setOpen}) => {
 
                     <div className='border-b border-black w-full space-y-2'>
                       <label htmlFor="email" className='text-black/50 text-[12px] block'>Your Email</label>
-                      <input type="text" className='w-full outline-none '
+                      <input type="text" className='w-full outline-none text-[16px] text-black/50'
                         // placeholder='writeprovidence@gmail.com'
                       />
                     </div>
@@ -37,8 +37,8 @@ const ResetPassword = ({open, setOpen}) => {
 
                   </div>
                   <DialogFooter className={"w-full text-center mt-5"}>
-                    <div className='w-full space-y-2 text-[16px] font-medium'>
-                      <Button type={"submit"} className={"w-full block bg-[#198038] hover:bg-black text-white h-12"}>Submit</Button>
+                    <div className='w-full space-y-1 text-[16px] font-medium'>
+                      <Button type={"submit"} className={"w-full block bg-[#198038] hover:bg-black text-white h-12"}>Reset Password</Button>
                       <DialogClose className='w-full h-12 rounded-md hover:scale-105 text-black/50' onClick={() => router.push("/") }>cancel</DialogClose>
                     </div>
                   </DialogFooter>
