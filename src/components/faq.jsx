@@ -30,12 +30,12 @@ const FaqSection = () => {
   return (
     <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7%] text-white pt-[7%] mb-10 lg:mb-0">
         <div className="w-full md:w-[425px] h-full">
-            <h2 className="text-[36px] mb-10">Your questions, answered simply</h2>
+            <h2 className="text-[36px] mb-10 font-sans">Your questions, answered simply</h2>
             
-            <p className="text-[16px] mb-17">Quick answers to common funding questions</p>
+            <p className="text-[16px] mb-17 font-sans">Quick answers to common funding questions</p>
         
             <Link href="/?route=login"
-                className="w-[202.19px] flex items-center justify-center font-semibold bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
+                className="w-[202.19px] font-sans flex items-center justify-center font-semibold bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
                 Learn More
             </Link>
         </div>
@@ -43,8 +43,8 @@ const FaqSection = () => {
         <div className="">
             {questionsData.map((data, index) => (
                 <div className="border-b-2 space-y-2 pb-5 mb-5" key={index}>
-                    <h3 className="text-[24px]">{data.question}</h3>
-                    <p className="text-[16px]">{data.ans}</p>
+                    <h3 className="text-[24px] font-sans">{data.question}</h3>
+                    <p className="text-[16px] font-sans">{data.ans}</p>
                 </div>
             ))}
         </div>
