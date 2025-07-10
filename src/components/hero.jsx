@@ -19,7 +19,7 @@ const HeroSection = ({open, setOpen}) => {
   return (
     <div className="px-[5%]  flex justify-center items-center md:w-[85%] mx-auto text-center flex-col">
         <h1 className="capitalize mt-[203.5px] text-3xl md:text-[64px] mb-10 font-bold">Track Previous Grants. Find New Ones. Get Real-Time Alerts.</h1>
-        <p className="text-[20px] md:w-[75%]  mb-14">
+        <p className="text-[20px] md:w-[78%]  mb-14">
             Explore past grant data, discover impactful ReFi projects, find
             new funding opportunities, and stay updated with real-time alerts
             from leading Web3 grant platforms.

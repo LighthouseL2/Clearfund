@@ -13,7 +13,7 @@ const ResetPassword = ({open, setOpen}) => {
     <Dialog open={open} onOpenChange={setOpen}>
               <form>
                 
-                <DialogContent className={"sm:max-w-[489px] max-w-[489px] h-[343px] px-15 py-10 bg-white"} showCloseButton={false}>
+                <DialogContent className={"sm:max-w-[400px] max-w-[489px] h-[343px] px-15 py-10 bg-white"} showCloseButton={false}>
                   <DialogHeader className={"bg-white"}>
                     <DialogTitle className={"text-[16px] text-black/50 font-bold"}>Reset your password</DialogTitle>
 

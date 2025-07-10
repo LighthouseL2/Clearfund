@@ -112,6 +112,18 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+
+@font-face {
+  font-family: "Mordern Era";
+  src: url("/fonts/ModernEra.woff");
+}
+
+
+body {
+  font-family: "Modern Era", sans-serif
+}
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -83,7 +83,7 @@ const Footer = () => {
                 <p className="text-[14px]  opacity-70 text-white">© {today} ClearFund. All rights reserved</p>
 
                 <div className="flex  w-full lg:w-[33%]   opacity-70 text-[14px] text-white">
-                    <div className="flex w-full justify-between lg:gap-23">
+                    <div className="flex w-full justify-between lg:justify-start lg:gap-23">
                         <Link href="/privacy-policy" className="">
                             Privacy Policy
                         </Link>
