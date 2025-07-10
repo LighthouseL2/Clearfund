@@ -18,13 +18,13 @@ const ResetPassword = ({open, setOpen}) => {
                     <DialogTitle className={"text-[16px] text-black/50 font-bold"}>Reset your password</DialogTitle>
 
                     
-                    <DialogDescription className={"text-[12px] text-black/50"}>
+                    <DialogDescription className={"text-[12px] text-black/50 mt-1"}>
                         Enter your email and we will send you a password reset link
                     </DialogDescription>
 
                     
                   </DialogHeader>
-                  <div className='space-y-5 mt-5'>
+                  <div className='mt-5'>
                     
 
                     <div className='border-b border-black w-full space-y-2'>

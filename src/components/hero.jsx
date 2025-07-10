@@ -17,16 +17,17 @@ const HeroSection = ({open, setOpen}) => {
 //   const [reset, setReset] = useState(false)
 
   return (
-    <div className="px-[5%] h-[80vh] flex justify-center items-center md:w-[85%] mx-auto text-center flex-col space-y-10">
-        <h1 className="capitalize text-3xl md:text-[64px] font-semibold tracking-wide ">Track Previous grants. explore new ones. get real-time Alerts.</h1>
-        <p className="text-xl md:w-[60%]">
-            Explore past grants data, find new funding oppourtunities and stay updated with real-time
-            alerts from Web3 grants platforms
+    <div className="px-[5%]  flex justify-center items-center md:w-[85%] mx-auto text-center flex-col">
+        <h1 className="capitalize mt-[203.5px] text-3xl md:text-[64px] mb-10 font-bold">Track Previous Grants. Find New Ones. Get Real-Time Alerts.</h1>
+        <p className="text-[20px] md:w-[75%]  mb-14">
+            Explore past grant data, discover impactful ReFi projects, find
+            new funding opportunities, and stay updated with real-time alerts
+            from leading Web3 grant platforms.
         </p>
 
 
         <Link href="/?route=login"
-          className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
+          className="w-[202.19px] mb-30 flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
             Get started
         </Link>
 
