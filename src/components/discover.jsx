@@ -41,17 +41,17 @@ const DiscoverBox = () => {
   return (
 
     <div className="bg-black px-[10%] pt-[5%] pb-[7%] space-y-20 flex flex-col items-center justify-center">
-        <header className="capitalize mt-5 md:mt-0 md:text-[45px] font-semibold text-white text-center">Discover Grants. Track Grants History. stay updated</header>
+        <header className="capitalize mt-5 md:mt-0 md:text-[45px] font-semibold font-sans text-white text-center">Discover Grants. Track Grants History. stay updated</header>
         <div className="h-full grid lg:grid-cols-2 gap-10 w-[90%]  text-white mb-10 md:mb-0">
             {dicoverData.map((item, index) => (
-                <div className="bg-[#111111] w-full p-10 rounded-md hover:scale-105
+                <div className="bg-[#111111] w-full p-10 font-sans rounded-md hover:scale-105
                     transition duration-300 ease-in-out hover:shadow-[#00CD5D] hover:shadow-2xl" key={index}>
 
-                    <span className='block mb-1'>{item.icon}</span>
+                    <span className='block mb-1 font-sans'>{item.icon}</span>
 
 
-                    <h3 className="text-[22px] font-semibold mb-5">{item.title}</h3>
-                    <p className='text-[16px]'>{item.desc}</p>
+                    <h3 className="text-[22px] font-sans font-semibold mb-5">{item.title}</h3>
+                    <p className='text-[16px] font-sans'>{item.desc}</p>
                 </div>
             ))}
         </div>

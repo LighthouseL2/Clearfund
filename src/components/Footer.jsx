@@ -11,11 +11,11 @@ const Footer = () => {
                     <a href=""><img src="/projectLogo.png" alt="logo" /></a>
                 </div>
 
-                <h2 className="text-[36px]  mb-5">Get the latest updates</h2>
-                <p className="mb-5 text-white opacity-70 text-[16px]">Subscribe to our newsletter to get all grant updates straight to your mailbox!</p>
+                <h2 className="text-[36px] font-sans mb-5">Get the latest updates</h2>
+                <p className="mb-5 text-white opacity-70 font-sans text-[16px]">Subscribe to our newsletter to get all grant updates straight to your mailbox!</p>
                 <form action="" className="border border-white/70 rounded-md w-full sm:w-5/6  md:w-4/6 lg:w-3/6 flex mb-20">
-                    <input type="text" className="outline-none w-2/3 p-3 text-[16px] opacity-70" placeholder="Enter your email"/>
-                    <button className="w-1/3 bg-[#198038] text-white border-0 rounded-r-md">Subscribe</button>
+                    <input type="text" className="outline-none w-2/3 p-3 font-sans text-[16px] opacity-70" placeholder="Enter your email"/>
+                    <button className="w-1/3 bg-[#198038] text-white border-0 font-sans rounded-r-md">Subscribe</button>
                 </form>
 
                 
@@ -55,10 +55,10 @@ const Footer = () => {
 
                 <div className="flex justify-between w-[90%] md:w-[95%] sm:w-[94%] lg:w-[68%]">
                     <div>
-                        <h3 className="uppercase mb-3">About</h3>
-                        <ul className="space-y-3 opacity-80 text-white/80 text-[14px]">
-                            <li><Link href={"/"}>Home</Link></li>
-                            <li><Link href={"/faq"}>FAQ</Link></li>
+                        <h3 className="uppercase mb-3 font-sans">About</h3>
+                        <ul className="space-y-3 opacity-80 font-sans text-white/80 text-[14px]">
+                            <li><Link className="font-sans" href={"/"}>Home</Link></li>
+                            <li><Link className="font-sans" href={"/faq"}>FAQ</Link></li>
                             <li>Blog</li>
                             <li>Contact</li>
                         </ul>
@@ -66,12 +66,12 @@ const Footer = () => {
 
 
                     <div>
-                        <h3 className="uppercase mb-3 font-bold text-[16px]">RESOURCES </h3>
+                        <h3 className="uppercase mb-3 font-bold text-[16px] font-sans">RESOURCES </h3>
                         <ul className="space-y-3 opacity-80 text-white/80 text-[14px]">
-                            <li><Link href={"/"}>Github</Link></li>
-                            <li><Link href={"/connect-with-us"}>Connect with us</Link></li>
-                            <li><Link href={"/"}>Leave feedback</Link></li>
-                            <li><Link href={"/support"}>Support</Link></li>
+                            <li><Link className="font-sans" href={"/https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
+                            <li><Link className="font-sans" href={"/connect-with-us"}>Connect with us</Link></li>
+                            <li><Link className="font-sans" href={"/"}>Leave feedback</Link></li>
+                            <li><Link className="font-sans" href={"/support"}>Support</Link></li>
                         </ul>
                     </div>
 
@@ -80,14 +80,14 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-wrap-reverse gap-5 mt-10 justify-between w-full ">
-                <p className="text-[14px]  opacity-70 text-white">© {today} ClearFund. All rights reserved</p>
+                <p className="text-[14px]  opacity-70 text-white font-sans">© {today} ClearFund. All rights reserved</p>
 
                 <div className="flex  w-full lg:w-[33%]   opacity-70 text-[14px] text-white">
                     <div className="flex w-full justify-between lg:justify-start lg:gap-23">
-                        <Link href="/privacy-policy" className="">
+                        <Link href="/privacy-policy" className="font-sans">
                             Privacy Policy
                         </Link>
-                        <Link href="/terms" className="">Terms and Conditions </Link>
+                        <Link href="/terms" className="font-sans">Terms and Conditions </Link>
                     </div>
                 </div>
             </div>

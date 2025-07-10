@@ -18,8 +18,8 @@ const HeroSection = ({open, setOpen}) => {
 
   return (
     <div className="px-[5%]  flex justify-center items-center md:w-[85%] mx-auto text-center flex-col">
-        <h1 className="capitalize mt-[203.5px] text-3xl md:text-[64px] mb-10 font-bold">Track Previous Grants. Find New Ones. Get Real-Time Alerts.</h1>
-        <p className="text-[20px] md:w-[78%]  mb-14">
+        <h1 className="capitalize mt-[203.5px] text-3xl md:text-[64px] mb-10 font-bold font-sans">Track Previous Grants. Find New Ones. Get Real-Time Alerts.</h1>
+        <p className="text-[20px] md:w-[78%]  mb-14 font-sans">
             Explore past grant data, discover impactful ReFi projects, find
             new funding opportunities, and stay updated with real-time alerts
             from leading Web3 grant platforms.
@@ -27,7 +27,7 @@ const HeroSection = ({open, setOpen}) => {
 
 
         <Link href="/?route=login"
-          className="w-[202.19px] mb-30 flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
+          className="w-[202.19px] font-sans mb-30 flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
             Get started
         </Link>
 
