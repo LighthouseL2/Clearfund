@@ -80,10 +80,10 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-wrap-reverse gap-5 mt-10 justify-between w-full ">
-                <p className="text-[14px] opacity-70 text-white">© {today} ClearFund. All rights reserved</p>
+                <p className="text-[14px]  opacity-70 text-white">© {today} ClearFund. All rights reserved</p>
 
-                <div className="flex justify-between w-full  lg:w-[33%] gap-20 opacity-70 text-[14px] text-white">
-                    <div className="flex justify-between w-full lg:w-[77%]">
+                <div className="flex  w-full lg:w-[33%]   opacity-70 text-[14px] text-white">
+                    <div className="flex w-full justify-between lg:gap-23">
                         <Link href="/privacy-policy" className="">
                             Privacy Policy
                         </Link>
