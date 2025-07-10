@@ -41,7 +41,6 @@ const LoginForm = ({open, setOpen }) => {
 
         setErrors(newErrors)
         console.log(Object.keys(newErrors).length  === 0);
-        Object.keys(newErrors).length  === 0 ? setDisabled(false) : setDisabled(true)
         return Object.keys(newErrors).length  === 0
     }
 
@@ -100,7 +99,7 @@ const LoginForm = ({open, setOpen }) => {
 
                     <div className='border-b border-black/50 w-full mb-2'>
                         <label htmlFor="email" className='opacity-60 text-[12px]'>Email</label>
-                        <input type="text" className='w-full outline-none'
+                        <input type="text" className='w-full outline-none text-[12px] text-black/50'
                             value={formData.email}
                             onChange={(e) => setFormdata({...formData, email: e.target.value})}
                         />
@@ -108,7 +107,7 @@ const LoginForm = ({open, setOpen }) => {
 
                     <div className='border-b  border-black/50 w-full relative'>
                         <label htmlFor="password" className='opacity-60 text-[12px] block'>Password</label>
-                        <input type={`${showPassword ? "text" : "password"}`} className='w-[90%] py-2 outline-none text-[12px]'
+                        <input type={`${showPassword ? "text" : "password"}`} className='w-[90%] py-2 outline-none text-[12px] text-black/50'
                             value={formData.password}
                             onChange={(e) => {
                                 setFormdata({...formData, password: e.target.value})
@@ -134,12 +133,12 @@ const LoginForm = ({open, setOpen }) => {
                     <p className='text-[#FF3B30] mt-3 text-[14px] w-[298px]'> Incorrect email or password, please try again.</p>
                 }
 
-                <DialogFooter className={`w-full text-center ${!errors ? "mt-10" : "mt-0"}`}>
+                <DialogFooter className={`w-full text-center ${errors ? "mt-0" : "mt-5"}`}>
                     <div className='w-full space-y-4'>
                         <Button type={"submit"}  className={`w-full block text-white bg-[#198038] hover:bg-black  text-[16px] h-12`}
                             onClick={() => handleSubmit()}
                         >Continue</Button>
-                        <p className='text-[14px] text-black/50'>By logging in I agree to the <a href=""><span className='text-[#007AFF]'>Terms </span>& <span className='text-[#007AFF]'>Privacy Policy</span></a></p>
+                        <p className='text-[13px] text-black/50'>By logging in I agree to the <Link href='/terms' className='text-[#007AFF]'>Terms </Link>& <Link href='/privacy-policy' className='text-[#007AFF]'>Privacy Policy</Link></p>
                     </div>
                 </DialogFooter>
             </DialogContent>

@@ -98,7 +98,7 @@ const SignupForm = ({ open, setOpen}) => {
 
                 <span className='text-center block text-[16px] font-medium text-black/50'>or</span>
 
-                <div className='border-b border-black w-full mb-2'>
+                <div className='border-b border-black/50 w-full mb-2'>
                     <label htmlFor="email" className='opacity-60 text-[12px]'>Email</label>
                     <input type="text" className='w-full outline-none text-[12px] text-black/50'
                         value={formData.email}
@@ -109,9 +109,9 @@ const SignupForm = ({ open, setOpen}) => {
                     />
                 </div>
 
-                <div className='border-b border-black w-full relative'>
+                <div className='border-b border-black/50 w-full relative'>
                     <label htmlFor="password" className='opacity-60 text-[12px] block'>Password</label>
-                    <input type={`${showPassword ? "text" : "password"}`} className='w-[90%] py-2 outline-none text-[12px]'
+                    <input type={`${showPassword ? "text" : "password"}`} className='w-[90%] py-2 outline-none text-[12px] text-black/50'
                         value={formData.password}
                         onChange={(e) => {
                             setFormdata({...formData, password: e.target.value})
@@ -120,7 +120,7 @@ const SignupForm = ({ open, setOpen}) => {
                     />
                     
 
-                    <div className='absolute right-0 top-5' onClick={() => setShowPassword(!showPassword)}>
+                    <div className='absolute right-0 top-6' onClick={() => setShowPassword(!showPassword)}>
                         <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.2393 10.5174C10.9433 10.5174 11.6186 10.2377 12.1164 9.73983C12.6143 9.24198 12.894 8.56675 12.894 7.86269C12.894 7.15862 12.6143 6.48339 12.1164 5.98555C11.6186 5.4877 10.9433 5.20801 10.2393 5.20801C9.53521 5.20801 8.85998 5.4877 8.36213 5.98555C7.86428 6.48339 7.58459 7.15862 7.58459 7.86269C7.58459 8.56675 7.86428 9.24198 8.36213 9.73983C8.85998 10.2377 9.53521 10.5174 10.2393 10.5174Z" fill="black" fillOpacity="0.5"/>
                             <path fillRule="evenodd" clipRule="evenodd" d="M0.791421 7.37352C2.10814 3.41716 5.83974 0.5625 10.2403 0.5625C14.6382 0.5625 18.3681 3.41451 19.6865 7.36733C19.7927 7.68766 19.7927 8.03277 19.6865 8.35221C18.3707 12.3086 14.6382 15.1632 10.2385 15.1632C5.84062 15.1632 2.10991 12.3112 0.792306 8.35841C0.685768 8.03876 0.685768 7.69317 0.792306 7.37352M14.8851 7.86287C14.8851 9.09498 14.3957 10.2766 13.5244 11.1479C12.6532 12.0191 11.4715 12.5086 10.2394 12.5086C9.00731 12.5086 7.82566 12.0191 6.95443 11.1479C6.08319 10.2766 5.59374 9.09498 5.59374 7.86287C5.59374 6.63075 6.08319 5.44911 6.95443 4.57787C7.82566 3.70663 9.00731 3.21718 10.2394 3.21718C11.4715 3.21718 12.6532 3.70663 13.5244 4.57787C14.3957 5.44911 14.8851 6.63075 14.8851 7.86287Z" fill="black" fillOpacity="0.5"/>
@@ -139,7 +139,7 @@ const SignupForm = ({ open, setOpen}) => {
                     <Button type={"submit"} className={`w-full block text-white bg-[#198038] hover:bg-black  text-[16px] h-12`}
                         onClick={() => handleSubmit()}
                     >Sign up</Button>
-                    <p className='text-[13px] text-black/50'>By signing up you agree with our<a href=""><span className='text-[#007AFF]'>Terms </span>& <span className='text-[#007AFF]'>Privacy Policy</span></a></p>
+                    <p className='text-[13px] text-black/50'>By signing up you agree with our <Link href='/terms' className='text-[#007AFF]'>Terms </Link>& <Link href='/privacy-policy' className='text-[#007AFF]'>Privacy Policy</Link></p>
                 </div>
             </DialogFooter>
             </DialogContent>
