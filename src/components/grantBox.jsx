@@ -1,55 +1,65 @@
 
 import Image from "next/image";
-import { CornerDownRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const GrantBox = () => {
 
     const box = [
         {
-            image: "/logo.jpg",
-            title: "Epoch 8 cohort",
-            network: "Octant",
-            status: "Upcoming",
+            image: "/mask.png",
+            title: "Celo Support Streams (S0)",
+            network: "Celo",
+            status: "Active",
             amount: "$400K",
-            desc: `Octant is funding teams advancing Ethereum's roadmap in direct protocol improvements
-                    shared infracstructure, Open Dashboards, datasets, or studies and protocol level
-                    research and specification work`,
-            coin: "USDC"
+            desc: `Celo Support Streams are Celo Protocol Incentives that are
+                    distributed once every two weeks to Protocols on Celo
+                    through vote in the celoPG Aragon deployment.`,
+            coin: "Celo",
+            date: "End- Jul 30, 2025"
         },
 
         {
-            image: "/disc2.jpg",
-            title: "Public Goods Accelerator",
+            image: "/mask.png",
+            title: "Good Dollar Builders (2)",
             status: "Active",
-            network: "ReFi DAO",
-            desc: `Refi DAO is Supporting digital public goods and open-source projects that
-                benefit the btoader web3 and ReFi ecosystem`,
+            network: "Good Dollar",
+            desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$,
+                    offering support, funding, and mentorship to builders.`,
             amount: "$600K",
-            coin: "Celo"
+            coin: "USD",
+            date: "End- Oct, 2025"
         },
 
         {
-            image: "/disc3.jpg",
-            title: "ReFi Infrastructure Build",
+            image: "/mask.png",
+            title: "Proof-of-Ship- Season 6",
             status: "Active",
-            network: "Gitcoin",
-            desc: `Gitcoin is funding projects building the foundational tools and protocols
-                needed for regenerative finance to scale`,
+            network: "Celo",
+            desc: `Proof-of-Ship is a monthly program for builders to grow their onchain
+                    reputation and earn rewards in the Celo ecosystem.`,
             amount: "$750K",
-            coin: "USDC"
+            coin: "cUSD",
+            date: "End- Jul 31, 2025"
         },
     ]
 
   return (
-    <div className="px-[5%]  py-[5%]">
-        <header className="py-5 space-y-3">
-            <h1 className="font-semibold text-[36px] text-black">Recent Grant Rounds</h1>
-            <p className="text-black opacity-50 text-[24px]">Latest funding oppourtunities in ReFi ecosystem</p>
+    <div className="px-[5%]  py-[5%] relative">
+        <header className="py-5 flex items-end justify-between">
+            <h1 className="font-semibold font-sans text-[36px] text-black w-[434px]">Funding opportunities for Builders in ReFi</h1>
+
+            <a href="#" className="font-sans hidden text-[18px] text-[#198038] lg:flex items-center gap-1 justify-center">
+                View All
+                <svg width="6" height="18" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.0820312 12.3096L5.87305 6.51855L0.0820312 0.727539V12.3096Z" fill="#198038"/>
+                </svg>
+
+            </a>{/* <p className="text-black opacity-50 text-[24px]">Latest funding oppourtunities in ReFi ecosystem</p> */}
         </header>
 
         <div className="grid lg:grid-cols-3 w-full text-black gap-15 mt-10">
             {box && box.map((boxItem, index) => (
-                <div className="w-full border rounded-md lg:h-[400px]" key={index}>
+                <div className="w-full border rounded-md lg:h-[400px] bg-black] relative" key={index}>
                     <div className="h-[56px] relative">
                         <Image
                         fill
@@ -60,33 +70,44 @@ const GrantBox = () => {
                         />
                     </div>
 
-                    <div className="mt-10 px-8">
+                    <div className="mt-5 px-8">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-[18px]">{boxItem.title}</h3>
-                            <p className={`${boxItem.status === "Active" ? "bg-[#D1F9E5] text-[#009951]" : "bg-[#E6F2FF] text-[#007AFF]"} rounded-full px-3`}>{boxItem.status}</p>
+                            <h3 className="text-[16px] text-black font-extrabold font-sans">{boxItem.title}</h3>
+                            <p className={`font-sans ${boxItem.status === "Active" ? "bg-[#D1F9E5] text-[#009951]" : "bg-[#E6F2FF] text-[#007AFF]"} rounded-full px-3`}>{boxItem.status}</p>
                         </div>
 
-                        <div className="flex justify-between items-center mt-3">
-                            <a href="#" className="text-red-500 border-1 px-2 rounded-md text-[16px]">{boxItem.network}</a>
-                            <p className="text-[12px]">11-07-2025</p>
+                        <div className="flex justify-between items-end mt-1">
+                            <a href="#" className="bg-black text-white border-1 px-2 font-sans font-bold  text-[16px]">{boxItem.network}</a>
+                            <p className="text-[12px] text-[#198038] font-sans">{boxItem.date}</p>
                         </div>
 
-                        <p className="mt-5 text-[14px]">
-                            {boxItem.desc.slice(0, 150) + "..."}
+                        <p className="mt-5 text-[14px] font-sans">
+                            {boxItem.desc}
                         </p>
-                        <p className="border py-1 px-3 w-fit mt-10 flex gap-4 text-[#7F7F7F]"><span className="font-bold text-black">{boxItem.amount}</span> {boxItem.coin}</p>
+                        
+                        <p className="border bg-[#D8D8D833] mt-10 mb-5 lg:mt-0 lg:mb-0 border-black/20 rounded lg:absolute bottom-[90px] py-1 px-3 w-fit flex gap-1">
+                            <span className="font-bold text-black font-sans text-[14px]">{boxItem.amount}
+                            </span>
+                            <span className="font-sans text-[14px] text-black/40">{boxItem.coin}</span>
+                        </p>
                     </div>
 
-                    <div className="py-5 border-t mt-3 rounded-b-md gap-5 flex px-[10%] text-[#00CD5D] items-center">
-                        <CornerDownRight/> <a href="#" className="text-[16px] font-semibold">Learn more</a>
+                    <div className="px-5 py-3  border-t w-full lg:absolute bottom-0 rounded-b-md">
+                        <Link href="" className="block font-sans bg-[#198038] rounded-md hover:bg-black w-full py-3 text-center text-white">Apply</Link>
                     </div>
                 </div>
             ))}
 
         </div>
 
-        <div className="flex items-center justify-center py-10 mt-14">
-            <a href="" className="text-xl text-[#00CD5D] text-[18px] font-semibold flex items-center gap-3">View All <ChevronRight /></a> 
+        <div className="mt-10 w-full lg:hidden">
+            <a href="#" className="font-sans text-[18px] text-[#198038] flex items-center gap-1 justify-center">
+                View All
+                <svg width="6" height="18" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.0820312 12.3096L5.87305 6.51855L0.0820312 0.727539V12.3096Z" fill="#198038"/>
+                </svg>
+
+            </a>
         </div>
     </div>
   )
