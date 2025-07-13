@@ -33,7 +33,7 @@ const DiscoverBox = () => {
                     <path d="M12.0816 10.3743L16.7145 9.44727L15.7874 14.0801C15.6904 14.5657 15.4518 15.0117 15.1018 15.362C14.7518 15.7123 14.3059 15.9511 13.8204 16.0485L9.1875 16.9743L10.1146 12.3414C10.2118 11.8561 10.4505 11.4103 10.8005 11.0603C11.1506 10.7103 11.5963 10.4716 12.0816 10.3743Z" stroke="#00CD5D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>,
             title: "Discover ReFi Projects",
-            desc: "Browse and explore a curated directory of regenerative finance (ReFi) projects from across the Web3 space. Learn about their missions, activities, and impact areas."
+            desc: "Browse and explore a curated directory of regenerative finance (ReFi) projects from acrossthe Web3 space."
         }
     ]
 
@@ -41,10 +41,12 @@ const DiscoverBox = () => {
   return (
 
     <div className="bg-black px-[10%] pt-[5%] pb-[7%] space-y-20 flex flex-col items-center justify-center">
-        <header className="capitalize mt-5 md:mt-0 md:text-[45px] font-semibold font-sans text-white text-center">Discover Grants. Track Grants History. stay updated</header>
-        <div className="h-full grid lg:grid-cols-2 gap-10 w-[90%]  text-white mb-10 md:mb-0">
+        <header className="capitalize mt-5 md:mt-0 md:text-[45px] font-semibold font-sans text-white text-center">
+            Discover Grants. Track History. Stay Updated.
+        </header>
+        <div className="h-full grid lg:grid-cols-2 gap-10 md:w-[80%] w-full  text-white mb-10 md:mb-0">
             {dicoverData.map((item, index) => (
-                <div className="bg-[#111111] w-full p-10 font-sans rounded-md hover:scale-105
+                <div className="bg-[#111111] w-full p-10 md:h-[240px] font-sans rounded-md hover:scale-105
                     transition duration-300 ease-in-out hover:shadow-[#00CD5D] hover:shadow-2xl" key={index}>
 
                     <span className='block mb-1 font-sans'>{item.icon}</span>
