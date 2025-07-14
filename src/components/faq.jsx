@@ -7,35 +7,39 @@ const FaqSection = () => {
     const questionsData = [
         {
             question: "What is grant round explorer?",
-            ans: `Explorer shows ongoing and upcoming grant rounds tailored to public goods, ReFi and Web3 innovation.`
+            ans: `Explorer shows ongoing and upcoming grant rounds tailored to public goods,
+                ReFi, and Web3 innovation.`
         },
 
         {
             question: "How do I check project funding",
-            ans: `Login into the app and view the project's funding history, including who supported it and when. Stay informed and transparent`
+            ans: `Login into the app and view project’s funding history, including who supported
+                it and when. Stay informed and transparent.`
         },
 
         {
             question: "What are grant alerts?",
-            ans: `Get notified when new grants open so you never miss a chance to apply or support a project`
+            ans: `Get notified when new grants open so you never miss a chance to apply or support a project.`
         },
 
         {
             question: "How can I use ClearFund to discover ReFi projects?",
-            ans: `ClearFund features a curated directory of (ReFi) projects from across the Web3 ecosystem. You can browse by category, funding history, impact area. Each project profile includes mission details, funding rounds participated in, and links to learn more or get involved.`
+            ans: `ClearFund features a curated directory of (ReFi) projects from across
+                the Web3 ecosystem. You can browse by category and funding history.`
         },
     ]
 
 
   return (
     <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7%] text-white pt-[7%] mb-10 lg:mb-0">
-        <div className="w-full md:w-[425px] h-full">
-            <h2 className="text-[36px] mb-10 font-sans">Your questions, answered simply</h2>
+        <div className="w-full md:w-[424px] h-full">
+            <h2 className="text-[36px] mb-5 font-sans">Your questions, answered simply</h2>
             
-            <p className="text-[16px] mb-17 font-sans">Quick answers to common funding questions</p>
+            <p className="text-[16px] mb-10 font-sans">Quick answers to common funding questions</p>
         
             <Link href="/?route=login"
-                className="w-[202.19px] font-sans flex items-center justify-center font-semibold bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
+                className="w-[202.19px] font-sans flex items-center justify-center font-semibold
+                 bg-[#198038] text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
                 Learn More
             </Link>
         </div>

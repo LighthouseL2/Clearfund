@@ -42,8 +42,8 @@ export default function Home() {
 
         <div className="px-[5%] lg:h-[455px] h-[500px] bg-[#095012] flex items-center justify-center flex-col">
             <div className="flex items-center justify-center flex-col space-y-10">
-                <h1 className="text-white font-semibold text-[36px] w-full lg:w-[681px] text-center">
-                    Find ReFi projects, past grants, and new funding opportunities all in one place.
+                <h1 className="text-white font-sans font-bold text-[36px] md:text-[50px] w-full lg:w-[606px] text-center">
+                    Register now to start your clearFund experience
                 </h1>
 
                 <Link href="/"
