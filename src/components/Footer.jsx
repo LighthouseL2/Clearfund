@@ -21,7 +21,7 @@ const Footer = () => {
                 
             </div>
 
-            <div className="w-full lg:w-1/3">
+            <div className="w-full lg:w-1/4">
                 {/* socials */}
                 <div className="flex gap-10 mb-14">
                     <Link href={"https://x.com/Clear_Fund"}>
@@ -53,14 +53,15 @@ const Footer = () => {
 
                 </div>
 
-                <div className="flex justify-between w-[90%] md:w-[95%] sm:w-[94%] lg:w-[68%]">
+                <div className="flex justify-between ">
                     <div>
-                        <h3 className="uppercase mb-3 font-sans">About</h3>
+                        <h3 className="uppercase mb-3 font-sans">Application</h3>
                         <ul className="space-y-3 opacity-80 font-sans text-white/80 text-[14px]">
-                            <li><Link className="font-sans" href={"/"}>Home</Link></li>
+                            <li><Link className="font-sans" href={"/"}>About</Link></li>
                             <li><Link className="font-sans" href={"/faq"}>FAQ</Link></li>
-                            <li>Blog</li>
-                            <li>Contact</li>
+                            <li><Link href={"/"}>Blog</Link></li>
+                            <li><Link href={"/"}>Contact</Link></li>
+                            <li><Link className="font-sans" href={"/https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
                         </ul>
                     </div>
 
@@ -68,9 +69,10 @@ const Footer = () => {
                     <div>
                         <h3 className="uppercase mb-3 font-bold text-[16px] font-sans">RESOURCES </h3>
                         <ul className="space-y-3 opacity-80 text-white/80 text-[14px]">
-                            <li><Link className="font-sans" href={"/https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
                             <li><Link className="font-sans" href={"/connect-with-us"}>Connect with us</Link></li>
                             <li><Link className="font-sans" href={"/"}>Leave feedback</Link></li>
+                            <li><Link href={"/"}>Privacy Policy</Link></li>
+                            <li><Link href={"/"}>Terms</Link></li>
                             <li><Link className="font-sans" href={"/support"}>Support</Link></li>
                         </ul>
                     </div>
@@ -81,15 +83,6 @@ const Footer = () => {
 
             <div className="flex flex-wrap-reverse gap-5 mt-10 justify-between w-full ">
                 <p className="text-[14px]  opacity-70 text-white font-sans">© {today} ClearFund. All rights reserved</p>
-
-                <div className="flex  w-full lg:w-[33%]   opacity-70 text-[14px] text-white">
-                    <div className="flex w-full justify-between lg:justify-start lg:gap-23">
-                        <Link href="/privacy-policy" className="font-sans">
-                            Privacy Policy
-                        </Link>
-                        <Link href="/terms" className="font-sans">Terms and Conditions </Link>
-                    </div>
-                </div>
             </div>
         </div>
     </footer>
