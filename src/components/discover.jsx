@@ -46,7 +46,7 @@ const DiscoverBox = () => {
         </header>
         <div className="h-full grid lg:grid-cols-2 gap-10 md:w-[80%] w-full  text-white mb-10 md:mb-0">
             {dicoverData.map((item, index) => (
-                <div className="bg-[#111111] w-full p-10 md:h-[240px] font-sans rounded-md hover:scale-105
+                <div className="bg-[#111111] w-full max-w-[474px] px-10 py-8 md:h-[229px] font-sans rounded-md hover:scale-105
                     transition duration-300 ease-in-out hover:shadow-[#00CD5D] hover:shadow-2xl" key={index}>
 
                     <span className='block mb-1 font-sans'>{item.icon}</span>

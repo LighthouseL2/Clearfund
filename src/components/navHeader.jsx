@@ -7,7 +7,7 @@ import Link from "next/link"
 const NavHeader = ({toggle, setToggle}) => {
   return (
     <nav className="px-[5%] flex justify-between items-center h-[8vh] sticky top-0 z-50 bg-white ">
-        <div className="md:w-[155px] w-[100px] relative flex items-center">
+        <div className="md:w-[150px] w-[100px] relative flex items-center">
           <Link href="/"><img src="/projectLogo.png" alt="logo" /></Link>
         </div>
 
@@ -19,7 +19,9 @@ const NavHeader = ({toggle, setToggle}) => {
 
          
         <Link href="/?route=login"
-          className="w-[202.19px] flex items-center font-sans justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setToggle(!toggle)}>
+          className="w-[159.17px] flex items-center font-sans justify-center
+            font-medium hover:bg-black bg-[#198038]
+          text-white text-[16px] h-[52px]  rounded-md" onClick={() => setToggle(!toggle)}>
             Login / Register
         </Link>
         
