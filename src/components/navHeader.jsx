@@ -1,10 +1,13 @@
 "use client"
 
 
+import { Menu } from "lucide-react"
 import Link from "next/link"
+import { useState } from "react"
 
 
-const NavHeader = ({toggle, setToggle}) => {
+const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu}) => {
+
   return (
     <nav className="px-[5%] flex justify-between items-center h-[8vh] sticky top-0 z-50 bg-white ">
         <div className="md:w-[150px] w-[100px] relative flex items-center">
@@ -25,6 +28,19 @@ const NavHeader = ({toggle, setToggle}) => {
             Login / Register
         </Link>
         
+        <div className="flex items-center gap-5 ">
+          <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden items-center justify-center flex flex-col group w-8 h-8">
+            <span
+                className={`w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && " rotate-45 translate-y-3"}`}
+            />
+            <span
+                className={`${!toggle && "mt-1"} w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && "opacity-0"}`}
+            />
+            <span
+                className={`${!toggle && "mt-1"} w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && "-rotate-45 -translate-y-0"}`}
+            />
+          </button>
+        </div>
     </nav>
   )
 }

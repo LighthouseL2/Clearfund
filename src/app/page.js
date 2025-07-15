@@ -13,17 +13,21 @@ import FaqSection from "@/components/faq";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import MenuDropdown from "@/components/menuDropdown";
 
 
 
 export default function Home() {
 
     const [open, setOpen] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false)
 
   return (
     <div className={`bg-white min-h-screen relative min-w-xs ${open && "blur"}`}>
-        <NavHeader setToggle={setOpen} toggle={open}/>
-
+        <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+        <MenuDropdown
+            openMenu={openMenu}
+        />
         <Suspense fallback={<div>Loading...</div>}>
             <HeroSection open={open} setOpen={setOpen}/>
         </Suspense>
