@@ -13,17 +13,21 @@ import FaqSection from "@/components/faq";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import MenuDropdown from "@/components/menuDropdown";
 
 
 
 export default function Home() {
 
     const [open, setOpen] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false)
 
   return (
     <div className={`bg-white min-h-screen relative min-w-xs ${open && "blur"}`}>
-        <NavHeader setToggle={setOpen} toggle={open}/>
-
+        <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+        <MenuDropdown
+            openMenu={openMenu}
+        />
         <Suspense fallback={<div>Loading...</div>}>
             <HeroSection open={open} setOpen={setOpen}/>
         </Suspense>
@@ -42,8 +46,8 @@ export default function Home() {
 
         <div className="px-[5%] lg:h-[455px] h-[500px] bg-[#095012] flex items-center justify-center flex-col">
             <div className="flex items-center justify-center flex-col space-y-10">
-                <h1 className="text-white font-semibold text-[36px] w-full lg:w-[681px] text-center">
-                    Find ReFi projects, past grants, and new funding opportunities all in one place.
+                <h1 className="text-white font-sans font-bold text-[36px] md:text-[50px] w-full lg:w-[606px] text-center">
+                    Register now to start your clearFund experience
                 </h1>
 
                 <Link href="/"

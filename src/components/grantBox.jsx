@@ -10,7 +10,7 @@ const GrantBox = () => {
             title: "Celo Support Streams (S0)",
             network: "Celo",
             status: "Active",
-            amount: "$400K",
+            amount: "100K",
             desc: `Celo Support Streams are Celo Protocol Incentives that are
                     distributed once every two weeks to Protocols on Celo
                     through vote in the celoPG Aragon deployment.`,
@@ -25,7 +25,7 @@ const GrantBox = () => {
             network: "Good Dollar",
             desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$,
                     offering support, funding, and mentorship to builders.`,
-            amount: "$600K",
+            amount: "250K",
             coin: "USD",
             date: "End- Oct, 2025"
         },
@@ -37,7 +37,7 @@ const GrantBox = () => {
             network: "Celo",
             desc: `Proof-of-Ship is a monthly program for builders to grow their onchain
                     reputation and earn rewards in the Celo ecosystem.`,
-            amount: "$750K",
+            amount: "30K",
             coin: "cUSD",
             date: "End- Jul 31, 2025"
         },
@@ -86,7 +86,7 @@ const GrantBox = () => {
                         </p>
                         
                         <p className="border bg-[#D8D8D833] mt-10 mb-5 lg:mt-0 lg:mb-0 border-black/20 rounded lg:absolute bottom-[90px] py-1 px-3 w-fit flex gap-1">
-                            <span className="font-bold text-black font-sans text-[14px]">{boxItem.amount}
+                            <span className="font-extrabold text-black font-sans text-[14px]">{boxItem.amount}
                             </span>
                             <span className="font-sans text-[14px] text-black/40">{boxItem.coin}</span>
                         </p>

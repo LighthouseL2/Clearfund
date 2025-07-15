@@ -9,22 +9,22 @@ const RecentPost = () => {
     const posts = [
         {
             title: "spolight: builder insights",
-            desc: `Discover how builders are regenerating the world, one block at a
-                 time with stories that inspire, lessons that guide and impact you can feel.`,
+            desc: `Discover how builders are regenerating the world, one block at
+                a time with stories that inspire, lessons that guide, and impact you can feel.`,
             author: "ezekiel lawson",
             image: "/rig.png"
         },
         {
             title: "Latest Research",
-            desc: `Discover how builders are regenerating the world, one block at a
-                time with stories that inspire, lessons that guide and impact you can feel.`,
+            desc: `Stay informed with data-driven insights, breakthrough research, and
+                real-world applications transforming the future of people and the planet.`,
             author: "ezekiel lawson",
             image: "/research.png"
         },
         {
             title: "grant tips",
-            desc: `From writing tips to funding strategies, simplify the process and boost your chances of
-                success. Learn what funders look for, avoid common mistakes`,
+            desc: `From writing tips to funding strategies simplify the process and boost
+                your chances of success. Learn what funders look for, avoid common mistakes.`,
             author: "ezekiel lawson",
             image: "/tips.png"
         },
@@ -58,14 +58,16 @@ const RecentPost = () => {
                         </div>
 
                         <div className="text-black space-y-2">
-                            <h1 className="capitalize font-semibold w-5/6 h-[58px] text-[28px]">{post.title}</h1>
-                            <p className="opacity-80 text-[16px] h-[80px] mt-10">
+                            <h1 className="capitalize font-sans font-bold w-5/6 h-[58px] text-[28px]">
+                                {post.title}
+                            </h1>
+                            <p className="text-black/60 font-sans text-[16px] h-[80px] mt-10">
                                 {post.desc}
                             </p>
                             <div className="space-y-3 flex flex-col ">
-                                <p className="mt-5 capitalize opacity-50 text-[14px]">ezekiel lawson</p>
-                                <p className="opacity-50 text-[14px]"><span>June 23th, 2025 </span>* 1 min Read</p>
-                                <a href="" className="text-[#EC4B6A] text-[16px] font-semibold uppercase">Read more</a>
+                                <p className="mt-5 capitalize text-black/50 font-sans text-[14px]">ezekiel lawson</p>
+                                <p className="opacity-50 text-[14px] font-sans"><span>June 23th, 2025 </span>* 1 min Read</p>
+                                <a href="" className="text-[#EC4B6A] font-sans text-[16px] font-semibold uppercase">Read more</a>
                             </div>
                         </div>
                     </div>
