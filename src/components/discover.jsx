@@ -40,7 +40,7 @@ const DiscoverBox = () => {
     
   return (
 
-    <div className="bg-black px-[10%] pt-[5%] pb-[7%] space-y-20 flex flex-col items-center justify-center">
+    <div className="bg-black px-[5%] lg:px-[10%] pt-[5%] pb-[7%] space-y-20 flex flex-col items-center justify-center">
         <header className="capitalize mt-5 md:mt-0 md:text-[45px] font-semibold font-sans text-white text-center">
             Discover Grants. Track History. Stay Updated.
         </header>

@@ -94,7 +94,7 @@ const Footer = () => {
 
             </div>
 
-            <div className="flex flex-wrap-reverse gap-5 mt-10 justify-between w-full ">
+            <div className="mt-10 justify-between w-full ">
                 <p className="text-[14px] text-[#99999999] font-sans">© {today} ClearFund. All rights reserved</p>
             </div>
         </div>
