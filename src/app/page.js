@@ -27,6 +27,9 @@ export default function Home() {
         <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu} setOpenMenu={setOpenMenu}/>
         <MenuDropdown
             openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+            toggle={open}
+            setToggle={setOpen}
         />
         <Suspense fallback={<div>Loading...</div>}>
             <HeroSection open={open} setOpen={setOpen}/>

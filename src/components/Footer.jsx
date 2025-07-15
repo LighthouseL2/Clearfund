@@ -11,17 +11,17 @@ const Footer = () => {
                     <a href=""><img src="/projectLogo.png" alt="logo" /></a>
                 </div>
 
-                <h2 className="text-[36px] font-sans mb-5">Get the latest updates</h2>
-                <p className="mb-2 text-black/50 font-sans text-[16px]">
+                <h2 className="text-[30px] font-sans mb-5 text-[#202224] font-medium">Get the latest updates</h2>
+                <p className="mb-2 text-black/50 font-sans text-[14px]">
                     Subscribe to our newsletter to get all grant updates straight to your mailbox!
                 </p>
-                <form action="" className="border border-[#00C2FF] rounded-md w-full sm:w-5/6  md:w-4/6 lg:w-3/6 flex mb-5">
-                    <input type="text" className="outline-none w-2/3 p-3 font-sans text-[16px] text-black/70"
+                <form action="" className="border-2 border-[#00C2FF] h-[45.33984375px] rounded-md w-full sm:w-5/6 bg-[#EEEEEE]  md:w-4/6 lg:w-[44%] flex mb-5">
+                    <input type="text" className="outline-none w-2/3 p-5 font-sans text-[16px] text-black/70 "
                         placeholder="Type your email"/>
-                    <button className="w-1/3 bg-[#00C2FF] text-[16px] text-white border-0 font-sans rounded-r-md">Subscribe</button>
+                    <button className="w-1/3 bg-[#00C2FF] text-[16px] text-white font-sans border-0">Subscribe</button>
                 </form>
                 
-                <p className="mb-20 text-center w-full md:w-[430px] text-[12px]">
+                <p className="mb-20 text-center text-black/40 w-full md:w-[380px] px-5 text-[12px]">
                     By subscribing you agree to <Link href={"/"}>
                         Substack’s Terms of Use,
                         our privacy policy and our information collection notice
