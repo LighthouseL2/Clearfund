@@ -22,13 +22,13 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu}) => {
 
          
         <Link href="/?route=login"
-          className="w-[159.17px] flex items-center font-sans justify-center
-            font-medium hover:bg-black bg-[#198038]
+          className="w-[159.17px] md:flex items-center font-sans justify-center
+            font-medium hover:bg-black bg-[#198038] hidden
           text-white text-[16px] h-[52px]  rounded-md" onClick={() => setToggle(!toggle)}>
             Login / Register
         </Link>
         
-        <div className="flex items-center gap-5 ">
+        <div className="flex items-center gap-5 md:hidden">
           <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden border-0 items-center justify-center flex flex-col group w-8 h-8">
             <span
                 className={`w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && " rotate-45 translate-y-3"}`}

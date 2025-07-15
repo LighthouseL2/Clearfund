@@ -14,8 +14,6 @@ import { initialFormData } from '@/lib/config'
 const LoginForm = ({open, setOpen }) => {
 
     const [showPassword, setShowPassword] = useState(false)
-
-    // const [disabled, setDisabled] = useState(false)
     const [errors, setErrors] = useState(null)
 
     const [formData, setFormdata] = useState(initialFormData)
@@ -51,8 +49,14 @@ const LoginForm = ({open, setOpen }) => {
         }
     }
 
+    function handleDialog(){
+        setOpen(!open)
+        // setShowPassword(false)
+        setFormdata(initialFormData)
+    }
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleDialog}>
         <form>
 
             <DialogContent className={"sm:max-w-[425px] max-w-[400px] p-10 bg-white  shadow-2xl"}>
