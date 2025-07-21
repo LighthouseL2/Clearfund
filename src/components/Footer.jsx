@@ -21,11 +21,11 @@ const Footer = () => {
                     <button className="w-1/3 bg-[#00C2FF] text-[16px] text-white font-sans border-0">Subscribe</button>
                 </form>
                 
-                <p className="mb-20 text-center text-black/40 w-full md:w-[380px] px-5 text-[12px]">
-                    By subscribing you agree to <Link href={"/"}>
+                <p className="mb-20 text-center text-black/40 w-full md:w-[380px] px-5 text-[12px]
+                    leading-3 font-sans">
+                    By subscribing you agree to <Link href={"/"} className="underline">
                         Substack’s Terms of Use,
-                        our privacy policy and our information collection notice
-                    </Link>
+                        our privacy policy</Link> and <Link href={"/"} className="underline">our information collection notice</Link>
                 </p>
                 
             </div>
@@ -69,24 +69,24 @@ const Footer = () => {
                 <div className="flex justify-between ">
                     <div>
                         <h3 className="uppercase mb-3 font-sans font-bold text-[16px]">Application</h3>
-                        <ul className="space-y-3 opacity-80 font-sans text-black/70 text-[14px]">
-                            <li><Link className="font-sans" href={"/"}>About</Link></li>
-                            <li><Link className="font-sans" href={"/faq"}>FAQ</Link></li>
-                            <li><Link href={"/"}>Blog</Link></li>
-                            <li><Link href={"/"}>Contact</Link></li>
-                            <li><Link className="font-sans" href={"/https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
+                        <ul className="space-y-3 font-sans text-black/70 text-[14px]">
+                            <li><Link className="font-sans font-medium" href={"/"}>About</Link></li>
+                            <li><Link className="font-sans font-medium" href={"/faq"}>FAQ</Link></li>
+                            <li><Link className="font-medium" href={"/"}>Blog</Link></li>
+                            <li><Link className="font-medium" href={"/"}>Contact</Link></li>
+                            <li><Link className="font-sans font-medium" href={"/https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
                         </ul>
                     </div>
 
 
                     <div>
                         <h3 className="uppercase mb-3 font-bold text-[16px] font-sans">RESOURCES </h3>
-                        <ul className="space-y-3 opacity-80 text-black/70 text-[14px]">
-                            <li><Link className="font-sans" href={"/connect-with-us"}>Connect with us</Link></li>
-                            <li><Link className="font-sans" href={"/"}>Leave feedback</Link></li>
-                            <li><Link href={"/"}>Privacy Policy</Link></li>
-                            <li><Link href={"/"}>Terms</Link></li>
-                            <li><Link className="font-sans" href={"/support"}>Support</Link></li>
+                        <ul className="space-y-3 text-black/70 text-[14px]">
+                            <li><Link className="font-sans font-medium" href={"/connect-with-us"}>Connect with us</Link></li>
+                            <li><Link className="font-sans font-medium" href={"/"}>Leave feedback</Link></li>
+                            <li><Link className="font-medium" href={"/"}>Privacy Policy</Link></li>
+                            <li><Link className="font-medium" href={"/"}>Terms</Link></li>
+                            <li><Link className="font-sans font-medium" href={"/support"}>Support</Link></li>
                         </ul>
                     </div>
 

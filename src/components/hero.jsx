@@ -1,8 +1,6 @@
 "use client"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
-import { Button } from './ui/button'
-import { useState } from 'react'
-import { DialogClose } from '@radix-ui/react-dialog'
+
+
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 import ResetPassword from './ResetPassword'
@@ -17,7 +15,9 @@ const HeroSection = ({open, setOpen}) => {
 
   return (
     <div className="px-[5%]  flex justify-center items-center md:w-[85%] mx-auto text-center flex-col">
-        <h1 className="capitalize mt-[103.5px] text-3xl md:text-[64px] mb-10 font-bold font-sans">Track Previous Grants. Find New Ones. Get Real-Time Alerts.</h1>
+        <h1 className="capitalize mt-[103.5px] text-3xl md:text-[64px] mb-10 font-bold font-sans">
+          Track Previous Grants. Find New Ones. <span className='text-[#7CB53E]'>Get Real-Time Alerts.</span>
+        </h1>
         <p className="text-[20px] md:w-[79%]   mb-14 font-sans">
             Explore past grant data, discover impactful ReFi projects, find new funding opportunities,
             and stay updated with real-time alerts from leading Web3 grant platforms.

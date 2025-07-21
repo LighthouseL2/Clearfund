@@ -9,15 +9,15 @@ import { useState } from "react"
 const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu}) => {
 
   return (
-    <nav className="px-[5%] flex justify-between items-center h-[8vh] sticky top-0 z-50 bg-white ">
+    <nav className="px-[5%] flex justify-between items-end py-4 sticky top-0 z-50 bg-white ">
         <div className="md:w-[150px] w-[100px] relative flex items-center">
           <Link href="/"><img src="/projectLogo.png" alt="logo" /></Link>
         </div>
 
-        <ul className="md:flex w-[45%] gap-10 hidden items-center">
-            <li><Link className="font-sans text-[16px]" href={"https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
-            <li><Link className="font-sans text-[16px]" href={"/about"}>About</Link></li>
-            <li><Link className="font-sans text-[16px]" href={"/"}>Blog</Link></li>
+        <ul className="md:flex md:w-[45%] lg:w-[55%] xl:w-[65%] gap-10 hidden items-center">
+            <li><Link className="font-sans font-medium text-[16px]" href={"https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
+            <li><Link className="font-sans font-medium text-[16px]" href={"/about"}>About</Link></li>
+            <li><Link className="font-sans font-medium text-[16px]" href={"/"}>Blog</Link></li>
         </ul>
 
          
