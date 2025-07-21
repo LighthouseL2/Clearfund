@@ -47,14 +47,21 @@ export default function Home() {
 
         <RecentPost />
 
-        <div className="px-[5%] lg:h-[455px] h-[500px] bg-[#095012] flex items-center justify-center flex-col">
+        <div className="px-[5%] w-[90%] mx-auto rounded-2xl h-[621px]  bg-linear-to-b from-[#198038] to-[#7CB53E] flex items-center justify-center flex-col">
             <div className="flex items-center justify-center flex-col space-y-10">
-                <h1 className="text-white font-sans font-bold text-[36px] md:text-[50px] w-full lg:w-[606px] text-center">
-                    Register now to start your clearFund experience
+                <h1 className="text-black font-sans font-medium text-[36px] md:text-[76px] w-full
+                    lg:w-[800px] text-center md:leading-20 leading-10">
+                    Where ReFi Meets <span className="text-white">Transparency</span>
                 </h1>
 
+                <p className="text-[26px] text-center md:w-1/2 font-sans md:px-10 font-medium text-black/70">
+                    Find your ReFi fam, fuel the regen movement.  Discover projects,
+                     track past rounds, and back public goods.
+                </p>
+
                 <Link href="/"
-                    className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md" onClick={() => setToggle(!toggle)}>
+                    className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black
+                         bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md" onClick={() => setToggle(!toggle)}>
                         Try it free
                 </Link>
             </div>

@@ -35,16 +35,16 @@ const RecentPost = () => {
   return (
     <div className="bg-white p-[5%] mb-20 lg:mb-20">
             <header className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-4xl font-bold text-black opacity-30">Recent Post</h1>
-                <Link href={"/"} className="text-[#095012]  text-[18px] capitalize font-semibold flex items-center gap-3 justify-center">visit our blog <span>
+                <h1 className="text-2xl md:text-4xl font-bold text-black opacity-30">Our Blog</h1>
+                {/* <Link href={"/"} className="text-[#095012]  text-[18px] capitalize font-semibold flex items-center gap-3 justify-center">visit our blog <span>
                     <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.923828 0.626953L5.42383 5.12695L0.923828 9.62695" fill="#095012"/>
                     </svg>
 
-                </span></Link>
+                </span></Link> */}
             </header>
 
-            <div className="grid lg:grid-cols-3 gap-10 mt-20 space-y-10 md:space-y-0 lg:h-[538.44140625px]">
+            {/* <div className="grid lg:grid-cols-3 gap-10 mt-20 space-y-10 md:space-y-0 lg:h-[538.44140625px]">
                 {
                     posts && posts.length > 0 && posts.map((post, index) =>(
                     <div className="rounded-md py-9 space-y-3 shadow " key={index}>
@@ -73,7 +73,7 @@ const RecentPost = () => {
                     </div>
                     ))
                 }
-            </div>
+            </div> */}
         </div>
   )
 }
