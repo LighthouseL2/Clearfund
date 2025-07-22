@@ -84,7 +84,7 @@ const SignupForm = ({ open, setOpen}) => {
                 </div>
 
                 <div className='border mb-5 border-black/50 flex justify-center items-center py-3 rounded-md'>
-                    <Link href="http://localhost:8080/api/auth/google" className='flex items-center gap-1'>
+                    <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex items-center gap-1'>
                         <Image
                             src={"/google.png"}
                             alt='google logo'
