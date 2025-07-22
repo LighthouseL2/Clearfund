@@ -25,7 +25,7 @@ router.get("/google/callback", passport.authenticate("google", {
         sameSite: 'lax'
     })
 
-    res.redirect(process.env.CLIENT_URL_ONLINE)
+    res.redirect(`${process.env.CLIENT_URL_ONLINE}/dashboard?token=${token}`)
 })
 
 router.get("/", authMiddleware, checkRoles("admin"), getUsers)
