@@ -28,5 +28,7 @@ app.use("/api/grants", grantRoutes)
 
 app.listen(PORT, () => {
     connectDB()
+    console.log(process.env.BACKEND_URL);
+    
     console.log(`server running on http://localhost:${PORT}`);
 })

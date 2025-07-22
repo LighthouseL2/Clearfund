@@ -87,7 +87,7 @@ const LoginForm = ({open, setOpen }) => {
                     
 
                     <div className='border border-black/50 flex justify-center items-center py-3 rounded-md mb-5'>
-                        <Link target='_blank' href="http://localhost:8080/api/auth/google" className='flex font-sans items-center gap-1'>
+                        <Link target='_blank' href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans items-center gap-1'>
                             <Image
                                 src={"/google.png"}
                                 alt='google logo'
