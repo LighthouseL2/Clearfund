@@ -15,7 +15,9 @@ router.get("/google", passport.authenticate("google", {
 router.get("/google/callback", passport.authenticate("google", {
     session: false,
     failureRedirect: `${process.env.CLIENT_URL_ONLINE}/?route=login`
-}), (req, res) => {
+}), async (req, res) => {
+    const { accessToken, refreshToken } = req.user
+
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
         expiresIn: '7d',
     })
@@ -25,7 +27,21 @@ router.get("/google/callback", passport.authenticate("google", {
         sameSite: 'lax'
     })
 
-    res.redirect(`${process.env.CLIENT_URL_ONLINE}/dashboard?token=${token}`)
+    res.cookie('accessToken', accessToken, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: true,
+        maxAge: 60 * 60 * 1000
+    })
+
+    res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: true,
+        maxAge: 7 * 24 * 60 * 1000
+    })
+
+    res.redirect(`${process.env.CLIENT_URL_ONLINE}/dashboard`)
 })
 
 router.get("/", authMiddleware, checkRoles("admin"), getUsers)
