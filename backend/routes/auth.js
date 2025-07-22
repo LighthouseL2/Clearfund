@@ -7,12 +7,14 @@ import { authMiddleware, checkRoles, getUsers, loginUser, logoutUser, registerUs
 const router = express.Router()
 
 router.get("/google", passport.authenticate("google", {
-    scope: ["profile", "email"]
+    scope: ["profile", "email"],
+    accessType: "offline",
+    prompt: "consent",
 }))
 
 router.get("/google/callback", passport.authenticate("google", {
     session: false,
-    failureRedirect: `${process.env.CLIENT_URL}/?route=login`
+    failureRedirect: `${process.env.CLIENT_URL_ONLINE}/?route=login`
 }), (req, res) => {
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
         expiresIn: '7d',
@@ -23,7 +25,7 @@ router.get("/google/callback", passport.authenticate("google", {
         sameSite: 'lax'
     })
 
-    res.redirect(process.env.CLIENT_URL)
+    res.redirect(process.env.CLIENT_URL_ONLINE)
 })
 
 router.get("/", authMiddleware, checkRoles("admin"), getUsers)
