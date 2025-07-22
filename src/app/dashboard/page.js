@@ -6,6 +6,7 @@ import BackgroundSlider from "@/components/BackgroundSlider";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation()
 
   const stats = [
     {
