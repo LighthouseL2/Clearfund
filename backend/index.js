@@ -13,13 +13,15 @@ const app = express()
 
 const PORT = process.env.PORT
 app.use(cors({
-    origin: process.env.CLIENT_URL_ONLINE,
+    origin: "https://clearfund.netlify.app",
     credentials: true
 }))
 
 app.use(express.json())
 app.use(cookieParser())
+
 app.use(passport.initialize())
+
 
 app.use("/api/auth", authRoutes)
 app.use("/api/grants", grantRoutes)
@@ -29,6 +31,5 @@ app.use("/api/grants", grantRoutes)
 app.listen(PORT, () => {
     connectDB()
     console.log(process.env.BACKEND_URL);
-    
     console.log(`server running on http://localhost:${PORT}`);
 })
