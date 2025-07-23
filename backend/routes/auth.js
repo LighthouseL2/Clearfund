@@ -31,7 +31,9 @@ router.get("/google/callback", passport.authenticate("google", {
 
     res.cookie('token', token, {
         httpOnly: true,
-        sameSite: 'lax'
+        sameSite: 'None',
+        secure: true,
+        maxAge: 7 * 24 * 60 * 1000
     })
 
     res.cookie('accessToken', accessToken, {
