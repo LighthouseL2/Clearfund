@@ -1,12 +1,17 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
 import BackgroundSlider from "@/components/BackgroundSlider";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { checkAuth } from "@/features/user/userSlice";
+
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation()
+  const router = useRouter()
+  const dispatch = useDispatch()
 
   const stats = [
     {
@@ -85,6 +90,12 @@ export default function Dashboard() {
       date: "12 days ago",
     },
   ];
+
+  useEffect(() => {
+      dispatch(checkAuth()).then((res) => {
+        if(!res.payload.success) return router.push("https://clearfund.netlify.app/?route=login")
+      })
+  }, [router, dispatch])
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 text-gray-800 relative">

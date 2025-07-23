@@ -41,6 +41,7 @@ export const authMiddleware = async (req, res, next) => {
     try {
 
         const token = req.cookies?.token
+        // const accessToken = req.cookies.accessToken
 
         if(!token) return res.status(401).json({
             success: false,
@@ -99,7 +100,11 @@ export const loginUser = async (req, res) => {
         }).json({
             success: true,
             message: "Logged in successfully",
-            user: checkUser
+            data: {
+                id: checkUser._id,
+                email: checkUser.email,
+                role: checkUser.role
+            }
         })
 
     } catch (error) {
@@ -115,11 +120,12 @@ export const loginUser = async (req, res) => {
 export const registerUser = async (req, res) => {
 
     try {
+
         const { email, password } = req.body
- 
+
 
         const userExists = await User.findOne({email})
-        if(userExists) return res.status(400).json({
+        if(userExists) return res.status(404).json({
             success: false,
             message: "User already exists"
         })
@@ -172,6 +178,10 @@ export const getUserById = async (req, res) => {
             data: user
         })
     } catch (error) {
-        
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "some error occured"
+        })
     }
 }
