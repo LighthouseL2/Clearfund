@@ -13,7 +13,7 @@ export default function Dashboard() {
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState([]);
 
-  const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar"];
+  const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar" ,"Arbitrum", "Others"];
   const statuses = ["Ongoing", "Upcoming", "Applications Open"];
 
   const toggleProgram = (program) => {
