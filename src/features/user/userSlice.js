@@ -94,7 +94,7 @@ const userSlice = createSlice({
       })
 
 
-      
+
       .addCase(checkAuth.pending, (state) => {
           state.isLoading = true
 
