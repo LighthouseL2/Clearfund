@@ -279,7 +279,7 @@ export default function Dashboard() {
         {/* Bottom Sections */}
         <div className="grid md:grid-cols-2 gap-6 mb-12 md:my-16">
           {/* Email Updates */}
-          <div className="bg-white p-6 rounded shadow">
+          <div className="bg-white p-6 rounded-xl shadow">
             <h3 className="text-lg font-semibold mb-2">
               Stay Updated on Grant Opportunities
             </h3>
@@ -317,7 +317,7 @@ export default function Dashboard() {
           </div>
 
           {/* Recent Grant Recipients */}
-          <div className="bg-white p-6 rounded shadow">
+          <div className="bg-white p-6 rounded-xl shadow">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Recent Grant Recipients</h3>
               <a href="#" className="text-sm text-gray-500">
