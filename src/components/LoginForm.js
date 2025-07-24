@@ -57,7 +57,7 @@ const LoginForm = ({open, setOpen }) => {
         if(validate()){
             // api call
             await dispatch(loginUser(formData)).then((data) => {
-                if(data.payload.success){
+                if(data.payload){
                     router.push("/dashboard")
                 }
             })
@@ -121,7 +121,7 @@ const LoginForm = ({open, setOpen }) => {
                         <input type="text" className='w-full font-sans outline-none text-[12px] text-black/50'
                             value={formData.email}
                             onChange={(e) => {
-                                setFormdata({...formData, email: e.target.value})
+                                setFormdata({...formData, email: e.target.value.toLowerCase()})
                                 setErrors(null)
                             }}
                         />

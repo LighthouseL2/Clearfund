@@ -1,6 +1,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+// https://clearfund.onrender.com/api/auth/login
 export const loginUser = createAsyncThunk("/auth/login", async (formData) => {
     const response = await fetch("https://clearfund.onrender.com/api/auth/login", {
         method: "POST",
@@ -31,9 +32,9 @@ export const checkAuth = createAsyncThunk("/auth/checkauth",
     async () => {
         const response = await fetch("https://clearfund.onrender.com/api/auth/check-auth", {
             method: "GET",
-            // headers: {
-            //     "Cache-Control": "no-store, no-cache, must-revalidate proxy-revalidate",
-            // },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
             credentials: "include"
         })
     return response.json()
@@ -42,7 +43,8 @@ export const checkAuth = createAsyncThunk("/auth/checkauth",
 const initialState = {
     isAuthenticated : false,
     isLoading: true,
-    user : null
+    user : null,
+    token: null
 }
 
 
@@ -53,6 +55,8 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
+      state.token = null;
+      localStorage.removeItem("token")
     },
   },
 
@@ -68,6 +72,8 @@ const userSlice = createSlice({
         console.log(action.payload);
         state.user = action.payload.success ? action.payload.user : null,
         state.isAuthenticated = action?.payload?.success
+        state.token = action.payload.token
+        localStorage.setItem("token", action.payload.token)
       })
       .addCase(loginUser.rejected, (state) => {
         state.isLoading = false,

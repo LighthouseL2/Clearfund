@@ -3,15 +3,16 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
 import BackgroundSlider from "@/components/BackgroundSlider";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-import { checkAuth } from "@/features/user/userSlice";
+import withAuth from "@/lib/withAuth";
+// import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+// import { checkAuth } from "@/features/user/userSlice";
 
 
-export default function Dashboard() {
+function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const stats = [
     {
@@ -91,12 +92,21 @@ export default function Dashboard() {
     },
   ];
 
+  // useEffect(() => {
+  //     dispatch(checkAuth()).then((res) => {
+  //       console.log(res.payload);
+  //       if(!res.payload.success) return router.push("https://clearfund.netlify.app/?route=login")
+  //     })
+  // }, [router, dispatch])
+
   useEffect(() => {
-      dispatch(checkAuth()).then((res) => {
-        console.log(res.payload);
-        if(!res.payload.success) return router.push("https://clearfund.netlify.app/?route=login")
-      })
-  }, [router, dispatch])
+    const params = new URLSearchParams(window.location.search)
+    const token = params.get('token')
+    if(token) {
+      localStorage.setItem("token", token)
+      router.replace("/dashboard")
+    }
+  })
 
 
   return (
@@ -370,3 +380,6 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
+export default withAuth(Dashboard)
