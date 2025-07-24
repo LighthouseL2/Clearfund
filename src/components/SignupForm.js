@@ -115,7 +115,7 @@ const SignupForm = ({ open, setOpen}) => {
                     <input type="text" className='w-full outline-none text-[12px] font-sans text-black/50'
                         value={formData.email}
                         onChange={(e) => {
-                            setFormdata({...formData, email: e.target.value})
+                            setFormdata({...formData, email: e.target.value.toLowerCase()})
                             setErrors(null)
                         }}
                     />

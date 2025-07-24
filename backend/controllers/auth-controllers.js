@@ -40,13 +40,21 @@ export const authMiddleware = async (req, res, next) => {
 
     try {
 
-        const token = req.cookies?.access_token
+        // const token = req.cookies?.access_token
         // const accessToken = req.cookies.accessToken
+        const authHeader = req.headers.authorization
 
-        if(!token) return res.status(401).json({
+        if(!authHeader?.startsWith("Bearer ")) return res.status(401).json({
             success: false,
             message: "Unauthorized User Token not found"
         })
+
+        const token = authHeader.split(" ")[1]
+
+        // if(!token) return res.status(401).json({
+        //     success: false,
+        //     message: "Unauthorized User Token not found"
+        // })
 
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
@@ -94,19 +102,21 @@ export const loginUser = async (req, res) => {
             role: checkUser.role,
         }, process.env.JWT_SECRET, {expiresIn: "60m"})
 
-        res.cookie("access_token", token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "None",
+        // res.cookie("access_token", token, {
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: "None",
 
-        }).json({
+        // })
+        res.json({
             success: true,
             message: "Logged in successfully",
             data: {
                 id: checkUser._id,
                 email: checkUser.email,
                 role: checkUser.role
-            }
+            },
+            token: token
         })
 
     } catch (error) {
