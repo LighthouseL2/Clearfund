@@ -20,38 +20,43 @@ router.get("/google", passport.authenticate("google", {
 }))
 
 router.get("/google/callback", passport.authenticate("google", {
-    session: false,
+    // session: false,
     failureRedirect: `${process.env.CLIENT_URL_ONLINE}/?route=login`
-}), async (req, res) => {
-    const { accessToken, refreshToken } = req.user
+}), (req, res) => {
+    // const { accessToken, refreshToken } = req.user
 
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
         expiresIn: '7d',
     })
 
-    res.cookie('token', token, {
+    res.cookie('access_token', token, {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
-        maxAge: 7 * 24 * 60 * 1000
     })
 
-    res.cookie('accessToken', accessToken, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: true,
-        maxAge: 60 * 60 * 1000
-    })
+    // res.cookie('accessToken', accessToken, {
+    //     httpOnly: true,
+    //     sameSite: 'lax',
+    //     secure: true,
+    //     maxAge: 60 * 60 * 1000
+    // })
 
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: true,
-        maxAge: 7 * 24 * 60 * 1000
-    })
+    // res.cookie('refreshToken', refreshToken, {
+    //     httpOnly: true,
+    //     sameSite: 'lax',
+    //     secure: true,
+    //     maxAge: 7 * 24 * 60 * 1000
+    // })
+
+    // res.status(200).json({
+    //     token: token
+    // })
 
     res.redirect(`${process.env.CLIENT_URL_ONLINE}/dashboard`)
 })
+
+
 
 
 router.post("/refresh-token", (req, res) => {
@@ -89,7 +94,6 @@ router.get("/check-auth", authMiddleware, (req, res) => {
         success: true
     })
 })
-
 
 
 

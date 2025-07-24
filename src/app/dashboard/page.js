@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
 import BackgroundSlider from "@/components/BackgroundSlider";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { checkAuth } from "@/features/user/userSlice";
 
 
@@ -93,9 +93,11 @@ export default function Dashboard() {
 
   useEffect(() => {
       dispatch(checkAuth()).then((res) => {
+        console.log(res.payload);
         if(!res.payload.success) return router.push("https://clearfund.netlify.app/?route=login")
       })
   }, [router, dispatch])
+
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 text-gray-800 relative">
