@@ -66,7 +66,9 @@ export default function Home() {
                 </Link>
             </div>
         </div>
-
+        <div className="p-10 mt-10">
+            <hr />
+        </div>
         <Footer />
     </div>
   );

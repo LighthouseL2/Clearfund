@@ -45,20 +45,15 @@ const GrantBox = () => {
 
   return (
     <div className="px-[5%]  py-[5%] relative">
-        <header className="py-5 flex items-end justify-between">
-            <h1 className="font-semibold font-sans text-[36px] text-black w-[434px]">Funding opportunities for Builders in ReFi</h1>
-
-            <a href="#" className="font-sans hidden text-[18px] text-[#198038] lg:flex items-center gap-1 justify-center">
-                View All
-                <svg width="6" height="18" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.0820312 12.3096L5.87305 6.51855L0.0820312 0.727539V12.3096Z" fill="#198038"/>
-                </svg>
-
-            </a>{/* <p className="text-black opacity-50 text-[24px]">Latest funding oppourtunities in ReFi ecosystem</p> */}
+        <header className="py-5 text-center">
+            <h1 className="font-bold font-sans leading-15 mb-10 text-[56px] text-black w-full text-center">
+                All-in-One ReFi Grant <span className="text-[#7CB53E]">Explorer</span>
+            </h1>
+            <p className="text-[25px] font-medium">Discover ReFi projects, track funding history, and support public goods seamlessly.</p>
         </header>
 
-        <div className="grid lg:grid-cols-3 w-full text-black gap-15 mt-10">
-            {box && box.map((boxItem, index) => (
+        <div className="grid lg:grid-cols-3 w-full text-black gap-5 mt-10">
+            {/* {box && box.map((boxItem, index) => (
                 <div className="w-full border rounded-md lg:h-[400px] bg-black] relative" key={index}>
                     <div className="h-[56px] relative">
                         <Image
@@ -96,11 +91,59 @@ const GrantBox = () => {
                         <Link href="" className="block font-sans bg-[#198038] rounded-md hover:bg-black w-full py-3 text-center text-white">Apply</Link>
                     </div>
                 </div>
-            ))}
+            ))} */}
 
+            <div className="xl:w-[392.10791015625px] mb-10 bg-[#00995E] rounded-3xl relative">
+                <div className="absolute py-10 px-10">
+                    <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Active Grant <span>
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                    </span></h1>
+                    <p className="text-[16px] font-medium mt-3">
+                        Discover live ReFi and public goods funding rounds happening across
+                        the ecosystem from Gitcoin to Giveth and beyond.
+                    </p>
+                </div>
+                <img src="/mask1.png" alt="mask image"/>
+            </div>
+
+            <div className="xl:w-[392.10791015625px] bg-[#058CD7] mb-10 rounded-3xl relative">
+                <div className="absolute py-10 px-10">
+                    <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Previous Funding <span>
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                    </span></h1>
+                    <p className="text-[17px] font-medium mt-3">
+                        Want to see who’s been funded, how much they raised,
+                        and where it came from? and more.
+                    </p>
+                </div>
+                <img src="/mask3.png" alt="mask image"/>
+            </div>
+
+
+            <div className="xl:w-[392.10791015625px] bg-[#00995E] mb-10 rounded-3xl relative">
+                <div className="absolute py-10 px-10">
+                    <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">ReFi Project <span>
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                    </span></h1>
+                    <p className="text-[16px] font-medium mt-3">
+                        Find ReFi projects funded across Gitcoin, Giveth, and
+                        others, where to connect and support them.
+                    </p>
+                </div>
+                <img src="/mask2.png" alt="mask image"/>
+            </div>
         </div>
 
-        <div className="mt-10 w-full lg:hidden">
+        {/* <div className="mt-10 w-full lg:hidden">
             <a href="#" className="font-sans text-[18px] text-[#198038] flex items-center gap-1 justify-center">
                 View All
                 <svg width="6" height="18" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +151,7 @@ const GrantBox = () => {
                 </svg>
 
             </a>
-        </div>
+        </div> */}
     </div>
   )
 }
