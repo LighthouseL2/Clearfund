@@ -125,7 +125,7 @@ const SliderLogos = () => {
         //     </CarouselContent>
         // </Carousel>
         <div className="overflow-hidden w-full  bg-[#A2845E1A]">
-            <div className="flex justify-between  w-full max-w-7xl mx-auto py-14">
+            <div className="flex justify-between  w-full max-w-7xl mx-auto py-6">
                 <div className="flex animate-slide w-[100%]">
                     <div className="flex w-full gap-16 animate-slide relative">
                         {items.map((item, index) => (
