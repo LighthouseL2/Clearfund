@@ -31,9 +31,9 @@ export const checkAuth = createAsyncThunk("/auth/checkauth",
     async () => {
         const response = await fetch("https://clearfund.onrender.com/api/auth/check-auth", {
             method: "GET",
-            headers: {
-                "Cache-Control": "no-store, no-cache, must-revalidate proxy-revalidate",
-            },
+            // headers: {
+            //     "Cache-Control": "no-store, no-cache, must-revalidate proxy-revalidate",
+            // },
             credentials: "include"
         })
     return response.json()

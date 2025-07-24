@@ -40,7 +40,7 @@ export const authMiddleware = async (req, res, next) => {
 
     try {
 
-        const token = req.cookies?.token
+        const token = req.cookies?.access_token
         // const accessToken = req.cookies.accessToken
 
         if(!token) return res.status(401).json({
@@ -94,12 +94,11 @@ export const loginUser = async (req, res) => {
             role: checkUser.role,
         }, process.env.JWT_SECRET, {expiresIn: "60m"})
 
-        res.cookie("token", token, {
+        res.cookie("access_token", token, {
             httpOnly: true,
             secure: true,
             sameSite: "None",
-            maxAge: 1000 * 60 * 60 * 24 * 7,
-            
+
         }).json({
             success: true,
             message: "Logged in successfully",
