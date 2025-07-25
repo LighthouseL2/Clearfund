@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link"
 import Image from "next/image";
 import { useState } from "react";
 import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
@@ -47,7 +48,6 @@ export default function Dashboard() {
       logo: "/grant-logo/gitcoin.svg",
       title: "Ocean Plastic Cleanup Network",
       org: "Gitcoin",
-      category: "Climate",
       amount: "$3k",
       date: "56 days ago",
     },
@@ -55,7 +55,6 @@ export default function Dashboard() {
       logo: "/grant-logo/gitcoin.svg",
       title: "Gitcoin Grant (GG22) Climate Round",
       org: "Gitcoin",
-      category: "Climate",
       amount: "$2k",
       date: "3 days ago",
     },
@@ -63,7 +62,6 @@ export default function Dashboard() {
       logo: "/grant-logo/celo-icon.svg",
       title: "Solar Energy Microgrid for Rural Kenya",
       org: "Celo Foundation",
-      category: "Infrastructure",
       amount: "$1k",
       date: "6 days ago",
     },
@@ -71,7 +69,6 @@ export default function Dashboard() {
       logo: "/grant-logo/eth-icon.svg",
       title: "Regenerative Agriculture Data Platform",
       org: "Ethereum Foundation",
-      category: "Public Goods",
       amount: "$1k",
       date: "9 days ago",
     },
@@ -79,7 +76,6 @@ export default function Dashboard() {
       logo: "/grant-logo/octant-icon.svg",
       title: "Ocean Plastic Cleanup Network",
       org: "Octant",
-      category: "Climate",
       amount: "$3k",
       date: "12 days ago",
     },
@@ -144,25 +140,15 @@ export default function Dashboard() {
             <button className="w-full flex items-center justify-between text-[#9197B3] text-sm px-4 py-3 font-medium">
               <span className="flex items-center gap-3">
                 <Image
-                  src="/sidebar-icons/discover-refi-icon.svg"
-                  alt="Discover ReFi"
-                  width={18}
-                  height={18}
-                />
-                Discover ReFi
-              </span>
-              <ChevronRight size={16} className="text-gray-400" />
-            </button>
-
-            <button className="w-full flex items-center justify-between text-[#9197B3] text-sm px-4 py-3 font-medium">
-              <span className="flex items-center gap-3">
-                <Image
                   src="/sidebar-icons/grant-round-icon.svg"
                   alt="Grant Rounds"
                   width={18}
                   height={18}
                 />
-                Grant Rounds
+              
+                <Link href={"/grant-rounds"}>
+                      Grant Rounds
+                    </Link>
               </span>
               <ChevronRight size={16} className="text-gray-400" />
             </button>
@@ -175,7 +161,10 @@ export default function Dashboard() {
                   width={18}
                   height={18}
                 />
-                Past Grant Data
+                
+                  <Link href={"/past-grant-data"}>
+                     Past Grant Data
+                    </Link>
               </span>
               <ChevronRight size={16} className="text-gray-400" />
             </button>
@@ -329,7 +318,7 @@ export default function Dashboard() {
                         {grant.title}
                       </div>
                       <div className="text-sm text-gray-500">
-                        {grant.org} • {grant.category}
+                        {grant.org} 
                       </div>
                     </div>
                   </div>

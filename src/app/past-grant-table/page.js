@@ -71,7 +71,7 @@ export default function Home() {
   const paginated = filteredProjects.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 
   return (
-      <section className="bg-gray-100 min-h-screen py-10 px-4">
+      <section className="bg-white min-h-screen py-10 px-4">
         <div className="flex justify-between mb-4 items-center">
     <div className="flex items-center gap-2 cursor-pointer">
   <ArrowLeft size={20} />
@@ -83,8 +83,7 @@ export default function Home() {
           </button>
         </div>
       {/* Centered container with white background */}
-      <div className="max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow-lg">
-      
+      <div className="max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow-xl border-2">
 
         {/* Main content */}
         <main >
@@ -176,7 +175,7 @@ export default function Home() {
     <button
       disabled={currentPage === 1}
       onClick={() => setCurrentPage(currentPage - 1)}
-      className="w-9 h-9 flex items-center justify-center border border-gray-200 rounded-md text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+      className="w-9 h-9 flex items-center justify-center border border-gray-200 rounded-md text-black font-extrabold hover:bg-gray-100 disabled:opacity-50"
     >
       &lt;
     </button>
@@ -190,7 +189,7 @@ export default function Home() {
           onClick={() => setCurrentPage(page)}
           className={`w-9 h-9 flex items-center justify-center rounded-md border ${
             currentPage === page
-              ? "bg-green-600 text-white"
+              ? "bg-[#198038] text-white"
               : "border-gray-200 text-gray-700 hover:bg-gray-100"
           }`}
         >
@@ -203,7 +202,7 @@ export default function Home() {
     <button
       disabled={currentPage === Math.ceil(filteredProjects.length / pageSize)}
       onClick={() => setCurrentPage(currentPage + 1)}
-      className="w-9 h-9 flex items-center justify-center border border-gray-200 rounded-md text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+      className="w-9 h-9 flex items-center justify-center border border-gray-200 rounded-md text-black font-extrabold hover:bg-gray-100 disabled:opacity-50"
     >
       &gt;
     </button>

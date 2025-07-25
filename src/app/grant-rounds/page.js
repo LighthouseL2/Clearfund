@@ -104,18 +104,7 @@ export default function Dashboard() {
                    <ChevronRight size={16} className="text-white" />
                  </button>
      
-                 <button className="w-full flex items-center justify-between text-[#9197B3] text-sm px-4 py-3 font-medium">
-                   <span className="flex items-center gap-3">
-                     <Image
-                       src="/sidebar-icons/discover-refi-icon.svg"
-                       alt="Discover ReFi"
-                       width={18}
-                       height={18}
-                     />
-                     Discover ReFi
-                   </span>
-                   <ChevronRight size={16} className="text-gray-400" />
-                 </button>
+                
      
                  <button className="w-full flex items-center justify-between text-[#9197B3] text-sm px-4 py-3 font-medium">
                    <span className="flex items-center gap-3">
