@@ -5,13 +5,13 @@ const Footer = () => {
     
   return (
     <footer className="bg-white pt-[5%] px-[5%] pb-5 text-black">
-        <div className="w-full  flex items-center justify-between flex-wrap">
+        <div className="w-full  flex  justify-between flex-wrap">
             <div className="lg:w-2/3 w-full mt-10 md:mt-0">
                 <div className="w-[155px] relative flex items-center mb-10">
                     <a href=""><img src="/projectLogo.png" alt="logo" /></a>
                 </div>
 
-                <h2 className="text-[30px] font-sans mb-5 text-[#202224] font-medium">Get the latest updates</h2>
+                <h2 className="text-[30px] font-sans text-[#202224] font-bold">Get the latest updates</h2>
                 <p className="mb-2 text-black/50 font-sans text-[14px]">
                     Subscribe to our newsletter to get all grant updates straight to your mailbox!
                 </p>
@@ -29,36 +29,34 @@ const Footer = () => {
                         our</Link><Link className="underline" href={"/privacy policy"}>privacy policy</Link> and <Link href={"/"} className="underline">our information collection notice</Link>
                     </p>
                 </div>
-                
-                
-                
+
             </div>
 
             <div className="w-full lg:w-1/4">
                 {/* socials */}
                 <div className="flex gap-10 mb-14">
-                    <Link href={"https://x.com/Clear_Fund"}>
+                    <Link href={"https://x.com/Clear_Fund"} target="_blank">
                         <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.6508 21.5777L14.684 10.6364L21.5046 3.13399C21.7439 2.86421 21.8673 2.51097 21.8479 2.15085C21.8285 1.79073 21.668 1.45277 21.4011 1.21022C21.1342 0.967673 20.7825 0.840098 20.4221 0.855152C20.0618 0.870207 19.722 1.02668 19.4762 1.29064L13.1638 8.23916L8.85928 1.4768C8.73558 1.2823 8.56481 1.12214 8.36278 1.01114C8.16075 0.900149 7.93399 0.841903 7.70348 0.841797H2.22141C1.97591 0.84191 1.73494 0.907969 1.52369 1.03307C1.31245 1.15817 1.13869 1.33771 1.02057 1.55294C0.902453 1.76816 0.844318 2.01116 0.852241 2.25654C0.860164 2.50192 0.933854 2.74067 1.06561 2.94782L8.0324 13.8891L1.20723 21.3916C1.08365 21.5243 0.987656 21.6803 0.924796 21.8504C0.861937 22.0205 0.833468 22.2014 0.841038 22.3826C0.848609 22.5638 0.89207 22.7417 0.968901 22.906C1.04573 23.0703 1.1544 23.2177 1.28862 23.3396C1.42284 23.4616 1.57993 23.5557 1.75079 23.6166C1.92165 23.6774 2.10289 23.7037 2.28399 23.6939C2.46509 23.6842 2.64245 23.6386 2.8058 23.5598C2.96915 23.481 3.11524 23.3706 3.23559 23.2349L9.55254 16.2864L13.8571 23.0487C13.9808 23.2432 14.1516 23.4034 14.3536 23.5144C14.5556 23.6254 14.7824 23.6836 15.0129 23.6838H20.495C20.7405 23.6836 20.9815 23.6176 21.1927 23.4925C21.4039 23.3674 21.5777 23.1878 21.6958 22.9726C21.8139 22.7574 21.8721 22.5144 21.8641 22.269C21.8562 22.0236 21.7825 21.7849 21.6508 21.5777ZM15.7655 20.9427L4.71804 3.58283H6.95084L17.9984 20.9427H15.7655Z" fill="#202224"/>
                         </svg>
 
                     </Link>
 
-                    <Link href={"https://t.me/+fU2kPPjZ50MxMTE0"}>
+                    <Link href={"https://t.me/+fU2kPPjZ50MxMTE0"} target="_blank">
                         <svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M27.1835 0.278754L1.18704 10.3554C0.14089 10.8247 -0.212945 11.7644 0.934182 12.2744L7.6034 14.4048L23.7287 4.38751C24.6092 3.75865 25.5106 3.92634 24.7349 4.61813L10.8855 17.2227L10.4504 22.5569C10.8534 23.3806 11.5912 23.3844 12.0618 22.975L15.8935 19.3307L22.4558 24.2701C23.98 25.1771 24.8093 24.5918 25.1373 22.9294L29.4416 2.44263C29.8885 0.396355 29.1264 -0.505254 27.1835 0.278754Z" fill="#202224"/>
                         </svg>
 
                     </Link>
 
-                    <Link href={"https://www.youtube.com/@Clearfundlive"}>
+                    <Link href={"https://www.youtube.com/@Clearfundlive"} target="_blank">
                         <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18.4163 0.296875C19.3282 0.301998 21.6096 0.324197 24.0344 0.421532L24.8951 0.4591C27.3353 0.573511 29.7738 0.771596 30.9845 1.108C32.5982 1.56223 33.8653 2.88394 34.2939 4.56083C34.9769 7.22474 35.0623 12.4194 35.0726 13.6779L35.0743 13.9374V14.2346C35.0623 15.4931 34.9769 20.6894 34.2939 23.3516C33.8601 25.0336 32.5914 26.357 30.9845 26.8044C29.7738 27.1408 27.3353 27.3389 24.8951 27.4533L24.0344 27.4926C21.6096 27.5882 19.3282 27.6121 18.4163 27.6156L18.015 27.6173H17.5796C15.65 27.6053 7.57969 27.5182 5.01141 26.8044C3.39941 26.3502 2.13064 25.0285 1.70202 23.3516C1.01897 20.6877 0.933586 15.4931 0.92334 14.2346V13.6779C0.933586 12.4194 1.01897 7.22303 1.70202 4.56083C2.13576 2.87881 3.40453 1.5554 5.01312 1.10971C7.57969 0.39421 15.6517 0.307121 17.5813 0.296875H18.4163ZM14.5827 7.98122V19.9346L24.8285 13.9579L14.5827 7.98122Z" fill="#202224"/>
                         </svg>
 
                     </Link>
 
-                    <Link href={"https://clearfund.substack.com"}>
+                    <Link href={"https://clearfund.substack.com"} target="_blank">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="26.6596" height="26.7266" transform="matrix(1 0 0 -1 0.753906 27.3203)" fill="#202224"/>
                             <path d="M20.1472 14.819C20.1422 13.4604 20.138 12.1017 20.1344 10.7428C20.1318 9.47043 20.1344 8.19809 20.1302 6.92999C20.1302 6.85365 20.2065 6.72217 20.0374 6.70627C18.9906 7.40535 17.943 8.10425 16.8947 8.80298C16.4107 9.12477 15.9209 9.43915 15.4342 9.75723C15.4103 9.75007 15.3849 9.75007 15.361 9.75723C15.1829 9.84153 15.0318 9.96929 14.8632 10.0695C14.6883 10.1872 14.5054 10.2937 14.3389 10.422C14.1725 10.5503 14.0352 10.5413 13.8645 10.422C13.1578 9.93165 12.4299 9.47255 11.711 8.99913C11.6087 8.9318 11.5096 8.85758 11.3829 8.84009L8.71891 7.09062C8.52117 6.96127 8.32449 6.83085 8.11084 6.69037C8.03238 6.84464 8.09653 6.99732 8.05783 7.13515C8.0175 7.25198 7.99951 7.37535 8.00481 7.49883C7.99686 9.8903 8.01489 12.2818 7.99951 14.6732C7.99951 14.7634 7.99951 14.8498 8.06843 14.9187C8.61501 14.9235 9.16105 14.9319 9.70763 14.9325C13.0949 14.9325 16.4816 14.9325 19.8678 14.9325C19.9674 14.9277 20.1095 14.9956 20.1472 14.819Z" fill="white"/>
@@ -76,11 +74,11 @@ const Footer = () => {
                         <ul className="space-y-3 font-sans text-black/70 text-[14px]">
                             <li><Link className="font-sans font-medium" href={"/about"}>About</Link></li>
                             <li><Link className="font-sans font-medium" href={"/faq"}>FAQ</Link></li>
-                            <li><Link className="font-medium" href={"/"}>Blog</Link></li>
-                            <li><Link className="font-medium" href={"https://docs.google.com/forms/d/e/1FAIpQLSen8RTa49H2W_8VUgX-Z-5i08LUjLf1x0Cey_1aB9dAs6qkFA/viewform?usp=header"}>
+                            <li><Link className="font-medium" href={"https://clearfund.substack.com"} target="_blank">Blog</Link></li>
+                            <li><Link className="font-medium" target="_blank" href={"https://docs.google.com/forms/d/e/1FAIpQLSen8RTa49H2W_8VUgX-Z-5i08LUjLf1x0Cey_1aB9dAs6qkFA/viewform?usp=header"}>
                                 Contact
                             </Link></li>
-                            <li><Link className="font-sans font-medium" href={"/https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
+                            <li><Link className="font-sans font-medium" target="_blank" href={"/https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
                         </ul>
                     </div>
 
@@ -89,7 +87,7 @@ const Footer = () => {
                         <h3 className="uppercase mb-3 font-bold text-[16px] font-sans">RESOURCES </h3>
                         <ul className="space-y-3 text-black/70 text-[14px]">
                             <li><Link className="font-sans font-medium" href={"/connect-with-us"}>Connect with us</Link></li>
-                            <li><Link className="font-sans font-medium" href={"https://form.typeform.com/to/qJv3uhi8"}>Leave feedback</Link></li>
+                            <li><Link className="font-sans font-medium" target="_blank" href={"https://form.typeform.com/to/qJv3uhi8"}>Leave feedback</Link></li>
                             <li><Link className="font-medium" href={"/privacy-policy"}>Privacy Policy</Link></li>
                             <li><Link className="font-medium" href={"/terms"}>Terms</Link></li>
                             <li><Link className="font-sans font-medium" href={"/support"}>Support</Link></li>

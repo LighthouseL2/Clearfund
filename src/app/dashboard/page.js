@@ -4,15 +4,16 @@ import { useEffect, useState } from "react";
 import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
 import BackgroundSlider from "@/components/BackgroundSlider";
 import withAuth from "@/lib/withAuth";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import { logout } from "@/features/user/userSlice";
 // import { checkAuth } from "@/features/user/userSlice";
 
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter()
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const stats = [
     {
@@ -107,6 +108,10 @@ function Dashboard() {
       router.replace("/dashboard")
     }
   })
+
+  function handleLogout(){
+    localStorage.removeItem("token")
+  }
 
 
   return (
@@ -227,8 +232,8 @@ function Dashboard() {
         </div>
 
         <div className="mt-6 space-y-2">
-          <button className="flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium">
-            <LogOut size={18} />
+          <button onClick={handleLogout} className="flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium">
+            <LogOut size={18}/>
             Logout
           </button>
         </div>

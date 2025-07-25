@@ -11,7 +11,6 @@ import Footer from "@/components/Footer";
 import RecentPost from "@/components/recentPost";
 import FaqSection from "@/components/faq";
 import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import MenuDropdown from "@/components/menuDropdown";
 
@@ -19,12 +18,16 @@ import MenuDropdown from "@/components/menuDropdown";
 
 export default function Home() {
 
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(true)
     const [openMenu, setOpenMenu] = useState(false)
+    const [blur, setBlur] = useState(false)
+
 
   return (
-    <div className={`bg-white min-h-screen relative min-w-xs ${open && "blur"}`}>
-        <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+    <div className={`bg-white min-h-screen relative min-w-xs ${blur && "blur"}`}>
+        <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
+        />
         <MenuDropdown
             openMenu={openMenu}
             setOpenMenu={setOpenMenu}
@@ -32,7 +35,7 @@ export default function Home() {
             setToggle={setOpen}
         />
         <Suspense fallback={<div>Loading...</div>}>
-            <HeroSection open={open} setOpen={setOpen}/>
+            <HeroSection open={open} setOpen={setOpen} setBlur={setBlur} blur={blur}/>
         </Suspense>
 
         <StatSection />
@@ -49,19 +52,23 @@ export default function Home() {
 
         <div className="px-[5%] w-[90%] mx-auto rounded-2xl h-[621px]  bg-linear-to-b from-[#198038] to-[#7CB53E] flex items-center justify-center flex-col">
             <div className="flex items-center justify-center flex-col space-y-10">
-                <h1 className="text-black font-sans font-medium text-[36px] md:text-[76px] w-full
+                <h1 className="text-black font-sans font-extrabold text-[36px] md:text-[76px] w-full
                     lg:w-[800px] text-center md:leading-20 leading-10">
-                    Where ReFi Meets <span className="text-white">Transparency</span>
+                    Where web3 Grant <span className="text-white">History Lives</span>
                 </h1>
 
-                <p className="text-[26px] text-center md:w-1/2 font-sans md:px-10 font-medium text-black/70">
-                    Find your ReFi fam, fuel the regen movement.  Discover projects,
-                     track past rounds, and back public goods.
+                <p className="text-[26px] text-center md:w-1/2 font-sans  font-medium text-black/70">
+                    Dive into a curated archive of past funding rounds. From who funded
+                    what to where the grants went.
                 </p>
 
-                <Link href="/"
+                <Link href="/?route=login"
                     className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black
-                         bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md" onClick={() => setToggle(!toggle)}>
+                         bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md"
+                         onClick={() => {
+                            setOpen(true)
+                            setBlur(true)
+                         }}>
                         Try it free
                 </Link>
             </div>
