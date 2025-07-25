@@ -14,7 +14,7 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle}) => {
                     <Link target="_blank" href={"/about"} onClick={() =>setOpenMenu(false)}>About</Link>
                 </li>
                 <li className="hover:bg-white/50 block w-full p-3 font-bold rounded-md font-sans">
-                    <Link target="_blank" href={"/"} onClick={() =>setOpenMenu(false)}>Blog</Link>
+                    <Link target="_blank" href={"https://clearfund.substack.com"} onClick={() =>setOpenMenu(false)}>Blog</Link>
                 </li>
             </ul>
 

@@ -14,7 +14,7 @@ import { loginUser } from '@/features/user/userSlice'
 
 
 
-const LoginForm = ({open, setOpen }) => {
+const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [errors, setErrors] = useState(null)
@@ -68,6 +68,7 @@ const LoginForm = ({open, setOpen }) => {
         setOpen(!open)
         // setShowPassword(false)
         setFormdata(initialFormData)
+        setBlur(false)
     }
 
   return (
@@ -99,7 +100,6 @@ const LoginForm = ({open, setOpen }) => {
                         </Link>
                     </div>
 
-                    
 
                     <div className='border border-black/50 flex justify-center items-center py-3 rounded-md mb-5'>
                         <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans items-center gap-1'>

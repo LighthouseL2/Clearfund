@@ -2,54 +2,55 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 const GrantBox = () => {
 
-    const box = [
-        {
-            image: "/mask.png",
-            title: "Celo Support Streams (S0)",
-            network: "Celo",
-            status: "Active",
-            amount: "100K",
-            desc: `Celo Support Streams are Celo Protocol Incentives that are
-                    distributed once every two weeks to Protocols on Celo
-                    through vote in the celoPG Aragon deployment.`,
-            coin: "Celo",
-            date: "End- Jul 30, 2025"
-        },
+    // const box = [
+    //     {
+    //         image: "/mask.png",
+    //         title: "Celo Support Streams (S0)",
+    //         network: "Celo",
+    //         status: "Active",
+    //         amount: "100K",
+    //         desc: `Celo Support Streams are Celo Protocol Incentives that are
+    //                 distributed once every two weeks to Protocols on Celo
+    //                 through vote in the celoPG Aragon deployment.`,
+    //         coin: "Celo",
+    //         date: "End- Jul 30, 2025"
+    //     },
 
-        {
-            image: "/mask.png",
-            title: "Good Dollar Builders (2)",
-            status: "Active",
-            network: "Good Dollar",
-            desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$,
-                    offering support, funding, and mentorship to builders.`,
-            amount: "250K",
-            coin: "USD",
-            date: "End- Oct, 2025"
-        },
+    //     {
+    //         image: "/mask.png",
+    //         title: "Good Dollar Builders (2)",
+    //         status: "Active",
+    //         network: "Good Dollar",
+    //         desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$,
+    //                 offering support, funding, and mentorship to builders.`,
+    //         amount: "250K",
+    //         coin: "USD",
+    //         date: "End- Oct, 2025"
+    //     },
 
-        {
-            image: "/mask.png",
-            title: "Proof-of-Ship- Season 6",
-            status: "Active",
-            network: "Celo",
-            desc: `Proof-of-Ship is a monthly program for builders to grow their onchain
-                    reputation and earn rewards in the Celo ecosystem.`,
-            amount: "30K",
-            coin: "cUSD",
-            date: "End- Jul 31, 2025"
-        },
-    ]
+    //     {
+    //         image: "/mask.png",
+    //         title: "Proof-of-Ship- Season 6",
+    //         status: "Active",
+    //         network: "Celo",
+    //         desc: `Proof-of-Ship is a monthly program for builders to grow their onchain
+    //                 reputation and earn rewards in the Celo ecosystem.`,
+    //         amount: "30K",
+    //         coin: "cUSD",
+    //         date: "End- Jul 31, 2025"
+    //     },
+    // ]
 
   return (
-    <div className="px-[5%]  py-[5%] relative">
-        <header className="py-5 text-center">
-            <h1 className="font-bold font-sans leading-15 mb-10 text-[56px] text-black w-full text-center">
-                All-in-One ReFi Grant <span className="text-[#7CB53E]">Explorer</span>
+    <div className="px-[5%]  py-[5%] relative pb-[5rem] ">
+        <header className="py-[3rem] text-center">
+            <h1 className="font-bold font-sans leading-15 mb-5 text-[56px] text-black w-full text-center">
+                Uncover What’s Next in <span className="text-[#7CB53E]">Web3 Funding</span>
             </h1>
-            <p className="text-[25px] font-medium">Discover ReFi projects, track funding history, and support public goods seamlessly.</p>
+            <p className="text-[25px] font-medium">View past grants, active rounds, and upcoming opportunities all in one place.</p>
         </header>
 
         <div className="grid lg:grid-cols-3 w-full text-black gap-5 mt-10">
@@ -93,54 +94,53 @@ const GrantBox = () => {
                 </div>
             ))} */}
 
-            <div className="xl:w-[392.10791015625px] mb-10 bg-[#00995E] rounded-3xl relative">
+            <Link href={"/dashboard"} className="xl:w-[392.10791015625px] mb-10 bg-[#00995E] rounded-3xl relative">
                 <div className="absolute py-10 px-10">
                     <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Active Grant <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
                     </span></h1>
                     <p className="text-[16px] font-medium mt-3">
-                        Discover live ReFi and public goods funding rounds happening across
-                        the ecosystem from Gitcoin to Giveth and beyond.
+                        Discover live ReFi and public goods funding rounds happening across the ecosystem.
                     </p>
                 </div>
                 <img src="/mask1.png" alt="mask image"/>
-            </div>
+            </Link>
 
-            <div className="xl:w-[392.10791015625px] bg-[#058CD7] mb-10 rounded-3xl relative">
+            <Link href={"/dashboard"} className="xl:w-[392.10791015625px] bg-[#058CD7] mb-10 rounded-3xl relative">
                 <div className="absolute py-10 px-10">
                     <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Previous Funding <span>
-                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            className="hover:translate-x-3 transition-all">
+                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
                     </span></h1>
                     <p className="text-[17px] font-medium mt-3">
-                        Want to see who’s been funded, how much they raised,
-                        and where it came from? and more.
+                        See who’s been funded, how much they raised, and where it came from and when?
                     </p>
                 </div>
                 <img src="/mask3.png" alt="mask image"/>
-            </div>
+            </Link>
 
 
-            <div className="xl:w-[392.10791015625px] bg-[#00995E] mb-10 rounded-3xl relative">
+            <Link href={"/dashboard"} className="xl:w-[392.10791015625px] bg-[#00995E] mb-10 rounded-3xl relative">
                 <div className="absolute py-10 px-10">
-                    <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">ReFi Project <span>
-                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <h1 className="flex items-center gap-2 text-[24px] font-extrabold font-sans">Upcoming grant <span>
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            className="hover:translate-x-3 transition-all">
+                            <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
                     </span></h1>
                     <p className="text-[16px] font-medium mt-3">
-                        Find ReFi projects funded across Gitcoin, Giveth, and
-                        others, where to connect and support them.
+                        View a list of upcoming Web3 grants and funding opportunities.
                     </p>
                 </div>
                 <img src="/mask2.png" alt="mask image"/>
-            </div>
+            </Link>
         </div>
 
         {/* <div className="mt-10 w-full lg:hidden">

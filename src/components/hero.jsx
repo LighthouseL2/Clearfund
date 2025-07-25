@@ -7,29 +7,34 @@ import ResetPassword from './ResetPassword'
 import { useSearchParams } from "next/navigation";
 import Link from 'next/link'
 
-const HeroSection = ({open, setOpen}) => {
+const HeroSection = ({open, setOpen, blur, setBlur}) => {
 
-    
+
   const searchParams = useSearchParams()
   const modal = searchParams.get("route")
 
+
   return (
     <div className="px-[5%]  flex justify-center items-center md:w-[85%] mx-auto text-center flex-col">
-        <h1 className="capitalize mt-[103.5px] text-3xl md:text-[64px] mb-10 font-bold font-sans">
-          Track Previous Grants. Find New Ones. <span className='text-[#7CB53E]'>Get Real-Time Alerts.</span>
+        <h1 className="capitalize mt-[103.5px] xl:w-[80%] text-4xl md:text-[64px] mb-10 font-extrabold font-sans">
+          See Where Public Goods Funding Flows <span className='text-[#7CB53E]'>in Web3</span>
         </h1>
-        <p className="text-[20px] md:w-[79%]   mb-14 font-sans">
-            Explore past grant data, discover impactful ReFi projects, find new funding opportunities,
-            and stay updated with real-time alerts from leading Web3 grant platforms.
+        <p className="text-[18px] md:w-[79%] xl:w-[65%]   mb-14 font-sans">
+            ClearFund is a Web3 grant archive that brings
+            together past funding data from Gitcoin, Giveth, Octant,
+            and others. solving the problem of fragmented information in one place.
         </p>
 
 
         <Link href="/?route=login"
-          className="w-[202.19px] font-sans mb-30 flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => setOpen(!open)}>
+          className="w-[202.19px] font-sans mb-30 flex items-center justify-center font-semibold hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => {
+            setOpen(true)
+            setBlur(true)
+          }}>
             Get started
         </Link>
 
-        
+
         {/* <Link
           href="/?route=login"
           className="bg-[#00CD5D] hover:bg-black font-semibold text-white px-8 py-3 rounded-md text-[16px]"
@@ -40,7 +45,7 @@ const HeroSection = ({open, setOpen}) => {
 
         {
           modal === "login" ? (
-            <LoginForm open={open} setOpen={setOpen} />
+            <LoginForm open={open} setOpen={setOpen} blur={blur} setBlur={setBlur}/>
           ) : modal === "signup" ? (
             <SignupForm open={open}  setOpen={setOpen}/>
           ) : modal === "reset" && (
