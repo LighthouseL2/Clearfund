@@ -36,7 +36,7 @@ const FaqSection = () => {
         <div className="w-full md:w-[424px] h-full">
             <h2 className="text-[36px] mb-5 font-extrabold font-sans">Your questions, answered simply</h2>
             
-            <p className="text-[16px] mb-10 font-sans">Quick answers to common funding questions</p>
+            <p className="text-[16px] mb-10 font-sans">Quick answers to few questions.</p>
         
             <Link href="/faq"
                 className="w-[202.19px] font-sans hidden lg:flex items-center justify-center font-semibold

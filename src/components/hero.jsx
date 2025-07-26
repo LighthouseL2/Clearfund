@@ -19,7 +19,7 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
         <h1 className="capitalize mt-[103.5px] md:w-[50rem] text-4xl md:text-[64px] mb-10 font-extrabold font-sans">
           See Where Public Goods Funding Flows <span className='text-[#7CB53E]'>in Web3</span>
         </h1>
-        <p className="text-[18px] md:w-[45rem] mb-14 font-sans">
+        <p className="text-[18px] md:w-[49.704rem] mb-14 font-sans">
             ClearFund is a Web3 grant archive that brings
             together past funding data from Gitcoin, Giveth, Octant,
             and others. solving the problem of fragmented information in one place.
