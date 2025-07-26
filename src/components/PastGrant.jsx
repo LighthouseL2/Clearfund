@@ -22,8 +22,8 @@ export default function PastGrantRounds() {
       { title: "GoodDollar Epoch 2", date: "March, 2024" },
     ],
     Gitcoin: [
-      { title: "Gitcoin Round 1", date: "May, 2024" },
-      { title: "Gitcoin Round 2", date: "June, 2024" },
+      { title: "GG21- Regen Coordi-Nation Genesis Round", date: "August, 2024" },
+      { title: "Gitcoin Grant Round 23 (GG23)", date: "May, 2025" },
     ],
     Octant: [
       { title: "Octant Epoch 7 Archive", date: "April, 2025" },
@@ -49,7 +49,7 @@ export default function PastGrantRounds() {
   );
 
   return (
-    <div className="px-4 md:px-10 py-10 text-black">
+    <div className="px-4 md:px-10 py-10 text-black ">
       {/* Search */}
       <div className="max-w-4xl mx-auto mb-6">
         <div className="relative">
@@ -75,7 +75,7 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Active Tabs */}
-      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between bg-[#D9D9D933] border py-1 ">
         <button className="p-2 hover:bg-gray-100 rounded">
           <ChevronLeft size={20} />
         </button>
@@ -86,8 +86,8 @@ export default function PastGrantRounds() {
               onClick={() => setActiveTab(tab)}
               className={`px-12 py-2 text-sm font-medium whitespace-nowrap ${
                 activeTab === tab
-                  ? "bg-white text-black border border-gray-300"
-                  : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                  ? "bg-white text-black border border-gray-300 cursor-pointer"
+                  : " text-black hover:bg-gray-100"
               }`}
             >
               {tab}
@@ -104,7 +104,7 @@ export default function PastGrantRounds() {
         {filteredData.map((item, index) => (
           <div
             key={index}
-            className="flex justify-between items-center bg-white rounded-md border p-4 shadow-sm hover:shadow transition"
+            className="flex justify-between items-center bg-white rounded-sm border p-4 shadow-sm hover:shadow transition"
           >
             <div className="flex items-center space-x-3">
               {/* Dynamic image based on active tab */}
@@ -121,7 +121,7 @@ export default function PastGrantRounds() {
                 <p className="text-xs text-gray-500">{item.date}</p>
               </div>
             </div>
-            <button className="text-sm font-medium text-gray-700 flex items-center gap-1 hover:text-black">
+            <button className="text-sm font-medium bg-white rounded-sm border-1 text-gray-600 py-2 px-4 shadow-2xl flex items-center gap-1 ">
               View Data
               <svg
                 className="w-4 h-4"
