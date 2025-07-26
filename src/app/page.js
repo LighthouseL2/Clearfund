@@ -58,7 +58,7 @@ export default function Home() {
                 </h1>
 
                 <p className="text-[26px] text-center md:w-1/2 font-sans  font-medium text-black/70
-                    leading-8">
+                    leading-[1.8rem]">
                     Dive into a curated archive of past funding rounds. From who funded
                     what to where the grants went.
                 </p>

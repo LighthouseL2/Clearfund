@@ -33,9 +33,9 @@ const RecentPost = () => {
 
 
   return (
-    <div className="bg-white p-[5%] mb-20 lg:mb-20">
+    <div className="bg-white px-[5%] py-[6rem] mb-20 lg:mb-20">
             <header className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-4xl font-bold text-black opacity-30">Our Blog</h1>
+                <h1 className="text-2xl md:text-[75px] font-extrabold text-black opacity-30">Our Blog</h1>
             </header>
             <div className="grid lg:grid-cols-2 gap-5 mt-20 lg:h-[500px] space-y-10">
                 <Link href={"https://clearfund.substack.com"} target="_blank">
