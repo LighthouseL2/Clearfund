@@ -111,6 +111,7 @@ function Dashboard() {
 
   function handleLogout(){
     localStorage.removeItem("token")
+    router.push("/?route=login")
   }
 
 
