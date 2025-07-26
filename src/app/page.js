@@ -57,13 +57,15 @@ export default function Home() {
                     Where web3 Grant <span className="text-white">History Lives</span>
                 </h1>
 
-                <p className="text-[26px] text-center md:w-1/2 font-sans  font-medium text-black/70">
+                <p className="text-[26px] text-center md:w-1/2 font-sans  font-medium text-black/70
+                    leading-8">
                     Dive into a curated archive of past funding rounds. From who funded
                     what to where the grants went.
                 </p>
 
                 <Link href="/?route=login"
-                    className="w-[202.19px] flex items-center justify-center font-semibold hover:bg-black
+                    className="w-[202.19px] flex items-center justify-center font-semibold
+                    hover:bg-black transition-all hover:scale-110
                          bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md"
                          onClick={() => {
                             setOpen(true)

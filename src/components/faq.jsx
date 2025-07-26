@@ -32,15 +32,15 @@ const FaqSection = () => {
 
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[5rem] text-white pt-[5rem] mb-10 lg:mb-0">
+    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7rem] text-white pt-[7rem] mb-10 lg:mb-0">
         <div className="w-full md:w-[424px] h-full">
             <h2 className="text-[36px] mb-5 font-extrabold font-sans">Your questions, answered simply</h2>
             
             <p className="text-[16px] mb-10 font-sans">Quick answers to common funding questions</p>
         
             <Link href="/faq"
-                className="w-[202.19px] font-sans flex items-center justify-center font-semibold
-                 bg-[#198038] text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
+                className="w-[202.19px] font-sans hidden lg:flex items-center justify-center font-semibold
+                 bg-[#198038] hover:bg-white hover:text-black hover:scale-105 transition-all text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
                 Learn More
             </Link>
         </div>
@@ -52,6 +52,14 @@ const FaqSection = () => {
                     <p className="text-[16px] font-sans w-[95%]">{data.ans}</p>
                 </div>
             ))}
+        </div>
+
+        <div className="flex lg:hidden justify-center items-center w-full mt-5">
+            <Link href="/faq"
+                className="w-[202.19px] font-sans flex items-center justify-center font-semibold
+                    bg-[#198038] hover:bg-white transition-all hover:scale-105 text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
+                Learn More
+            </Link>
         </div>
     </div>
   )
