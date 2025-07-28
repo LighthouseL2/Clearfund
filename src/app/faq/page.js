@@ -59,7 +59,7 @@ export default function FaqSection() {
       <div className="h-full w-full flex items-center justify-center md:justify-start px-4 md:px-24">
         <div className="text-white max-w-3xl text-center md:text-left">
           <h1 className="font-extrabold text-5xl sm:text-6xl md:text-6xl mb-4 leading-tight">
-            <span className="text-white">Frequently</span> asked <br />
+            <span className="text-white font-extrabold ">Frequently</span> asked <br />
            questions
           </h1>
         </div>
@@ -94,7 +94,7 @@ export default function FaqSection() {
           </button>
 
           {activeIndex === index && (
-            <div className="px-6 pb-5 text-black text-sm sm:text-base leading-relaxed">
+            <div className="px-6 pb-12 text-black text-sm sm:text-base leading-relaxed">
               {item.answer}
             </div>
           )}
