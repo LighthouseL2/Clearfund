@@ -34,9 +34,10 @@ export default function BackgroundSlider() {
   return (
     <div
       className="
-        relative w-full mx-auto overflow-hidden rounded-2xl
-        aspect-[16/9]               /* Mobile: responsive aspect ratio */
-        md:aspect-auto md:h-[280px] md:max-w-5xl
+       relative w-full overflow-hidden rounded-xl
+    aspect-[16/9]
+    md:aspect-auto md:h-[280px] md:max-w-5xl
+    md:mr-auto md:ml-0
       "
     >
       {/* Background Image */}
@@ -53,7 +54,7 @@ export default function BackgroundSlider() {
       {/* Left Arrow */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-black w-8 h-8 rounded-full flex items-center justify-center z-10"
+        className="absolute md:left-8 left- top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-black w-8 h-8 rounded-full flex items-center justify-center z-10"
       >
         <span className="text-lg">&larr;</span>
       </button>
@@ -61,7 +62,7 @@ export default function BackgroundSlider() {
       {/* Right Arrow */}
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-black w-8 h-8 rounded-full flex items-center justify-center z-10"
+        className="absolute md:right-8 right-2 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-black w-8 h-8 rounded-full flex items-center justify-center z-10"
       >
         <span className="text-lg">&rarr;</span>
           </button>
