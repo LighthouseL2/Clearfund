@@ -51,6 +51,7 @@ export default function Sidebar() {
 
           {/* Nav */}
           <nav className="space-y-3">
+            <Link   href="/dashboard">
             <button className="w-full flex items-center justify-between bg-[#174123] text-white rounded-lg px-4 py-3 text-sm font-medium">
               <span className="flex items-center gap-3">
                 <Image
@@ -63,7 +64,7 @@ export default function Sidebar() {
               </span>
               <ChevronRight size={16} className="text-white" />
             </button>
-
+</Link>
             <Link
               href="/grant-rounds"
               className="w-full flex items-center justify-between text-[#9197B3] text-sm px-4 py-3 font-medium hover:bg-gray-50 rounded-lg"
