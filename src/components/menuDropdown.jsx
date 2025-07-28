@@ -7,20 +7,20 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle}) => {
             : "translate-y-14 -translate-x-0"} transform`}>
 
             <ul className="w-full bg-white h-fit space-y-5">
-                <li className="hover:bg-white/50 block w-full p-3 rounded-md font-bold font-sans">
+                <li className="hover:bg-white/50 block w-full p-3 rounded-md font-bold font-sans hover:scale-105 transition-all hover:text-[#198038]">
                     <Link target="_blank" href={"https://github.com/LighthouseL2/Clearfund"} onClick={() =>setOpenMenu(false)}>Github</Link>
                 </li>
-                <li className="hover:bg-white/50 block w-full p-3 rounded-md font-bold font-sans">
+                <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#198038] w-full p-3 rounded-md font-bold font-sans">
                     <Link target="_blank" href={"/about"} onClick={() =>setOpenMenu(false)}>About</Link>
                 </li>
-                <li className="hover:bg-white/50 block w-full p-3 font-bold rounded-md font-sans">
-                    <Link target="_blank" href={"/"} onClick={() =>setOpenMenu(false)}>Blog</Link>
+                <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#198038] w-full p-3 font-bold rounded-md font-sans">
+                    <Link target="_blank" href={"https://clearfund.substack.com"} onClick={() =>setOpenMenu(false)}>Blog</Link>
                 </li>
             </ul>
 
             <div className="flex justify-center items-center w-full mt-20">
                 <Link href="/?route=login"
-                    className="w-[159.17px] md:hidden items-center font-sans justify-center
+                    className="w-[159.17px] md:hidden hover:scale-105 transition-all hover:text-[#198038] items-center font-sans justify-center
                         font-medium hover:bg-black bg-[#198038] flex
                         text-white text-[16px] h-[52px]  rounded-md" onClick={() => {
                             setOpenMenu(false)

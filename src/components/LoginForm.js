@@ -7,16 +7,21 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
 import { initialFormData } from '@/lib/config'
+import { loginUser } from '@/features/user/userSlice'
 
 
 
-const LoginForm = ({open, setOpen }) => {
+const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [errors, setErrors] = useState(null)
 
     const [formData, setFormdata] = useState(initialFormData)
+    const dispatch = useDispatch()
+    const router = useRouter()
 
 
     const validate = () => {
@@ -24,28 +29,38 @@ const LoginForm = ({open, setOpen }) => {
 
         if(!formData.password) {
             newErrors.password = "Password cannot be empty"
+            setErrors("Incorrect email or password, please try again.")
         }
 
-        console.log("validate")
+        // if(!formData.password) {
+        //     newErrors.password = "Password cannot be empty"
+        //     setErrors("Incorrect email or password, please try again.")
+        // }
 
         if(!formData.email.trim()) {
             newErrors.email = "Email is required"
+            setErrors("Incorrect email or password, please try again.")
         }else {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
             if(!emailRegex.test(formData.email)){
                 newErrors.email = "Enter a valid email"
+                setErrors("Incorrect email or password, please try again.")
             }
         }
 
-        setErrors(newErrors)
+        // setErrors(newErrors)
         console.log(Object.keys(newErrors).length  === 0);
-        return Object.keys(newErrors).length  === 0
+        return errors === null && Object.keys(newErrors).length  === 0
     }
 
     const handleSubmit = async () => {
         if(validate()){
             // api call
-            console.log("Form is ok");
+            await dispatch(loginUser(formData)).then((data) => {
+                if(data.payload){
+                    router.push("/dashboard")
+                }
+            })
         }
     }
 
@@ -53,6 +68,7 @@ const LoginForm = ({open, setOpen }) => {
         setOpen(!open)
         // setShowPassword(false)
         setFormdata(initialFormData)
+        setBlur(false)
     }
 
   return (
@@ -84,10 +100,9 @@ const LoginForm = ({open, setOpen }) => {
                         </Link>
                     </div>
 
-                    
 
                     <div className='border border-black/50 flex justify-center items-center py-3 rounded-md mb-5'>
-                        <Link href="http://localhost:8080/api/auth/google" className='flex font-sans items-center gap-1'>
+                        <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans items-center gap-1'>
                             <Image
                                 src={"/google.png"}
                                 alt='google logo'
@@ -105,7 +120,10 @@ const LoginForm = ({open, setOpen }) => {
                         <label htmlFor="email" className='opacity-60 text-[12px] font-sans'>Email</label>
                         <input type="text" className='w-full font-sans outline-none text-[12px] text-black/50'
                             value={formData.email}
-                            onChange={(e) => setFormdata({...formData, email: e.target.value})}
+                            onChange={(e) => {
+                                setFormdata({...formData, email: e.target.value.toLowerCase()})
+                                setErrors(null)
+                            }}
                         />
                     </div>
 
@@ -134,7 +152,7 @@ const LoginForm = ({open, setOpen }) => {
                 </div>
 
                 {errors &&
-                    <p className='text-[#FF3B30] mt-3 text-[14px] w-[298px] font-sans'> Incorrect email or password, please try again.</p>
+                    <p className='text-[#FF3B30] mt-3 text-[14px] w-[298px] font-sans'> {errors}</p>
                 }
 
                 <DialogFooter className={`w-full text-center ${errors ? "mt-0" : "mt-5"}`}>

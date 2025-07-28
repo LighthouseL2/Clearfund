@@ -1,6 +1,7 @@
-import User from "../models/User.js"
+import User from "../models/user.js"
 import jwt from 'jsonwebtoken'
 import bcrypt from "bcryptjs"
+import { refreshAccessToken } from "../utils/googleAuth.js"
 
 
 
@@ -39,12 +40,21 @@ export const authMiddleware = async (req, res, next) => {
 
     try {
 
-        const token = req.cookies?.token
+        // const token = req.cookies?.access_token
+        // const accessToken = req.cookies.accessToken
+        const authHeader = req.headers.authorization
 
-        if(!token) return res.status(401).json({
+        if(!authHeader?.startsWith("Bearer ")) return res.status(401).json({
             success: false,
             message: "Unauthorized User Token not found"
         })
+
+        const token = authHeader.split(" ")[1]
+
+        // if(!token) return res.status(401).json({
+        //     success: false,
+        //     message: "Unauthorized User Token not found"
+        // })
 
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
@@ -92,13 +102,21 @@ export const loginUser = async (req, res) => {
             role: checkUser.role,
         }, process.env.JWT_SECRET, {expiresIn: "60m"})
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false
-        }).json({
+        // res.cookie("access_token", token, {
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: "None",
+
+        // })
+        res.json({
             success: true,
             message: "Logged in successfully",
-            user: checkUser
+            data: {
+                id: checkUser._id,
+                email: checkUser.email,
+                role: checkUser.role
+            },
+            token: token
         })
 
     } catch (error) {
@@ -114,11 +132,12 @@ export const loginUser = async (req, res) => {
 export const registerUser = async (req, res) => {
 
     try {
+
         const { email, password } = req.body
- 
+
 
         const userExists = await User.findOne({email})
-        if(userExists) return res.status(400).json({
+        if(userExists) return res.status(404).json({
             success: false,
             message: "User already exists"
         })
@@ -127,7 +146,7 @@ export const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10)
         const newUser = new User({
             email,
-            role: "admin",
+            role: "user",
             password: hashedPassword
         })
         newUser.save()
@@ -146,6 +165,35 @@ export const registerUser = async (req, res) => {
         res.status(500).json({
             success: false,
             message: "SignUp failed, some error occured"
+        })
+    }
+}
+
+
+export const getUserById = async (req, res) => {
+
+    const userId = req.params.userId
+
+    try {
+        const user = await User.findById(userId)
+        if(!user) return res.status(404).json({
+            success: false,
+            message: "User not found"
+        })
+
+        let accessToken = user.accessToken
+
+        accessToken = await refreshAccessToken(userId)
+
+        return res.json({
+            success: true,
+            data: user
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "some error occured"
         })
     }
 }

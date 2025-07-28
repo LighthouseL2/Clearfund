@@ -1,5 +1,6 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 
+import { ReduxProvider } from "@/redux/reduxProvider";
 import "./globals.css";
 
 
@@ -27,10 +28,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet">
         </link>
       </head>
-      <body
-        className={``}
-      >
-        {children}
+      <body>
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
       </body>
     </html>
 

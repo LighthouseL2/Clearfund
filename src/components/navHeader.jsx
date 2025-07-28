@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useState } from "react"
 
 
-const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu}) => {
+const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
 
   return (
     <nav className="px-[5%] flex justify-between items-end py-4 sticky top-0 z-50 bg-white ">
@@ -15,19 +15,22 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu}) => {
         </div>
 
         <ul className="md:flex md:w-[45%] lg:w-[55%] xl:w-[65%] gap-10 hidden items-center">
-            <li><Link className="font-sans font-medium text-[16px]" href={"https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
-            <li><Link className="font-sans font-medium text-[16px]" href={"/about"}>About</Link></li>
-            <li><Link className="font-sans font-medium text-[16px]" href={"/"}>Blog</Link></li>
+            <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
+            <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>About</Link></li>
+            <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://clearfund.substack.com"}>Blog</Link></li>
         </ul>
 
-         
+
         <Link href="/?route=login"
           className="w-[159.17px] md:flex items-center font-sans justify-center
-            font-medium hover:bg-black bg-[#198038] hidden
-          text-white text-[16px] h-[52px]  rounded-md" onClick={() => setToggle(!toggle)}>
+            font-medium hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
+          text-white text-[16px] h-[52px]  rounded-md" onClick={() => {
+            setToggle(true)
+            setBlur(true)
+          }}>
             Login / Register
         </Link>
-        
+
         <div className="flex items-center gap-5 md:hidden">
           <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden border-0 items-center justify-center flex flex-col group w-8 h-8">
             <span

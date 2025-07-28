@@ -5,9 +5,11 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 
 import Link from 'next/link'
-import { Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import { initialFormData } from '@/lib/config'
+import { useDispatch } from 'react-redux'
+import { registerUser } from '@/features/user/userSlice'
+import { useRouter } from 'next/navigation'
 
 
 
@@ -16,38 +18,48 @@ const SignupForm = ({ open, setOpen}) => {
   const [showPassword, setShowPassword] = useState(false)
 //   const [disabled, setDisabled] = useState(false)
   const [errors, setErrors] = useState(null)
-
   const [formData, setFormdata] = useState(initialFormData)
-  
-  
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+
+
   const validate = () => {
     const newErrors = {}
 
     if(!formData.password) {
         newErrors.password = "Password cannot be empty"
+        setErrors("You have already sign up with this email. Please login instead.")
     }
-
-    console.log("validate")
 
     if(!formData.email.trim()) {
         newErrors.email = "Email is required"
+        setErrors("You have already sign up with this email. Please login instead.")
     }else {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if(!emailRegex.test(formData.email)){
             newErrors.email = "Enter a valid email"
+            setErrors("You have already sign up with this email. Please login instead.")
         }
     }
 
-    setErrors(newErrors)
-    console.log(Object.keys(newErrors).length  === 0);
+    // setErrors(newErrors)
+    // console.log(newErrors, "new Errors");
+
     // Object.keys(newErrors).length  === 0 ? setDisabled(false) : setDisabled(true)
-    return Object.keys(newErrors).length  === 0
+    return errors === null && Object.keys(newErrors).length  === 0
   }
 
     const handleSubmit = async () => {
         if(validate()){
             // api call
-            console.log("Form is ok");
+            console.log(formData);
+            dispatch(registerUser(formData)).then((data) => {
+                if(data.payload.success) {
+                    router.push("https://clearfund.netlify.app/?route=login")
+                    console.log(data.payload.message);
+                }
+            })
         }
     }
 
@@ -61,7 +73,7 @@ const SignupForm = ({ open, setOpen}) => {
                 <DialogTitle className={"text-center font-bold  text-[18px] font-sans text-black/50"}>Sign up</DialogTitle>
                 <p className='text-center text-[16px] font-sans mt-2 mb-2'>or <Link href="/?route=login" className='font-sans text-[#007AFF]'>log in your account</Link></p>
                 <div className='flex justify-center  items-center mt-10'>
-                    
+
                     <Image
                         width={154.32}
                         height={33.07}
@@ -70,7 +82,7 @@ const SignupForm = ({ open, setOpen}) => {
                     />
                 </div>
 
-                
+
             </DialogHeader>
             <div className='mt-6'>
 
@@ -84,7 +96,7 @@ const SignupForm = ({ open, setOpen}) => {
                 </div>
 
                 <div className='border mb-5 border-black/50 flex justify-center items-center py-3 rounded-md'>
-                    <Link href="http://localhost:8080/api/auth/google" className='flex items-center gap-1'>
+                    <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex items-center gap-1'>
                         <Image
                             src={"/google.png"}
                             alt='google logo'
@@ -92,7 +104,7 @@ const SignupForm = ({ open, setOpen}) => {
                             height={23.11}
                         />
 
-                        <span className='text-[16px] font-medium text-black/50 font-sans'>Log in with Google</span>
+                        <span className='text-[16px] font-medium text-black/50 font-sans'>Sign up with Google</span>
                     </Link>
                 </div>
 
@@ -103,7 +115,7 @@ const SignupForm = ({ open, setOpen}) => {
                     <input type="text" className='w-full outline-none text-[12px] font-sans text-black/50'
                         value={formData.email}
                         onChange={(e) => {
-                            setFormdata({...formData, email: e.target.value})
+                            setFormdata({...formData, email: e.target.value.toLowerCase()})
                             setErrors(null)
                         }}
                     />
@@ -132,7 +144,7 @@ const SignupForm = ({ open, setOpen}) => {
             </div>
 
             { errors &&
-                <p className='text-[#FF3B30] text-[14px] w-[298px] font-sans mt-3'>You have already sign up with this email. Please login instead.</p>
+                <p className='text-[#FF3B30] text-[14px] w-[298px] font-sans mt-3'>{errors}</p>
             }
             <DialogFooter className={`w-full text-center ${!errors ? "mt-10" : "mt-0"}`}>
                 <div className='w-full space-y-4'>

@@ -6,40 +6,41 @@ const FaqSection = () => {
 
     const questionsData = [
         {
-            question: "What is grant round explorer?",
-            ans: `Explorer shows ongoing and upcoming grant rounds tailored to
-                public goods, ReFi, and Web3 innovation.`
+            question: "Who is ClearFund for?",
+            ans: `It’s for grant seekers, funders, researchers, DAO contributors, and data analysts.`
         },
 
         {
-            question: "Discover a Project’s Funding Journey",
-            ans: `Get a clear view of how a project has been supported over time from the
-                 platforms it raised funds on to the amounts received,`
+            question: "Why does ClearFund matter?",
+            ans: `It helps you understand where funding goes, who receives it, and what impact it creates.`
         },
 
         {
-            question: "What are grant alerts?",
-            ans: `Get notified when new grants open so you never miss a chance to apply or support a project.`
+            question: "What problem does ClearFund solve?",
+            ans: `Public goods funding in Web3 is spread across many platforms,
+            making it hard to track where funds go and who receives them.
+            ClearFund solves this by bringing all that data into one place making
+            funding information easy to access, understand, and use.`
         },
 
         {
-            question: "How can I use ClearFund to discover ReFi projects?",
-            ans: `ClearFund features a curated directory of (ReFi) projects from across the Web3 ecosystem.
-                 You can browse by category and funding history.`
+            question: "Can I submit a platform to be included?",
+            ans: `Yes, we welcome community input. The submission form is available,
+            reach out via our social or support.`
         },
     ]
 
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7%] text-white pt-[7%] mb-10 lg:mb-0">
+    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7rem] text-white pt-[7rem] mb-10 lg:mb-0">
         <div className="w-full md:w-[424px] h-full">
-            <h2 className="text-[36px] mb-5 font-bold font-sans">Your questions, answered simply</h2>
+            <h2 className="text-[36px] mb-5 font-extrabold font-sans">Your questions, answered simply</h2>
             
-            <p className="text-[16px] mb-10 font-sans">Quick answers to common funding questions</p>
+            <p className="text-[16px] mb-10 font-sans">Quick answers to few questions.</p>
         
-            <Link href="/?route=login"
-                className="w-[202.19px] font-sans flex items-center justify-center font-semibold
-                 bg-[#198038] text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
+            <Link href="/faq"
+                className="w-[202.19px] font-sans hidden lg:flex items-center justify-center font-semibold
+                 bg-[#198038] hover:bg-white hover:text-black hover:scale-105 transition-all text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
                 Learn More
             </Link>
         </div>
@@ -51,6 +52,14 @@ const FaqSection = () => {
                     <p className="text-[16px] font-sans w-[95%]">{data.ans}</p>
                 </div>
             ))}
+        </div>
+
+        <div className="flex lg:hidden justify-center items-center w-full mt-5">
+            <Link href="/faq"
+                className="w-[202.19px] font-sans flex items-center justify-center font-semibold
+                    bg-[#198038] hover:bg-white transition-all hover:scale-105 text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
+                Learn More
+            </Link>
         </div>
     </div>
   )

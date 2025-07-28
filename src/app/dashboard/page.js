@@ -1,10 +1,21 @@
 "use client";
-
-import Sidebar from "@/components/Sidebar";
-import BackgroundSlider from "@/components/BackgroundSlider";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
+import BackgroundSlider from "@/components/BackgroundSlider";
+ import Sidebar from "@/components/Sidebar";
+import withAuth from "@/lib/withAuth";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { logout } from "@/features/user/userSlice";
+// import { checkAuth } from "@/features/user/userSlice";
 
-export default function Dashboard() {
+
+function Dashboard() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter()
+  const dispatch = useDispatch()
+
   const stats = [
     {
       title: "Total Funding",
@@ -74,12 +85,33 @@ export default function Dashboard() {
     },
   ];
 
+  // useEffect(() => {
+  //     dispatch(checkAuth()).then((res) => {
+  //       console.log(res.payload);
+  //       if(!res.payload.success) return router.push("https://clearfund.netlify.app/?route=login")
+  //     })
+  // }, [router, dispatch])
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const token = params.get('token')
+    if(token) {
+      localStorage.setItem("token", token)
+      router.replace("/dashboard")
+    }
+  })
+
+  function handleLogout(){
+    localStorage.removeItem("token")
+    router.push("/?route=login")
+  }
+
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 text-gray-800 relative">
       {/* Sidebar imported */}
       <Sidebar />
 
-      {/* Main content */}
       <main className="flex-1 p-4 md:p-6 md:ml-64">
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -215,3 +247,6 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
+export default withAuth(Dashboard)
