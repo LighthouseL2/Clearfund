@@ -69,6 +69,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
         // setShowPassword(false)
         setFormdata(initialFormData)
         setBlur(false)
+        setErrors(null)
     }
 
   return (
@@ -100,6 +101,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                         </Link>
                     </div>
 
+                    
 
                     <div className='border border-black/50 flex justify-center items-center py-3 rounded-md mb-5'>
                         <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans items-center gap-1'>
@@ -152,10 +154,10 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                 </div>
 
                 {errors &&
-                    <p className='text-[#FF3B30] mt-3 text-[14px] w-[298px] font-sans'> {errors}</p>
+                    <p className='text-[#FF3B30] text-[14px] w-[298px] font-sans'> {errors}</p>
                 }
 
-                <DialogFooter className={`w-full text-center ${errors ? "mt-0" : "mt-5"}`}>
+                <DialogFooter className={`w-full text-center`}>
                     <div className='w-full space-y-4'>
                         <Button type={"submit"}  className={`w-full block font-sans text-white bg-[#198038] hover:bg-black  text-[16px] h-12`}
                             onClick={() => handleSubmit()}
