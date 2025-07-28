@@ -53,7 +53,7 @@ const GrantBox = () => {
             <p className="text-[25px] font-medium">View past grants, active rounds, and upcoming opportunities all in one place.</p>
         </header>
 
-        <div className="grid lg:grid-cols-3 w-full text-black  mt-10 gap-2 ">
+        <div className="grid lg:grid-cols-3 w-full text-black gap-10  mt-10 mx-auto ">
             {/* {box && box.map((boxItem, index) => (
                 <div className="w-full border rounded-md lg:h-[400px] bg-black] relative" key={index}>
                     <div className="h-[56px] relative">
@@ -94,8 +94,8 @@ const GrantBox = () => {
                 </div>
             ))} */}
 
-            <Link href={"/dashboard"} className="xl:w-[24.62rem] mb-10 bg-[#00995E] rounded-3xl relative
-                hover:scale-105 hover:shadow-2xl hover:shadow-black group">
+            <Link href={"/dashboard"} className="xl:w-[24.54rem]  mb-10 bg-[#00995E] rounded-3xl relative
+                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black">
                 <div className="absolute py-10 px-8">
                     <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Active Grant <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -112,8 +112,8 @@ const GrantBox = () => {
                 <img src="/mask1.png" alt="mask image"/>
             </Link>
 
-            <Link href={"/dashboard"} className="xl:w-[24.62rem] bg-[#058CD7] mb-10 rounded-3xl relative
-                hover:scale-105 hover:shadow-2xl hover:shadow-black group">
+            <Link href={"/dashboard"} className="xl:w-[24.54rem] bg-[#058CD7] mb-10 rounded-3xl relative
+                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black">
                 <div className="absolute py-10 px-8">
                     <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Previous Funding <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -130,8 +130,8 @@ const GrantBox = () => {
             </Link>
 
 
-            <Link href={"/dashboard"} className="xl:w-[24.62rem] w-full bg-[#00995E] mb-10 rounded-3xl relative
-                hover:scale-105 hover:shadow-2xl hover:shadow-black group">
+            <Link href={"/dashboard"} className="xl:w-[24.54rem] w-full bg-[#00995E] mb-10 rounded-3xl relative
+                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black">
                 <div className="absolute py-10 px-8 ">
                     <h1 className="flex items-center gap-2 text-[24px] font-extrabold font-sans">Upcoming grant <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
