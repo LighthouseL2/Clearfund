@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -18,29 +19,29 @@ export default function PastGrantRounds() {
 
   const data = {
     GoodDollar: [
-      { title: "GoodDollar Epoch 1", date: "January, 2024" },
-      { title: "GoodDollar Epoch 2", date: "March, 2024" },
+      { title: "GoodDollar Epoch 1", date: "January, 2024", route: "/404"  },
+      { title: "GoodDollar Epoch 2", date: "March, 2024", route: "/404"  },
     ],
     Gitcoin: [
-      { title: "GG21- Regen Coordi-Nation Genesis Round", date: "August, 2024" },
-      { title: "Gitcoin Grant Round 23 (GG23)", date: "May, 2025" },
+      { title: "GG21- Regen Coordi-Nation Genesis Round", date: "August, 2024", route: "/past-grant-table" },
+      { title: "Gitcoin Grant Round 23 (GG23)", date: "May, 2025" , route: "/404"  },
     ],
     Octant: [
-      { title: "Octant Epoch 7 Archive", date: "April, 2025" },
-      { title: "Octant Epoch 6 Archive", date: "January, 2025" },
-      { title: "Octant Epoch 5 Archive", date: "October, 2024" },
-      { title: "Octant Epoch 4 Archive", date: "July, 2024" },
-      { title: "Octant Epoch 3 Archive", date: "April, 2024" },
-      { title: "Octant Epoch 2 Archive", date: "January, 2024" },
-      { title: "Octant Epoch 1 Archive", date: "November, 2023" },
+      { title: "Octant Epoch 7", date: "April, 2025", route: "/404"  },
+      { title: "Octant Epoch 6", date: "January, 2025", route: "/404"  },
+      { title: "Octant Epoch 5", date: "October, 2024", route: "/404"  },
+      { title: "Octant Epoch 4", date: "July, 2024", route: "/404"  },
+      { title: "Octant Epoch 3", date: "April, 2024", route: "/404"  },
+      { title: "Octant Epoch 2", date: "January, 2024", route: "/404"  },
+      { title: "Octant Epoch 1", date: "November, 2023", route: "/404"  },
     ],
     Celo: [
-      { title: "Celo Round 1", date: "February, 2025" },
-      { title: "Celo Round 2", date: "April, 2025" },
+      { title: "Celo Round 1", date: "February, 2025", route: "/404"  },
+      { title: "Celo Round 2", date: "April, 2025", route: "/404"  },
     ],
     Giveth: [
-      { title: "Giveth Campaign A", date: "June, 2024" },
-      { title: "Giveth Campaign B", date: "August, 2024" },
+      { title: "Giveth Campaign A", date: "June, 2024", route: "/404"  },
+      { title: "Giveth Campaign B", date: "August, 2024", route: "/404"  },
     ],
   };
 
@@ -121,18 +122,24 @@ export default function PastGrantRounds() {
                 <p className="text-xs text-gray-500">{item.date}</p>
               </div>
             </div>
-            <button className="text-sm font-medium bg-white rounded-sm border-1 text-gray-600 py-2 px-4 shadow-2xl flex items-center gap-1 ">
-              View Data
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+           {item.route && (
+  <Link
+    href={item.route}
+    className="text-sm font-medium bg-white rounded-sm border-1 text-gray-600 py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline"
+  >
+    View Data
+    <svg
+      className="w-4 h-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M9 5l7 7-7 7" />
+    </svg>
+  </Link>
+)}
+
           </div>
         ))}
       </div>

@@ -1,5 +1,5 @@
 'use client';
-
+import Link from "next/link";
 import { useState } from 'react'
 import { Download } from 'lucide-react'
 import { ArrowLeft } from 'lucide-react';
@@ -7,52 +7,52 @@ import { ArrowLeft } from 'lucide-react';
 
 export default function Home() {
   const projects = [
-  { name: 'ReFi Podcast', contributions: 59, crowdfunded: 228.81, matchedUSD: null, matchedUSDGLO: 2483, totalUSD: null },
-  { name: 'ReFi Lagos', contributions: 34, crowdfunded: 75.88, matchedUSD: null, matchedUSDGLO: 1552, totalUSD: null },
-  { name: 'Greenpill Kenya', contributions: 48, crowdfunded: 267, matchedUSD: null, matchedUSDGLO: 1918, totalUSD: null },
-  { name: 'ReFi Colombia', contributions: 29, crowdfunded: 198.64, matchedUSD: null, matchedUSDGLO: 1302, totalUSD: null },
-  { name: 'ReFi Cape Town', contributions: 23, crowdfunded: 30.71, matchedUSD: null, matchedUSDGLO: 276, totalUSD: null },
-  { name: 'Greenpill Ottawa', contributions: 32, crowdfunded: 260.69, matchedUSD: null, matchedUSDGLO: 1626, totalUSD: null },
-  { name: 'ReFi Italia', contributions: 27, crowdfunded: 117.87, matchedUSD: null, matchedUSDGLO: 465, totalUSD: null },
-  { name: 'Greenpill NYC', contributions: 27, crowdfunded: 61.06, matchedUSD: null, matchedUSDGLO: 864, totalUSD: null },
-  { name: 'Greenpill Nigeria', contributions: 36, crowdfunded: 129.62, matchedUSD: null, matchedUSDGLO: 2244, totalUSD: null },
-  { name: 'Greenpill Germany', contributions: 19, crowdfunded: 33.43, matchedUSD: null, matchedUSDGLO: 325, totalUSD: null },
-  { name: 'Bioregional Builders', contributions: 19, crowdfunded: 50.79, matchedUSD: null, matchedUSDGLO: 305, totalUSD: null },
-  { name: 'GreenPill Mexico', contributions: 18, crowdfunded: 51.02, matchedUSD: null, matchedUSDGLO: 519, totalUSD: null },
-  { name: 'Regens Unite', contributions: 46, crowdfunded: 221.37, matchedUSD: null, matchedUSDGLO: 2628, totalUSD: null },
-  { name: 'Celo Europe DAO', contributions: 15, crowdfunded: 23.28, matchedUSD: null, matchedUSDGLO: 352, totalUSD: null },
-  { name: 'ReFi Mexico', contributions: 36, crowdfunded: 136.89, matchedUSD: null, matchedUSDGLO: 1853, totalUSD: null },
-  { name: 'GreenPill Writers Guild', contributions: 35, crowdfunded: 125.11, matchedUSD: null, matchedUSDGLO: 1533, totalUSD: null },
-  { name: 'GreenPill Citizens', contributions: 32, crowdfunded: 121.91, matchedUSD: null, matchedUSDGLO: 1292, totalUSD: null },
-  { name: 'Celo Mexico', contributions: 29, crowdfunded: 210.34, matchedUSD: null, matchedUSDGLO: 2360, totalUSD: null },
-  { name: 'ReFi Barcelona', contributions: 32, crowdfunded: 80.1, matchedUSD: null, matchedUSDGLO: 1845, totalUSD: null },
-  { name: 'ReFi PDX', contributions: 23, crowdfunded: 170.89, matchedUSD: null, matchedUSDGLO: 487, totalUSD: null },
-  { name: 'ReFi Latam', contributions: 24, crowdfunded: 158.84, matchedUSD: null, matchedUSDGLO: 813, totalUSD: null },
-  { name: 'ReFi Tulum', contributions: 34, crowdfunded: 125.3, matchedUSD: null, matchedUSDGLO: 1738, totalUSD: null },
-  { name: 'GreenPill India', contributions: 35, crowdfunded: 85.79, matchedUSD: null, matchedUSDGLO: 530, totalUSD: null },
-  { name: 'Bloom Network', contributions: 28, crowdfunded: 133.1, matchedUSD: null, matchedUSDGLO: 1365, totalUSD: null },
-  { name: 'GreenPill TO', contributions: 23, crowdfunded: 151.73, matchedUSD: null, matchedUSDGLO: 443, totalUSD: null },
-  { name: 'ReFi Phangan', contributions: 31, crowdfunded: 462.66, matchedUSD: null, matchedUSDGLO: 1667, totalUSD: null },
-  { name: 'ReFi Atlántico', contributions: 23, crowdfunded: 59.46, matchedUSD: null, matchedUSDGLO: 574, totalUSD: null },
-  { name: 'ReFi DAO', contributions: 30, crowdfunded: 137.64, matchedUSD: null, matchedUSDGLO: 1913, totalUSD: null },
-  { name: 'Refi Uganda', contributions: 27, crowdfunded: 57.76, matchedUSD: null, matchedUSDGLO: 915, totalUSD: null },
-  { name: 'GreenPill Taiwan', contributions: 23, crowdfunded: 33.94, matchedUSD: null, matchedUSDGLO: 136, totalUSD: null },
-  { name: 'ReFi The Hague', contributions: 27, crowdfunded: 1675.13, matchedUSD: null, matchedUSDGLO: 497, totalUSD: null },
-  { name: 'Greenpill Brasil', contributions: 36, crowdfunded: 114.93, matchedUSD: null, matchedUSDGLO: 1151, totalUSD: null },
-  { name: 'Celatam', contributions: 23, crowdfunded: 110.58, matchedUSD: null, matchedUSDGLO: 799, totalUSD: null },
-  { name: 'GreenPill CIV', contributions: 18, crowdfunded: 50.01, matchedUSD: null, matchedUSDGLO: 104, totalUSD: null },
-  { name: 'ReFi Costa Rica', contributions: 29, crowdfunded: 58.95, matchedUSD: null, matchedUSDGLO: 1199, totalUSD: null },
-  { name: 'ReFi Red Hook', contributions: 16, crowdfunded: 25.14, matchedUSD: null, matchedUSDGLO: 201, totalUSD: null },
-  { name: 'ReFi BayArea', contributions: 30, crowdfunded: 416.68, matchedUSD: null, matchedUSDGLO: 451, totalUSD: null },
-  { name: 'Uncommons', contributions: 20, crowdfunded: 56.69, matchedUSD: null, matchedUSDGLO: 141, totalUSD: null },
-  { name: '************', contributions: null, crowdfunded: null, matchedUSD: null, matchedUSDGLO: null, totalUSD: null },
-  { name: 'ReFi Lisboa', contributions: 24, crowdfunded: 227.21, matchedUSD: null, matchedUSDGLO: 1099, totalUSD: null },
-  { name: 'Celo Africa DAO', contributions: 39, crowdfunded: 327.23, matchedUSD: null, matchedUSDGLO: 1747, totalUSD: null },
-  { name: 'Celo Arabia', contributions: 14, crowdfunded: 24.83, matchedUSD: null, matchedUSDGLO: 304, totalUSD: null },
-  { name: 'ReFi Tanzania', contributions: 42, crowdfunded: 129.86, matchedUSD: null, matchedUSDGLO: 1747, totalUSD: null },
-  { name: 'Celo Canada', contributions: 13, crowdfunded: 30.22, matchedUSD: null, matchedUSDGLO: 195, totalUSD: null },
-  { name: 'ReFi MedellÃ­n', contributions: 50, crowdfunded: 409.25, matchedUSD: null, matchedUSDGLO: 2392, totalUSD: null },
-  { name: 'Greenpill Dev Guild', contributions: 43, crowdfunded: 709.44, matchedUSD: null, matchedUSDGLO: 1274, totalUSD: null },
+  { name: 'ReFi Podcast', contributions: 59, crowdfunded: 228.81, matchedUSD: null, matchedUSDGLO: 2483, totalUSD: null, link: 'https://x.com/ReFiPodcast', },
+  { name: 'ReFi Lagos', contributions: 34, crowdfunded: 75.88, matchedUSD: null, matchedUSDGLO: 1552, totalUSD: null, link:'https://x.com/refilagos01' },
+  { name: 'Greenpill Kenya', contributions: 48, crowdfunded: 267, matchedUSD: null, matchedUSDGLO: 1918, totalUSD: null, link:'https://x.com/GreenpillKenya' },
+  { name: 'ReFi Colombia', contributions: 29, crowdfunded: 198.64, matchedUSD: null, matchedUSDGLO: 1302, totalUSD: null , link:'https://x.com/RefiColombia'},
+  { name: 'ReFi Cape Town', contributions: 23, crowdfunded: 30.71, matchedUSD: null, matchedUSDGLO: 276, totalUSD: null, link:'https://x.com/reficapetown' },
+  { name: 'Greenpill Ottawa', contributions: 32, crowdfunded: 260.69, matchedUSD: null, matchedUSDGLO: 1626, totalUSD: null, link:'https://x.com/greenpillottawa' },
+  { name: 'ReFi Italia', contributions: 27, crowdfunded: 117.87, matchedUSD: null, matchedUSDGLO: 465, totalUSD: null , link:'https://x.com/ReFi_Italia'},
+  { name: 'Greenpill NYC', contributions: 27, crowdfunded: 61.06, matchedUSD: null, matchedUSDGLO: 864, totalUSD: null, link:'https://x.com/greenpillnyc' },
+  { name: 'Greenpill Nigeria', contributions: 36, crowdfunded: 129.62, matchedUSD: null, matchedUSDGLO: 2244, totalUSD: null, link:'https://x.com/greenpillnaija' },
+  { name: 'Greenpill Germany', contributions: 19, crowdfunded: 33.43, matchedUSD: null, matchedUSDGLO: 325, totalUSD: null, link:'https://x.com/GreenPillGER' },
+  { name: 'Bioregional Builders', contributions: 19, crowdfunded: 50.79, matchedUSD: null, matchedUSDGLO: 305, totalUSD: null, link:'https://x.com/bioregionbuild' },
+  { name: 'GreenPill Mexico', contributions: 18, crowdfunded: 51.02, matchedUSD: null, matchedUSDGLO: 519, totalUSD: null , link:'https://x.com/GreenPillMexico'},
+  { name: 'Regens Unite', contributions: 46, crowdfunded: 221.37, matchedUSD: null, matchedUSDGLO: 2628, totalUSD: null , link:'https://x.com/regensunite'},
+  { name: 'Celo Europe DAO', contributions: 15, crowdfunded: 23.28, matchedUSD: null, matchedUSDGLO: 352, totalUSD: null, link:'https://x.com/CeloEurope' },
+  { name: 'ReFi Mexico', contributions: 36, crowdfunded: 136.89, matchedUSD: null, matchedUSDGLO: 1853, totalUSD: null , link:'https://x.com/ReFiMexico'},
+  { name: 'GreenPill Writers Guild', contributions: 35, crowdfunded: 125.11, matchedUSD: null, matchedUSDGLO: 1533, totalUSD: null, link:'https://greenpill.network' },
+  { name: 'GreenPill Citizens', contributions: 32, crowdfunded: 121.91, matchedUSD: null, matchedUSDGLO: 1292, totalUSD: null, link:'https://greenpill.network' },
+  { name: 'Celo Mexico', contributions: 29, crowdfunded: 210.34, matchedUSD: null, matchedUSDGLO: 2360, totalUSD: null, link:'https://x.com/celomexico' },
+  { name: 'ReFi Barcelona', contributions: 32, crowdfunded: 80.1, matchedUSD: null, matchedUSDGLO: 1845, totalUSD: null, link:'https://refibcn.cat/Home' },
+  { name: 'ReFi PDX', contributions: 23, crowdfunded: 170.89, matchedUSD: null, matchedUSDGLO: 487, totalUSD: null, link:'https://x.com/ReFi_PDX' },
+  { name: 'ReFi Latam', contributions: 24, crowdfunded: 158.84, matchedUSD: null, matchedUSDGLO: 813, totalUSD: null , link:'https://x.com/refithehague'},
+  { name: 'ReFi Tulum', contributions: 34, crowdfunded: 125.3, matchedUSD: null, matchedUSDGLO: 1738, totalUSD: null, link:'https://x.com/refitulum' },
+  { name: 'GreenPill India', contributions: 35, crowdfunded: 85.79, matchedUSD: null, matchedUSDGLO: 530, totalUSD: null , link:'https://x.com/GreenPill_IND'},
+  { name: 'Bloom Network', contributions: 28, crowdfunded: 133.1, matchedUSD: null, matchedUSDGLO: 1365, totalUSD: null, link:'https://x.com/ourbloomnetwork' },
+  { name: 'GreenPill TO', contributions: 23, crowdfunded: 151.73, matchedUSD: null, matchedUSDGLO: 443, totalUSD: null , link:'https://x.com/GreenPillTO'},
+  { name: 'ReFi Phangan', contributions: 31, crowdfunded: 462.66, matchedUSD: null, matchedUSDGLO: 1667, totalUSD: null, link:'https://x.com/GreenPillTO' },
+  { name: 'ReFi Atlántico', contributions: 23, crowdfunded: 59.46, matchedUSD: null, matchedUSDGLO: 574, totalUSD: null, link:'https://x.com/refiatlantico' },
+  { name: 'ReFi DAO', contributions: 30, crowdfunded: 137.64, matchedUSD: null, matchedUSDGLO: 1913, totalUSD: null , link:'https://x.com/ReFiDAOist'},
+  { name: 'Refi Uganda', contributions: 27, crowdfunded: 57.76, matchedUSD: null, matchedUSDGLO: 915, totalUSD: null, link:'https://linktr.ee/refiuganda' },
+  { name: 'GreenPill Taiwan', contributions: 23, crowdfunded: 33.94, matchedUSD: null, matchedUSDGLO: 136, totalUSD: null, link:'https://x.com/GreenSofa_TW' },
+  { name: 'ReFi The Hague', contributions: 27, crowdfunded: 1675.13, matchedUSD: null, matchedUSDGLO: 497, totalUSD: null , link:'https://x.com/refithehague'},
+  { name: 'Greenpill Brasil', contributions: 36, crowdfunded: 114.93, matchedUSD: null, matchedUSDGLO: 1151, totalUSD: null, link:'https://x.com/GreenPillBrasil' },
+  { name: 'Celatam', contributions: 23, crowdfunded: 110.58, matchedUSD: null, matchedUSDGLO: 799, totalUSD: null, link:'https://x.com/CeLatamOrg' },
+  { name: 'GreenPill CIV', contributions: 18, crowdfunded: 50.01, matchedUSD: null, matchedUSDGLO: 104, totalUSD: null, link:'https://x.com/greenpillciv' },
+  { name: 'ReFi Costa Rica', contributions: 29, crowdfunded: 58.95, matchedUSD: null, matchedUSDGLO: 1199, totalUSD: null, link:'https://x.com/reficostarica_' },
+  { name: 'ReFi Red Hook', contributions: 16, crowdfunded: 25.14, matchedUSD: null, matchedUSDGLO: 201, totalUSD: null, link:'https://x.com/ReFiRedHook' },
+  { name: 'ReFi BayArea', contributions: 30, crowdfunded: 416.68, matchedUSD: null, matchedUSDGLO: 451, totalUSD: null, link:'https://x.com/ReFiBayArea' },
+  { name: 'Uncommons', contributions: 20, crowdfunded: 56.69, matchedUSD: null, matchedUSDGLO: 141, totalUSD: null , link:'https://x.com/Un__commons' },
+  { name: 'ReFi Venezuela', contributions: 19, crowdfunded: 227.21, matchedUSD: null, matchedUSDGLO: 378, totalUSD: null , link:'https://x.com/RefiVenezuela'},
+  { name: 'ReFi Lisboa', contributions: 24, crowdfunded: 227.21, matchedUSD: null, matchedUSDGLO: 1099, totalUSD: null, link:'https://x.com/ReFiLisboa' },
+  { name: 'Celo Africa DAO', contributions: 39, crowdfunded: 327.23, matchedUSD: null, matchedUSDGLO: 1747, totalUSD: null, link:'https://www.celoafricadao.xyz' },
+  { name: 'Celo Arabia', contributions: 14, crowdfunded: 24.83, matchedUSD: null, matchedUSDGLO: 304, totalUSD: null, link:'https://x.com/CeloArabia' },
+  { name: 'ReFi Tanzania', contributions: 42, crowdfunded: 129.86, matchedUSD: null, matchedUSDGLO: 1747, totalUSD: null, link:'https://x.com/ReFiTanzania' },
+  { name: 'Celo Canada', contributions: 13, crowdfunded: 30.22, matchedUSD: null, matchedUSDGLO: 195, totalUSD: null, link:'https://forum.celo.org/t/draft-celo-canada-h2-2024-regional-dao/8535' },
+  { name: 'ReFi MedellÃ­n', contributions: 50, crowdfunded: 409.25, matchedUSD: null, matchedUSDGLO: 2392, totalUSD: null, link:'https://x.com/refimedellin' },
+  { name: 'Greenpill Dev Guild', contributions: 43, crowdfunded: 709.44, matchedUSD: null, matchedUSDGLO: 1274, totalUSD: null, link:'https://x.com/greenpilldevs' },
   ]
 
   const [search, setSearch] = useState("")
@@ -72,11 +72,14 @@ export default function Home() {
 
   return (
       <section className="bg-white min-h-screen py-10 px-4">
-        <div className="flex justify-between mb-4 items-center">
-    <div className="flex items-center gap-2 cursor-pointer">
+      <div className="flex justify-between mb-4 items-center">
+        <Link href={"/past-grant-data"} >
+          <div className="flex items-center gap-2 cursor-pointer">
   <ArrowLeft size={20} />
   <p className="text-sm">Back</p>
 </div>
+        </Link>
+  
           <button className="flex items-center gap-2 bg-[#198038] text-white px-5 py-3 border-2 rounded-sm hover:bg-[#198038] transition">
             <Download size={18} />
             Download
@@ -133,8 +136,8 @@ export default function Home() {
             </select>
           </div>
 
-          <table className="min-w-full bg-white border">
-            <thead className="bg-gray-100 text-sm text-left">
+          <table className="min-w-full bg-white ">
+            <thead className="bg-white text-sm text-left">
               <tr>
                 <th className="p-3 border">Project Name</th>
                 <th className="p-3 border">Contributions</th>
@@ -155,9 +158,17 @@ export default function Home() {
                   <td className="p-3 border">{project.matchedUSDGLO} USDGLO</td>
                   <td className="p-3 border text-gray-400">$NaN</td>
                   <td className="p-3 border">
-                    <button className="bg-[#A6E7D8] text-[#26A17B] px-3 py-1 rounded font-bold hover:bg-[#A6E7D8]">
-                   Learn more
-                    </button>
+                  {project.link && (
+  <a
+    href={project.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-[#A6E7D8] text-[#26A17B] px-3 py-2 rounded font-bold hover:bg-[#A6E7D8]"
+  >
+    Learn more
+  </a>
+)}
+                    
                   </td>
                 </tr>
               ))}
