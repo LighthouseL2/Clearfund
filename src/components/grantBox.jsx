@@ -95,11 +95,12 @@ const GrantBox = () => {
             ))} */}
 
             <Link href={"/dashboard"} className="xl:w-[24.54rem]  mb-10 bg-[#00995E] rounded-3xl relative
-                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black">
-                <div className="absolute py-10 px-8">
-                    <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Active Grant <span>
+                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black transition-all">
+                <div className="absolute py-6 px-8">
+                    <h1 className="flex items-center w-full justify-between gap-2 text-[20px] font-bold font-sans">
+                        Active Grant <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            className="group-hover:translate-x-5 transition-all"
+                            className="transform rotate-90 transition-all group-hover:hidden"
                             >
                             <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
@@ -113,11 +114,11 @@ const GrantBox = () => {
             </Link>
 
             <Link href={"/dashboard"} className="xl:w-[24.54rem] bg-[#058CD7] mb-10 rounded-3xl relative
-                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black">
-                <div className="absolute py-10 px-8">
-                    <h1 className="flex items-center gap-2 text-[24px] font-bold font-sans">Previous Funding <span>
+                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black transition-all">
+                <div className="absolute py-6 px-8">
+                    <h1 className="flex items-center justify-between gap-2 text-[20px] font-bold font-sans">Previous Funding <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            className="group-hover:translate-x-5 transition-all">
+                            className="transform rotate-90 transition-all group-hover:hidden">
                             <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
@@ -131,11 +132,11 @@ const GrantBox = () => {
 
 
             <Link href={"/dashboard"} className="xl:w-[24.54rem] w-full bg-[#00995E] mb-10 rounded-3xl relative
-                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black">
-                <div className="absolute py-10 px-8 ">
-                    <h1 className="flex items-center gap-2 text-[24px] font-extrabold font-sans">Upcoming grant <span>
+                hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black transition-all">
+                <div className="absolute py-6 px-8 ">
+                    <h1 className="flex items-center gap-2 justify-between text-[20px] font-extrabold font-sans">Upcoming grant <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            className="group-hover:translate-x-5 transition-all">
+                            className="transition-all transform rotate-90 group-hover:hidden">
                             <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
