@@ -2,8 +2,8 @@
 
 
 import LoginForm from './LoginForm'
-import SignupForm from './SignupForm'
-import ResetPassword from './ResetPassword'
+// import SignupForm from './SignupForm'
+// import ResetPassword from './ResetPassword'
 import { useSearchParams } from "next/navigation";
 import Link from 'next/link'
 
@@ -15,14 +15,14 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
 
 
   return (
-    <div className="px-[5%]  flex justify-center items-center md:w-[85%] mx-auto text-center flex-col">
-        <h1 className="capitalize mt-[103.5px] md:w-[50rem] text-4xl md:text-[64px] mb-10 font-extrabold font-sans">
+    <div className="px-[5%]  flex justify-center items-center mx-auto text-center flex-col">
+        <h1 className="mt-[103.5px] md:w-[53.8rem] text-4xl md:text-[64px] mb-10 font-extrabold font-sans">
           See Where Public Goods Funding Flows <span className='text-[#7CB53E]'>in Web3</span>
         </h1>
-        <p className="text-[18px] md:w-[38.2rem] mb-14 font-bold font-sans">
-            ClearFund is a Web3 grant archive that brings together past funding
-            data from Gitcoin, Giveth, Octant, and others. solving the problem of
-            fragmented information in one place.
+        <p className="text-[20px] md:w-[50.55rem] mb-14 font-bold font-sans">
+            ClearFund aggregates past funding data from leading
+            Web3 grant platforms, solving the problem of fragmented information
+            in decentralized public goods funding.
         </p>
 
 
@@ -49,9 +49,9 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
           modal === "login" ? (
             <LoginForm open={open} setOpen={setOpen} blur={blur} setBlur={setBlur}/>
           ) : modal === "signup" ? (
-            <SignupForm open={open}  setOpen={setOpen}/>
+            <LoginForm open={open}  setOpen={setOpen}/>
           ) : modal === "reset" && (
-            <ResetPassword open={open}  setOpen={setOpen}/>
+            <LoginForm open={open}  setOpen={setOpen}/>
           )
         }
     </div>
