@@ -12,6 +12,7 @@ const GrantBox = () => {
       amount: "30K",
       coin: "cUSD",
       date: "End– Jul 31, 2025",
+        link: "https://celo.lemonade.social/e/RPfvWoWI"
     },
     {
       image: "/mask.png",
@@ -22,6 +23,7 @@ const GrantBox = () => {
       amount: "100K",
       coin: "Celo",
       date: "End– Jul 30, 2025",
+        link: "https://app.charmverse.io/celopg/celo-support-streams-08274005568032872"
     },
     {
       image: "/mask.png",
@@ -32,6 +34,7 @@ const GrantBox = () => {
       amount: "150K",
       coin: "Celo",
       date: "End– Jul 31, 2025",
+        link: "https://app.divvi.xyz/builders/onboarding"
     },
     {
       image: "/mask.png",
@@ -42,6 +45,7 @@ const GrantBox = () => {
       amount: "6K USDGLO + 10K",
       coin: "Celo",
       date: "End– Jul 31, 2025",
+        link: "https://www.spinach.fi/"
       },
      {
       image: "/mask.png",
@@ -51,7 +55,8 @@ const GrantBox = () => {
       desc: `With Farcaster now supporting Celo it’s time to ship and get rewarded a share of 10,000$ celo each month by being an active builders.`,
       amount: "30k",
       coin: "Celo",
-      date: "End– Jul 31, 2025",
+       date: "End– Jul 31, 2025",
+        link: "https://celo.builderscore.xyz/"
       },
        {
       image: "/mask.png",
@@ -61,7 +66,8 @@ const GrantBox = () => {
       desc: `This joint campaign between CeloPG and Farcaster aims to support builders who create MiniApps on Celo.`,
       amount: "50k",
       coin: "Celo",
-      date: "End– Jul 31, 2025",
+         date: "End– Jul 31, 2025",
+        link: "https://farcaster.xyz/celo/0x30d42443"
       },
          {
       image: "/mask.png",
@@ -71,7 +77,8 @@ const GrantBox = () => {
       desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
       amount: "250k",
       coin: "Celo",
-      date: "End– Jul 31, 2025",
+           date: "End– Jul 31, 2025",
+        link: "https://medium.com/gooddollar/goodbuilders-goes-streaming-8de59dbd7383"
     },
   ];
 
@@ -127,12 +134,16 @@ const GrantBox = () => {
 
       {/* Apply button pinned to bottom */}
       <div className="px-5 py-3 border-t border-gray-200 mt-auto">
-        <Link
-          href="#"
-          className="block font-sans bg-[#198038] hover:bg-[#198038] transition rounded-md w-full py-3 text-center text-white text-sm font-medium"
-        >
-          Apply
-        </Link>
+      {item.link && (
+  <Link
+    href={item.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block font-sans bg-[#198038] hover:bg-[#198038] transition rounded-md w-full py-3 text-center text-white text-sm font-medium"
+  >
+    Apply
+  </Link>
+)}
       </div>
     </div>
   ))}
