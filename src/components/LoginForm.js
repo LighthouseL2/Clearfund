@@ -106,7 +106,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                                 />
                                 <span className='text-[14px] font-sans font-medium text-black/50'>Continue with Google</span>
 
-                                
+
                             </div>
                             <span>
                                 <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
