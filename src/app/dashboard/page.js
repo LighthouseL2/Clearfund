@@ -5,16 +5,16 @@ import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
 import BackgroundSlider from "@/components/BackgroundSlider";
  import Sidebar from "@/components/Sidebar";
 import withAuth from "@/lib/withAuth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logout } from "@/features/user/userSlice";
-// import { checkAuth } from "@/features/user/userSlice";
+
 
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter()
-  const dispatch = useDispatch()
+
 
   const stats = [
     {

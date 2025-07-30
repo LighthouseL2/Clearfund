@@ -197,3 +197,20 @@ export const getUserById = async (req, res) => {
         })
     }
 }
+
+export const deleteAccount = async (req, res) => {
+    try {
+
+        await User.findByIdAndDelete(req.user.id)
+        return res.status(200).json({
+            success: true,
+            message: "Account Deleted successfully"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: `Error deleting account ${error.message}`
+        })
+    }
+}

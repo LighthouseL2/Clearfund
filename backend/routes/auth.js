@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 import {
         authMiddleware,
         checkRoles,
+        deleteAccount,
         getUsers,
         loginUser,
         logoutUser,
@@ -80,6 +81,8 @@ router.post("/register", registerUser)
 router.post("/login", loginUser)
 
 router.post("/logout", logoutUser)
+
+router.delete("/delete", authMiddleware, deleteAccount)
 
 
 router.get("/check-auth", authMiddleware, (req, res) => {
