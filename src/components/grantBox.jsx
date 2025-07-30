@@ -100,7 +100,8 @@ const GrantBox = () => {
                     <h1 className="flex items-center w-full justify-between gap-2 text-[20px] font-bold font-sans">
                         Active Grant <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            className="transform rotate-90 transition-all group-hover:hidden"
+                            className="transform rotate-90 transition-all group-hover:block hidden
+                                group-hover:animate-up-down"
                             >
                             <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
@@ -118,7 +119,8 @@ const GrantBox = () => {
                 <div className="absolute py-6 px-8">
                     <h1 className="flex items-center justify-between gap-2 text-[20px] font-bold font-sans">Previous Funding <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            className="transform rotate-90 transition-all group-hover:hidden">
+                            className="transform rotate-90 transition-all hidden
+                                group-hover:animate-up-down group-hover:block">
                             <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
@@ -136,7 +138,8 @@ const GrantBox = () => {
                 <div className="absolute py-6 px-8 ">
                     <h1 className="flex items-center gap-2 justify-between text-[20px] font-extrabold font-sans">Upcoming grant <span>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            className="transition-all transform rotate-90 group-hover:hidden">
+                            className="transition-all transform rotate-90 hidden
+                                group-hover:animate-up-down group-hover:block">
                             <path d="M16.0247 7.60352L9.82162 13.8066M16.0247 7.60352L9.82162 1.40039M16.0247 7.60352H1.55078" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 

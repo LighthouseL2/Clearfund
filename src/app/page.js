@@ -57,10 +57,10 @@ export default function Home() {
                     Where web3 Grant <span className="text-white">History Lives</span>
                 </h1>
 
-                <p className="text-[26px] text-center md:w-1/2 font-sans  font-medium text-black/70
+                <p className="text-[22px] text-center md:w-[27.2rem] font-sans  font-semibold text-black/70
                     leading-[1.8rem]">
-                    Dive into a curated archive of past funding rounds. From who funded
-                    what to where the grants went.
+                    Dive into a curated archive of past funding rounds, from who
+                    funded what to where the grants went.
                 </p>
 
                 <Link href="/?route=login"
