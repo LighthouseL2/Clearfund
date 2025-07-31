@@ -76,27 +76,28 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
     <Dialog open={open} onOpenChange={handleDialog}>
         <form>
 
-            <DialogContent className={"sm:max-w-[387px] max-w-[387px] h-[509.5px] p-10 bg-white shadow-2xl"}>
+            <DialogContent className={`sm:max-w-[507.15234375px] max-w-[387px]
+                flex items-center justify-center h-[289.390625px] p-10 bg-white shadow-2xl`}>
                 <DialogHeader className={"bg-white"}>
-                    <DialogTitle className={"text-center font-bold font-sans text-[18px] text-black/50"}>Log in or sign up</DialogTitle>
-                    {/* <p className='text-center font-sans text-[16px] mt-2 mb-2'>Haven&apos;t signed up yet? <Link href="/?route=signup" className='text-[#007AFF]'>create account</Link></p> */}
+                    <DialogTitle className={"text-center font-bold font-sans text-[14px] text-black/50 hidden"}>Log in</DialogTitle>
+                    
 
-                    <div className='mt-16 flex justify-center items-center'>
-                        <Image
-                            width={154.32}
-                            height={33.07}
-                            src={"/projectLogo.png"}
-                            alt='clearfund logo'
-                        />
-                    </div>
+                        <div className='mt-16  justify-center items-center hidden'>
+                            <Image
+                                width={154.32}
+                                height={33.07}
+                                src={"/projectLogo.png"}
+                                alt='clearfund logo'
+                            />
+                        </div>
                 </DialogHeader>
 
-                <div className='-mt-10'>
+                {/* <div className='border-2'> */}
+                        
+                    <div className='shadow mt-5 shadow-[#00000040] w-[239.978515625px] border-black/30 flex px-3 items-center py-3 rounded-md mb-6'>
 
-                    <div className='border border-black/30 flex px-3 items-center py-3 rounded-md mb-6'>
-
-                        <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans 
-                           justify-between w-full items-center'>
+                        <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans
+                           justify-center w-full items-center'>
                             <div className='flex items-center gap-2'>
                                 <Image
                                     src={"/google.png"}
@@ -104,16 +105,12 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                                     width={23.11}
                                     height={23.11}
                                 />
-                                <span className='text-[14px] font-sans font-medium text-black/50'>Continue with Google</span>
+                                <span className='text-[16px] font-sans font-medium text-black/50'>
+                                    Sign in with Google
+                                </span>
 
 
                             </div>
-                            <span>
-                                <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.82275 18.833L10.5 10.1558L1.82275 1.47852" stroke="#9197B3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-
-                            </span>
                         </Link>
 
 
@@ -122,7 +119,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
                     
 
-                    <div className='border border-black/50 flex opacity-50 px-3 items-center py-3 rounded-md mb-5'>
+                    {/* <div className='border border-black/50 flex opacity-50 px-3 items-center py-3 rounded-md mb-5'>
                         <Link href="#" className='flex gap-1 items-center justify-between w-full'>
                             <div className='flex items-center gap-2'>
                                 <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +135,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
                             </span>
                         </Link>
-                    </div>
+                    </div> */}
 
                     
 
@@ -177,20 +174,18 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                         <Link href="/?route=reset" className='underline font-sans text-[12px] font-medium text-black/50 mt-1' >Forgot password</Link>
                     </div> */}
 
-                </div>
+                {/* </div> */}
 
                 {/* {errors &&
                     <p className='text-[#FF3B30] text-[14px] w-[298px] font-sans'> {errors}</p>
                 } */}
 
-                <DialogFooter className={`absolute bottom-0 w-full p-5 border border-t-black/30 rounded-b-md`}>
+                {/* <DialogFooter className={`absolute bottom-0 w-full p-5 border border-t-black/30 rounded-b-md`}>
                     <div className='w-full'>
-                        {/* <Button type={"submit"}  className={`w-full block font-sans text-white bg-[#198038] hover:bg-black  text-[16px] h-12`}
-                            onClick={() => handleSubmit()}
-                        >Continue</Button> */}
-                        <p className='text-[14px] text-black/50 font-sans text-center'>By logging in I agree to the <Link href='/terms' className='text-[#007AFF]'>Terms </Link>& <Link href='/privacy-policy' className='text-[#007AFF]'>Privacy Policy</Link></p>
+                        
+                        <p className='text-[14px] text-black/50 font-sans text-center'>By logging in I agree to the <Link href='/terms' target='_blank' className='text-[#007AFF]'>Terms </Link>& <Link target='_blank' href='/privacy-policy' className='text-[#007AFF]'>Privacy Policy</Link></p>
                     </div>
-                </DialogFooter>
+                </DialogFooter> */}
             </DialogContent>
         </form>
     </Dialog>

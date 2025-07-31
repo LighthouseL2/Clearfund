@@ -130,6 +130,19 @@
   }
 }
 
+@theme {
+  --animate-up-down: upDown 1s linear infinite;
+
+  @keyframes upDown {
+    0%, 100% {
+      transform: translateX(0)
+    }
+    50% {
+      transform: translateX(-10px)
+    }
+  }
+}
+
 
 
 @layer base {

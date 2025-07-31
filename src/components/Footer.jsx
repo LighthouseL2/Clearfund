@@ -37,13 +37,13 @@ const Footer = () => {
     <footer className="bg-white pt-[5%] px-[5%] pb-5 text-black">
         <div className="w-full  flex  justify-between flex-wrap">
             <div className="lg:w-2/3 w-full mt-10 md:mt-0">
-                <div className="w-[155px] relative flex items-center mb-10">
+                {/* <div className="w-[155px] relative flex items-center mb-10">
                     <a href=""><img src="/projectLogo.png" alt="logo" /></a>
-                </div>
+                </div> */}
 
-                <h2 className="text-[30px] font-sans text-[#202224] font-bold">Get the latest updates</h2>
-                <p className="mb-2 text-black/50 font-sans text-[14px]">
-                    Subscribe to our newsletter to get all grant updates straight to your mailbox!
+                <h2 className="text-[24px] font-sans text-[#202224] font-bold">Stay Updated</h2>
+                <p className="mb-2 text-[#202224] font-sans text-[14px]">
+                    Get notified about new updates on public good funding
                 </p>
                 <form className="border-2 border-[#00C2FF] h-[45.33984375px] rounded-md w-full sm:w-5/6 bg-[#EEEEEE]  md:w-4/6 lg:w-[44%] flex mb-2">
                     <input type="text" className="outline-none w-2/3 p-5 font-sans text-[16px] text-black/70 "
@@ -105,17 +105,17 @@ const Footer = () => {
                 <div className="flex justify-between ">
                     <div>
                         <h3 className="uppercase mb-3 font-sans font-bold text-[16px]">Application</h3>
-                        <ul className="space-y-3 font-sans text-black/70 text-[14px]">
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>
+                        <ul className="space-y-3 font-sans text-black/70 text-[15px]">
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>
                                 About</Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" href={"/faq"}>
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/faq"}>
                                 FAQ</Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" href={"https://clearfund.substack.com"} target="_blank">
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"https://clearfund.substack.com"} target="_blank">
                                 Blog</Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://docs.google.com/forms/d/e/1FAIpQLSen8RTa49H2W_8VUgX-Z-5i08LUjLf1x0Cey_1aB9dAs6qkFA/viewform?usp=header"}>
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://docs.google.com/forms/d/e/1FAIpQLSen8RTa49H2W_8VUgX-Z-5i08LUjLf1x0Cey_1aB9dAs6qkFA/viewform?usp=header"}>
                                 Contact
                             </Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://github.com/LighthouseL2/Clearfund"}>
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://github.com/LighthouseL2/Clearfund"}>
                                 Github
                             </Link></li>
                         </ul>
@@ -124,12 +124,12 @@ const Footer = () => {
 
                     <div>
                         <h3 className="uppercase mb-3 font-bold text-[16px] font-sans">RESOURCES </h3>
-                        <ul className="space-y-3 text-black/70 text-[14px]">
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" href={"/connect-with-us"}>Connect with us</Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://form.typeform.com/to/qJv3uhi8"}>Leave feedback</Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" href={"/privacy-policy"}>Privacy Policy</Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" href={"/terms"}>Terms</Link></li>
-                            <li><Link className="font-sans font-medium hover:scale-105 transition-all block hover:text-[#198038]" href={"/support"}>Support</Link></li>
+                        <ul className="space-y-3 text-black/70 text-[15px]">
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/connect-with-us"}>Connect with us</Link></li>
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://form.typeform.com/to/qJv3uhi8"}>Leave feedback</Link></li>
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/privacy-policy"}>Privacy Policy</Link></li>
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/terms"}>Terms</Link></li>
+                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/support"}>Support</Link></li>
                         </ul>
                     </div>
 

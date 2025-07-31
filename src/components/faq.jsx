@@ -57,7 +57,7 @@ const FaqSection = () => {
         <div className="flex lg:hidden justify-center items-center w-full mt-5">
             <Link href="/faq"
                 className="w-[202.19px] font-sans flex items-center justify-center font-semibold
-                    bg-[#198038] hover:bg-white transition-all hover:scale-105 text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
+                    bg-[#198038] hover:bg-white transition-all hover:scale-105 hover:text-black text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
                 Learn More
             </Link>
         </div>
