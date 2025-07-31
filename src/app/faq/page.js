@@ -8,6 +8,11 @@ import Footer from "@/components/Footer";
 
 const faqs = [
   {
+    question: "How often is the data updated?",
+    answer:
+      "We update regularly to reflect new grants, active rounds, and funding outcomes.",
+  },
+  {
     question: "Can I filter grants by platform or round?",
     answer:
       "Yes, you can explore grants by platform, round, category, and timeline.",
@@ -47,7 +52,7 @@ export default function FaqSection() {
     };
 
     return (
-        <main>
+        <main className="bg-[#FAFAFA]">
             <NavHeader />
       <header
   className="bg-center bg-fixed bg-no-repeat bg-cover h-[75vh] relative"
@@ -58,10 +63,10 @@ export default function FaqSection() {
   <div className="absolute inset-0 bg-[#000000E5] bg-opacity-60 z-0"></div>
 
   {/* Hero section content */}
-  <div className="h-full w-full flex items-center justify-center md:justify-start px-4 md:px-24 relative z-10">
-    <div className="text-white max-w-3xl text-center md:text-left">
-      <h1 className="font-extrabold text-5xl sm:text-6xl md:text-6xl mb-4 leading-tight">
-        <span className="text-white font-extrabold">Frequently</span> asked <br />
+  <div className="h-full w-full flex items-center justify-center px-4 md:px-24 relative z-10">
+    <div className="text-white text-center ">
+      <h1 className="font-extrabold text-5xl sm:text-6xl md:text-6xl mb-4 leading-tight text-center">
+        <span className="text-white font-extrabold">Frequently</span> asked
         questions
       </h1>
     </div>
