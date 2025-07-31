@@ -8,7 +8,7 @@ export default function TermsAndConditions() {
     content: [
       {
         heading: "1. Use of the Platform",
-        text: `ClearFund helps users discover ReFi projects making impact, explore funding opportunities, display historical funding data from platforms like Gitcoin, Giveth, Octant, Celo, and others, visualize data and project participation to promote transparency in the regenerative and public goods funding ecosystem. We do not distribute grants or collect applications. ClearFund does not collect personal data unless explicitly provided by the user (e.g., through a contact form or email subscription).`,
+        text: `ClearFund help users discover project making impact, explore funding opportunities, display historical funding data from platforms like Gitcoin, Giveth, Octant, Celo, and others, visualize data and project participation to promote transparency in the regenerative and public goods funding ecosystem. We do not distribute grants or collect applications.`,
       },
       {
         heading: "2. Use of Information",
@@ -28,11 +28,13 @@ export default function TermsAndConditions() {
       },
       {
         heading: "6. Intellectual Property",
-        text: `ClearFund is an open-source and public-good platform. All content on ClearFund including logos, graphics, dashboards, data, visualizations, and written content is made available under the Creative Commons CC0 1.0 Universal (Public Domain Dedication).\n\nYou are free to copy, modify, distribute, and use the content even for commercial purposes without asking permission or providing attribution. We encourage reuse and remixing in the spirit of transparency and collaboration in the Web3 ecosystem.`,
+        text: `ClearFund is an open-source and public-good platform. All content on ClearFund including logos, graphics, dashboards, data, visualizations, and written content is made available under the Creative Commons CC0 1.0 Universal (Public Domain Dedication).
+
+                You are free to copy, modify, distribute, and use the content even for commercial purposes without asking permission or providing attribution. We encourage reuse and remixing in the spirit of transparency and collaboration in the Web3 ecosystem.`,
       },
       {
         heading: "7. Prohibited Uses",
-        text: `You agree not to:\nI. Use the Platform for any illegal or unauthorized purpose.\nII. Attempt to reverse engineer, scrape, or extract large volumes of data without permission.\nIII. Upload or transmit any malicious code or material.`,
+        text: `You agree not to: I. Use the Platform for any illegal or unauthorized purpose. II. Attempt to reverse engineer, scrape, or extract large volumes of data without permission. III. Upload or transmit any malicious code or material.`,
       },
       {
         heading: "8. Changes to the Platform",
@@ -40,7 +42,7 @@ export default function TermsAndConditions() {
       },
       {
         heading: "9. Limitation of Liability",
-        text: `ClearFund and its contributors are not liable for any damages or losses arising from your use of, or reliance on, the Platform. All services are provided “as is” and “as available.”`,
+        text: `ClearFund and its contributors are not liable for any damages or losses arising from your use of, or reliance on, the Platform. All services are provided “as is” and “as available."`,
       },
       {
         heading: "10. Modifications to These Terms",
@@ -48,7 +50,7 @@ export default function TermsAndConditions() {
       },
       {
         heading: "11. Governing Law",
-        text: `These Terms shall be governed by the laws of the State of California, without regard to its conflict of law provisions.`,
+        text: `These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which the ClearFund project is primarily maintained, without regard to its conflict of law provisions. However, since ClearFund is an open-source, global platform, users agree that any legal matters shall be resolved in a fair and neutral manner, prioritizing cooperative resolution. By using ClearFund, you acknowledge that local laws may apply depending on your location, and you are responsible for compliance with them.`,
       },
     ],
   };
@@ -56,12 +58,12 @@ export default function TermsAndConditions() {
   return (
     <section>
       <NavHeader />
-      <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
         <div className="max-w-3xl w-full p-8">
           <h1 className="text-3xl font-bold mb-4">{terms.title}</h1>
           <p className="text-sm text-black mb-6">{terms.effectiveDate}</p>
           <p className="text-sm text-black mb-6">
-  Welcome to ClearFund (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of our platform{" "}
+          {`Welcome to ClearFund ("we", "our", or "us"). These Terms and Conditions ("Terms") govern your access to and use of our platform `}
   <a
     href="https://clearfund.netlify.app"
     className="text-blue-600 underline"
