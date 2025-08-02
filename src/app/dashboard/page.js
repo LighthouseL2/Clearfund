@@ -8,7 +8,6 @@ import withAuth from "@/lib/withAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logout } from "@/features/user/userSlice";
-
 import { Clock, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils"; // if using classNames utility
 import GrantDashboard from "@/components/GrantDashboard";
@@ -18,7 +17,6 @@ import GrantDashboard from "@/components/GrantDashboard";
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter()
-
 
 
 
