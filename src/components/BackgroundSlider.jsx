@@ -34,10 +34,9 @@ export default function BackgroundSlider() {
   return (
     <div
       className="
-       relative w-full overflow-hidden rounded-xl
-    aspect-[16/9]
-    md:aspect-auto md:h-[280px] md:max-w-5xl
-    md:mr-auto md:ml-0
+  relative w-full overflow-hidden rounded-xl
+    aspect-[16/9] 
+    md:aspect-auto md:h-[280px]
       "
     >
       {/* Background Image */}

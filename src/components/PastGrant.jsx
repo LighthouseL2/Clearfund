@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function PastGrantRounds() {
   const tabs = ["GoodDollar", "Gitcoin", "Octant", "Celo", "Giveth"];
-  const [activeTab, setActiveTab] = useState("Octant");
+  const [activeTab, setActiveTab] = useState("Gitcoin");
   const [searchTerm, setSearchTerm] = useState("");
 
   const tabImages = {
@@ -19,29 +19,29 @@ export default function PastGrantRounds() {
 
   const data = {
     GoodDollar: [
-      { title: "GoodDollar Epoch 1", date: "January, 2024", route: "/404"  },
-      { title: "GoodDollar Epoch 2", date: "March, 2024", route: "/404"  },
+      // { title: "GoodDollar Epoch 1", date: "January, 2024", route: "/404"  },
+      // { title: "GoodDollar Epoch 2", date: "March, 2024", route: "/404"  },
     ],
     Gitcoin: [
       { title: "GG21- Regen Coordi-Nation Genesis Round", date: "August, 2024", route: "/past-grant-table" },
-      { title: "Gitcoin Grant Round 23 (GG23)", date: "May, 2025" , route: "/404"  },
+      // { title: "Gitcoin Grant Round 23 (GG23)", date: "May, 2025" , route: "/404"  },
     ],
     Octant: [
-      { title: "Octant Epoch 7", date: "April, 2025", route: "/404"  },
-      { title: "Octant Epoch 6", date: "January, 2025", route: "/404"  },
-      { title: "Octant Epoch 5", date: "October, 2024", route: "/404"  },
-      { title: "Octant Epoch 4", date: "July, 2024", route: "/404"  },
-      { title: "Octant Epoch 3", date: "April, 2024", route: "/404"  },
-      { title: "Octant Epoch 2", date: "January, 2024", route: "/404"  },
-      { title: "Octant Epoch 1", date: "November, 2023", route: "/404"  },
+      // { title: "Octant Epoch 7", date: "April, 2025", route: "/404"  },
+      // { title: "Octant Epoch 6", date: "January, 2025", route: "/404"  },
+      // { title: "Octant Epoch 5", date: "October, 2024", route: "/404"  },
+      // { title: "Octant Epoch 4", date: "July, 2024", route: "/404"  },
+      // { title: "Octant Epoch 3", date: "April, 2024", route: "/404"  },
+      // { title: "Octant Epoch 2", date: "January, 2024", route: "/404"  },
+      // { title: "Octant Epoch 1", date: "November, 2023", route: "/404"  },
     ],
     Celo: [
-      { title: "Celo Round 1", date: "February, 2025", route: "/404"  },
-      { title: "Celo Round 2", date: "April, 2025", route: "/404"  },
+      // { title: "Celo Round 1", date: "February, 2025", route: "/404"  },
+      // { title: "Celo Round 2", date: "April, 2025", route: "/404"  },
     ],
     Giveth: [
-      { title: "Giveth Campaign A", date: "June, 2024", route: "/404"  },
-      { title: "Giveth Campaign B", date: "August, 2024", route: "/404"  },
+      // { title: "Giveth Campaign A", date: "June, 2024", route: "/404"  },
+      // { title: "Giveth Campaign B", date: "August, 2024", route: "/404"  },
     ],
   };
 
@@ -87,7 +87,7 @@ export default function PastGrantRounds() {
               onClick={() => setActiveTab(tab)}
               className={`px-12 py-2 text-sm font-medium whitespace-nowrap ${
                 activeTab === tab
-                  ? "bg-white text-black border border-gray-300 cursor-pointer"
+                  ? "bg-white text-black border border-gray-100 cursor-pointer"
                   : " text-black hover:bg-gray-100"
               }`}
             >
@@ -101,48 +101,58 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Archive List */}
-      <div className="max-w-4xl mx-auto space-y-2">
-        {filteredData.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-between items-center bg-white rounded-sm border p-4 shadow-sm hover:shadow transition"
-          >
-            <div className="flex items-center space-x-3">
-              {/* Dynamic image based on active tab */}
-              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
-                <Image
-                  src={tabImages[activeTab] || "/default-icon.svg"}
-                  alt={`${activeTab} logo`}
-                  width={24}
-                  height={24}
-                />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold">{item.title}</h3>
-                <p className="text-xs text-gray-500">{item.date}</p>
-              </div>
-            </div>
-           {item.route && (
-  <Link
-    href={item.route}
-    className="text-sm font-medium bg-white rounded-sm border-1 text-gray-600 py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline"
-  >
-    View Data
-    <svg
-      className="w-4 h-4"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path d="M9 5l7 7-7 7" />
-    </svg>
-  </Link>
-)}
-
+      {/* Archive List */}
+<div className="max-w-4xl mx-auto space-y-2">
+  {data[activeTab].length === 0 ? (
+    <div className="text-center items-center py-4 bg-white  p-4 shadow-lg hover:shadow transition rounded-b-lg rounded-t-0 ">
+      No data added yet, please check back later.
+    </div>
+  ) : filteredData.length > 0 ? (
+    filteredData.map((item, index) => (
+      <div
+        key={index}
+        className="flex justify-between items-center bg-white p-4 shadow-lg hover:shadow transition rounded-b-lg rounded-t-0"
+      >
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+            <Image
+              src={tabImages[activeTab] || "/default-icon.svg"}
+              alt={`${activeTab} logo`}
+              width={24}
+              height={24}
+            />
           </div>
-        ))}
+          <div>
+            <h3 className="text-sm font-semibold">{item.title}</h3>
+            <p className="text-xs text-gray-500">{item.date}</p>
+          </div>
+        </div>
+        {item.route && (
+          <Link
+            href={item.route}
+            className="text-sm font-medium bg-white rounded-sm border-1 text-gray-600 py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline"
+          >
+            View Data
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        )}
       </div>
+    ))
+  ) : (
+    <div className="text-center text-gray-500 text-sm py-8">
+      No matches found for your search.
+    </div>
+  )}
+</div>
+
     </div>
   );
 }

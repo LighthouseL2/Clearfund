@@ -51,7 +51,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 text-gray-800 relative">
+    <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
 
       {/* Sidebar */}
 

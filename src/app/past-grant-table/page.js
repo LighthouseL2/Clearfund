@@ -72,19 +72,27 @@ export default function Home() {
 
   return (
       <section className="bg-white min-h-screen py-10 px-4">
-      <div className="flex justify-between mb-4 items-center">
-        <Link href={"/past-grant-data"} >
-          <div className="flex items-center gap-2 cursor-pointer">
-  <ArrowLeft size={20} />
-  <p className="text-sm">Back</p>
+     <div className="flex items-center justify-between w-full px-2 py-2 mb-6">
+  {/* Back Button */}
+  <button className="flex items-center gap-1 text-sm text-black ml-16">
+  <span className="text-lg">&larr;</span>
+    Back
+  </button>
+
+  {/* Download Button */}
+  <button className="flex items-center gap-1 px-6 py-3.5 text-white bg-[#198038] rounded-sm text-sm hover:bg-green-800 transition mr-23">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+    </svg>
+    Download
+  </button>
 </div>
-        </Link>
-  
-          <button className="flex items-center gap-2 bg-[#198038] text-white px-5 py-3 border-2 rounded-sm hover:bg-[#198038] transition">
-            <Download size={18} />
-            Download
-          </button>
-        </div>
       {/* Centered container with white background */}
       <div className="max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow-xl border-2">
 

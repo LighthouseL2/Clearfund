@@ -77,7 +77,7 @@ const GrantBox = () => {
       desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
       amount: "250k",
       coin: "Celo",
-           date: "End– Jul 31, 2025",
+           date: "End– Oct, 2025",
         link: "https://medium.com/gooddollar/goodbuilders-goes-streaming-8de59dbd7383"
     },
   ];
