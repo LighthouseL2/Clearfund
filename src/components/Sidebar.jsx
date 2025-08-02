@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 
-
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
