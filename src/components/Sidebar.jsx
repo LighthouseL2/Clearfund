@@ -44,6 +44,9 @@ export default function Sidebar() {
   // ];
 
   // Sample notifications data
+
+
+  // Sample notifications data
   const notifications = [
     {
       id: 1,
