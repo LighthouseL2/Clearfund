@@ -1,7 +1,19 @@
+"use client"
+
+
 import NavHeader from "@/components/navHeader";
+import MenuDropdown from "@/components/menuDropdown";
+import { useState } from "react";
 import Footer from "@/components/Footer";
 
 export default function TermsAndConditions() {
+
+  const [open, setOpen] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
+  const [blur, setBlur] = useState(false)
+
+
+
   const terms = {
     title: "Terms and Conditions",
     effectiveDate: "Effective Date: July 1, 2025",
@@ -57,7 +69,16 @@ export default function TermsAndConditions() {
 
   return (
     <section>
-      <NavHeader />
+      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
+        />
+        <MenuDropdown
+            openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+            toggle={open}
+            setToggle={setOpen}
+        />
+        
       <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
         <div className="max-w-3xl w-full p-8">
           <h1 className="text-3xl font-bold mb-4">{terms.title}</h1>
