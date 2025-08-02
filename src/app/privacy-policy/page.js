@@ -1,7 +1,18 @@
+"use client"
+
 import NavHeader from "@/components/navHeader";
+import { useState } from "react";
 import Footer from "@/components/Footer";
+import MenuDropdown from "@/components/menuDropdown";
 
 export default function PrivacyPolicy() {
+
+  const [open, setOpen] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
+  const [blur, setBlur] = useState(false)
+
+
+
   const policy = {
     title: "Privacy Policy",
     effectiveDate: "Effective Date: July 1, 2025",
@@ -46,7 +57,16 @@ export default function PrivacyPolicy() {
   return (
 
     <section>
-      <NavHeader/>
+      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
+        />
+      <MenuDropdown
+            openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+            toggle={open}
+            setToggle={setOpen}
+        />
+      
  <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
       <div className="max-w-3xl w-full  p-8 ">
         <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
@@ -101,7 +121,6 @@ export default function PrivacyPolicy() {
 
 6. Changes to This Policy
 
-"
 
-7. Contact Us
-`
+
+7. Contact Us`

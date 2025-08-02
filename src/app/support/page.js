@@ -1,6 +1,10 @@
+"use client"
+
 import Image from "next/image";
 import NavHeader from "@/components/navHeader";
 import HeroSection from "@/components/HeroSection";
+import MenuDropdown from "@/components/menuDropdown";
+import { useState } from "react";
 import Footer from "@/components/Footer";
 
 const cards = [
@@ -35,9 +39,23 @@ const cards = [
 ];
 
 export default function SupportSection() {
+
+  const [open, setOpen] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
+  const [blur, setBlur] = useState(false)
+
+
   return (
     <section>
-      <NavHeader />
+      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
+        />
+        <MenuDropdown
+            openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+            toggle={open}
+            setToggle={setOpen}
+        />
       <HeroSection />
 
       <div className="px-4 py-16 bg-gray-50">

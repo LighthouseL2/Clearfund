@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import Image from "next/image";
 import NavHeader from "@/components/navHeader";
+import MenuDropdown from "@/components/menuDropdown";
 import Footer from "@/components/Footer";
 
 const faqs = [
@@ -46,6 +47,9 @@ const faqs = [
 
 export default function FaqSection() {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [open, setOpen] = useState(true)
+    const [openMenu, setOpenMenu] = useState(false)
+    const [blur, setBlur] = useState(false)
 
     const toggleIndex = (index) => {
       setActiveIndex(index === activeIndex ? null : index);
@@ -53,7 +57,15 @@ export default function FaqSection() {
 
     return (
         <main className="bg-[#FAFAFA]">
-            <NavHeader />
+          <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
+        />
+        <MenuDropdown
+            openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+            toggle={open}
+            setToggle={setOpen}
+        />
       <header
   className="bg-center bg-fixed bg-no-repeat bg-cover h-[75vh] relative"
   style={{
