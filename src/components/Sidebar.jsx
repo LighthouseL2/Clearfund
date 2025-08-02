@@ -3,12 +3,36 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Notification from "@/components/Notification";
 import { usePathname } from "next/navigation";
-import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
+import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const pathname = usePathname();
+
+  // Sample notifications data
+  const notifications = [
+    {
+      id: 1,
+      title: "New Grant Round",
+      message: "Grant Round #42 has been created.",
+      time: "2 hours ago",
+    },
+    {
+      id: 2,
+      title: "Application Received",
+      message: "New application submitted for Grant Round #41.",
+      time: "5 hours ago",
+    },
+    {
+      id: 3,
+      title: "Funding Update",
+      message: "Funding allocation completed for Q3 2025.",
+      time: "1 day ago",
+    },
+  ];
 
   return (
     <>
@@ -53,34 +77,44 @@ export default function Sidebar() {
 
           {/* Nav */}
           <nav className="space-y-3 my-6">
-            <Link href="/dashboard">
-              <button
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${
-                  pathname === "/dashboard"
-                    ? "bg-[#174123] text-white"
-                    : "text-[#9197B3] hover:bg-gray-50"
-                }`}
-              >
-                <span className="flex items-center gap-3">
-                  <Image
-                    src="/sidebar-icons/dashboard-icon.svg"
-                    alt="Dashboard"
-                    width={18}
-                    height={18}
-                  />
-                  Dashboard
-                </span>
-                <ChevronRight
-                  size={16}
-                  className={pathname === "/dashboard" ? "text-white" : "text-gray-400"}
-                />
-              </button>
-            </Link>
+          <Link href="/dashboard">
+ <button
+  className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${
+    pathname === "/dashboard" && !isNotificationModalOpen
+      ? "bg-[#174123] text-white"
+      : "text-[#9197B3] hover:bg-gray-50"
+  }`}
+>
+  <span className="flex items-center gap-3">
+    <Image
+      src={
+        pathname === "/dashboard" && !isNotificationModalOpen
+          ? "/sidebar-icons/dashboard-icon-white.svg"
+          : "/sidebar-icons/dashboard-icon-gray.svg"
+      }
+      alt="Dashboard"
+      width={18}
+      height={18}
+    />
+    Dashboard
+  </span>
+  <ChevronRight
+    size={16}
+    className={
+      pathname === "/dashboard" && !isNotificationModalOpen
+        ? "text-white"
+        : "text-gray-400"
+    }
+  />
+</button>
+
+</Link>
+
 
             <Link href="/grant-rounds">
               <button
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${
-                  pathname === "/grant-rounds"
+                  pathname === "/grant-rounds" && !isNotificationModalOpen
                     ? "bg-[#174123] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
                 }`}
@@ -104,7 +138,7 @@ export default function Sidebar() {
             <Link href="/past-grant-data">
               <button
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${
-                  pathname === "/past-grant-data"
+                  pathname === "/past-grant-data" && !isNotificationModalOpen
                     ? "bg-[#174123] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
                 }`}
@@ -125,25 +159,28 @@ export default function Sidebar() {
               </button>
             </Link>
 
-            {/* Static button for Notification */}
-            <Link href="/404">
-            <button className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${
-                  pathname === "/404"
-                    ? "bg-[#174123] text-white"
-                    : "text-[#9197B3] hover:bg-gray-50"
-                }`}>
-              <span className="flex items-center gap-3">
-                <Image
-                  src="/sidebar-icons/notification-icon.svg"
-                  alt="Notification"
-                  width={18}
-                  height={18}
-                />
-                Notification
-              </span>
-              <ChevronRight size={16}   className={pathname === "/404" ? "text-white" : "text-gray-400"} />
-                          </button>
-                          </Link>
+            {/* Notification button with modal trigger */}
+          <button
+  onClick={() => setIsNotificationModalOpen(true)}
+  className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${
+    isNotificationModalOpen
+      ? "bg-[#174123] text-white"
+      : "text-[#9197B3] hover:bg-gray-50"
+  }`}
+>
+  <span className="flex items-center gap-3">
+    <Bell
+      size={18}
+      className={isNotificationModalOpen ? "text-white" : "text-gray-400"}
+    />
+    Notification
+  </span>
+  <ChevronRight
+    size={16}
+    className={isNotificationModalOpen ? "text-[#174123]" : "text-gray-400"}
+  />
+</button>
+
           </nav>
 
           <hr className="mt-4" />
@@ -183,6 +220,13 @@ export default function Sidebar() {
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
+
+     <Notification
+  isOpen={isNotificationModalOpen}
+  onClose={() => setIsNotificationModalOpen(false)}
+  notifications={notifications}
+/>
+
     </>
   );
 }
