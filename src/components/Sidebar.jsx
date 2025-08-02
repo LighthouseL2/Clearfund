@@ -7,6 +7,7 @@ import Notification from "@/components/Notification";
 import { Menu, ChevronRight, Bell, Settings, LogOut } from 'lucide-react'
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
 
 
 export default function Sidebar() {
