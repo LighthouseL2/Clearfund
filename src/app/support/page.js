@@ -41,7 +41,7 @@ export default function SupportSection() {
       <HeroSection />
 
       <div className="px-4 py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 -mt-44 z-50 relative">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 -mt-44 z-10 relative">
           {cards.map((card, index) => (
             <div
               key={index}
