@@ -1,7 +1,7 @@
 "use client"
 
 
-import { Menu } from "lucide-react"
+import { Menu, MenuIcon, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -31,8 +31,8 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
             Login / Register
         </Link>
 
-        <div className="flex items-center gap-5 md:hidden">
-          <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden border-0 items-center justify-center flex flex-col group w-8 h-8">
+        <div className="flex items-center md:hidden" onClick={() => setOpenMenu(!openMenu)}>
+          {/* <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden border-0 items-center justify-center flex flex-col group w-8 h-8">
             <span
                 className={`w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && " rotate-45 translate-y-3"}`}
             />
@@ -42,7 +42,9 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
             <span
                 className={`${!toggle && "mt-1"} w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && "-rotate-45 -translate-y-0"}`}
             />
-          </button>
+          </button> */}
+          {!openMenu ? <MenuIcon /> :
+          <X />}
         </div>
     </nav>
   )

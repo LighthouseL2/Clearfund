@@ -1,15 +1,28 @@
+"use client"
+
 import NavHeader from "@/components/navHeader";
+import { useState } from "react";
 import Footer from "@/components/Footer";
+import MenuDropdown from "@/components/menuDropdown";
 
 export default function PrivacyPolicy() {
+
+  const [open, setOpen] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
+  const [blur, setBlur] = useState(false)
+
+
+
   const policy = {
     title: "Privacy Policy",
     effectiveDate: "Effective Date: July 1, 2025",
-    paragraph: "At ClearFund (\"we\", \"us\", or \"our\"), your privacy matters. This Privacy Policy outlines how we handle information when you access or use our platform",
+    paragraph: `At ClearFund ("we", "us", or "our"), your privacy matters. This Privacy Policy outlines how we handle information when you access or use our platform`,
     content: [
       {
         heading: "1. No Personal Data Collection",
-        text: `ClearFund is a read-only, informational platform. We do not collect or store any personally identifiable information (PII) from our users, unless you voluntarily provide it (e.g., through a contact form or newsletter subscription).`,
+        text: `ClearFund allows users to create accounts and log in using Google OAuth. When you sign up or log in with your Google account, we collect the following information from your Google profile (with your consent): Email address, Google user ID (non-public, used for authentication). We do not access your Google password or other sensitive account information.
+        
+        Authentication is securely handled through Google’s OAuth system, and we only receive the minimum information required to manage your account. We may also collect: Basic usage analytics to understand and improve the platform, Optional information you provide via forms or newsletters. We do not sell or share your personal data with third parties for marketing purposes.`,
       },
       {
         heading: "2. What We Display",
@@ -25,7 +38,10 @@ export default function PrivacyPolicy() {
       },
       {
         heading: "5. Data Security",
-        text: `Since we do not store user accounts or sensitive data, our primary focus is on keeping the platform secure, transparent, and publicly accessible. If any form submissions or newsletter tools are used, we ensure they are secured using industry-standard protocols.`,
+        text: `We prioritize the protection of your personal information and implement strong security measures to safeguard it. Authentication is handled securely via Google OAuth, meaning we do not collect or store your Google password. We only receive minimal information from Google (such as your email address) needed to create and manage your account. 
+        
+        All data transmissions are encrypted using HTTPS (SSL/TLS) to ensure secure communication between your browser and our servers. We use industry-standard practices to protect data from unauthorized access, loss, or misuse. While we do our best to protect your data, no method of online transmission or storage is 100% secure. By using ClearFund, you acknowledge and accept this inherent risk.
+        `,
       },
       {
         heading: "6. Changes to This Policy",
@@ -33,7 +49,7 @@ export default function PrivacyPolicy() {
       },
       {
         heading: "7. Contact Us",
-        text: `If you have any questions or concerns regarding this Privacy Policy or our data practices, please contact us at info@clearfund.com`,
+        text: `If you have any questions or concerns regarding this Privacy Policy or our data practices, please contact us at phweb3connect@gmail.com `,
       },
     ],
   };
@@ -41,8 +57,17 @@ export default function PrivacyPolicy() {
   return (
 
     <section>
-      <NavHeader/>
- <div className="min-h-screen flex items-center justify-center px-4">
+      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
+        />
+      <MenuDropdown
+            openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+            toggle={open}
+            setToggle={setOpen}
+        />
+      
+ <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
       <div className="max-w-3xl w-full  p-8 ">
         <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
         <p className="text-sm text-black mb-6">{policy.effectiveDate}</p>
@@ -73,3 +98,29 @@ export default function PrivacyPolicy() {
     
   );
 }
+
+
+`
+
+
+
+
+2. What We Display
+
+
+3. Cookies & Analytics
+
+
+4. Third-Party Links
+
+
+5. Data Security
+
+
+
+
+6. Changes to This Policy
+
+
+
+7. Contact Us`
