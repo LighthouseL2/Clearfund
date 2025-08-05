@@ -187,9 +187,8 @@ export default function Sidebar() {
           </nav>
           <hr className="w-[calc(100%+3rem)] -ml-6 border-t border-gray-300 my-4" />
 
-          <div className="mt-5">
-            <Link href={"/account"} >
-              <button className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-3
+          {/* <div className="mt-5">
+            <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
               ${pathname === "/account"
                     ? "bg-[#174123] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
@@ -198,7 +197,7 @@ export default function Sidebar() {
                 Setting
               </button>
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* <div className="mt-6 space-y-2">
