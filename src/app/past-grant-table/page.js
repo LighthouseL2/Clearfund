@@ -72,34 +72,6 @@ export default function Home() {
 
   const paginated = filteredProjects.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 
-<<<<<<< HEAD
-=======
-  return (
-      <section className="bg-white min-h-screen py-10 px-4">
-     <div className="flex items-center justify-between w-full px-2 py-2 mb-6">
-  {/* Back Button */}
-  <button className="flex items-center gap-1 text-sm text-black ml-16">
-  <span className="text-lg">&larr;</span>
-    Back
-  </button>
-
-  {/* Download Button */}
-  <button className="flex items-center gap-1 px-6 py-3.5 text-white bg-[#198038] rounded-sm text-sm hover:bg-green-800 transition mr-23">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
-    </svg>
-    Download
-  </button>
-</div>
-      {/* Centered container with white background */}
-      <div className="max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow-xl border-2">
->>>>>>> 223cd4a (feat: refine dashboard and grant round pages, update sidebar icons, and add new dashboard-related asset)
 
   return (
     <section className="bg-white min-h-screen py-10 px-4">
