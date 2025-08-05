@@ -20,7 +20,7 @@ export default function GrantDashboard() {
 
         {
             title: "Active Round",
-            value: "6",
+            value: "3",
             img: "/grant-icons/active-round-icon.svg",
             footer: { text: "Ongoing", icon: "/card-icons/ongoing-round-icon.svg" },
         },
