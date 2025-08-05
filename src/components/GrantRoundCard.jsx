@@ -47,7 +47,7 @@ const GrantRoundCard = ({ grants }) => {
 
               {/* Amount */}
               <p className="inline-flex items-center border bg-[#D8D8D833] border-black/20 rounded py-1 px-3 gap-1 text-[14px] font-sans font-medium">
-                <span className=" text-black">{item.amount}</span>
+                <span className=" text-black font-extrabold">{item.amount}</span>
                 <span className="text-black/50">{item.coin}</span>
               </p>
             </div>
