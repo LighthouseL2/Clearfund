@@ -61,8 +61,8 @@ export default function Dashboard() {
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 md:ml-64">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold text-center mb-2">Grant History</h1>
-          <p className="text-center text-base text-gray-600 mb-6">
+          <h1 className="text-2xl font-bold text-center py-4">Grant History</h1>
+          <p className="text-center text-base text-gray-600 mb-8">
             An archive of historical funding rounds and their recipients
           </p>
 

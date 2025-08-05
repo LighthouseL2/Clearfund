@@ -83,7 +83,7 @@ const GrantBox = () => {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative mb-6">
      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-16 w-full text-black justify-items-center">
   {box.map((item, index) => (
     <div

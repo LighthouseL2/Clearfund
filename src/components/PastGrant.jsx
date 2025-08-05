@@ -99,8 +99,6 @@ export default function PastGrantRounds() {
           <ChevronRight size={20} />
         </button>
       </div>
-
-      {/* Archive List */}
       {/* Archive List */}
 <div className="max-w-4xl mx-auto space-y-2">
   {data[activeTab].length === 0 ? (
