@@ -15,7 +15,7 @@ export default function Sidebar() {
   const router = useRouter()
 
 
-  function handleLogout(){
+  function handleLogout() {
     localStorage.removeItem("token")
     router.push("/?route=login")
   }
@@ -85,47 +85,45 @@ export default function Sidebar() {
 
           {/* Nav */}
           <nav className="space-y-3 my-6">
-          <Link href="/dashboard">
- <button
-  className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${
-    pathname === "/dashboard" && !isNotificationModalOpen
-      ? "bg-[#174123] text-white"
-      : "text-[#9197B3] hover:bg-gray-50"
-  }`}
->
-  <span className="flex items-center gap-3">
-    <Image
-      src={
-        pathname === "/dashboard" && !isNotificationModalOpen
-          ? "/sidebar-icons/dashboard-icon-white.svg"
-          : "/sidebar-icons/dashboard-icon-gray.svg"
-      }
-      alt="Dashboard"
-      width={18}
-      height={18}
-    />
-    Dashboard
-  </span>
-  <ChevronRight
-    size={16}
-    className={
-      pathname === "/dashboard" && !isNotificationModalOpen
-        ? "text-white"
-        : "text-gray-400"
-    }
-  />
-</button>
+            <Link href="/dashboard">
+              <button
+                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard" && !isNotificationModalOpen
+                  ? "bg-[#174123] text-white"
+                  : "text-[#9197B3] hover:bg-gray-50"
+                  }`}
+              >
+                <span className="flex items-center gap-3">
+                  <Image
+                    src={
+                      pathname === "/dashboard" && !isNotificationModalOpen
+                        ? "/sidebar-icons/dashboard-icon-white.svg"
+                        : "/sidebar-icons/dashboard-icon-gray.svg"
+                    }
+                    alt="Dashboard"
+                    width={18}
+                    height={18}
+                  />
+                  Dashboard
+                </span>
+                <ChevronRight
+                  size={16}
+                  className={
+                    pathname === "/dashboard" && !isNotificationModalOpen
+                      ? "text-white"
+                      : "text-gray-400"
+                  }
+                />
+              </button>
 
-</Link>
+            </Link>
 
 
             <Link href="/grant-rounds">
               <button
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${
-                  pathname === "/grant-rounds" && !isNotificationModalOpen
-                    ? "bg-[#174123] text-white"
-                    : "text-[#9197B3] hover:bg-gray-50"
-                }`}
+                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-rounds" && !isNotificationModalOpen
+                  ? "bg-[#174123] text-white"
+                  : "text-[#9197B3] hover:bg-gray-50"
+                  }`}
               >
                 <span className="flex items-center gap-3">
                   <Image
@@ -145,11 +143,10 @@ export default function Sidebar() {
 
             <Link href="/grant-history">
               <button
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${
-                  pathname === "/past-grant-data" && !isNotificationModalOpen
-                    ? "bg-[#174123] text-white"
-                    : "text-[#9197B3] hover:bg-gray-50"
-                }`}
+                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/past-grant-data" && !isNotificationModalOpen
+                  ? "bg-[#174123] text-white"
+                  : "text-[#9197B3] hover:bg-gray-50"
+                  }`}
               >
                 <span className="flex items-center gap-3">
                   <Image
@@ -168,30 +165,27 @@ export default function Sidebar() {
             </Link>
 
             {/* Notification button with modal trigger */}
-          <button
-  onClick={() => setIsNotificationModalOpen(true)}
-  className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${
-    isNotificationModalOpen
-      ? "bg-[#174123] text-white"
-      : "text-[#9197B3] hover:bg-gray-50"
-  }`}
->
-  <span className="flex items-center gap-3">
-    <Bell
-      size={18}
-      className={isNotificationModalOpen ? "text-white" : "text-gray-400"}
-    />
-    Notification
-  </span>
-  <ChevronRight
-    size={16}
-    className={isNotificationModalOpen ? "text-[#174123]" : "text-gray-400"}
-  />
-</button>
-
+            <button
+              onClick={() => setIsNotificationModalOpen(true)}
+              className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${isNotificationModalOpen
+                ? "bg-[#174123] text-white"
+                : "text-[#9197B3] hover:bg-gray-50"
+                }`}
+            >
+              <span className="flex items-center gap-3">
+                <Bell
+                  size={18}
+                  className={isNotificationModalOpen ? "text-white" : "text-gray-400"}
+                />
+                Notification
+              </span>
+              <ChevronRight
+                size={16}
+                className={isNotificationModalOpen ? "text-[#174123]" : "text-gray-400"}
+              />
+            </button>
           </nav>
-
-          <hr className="mt-4" />
+          <hr className="w-[calc(100%+3rem)] -ml-6 border-t border-gray-300 my-4" />
 
           <div className="mt-5">
             <Link href={"/account"} >
@@ -239,11 +233,11 @@ export default function Sidebar() {
         ></div>
       )}
 
-     <Notification
-  isOpen={isNotificationModalOpen}
-  onClose={() => setIsNotificationModalOpen(false)}
-  notifications={notifications}
-/>
+      <Notification
+        isOpen={isNotificationModalOpen}
+        onClose={() => setIsNotificationModalOpen(false)}
+        notifications={notifications}
+      />
 
     </>
   );
