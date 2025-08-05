@@ -5,36 +5,36 @@ import { X, AlertCircle } from 'lucide-react';
 
 export default function NotificationModal({ isOpen, onClose }) {
   const [notifications, setNotifications] = useState([
-    {
-      id: 1,
-      title: 'Gitcoin Ocean Plastic Cleanup Network on Jul 25-07-2025',
-      date: 'July 16, 2025 | 09:00 PM',
-      read: false,
-    },
-    {
-      id: 2,
-      title: 'Gitcoin Grant (GG22) Climate Round on August 14-08-2025',
-      date: 'July 16, 2025 | 09:00 PM',
-      read: false,
-    },
-    {
-      id: 3,
-      title: 'Celo Solar Energy Microgrid for Rural Kenya on Sep 8-09-2025',
-      date: 'July 16, 2025 | 09:00 PM',
-      read: false,
-    },
-    {
-      id: 4,
-      title: 'Celo foundation Regenerative Agriculture Data oct 03-10-2025',
-      date: 'July 16, 2025 | 09:00 PM',
-      read: false,
-    },
-    {
-      id: 5,
-      title: 'Gitcoin Grant (GG22) Climate Round on August 14-08-2025',
-      date: 'July 16, 2025 | 09:00 PM',
-      read: false,
-    },
+    // {
+    //   id: 1,
+    //   title: 'Gitcoin Ocean Plastic Cleanup Network on Jul 25-07-2025',
+    //   date: 'July 16, 2025 | 09:00 PM',
+    //   read: false,
+    // },
+    // {
+    //   id: 2,
+    //   title: 'Gitcoin Grant (GG22) Climate Round on August 14-08-2025',
+    //   date: 'July 16, 2025 | 09:00 PM',
+    //   read: false,
+    // },
+    // {
+    //   id: 3,
+    //   title: 'Celo Solar Energy Microgrid for Rural Kenya on Sep 8-09-2025',
+    //   date: 'July 16, 2025 | 09:00 PM',
+    //   read: false,
+    // },
+    // {
+    //   id: 4,
+    //   title: 'Celo foundation Regenerative Agriculture Data oct 03-10-2025',
+    //   date: 'July 16, 2025 | 09:00 PM',
+    //   read: false,
+    // },
+    // {
+    //   id: 5,
+    //   title: 'Gitcoin Grant (GG22) Climate Round on August 14-08-2025',
+    //   date: 'July 16, 2025 | 09:00 PM',
+    //   read: false,
+    // },
   ]);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
