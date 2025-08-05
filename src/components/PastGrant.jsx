@@ -50,7 +50,7 @@ export default function PastGrantRounds() {
   );
 
   return (
-    <div className="px-4 md:px-10 py-10 text-black ">
+    <div className="px-4 md:px-10 py-4 text-black ">
       {/* Search */}
       <div className="max-w-4xl mx-auto mb-6">
         <div className="relative">
@@ -76,7 +76,7 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Active Tabs */}
-      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between bg-[#D9D9D933] border py-1 ">
+      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between rounded bg-[#D9D9D933] border py-1 ">
         <button className="p-2 hover:bg-gray-100 rounded">
           <ChevronLeft size={20} />
         </button>
@@ -87,7 +87,7 @@ export default function PastGrantRounds() {
               onClick={() => setActiveTab(tab)}
               className={`px-12 py-2 text-sm font-medium whitespace-nowrap ${
                 activeTab === tab
-                  ? "bg-white text-black border border-gray-100 cursor-pointer"
+                  ? "bg-white text-black border rounded  border-gray-100 cursor-pointer"
                   : " text-black hover:bg-gray-100"
               }`}
             >
@@ -104,17 +104,17 @@ export default function PastGrantRounds() {
       {/* Archive List */}
 <div className="max-w-4xl mx-auto space-y-2">
   {data[activeTab].length === 0 ? (
-    <div className="text-center items-center py-4 bg-white  p-4 shadow-lg hover:shadow transition rounded-b-lg rounded-t-0 ">
+    <div className="text-center items-center py-4 bg-white  text-black/50 p-4 shadow-xl border-1 hover:shadow transition rounded-b-lg rounded-t-0">
       No data added yet, please check back later.
     </div>
   ) : filteredData.length > 0 ? (
     filteredData.map((item, index) => (
       <div
         key={index}
-        className="flex justify-between items-center bg-white p-4 shadow-lg hover:shadow transition rounded-b-lg rounded-t-0"
+        className="flex justify-between items-center bg-white p-4 shadow-lg hover:shadow transition rounded-b-lg rounded-t-0 border"
       >
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+          <div className="w-10 h-10 rounded-full  flex  text-black/70 items-center justify-center overflow-hidden">
             <Image
               src={tabImages[activeTab] || "/default-icon.svg"}
               alt={`${activeTab} logo`}
@@ -122,9 +122,9 @@ export default function PastGrantRounds() {
               height={24}
             />
           </div>
-          <div>
-            <h3 className="text-sm font-semibold">{item.title}</h3>
-            <p className="text-xs text-gray-500">{item.date}</p>
+          <div className="">
+            <h3 className="text-sm font-semibold text-black/70">{item.title}</h3>
+            <p className="text-xs text-black/60">{item.date}</p>
           </div>
         </div>
         {item.route && (
@@ -145,10 +145,12 @@ export default function PastGrantRounds() {
           </Link>
         )}
       </div>
+   
     ))
   ) : (
-    <div className="text-center text-gray-500 text-sm py-8">
-      No matches found for your search.
+    <div className="text-center text-black/70 text-sm py-8">
+                No matches found for your search.
+                
     </div>
   )}
 </div>

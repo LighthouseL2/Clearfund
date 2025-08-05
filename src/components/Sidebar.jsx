@@ -143,7 +143,7 @@ export default function Sidebar() {
               </button>
             </Link>
 
-            <Link href="/past-grant-data">
+            <Link href="/grant-history">
               <button
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${
                   pathname === "/past-grant-data" && !isNotificationModalOpen
@@ -158,7 +158,7 @@ export default function Sidebar() {
                     width={18}
                     height={18}
                   />
-                  Past Grant Data
+                  Grant History
                 </span>
                 <ChevronRight
                   size={16}
