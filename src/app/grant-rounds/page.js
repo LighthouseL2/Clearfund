@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { LogOut, Settings, ChevronRight } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
@@ -12,24 +13,69 @@ export default function Dashboard() {
   const [statusOpen, setStatusOpen] = useState(false);
 
   const [selectedPrograms, setSelectedPrograms] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("");
 
-  const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar", "Arbitrum", "Others"];
-  const statuses = ["Ongoing", "Upcoming", "Applications Open"];
+  const programs = ["Gitcoin", "Celo", "Good Dollar", "Lisk"];
+  const statuses = ["ongoing", "upcoming"];
+
+  const [search, setSearch] = useState("");
+
+  const grants = [
+    {
+      image: "/mask.png",
+      title: "Good Dollar Builders",
+      network: "Good Dollar",
+      status: "Ongoing",
+      desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
+      amount: "250k",
+      coin: "Celo",
+      date: "End– Oct, 2025",
+      link: "https://medium.com/gooddollar/goodbuilders-goes-streaming-8de59dbd7383"
+    },
+    {
+      image: "/mask.png",
+      title: "Celo Camp Batch 10",
+      network: "Celo",
+      status: "Ongoing",
+      desc: `A virtual accelerator and mentorship program for founders building innovative solutions on Celo.`,
+      amount: "100k",
+      coin: "USD",
+      date: "End- Aug 15, 2025",
+      link: "https://medium.com/@UprightVentures/applications-for-celo-camp-batch-10-are-now-open-c26d4980d074"
+    },
+    {
+      image: "/mask.png",
+      title: "Lisk L2 Grant Program",
+      network: "Lisk",
+      status: "Ongoing",
+      desc: `The Lisk Grant Program nurture a community of developers and creators within the Lisk ecosystem and empower innovation.`,
+      amount: "150k",
+      coin: "Celo",
+      date: "End- Oct 25, 2025",
+      link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
+    }
+  ];
+
+  // Filter logic
+  const filteredGrants = grants.filter((grant) => {
+    const matchSearch = grant.title.toLowerCase().includes(search.toLowerCase());
+
+    const matchProgram =
+      selectedPrograms.length === 0 ||
+      selectedPrograms.includes(grant.network);
+
+    const matchStatus =
+      selectedStatus === "" ||
+      grant.status.toLowerCase() === selectedStatus.toLowerCase();
+
+    return matchSearch && matchProgram && matchStatus;
+  });
 
   const toggleProgram = (program) => {
     setSelectedPrograms((prev) =>
       prev.includes(program)
         ? prev.filter((p) => p !== program)
         : [...prev, program]
-    );
-  };
-
-  const toggleStatus = (status) => {
-    setSelectedStatus((prev) =>
-      prev.includes(status)
-        ? prev.filter((s) => s !== status)
-        : [...prev, status]
     );
   };
 
@@ -51,24 +97,26 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
-
       {/* Sidebar */}
       <Sidebar />
+
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 md:ml-64">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold text-center mb-2">Grant History</h1>
+          <h1 className="text-2xl font-bold text-center mb-2">Grant Rounds</h1>
           <p className="text-center text-base text-gray-600 mb-6">
             Explore current and upcoming grant opportunities across different ecosystems.
           </p>
 
           {/* Filters Card */}
-          <div className="bg-white rounded-xl shadow-md  border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
+          <div className="bg-white rounded-xl shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
             {/* Search */}
             <div className="relative w-full md:w-[290px]">
               <input
                 type="text"
                 placeholder="Search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className="w-full h-12 pl-10 pr-4 text-sm border rounded-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <svg
@@ -93,7 +141,7 @@ export default function Dashboard() {
                 onClick={() => setProgramOpen(!programOpen)}
                 className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
               >
-                All
+                Select Programs
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-gray-400"
@@ -112,14 +160,6 @@ export default function Dashboard() {
               {programOpen && (
                 <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
                   <div className="p-2">
-                    <label className="flex items-center gap-2 mb-1">
-                      <input
-                        type="checkbox"
-                        checked={selectedPrograms.length === 0}
-                        onChange={() => setSelectedPrograms([])}
-                      />
-                      All
-                    </label>
                     {programs.map((p) => (
                       <label key={p} className="flex items-center gap-2 mb-1">
                         <input
@@ -135,13 +175,13 @@ export default function Dashboard() {
               )}
             </div>
 
-            {/* Status Dropdown */}
+            {/* Status Dropdown (Single Select) */}
             <div className="relative w-full md:w-[230px]" ref={statusRef}>
               <button
                 onClick={() => setStatusOpen(!statusOpen)}
                 className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
               >
-                All
+                {selectedStatus || "Select Status"}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-gray-400"
@@ -150,32 +190,43 @@ export default function Dashboard() {
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
+
               {statusOpen && (
                 <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
-                  <div className="p-2">
-                    <label className="flex items-center gap-2 mb-1">
+                  <div className="p-2 space-y-2">
+                    {/* All Option */}
+                    <label className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={selectedStatus.length === 0}
-                        onChange={() => setSelectedStatus([])}
+                        checked={selectedStatus === ""}
+                        onChange={() => {
+                          setSelectedStatus("");
+                          setStatusOpen(false);
+                        }}
+                        className="form-checkbox h-4 w-4 text-green-500"
                       />
-                      All
+                      <span className="text-sm text-gray-700">All</span>
                     </label>
-                    {statuses.map((s) => (
-                      <label key={s} className="flex items-center gap-2 mb-1">
+
+                    {/* Status Options */}
+                    {statuses.map((status) => (
+                      <label
+                        key={status}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
                         <input
                           type="checkbox"
-                          checked={selectedStatus.includes(s)}
-                          onChange={() => toggleStatus(s)}
+                          checked={selectedStatus === status}
+                          onChange={() => {
+                            setSelectedStatus(status);
+                            setStatusOpen(false);
+                          }}
+                          className="form-checkbox h-4 w-4 text-green-500"
                         />
-                        {s}
+                        <span className="text-sm text-gray-700 capitalize">{status}</span>
                       </label>
                     ))}
                   </div>
@@ -203,14 +254,19 @@ export default function Dashboard() {
 
             {/* Filter count button */}
             <button className="px-4 h-10 rounded-full border text-sm text-gray-700 whitespace-nowrap">
-              {selectedPrograms.length + selectedStatus.length} programs
+              {selectedPrograms.length + (selectedStatus ? 1 : 0)} programs
             </button>
           </div>
         </div>
-        <GrantRoundCard />
+
+        {filteredGrants.length > 0 ? (
+          <GrantRoundCard grants={filteredGrants} />
+        ) : (
+          <div className="text-center mt-10 text-gray-500 text-md">
+            No grant rounds found for your search.
+          </div>
+        )}
       </main>
-
-
     </div>
   );
 }
