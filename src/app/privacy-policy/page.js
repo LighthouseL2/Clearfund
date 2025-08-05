@@ -67,11 +67,11 @@ export default function PrivacyPolicy() {
             setToggle={setOpen}
         />
       
- <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
+ <div className="min-h-screen flex items-center justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
       <div className="max-w-3xl w-full  p-8 ">
         <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
-        <p className="text-sm text-black mb-6">{policy.effectiveDate}</p>
-        <p className="text-sm text-black mb-6">{policy.paragraph} {' '}<a
+        <p className="text-[16px] text-black mb-6">{policy.effectiveDate}</p>
+        <p className="text-[16px] text-black mb-6">{policy.paragraph} {' '}<a
             href="https://clearfund.netlify.app"
             className="text-blue-600 underline"
             target="_blank"
@@ -121,6 +121,6 @@ export default function PrivacyPolicy() {
 
 6. Changes to This Policy
 
-
+"
 
 7. Contact Us`

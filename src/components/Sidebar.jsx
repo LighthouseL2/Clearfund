@@ -157,14 +157,15 @@ export default function Sidebar() {
           <hr className="mt-4" />
 
           <div className="mt-5">
-            <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
+            <Link href={"/account"} >
+              <button className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-3
               ${pathname === "/account"
                     ? "bg-[#174123] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
                 } font-medium  rounded-lg w-full text-left`}>
-              <Settings size={18} />
-              Setting
-                      
+                <Settings size={18} />
+                Setting
+              </button>
             </Link>
           </div>
         </div>
