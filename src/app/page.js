@@ -71,7 +71,7 @@ export default function Home() {
                             setOpen(true)
                             setBlur(true)
                          }}>
-                        Try it free
+                        Get Started
                 </Link>
             </div>
         </div>

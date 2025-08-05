@@ -39,7 +39,7 @@ const cards = [
           </svg>
 ,
     alt: "Paragraph Icon",
-    title: "Paragraph",
+    title: "Substack",
     description: "Want funding updates in your inbox? Subscribe\nto our Paragraph and never miss a beat in Web3\npublic goods.",
     buttonText: "Subscribe",
   },
