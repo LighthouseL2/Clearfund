@@ -6,11 +6,19 @@ import Image from "next/image";
 import Notification from "@/components/Notification";
 import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter()
+
+
+  function handleLogout(){
+    localStorage.removeItem("token")
+    router.push("/?route=login")
+  }
 
   // Sample notifications data
   const notifications = [
@@ -186,30 +194,39 @@ export default function Sidebar() {
           <hr className="mt-4" />
 
           <div className="mt-5">
-              <Link href="/404">
-            <button className={`flex items-center gap-3  text-sm px-4 py-2 font-medium  rounded-lg w-full text-left  ${
-                  pathname === "/404"
+            <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
+              ${pathname === "/account"
                     ? "bg-[#174123] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
-                }`}>
-              <Settings size={18} className={pathname === "/404" ? "text-white" : "text-gray-400"} />
+                } font-medium  rounded-lg w-full text-left`}>
+              <Settings size={18} />
               Setting
-                      </button>
-                        </Link>
+                      
+            </Link>
           </div>
         </div>
 
-              <div className="mt-6 space-y-2">
-                  <Link href="/404">
-          <button className={`flex items-center gap-3  text-sm px-4 py-2 font-medium  rounded-lg w-full text-left ${
+        {/* <div className="mt-6 space-y-2">
+            <Link href="/404">
+              <button className={`flex items-center gap-3  text-sm px-4 py-2 font-medium  rounded-lg w-full text-left ${
                   pathname === "/404"
                     ? "bg-[#174123] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
                 }`}>
-            <LogOut size={18} className={pathname === "/404" ? "text-white" : "text-gray-400"} />
+                <LogOut size={18} className={pathname === "/404" ? "text-white" : "text-gray-400"} />
+            <Link href={"/account"} className="flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium hover:bg-gray-50 rounded-lg w-full text-left">
+              <Settings size={18} />
+              Setting
+            </Link>
+          </div>
+        </div> */}
+
+        <div className="mt-6 space-y-2">
+          <button className="flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
+           hover:bg-gray-50 rounded-lg w-full text-left" onClick={handleLogout}>
+            <LogOut size={18} />
             Logout
-                      </button>
-                      </Link>
+          </button>
         </div>
       </aside>
 

@@ -12,3 +12,5 @@ export const connectDB = async () => {
         process.exit(1)
     }
 }
+
+// MONGO_URI

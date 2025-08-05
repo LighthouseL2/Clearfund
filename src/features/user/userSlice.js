@@ -27,13 +27,29 @@ export const registerUser = createAsyncThunk("/auth/register", async (formData) 
     return response.json()
 })
 
+// https://clearfund.onrender.com/api/auth/delete
+export const deleteUser = createAsyncThunk("/auth/delete", async () => {
+    const response = await fetch("https://clearfund.onrender.com/api/auth/delete", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+          // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmMxNTY5ZmMwZjA4NzlmY2Q1NWJjNSIsImVtYWlsIjoiaWFtb251d2FjakBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTM4OTk1NzEsImV4cCI6MTc1MzkwMzE3MX0.s596xirVAUOmkEWgA1TkWheBCY9ZQTeWI0y6rOQRAGY`
 
+        },
+        credentials: "include",
+        // body: JSON.stringify(formData)
+    })
+    return response.json()
+})
+
+// https://clearfund.onrender.com/api/auth/check-auth
 export const checkAuth = createAsyncThunk("/auth/checkauth",
     async () => {
         const response = await fetch("https://clearfund.onrender.com/api/auth/check-auth", {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
+                // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmMxNTY5ZmMwZjA4NzlmY2Q1NWJjNSIsImVtYWlsIjoiaWFtb251d2FjakBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTM4OTk1NzEsImV4cCI6MTc1MzkwMzE3MX0.s596xirVAUOmkEWgA1TkWheBCY9ZQTeWI0y6rOQRAGY`
             },
             credentials: "include"
         })
@@ -93,6 +109,24 @@ const userSlice = createSlice({
         state.isAuthenticated = false
       })
       .addCase(registerUser.rejected, (state, action) => {
+        state.isLoading = false,
+        state.user = null,
+        state.isAuthenticated = false
+
+      })
+
+
+
+      .addCase(deleteUser.pending, (state) => {
+        state.isLoading = true;
+
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.isLoading = false,
+        state.user = null,
+        state.isAuthenticated = false
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
         state.isLoading = false,
         state.user = null,
         state.isAuthenticated = false
