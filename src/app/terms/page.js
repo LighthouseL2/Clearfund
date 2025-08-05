@@ -68,7 +68,7 @@ export default function TermsAndConditions() {
   };
 
   return (
-    <section>
+    <section className="bg-[#FAFAFA]">
       <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
@@ -79,7 +79,7 @@ export default function TermsAndConditions() {
             setToggle={setOpen}
         />
         
-      <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
+      <div className="min-h-screen flex items-center justify-center px-4 pb-[8rem] pt-[5rem]">
         <div className="max-w-3xl w-full p-8">
           <h1 className="text-3xl font-bold mb-4">{terms.title}</h1>
           <p className="text-sm text-black mb-6">{terms.effectiveDate}</p>

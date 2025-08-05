@@ -59,12 +59,14 @@ export default function SupportSection() {
       <HeroSection />
 
       <div className="px-4 py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 -mt-44 z-10 relative">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10
+           -mt-44 z-10 relative">
           {cards.map((card, index) => (
             <div
               key={index}
               className="bg-white border border-gray-200 rounded-lg  flex flex-col mb-20
-              items-center justify-center text-center shadow-sm hover:shadow-md transition duration-300 h-[33.2rem]"
+              items-center justify-center text-center shadow-sm hover:shadow-md transition
+              duration-300 md:h-[531px] h-[450px]"
             >
               <Image
                 src={`/${card.icon}`}

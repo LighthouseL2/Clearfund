@@ -136,7 +136,7 @@ const Footer = () => {
 
             </div>
 
-            <div className="mt-[5rem] justify-between w-full ">
+            <div className="mt-[6rem] justify-between w-full ">
                 <p className="text-[14px] text-[#99999999] font-sans">© {today} ClearFund. All rights reserved</p>
             </div>
         </div>

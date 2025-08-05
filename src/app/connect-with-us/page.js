@@ -73,13 +73,13 @@ export default function SupportSection() {
             setToggle={setOpen}
         />
           <header
-      className="bg-center bg-black bg-no-repeat bg-cover h-[90vh] relative"
-      // style={{
-      //   backgroundImage: `url('/support-bg.svg')`,
-      // }}
+      className="bg-center  bg-no-repeat bg-cover h-[90vh] relative"
+      style={{
+        backgroundImage: `url('/support-bg.svg')`,
+      }}
     >
       {/* Overlay */}
-      <div className="h-full w-full flex items-center justify-center px-4 md:px-24">
+      <div className="h-full w-full flex items-center justify-center px-4 md:px-24 bg-black/90">
         <div className="text-white max-w-3xl text-center md:text-left">
           <h1 className="font-extrabold text-5xl text-center sm:text-6xl md:text-[88px] mb-4 leading-tight">
           Connect with Us

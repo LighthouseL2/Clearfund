@@ -26,7 +26,7 @@ export default function HomePage() {
       </div>
 
       {/* Public Goods Info Section */}
-      <section className="bg-[#F7F2EF] px-4 py-16 flex items-center justify-center  h-[65vh]">
+      <section className="bg-[#F7F2EF] px-4 py-16 flex items-center justify-center  md:h-[70vh]">
         <div className="mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl md:text-[72px] font-bold text-[#198038] mb-6 md:whitespace-nowrap">
             Unifying Web3 Grant Data
@@ -37,7 +37,7 @@ export default function HomePage() {
              It makes it easy to follow the money and understand the impact.
           </p>
           <a href='https://giveth.io/project/clearfund' target='_blank' className="bg-[#198038] text-white block mx-auto py-4 text-sm rounded
-           hover:bg-green-800 transition w-[202.1923828125px]">
+           hover:bg-green-800 transition w-[202.1923828125px] font-bold">
             Support Us
           </a>
           
@@ -56,9 +56,9 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="relative z-10 px-6 md:px-20 py-20 max-w-5xl text-white">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">About</h2>
-          <p className="mb-6 text-base md:text-lg leading-relaxed">
+        <div className="relative z-10 px-6 md:px-20 py-20 md:max-w-5xl w-full text-white">
+          <h2 className="text-3xl md:text-[64px] font-bold mb-6">About</h2>
+          <p className="mb-6 text-[18px] leading-relaxed">
             From the early days of Gitcoin’s Quadratic Funding rounds to
             the emergence of new players like Octant, Celo and others thousands
             of projects have received vital support. However, the problem
@@ -67,17 +67,17 @@ export default function HomePage() {
              That’s where ClearFund comes in.
           </p>
 
-          <h2 className='mt-10 mb-10 bold text-[20px]'>What Is ClearFund?</h2>
+          <h2 className='mt-10 mb-10 font-bold text-[20px]'>What Is ClearFund?</h2>
           <p className='text-[18px]'>ClearFund is a data aggregation and transparency platform for the Web3 public goods funding ecosystem. It brings together past funding data from decentralized grant platforms into one accessible, searchable archive. Whether you’re a grantee, donor, DAO contributor, researcher, or policymaker, ClearFund makes it easy to trace funding histories, identify trends, and assess the real-world impact of Web3 funding. 
 
             We solve the problem of fragmented information, a major barrier to transparency and accountability in decentralized ecosystems by creating a unified home for past grant data.</p>
 
-          <h2 className='mt-10 mb-10 bold text-[20px]'>Why This Matters:</h2>
-          <p>Public goods funding in Web3 has grown significantly. But as more platforms experiment with new models Retroactive Public Goods Funding, Quadratic Funding, streaming grants, on-chain bounties the data trail has become messy. Each platform publishes funding outcomes in its own format. Some share spreadsheets, others release blog summaries, while many projects receive funding with minimal public visibility.</p>
+          <h2 className='mt-10 mb-10 font-bold text-[20px]'>Why This Matters:</h2>
+          <p className='text-[18px]'>Public goods funding in Web3 has grown significantly. But as more platforms experiment with new models Retroactive Public Goods Funding, Quadratic Funding, streaming grants, on-chain bounties the data trail has become messy. Each platform publishes funding outcomes in its own format. Some share spreadsheets, others release blog summaries, while many projects receive funding with minimal public visibility.</p>
 
-          <h2 className='mt-10 mb-10 bold text-[20px]'>Problems:</h2>
+          <h2 className='mt-10 mb-10 font-bold text-[20px]'>Problems:</h2>
 
-          <ul className='list-disc ml-10 space-y-10'>
+          <ul className='list-disc ml-10 space-y-10 text-[18px]'>
             <li>Fragmented Funding Data: Information about funded projects is spread across various individual platforms, making it challenging to get a comprehensive view. ClearFund brings all this data together into one place, making it easier to explore, compare, and analyze projects across the Web3 funding ecosystem.</li>
             <li>Difficult to measure impact: Without organized data, it’s hard to evaluate how effective grant programs have been.</li>
             <li>Inaccessible to non-experts: Community members, students, and even funders struggle to understand what’s happening across the broader ecosystem.</li>
@@ -91,7 +91,7 @@ export default function HomePage() {
             Whether you’re a builder seeking visibility, a donor seeking transparency, or a curious onlooker exploring
             the ReFi space, ClearFund is here to guide your journey.
           </p> */}
-          <p className='mt-10'>ClearFund was created to address these challenges head-on.</p>
+          <p className='mt-10 text-[18px]'>ClearFund was created to address these challenges head-on.</p>
         </div>
       </section>
 
