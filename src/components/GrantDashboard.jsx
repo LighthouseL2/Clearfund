@@ -6,7 +6,7 @@ export default function GrantDashboard() {
 
     const metricData = [
         {
-            title: "Cumulative Raise",
+            title: "Cumulative Raised",
             value: "$ 58,450.41",
             img: "/grant-icons/cumulative-raise-icon.svg",
             footer: { text: "Disbursed", icon: "/card-icons/disbursed-icon.svg" },
@@ -95,111 +95,113 @@ export default function GrantDashboard() {
 
     return (
 
-       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-  {/* Metric Cards */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-800">
-    {[...metricData, ...sideCardData].map((item, index) => (
-      <div
-        key={index}
-        className="min-h-[160px] p-5 border rounded-xl shadow-sm bg-white flex flex-col justify-between"
-      >
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500 break-words">{item.title}</span>
-          <div className="relative w-10 h-10 flex-shrink-0">
-            <Image
-              src={item.img}
-              alt={item.title}
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            {/* Metric Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-800">
+                {[...metricData, ...sideCardData].map((item, index) => (
+                    <div
+                        key={index}
+                        className="min-h-[160px] p-5 border rounded-xl shadow-sm bg-white flex flex-col justify-between"
+                    >
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm text-gray-500 break-words font-bold">{item.title}</span>
+                            <div className="relative w-10 h-10 flex-shrink-0">
+                                <Image
+                                    src={item.img}
+                                    alt={item.title}
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                        </div>
 
-        <div className="text-xl font-extrabold text-black font-sans mt-3">
-          {item.value}
-        </div>
+                        <div className="text-xl font-extrabold text-black font-sans mt-3">
+                            {item.value}
+                        </div>
 
-        {item.footer && (
-          <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-            <Image
-              src={item.footer.icon}
-              alt={item.footer.text}
-              width={20}
-              height={20}
-              className="object-contain"
-            />
-            <p>{item.footer.text}</p>
-          </div>
-        )}
-      </div>
-    ))}
-  </div>
-
-  {/* Timeline */}
-  <div className="text-gray-800 font-sans">
-    <div className="bg-white rounded-xl shadow-sm p-6">
-      <h3 className="text-lg font-semibold mb-10">Recent Grant recipient</h3>
-
-      <div className="px-2 sm:px-4 py-1">
-        <div className="relative border-l-2 border-gray-200">
-          {timelineData.map((item, index) => (
-            <div
-              key={index}
-              className={`pl-8 relative ${index !== timelineData.length - 1 ? 'mb-8' : ''}`}
-            >
-              <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
-                <Clock className="w-6 h-6 text-[#008767]" />
-              </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-gray-500">{item.date}</p>
-                  <p className="text-sm break-words  text-black font-extrabold">
-                    <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
-                  </p>
-                </div>
-                {item.link && (
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
-                  </a>
-                )}
-              </div>
+                        {item.footer && (
+                            <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                                <Image
+                                    src={item.footer.icon}
+                                    alt={item.footer.text}
+                                    width={20}
+                                    height={20}
+                                    className="object-contain"
+                                />
+                                <p>{item.footer.text}</p>
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
-          ))}
-        </div>
 
-        <div className="h-10 border-l-2 border-gray-200 ml-[-1px]"></div>
+            {/* Timeline */}
+            <div className="text-gray-800 font-sans py-14">
+                <div className="bg-white rounded-xl shadow-sm p-6 border-1">
+                    <h3 className="text-lg font-semibold mb-12 py-3">Recent Grant recipient</h3>
 
-        <p className="py-5 text-[#00000099]">Thurs July 24, 2025</p>
+                    <div className="px-2 sm:px-4">
+                        <div className="relative border-l-2 border-gray-200">
+                            {timelineData.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`pl-8 relative ${index !== timelineData.length - 1 ? 'mb-8' : ''}`}
+                                >
+                                    <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
+                                        <Clock className="w-6 h-6 text-[#008767]" />
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-sm text-gray-500">{item.date}</p>
+                                            <p className="text-sm break-words  text-black font-extrabold">
+                                                <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
+                                            </p>
+                                        </div>
+                                        {item.link && (
+                                            <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                                <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
-        <div className="relative border-l-2 border-gray-200">
-          {timelineDatas.map((item, index) => (
-            <div
-              key={index}
-              className={`pl-8 relative ${index !== timelineDatas.length - 1 ? 'mb-8' : ''}`}
-            >
-              <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
-                <Clock className="w-6 h-6 text-[#008767]" />
-              </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-gray-500">{item.date}</p>
-                  <p className="text-sm break-words text-black font-extrabold">
-                    <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
-                  </p>
+                        <div className="h-10 border-l-2 border-gray-200 ml-[-1px]"></div>
+
+                        <p className="py-5 text-[#00000099]">Thurs July 24, 2025</p>
+
+                        <div className="relative border-l-2 border-gray-200">
+                            {timelineDatas.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`pl-8 relative ${index !== timelineDatas.length - 1 ? 'mb-8' : ''}`}
+                                >
+                                    <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
+                                        <Clock className="w-6 h-6 text-[#008767]" />
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-sm text-gray-500">{item.date}</p>
+                                            <p className="text-sm break-words text-black font-extrabold">
+                                                <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
+                                            </p>
+                                        </div>
+                                        {item.link && (
+                                            <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                                <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                         <div className="h-10 border-l-2 border-gray-200 ml-[-1px]"></div>
+                        
+                    </div>
                 </div>
-                {item.link && (
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
-                  </a>
-                )}
-              </div>
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 
     );
 }

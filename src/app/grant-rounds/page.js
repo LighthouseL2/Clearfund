@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import { LogOut, Settings, ChevronRight} from "lucide-react";
+import { LogOut, Settings, ChevronRight } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
 import Sidebar from "@/components/Sidebar";
 
@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState([]);
 
-  const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar" ,"Arbitrum", "Others"];
+  const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar", "Arbitrum", "Others"];
   const statuses = ["Ongoing", "Upcoming", "Applications Open"];
 
   const toggleProgram = (program) => {
@@ -53,13 +53,12 @@ export default function Dashboard() {
     <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
 
       {/* Sidebar */}
-      
- <Sidebar />
+      <Sidebar />
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 md:ml-64">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold text-center mb-2">Grant Rounds</h1>
-          <p className="text-center text-gray-600 mb-6">
+          <h1 className="text-2xl font-bold text-center mb-2">Grant History</h1>
+          <p className="text-center text-base text-gray-600 mb-6">
             Explore current and upcoming grant opportunities across different ecosystems.
           </p>
 
@@ -207,11 +206,11 @@ export default function Dashboard() {
               {selectedPrograms.length + selectedStatus.length} programs
             </button>
           </div>
-              </div>
-              <GrantRoundCard />
+        </div>
+        <GrantRoundCard />
       </main>
 
-    
+
     </div>
   );
 }
