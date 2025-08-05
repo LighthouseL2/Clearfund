@@ -23,7 +23,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
 
         <Link href="/?route=login"
           className="w-[159.17px] md:flex items-center font-sans justify-center
-            font-medium hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
+            font-bold hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
           text-white text-[16px] h-[52px]  rounded-md" onClick={() => {
             setToggle(true)
             setBlur(true)
