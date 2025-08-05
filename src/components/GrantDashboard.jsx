@@ -128,7 +128,7 @@ export default function GrantDashboard() {
                                     height={20}
                                     className="object-contain"
                                 />
-                                <p>{item.footer.text}</p>
+                                <p className="px-1">{item.footer.text}</p>
                             </div>
                         )}
                     </div>
@@ -137,7 +137,7 @@ export default function GrantDashboard() {
 
             {/* Timeline */}
             <div className="text-gray-800 font-sans py-14">
-                <div className="bg-white rounded-xl shadow-sm p-6 border-1">
+                <div className="bg-white rounded-xl shadow-sm p-6 border-2">
                     <h3 className="text-lg font-semibold mb-12 py-3">Recent Grant recipient</h3>
 
                     <div className="px-2 sm:px-4">

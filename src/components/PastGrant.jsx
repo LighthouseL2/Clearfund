@@ -110,41 +110,50 @@ export default function PastGrantRounds() {
   ) : filteredData.length > 0 ? (
     filteredData.map((item, index) => (
       <div
-        key={index}
-        className="flex justify-between items-center bg-white p-4 shadow-lg hover:shadow transition rounded-b-lg rounded-t-0 border"
-      >
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full  flex  text-black/70 items-center justify-center overflow-hidden">
-            <Image
-              src={tabImages[activeTab] || "/default-icon.svg"}
-              alt={`${activeTab} logo`}
-              width={24}
-              height={24}
-            />
-          </div>
-          <div className="">
-            <h3 className="text-sm font-semibold text-black/70">{item.title}</h3>
-            <p className="text-xs text-black/60">{item.date}</p>
-          </div>
-        </div>
-        {item.route && (
-          <Link
-            href={item.route}
-            className="text-sm font-medium bg-white rounded-sm border-1 text-gray-600 py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline"
-          >
-            View Data
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        )}
+  key={index}
+  className="bg-white p-4 shadow-lg hover:shadow transition rounded-b-lg rounded-t-0 border"
+>
+  <div className="flex justify-between items-center flex-col sm:flex-row gap-4">
+    <div className="flex items-center space-x-3 w-full sm:w-auto">
+      <div className="w-10 h-10 rounded-full flex text-black/70 items-center justify-center overflow-hidden">
+        <Image
+          src={tabImages[activeTab] || "/default-icon.svg"}
+          alt={`${activeTab} logo`}
+          width={24}
+          height={24}
+        />
       </div>
+      <div>
+        <h3 className="text-sm font-semibold text-black/70">{item.title}</h3>
+        <p className="text-xs text-black/60">{item.date}</p>
+      </div>
+    </div>
+
+    {item.route && (
+      <Link
+        href={item.route}
+        className="text-sm font-medium bg-white rounded-sm border text-gray-600 py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline"
+      >
+        View Data
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M9 5l7 7-7 7" />
+        </svg>
+      </Link>
+    )}
+  </div>
+
+  {/* This wrapper ensures the HR is below the flex section */}
+  <div className="mt-3">
+    <hr className="w-full border-t border-gray-200" />
+  </div>
+</div>
+
    
     ))
   ) : (
