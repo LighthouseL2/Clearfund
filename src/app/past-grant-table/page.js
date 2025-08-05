@@ -180,8 +180,8 @@ export default function Home() {
 
 
           {/* Responsive Table */}
-          <div className="overflow-x-auto p-4 sm:p-6 md:p-10">
-            <table className="min-w-[800px] w-full bg-white text-sm">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
+            <table className="min-w-[800px] w-full bg-white text-sm table-auto rounded-lg overflow-hidden">
               <thead className="bg-white text-left">
                 <tr>
                   <th className="p-3 border">Project Name</th>
@@ -195,7 +195,7 @@ export default function Home() {
               </thead>
               <tbody>
                 {paginated.map((project, i) => (
-                  <tr key={i} className="hover:bg-gray-50">
+                  <tr key={i} className="hover:bg-gray-50 border-t">
                     <td className="p-3 border">{project.name}</td>
                     <td className="p-3 border">{project.contributions}</td>
                     <td className="p-3 border">${(project.crowdfunded ?? 0).toFixed(2)}</td>
@@ -219,6 +219,7 @@ export default function Home() {
               </tbody>
             </table>
           </div>
+
 
           {/* Pagination */}
           <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-between mt-6 text-sm text-gray-500 gap-3">
@@ -244,8 +245,8 @@ export default function Home() {
                     key={page}
                     onClick={() => setCurrentPage(page)}
                     className={`w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center rounded-md border ${currentPage === page
-                        ? "bg-[#198038] text-white"
-                        : "border-gray-200 text-gray-700 hover:bg-gray-100"
+                      ? "bg-[#198038] text-white"
+                      : "border-gray-200 text-gray-700 hover:bg-gray-100"
                       }`}
                   >
                     {page}
