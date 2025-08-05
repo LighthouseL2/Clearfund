@@ -26,7 +26,7 @@ app.use(passport.initialize())
 app.use("/api/auth", authRoutes)
 app.use("/api/grants", grantRoutes)
 
-app.get("/", (req, res) => {
+app.get("/ping", (req, res) => {
     res.status(200).send("success")
 })
 
