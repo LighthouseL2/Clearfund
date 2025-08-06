@@ -6,7 +6,7 @@ import Image from "next/image";
 import Notification from "@/components/Notification";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -226,7 +226,7 @@ export default function Sidebar() {
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
-                  }`}
+                  }`} onClick={() => setIsNotificationModalOpen(false)}
               >
                 <span className="flex items-center gap-3">
                   <Settings size={18}/>
