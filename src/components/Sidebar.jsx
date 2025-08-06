@@ -6,8 +6,6 @@ import Image from "next/image";
 import Notification from "@/components/Notification";
 
 import { usePathname } from "next/navigation";
-
-import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
 
 import { useRouter } from "next/navigation";
