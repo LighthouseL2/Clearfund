@@ -187,8 +187,8 @@ export default function Sidebar() {
           </nav>
           <hr className="w-[calc(100%+3rem)] -ml-6 border-t border-gray-300 my-4" />
 
-          {/* <div className="mt-5">
-            <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
+          <div className="mt-5">
+            {/* <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
               ${pathname === "/account"
                     ? "bg-[#174123] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
@@ -196,8 +196,24 @@ export default function Sidebar() {
                 <Settings size={18} />
                 Setting
               </button>
+            </Link> */}
+
+
+            <Link href="/account">
+              <button
+                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account" && !isNotificationModalOpen
+                  ? "bg-[#174123] text-white"
+                  : "text-[#9197B3] hover:bg-gray-50"
+                  }`}
+              >
+                <span className="flex items-center gap-3">
+                  <Settings size={18}/>
+                  Setting
+                </span>
+              </button>
             </Link>
-          </div> */}
+
+          </div>
         </div>
 
         {/* <div className="mt-6 space-y-2">
