@@ -7,7 +7,7 @@ import Notification from "@/components/Notification";
 import { Menu, ChevronRight, Bell, Settings, LogOut } from 'lucide-react'
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+
 
 
 export default function Sidebar() {
@@ -74,26 +74,26 @@ export default function Sidebar() {
 
  
   // Sample notifications data
-  const notifications = [
-    {
-      id: 1,
-      title: "New Grant Round",
-      message: "Grant Round #42 has been created.",
-      time: "2 hours ago",
-    },
-    {
-      id: 2,
-      title: "Application Received",
-      message: "New application submitted for Grant Round #41.",
-      time: "5 hours ago",
-    },
-    {
-      id: 3,
-      title: "Funding Update",
-      message: "Funding allocation completed for Q3 2025.",
-      time: "1 day ago",
-    },
-  ];
+  // const notifications = [
+  //   {
+  //     id: 1,
+  //     title: "New Grant Round",
+  //     message: "Grant Round #42 has been created.",
+  //     time: "2 hours ago",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Application Received",
+  //     message: "New application submitted for Grant Round #41.",
+  //     time: "5 hours ago",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Funding Update",
+  //     message: "Funding allocation completed for Q3 2025.",
+  //     time: "1 day ago",
+  //   },
+  // ];
 
   return (
     <>
