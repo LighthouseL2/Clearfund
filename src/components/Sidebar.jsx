@@ -73,7 +73,6 @@ export default function Sidebar() {
 
  
   // Sample notifications data
-<<<<<<< HEAD
   // const notifications = [
   //   {
   //     id: 1,
@@ -94,28 +93,6 @@ export default function Sidebar() {
   //     time: "1 day ago",
   //   },
   // ];
-=======
-  const notifications = [
-    {
-      id: 1,
-      title: "New Grant Round",
-      message: "Grant Round #42 has been created.",
-      time: "2 hours ago",
-    },
-    {
-      id: 2,
-      title: "Application Received",
-      message: "New application submitted for Grant Round #41.",
-      time: "5 hours ago",
-    },
-    {
-      id: 3,
-      title: "Funding Update",
-      message: "Funding allocation completed for Q3 2025.",
-      time: "1 day ago",
-    },
-  ];
->>>>>>> fafd527 (feat: refine dashboard and grant round pages, update sidebar icons, and add new dashboard-related asset)
 
   return (
     <>
