@@ -80,10 +80,10 @@ export default function TermsAndConditions() {
         />
         
       <div className="min-h-screen flex items-center justify-center px-4 pb-[8rem] pt-[5rem]">
-        <div className="max-w-3xl w-full p-8">
+        <div className="max-w-4xl w-full p-8">
           <h1 className="text-3xl font-bold mb-4">{terms.title}</h1>
-          <p className="text-sm text-black mb-6">{terms.effectiveDate}</p>
-          <p className="text-sm text-black mb-6">
+          <p className="text-[16px] text-black mb-6">{terms.effectiveDate}</p>
+          <p className="text-[16px] text-black mb-6">
           {`Welcome to ClearFund ("we", "our", or "us"). These Terms and Conditions ("Terms") govern your access to and use of our platform `}
   <a
     href="https://clearfund.netlify.app"
@@ -98,9 +98,9 @@ export default function TermsAndConditions() {
 
 
           {terms.content.map((section, index) => (
-            <div key={index} className="mb-5">
-              <h2 className="font-semibold text-lg mb-1">{section.heading}</h2>
-              <p className="text-black text-sm whitespace-pre-line">
+            <div key={index} className="mb-10">
+              <h2 className="font-bold text-lg mb-1">{section.heading}</h2>
+              <p className="text-black text-[16px] whitespace-pre-line">
                 {section.text}
               </p>
             </div>
@@ -111,3 +111,6 @@ export default function TermsAndConditions() {
     </section>
   );
 }
+
+
+

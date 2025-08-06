@@ -35,7 +35,7 @@ export default function HomePage() {
       <div className='w-full h-[80vh] relative'>
         <section
         className="w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('aboutHero.jpg') "}}
+        style={{ backgroundImage: "url('aboutImg.jpg') "}}
         />
 
         <div className='w-full h-full bg-black/80 absolute top-0 '>
@@ -49,7 +49,7 @@ export default function HomePage() {
           <h1 className="text-4xl sm:text-5xl md:text-[72px] font-bold text-[#198038] mb-6 md:whitespace-nowrap">
             Unifying Web3 Grant Data
           </h1>
-          <p className="text-[20px] md:w-4xl mx-auto text-center text-gray-800 mb-20">
+          <p className="text-[20px] md:w-5xl mx-auto text-center text-gray-800 mb-20">
             ClearFund is a Web3 data and insights platform focused on aggregating 
             and visualizing funding history across leading public goods platforms.
              It makes it easy to follow the money and understand the impact.
@@ -101,14 +101,7 @@ export default function HomePage() {
             <li>Inaccessible to non-experts: Community members, students, and even funders struggle to understand what’s happening across the broader ecosystem.</li>
             <li>Limited interoperability: Data is not structured in a way that supports cross-platform analysis or integration into DAO governance tools.</li>
           </ul>
-          {/* <p className="mb-6 text-base md:text-lg leading-relaxed">
-            By providing clear, data-driven overviews, we make it easy to understand where funding is going, who’s
-            receiving it, and how it’s creating impact.
-          </p>
-          <p className="text-base md:text-lg leading-relaxed">
-            Whether you’re a builder seeking visibility, a donor seeking transparency, or a curious onlooker exploring
-            the ReFi space, ClearFund is here to guide your journey.
-          </p> */}
+          
           <p className='mt-10 text-[18px]'>ClearFund was created to address these challenges head-on.</p>
         </div>
       </section>

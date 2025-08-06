@@ -68,10 +68,10 @@ export default function PrivacyPolicy() {
         />
       
  <div className="min-h-screen flex items-center justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
-      <div className="max-w-3xl w-full  p-8 ">
+      <div className="max-w-4xl w-full  p-8 ">
         <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
-        <p className="text-[16px] text-black mb-6">{policy.effectiveDate}</p>
-        <p className="text-[16px] text-black mb-6">{policy.paragraph} {' '}<a
+        <p className="text-[16px] text-black mb-10">{policy.effectiveDate}</p>
+        <p className="text-[16px] text-black mb-10">{policy.paragraph} {' '}<a
             href="https://clearfund.netlify.app"
             className="text-blue-600 underline"
             target="_blank"
@@ -82,9 +82,9 @@ export default function PrivacyPolicy() {
        
 
         {policy.content.map((section, index) => (
-          <div key={index} className="mb-5">
-            <h2 className="font-semibold text-lg mb-1">{section.heading}</h2>
-            <p className="text-black text-sm whitespace-pre-line">{section.text}</p>
+          <div key={index} className="mb-10">
+            <h2 className="font-bold text-lg mb-1">{section.heading}</h2>
+            <p className="text-black text-[16px] whitespace-pre-line">{section.text}</p>
           </div>
         ))}
       </div>
