@@ -1,11 +1,29 @@
+"use client"
+
 import Image from 'next/image';
+import { useState } from 'react';
 import NavHeader from "@/components/navHeader";
 import Footer from "@/components/Footer";
+import MenuDropdown from "@/components/menuDropdown";
 
 export default function HomePage() {
+
+    const [open, setOpen] = useState(true)
+    const [openMenu, setOpenMenu] = useState(false)
+    const [blur, setBlur] = useState(false)
+
+
   return (
     <div className="bg-white text-black">
-      <NavHeader />
+      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
+        />
+        <MenuDropdown
+            openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+            toggle={open}
+            setToggle={setOpen}
+        />
 
       {/* Top Logo Background */}
       <section

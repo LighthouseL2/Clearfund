@@ -4,9 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Notification from "@/components/Notification";
+
+import { usePathname } from "next/navigation";
+
 import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+
 import { useRouter } from "next/navigation";
+
+
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -41,6 +47,59 @@ export default function Sidebar() {
       time: "1 day ago",
     },
   ];
+
+
+  // Sample notifications data
+
+
+
+
+  // Sample notifications data
+  // const notifications = [
+  //   {
+  //     id: 1,
+  //     title: "New Grant Round",
+  //     message: "Grant Round #42 has been created.",
+  //     time: "2 hours ago",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Application Received",
+  //     message: "New application submitted for Grant Round #41.",
+  //     time: "5 hours ago",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Funding Update",
+  //     message: "Funding allocation completed for Q3 2025.",
+  //     time: "1 day ago",
+  //   },
+  // ];
+
+
+ 
+  // Sample notifications data
+  // const notifications = [
+  //   {
+  //     id: 1,
+  //     title: "New Grant Round",
+  //     message: "Grant Round #42 has been created.",
+  //     time: "2 hours ago",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Application Received",
+  //     message: "New application submitted for Grant Round #41.",
+  //     time: "5 hours ago",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Funding Update",
+  //     message: "Funding allocation completed for Q3 2025.",
+  //     time: "1 day ago",
+  //   },
+  // ];
+
 
   return (
     <>
@@ -188,14 +247,33 @@ export default function Sidebar() {
           <hr className="w-[calc(100%+3rem)] -ml-6 border-t border-gray-300 my-4" />
 
           <div className="mt-5">
-            <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
+
+            {/* <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
               ${pathname === "/account"
-                ? "bg-[#174123] text-white"
-                : "text-[#9197B3] hover:bg-gray-50"
-              } font-medium  rounded-lg w-full text-left`}>
-              <Settings size={18} />
-              Setting
+                    ? "bg-[#174123] text-white"
+                    : "text-[#9197B3] hover:bg-gray-50"
+                } font-medium  rounded-lg w-full text-left`}>
+                <Settings size={18} />
+                Setting
+              </button>
+            </Link> */}
+
+
+            <Link href="/account">
+              <button
+                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account" && !isNotificationModalOpen
+                  ? "bg-[#174123] text-white"
+                  : "text-[#9197B3] hover:bg-gray-50"
+                  }`} onClick={() => setIsNotificationModalOpen(false)}
+              >
+                <span className="flex items-center gap-3">
+                  <Settings size={18}/>
+                  Setting
+                </span>
+              </button>
+
             </Link>
+
           </div>
         </div>
 
