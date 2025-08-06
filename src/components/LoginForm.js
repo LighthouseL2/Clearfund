@@ -11,65 +11,65 @@ import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import { initialFormData } from '@/lib/config'
 import { loginUser } from '@/features/user/userSlice'
+import { signInWithPopup } from 'firebase/auth'
+import { auth, provider } from '@/lib/firebase'
 
 
 
 const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
     // const [showPassword, setShowPassword] = useState(false)
-    const [errors, setErrors] = useState(null)
+    // const [errors, setErrors] = useState(null)
 
-    const [formData, setFormdata] = useState(initialFormData)
-    const dispatch = useDispatch()
+    // const [formData, setFormdata] = useState(initialFormData)
+    // const dispatch = useDispatch()
     const router = useRouter()
 
 
-    const validate = () => {
-        const newErrors = {}
+    // const validate = () => {
+    //     const newErrors = {}
 
-        if(!formData.password) {
-            newErrors.password = "Password cannot be empty"
-            setErrors("Incorrect email or password, please try again.")
-        }
-
-        // if(!formData.password) {
-        //     newErrors.password = "Password cannot be empty"
-        //     setErrors("Incorrect email or password, please try again.")
-        // }
-
-        if(!formData.email.trim()) {
-            newErrors.email = "Email is required"
-            setErrors("Incorrect email or password, please try again.")
-        }else {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-            if(!emailRegex.test(formData.email)){
-                newErrors.email = "Enter a valid email"
-                setErrors("Incorrect email or password, please try again.")
-            }
-        }
-
-        // setErrors(newErrors)
-        console.log(Object.keys(newErrors).length  === 0);
-        return errors === null && Object.keys(newErrors).length  === 0
-    }
-
-    // const handleSubmit = async () => {
-    //     if(validate()){
-    //         // api call
-    //         await dispatch(loginUser(formData)).then((data) => {
-    //             if(data.payload){
-    //                 router.push("/dashboard")
-    //             }
-    //         })
+    //     if(!formData.password) {
+    //         newErrors.password = "Password cannot be empty"
+    //         setErrors("Incorrect email or password, please try again.")
     //     }
+
+    //     if(!formData.password) {
+    //         newErrors.password = "Password cannot be empty"
+    //         setErrors("Incorrect email or password, please try again.")
+    //     }
+
+    //     if(!formData.email.trim()) {
+    //         newErrors.email = "Email is required"
+    //         setErrors("Incorrect email or password, please try again.")
+    //     }else {
+    //         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    //         if(!emailRegex.test(formData.email)){
+    //             newErrors.email = "Enter a valid email"
+    //             setErrors("Incorrect email or password, please try again.")
+    //         }
+    //     }
+
+    //     // setErrors(newErrors)
+    //     console.log(Object.keys(newErrors).length  === 0);
+    //     return errors === null && Object.keys(newErrors).length  === 0
     // }
+
+    const handleLogin = async () => {
+        try {
+            await signInWithPopup(auth, provider)
+            router.push("/dashboard")
+        } catch (error) {
+            console.error("login failed", error);
+        }
+    }
 
     function handleDialog(){
         setOpen(!open)
         // setShowPassword(false)
-        setFormdata(initialFormData)
+        // setFormdata(initialFormData)
         setBlur(false)
-        setErrors(null)
+        // setErrors(null)
     }
 
   return (
@@ -96,7 +96,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                         
                     <div className='shadow mt-5 shadow-[#00000040] w-[239.978515625px] border-black/30 flex px-3 items-center py-3 rounded-md mb-6'>
 
-                        <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans
+                        {/* <Link href={`https://clearfund.onrender.com/api/auth/google`} className='flex font-sans
                            justify-center w-full items-center'>
                             <div className='flex items-center gap-2'>
                                 <Image
@@ -106,12 +106,28 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                                     height={23.11}
                                 />
                                 <span className='text-[16px] font-sans font-medium text-black/50'>
-                                    Sign in with Google
+                                    Continue with Google
                                 </span>
 
 
                             </div>
-                        </Link>
+                        </Link> */}
+                        <button onClick={handleLogin} className='flex font-sans border-0
+                           justify-center w-full items-center outline-0'>
+                            <div className='flex items-center gap-2'>
+                                <Image
+                                    src={"/google.png"}
+                                    alt='google logo'
+                                    width={23.11}
+                                    height={23.11}
+                                />
+                                <span className='text-[16px] font-sans font-medium text-black/50'>
+                                    Continue with Google
+                                </span>
+
+
+                            </div>
+                        </button>
 
 
                         
