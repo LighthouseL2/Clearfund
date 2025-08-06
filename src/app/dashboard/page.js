@@ -13,10 +13,10 @@ import { cn } from "@/lib/utils"; // if using classNames utility
 import GrantDashboard from "@/components/GrantDashboard";
 // import { checkAuth } from "@/features/user/userSlice";
 
-
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter()
+
 
 
 

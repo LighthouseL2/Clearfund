@@ -4,8 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Notification from "@/components/Notification";
-import { Menu, ChevronRight, Bell, Settings, LogOut } from 'lucide-react'
+
 import { usePathname } from "next/navigation";
+
+import { usePathname } from "next/navigation";
+import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+
 import { useRouter } from "next/navigation";
 
 
@@ -43,6 +47,7 @@ export default function Sidebar() {
       time: "1 day ago",
     },
   ];
+
 
   // Sample notifications data
 
@@ -94,6 +99,7 @@ export default function Sidebar() {
   //     time: "1 day ago",
   //   },
   // ];
+
 
   return (
     <>
@@ -241,6 +247,7 @@ export default function Sidebar() {
           <hr className="w-[calc(100%+3rem)] -ml-6 border-t border-gray-300 my-4" />
 
           <div className="mt-5">
+
             {/* <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
               ${pathname === "/account"
                     ? "bg-[#174123] text-white"
@@ -264,6 +271,7 @@ export default function Sidebar() {
                   Setting
                 </span>
               </button>
+
             </Link>
 
           </div>
