@@ -78,7 +78,8 @@ export default function PrivacyPolicy() {
             rel="noopener noreferrer"
           >
             clearfund.netlify.app
-          </a></p>
+          </a>
+        </p>
        
 
         {policy.content.map((section, index) => (
@@ -98,29 +99,3 @@ export default function PrivacyPolicy() {
     
   );
 }
-
-
-`
-
-
-
-
-2. What We Display
-
-
-3. Cookies & Analytics
-
-
-4. Third-Party Links
-
-
-5. Data Security
-
-
-
-
-6. Changes to This Policy
-
-"
-
-7. Contact Us`

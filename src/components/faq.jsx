@@ -9,7 +9,9 @@ const FaqSection = () => {
     const questionsData = [
         {
             question: "Who is ClearFund for?",
-            ans: `It’s for grant seekers, funders, researchers, DAO contributors, and data analysts.`
+            ans: `ClearFund is for anyone interested in how public goods are funded. Grantees, 
+                donors, DAO contributors, researchers, and curious community members exploring 
+                supported projects across various grant platforms.`
         },
 
         {
@@ -34,7 +36,7 @@ const FaqSection = () => {
 
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7rem] text-white pt-[7rem] mb-10 lg:mb-0">
+    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[8rem] text-white pt-[7rem] mb-10 lg:mb-0">
         <div className="w-full md:w-[424px] h-full">
             <h2 className="text-[36px] mb-5 font-extrabold font-sans">Your questions, answered simply</h2>
 
