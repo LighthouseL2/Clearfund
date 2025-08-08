@@ -62,7 +62,7 @@ export default function TermsAndConditions() {
       },
       {
         heading: "11. Governing Law",
-        text: `These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which the ClearFund project is primarily maintained, without regard to its conflict of law provisions. However, since ClearFund is an open-source, global platform, users agree that any legal matters shall be resolved in a fair and neutral manner, prioritizing cooperative resolution. By using ClearFund, you acknowledge that local laws may apply depending on your location, and you are responsible for compliance with them.`,
+        text: `These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which the ClearFund project is primarily maintained, without regard to its conflict of law provisions. However, since ClearFund is an open-source, global platform, users agree that any legal matters shall be resolved in a fair and neutral manner, prioritizing cooperative resolution.`,
       },
     ],
   };
@@ -105,6 +105,7 @@ export default function TermsAndConditions() {
               </p>
             </div>
           ))}
+          <p className="text-black text-[16px] whitespace-pre-line">By using ClearFund, you acknowledge that local laws may apply depending on your location, and you are responsible for compliance with them.</p>
         </div>
       </div>
       <Footer />
