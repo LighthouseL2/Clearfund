@@ -41,8 +41,8 @@ const DeleteAccountDialog = ({open, setOpen, deleteAccount}) => {
                   </div>
                   <DialogFooter className={"w-full text-center mt-3 flex"}>
                     <div className='w-full space-y-1 text-[14px] font-medium flex justify-end gap-2'>
-                      <DialogClose  className={"w-fit bg-[#D9D9D9] px-5 hover:scale-105 hover:text-white rounded text-black/70 font-sans hover:bg-black  h-[32px]"}>Cancel</DialogClose>
-                      <Button className='w-fit h-[32px] px-5 bg-[#DC2828] rounded text-white hover:scale-105 font-sans' onClick={deleteAccount}>Confirm</Button>
+                      <DialogClose  className={"w-fit cursor-pointer bg-[#D9D9D9] px-5 hover:scale-105 hover:text-white rounded text-black/70 font-sans hover:bg-black  h-[32px]"}>Cancel</DialogClose>
+                      <Button className='w-fit h-[32px] cursor-pointer px-5 bg-[#DC2828] rounded text-white hover:scale-105 font-sans' onClick={deleteAccount}>Confirm</Button>
                     </div>
                   </DialogFooter>
 

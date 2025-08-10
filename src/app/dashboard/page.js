@@ -27,14 +27,14 @@ function Dashboard() {
   //     })
   // }, [router, dispatch])
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const token = params.get('token')
-    if(token) {
-      localStorage.setItem("token", token)
-      router.replace("/dashboard")
-    }
-  })
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search)
+  //   const token = params.get('token')
+  //   if(token) {
+  //     localStorage.setItem("token", token)
+  //     router.replace("/dashboard")
+  //   }
+  // })
 
   
 

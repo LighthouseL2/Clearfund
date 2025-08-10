@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Notification from "@/components/Notification";
-
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
 
@@ -20,9 +21,21 @@ export default function Sidebar() {
 
 
   function handleLogout() {
-    localStorage.removeItem("token")
+    // localStorage.removeItem("token")
+    // router.push("/?route=login")
+
+    signOut(auth)
     router.push("/?route=login")
   }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if(!user) {
+        router.push("/?route=login")
+      }
+    })
+    return () => unsubscribe()
+  }, [router])
 
   // Sample notifications data
   const notifications = [
@@ -144,7 +157,7 @@ export default function Sidebar() {
           <nav className="space-y-3 my-6">
             <Link href="/dashboard">
               <button
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard" && !isNotificationModalOpen
+                className={`w-full flex items-center cursor-pointer justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -177,7 +190,7 @@ export default function Sidebar() {
 
             <Link href="/grant-rounds">
               <button
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-rounds" && !isNotificationModalOpen
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-rounds" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -200,7 +213,7 @@ export default function Sidebar() {
 
             <Link href="/grant-history">
               <button
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-history" && !isNotificationModalOpen
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-history" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -224,7 +237,7 @@ export default function Sidebar() {
             {/* Notification button with modal trigger */}
             <button
               onClick={() => setIsNotificationModalOpen(true)}
-              className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${isNotificationModalOpen
+              className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${isNotificationModalOpen
                 ? "bg-[#174123] text-white"
                 : "text-[#9197B3] hover:bg-gray-50"
                 }`}
@@ -259,7 +272,7 @@ export default function Sidebar() {
 
             <Link href="/account">
               <button
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account" && !isNotificationModalOpen
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`} onClick={() => setIsNotificationModalOpen(false)}
@@ -291,7 +304,7 @@ export default function Sidebar() {
         </div> */}
 
         <div className="mt-6 space-y-2">
-          <button className="flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
+          <button className="flex cursor-pointer items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
            hover:bg-gray-50 rounded-lg w-full text-left" onClick={handleLogout}>
             <LogOut size={18} />
             Logout

@@ -52,7 +52,7 @@ const Acount = () => {
                   <span className='text-[14px]'>Delete and close your account.</span>
                 </div>
 
-                <button className='bg-[#DC2828] h-[39px] text-white rounded-full w-[8.85rem]'
+                <button className='bg-[#DC2828] h-[39px] text-white rounded-full w-[8.85rem] cursor-pointer'
                   onClick={() => setOpen(true)}>
                     Delete account
                 </button>

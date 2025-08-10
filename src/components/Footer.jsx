@@ -28,11 +28,12 @@ const Footer = () => {
         let domain = emailArray[1]
         let username = emailArray[0]
 
-        router.push(`https://substack.com/sign-in?redirect=https%3A%2F%2Fclearfund.substack.com%2F&for_pub
-            =clearfund&email=${username}%40${domain}&change_user=false`)
+        // router.push(`https://substack.com/sign-in?redirect=https%3A%2F%2Fclearfund.substack.com%2F&for_pub
+        //     =clearfund&email=${username}%40${domain}&change_user=false`)
+        window.open(`https://substack.com/sign-in?redirect=https%3A%2F%2Fclearfund.substack.com%2F&for_pub=clearfund&email=${username}%40${domain}&change_user=false`, '_blank')
         return true
     }
-    
+
   return (
     <footer className="bg-white pt-[7rem] px-[5%] pb-5 text-black">
         <div className="w-full  flex  justify-between flex-wrap">
@@ -50,7 +51,7 @@ const Footer = () => {
                         placeholder="Type your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value) }/>
-                    <button onClick={handleSubscribe} className="w-1/3 bg-[#00C2FF] text-[16px] text-white font-sans border-0">Subscribe</button>
+                    <button onClick={handleSubscribe} className="w-1/3 cursor-pointer bg-[#00C2FF] text-[16px] text-white font-sans border-0">Subscribe</button>
                 </form>
 
                 <div className="sm:w-5/6 md:w-4/6 lg:w-[44%] text-center">
@@ -137,7 +138,7 @@ const Footer = () => {
 
             </div>
 
-            <div className="mt-[7rem] justify-between w-full ">
+            <div className="mt-[316px] justify-between w-full ">
                 <p className="text-[14px] text-[#99999999] font-sans">© {today} ClearFund. All rights reserved</p>
             </div>
         </div>
@@ -146,3 +147,5 @@ const Footer = () => {
 }
 
 export default Footer
+
+

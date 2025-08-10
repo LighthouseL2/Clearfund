@@ -97,7 +97,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
 
                         <button onClick={handleLogin} className='flex font-sans border-0
-                           justify-center w-full items-center outline-0'>
+                           justify-center w-full items-center outline-0 cursor-pointer'>
                             <div className='flex items-center gap-2'>
                                 <Image
                                     src={"/google.png"}
