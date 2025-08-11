@@ -115,10 +115,10 @@ export default function PastGrantRounds() {
                   </div>
                   <div className="items-center space-y-2">
                     <div className="flex flex-wrap items-center gap-x-2">
-                      <h3 className="text-sm sm:text-base font-semibold text-black/70">{item.title}</h3>
+                      <h3 className="text-xs sm:text-base font-semibold text-black/70">{item.title}</h3>
                       <p className="text-xs sm:text-sm text-[#008767] pl-1">{item.date}</p>
                     </div>
-                    <span className="inline-block text-sm font-extrabold bg-[#A6E7D8]/50 rounded-3xl border-1 border-[#26A17B] text-[#008767] py-1 px-4 shadow-2xl">
+                    <span style={{ fontSize: '10px' }}  className="inline-block  font-extrabold bg-[#A6E7D8]/50 rounded-3xl border-1 border-[#26A17B] text-[#008767] py-1 px-4 shadow-2xl">
                       {item.pool}
                     </span>
                   </div>
@@ -130,7 +130,7 @@ export default function PastGrantRounds() {
                     href={item.link}
                      target="_blank"
                   rel="noopener noreferrer"
-                    className="text-sm font-medium bg-[#A6E7D8]/50 rounded-sm border-1 border-[#26A17B] text-[#008767] py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
+                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-sm border-1 border-[#26A17B] text-[#008767] py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
                   >
                     View Data
                     <svg
