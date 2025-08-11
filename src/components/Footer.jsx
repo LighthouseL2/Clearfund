@@ -57,9 +57,9 @@ const Footer = () => {
                 <div className="sm:w-5/6 md:w-4/6 lg:w-[44%] text-center">
                     <p className="mb-20 text-center text-black/40 w-full px-5 text-[12px]
                     leading-3 font-sans">
-                        By subscribing you agree to <Link href={"https://substack.com/tos"} className="underline">
-                        Substack’s Terms of Use, our</Link><Link className="underline" href={"https://substack.com/privacy"}> privacy policy</Link>{" "}
-                         and <Link href={"https://substack.com/ccpa#personal-data-collected"} className="underline"> our information collection notice</Link>
+                        By subscribing you agree to <Link target="_blank" href={"https://substack.com/tos"} className="underline">
+                        Substack’s Terms of Use, our</Link><Link target="_blank" className="underline" href={"https://substack.com/privacy"}> privacy policy</Link>{" "}
+                         and <Link target="_blank" href={"https://substack.com/ccpa#personal-data-collected"} className="underline"> our information collection notice</Link>
                     </p>
                 </div>
 
