@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '@/components/Sidebar'
 import { useDispatch, useSelector } from "react-redux";
-import { checkAuth, deleteUser, logout } from '@/features/user/userSlice';
+// import { checkAuth, deleteUser, logout } from '@/features/user/userSlice';
 import { useRouter } from 'next/navigation';
 import DeleteAccountDialog from '@/components/ResetPassword';
+import { auth } from '@/lib/firebase';
+import { deleteUser } from 'firebase/auth';
 
 
 const Acount = () => {
@@ -14,21 +16,36 @@ const Acount = () => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
 
-  const { user } = useSelector((state) => state.user)
+  const user = auth.currentUser
+
+  // const { user } = useSelector((state) => state.user)
 
 
-  useEffect(() => {
-    dispatch(checkAuth())
+  // useEffect(() => {
+  //   dispatch(checkAuth())
 
-  }, [dispatch])
+  // }, [dispatch])
   console.log(user);
 
 
-  function deleteAccount() {
-    dispatch(deleteUser()).then(() => {
-      dispatch(logout())
-      router.push("/?route=login")
-    })
+  async function deleteAccount() {
+    // dispatch(deleteUser()).then(() => {
+    //   dispatch(logout())
+    //   router.push("/?route=login")
+    // })
+
+    if(user) {
+      try {
+        await deleteUser(user)
+        console.log("Account deleted from firebase auth");
+        router.push("/?route=login")
+      } catch (error) {
+        console.error("Error deleting User", error)
+        if(error.code === "auth/requires-recent-login") {
+          alert("Please log in again to delete your account.")
+        }
+      }
+    }
   }
   return (
     <div className={`h-screen ${open ? "bg-black/60" : "bg-white"} `} >

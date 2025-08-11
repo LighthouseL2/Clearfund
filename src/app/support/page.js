@@ -82,7 +82,8 @@ export default function SupportSection() {
               />
               <h3 className="text-[32px] font-medium text-[#1C4B2A] mb-2">{card.title}</h3>
               <p className="text-base text-gray-700 mb-6 whitespace-pre-line text-[16px]">{card.description}</p>
-              <Link href={card.link} className="w-[202.1923828125px] h-[52px] bg-green-700 text-white text-sm font-medium rounded hover:bg-green-800 transition flex items-center justify-center">
+              <Link href={card.link} target="_blank" className="w-[202.1923828125px] h-[52px] bg-green-700 
+                text-white text-sm font-medium rounded hover:bg-green-800 transition flex items-center justify-center">
                 {card.buttonText}
               </Link>
             </div>
