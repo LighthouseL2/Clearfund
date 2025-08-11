@@ -7,13 +7,13 @@ export default function GrantDashboard() {
     const metricData = [
         {
             title: "Cumulative Raised",
-            value: "$ 58,450.41",
+            value: "$8,649,987",
             img: "/grant-icons/cumulative-raise-icon.svg",
             footer: { text: "Disbursed", icon: "/card-icons/disbursed-icon.svg" },
         },
         {
             title: "Total Project",
-            value: "46",
+            value: "3,853",
             img: "/grant-icons/total-project-icon.svg",
             footer: { text: "Funded", icon: "/card-icons/funded-icon.svg" },
         },
@@ -33,19 +33,19 @@ export default function GrantDashboard() {
 
         {
             title: "Funding Data",
-            value: "1",
+            value: "11",
             img: "/grant-icons/previous-funding-icon.svg",
             footer: { text: "Archive", icon: "/card-icons/archive-round-icon.svg" },
         },
         {
             title: "Ecosystem",
-            value: "1",
+            value: "5",
             img: "/grant-icons/ecosystem-icon.svg",
             footer: { text: "Funding", icon: "/card-icons/funding-icon.svg" },
         },
         {
             title: "Upcoming Round",
-            value: "2",
+            value: "1",
             img: "/grant-icons/upcoming-round-icon.svg",
             footer: { text: "Next", icon: "/card-icons/upcoming-label-icon.svg" },
         },
@@ -104,7 +104,7 @@ export default function GrantDashboard() {
                         className="min-h-[160px] p-5 border rounded-xl shadow-sm bg-white flex flex-col justify-between"
                     >
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-500 break-words font-bold">{item.title}</span>
+                            <span className="text-sm text-[#000000]/50 break-words font-extrabold">{item.title}</span>
                             <div className="relative w-10 h-10 flex-shrink-0">
                                 <Image
                                     src={item.img}
@@ -128,7 +128,7 @@ export default function GrantDashboard() {
                                     height={20}
                                     className="object-contain"
                                 />
-                                <p className="px-1">{item.footer.text}</p>
+                                <p className="px-1 font-extrabold text-[#000000] text-sm">{item.footer.text}</p>
                             </div>
                         )}
                     </div>
