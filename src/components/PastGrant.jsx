@@ -128,6 +128,8 @@ export default function PastGrantRounds() {
                 {item.link && (
                   <Link
                     href={item.link}
+                     target="_blank"
+                  rel="noopener noreferrer"
                     className="text-sm font-medium bg-[#A6E7D8]/50 rounded-sm border-1 border-[#26A17B] text-[#008767] py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
                   >
                     View Data
