@@ -12,6 +12,7 @@ import { Clock, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils"; // if using classNames utility
 import GrantDashboard from "@/components/GrantDashboard";
 // import { checkAuth } from "@/features/user/userSlice";
+
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter()
@@ -26,14 +27,14 @@ function Dashboard() {
   //     })
   // }, [router, dispatch])
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const token = params.get('token')
-    if(token) {
-      localStorage.setItem("token", token)
-      router.replace("/dashboard")
-    }
-  })
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search)
+  //   const token = params.get('token')
+  //   if(token) {
+  //     localStorage.setItem("token", token)
+  //     router.replace("/dashboard")
+  //   }
+  // })
 
   
 
