@@ -9,7 +9,7 @@ export default function GrantDashboard() {
             title: "Cumulative Raised",
             value: "$8,649,987",
             img: "/grant-icons/cumulative-raise-icon.svg",
-            footer: { text: "Disbursed", icon: "/card-icons/disbursed-icon.svg" },
+            footer: { text: "Disbursed", icon: "/card-icons/money-icon.svg" },
         },
         {
             title: "Total Project",
