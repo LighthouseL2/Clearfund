@@ -7,13 +7,13 @@ export default function GrantDashboard() {
     const metricData = [
         {
             title: "Cumulative Raised",
-            value: "$ 58,450.41",
+            value: "$8,649,987",
             img: "/grant-icons/cumulative-raise-icon.svg",
             footer: { text: "Disbursed", icon: "/card-icons/Vector.png" },
         },
         {
             title: "Total Project",
-            value: "46",
+            value: "3,853",
             img: "/grant-icons/total-project-icon.svg",
             footer: { text: "Funded", icon: "/card-icons/funded-icon.svg" },
         },
@@ -36,19 +36,19 @@ export default function GrantDashboard() {
 
         {
             title: "Funding Data",
-            value: "1",
+            value: "11",
             img: "/grant-icons/previous-funding-icon.svg",
             footer: { text: "Archive", icon: "/card-icons/archive-round-icon.svg" },
         },
         {
             title: "Ecosystem",
-            value: "1",
+            value: "5",
             img: "/grant-icons/ecosystem-icon.svg",
             footer: { text: "Funding", icon: "/card-icons/funding-icon.svg" },
         },
         {
             title: "Upcoming Round",
-            value: "2",
+            value: "1",
             img: "/grant-icons/upcoming-round-icon.svg",
             footer: { text: "Next", icon: "/card-icons/upcoming-label-icon.svg" },
         },
