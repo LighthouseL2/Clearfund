@@ -9,7 +9,7 @@ export default function GrantDashboard() {
             title: "Cumulative Raised",
             value: "$ 58,450.41",
             img: "/grant-icons/cumulative-raise-icon.svg",
-            footer: { text: "Disbursed", icon: "/card-icons/disbursed-icon.svg" },
+            footer: { text: "Disbursed", icon: "/card-icons/Vector.png" },
         },
         {
             title: "Total Project",
@@ -107,7 +107,7 @@ export default function GrantDashboard() {
                         className="min-h-[160px] p-5 border rounded-xl shadow-sm bg-white flex flex-col justify-between"
                     >
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-500 break-words font-bold">{item.title}</span>
+                            <span className="text-[16px] text-black/50 break-words font-bold">{item.title}</span>
                             <div className="relative w-10 h-10 flex-shrink-0">
                                 <Image
                                     src={item.img}
@@ -118,7 +118,7 @@ export default function GrantDashboard() {
                             </div>
                         </div>
 
-                        <div className="text-xl font-extrabold text-black font-sans mt-3">
+                        <div className="text-[24px] font-bold text-black font-sans mt-3">
                             {item.value}
                         </div>
 
@@ -131,7 +131,7 @@ export default function GrantDashboard() {
                                     height={20}
                                     className="object-contain"
                                 />
-                                <p className="px-1">{item.footer.text}</p>
+                                <p className="px-1 text-[14px] font-bold">{item.footer.text}</p>
                             </div>
                         )}
                     </div>
