@@ -63,14 +63,11 @@ export default function Home() {
                     funded what to where the grants went.
                 </p>
 
-                <Link href="/?route=login"
+                <Link href="/dashboard"
                     className="w-[202.19px] flex items-center justify-center font-semibold
                     hover:bg-black transition-all hover:scale-110
                          bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md"
-                         onClick={() => {
-                            setOpen(true)
-                            setBlur(true)
-                         }}>
+                         >
                         Get Started
                 </Link>
             </div>
