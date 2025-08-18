@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
 import BackgroundSlider from "@/components/BackgroundSlider";
 import Sidebar from "@/components/Sidebar";
-import withAuth from "@/lib/withAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logout } from "@/features/user/userSlice";
 import { Clock, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils"; // if using classNames utility
 import GrantDashboard from "@/components/GrantDashboard";
+import ProtectedRoute from "@/lib/withAuth";
 // import { checkAuth } from "@/features/user/userSlice";
 
 function Dashboard() {
@@ -40,7 +40,8 @@ function Dashboard() {
 
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative font-sans">
+    <ProtectedRoute>
+      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative font-sans">
       {/* Sidebar imported */}
       <Sidebar />
 
@@ -48,6 +49,7 @@ function Dashboard() {
      <GrantDashboard />
       </main>
     </div>
+    </ProtectedRoute>
   );
 }
 

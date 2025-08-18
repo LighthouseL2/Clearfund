@@ -8,31 +8,21 @@ import { useRouter } from 'next/navigation';
 import DeleteAccountDialog from '@/components/ResetPassword';
 import { auth } from '@/lib/firebase';
 import { deleteUser } from 'firebase/auth';
+import ProtectedRoute from '@/lib/withAuth';
 
 
-const Acount = () => {
+const Account = () => {
 
   const dispatch = useDispatch()
   const router = useRouter()
   const [open, setOpen] = useState(false)
 
   const user = auth.currentUser
-
-  // const { user } = useSelector((state) => state.user)
-
-
-  // useEffect(() => {
-  //   dispatch(checkAuth())
-
-  // }, [dispatch])
+  
   console.log(user);
 
 
   async function deleteAccount() {
-    // dispatch(deleteUser()).then(() => {
-    //   dispatch(logout())
-    //   router.push("/?route=login")
-    // })
 
     if(user) {
       try {
@@ -48,7 +38,8 @@ const Acount = () => {
     }
   }
   return (
-    <div className={`h-screen ${open ? "bg-black/60" : "bg-white"} `} >
+    <ProtectedRoute>
+      <div className={`h-screen ${open ? "bg-black/60" : "bg-white"} `} >
         <Sidebar />
         <main className='md:ml-64 px-10 py-[7.8rem]  md:w-3/4 w-full'>
             <h1 className='text-[20px] font-semibold'>Login Information</h1>
@@ -82,9 +73,10 @@ const Acount = () => {
               deleteAccount={deleteAccount}/>
         </main>
     </div>
+    </ProtectedRoute>
   )
 }
 
-export default Acount
+export default Account
 
 

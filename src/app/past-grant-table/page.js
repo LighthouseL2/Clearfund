@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from 'react'
 import { Download } from 'lucide-react'
 import { ArrowLeft, ChevronDown } from 'lucide-react';
+import ProtectedRoute from "@/lib/withAuth";
 
 
 export default function Home() {
@@ -74,7 +75,8 @@ export default function Home() {
 
 
   return (
-    <section className="bg-white min-h-screen py-10 px-4">
+      <ProtectedRoute>
+        <section className="bg-white min-h-screen py-10 px-4">
       <div className="flex flex-wrap justify-center sm:justify-end w-full px-2 py-2 mb-6">
         <button className="flex items-center gap-1 px-12 sm:px-10 py-3.5 text-white bg-[#198038] rounded-sm text-sm sm:text-md hover:bg-green-800 transition whitespace-nowrap mr-0 lg:mr-13">
           <svg
@@ -267,6 +269,7 @@ export default function Home() {
         </main>
       </div>
     </section>
+      </ProtectedRoute>
 
   )
 }

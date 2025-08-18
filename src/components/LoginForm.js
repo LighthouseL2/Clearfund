@@ -13,52 +13,29 @@ import { initialFormData } from '@/lib/config'
 import { loginUser } from '@/features/user/userSlice'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '@/lib/firebase'
+import { jwtDecode } from 'jwt-decode'
 
 
 
 const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
-    // const [showPassword, setShowPassword] = useState(false)
-    // const [errors, setErrors] = useState(null)
-
-    // const [formData, setFormdata] = useState(initialFormData)
-    // const dispatch = useDispatch()
     const router = useRouter()
-
-
-    // const validate = () => {
-    //     const newErrors = {}
-
-    //     if(!formData.password) {
-    //         newErrors.password = "Password cannot be empty"
-    //         setErrors("Incorrect email or password, please try again.")
-    //     }
-
-    //     if(!formData.password) {
-    //         newErrors.password = "Password cannot be empty"
-    //         setErrors("Incorrect email or password, please try again.")
-    //     }
-
-    //     if(!formData.email.trim()) {
-    //         newErrors.email = "Email is required"
-    //         setErrors("Incorrect email or password, please try again.")
-    //     }else {
-    //         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    //         if(!emailRegex.test(formData.email)){
-    //             newErrors.email = "Enter a valid email"
-    //             setErrors("Incorrect email or password, please try again.")
-    //         }
-    //     }
-
-    //     // setErrors(newErrors)
-    //     console.log(Object.keys(newErrors).length  === 0);
-    //     return errors === null && Object.keys(newErrors).length  === 0
-    // }
 
     const handleLogin = async () => {
         try {
-            await signInWithPopup(auth, provider)
+            const result = await signInWithPopup(auth, provider)
+            const user = result.user
+
+
+            const token = await user.getIdToken()
+            const decoded = jwtDecode(token)
+
+            console.log("Decoded", decoded);
+            
+            localStorage.setItem("token", token)
             router.push("/dashboard")
+
+            return { user, token, decoded }
         } catch (error) {
             console.error("login failed", error);
         }

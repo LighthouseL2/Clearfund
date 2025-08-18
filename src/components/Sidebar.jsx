@@ -21,13 +21,11 @@ export default function Sidebar() {
 
 
   function handleLogout() {
-    // localStorage.removeItem("token")
-    // router.push("/?route=login")
 
     signOut(auth)
     router.push("/?route=login")
   }
-
+  // come back to this later
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if(!user) {
