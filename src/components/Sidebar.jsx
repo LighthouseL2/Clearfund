@@ -197,7 +197,11 @@ export default function Sidebar() {
               >
                 <span className="flex items-center gap-3">
                   <Image
-                    src="/sidebar-icons/grant-round-icon.svg"
+                    src={
+                      pathname === "/grant-rounds" && !isNotificationModalOpen
+                        ? "/sidebar-icons/grant-round-white-icon.svg"
+                        : "/sidebar-icons/grant-round-icon.svg" 
+                    }
                     alt="Grant Rounds"
                     width={18}
                     height={18}
@@ -220,7 +224,11 @@ export default function Sidebar() {
               >
                 <span className="flex items-center gap-3">
                   <Image
-                    src="/sidebar-icons/past-grant-data-icon.svg"
+                    src={
+                      pathname === "/grant-history" && !isNotificationModalOpen
+                        ? "/sidebar-icons/grant-history-white-icon.svg"
+                        : "/sidebar-icons/past-grant-data-icon.svg"
+                    }
                     alt="Past Grant Data"
                     width={18}
                     height={18}
