@@ -10,9 +10,10 @@ import GrantBox from "@/components/grantBox";
 import Footer from "@/components/Footer";
 import RecentPost from "@/components/recentPost";
 import FaqSection from "@/components/faq";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import MenuDropdown from "@/components/menuDropdown";
+import Image from "next/image";
 
 
 
@@ -21,6 +22,54 @@ export default function Home() {
     const [open, setOpen] = useState(true)
     const [openMenu, setOpenMenu] = useState(false)
     const [blur, setBlur] = useState(false)
+    const [loading, setLoading] = useState(true)
+    
+    const [progress, setProgress] = useState(10)
+
+    // const duration = 2000
+    let interval = 100
+
+    
+
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress((oldProgress) => {
+                if(oldProgress >= 100) {
+                    clearInterval(timer)
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+                    return 100
+                }
+                return oldProgress + 1
+            })
+        }, interval);
+        return () => clearInterval(timer)
+    })
+    
+
+
+    if (loading){
+        return (
+            <div className="flex h-screen items-center justify-center transition-all flex-col">
+                <div className="text-xl font-semibold animate-bounce mb-10">
+                    <Image
+                        alt="clearfund"
+                        src={"/projectLogo.png"}
+                        width={500}
+                        height={500}
+                    />
+                </div>
+                <div className="w-xl bg-amber-400 h-10 rounded-full overflow-hidden">
+                    <div className="h-full bg-green-500 flex items-center justify-end transition-all ease-linear px-4"
+                    style={{width: `${progress}%`}}>
+                            {progress}%
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
 
   return (
