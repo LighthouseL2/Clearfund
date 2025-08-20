@@ -5,6 +5,7 @@ import Image from "next/image";
 import NavHeader from "@/components/navHeader";
 import Footer from "@/components/Footer";
 import MenuDropdown from "@/components/menuDropdown";
+import Link from "next/link";
 import { useState } from "react";
 
 const cards = [
@@ -18,6 +19,7 @@ const cards = [
     title: "Telegram",
     description: "Be part of the conversation! Join our Telegram\ngroup to connect, ask questions, and explore\npublic goods funding together.",
     buttonText: "Join us on Telegram",
+    link: "https://t.me/+fU2kPPjZ50MxMTE0"
   },
   {
     icon: <svg width="86" height="93" viewBox="0 0 86 93" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,6 +31,7 @@ const cards = [
     title: "X(Twitter)",
     description: "Follow us on X for real-time updates,\nplatform news, and highlights from across\nthe public goods ecosystem.",
     buttonText: "Join us on X",
+    link: "https://x.com/Clear_Fund"
   },
   {
     icon: <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,20 +41,23 @@ const cards = [
           <path d="M26.7149 60.0791C26.7323 60.1404 26.7448 60.2029 26.7523 60.2661C26.8401 62.3223 26.8401 62.3223 28.8683 62.3223H67.8746C68.34 62.3223 68.8092 62.3092 69.2728 62.3036C69.2815 60.6835 69.2915 59.0635 69.3027 57.4434C69.3027 57.1892 69.3027 56.9425 69.0934 56.7593C68.7588 56.5032 68.3718 56.6359 68.0129 56.6359C54.9279 56.6284 41.8492 56.6284 28.7767 56.6359C28.1879 56.6359 27.6028 56.5163 27.014 56.5948C26.2289 57.1556 26.6233 57.8939 26.7167 58.5856C26.4719 59.0809 26.8738 59.58 26.7149 60.0791Z" fill="white"/>
           </svg>
 ,
-    alt: "Paragraph Icon",
-    title: "Paragraph",
+    alt: "Substack Icon",
+    title: "Substack",
     description: "Want funding updates in your inbox? Subscribe\nto our Paragraph and never miss a beat in Web3\npublic goods.",
     buttonText: "Subscribe",
+    link: "https://clearfund.substack.com"
   },
   {
-    icon: <svg width="104" height="83" viewBox="0 0 104 83" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M52.8071 0.0878906C55.5572 0.10334 62.4374 0.170288 69.7502 0.46383L72.3457 0.577126C79.7049 0.922167 87.0589 1.51955 90.7101 2.53407C95.5767 3.90393 99.3979 7.88993 100.691 12.9471C102.75 20.9809 103.008 36.6467 103.039 40.4422L103.044 41.225V42.121C103.008 45.9165 102.75 61.5875 100.691 69.6161C99.3825 74.6887 95.5561 78.6799 90.7101 80.0291C87.0589 81.0437 79.7049 81.641 72.3457 81.9861L69.7502 82.1045C62.4374 82.3929 55.5572 82.465 52.8071 82.4753L51.5969 82.4805H50.2837C44.4644 82.4444 20.1261 82.1818 12.3808 80.0291C7.5193 78.6593 3.69295 74.6733 2.40034 69.6161C0.340394 61.5823 0.0829011 45.9165 0.052002 42.121V40.4422C0.0829011 36.6467 0.340394 20.9757 2.40034 12.9471C3.7084 7.87448 7.53475 3.88334 12.3859 2.53922C20.1261 0.381432 44.4695 0.11879 50.2889 0.0878906H52.8071ZM41.2457 23.2623V59.3113L72.1449 41.2868L41.2457 23.2623Z" fill="#198038"/>
+    icon: <svg width="97" height="111" viewBox="0 0 97 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M85.6371 0C91.8341 0 96.8947 5.00055 97 11.2388V111L85.0829 100.455L78.376 94.239L71.2811 87.6345L74.2189 97.902H11.3629C8.37528 97.895 5.51003 96.7131 3.38457 94.6108C1.25911 92.5086 0.0436063 89.6544 0 86.6633L0 11.433C0 5.1726 4.99411 0.10545 11.1689 0H85.6371ZM40.5737 26.529L40.0194 25.863H39.7035C38.1903 25.913 31.4668 26.418 24.444 31.6905L24.1779 32.2011C22.7867 34.9206 16.4623 48.1407 16.4623 64.047L16.5731 64.2301C17.3602 65.4345 22.2213 72.1278 33.368 72.483L35.0031 70.4795L37.0817 67.8765C30.6187 65.9396 27.8473 62.0435 27.4371 61.4163L27.3817 61.3275L27.609 61.4774C27.8676 61.6512 28.3092 61.9158 28.9337 62.271C28.9891 62.3265 29.0446 62.382 29.1554 62.4375C29.3217 62.5485 29.488 62.604 29.6543 62.715C31.04 63.492 32.4257 64.1025 33.7006 64.602C35.9731 65.49 38.6891 66.378 41.8486 66.9885C45.8893 67.7433 50.6063 68.0264 55.7501 67.1273L56.2046 67.044C58.8097 66.6 61.4703 65.823 64.2417 64.6575C66.1817 63.936 68.3434 62.8815 70.616 61.383L70.5273 61.5218C69.9952 62.2988 67.0907 66.1449 60.5834 67.9875L61.498 69.1364C62.9003 70.8791 64.2417 72.483 64.2417 72.483C76.4914 72.0945 81.2029 64.047 81.2029 64.047C81.2029 46.176 73.2211 31.6905 73.2211 31.6905C66.3591 26.5346 59.7797 25.9352 58.0725 25.8685L57.6457 25.863L56.8697 26.751C65.2283 29.3096 69.6183 32.8727 70.5051 33.6497L70.6714 33.7995C62.1783 29.1086 52.4027 27.2794 42.7909 28.5825C42.4583 28.5825 42.1811 28.638 41.8486 28.6935L41.5382 28.7213C39.4319 28.9377 34.9034 29.7147 29.2663 32.19L28.4626 32.5674C27.4538 33.0447 26.7221 33.4166 26.3286 33.6219L25.996 33.7995C25.996 33.7995 30.5023 29.5038 40.2744 26.6178L40.5737 26.529ZM38.4674 46.5645C41.6269 46.5645 44.1766 49.3395 44.1211 52.725C44.1211 56.1105 41.6269 58.8855 38.4674 58.8855C35.3634 58.8855 32.8137 56.1105 32.8137 52.725C32.8137 49.3395 35.308 46.5645 38.4674 46.5645ZM58.6989 46.5645C61.8583 46.5645 64.3526 49.3395 64.3526 52.725C64.3526 56.1105 61.8583 58.8855 58.6989 58.8855C55.5949 58.8855 53.0451 56.1105 53.0451 52.725C53.0451 49.3395 55.5394 46.5645 58.6989 46.5645Z" fill="#198038"/>
           </svg>
+
 ,
-    alt: "Youtube Icon",
-    title: "Youtube",
-    description: "Learn, explore, and stay informed on the latest in\nWeb3 public goods. Subscribe to our YouTube\nfor updates.",
-    buttonText: "Subscribe",
+    alt: "Discord Icon",
+    title: "Discord",
+    description: "Learn, explore, and stay informed on the \nlatest in Web3 public goods. Join our \nDiscord for updates.",
+    buttonText: "Join us on Discord",
+    link: "https://discord.gg/4ePswVpuvd"
   },
 ];
 
@@ -93,7 +99,8 @@ export default function SupportSection() {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="bg-white border justify-center mb-20 border-gray-200 h-[33.22rem] rounded-lg p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition duration-300"
+              className="bg-white border justify-center mb-20 border-gray-200 h-[33.22rem] rounded-lg p-8 flex flex-col items-center text-center 
+              shadow-sm hover:shadow-md transition duration-300 shadow-black/25"
             >
               {/* <Image
                 src={`/${card.icon}`}
@@ -102,12 +109,13 @@ export default function SupportSection() {
                 height={64}
                 className="mb-4"
               /> */}
-              <span className="block mb-10">{card.icon}</span>
-              <h3 className="text-xl font-semibold text-[#1C4B2A] mb-10">{card.title}</h3>
-              <p className="text-base text-gray-700 mb-6 whitespace-pre-line">{card.description}</p>
-              <button className="w-40 h-10 bg-[#198038] text-white text-sm font-medium rounded hover:bg-green-800 transition flex items-center justify-center">
+              <span className="block mb-5">{card.icon}</span>
+              <h3 className="text-[32px] font-semibold text-[#1C4B2A] mb-10">{card.title}</h3>
+              <p className="text-[16px] text-gray-700 mb-6 whitespace-pre-line">{card.description}</p>
+              <Link href={card.link} target="_blank" className="w-[202.1923828125px] h-[52px] block bg-[#198038] text-white text-[16px] 
+                font-medium rounded hover:bg-green-800 transition flex items-center justify-center">
                 {card.buttonText}
-              </button>
+              </Link>
             </div>
           ))}
         </div>

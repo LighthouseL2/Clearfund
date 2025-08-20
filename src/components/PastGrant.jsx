@@ -115,8 +115,8 @@ export default function PastGrantRounds() {
                   </div>
                   <div className="items-center space-y-2">
                     <div className="flex flex-wrap items-center gap-x-2">
-                      <h3 className="text-xs sm:text-base font-semibold text-black/70">{item.title}</h3>
-                      <p className="text-xs sm:text-sm text-[#008767] pl-1">{item.date}</p>
+                      <h3 style={{ fontSize: '12px' }}  className=" font-semibold text-black/70">{item.title}</h3>
+                      <p style={{ fontSize: '10px' }} className="text-[#008767] pl-1">{item.date}</p>
                     </div>
                     <span style={{ fontSize: '10px' }}  className="inline-block  font-extrabold bg-[#A6E7D8]/50 rounded-3xl border-1 border-[#26A17B] text-[#008767] py-1 px-4 shadow-2xl">
                       {item.pool}

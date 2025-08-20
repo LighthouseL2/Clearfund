@@ -5,6 +5,7 @@ import { LogOut, Settings, ChevronRight } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
 import PastGrant from "@/components/PastGrant";
 import Sidebar from "@/components/Sidebar";
+import ProtectedRoute from "@/lib/withAuth";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -51,7 +52,8 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
+    <ProtectedRoute>
+      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
 
       {/* Sidebar */}
 
@@ -75,5 +77,6 @@ export default function Dashboard() {
 
 
     </div>
+    </ProtectedRoute>
   );
 }
