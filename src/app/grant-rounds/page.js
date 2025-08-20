@@ -16,45 +16,68 @@ export default function Dashboard() {
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
 
-  const programs = ["Gitcoin", "Celo", "Good Dollar", "Lisk"];
-  const statuses = ["ongoing", "upcoming"];
+  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thriveprotocol", "Others"];
+  const statuses = ["active"];
 
   const [search, setSearch] = useState("");
 
   const grants = [
     {
-      image: "/mask.png",
-      title: "Good Dollar Builders",
-      network: "Good Dollar",
-      status: "Ongoing",
-      desc: `The GoodBuilders Program is a year-long initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
-      amount: "250k",
-      coin: "Celo",
-      date: "End– Oct, 2025",
-      link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
+      image: "/grant-round-images/good-dollar-image.svg",
+      title: "GoodDollar",
+      desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
+      amount: "$ 250k",
+      date: "End- Oct 8, 2025",
+      link: "https://medium.com/gooddollar/goodbuilders-goes-streaming-8de59dbd7383"
     },
-    {
-      image: "/mask.png",
-      title: "Celo Camp Batch 10",
-      network: "Celo",
-      status: "Ongoing",
-      desc: `A virtual accelerator and mentorship program for founders building innovative solutions on Celo.`,
-      amount: "100k",
-      coin: "USD",
-      date: "End- Aug 15, 2025",
-      link: "https://medium.com/@UprightVentures/applications-for-celo-camp-batch-10-are-now-open-c26d4980d074"
+     {
+      image: "/grant-round-images/octant-image.svg",
+      title: "Octant",
+      desc: `Funding the journalists, storytellers, content creators, and others who’ve helped make Ethereum legible.`,
+      amount: "TBA",
+      date: "End- Aug 27, 2025",
+      link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
     },
-    {
-      image: "/mask.png",
-      title: "Lisk L2 Grant Program",
-      network: "Lisk",
-      status: "Ongoing",
-      desc: `The Lisk Grant Program nurture a community of developers and creators within the Lisk ecosystem and empower innovation.`,
-      amount: "150k",
-      coin: "Celo",
-      date: "End- Oct 25, 2025",
+      {
+      image: "/grant-round-images/thrive-protocol-image.svg",
+      title: "Thrive Protocol",
+      desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
+      amount: "$ 100k",
+      date: "End- Jul 31, 2026",
+      link: "https://portals.thrive.xyz/"
+    },
+       {
+      image: "/grant-round-images/lisk-l2-program.svg",
+      title: "Lisk L2",
+      desc: `A Program to nurture a community of developers and creators within the Lisk ecosystem.`,
+      amount: "$ 80k",
+      date: "End- Oct, 2025",
       link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
-    }
+    },
+          {
+      image: "/grant-round-images/celo-proof-of-ship.svg",
+      title: " Celo-Proof of Ship",
+      desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
+      amount: "15k Celo",
+      date: "End- Aug 29, 2025",
+      link: "https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship"
+    },
+      {
+      image: "/grant-round-images/thrive-horizon.svg",
+      title: "Thrive Protocol",
+      desc: `Thrive Horizen funds the new era of privacy first apps on Base.`,
+      amount: "$ 100k",
+      date: "End-  Aug 13, 2026",
+      link: "https://horizen.thrive.xyz/"
+    },
+      {
+      image: "/grant-round-images/stream-garden-image.svg",
+      title: "Stream On Garden ",
+      desc: `Active Gardens Funding Pools on Celo network are eligible for streaming matching funds.`,
+      amount: "3k Celo",
+      date: "End-  Nov 5, 2025",
+      link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
+    },
   ];
 
   // Filter logic
@@ -106,9 +129,9 @@ export default function Dashboard() {
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 md:ml-64">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold text-center mb-2">Grant Rounds</h1>
+          <h1 className="text-2xl font-bold text-center mb-2">Funding Stream</h1>
           <p className="text-center text-base text-gray-600 mb-6">
-            Explore current and upcoming grant opportunities across different ecosystems.
+            Explore current and upcoming grant and other funding opportunities across different ecosystems.
           </p>
 
           {/* Filters Card */}

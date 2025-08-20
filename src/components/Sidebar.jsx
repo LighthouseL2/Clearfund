@@ -204,7 +204,7 @@ export default function Sidebar() {
                     width={18}
                     height={18}
                   />
-                  Grant Rounds
+                  Funding Stream
                 </span>
                 <ChevronRight
                   size={16}
