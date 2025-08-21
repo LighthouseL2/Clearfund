@@ -54,7 +54,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
         <form>
 
             <DialogContent className={`sm:max-w-[431px] max-w-[387px]
-                flex items-center justify-center h-[289.390625px] p-10 bg-white shadow-2xl`}>
+                flex items-center justify-center h-[326px] p-10 bg-white shadow-2xl`}>
                 <DialogHeader className={"bg-white"}>
                     <DialogTitle className={"text-center font-bold font-sans text-[14px] text-black/50 hidden"}>Log in</DialogTitle>
                     
@@ -70,24 +70,46 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                 </DialogHeader>
 
 
-                    <div className='shadow mt-5 shadow-[#00000040] w-[239.978515625px] border-black/30 flex px-3 items-center h-[55.2138671875px] rounded-md mb-6'>
+                    <div className='w-[321px]'>
+                        <div className='shadow mt-5 border border-black/20 w-full flex px-3 items-center h-[49px] rounded-md mb-6'>
 
 
-                        <button onClick={handleLogin} className='flex font-sans border-0
-                           justify-center w-full items-center outline-0 cursor-pointer'>
-                            <div className='flex items-center gap-2'>
-                                <Image
-                                    src={"/google.png"}
-                                    alt='google logo'
-                                    width={23.11}
-                                    height={23.11}
-                                />
-                                <span className='text-[16px] font-sans font-medium text-black/60'>
-                                   Sign in with Google
-                                </span>
-                            </div>
-                        </button>
+                            <button onClick={handleLogin} className='flex font-sans border-0
+                            justify-center w-full items-center outline-0 cursor-pointer'>
+                                <div className='flex items-center gap-2'>
+                                    <Image
+                                        src={"/google.png"}
+                                        alt='google logo'
+                                        width={23.11}
+                                        height={23.11}
+                                    />
+                                    <span className='text-[14px] font-sans font-medium text-black/60'>
+                                    Sign in with Google
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div className='shadow mt-5  w-full border border-black/20 flex px-3 items-center h-[49px] rounded-md mb-6'>
+
+
+                            <button onClick={handleLogin} className='flex font-sans border-0
+                            justify-center w-full items-center outline-0 cursor-pointer'>
+                                <div className='flex items-center gap-2'>
+                                    <Image
+                                        src={"/ethLogo.png"}
+                                        alt='google logo'
+                                        width={23.11}
+                                        height={23.11}
+                                    />
+                                    <span className='text-[14px] font-sans font-medium text-black/60'>
+                                    Sign in with Ethereum
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
                     </div>
+
             </DialogContent>
         </form>
     </Dialog>
