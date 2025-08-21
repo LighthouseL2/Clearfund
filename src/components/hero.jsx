@@ -16,13 +16,14 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
 
   return (
     <div className="px-[5%]  flex justify-center items-center mx-auto text-center flex-col">
-        <h1 className="mt-[103.5px] md:w-[53.8rem] text-4xl md:text-[64px] mb-10 font-extrabold font-sans">
-          See Where Public Goods Funding Flows <span className='text-[#7CB53E]'>in Web3</span>
+        <h1 className="mt-[103.5px] lg:w-[53.8rem] text-4xl md:text-[64px] mb-10
+           font-sans" style={{fontWeight: 900}}>
+          Web3 Funding From <br className='hidden sm:block'/>Past to Active <span className='text-[#7CB53E]'>Opportunities</span>
         </h1>
-        <p className="text-[18px] md:w-[51.55rem] mb-14 font-medium font-sans">
-            ClearFund is a data aggregation and transparency platform for Web3 public
-            goods funding. It unifies past funding data and ongoing funding opportunities
-            into one accessible and searchable place.
+        <p className="text-[18px] lg:w-[51.55rem] mb-14 font-medium font-sans">
+            ClearFund provides clarity and access to Web3 funding by aggregating
+            past funding data, active and upcoming funding opportunities in one
+            hub. solving the problem of fragmented information.
         </p>
 
 

@@ -101,17 +101,18 @@ export default function Home() {
 
         <RecentPost />
 
-        <div className="px-[5%] w-[90%] mx-auto rounded-2xl h-[621px]  bg-linear-to-b from-[#198038] to-[#7CB53E] flex items-center justify-center flex-col">
+        <div className={`px-[5%] w-[90%] mx-auto rounded-2xl h-[621px]
+         flex items-center justify-center flex-col bg-[url(/details.jpg)] bg-cover bg-center`}>
             <div className="flex items-center justify-center flex-col space-y-10">
                 <h1 className="text-black font-sans font-extrabold text-[36px] md:text-[76px] w-full
-                    lg:w-[800px] text-center md:leading-20 leading-10">
-                    Where web3 Grant <span className="text-white">History Lives</span>
+                    lg:w-[800px] text-center md:leading-20 leading-10" style={{fontWeight: 900}}>
+                    All Funding Details <br /> <span className="text-white">in One Hub</span>
                 </h1>
 
                 <p className="text-[22px] text-center md:w-[27.2rem] font-sans  font-semibold text-black/70
                     leading-[1.8rem]">
-                    Dive into a curated archive of past funding rounds, from who
-                    funded what to where the grants went.
+                    From past funding data to live funding opportunities, all 
+                    in one searchable place to keep you ahead.
                 </p>
 
                 <Link href="/dashboard"
