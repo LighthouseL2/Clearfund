@@ -2,22 +2,21 @@
 
 
 import { Dialog, DialogContent,  DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
-import { Button } from './ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from 'react-redux'
 import { initialFormData } from '@/lib/config'
-import { loginUser } from '@/features/user/userSlice'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '@/lib/firebase'
 import { jwtDecode } from 'jwt-decode'
+import { ethers }from 'ethers'
 
 
 
 const LoginForm = ({open, setOpen, blur, setBlur }) => {
+    const [wallet, setWallet] = useState("");
+    const [status, setStatus] = useState("");
 
     const router = useRouter()
 
@@ -31,7 +30,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
             const decoded = jwtDecode(token)
 
             console.log("Decoded", decoded);
-            
+
             localStorage.setItem("token", token)
             router.push("/dashboard")
 
@@ -40,6 +39,23 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
             console.error("login failed", error);
         }
     }
+
+    // async function handleLoginWallet() {
+
+    //     if (!window.ethereum) {
+    //         return setStatus("MetaMask not found");
+    //     }
+
+    //     const provider = new ethers.BrowserProvider(window.ethereum);
+    //     const accounts = await provider.send("eth_requestAccounts", []);
+    //     const userWallet = accounts[0];
+    //     setWallet(userWallet);
+    // }
+
+    console.log(status);
+
+
+
 
     function handleDialog(){
         setOpen(!open)
@@ -57,7 +73,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                 flex items-center justify-center h-[326px] p-10 bg-white shadow-2xl`}>
                 <DialogHeader className={"bg-white"}>
                     <DialogTitle className={"text-center font-bold font-sans text-[14px] text-black/50 hidden"}>Log in</DialogTitle>
-                    
+
 
                         <div className='mt-16  justify-center items-center hidden'>
                             <Image
@@ -93,8 +109,8 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                         <div className='shadow mt-5  w-full border border-black/20 flex px-3 items-center h-[49px] rounded-md mb-6'>
 
 
-                            <button onClick={handleLogin} className='flex font-sans border-0
-                            justify-center w-full items-center outline-0 cursor-pointer'>
+                            <button className='flex font-sans border-0
+                            justify-center w-full items-center outline-0 cursor-not-allowed' disabled>
                                 <div className='flex items-center gap-2'>
                                     <Image
                                         src={"/ethLogo.png"}

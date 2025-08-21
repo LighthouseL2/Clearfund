@@ -14,6 +14,7 @@ import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import MenuDropdown from "@/components/menuDropdown";
 import Image from "next/image";
+import { LoadingSlide } from "@/components/LoaderSlider";
 
 
 
@@ -26,7 +27,7 @@ export default function Home() {
     
     const [progress, setProgress] = useState(10)
 
-    let interval = 15
+    let interval = 60
 
     
 
@@ -46,28 +47,28 @@ export default function Home() {
         }, interval);
         return () => clearInterval(timer)
     })
-    
+
 
 
     if (loading){
         return (
             <div className="flex h-screen items-center justify-center transition-all flex-col">
-                <div className="text-xl font-semibold mb-10">
+                <div className="text-xl font-semibold mb-10 animate-bounce">
                     <Image
                         alt="clearfund"
                         src={"/loadingIcon.png"}
-                        width={44}
-                        height={44}
+                        width={72}
+                        height={72}
                     />
                 </div>
                 <div className="w-[333px] h-[17px] bg-black  overflow-hidden">
                     <div className="h-full bg-green-500 text-white font-bold text-[12px] flex items-center justify-end transition-all ease-linear px-4"
-                    style={{width: `${progress}%`}}>
+                        style={{width: `${progress}%`}}>
                             {progress}%
                     </div>
-                    
+
                 </div>
-                <p className="text-black mt-2 text-[12px]">Bringing funding data into focus…</p>
+                <LoadingSlide />
             </div>
         )
     }

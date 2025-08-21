@@ -55,7 +55,7 @@ const GrantBox = () => {
 
         <div className="grid lg:grid-cols-3 w-full text-black gap-10  mt-10 mx-auto ">
 
-            <Link href={"/dashboard"} className="xl:w-[24.54rem]  mb-10 bg-[#00995E] rounded-3xl relative
+            <div  className="xl:w-[24.54rem]  mb-10 bg-[#00995E] rounded-3xl relative
                 hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black transition-all">
                 <div className="absolute py-6 px-8">
                     <h1 className="flex items-center w-full justify-between gap-2 text-[24px] font-extrabold font-sans">
@@ -73,9 +73,9 @@ const GrantBox = () => {
                     </p>
                 </div>
                 <img src="/mask1.png" alt="mask image"/>
-            </Link>
+            </div>
 
-            <Link href={"/dashboard"} className="xl:w-[24.54rem] bg-[#058CD7] mb-10 rounded-3xl relative
+            <div  className="xl:w-[24.54rem] bg-[#058CD7] mb-10 rounded-3xl relative
                 hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black transition-all">
                 <div className="absolute py-6 px-8">
                     <h1 className="flex items-center justify-between gap-2 text-[24px] font-extrabold font-sans">Grant History <span>
@@ -91,10 +91,10 @@ const GrantBox = () => {
                     </p>
                 </div>
                 <img src="/mask3.png" alt="mask image"/>
-            </Link>
+            </div>
 
 
-            <Link href={"/dashboard"} className="xl:w-[24.54rem] w-full bg-[#00995E] mb-10 rounded-3xl relative
+            <div className="xl:w-[24.54rem] w-full bg-[#00995E] mb-10 rounded-3xl relative
                 hover:scale-105 hover:shadow-2xl hover:shadow-black group border-2 border-black transition-all">
                 <div className="absolute py-6 px-8 ">
                     <h1 className="flex items-center gap-2 justify-between text-[24px] font-extrabold font-sans">Visualization <span>
@@ -110,7 +110,7 @@ const GrantBox = () => {
                     </p>
                 </div>
                 <img src="/mask4.png" alt="mask image"/>
-            </Link>
+            </div>
         </div>
     </div>
   )
