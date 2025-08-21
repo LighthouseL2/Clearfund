@@ -8,7 +8,7 @@ const GrantBox = () => {
   return (
     <div className="px-[5%]  py-[5rem] relative pb-[7rem] ">
         <header className="py-[3rem] text-center">
-            <h1 className="font-bold font-sans leading-15 mb-5 text-[56px] text-black w-full text-center">
+            <h1 className="font-extrabold leading-15 mb-5 text-[56px] text-black w-full text-center">
                 Uncover What’s Next in <span className="text-[#7CB53E]">Web3 Funding</span>
             </h1>
             <p className="text-[25px] font-medium">View past grant history, active and upcoming funding opportunities all in one place.</p>
