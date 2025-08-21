@@ -9,28 +9,27 @@ const FaqSection = () => {
     const questionsData = [
         {
             question: "Who is ClearFund for?",
-            ans: `ClearFund is for anyone interested in how public goods are funded. Grantees, 
-                donors, DAO contributors, researchers, and curious community members exploring 
-                supported projects across various grant platforms.`
+            ans: `ClearFund is for donors, builders, and community members who want
+                funding opportunities and transparency in public goods funding.`
         },
 
         {
             question: "Why does ClearFund matter?",
-            ans: `It helps you understand where funding goes, who receives it, and what impact it creates.`
+            ans: `ClearFund provides clarity and access to Web3 funding by aggregating past
+                grants and future opportunities in one transparent hub.`
         },
 
         {
             question: "What problem does ClearFund solve?",
-            ans: `Public goods funding in Web3 is spread across many platforms,
-            making it hard to track where funds go and who receives them.
-            ClearFund solves this by bringing all that data into one place making
-            funding information easy to access, understand, and use.`
+            ans: `ClearFund solves the challenge of scattered and hard-to-find funding data
+                by bringing past grants, live and upcoming funding opportunities into one
+                accessible place.`
         },
 
         {
             question: "Can I submit a platform to be included?",
             ans: `Yes, we welcome community input. The submission form is available,
-            reach out via our social or support.`
+                reach out via our social or support.`
         },
     ]
 
@@ -53,7 +52,7 @@ const FaqSection = () => {
             {questionsData.map((data, index) => (
                 <div className="border-b-2 space-y-2 pb-5 mb-5" key={index}>
                     <h3 className="text-[24px] font-sans font-bold">{data.question}</h3>
-                    <p className="text-[16px] font-sans w-[95%]">{data.ans}</p>
+                    <p className="text-[16px] font-sans w-fit">{data.ans}</p>
                 </div>
             ))}
         </div>
