@@ -19,10 +19,10 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
         <h1 className="mt-[103.5px] md:w-[53.8rem] text-4xl md:text-[64px] mb-10 font-extrabold font-sans">
           See Where Public Goods Funding Flows <span className='text-[#7CB53E]'>in Web3</span>
         </h1>
-        <p className="text-[20px] md:w-[50.55rem] mb-14 font-medium font-sans">
-            ClearFund aggregates past funding data from leading
-            Web3 grant platforms, solving the problem of fragmented information
-            in decentralized public goods funding.
+        <p className="text-[18px] md:w-[50.55rem] mb-14 font-medium font-sans">
+            ClearFund is a data aggregation and transparency platform for Web3 public
+            goods funding. It unifies past funding data and ongoing funding opportunities
+            into one accessible and searchable place.
         </p>
 
 

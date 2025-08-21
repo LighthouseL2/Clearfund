@@ -26,8 +26,7 @@ export default function Home() {
     
     const [progress, setProgress] = useState(10)
 
-    // const duration = 2000
-    let interval = 100
+    let interval = 15
 
     
 
@@ -53,20 +52,22 @@ export default function Home() {
     if (loading){
         return (
             <div className="flex h-screen items-center justify-center transition-all flex-col">
-                <div className="text-xl font-semibold animate-bounce mb-10">
+                <div className="text-xl font-semibold mb-10">
                     <Image
                         alt="clearfund"
-                        src={"/projectLogo.png"}
-                        width={500}
-                        height={500}
+                        src={"/loadingIcon.png"}
+                        width={44}
+                        height={44}
                     />
                 </div>
-                <div className="w-xl bg-amber-400 h-10 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-500 flex items-center justify-end transition-all ease-linear px-4"
+                <div className="w-[333px] h-[17px] bg-black  overflow-hidden">
+                    <div className="h-full bg-green-500 text-white font-bold text-[12px] flex items-center justify-end transition-all ease-linear px-4"
                     style={{width: `${progress}%`}}>
                             {progress}%
                     </div>
+                    
                 </div>
+                <p className="text-black mt-2 text-[12px]">Bringing funding data into focus…</p>
             </div>
         )
     }
