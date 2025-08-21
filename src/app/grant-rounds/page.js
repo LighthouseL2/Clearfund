@@ -27,7 +27,7 @@ export default function Dashboard() {
       desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
       amount: "$ 250k",
       date: "End- Oct 8, 2025",
-      link: "https://medium.com/gooddollar/goodbuilders-goes-streaming-8de59dbd7383"
+      link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
     },
      {
       image: "/grant-round-images/octant-image.svg",
