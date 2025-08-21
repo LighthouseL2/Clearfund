@@ -69,7 +69,7 @@ const GrantBox = () => {
 
                     </span></h1>
                     <p className="text-[16px] font-medium mt-5">
-                        Discover open grant applications other and funding opportunities across the ecosystem.
+                        Discover open grant applications and other funding opportunities across the ecosystem.
                     </p>
                 </div>
                 <img src="/mask1.png" alt="mask image"/>

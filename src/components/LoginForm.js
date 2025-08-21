@@ -15,8 +15,7 @@ import { ethers }from 'ethers'
 
 
 const LoginForm = ({open, setOpen, blur, setBlur }) => {
-    const [wallet, setWallet] = useState("");
-    const [status, setStatus] = useState("");
+
 
     const router = useRouter()
 
@@ -40,19 +39,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
         }
     }
 
-    // async function handleLoginWallet() {
 
-    //     if (!window.ethereum) {
-    //         return setStatus("MetaMask not found");
-    //     }
-
-    //     const provider = new ethers.BrowserProvider(window.ethereum);
-    //     const accounts = await provider.send("eth_requestAccounts", []);
-    //     const userWallet = accounts[0];
-    //     setWallet(userWallet);
-    // }
-
-    console.log(status);
 
 
 
