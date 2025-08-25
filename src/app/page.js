@@ -86,8 +86,8 @@ export default function Home() {
 
 
   return (
-    <Suspense fallback={<div>Loading ...</div>}>
-        <div className={`bg-white min-h-screen relative min-w-xs ${blur && "blur"}`}>
+    
+    <div className={`bg-white min-h-screen relative min-w-xs ${blur && "blur"}`}>
         <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
@@ -141,6 +141,6 @@ export default function Home() {
         </div>
         <Footer />
     </div>
-    </Suspense>
+
   );
 }
