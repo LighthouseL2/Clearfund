@@ -36,7 +36,7 @@ const Footer = () => {
   return (
     <footer className="bg-white pt-[7rem] px-[5%] pb-5 text-black">
         <div className="w-full  flex  justify-between flex-wrap">
-            <div className="lg:w-2/3 w-full mt-10 md:mt-0">
+            <div className="lg:w-2/3 w-full mt-10 md:mt-0 font-sans">
                 {/* <div className="w-[155px] relative flex items-center mb-10">
                     <a href=""><img src="/projectLogo.png" alt="logo" /></a>
                 </div> */}
@@ -53,7 +53,7 @@ const Footer = () => {
                     <button onClick={handleSubscribe} className="w-1/3 cursor-pointer bg-[#00C2FF] text-[16px] text-white font-sans border-0">Subscribe</button>
                 </form>
 
-                <div className="sm:w-5/6 md:w-4/6 lg:w-[44%] text-center">
+                <div className="sm:w-5/6 md:w-4/6 lg:w-[44%] text-center font-sans">
                     <p className="mb-20 text-center text-black/40 w-full px-5 text-[12px]
                     leading-3">
                         By subscribing you agree to <Link target="_blank" href={"https://substack.com/tos"} className="underline">
@@ -138,7 +138,7 @@ const Footer = () => {
             </div>
 
             <div className="mt-[316px] justify-between w-full ">
-                <p className="text-[14px] text-[#99999999]">© {today} ClearFund. All rights reserved</p>
+                <p className="text-[14px] text-[#99999999] font-sans">© {today} ClearFund. All rights reserved</p>
             </div>
         </div>
     </footer>
