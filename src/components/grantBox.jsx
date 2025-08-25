@@ -24,7 +24,7 @@ const GrantBox = () => {
 
                 <div className="flex justify-center items-center flex-col py-10 px-10">
                     <h1 className="mb-5 font-extrabold text-[24px]">Grant Opportunities</h1>
-                    <p className="text-center text-[16px] font-sans">Discover open grant applications and other funding opportunities across several ecosystem.</p>
+                    <p className="text-center text-[16px] font-sans font-bold">Discover open grant applications and other funding opportunities across several ecosystem.</p>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@ const GrantBox = () => {
 
                 <div className="flex justify-center items-center flex-col py-10 px-10">
                     <h1 className="mb-5 font-extrabold text-[24px]">Grantee Directory</h1>
-                    <p className="text-center text-[16px] font-sans">
+                    <p className="text-center text-[16px] font-sans font-bold">
                         Directory of previous funding data and list of all individuals and projects that
                         have received funding.
                     </p>
@@ -53,7 +53,7 @@ const GrantBox = () => {
 
                 <div className="flex justify-center items-center flex-col py-10 px-10">
                     <h1 className="mb-5 font-extrabold text-[24px]">Retrospective</h1>
-                    <p className="text-center text-[16px] font-sans">
+                    <p className="text-center text-[16px] font-sans font-bold">
                         A summarized report of funding rounds, capturing key highlights, funding
                         patterns, and ecosystem trends.
                     </p>
