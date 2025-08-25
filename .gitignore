@@ -7,6 +7,10 @@ node_modules/
 
 .env
 
+.DS_Store
+
+.env.local
+
 turbo/
 # clerk configuration (can include secrets)
 /.clerk/

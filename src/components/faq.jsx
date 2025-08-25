@@ -9,39 +9,40 @@ const FaqSection = () => {
     const questionsData = [
         {
             question: "Who is ClearFund for?",
-            ans: `It’s for grant seekers, funders, researchers, DAO contributors, and data analysts.`
+            ans: `ClearFund is for donors, builders, and community members who want
+                funding opportunities and transparency in public goods funding.`
         },
 
         {
             question: "Why does ClearFund matter?",
-            ans: `It helps you understand where funding goes, who receives it, and what impact it creates.`
+            ans: `ClearFund provides clarity and access to Web3 funding by aggregating past
+                grants and future opportunities in one transparent hub.`
         },
 
         {
             question: "What problem does ClearFund solve?",
-            ans: `Public goods funding in Web3 is spread across many platforms,
-            making it hard to track where funds go and who receives them.
-            ClearFund solves this by bringing all that data into one place making
-            funding information easy to access, understand, and use.`
+            ans: `ClearFund solves the challenge of scattered and hard-to-find funding data
+                by bringing past grants, live and upcoming funding opportunities into one
+                accessible place.`
         },
 
         {
             question: "Can I submit a platform to be included?",
             ans: `Yes, we welcome community input. The submission form is available,
-            reach out via our social or support.`
+                reach out via our social or support.`
         },
     ]
 
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[7rem] text-white pt-[7rem] mb-10 lg:mb-0">
-        <div className="w-full md:w-[424px] h-full">
-            <h2 className="text-[36px] mb-5 font-extrabold font-sans">Your questions, answered simply</h2>
+    <div className="grid lg:grid-cols-2 gap-10 bg-black px-[5%] pb-[8rem] text-white pt-[7rem] mb-10 lg:mb-0">
+        <div className="w-full md:w-[450px] h-full">
+            <h2 className="text-[36px] mb-5 font-bold ">Your questions, answered simply</h2>
 
-            <p className="text-[16px] mb-10 font-sans">Quick answers to few questions.</p>
+            <p className="text-[16px] mb-10 ">Quick answers to few questions.</p>
 
             <Link href="/faq"
-                className="w-[202.19px] font-sans hidden lg:flex items-center justify-center font-semibold
+                className="w-[202.19px] hidden lg:flex items-center justify-center font-semibold
                  bg-[#198038] hover:bg-white hover:text-black hover:scale-105 transition-all text-white text-[16px] h-[52px] rounded-md" onClick={() => setOpen(!open)}>
                 Learn More
             </Link>
@@ -50,8 +51,8 @@ const FaqSection = () => {
         <div className="">
             {questionsData.map((data, index) => (
                 <div className="border-b-2 space-y-2 pb-5 mb-5" key={index}>
-                    <h3 className="text-[24px] font-sans font-bold">{data.question}</h3>
-                    <p className="text-[16px] font-sans w-[95%]">{data.ans}</p>
+                    <h3 className="text-[24px] font-bold">{data.question}</h3>
+                    <p className="text-[15px]  w-full">{data.ans}</p>
                 </div>
             ))}
         </div>
