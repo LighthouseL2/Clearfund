@@ -23,6 +23,7 @@ export default function Sidebar() {
   function handleLogout() {
 
     signOut(auth)
+    localStorage.removeItem("hasVisited")
     router.push("/?route=login")
   }
   // come back to this later

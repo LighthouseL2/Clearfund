@@ -24,46 +24,40 @@ export default function Home() {
     const [open, setOpen] = useState(true)
     const [openMenu, setOpenMenu] = useState(false)
     const [blur, setBlur] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const [url, setUrl] = useState("")
-    const paths = ["http://localhost:3000", "https://clearfund.netlify.app/"]
+    const [loading, setLoading] = useState(false)
+
 
     const [progress, setProgress] = useState(10)
     
 
     let interval = 60
 
+
     useEffect(() => {
-        if(typeof window !== "undefined") {
-            setUrl(window.location.href)
+        const hasVisited = localStorage.getItem("hasVisited")
+        if(!hasVisited) {
+            setLoading(true)
+        
+            const timer = setInterval(() => {
+                setProgress((oldProgress) => {
+                    if(oldProgress >= 100) {
+                        clearInterval(timer)
+                        setTimeout(() => {
+                            setLoading(false)
+                        }, 1000)
+                        return 100
+                    }
+                    return oldProgress + 1
+                })
+            }, interval)
+            localStorage.setItem("hasVisited", "true")
+            return () => clearInterval(timer)
         }
-    }, [setUrl])
-
-
-    
+    },[setLoading,setProgress,interval])
 
 
 
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setProgress((oldProgress) => {
-                if(oldProgress >= 100) {
-                    clearInterval(timer)
-                    setTimeout(() => {
-                        setLoading(false)
-                    }, 1000)
-                    return 100
-                }
-                return oldProgress + 1
-            })
-        }, interval);
-        return () => clearInterval(timer)
-    })
-
-
-
-    if (loading && url == "https://clearfund.netlify.app/"){
+    if (loading && localStorage.getItem("hasVisited")){
         return (
             <div className="flex h-screen items-center justify-center transition-all flex-col">
                 <div className="text-xl font-semibold mb-10 animate-bounce">
@@ -74,7 +68,7 @@ export default function Home() {
                         height={72}
                     />
                 </div>
-                <div className="w-[333px] h-[17px] bg-black  overflow-hidden">
+                <div className="md:w-[333px] w-[95%] h-[17px] bg-black  overflow-hidden">
                     <div className="h-full bg-green-500 text-white font-bold text-[12px] flex items-center justify-end transition-all ease-linear px-4"
                         style={{width: `${progress}%`}}>
                             {progress}%
