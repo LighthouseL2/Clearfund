@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
 
-  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thriveprotocol", "Others"];
+  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thrive protocol","Optimism", "Others"];
   const statuses = ["active"];
 
   const [search, setSearch] = useState("");
@@ -78,15 +78,26 @@ export default function Dashboard() {
       date: "End-  Nov 5, 2025",
       link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
     },
+       {
+      image: "/grant-round-images/optimism-round-image.svg",
+      title: "Optimism Season 8",
+      desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
+      amount: "6.29M OP",
+      date: "End- Nov 12, 2025",
+      link: "https://www.opgrants.io/"
+    },
   ];
 
   // Filter logic
   const filteredGrants = grants.filter((grant) => {
     const matchSearch = grant.title.toLowerCase().includes(search.toLowerCase());
 
-    const matchProgram =
-      selectedPrograms.length === 0 ||
-      selectedPrograms.includes(grant.network);
+   const matchProgram =
+  selectedPrograms.length === 0 ||
+  selectedPrograms.some(program =>
+    grant.title.toLowerCase().includes(program.toLowerCase())
+  );
+
 
     const matchStatus =
       selectedStatus === "" ||
@@ -131,7 +142,7 @@ export default function Dashboard() {
         <div className="max-w-6xl mx-auto">
           <h1 className="text-2xl font-bold text-center mb-2">Funding Stream</h1>
           <p className="text-center text-base text-gray-600 mb-6">
-            Explore current and upcoming grant and other funding opportunities across different ecosystems.
+            Explore current, upcoming grant and other funding opportunities across several ecosystem.
           </p>
 
           {/* Filters Card */}
@@ -167,7 +178,7 @@ export default function Dashboard() {
                 onClick={() => setProgramOpen(!programOpen)}
                 className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
               >
-                Select Programs
+                Ecosystem
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-gray-400"
