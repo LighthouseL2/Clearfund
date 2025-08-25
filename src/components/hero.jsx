@@ -17,12 +17,12 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
   return (
     <div className="px-[5%]  flex justify-center items-center mx-auto text-center flex-col">
         <h1 className="mt-[103.5px] lg:w-[53.8rem] font-extrabold text-4xl md:text-[64px] mb-10">
-          Web3 Funding Past &  <br className='hidden sm:block'/>Active <span className='text-[#7CB53E]'>Opportunities</span>
+          Track Grants. Discover   <br className='hidden sm:block'/>Open <span className='text-[#7CB53E]'>Applications.</span>
         </h1>
-        <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-medium">
+        <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-medium font-sans">
             ClearFund provides clarity and access to Web3 funding by aggregating past
-             <br className='hidden lg:block'/>funding data, active and upcoming funding
-             opportunities in one hub.
+             <br className='hidden lg:block'/>funding data, active and upcoming funding opportunities 
+             in one place.
         </p>
 
 

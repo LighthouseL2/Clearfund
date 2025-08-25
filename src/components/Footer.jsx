@@ -105,7 +105,7 @@ const Footer = () => {
                 <div className="flex justify-between ">
                     <div>
                         <h3 className="uppercase mb-3 font-sans font-bold text-[16px]">Application</h3>
-                        <ul className="space-y-3  text-black/70 text-[15px]">
+                        <ul className="space-y-3  text-black/70 text-[15px] font-sans">
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>
                                 About</Link></li>
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/faq"}>
@@ -124,7 +124,7 @@ const Footer = () => {
 
                     <div>
                         <h3 className="uppercase mb-3 font-bold text-[16px] font-sans">RESOURCES </h3>
-                        <ul className="space-y-3 text-black/70 text-[15px]">
+                        <ul className="space-y-3 text-black/70 text-[15px] font-sans">
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/connect-with-us"}>Connect with us</Link></li>
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://form.typeform.com/to/qJv3uhi8"}>Leave feedback</Link></li>
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/privacy-policy"}>Privacy Policy</Link></li>
