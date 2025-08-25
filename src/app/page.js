@@ -26,7 +26,7 @@ export default function Home() {
     const [blur, setBlur] = useState(false)
     const [loading, setLoading] = useState(true)
     const [url, setUrl] = useState("")
-    const paths = ["http://localhost:3000/", "https://clearfund.netlify.app"]
+    const paths = ["http://localhost:3000", "https://clearfund.netlify.app/"]
 
     const [progress, setProgress] = useState(10)
     
@@ -38,6 +38,9 @@ export default function Home() {
             setUrl(window.location.href)
         }
     }, [setUrl])
+
+
+    
 
 
 
@@ -60,7 +63,7 @@ export default function Home() {
 
 
 
-    if (loading && paths.includes(url)){
+    if (loading && url == "https://clearfund.netlify.app/"){
         return (
             <div className="flex h-screen items-center justify-center transition-all flex-col">
                 <div className="text-xl font-semibold mb-10 animate-bounce">
