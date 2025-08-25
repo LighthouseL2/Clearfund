@@ -39,7 +39,7 @@ const Account = () => {
   }
   return (
     <ProtectedRoute>
-      <div className={`h-screen ${open ? "bg-black/60" : "bg-white"} `} >
+      <div className={`h-screen font-sans ${open ? "bg-black/60" : "bg-white"} `} >
         <Sidebar />
         <main className='md:ml-64 px-10 py-[7.8rem]  md:w-3/4 w-full'>
             <h1 className='text-[20px] font-semibold'>Login Information</h1>

@@ -85,7 +85,7 @@ export default function SupportSection() {
       }}
     >
       {/* Overlay */}
-      <div className="h-full w-full flex items-center justify-center px-4 md:px-24 bg-black/90">
+      <div className="h-full w-full flex items-center font-sans justify-center px-4 md:px-24 bg-black/90">
         <div className="text-white max-w-3xl text-center md:text-left">
           <h1 className="font-extrabold text-5xl text-center sm:text-6xl md:text-[88px] mb-4 leading-tight">
           Connect with Us
@@ -94,7 +94,7 @@ export default function SupportSection() {
       </div>
     </header>
 
-      <div className="px-4 py-16 bg-gray-50">
+      <div className="px-4 py-16 bg-gray-50 font-sans">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 -mt-56 z-10 relative">
           {cards.map((card, index) => (
             <div

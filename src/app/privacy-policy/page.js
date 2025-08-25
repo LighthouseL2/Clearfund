@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
             setToggle={setOpen}
         />
 
- <div className="min-h-screen flex items-center justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
+ <div className="min-h-screen flex items-center font-sans justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
       <div className="max-w-4xl w-full  p-8 ">
         <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
         <p className="text-[16px] text-black mb-10">{policy.effectiveDate}</p>
