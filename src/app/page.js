@@ -18,18 +18,27 @@ import { LoadingSlide } from "@/components/LoaderSlider";
 
 
 
+
 export default function Home() {
 
     const [open, setOpen] = useState(true)
     const [openMenu, setOpenMenu] = useState(false)
     const [blur, setBlur] = useState(false)
     const [loading, setLoading] = useState(true)
-    
+    const [url, setUrl] = useState("")
+
     const [progress, setProgress] = useState(10)
+    
 
     let interval = 60
 
-    
+    useEffect(() => {
+        if(typeof window !== "undefined") {
+            setUrl(window.location.href)
+        }
+    }, [setUrl])
+
+
 
 
     useEffect(() => {
@@ -48,9 +57,12 @@ export default function Home() {
         return () => clearInterval(timer)
     })
 
+    
+    console.log(url);
+    
 
 
-    if (loading){
+    if (loading && (url === "http://localhost:3000/" && "https://localhost:3000/")){
         return (
             <div className="flex h-screen items-center justify-center transition-all flex-col">
                 <div className="text-xl font-semibold mb-10 animate-bounce">
@@ -105,22 +117,22 @@ export default function Home() {
          flex items-center justify-center flex-col bg-[url(/details.jpg)] bg-cover bg-center`}>
             <div className="flex items-center justify-center flex-col space-y-10">
                 <h1 className="text-black font-extrabold text-[36px] md:text-[76px] w-full
-                    lg:w-[800px] text-center md:leading-20 leading-10" style={{fontWeight: 900}}>
+                    lg:w-[800px] text-center md:leading-24 leading-10" style={{fontWeight: 900}}>
                     All Funding Details <br /> <span className="text-white">in One Hub</span>
                 </h1>
 
-                <p className="text-[22px] text-center md:w-[27.2rem] font-semibold text-black/70
-                    leading-[1.8rem]">
-                    From past funding data to live funding opportunities, all
-                    in one searchable place to keep you ahead.
+                <p className="text-[22px] text-center md:w-[36.1rem] font-semibold text-black/70
+                    leading-[1.8rem] font-sans">
+                    From past funding data to active funding applications,
+                    all in one searchable place.
                 </p>
 
                 <Link href="/dashboard"
-                    className="w-[202.19px] flex items-center justify-center font-semibold
-                    hover:bg-black transition-all hover:scale-110
-                         bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-md"
+                    className=" flex items-center justify-center font-semibold
+                    hover:bg-black transition-all hover:scale-110 font-sans
+                         bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded"
                          >
-                        Get Started
+                        Explore ClearFund
                 </Link>
             </div>
         </div>

@@ -52,7 +52,7 @@ const FaqSection = () => {
             {questionsData.map((data, index) => (
                 <div className="border-b-2 space-y-2 pb-5 mb-5" key={index}>
                     <h3 className="text-[24px] font-bold">{data.question}</h3>
-                    <p className="text-[15px]  w-full">{data.ans}</p>
+                    <p className="text-[16px] font-sans  w-full">{data.ans}</p>
                 </div>
             ))}
         </div>
