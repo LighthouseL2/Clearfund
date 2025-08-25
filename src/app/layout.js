@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google'
 import { ReduxProvider } from "@/redux/reduxProvider";
 import "./globals.css";
 import next from "next";
-import { Suspense } from 'react';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -36,9 +35,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <ReduxProvider>
-          <Suspense fallback={<div>Loading...</div>}>
-            {children}
-          </Suspense>
+          {children}
         </ReduxProvider>
       </body>
     </html>

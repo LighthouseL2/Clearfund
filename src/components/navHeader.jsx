@@ -16,7 +16,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
 
         <ul className="md:flex md:w-[45%] lg:w-[55%] xl:w-[65%] gap-10 hidden items-center">
             <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
-            <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>About</Link></li>
+            <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"/about"}>About</Link></li>
             <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://clearfund.substack.com"}>Blog</Link></li>
         </ul>
 
