@@ -27,7 +27,7 @@ const DiscoverBox = () => {
                 </svg>
 ,
             title: "Find Funding opportunities",
-            desc: "Find live and upcoming grant rounds across multiple platforms.",
+            desc: "Find open and upcoming grant rounds across multiple platforms.",
         },
 
         {

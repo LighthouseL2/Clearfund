@@ -15,6 +15,7 @@ import Link from "next/link";
 import MenuDropdown from "@/components/menuDropdown";
 import Image from "next/image";
 import { LoadingSlide } from "@/components/LoaderSlider";
+import { usePathname, useSearchParams } from "next/navigation";
 
 
 
@@ -25,35 +26,36 @@ export default function Home() {
     const [openMenu, setOpenMenu] = useState(false)
     const [blur, setBlur] = useState(false)
     const [loading, setLoading] = useState(false)
+    const pathname = usePathname()
+    const route = useSearchParams().get("route")
 
 
     const [progress, setProgress] = useState(10)
-    
+
 
     let interval = 60
 
 
     useEffect(() => {
-        const hasVisited = localStorage.getItem("hasVisited")
-        if(!hasVisited) {
+        if(pathname === "/" && !route){
             setLoading(true)
-        
             const timer = setInterval(() => {
-                setProgress((oldProgress) => {
-                    if(oldProgress >= 100) {
-                        clearInterval(timer)
-                        setTimeout(() => {
-                            setLoading(false)
-                        }, 1000)
-                        return 100
-                    }
-                    return oldProgress + 1
-                })
+            setProgress((oldProgress) => {
+                if(oldProgress >= 100) {
+                    clearInterval(timer)
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+                    return 100
+                }
+                return oldProgress + 1
+            })
             }, interval)
             localStorage.setItem("hasVisited", "true")
             return () => clearInterval(timer)
         }
-    },[setLoading,setProgress,interval])
+
+    },[setLoading,setProgress,interval, pathname, route])
 
 
 
@@ -118,7 +120,7 @@ export default function Home() {
 
                 <p className="text-[22px] text-center md:w-[36.1rem] font-semibold text-black/70
                     leading-[1.8rem] font-sans">
-                    From past funding data to active funding applications,
+                    From past funding data to open funding applications,
                     all in one searchable place.
                 </p>
 
