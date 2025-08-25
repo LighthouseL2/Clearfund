@@ -20,7 +20,7 @@ export default function GrantDashboard() {
 
         {
             title: "Active Round",
-            value: "3",
+            value: "7",
             img: "/grant-icons/active-round-icon.svg",
             footer: { text: "Ongoing", icon: "/card-icons/ongoing-round-icon.svg" },
         },
@@ -101,7 +101,7 @@ export default function GrantDashboard() {
                 {[...metricData, ...sideCardData].map((item, index) => (
                     <div
                         key={index}
-                        className="min-h-[160px] p-5 border rounded-xl shadow-sm bg-white flex flex-col justify-between"
+                        className="min-h-[160px] py-4 px-5 rounded-xl border-2 border-[#0000004D]/30 shadow-sm bg-white flex flex-col justify-between"
                     >
                         <div className="flex items-center justify-between">
                             <span className="text-sm text-[#000000]/50 break-words font-extrabold">{item.title}</span>
@@ -115,12 +115,12 @@ export default function GrantDashboard() {
                             </div>
                         </div>
 
-                        <div className="text-xl font-extrabold text-black font-sans mt-3">
+                        <div className="text-xl font-extrabold text-black font-sans   mb-4 py-2 ">
                             {item.value}
                         </div>
 
                         {item.footer && (
-                            <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                            <div className="flex items-center gap-2 text-gray-600 text-sm mt-3">
                                 <Image
                                     src={item.footer.icon}
                                     alt={item.footer.text}
