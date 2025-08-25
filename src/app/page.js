@@ -26,6 +26,7 @@ export default function Home() {
     const [blur, setBlur] = useState(false)
     const [loading, setLoading] = useState(true)
     const [url, setUrl] = useState("")
+    const paths = ["http://localhost:3000/", "https://localhost:3000/"]
 
     const [progress, setProgress] = useState(10)
     
@@ -57,12 +58,9 @@ export default function Home() {
         return () => clearInterval(timer)
     })
 
-    
-    console.log(url);
-    
 
 
-    if (loading && (url === "http://localhost:3000/" && "https://localhost:3000/")){
+    if (loading && paths.includes(url)){
         return (
             <div className="flex h-screen items-center justify-center transition-all flex-col">
                 <div className="text-xl font-semibold mb-10 animate-bounce">
