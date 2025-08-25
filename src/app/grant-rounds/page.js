@@ -79,12 +79,20 @@ export default function Dashboard() {
       link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
     },
        {
-      image: "/grant-round-images/optimism-round-image.svg",
+      image: "/grant-round-images/optimism.image.png",
       title: "Optimism Season 8",
       desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
       amount: "6.29M OP",
       date: "End- Nov 12, 2025",
       link: "https://www.opgrants.io/"
+    },
+    {
+      image: "/grant-round-images/boba-round-image.svg",
+      title: "Boba Genesis Pool",
+      desc: `Grant for innovators building new projects natively on Boba. Supports early-stage teams developing real-world applications.`,
+      amount: "1m Boba",
+      date: "End- Dec 31, 2025",
+      link: "https://app.thrive.xyz/programs/23"
     },
   ];
 
