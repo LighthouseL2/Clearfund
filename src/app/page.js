@@ -26,7 +26,7 @@ export default function Home() {
     const [blur, setBlur] = useState(false)
     const [loading, setLoading] = useState(true)
     const [url, setUrl] = useState("")
-    const paths = ["http://localhost:3000/", "https://localhost:3000/"]
+    const paths = ["http://localhost:3000/", "https://clearfund.netlify.app"]
 
     const [progress, setProgress] = useState(10)
     

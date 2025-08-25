@@ -48,11 +48,11 @@ const FaqSection = () => {
             </Link>
         </div>
 
-        <div className="">
+        <div className="font-sans">
             {questionsData.map((data, index) => (
                 <div className="border-b-2 space-y-2 pb-5 mb-5" key={index}>
-                    <h3 className="text-[24px] font-bold">{data.question}</h3>
-                    <p className="text-[16px] font-sans  w-full">{data.ans}</p>
+                    <h3 className="text-[24px] font-bold font-sans">{data.question}</h3>
+                    <p className="text-[16px] font-sans  w-full font-sans">{data.ans}</p>
                 </div>
             ))}
         </div>
