@@ -48,7 +48,7 @@ const GrantBox = () => {
             <div  className="xl:w-[24.7rem]  mb-10 bg-[#00995E] rounded-3xl relative
                 hover:scale-105 hover:shadow-2xl hover:shadow-black h-[458px]  border-2 border-black transition-all">
                 <div className="flex justify-center items-center mt-14">
-                    <img src="/grant-box/mask2.png" alt="grant box icon" />
+                    <img src="/grant-box/mak1.png" alt="grant box icon" />
                 </div>
 
                 <div className="flex justify-center items-center flex-col py-10 px-10">

@@ -76,9 +76,9 @@ export default function Home() {
 
   return (
       <ProtectedRoute>
-        <section className="bg-white min-h-screen py-10 px-4">
+        <section className="bg-white min-h-screen py-10 px-4 font-sans">
       <div className="flex flex-wrap justify-center sm:justify-end w-full px-2 py-2 mb-6">
-        <button className="flex items-center gap-1 px-12 sm:px-10 py-3.5 text-white bg-[#198038] rounded-sm text-sm sm:text-md hover:bg-green-800 transition whitespace-nowrap mr-0 lg:mr-13">
+        <button className="flex items-center font-sans gap-1 px-12 sm:px-10 py-3.5 text-white bg-[#198038] rounded-sm text-sm sm:text-md hover:bg-green-800 transition whitespace-nowrap mr-0 lg:mr-13">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4"
@@ -104,14 +104,14 @@ export default function Home() {
         <main className="w-full">
           <div className="flex flex-col sm:flex-row justify-between mb-6 items-start sm:items-center py-5 gap-4">
             <div>
-              <h2 className="text-lg sm:text-xl font-semibold">
+              <h2 className="text-lg sm:text-xl font-semibold font-sans">
                 GG21 REGEN COORDI-NATION GENESIS - ROUND
               </h2>
-              <p className="text-sm text-black pt-3 font-extrabold">
+              <p className="text-sm text-black pt-3 font-extrabold font-sans">
                 Type: Quadratic Funding • August, 2024
               </p>
             </div>
-            <h2 className="text-sm text-black">
+            <h2 className="text-sm text-black font-sans">
               <span className="font-bold text-black/70">Matching Pool: </span> USDGLO 50K
             </h2>
           </div>
@@ -122,7 +122,7 @@ export default function Home() {
               <input
                 type="text"
                 placeholder="Search"
-                className="rounded-sm pl-10 pr-3 py-3 w-full bg-[#34C7591A] text-[#202224]/70 focus:outline-none"
+                className="rounded-sm font-sans pl-10 pr-3 py-3 w-full bg-[#34C7591A] text-[#202224]/70 focus:outline-none"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -144,7 +144,7 @@ export default function Home() {
             <div className="relative w-full sm:w-52">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="w-full border px-3 py-2 rounded-sm bg-[#34C7591A] flex justify-between items-center"
+                className="w-full border px-3 py-2 font-sans rounded-sm bg-[#34C7591A] flex justify-between items-center"
               >
                 <span className="flex items-center gap-1 whitespace-nowrap">
                   <span className="text-black/60">Sort by:</span>
@@ -156,7 +156,7 @@ export default function Home() {
               </button>
 
               {dropdownOpen && (
-                <ul className="absolute mt-1 w-full bg-white border rounded-sm shadow z-10">
+                <ul className="absolute mt-1 w-full bg-white border rounded-sm shadow z-10 font-sans">
                   {["All", "Top Ten", "Bottom Ten"].map((option) => (
                     <li
                       key={option}
@@ -183,7 +183,7 @@ export default function Home() {
 
           {/* Responsive Table */}
           <div className="overflow-x-auto rounded-lg border border-gray-200">
-            <table className="min-w-[800px] w-full bg-white text-sm table-auto rounded-lg overflow-hidden">
+            <table className="min-w-[800px] w-full font-sans bg-white text-sm table-auto rounded-lg overflow-hidden">
               <thead className="bg-white text-left">
                 <tr>
                   <th className="p-3 border">Project Name</th>
@@ -246,7 +246,7 @@ export default function Home() {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center rounded-md border ${currentPage === page
+                    className={`w-8 h-8 sm:w-9 font-sans sm:h-9 text-xs sm:text-sm flex items-center justify-center rounded-md border ${currentPage === page
                       ? "bg-[#198038] text-white"
                       : "border-gray-200 text-gray-700 hover:bg-gray-100"
                       }`}
@@ -259,7 +259,7 @@ export default function Home() {
               <button
                 disabled={currentPage === Math.ceil(filteredProjects.length / pageSize)}
                 onClick={() => setCurrentPage(currentPage + 1)}
-                className="w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border border-gray-200 rounded-md text-black font-bold hover:bg-gray-100 disabled:opacity-50"
+                className="w-8 h-8 font-sans sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border border-gray-200 rounded-md text-black font-bold hover:bg-gray-100 disabled:opacity-50"
               >
                 &gt;
               </button>

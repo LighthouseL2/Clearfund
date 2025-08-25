@@ -140,7 +140,7 @@ export default function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
+      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative font-sans">
 
       {/* Sidebar */}
       <Sidebar />

@@ -45,7 +45,7 @@ function Dashboard() {
       {/* Sidebar imported */}
       <Sidebar />
 
-      <main className="flex-1 p-4 md:p-6 md:ml-64">
+      <main className="flex-1 p-4 md:p-6 md:ml-64 font-sans">
      <GrantDashboard />
       </main>
     </div>

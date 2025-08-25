@@ -45,7 +45,8 @@ const DiscoverBox = () => {
     
   return (
 
-    <div className="bg-black px-[5%] lg:px-[10%] pt-[4rem] md:pb-[9rem] pb-[5rem] space-y-20 flex flex-col items-center justify-center">
+    <div className="bg-black px-[5%] lg:px-[10%] pt-[4rem] md:pb-[9rem] pb-[5rem] space-y-20 
+        flex flex-col items-center justify-center font-sans">
         <header className="capitalize mt-5 text-[45px] font-semibold  text-white text-center">
             Why ClearFund Matters
         </header>

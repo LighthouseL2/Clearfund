@@ -14,7 +14,7 @@ export default function HomePage() {
 
 
   return (
-    <div className="bg-white text-black">
+    <div className="bg-white text-black font-sans">
       <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
@@ -32,7 +32,7 @@ export default function HomePage() {
 />
 
       {/* Hero Section */}
-      <div className='w-full h-[80vh] relative'>
+      <div className='w-full h-[80vh] relative font-sans'>
         <section
         className="w-full h-full bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('aboutImg.jpg') "}}
