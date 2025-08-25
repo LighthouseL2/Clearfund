@@ -20,7 +20,7 @@ export default function GrantDashboard() {
 
         {
             title: "Active Round",
-            value: "7",
+            value: "8",
             img: "/grant-icons/active-round-icon.svg",
             footer: { text: "Ongoing", icon: "/card-icons/ongoing-round-icon.svg" },
         },
@@ -114,7 +114,6 @@ export default function GrantDashboard() {
                                 />
                             </div>
                         </div>
-
                         <div className="text-xl font-extrabold text-black font-sans   mb-4 py-2 ">
                             {item.value}
                         </div>

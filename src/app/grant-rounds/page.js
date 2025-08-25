@@ -15,7 +15,7 @@ export default function Dashboard() {
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
 
-  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thriveprotocol","Optimism", "Others"];
+  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thrive protocol","Optimism", "Others"];
   const statuses = ["active"];
 
   const [search, setSearch] = useState("");
