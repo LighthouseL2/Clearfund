@@ -1,7 +1,13 @@
 // import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from 'next/font/google'
 
 import { ReduxProvider } from "@/redux/reduxProvider";
 import "./globals.css";
+import next from "next";
+import { Suspense } from 'react';
+
+
+const inter = Inter({ subsets: ['latin'] })
 
 
 // const geistSans = mordern({
@@ -28,9 +34,11 @@ export default function RootLayout({ children }) {
           rel="stylesheet">
         </link>
       </head>
-      <body>
+      <body className={inter.className}>
         <ReduxProvider>
-          {children}
+          <Suspense fallback={<div>Loading ...</div>}>
+            {children}
+          </Suspense>
         </ReduxProvider>
       </body>
     </html>

@@ -16,18 +16,18 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
 
   return (
     <div className="px-[5%]  flex justify-center items-center mx-auto text-center flex-col">
-        <h1 className="mt-[103.5px] md:w-[53.8rem] text-4xl md:text-[64px] mb-10 font-extrabold font-sans">
-          See Where Public Goods Funding Flows <span className='text-[#7CB53E]'>in Web3</span>
+        <h1 className="mt-[103.5px] lg:w-[53.8rem] font-extrabold text-4xl md:text-[64px] mb-10">
+          Track Grants. Discover   <br className='hidden sm:block'/>Open <span className='text-[#7CB53E]'>Applications.</span>
         </h1>
-        <p className="text-[20px] md:w-[50.55rem] mb-14 font-medium font-sans">
-            ClearFund aggregates past funding data from leading
-            Web3 grant platforms, solving the problem of fragmented information
-            in decentralized public goods funding.
+        <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-medium font-sans">
+            ClearFund provides clarity and access to Web3 funding by aggregating past
+             <br className='hidden lg:block'/>funding data, open and upcoming funding opportunities 
+             in one place.
         </p>
 
 
         <Link href="/?route=login"
-          className="w-[202.19px] font-sans mb-30 flex items-center justify-center font-semibold
+          className="w-[202.19px] mb-30 flex items-center justify-center font-semibold
               hover:scale-105 transition-all
              hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => {
             setOpen(true)

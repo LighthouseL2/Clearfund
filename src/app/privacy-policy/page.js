@@ -38,10 +38,7 @@ export default function PrivacyPolicy() {
       },
       {
         heading: "5. Data Security",
-        text: `We prioritize the protection of your personal information and implement strong security measures to safeguard it. Authentication is handled securely via Google OAuth, meaning we do not collect or store your Google password. We only receive minimal information from Google (such as your email address) needed to create and manage your account. 
-        
-        All data transmissions are encrypted using HTTPS (SSL/TLS) to ensure secure communication between your browser and our servers. We use industry-standard practices to protect data from unauthorized access, loss, or misuse. While we do our best to protect your data, no method of online transmission or storage is 100% secure. By using ClearFund, you acknowledge and accept this inherent risk.
-        `,
+        text: `We prioritize the protection of your personal information and implement strong security measures to safeguard it. Authentication is handled securely via Google OAuth, meaning we do not collect or store your Google password. We only receive minimal information from Google (such as your email address) needed to create and manage your account.`,
       },
       {
         heading: "6. Changes to This Policy",
@@ -66,25 +63,26 @@ export default function PrivacyPolicy() {
             toggle={open}
             setToggle={setOpen}
         />
-      
- <div className="min-h-screen flex items-center justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
-      <div className="max-w-3xl w-full  p-8 ">
+
+ <div className="min-h-screen flex items-center font-sans justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
+      <div className="max-w-4xl w-full  p-8 ">
         <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
-        <p className="text-[16px] text-black mb-6">{policy.effectiveDate}</p>
-        <p className="text-[16px] text-black mb-6">{policy.paragraph} {' '}<a
+        <p className="text-[16px] text-black mb-10">{policy.effectiveDate}</p>
+        <p className="text-[16px] text-black mb-10">{policy.paragraph} {' '}<a
             href="https://clearfund.netlify.app"
             className="text-blue-600 underline"
             target="_blank"
             rel="noopener noreferrer"
           >
             clearfund.netlify.app
-          </a></p>
-       
+          </a>
+        </p>
+
 
         {policy.content.map((section, index) => (
-          <div key={index} className="mb-5">
-            <h2 className="font-semibold text-lg mb-1">{section.heading}</h2>
-            <p className="text-black text-sm whitespace-pre-line">{section.text}</p>
+          <div key={index} className="mb-10">
+            <h2 className="font-bold text-lg mb-1">{section.heading}</h2>
+            <p className="text-black text-[16px] whitespace-pre-line">{section.text}</p>
           </div>
         ))}
       </div>
@@ -98,29 +96,3 @@ export default function PrivacyPolicy() {
     
   );
 }
-
-
-`
-
-
-
-
-2. What We Display
-
-
-3. Cookies & Analytics
-
-
-4. Third-Party Links
-
-
-5. Data Security
-
-
-
-
-6. Changes to This Policy
-
-"
-
-7. Contact Us`

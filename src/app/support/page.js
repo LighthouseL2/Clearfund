@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import MenuDropdown from "@/components/menuDropdown";
 import { useState } from "react";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const cards = [
   {
@@ -14,6 +15,7 @@ const cards = [
     title: "Got a question?",
     description: "We are here to help. Reach out and we will get back\nto you as soon as possible.",
     buttonText: "Ask Here",
+    link: "https://form.typeform.com/to/ujmDipM7"
   },
   {
     icon: "feedback-icon.svg",
@@ -21,6 +23,7 @@ const cards = [
     title: "Give Feedback",
     description: "Tell us what you think, your input helps us\ngrow and improve.",
     buttonText: "Your Feedback",
+    link: "https://form.typeform.com/to/qJv3uhi8"
   },
   {
     icon: "bug-icon.svg",
@@ -28,6 +31,7 @@ const cards = [
     title: "Flag a bug",
     description: "Notice something broken or off? Let us know so\nwe can fix it quickly.",
     buttonText: "Flag a bug",
+    link: "https://form.typeform.com/to/qNFZI89F"
   },
   {
     icon: "feature-icon.svg",
@@ -35,6 +39,7 @@ const cards = [
     title: "Suggest a Feature",
     description: "Have an idea that could make ClearFund better?\nWe would love to hear it!",
     buttonText: "Suggest Here",
+    link: "https://form.typeform.com/to/d7bfOU8G"
   },
 ];
 
@@ -58,7 +63,7 @@ export default function SupportSection() {
         />
       <HeroSection />
 
-      <div className="px-4 py-16 bg-gray-50">
+      <div className="px-4 py-16 bg-gray-50 font-sans">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10
            -mt-44 z-10 relative">
           {cards.map((card, index) => (
@@ -77,9 +82,10 @@ export default function SupportSection() {
               />
               <h3 className="text-[32px] font-medium text-[#1C4B2A] mb-2">{card.title}</h3>
               <p className="text-base text-gray-700 mb-6 whitespace-pre-line text-[16px]">{card.description}</p>
-              <button className="w-40 h-10 bg-green-700 text-white text-sm font-medium rounded hover:bg-green-800 transition flex items-center justify-center">
+              <Link href={card.link} target="_blank" className="w-[202.1923828125px] h-[52px] bg-green-700 
+                text-white text-sm font-medium rounded hover:bg-green-800 transition flex items-center justify-center">
                 {card.buttonText}
-              </button>
+              </Link>
             </div>
           ))}
         </div>

@@ -56,7 +56,7 @@ export default function FaqSection() {
     };
 
     return (
-        <main className="bg-[#FAFAFA]">
+        <main className="bg-[#FAFAFA] font-sans">
           <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
@@ -75,7 +75,7 @@ export default function FaqSection() {
   <div className="absolute inset-0 bg-[#000000E5] bg-opacity-60 z-0"></div>
 
   {/* Hero section content */}
-  <div className="h-full w-full flex items-center justify-center px-4 md:px-24 relative z-10">
+  <div className="h-full w-full font-sans flex items-center justify-center px-4 md:px-24 relative z-10">
     <div className="text-white text-center ">
       <h1 className="font-extrabold text-5xl sm:text-6xl md:text-6xl mb-4 leading-tight text-center">
         <span className="text-white font-extrabold">Frequently</span> asked
