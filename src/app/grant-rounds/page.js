@@ -11,26 +11,29 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [programOpen, setProgramOpen] = useState(false);
-  const [statusOpen, setStatusOpen] = useState(false);
+  // const [statusOpen, setStatusOpen] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
 
-  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thrive protocol","Optimism", "Others"];
-  const statuses = ["active"];
+  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thrive", "Optimism", "Others"];
+  // const statuses = ["all"];
 
   const [search, setSearch] = useState("");
 
   const grants = [
     {
       image: "/grant-round-images/good-dollar-image.svg",
-      title: "GoodDollar",
+      title: "Good Dollar",
       desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
       amount: "$ 250k",
       date: "End- Oct 8, 2025",
       link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
     },
-     {
+    {
       image: "/grant-round-images/octant-image.svg",
       title: "Octant",
       desc: `Funding the journalists, storytellers, content creators, and others who’ve helped make Ethereum legible.`,
@@ -38,7 +41,7 @@ export default function Dashboard() {
       date: "End- Aug 27, 2025",
       link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
     },
-      {
+    {
       image: "/grant-round-images/thrive-protocol-image.svg",
       title: "Thrive Protocol",
       desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
@@ -46,7 +49,7 @@ export default function Dashboard() {
       date: "End- Jul 31, 2026",
       link: "https://portals.thrive.xyz/"
     },
-       {
+    {
       image: "/grant-round-images/lisk-l2-program.svg",
       title: "Lisk L2",
       desc: `A Program to nurture a community of developers and creators within the Lisk ecosystem.`,
@@ -54,7 +57,7 @@ export default function Dashboard() {
       date: "End- Oct, 2025",
       link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
     },
-          {
+    {
       image: "/grant-round-images/celo-proof-of-ship.svg",
       title: " Celo-Proof of Ship",
       desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
@@ -62,7 +65,7 @@ export default function Dashboard() {
       date: "End- Aug 29, 2025",
       link: "https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship"
     },
-      {
+    {
       image: "/grant-round-images/thrive-horizon.svg",
       title: "Thrive Protocol",
       desc: `Thrive Horizen funds the new era of privacy first apps on Base.`,
@@ -70,7 +73,7 @@ export default function Dashboard() {
       date: "End-  Aug 13, 2026",
       link: "https://horizen.thrive.xyz/"
     },
-      {
+    {
       image: "/grant-round-images/stream-garden-image.svg",
       title: "Stream On Garden ",
       desc: `Active Gardens Funding Pools on Celo network are eligible for streaming matching funds.`,
@@ -78,7 +81,7 @@ export default function Dashboard() {
       date: "End-  Nov 5, 2025",
       link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
     },
-       {
+    {
       image: "/grant-round-images/optimism.image.png",
       title: "Optimism Season 8",
       desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
@@ -88,30 +91,73 @@ export default function Dashboard() {
     },
     {
       image: "/grant-round-images/boba-round-image.svg",
-      title: "Boba Genesis Pool",
+      title: "Thrive Boba",
       desc: `Grant for innovators building new projects natively on Boba. Supports early-stage teams developing real-world applications.`,
       amount: "1m Boba",
       date: "End- Dec 31, 2025",
       link: "https://app.thrive.xyz/programs/23"
     },
+    {
+      image: "/grant-round-images/hedera-round-image.svg",
+      title: "Thrive Hedera",
+      desc: `Hedera is allocating 4M HBAR to support projects from other ecosystems looking to deploy on Hedera`,
+      amount: "4m hbar",
+      date: "End- Dec 31, 2025",
+      link: "https://app.thrive.xyz/programs/16"
+    },
+    {
+      image: "/grant-round-images/boba-round-image.svg",
+      title: "Thrive Boba",
+      desc: `For existing projects from other ecosystems looking to deploy or expand on Boba. This track supports teams ready to scale.`,
+      amount: "1m Boba",
+      date: "End-Dec 31, 2025",
+      link: "https://app.thrive.xyz/programs/2"
+    },
+    {
+      image: "/grant-round-images/swell-round-image.svg",
+      title: "Thrive Swell",
+      desc: `For existing products and dApps from other ecosystems looking to integrate Swellchain.  Supports teams ready to expand.`,
+      amount: "75m Swell",
+      date: "End- Aug 31, 2025",
+      link: "https://app.thrive.xyz/programs/12"
+    },
+    {
+      image: "/grant-round-images/trading-info-round-image.svg",
+      title: "Trading Infr Program",
+      desc: `Allocating up to 3,000,000 OP in funding for approved projects driving transaction volume on Base.`,
+      amount: "3m OP",
+      date: "End- Aug 29, 2025",
+      link: "https://app.thrive.xyz/programs/31"
+    },
+    {
+      image: "/grant-round-images/giveth-round-image.svg",
+      title: "Giveth Causes QF Round",
+      desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
+      amount: "$20 K",
+      date: "End- Sep 5, 2025",
+      link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
+    },
   ];
+
+
+
 
   // Filter logic
   const filteredGrants = grants.filter((grant) => {
     const matchSearch = grant.title.toLowerCase().includes(search.toLowerCase());
 
-   const matchProgram =
-  selectedPrograms.length === 0 ||
-  selectedPrograms.some(program =>
-    grant.title.toLowerCase().includes(program.toLowerCase())
-  );
+    const matchProgram =
+      selectedPrograms.length === 0 ||
+      selectedPrograms.some(program =>
+        grant.title.toLowerCase().includes(program.toLowerCase())
+      );
 
 
-    const matchStatus =
-      selectedStatus === "" ||
-      grant.status.toLowerCase() === selectedStatus.toLowerCase();
+    // const matchStatus =
+    //   selectedStatus === "" ||
+    //   grant.status.toLowerCase() === selectedStatus.toLowerCase();
 
-    return matchSearch && matchProgram && matchStatus;
+    return matchSearch && matchProgram
   });
 
   const toggleProgram = (program) => {
@@ -120,6 +166,16 @@ export default function Dashboard() {
         ? prev.filter((p) => p !== program)
         : [...prev, program]
     );
+  };
+
+  // pagination logic
+  const totalPages = Math.ceil(filteredGrants.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentGrants = filteredGrants.slice(startIndex, startIndex + itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top on page change
   };
 
   const programRef = useRef(null);
@@ -137,6 +193,11 @@ export default function Dashboard() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // reset to first page when search filter fails 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, selectedPrograms, selectedStatus]);
 
   return (
     <ProtectedRoute>
@@ -226,7 +287,7 @@ export default function Dashboard() {
                 onClick={() => setStatusOpen(!statusOpen)}
                 className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
               >
-                {selectedStatus || "Select Status"}
+                {selectedStatus || "All"}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-gray-400"
@@ -239,46 +300,8 @@ export default function Dashboard() {
                 </svg>
               </button>
 
-              {statusOpen && (
-                <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
-                  <div className="p-2 space-y-2">
-                    {/* All Option */}
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={selectedStatus === ""}
-                        onChange={() => {
-                          setSelectedStatus("");
-                          setStatusOpen(false);
-                        }}
-                        className="form-checkbox h-4 w-4 text-green-500"
-                      />
-                      <span className="text-sm text-gray-700">All</span>
-                    </label>
 
-                    {/* Status Options */}
-                    {statuses.map((status) => (
-                      <label
-                        key={status}
-                        className="flex items-center space-x-2 cursor-pointer"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selectedStatus === status}
-                          onChange={() => {
-                            setSelectedStatus(status);
-                            setStatusOpen(false);
-                          }}
-                          className="form-checkbox h-4 w-4 text-green-500"
-                        />
-                        <span className="text-sm text-gray-700 capitalize">{status}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
-
             {/* Filter icon */}
             <button className="flex items-center justify-center w-10 h-10">
               <svg
@@ -302,17 +325,59 @@ export default function Dashboard() {
               {selectedPrograms.length + (selectedStatus ? 1 : 0)} programs
             </button>
           </div>
-        </div>
+        </div >
 
-        {filteredGrants.length > 0 ? (
-          <GrantRoundCard grants={filteredGrants} />
-        ) : (
-          <div className="text-center mt-10 text-gray-500 text-md">
-            No grant rounds found for your search.
-          </div>
-        )}
-      </main>
-    </div>
+        {
+          filteredGrants.length > 0 ? (
+            <>
+              <GrantRoundCard grants={currentGrants} />
+
+              {/* Pagination Controls - Updated UI */}
+              <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-6 text-sm text-gray-500">
+                {/* Previous Button */}
+                <button
+                  disabled={currentPage === 1}
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border  rounded-md text-[#404B52] font-bold bg-[#F5F5F5]  disabled:opacity-50"
+                >
+                  &lt;
+                </button>
+
+                {/* Page Numbers */}
+                {Array.from({ length: totalPages }, (_, i) => {
+                  const page = i + 1;
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center rounded-md border ${currentPage === page
+                        ? "bg-[#198038] text-white"
+                        : "bg-[#EEEEEE] border-[#EEEEEE] text-[#404B52] hover:bg-gray-100"
+                        }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+
+                {/* Next Button */}
+                <button
+                  disabled={currentPage === totalPages}
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border  rounded-md text-[#404B52] font-bold bg-[#F5F5F5]  disabled:opacity-50"
+                >
+                  &gt;
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="text-center mt-10 text-gray-500 text-md">
+              No grant rounds found for your search.
+            </div>
+          )
+        }
+      </main >
+    </div >
     </ProtectedRoute>
   );
 }
