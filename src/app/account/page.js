@@ -43,6 +43,7 @@ const Account = () => {
         <Sidebar />
         <main className='md:ml-64 px-10 py-[7.8rem]  md:w-3/4 w-full'>
             <h1 className='text-[20px] font-semibold'>Login Information</h1>
+            <p className='text-[16px] text-black/60 mt-3'>Manage the email you use to login.</p>
             <div className='flex md:w-md items-center justify-between mt-20'>
               <span className='text-[16px]'>Email</span> <span className='text-[#00000099]'>{user && user?.email}</span>
             </div>
