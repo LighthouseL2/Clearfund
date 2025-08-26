@@ -20,7 +20,7 @@ export default function GrantDashboard() {
 
         {
             title: "Active Round",
-            value: "9",
+            value: "13",
             img: "/grant-icons/active-round-icon.svg",
             footer: { text: "Ongoing", icon: "/card-icons/ongoing-round-icon.svg" },
         },
@@ -33,19 +33,19 @@ export default function GrantDashboard() {
 
         {
             title: "Funding Data",
-            value: "11",
+            value: "12",
             img: "/grant-icons/previous-funding-icon.svg",
             footer: { text: "Archive", icon: "/card-icons/archive-round-icon.svg" },
         },
         {
             title: "Ecosystem",
-            value: "5",
+            value: "13",
             img: "/grant-icons/ecosystem-icon.svg",
             footer: { text: "Funding", icon: "/card-icons/funding-icon.svg" },
         },
         {
             title: "Upcoming Round",
-            value: "1",
+            value: "2",
             img: "/grant-icons/upcoming-round-icon.svg",
             footer: { text: "Next", icon: "/card-icons/upcoming-label-icon.svg" },
         },

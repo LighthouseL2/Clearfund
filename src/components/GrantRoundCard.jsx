@@ -28,7 +28,7 @@ const GrantRoundCard = ({ grants }) => {
                   <h3 className="text-[16px] text-[#000000] font-bold leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-[10px] text-[#198038] font-sans font-bold border bg-[#D1FAE5] border-black/15 rounded-[10px] px-2">{item.date}</p>
+                  <p className="text-[10px] text-[#198038] font-sans font-medium border bg-[#D1FAE5] border-black/15 rounded-[5px] px-2">{item.date}</p>
                 </div>
 
                 <p className="text-[14px] font-sans leading-snug text-gray-700 mb-2 py-2">
@@ -37,8 +37,8 @@ const GrantRoundCard = ({ grants }) => {
               </div>
 
               <div className="flex-grow"></div>
-              <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[10px] px-2 gap-1 text-[14px] font-sans font-medium mt-3 w-fit">
-                <span className="font-extrabold">{item.amount}</span>
+              <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px] font-sans font-medium mt-3 w-fit">
+                <span className="font-medium">{item.amount}</span>
                 <span>{item.coin}</span>
               </p>
             </div>
