@@ -28,37 +28,37 @@ const Footer = () => {
         let domain = emailArray[1]
         let username = emailArray[0]
 
-        router.push(`https://substack.com/sign-in?redirect=https%3A%2F%2Fclearfund.substack.com%2F&for_pub
-            =clearfund&email=${username}%40${domain}&change_user=false`)
+        
+        window.open(`https://substack.com/sign-in?redirect=https%3A%2F%2Fclearfund.substack.com%2F&for_pub=clearfund&email=${username}%40${domain}&change_user=false`, '_blank')
         return true
     }
-    
+
   return (
-    <footer className="bg-white pt-[5%] px-[5%] pb-5 text-black">
+    <footer className="bg-white pt-[7rem] px-[5%] pb-5 text-black">
         <div className="w-full  flex  justify-between flex-wrap">
-            <div className="lg:w-2/3 w-full mt-10 md:mt-0">
+            <div className="lg:w-2/3 w-full mt-10 md:mt-0 font-sans">
                 {/* <div className="w-[155px] relative flex items-center mb-10">
                     <a href=""><img src="/projectLogo.png" alt="logo" /></a>
                 </div> */}
 
-                <h2 className="text-[24px] font-sans text-[#202224] font-bold">Stay Updated</h2>
-                <p className="mb-2 text-[#202224] font-sans text-[14px]">
+                <h2 className="text-[24px] text-[#202224] font-bold">Stay Updated</h2>
+                <p className="mb-2 text-[#202224] text-[14px]">
                     Get notified about new updates on public good funding
                 </p>
                 <form className="border-2 border-[#00C2FF] h-[45.33984375px] rounded-md w-full sm:w-5/6 bg-[#EEEEEE]  md:w-4/6 lg:w-[44%] flex mb-2">
-                    <input type="text" className="outline-none w-2/3 p-5 font-sans text-[16px] text-black/70 "
+                    <input type="text" className="outline-none w-2/3 p-5 text-[16px] text-black/70 "
                         placeholder="Type your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value) }/>
-                    <button onClick={handleSubscribe} className="w-1/3 bg-[#00C2FF] text-[16px] text-white font-sans border-0">Subscribe</button>
+                    <button onClick={handleSubscribe} className="w-1/3 cursor-pointer bg-[#00C2FF] text-[16px] text-white font-sans border-0">Subscribe</button>
                 </form>
 
-                <div className="sm:w-5/6 md:w-4/6 lg:w-[44%] text-center">
+                <div className="sm:w-5/6 md:w-4/6 lg:w-[44%] text-center font-sans">
                     <p className="mb-20 text-center text-black/40 w-full px-5 text-[12px]
-                    leading-3 font-sans">
-                        By subscribing you agree to <Link href={"https://substack.com/tos"} className="underline">
-                        Substack’s Terms of Use, our</Link><Link className="underline" href={"https://substack.com/privacy"}> privacy policy</Link>{" "}
-                         and <Link href={"https://substack.com/ccpa#personal-data-collected"} className="underline"> our information collection notice</Link>
+                    leading-3">
+                        By subscribing you agree to <Link target="_blank" href={"https://substack.com/tos"} className="underline">
+                        Substack’s Terms of Use, our</Link><Link target="_blank" className="underline" href={"https://substack.com/privacy"}> privacy policy</Link>{" "}
+                         and <Link target="_blank" href={"https://substack.com/ccpa#personal-data-collected"} className="underline"> our information collection notice</Link>
                     </p>
                 </div>
 
@@ -82,10 +82,11 @@ const Footer = () => {
 
                     </Link>
 
-                    <Link href={"https://www.youtube.com/@Clearfundlive"} target="_blank" className="hover:scale-110 transition-all">
-                        <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.4163 0.296875C19.3282 0.301998 21.6096 0.324197 24.0344 0.421532L24.8951 0.4591C27.3353 0.573511 29.7738 0.771596 30.9845 1.108C32.5982 1.56223 33.8653 2.88394 34.2939 4.56083C34.9769 7.22474 35.0623 12.4194 35.0726 13.6779L35.0743 13.9374V14.2346C35.0623 15.4931 34.9769 20.6894 34.2939 23.3516C33.8601 25.0336 32.5914 26.357 30.9845 26.8044C29.7738 27.1408 27.3353 27.3389 24.8951 27.4533L24.0344 27.4926C21.6096 27.5882 19.3282 27.6121 18.4163 27.6156L18.015 27.6173H17.5796C15.65 27.6053 7.57969 27.5182 5.01141 26.8044C3.39941 26.3502 2.13064 25.0285 1.70202 23.3516C1.01897 20.6877 0.933586 15.4931 0.92334 14.2346V13.6779C0.933586 12.4194 1.01897 7.22303 1.70202 4.56083C2.13576 2.87881 3.40453 1.5554 5.01312 1.10971C7.57969 0.39421 15.6517 0.307121 17.5813 0.296875H18.4163ZM14.5827 7.98122V19.9346L24.8285 13.9579L14.5827 7.98122Z" fill="#202224"/>
+                    <Link href={"https://discord.gg/4ePswVpuvd"} target="_blank" className="hover:scale-110 transition-all">
+                        <svg width="27" height="31" viewBox="0 0 27 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.8371 0C25.5621 0 26.9707 1.39655 27 3.13875V31L23.6829 28.055L21.816 26.319L19.8411 24.4745L20.6589 27.342H3.16286C2.33126 27.3401 1.53372 27.01 0.942097 26.4228C0.350474 25.8357 0.0121378 25.0386 0 24.2032L0 3.193C0 1.4446 1.39011 0.02945 3.10886 0H23.8371ZM11.2937 7.409L11.1394 7.223H11.0515C10.6303 7.23695 8.7588 7.378 6.804 8.8505L6.72994 8.9931C6.34269 9.7526 4.58229 13.4447 4.58229 17.887L4.61314 17.9381C4.83223 18.2745 6.18531 20.1438 9.288 20.243L9.74314 19.6835L10.3217 18.9565C8.52274 18.4155 7.75131 17.3274 7.63714 17.1523L7.62171 17.1275L7.68497 17.1693C7.75697 17.2179 7.87989 17.2918 8.05371 17.391C8.06914 17.4065 8.08457 17.422 8.11543 17.4375C8.16171 17.4685 8.208 17.484 8.25429 17.515C8.64 17.732 9.02571 17.9025 9.38057 18.042C10.0131 18.29 10.7691 18.538 11.6486 18.7085C12.7733 18.9193 14.0863 18.9984 15.5181 18.7472L15.6446 18.724C16.3697 18.6 17.1103 18.383 17.8817 18.0575C18.4217 17.856 19.0234 17.5615 19.656 17.143L19.6313 17.1817C19.4832 17.3988 18.6747 18.4729 16.8634 18.9875L17.118 19.3083C17.5083 19.795 17.8817 20.243 17.8817 20.243C21.2914 20.1345 22.6029 17.887 22.6029 17.887C22.6029 12.896 20.3811 8.8505 20.3811 8.8505C18.4711 7.41055 16.6397 7.24315 16.1645 7.22455L16.0457 7.223L15.8297 7.471C18.1563 8.18555 19.3783 9.18065 19.6251 9.39765L19.6714 9.4395C17.3074 8.12942 14.5863 7.61856 11.9109 7.9825C11.8183 7.9825 11.7411 7.998 11.6486 8.0135L11.5622 8.02125C10.9759 8.0817 9.71537 8.2987 8.14629 8.99L7.92257 9.0954C7.64177 9.2287 7.43811 9.33255 7.32857 9.3899L7.236 9.4395C7.236 9.4395 8.49034 8.2398 11.2104 7.4338L11.2937 7.409ZM10.7074 13.0045C11.5869 13.0045 12.2966 13.7795 12.2811 14.725C12.2811 15.6705 11.5869 16.4455 10.7074 16.4455C9.84343 16.4455 9.13371 15.6705 9.13371 14.725C9.13371 13.7795 9.828 13.0045 10.7074 13.0045ZM16.3389 13.0045C17.2183 13.0045 17.9126 13.7795 17.9126 14.725C17.9126 15.6705 17.2183 16.4455 16.3389 16.4455C15.4749 16.4455 14.7651 15.6705 14.7651 14.725C14.7651 13.7795 15.4594 13.0045 16.3389 13.0045Z" fill="#202224"/>
                         </svg>
+
 
                     </Link>
 
@@ -104,17 +105,17 @@ const Footer = () => {
                 <div className="flex justify-between ">
                     <div>
                         <h3 className="uppercase mb-3 font-sans font-bold text-[16px]">Application</h3>
-                        <ul className="space-y-3 font-sans text-black/70 text-[15px]">
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>
+                        <ul className="space-y-3  text-black/70 text-[15px] font-sans">
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>
                                 About</Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/faq"}>
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/faq"}>
                                 FAQ</Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"https://clearfund.substack.com"} target="_blank">
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"https://clearfund.substack.com"} target="_blank">
                                 Blog</Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://docs.google.com/forms/d/e/1FAIpQLSen8RTa49H2W_8VUgX-Z-5i08LUjLf1x0Cey_1aB9dAs6qkFA/viewform?usp=header"}>
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://docs.google.com/forms/d/e/1FAIpQLSen8RTa49H2W_8VUgX-Z-5i08LUjLf1x0Cey_1aB9dAs6qkFA/viewform?usp=header"}>
                                 Contact
                             </Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://github.com/LighthouseL2/Clearfund"}>
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://github.com/LighthouseL2/Clearfund"}>
                                 Github
                             </Link></li>
                         </ul>
@@ -123,12 +124,12 @@ const Footer = () => {
 
                     <div>
                         <h3 className="uppercase mb-3 font-bold text-[16px] font-sans">RESOURCES </h3>
-                        <ul className="space-y-3 text-black/70 text-[15px]">
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/connect-with-us"}>Connect with us</Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://form.typeform.com/to/qJv3uhi8"}>Leave feedback</Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/privacy-policy"}>Privacy Policy</Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/terms"}>Terms</Link></li>
-                            <li><Link className="font-sans font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/support"}>Support</Link></li>
+                        <ul className="space-y-3 text-black/70 text-[15px] font-sans">
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/connect-with-us"}>Connect with us</Link></li>
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://form.typeform.com/to/qJv3uhi8"}>Leave feedback</Link></li>
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/privacy-policy"}>Privacy Policy</Link></li>
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/terms"}>Terms</Link></li>
+                            <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/support"}>Support</Link></li>
                         </ul>
                     </div>
 
@@ -136,7 +137,7 @@ const Footer = () => {
 
             </div>
 
-            <div className="mt-[6rem] justify-between w-full ">
+            <div className="mt-[316px] justify-between w-full ">
                 <p className="text-[14px] text-[#99999999] font-sans">© {today} ClearFund. All rights reserved</p>
             </div>
         </div>
@@ -145,3 +146,5 @@ const Footer = () => {
 }
 
 export default Footer
+
+

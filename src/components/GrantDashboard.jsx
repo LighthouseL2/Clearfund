@@ -9,7 +9,7 @@ export default function GrantDashboard() {
             title: "Cumulative Raised",
             value: "$8,649,987",
             img: "/grant-icons/cumulative-raise-icon.svg",
-            footer: { text: "Disbursed", icon: "/card-icons/money-icon.svg" },
+            footer: { text: "Disbursed", icon: "/card-icons/Vector.png" },
         },
         {
             title: "Total Project",
@@ -95,7 +95,7 @@ export default function GrantDashboard() {
 
     return (
 
-        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6 font-sans">
             {/* Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-800">
                 {[...metricData, ...sideCardData].map((item, index) => (
@@ -104,7 +104,7 @@ export default function GrantDashboard() {
                         className="min-h-[160px] py-4 px-5 rounded-xl border-2 border-[#0000004D]/30 shadow-sm bg-white flex flex-col justify-between"
                     >
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-[#000000]/50 break-words font-extrabold">{item.title}</span>
+                            <span className="text-[16px] text-black/50 break-words font-bold">{item.title}</span>
                             <div className="relative w-10 h-10 flex-shrink-0">
                                 <Image
                                     src={item.img}
@@ -127,7 +127,7 @@ export default function GrantDashboard() {
                                     height={20}
                                     className="object-contain"
                                 />
-                                <p className="px-1 font-extrabold text-[#000000] text-sm">{item.footer.text}</p>
+                                <p className="px-1 text-[14px] font-bold">{item.footer.text}</p>
                             </div>
                         )}
                     </div>
