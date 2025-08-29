@@ -38,7 +38,7 @@ const GrantRoundCard = ({ grants }) => {
 
               <div className="flex-grow"></div>
               <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px] font-sans font-medium mt-3 w-fit">
-                <span className="font-medium">{item.amount}</span>
+                <span className="font-bold">{item.amount}</span>
                 <span>{item.coin}</span>
               </p>
             </div>
