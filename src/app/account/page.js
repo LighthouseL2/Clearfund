@@ -2,24 +2,21 @@
 
 import React, { useEffect, useState } from 'react'
 import Sidebar from '@/components/Sidebar'
-import { useDispatch, useSelector } from "react-redux";
-// import { checkAuth, deleteUser, logout } from '@/features/user/userSlice';
 import { useRouter } from 'next/navigation';
 import DeleteAccountDialog from '@/components/ResetPassword';
-import { auth } from '@/lib/firebase';
-import { deleteUser } from 'firebase/auth';
 import ProtectedRoute from '@/lib/withAuth';
+import { usePrivy } from '@privy-io/react-auth';
 
 
 const Account = () => {
 
-  const dispatch = useDispatch()
   const router = useRouter()
   const [open, setOpen] = useState(false)
+  const { user } = usePrivy()
 
-  const user = auth.currentUser
+  // const user = auth.currentUser
   
-  console.log(user);
+
 
 
   async function deleteAccount() {
@@ -45,7 +42,7 @@ const Account = () => {
             <h1 className='text-[20px] font-semibold'>Login Information</h1>
             <p className='text-[16px] text-black/60 mt-3'>Manage the email you use to login.</p>
             <div className='flex md:w-md items-center justify-between mt-20'>
-              <span className='text-[16px]'>Email</span> <span className='text-[#00000099]'>{user && user?.email}</span>
+              <span className='text-[16px]'>Email</span> <span className='text-[#00000099]'>{user?.wallet?.address || "User"}</span>
             </div>
 
             <hr className='mt-16'/>

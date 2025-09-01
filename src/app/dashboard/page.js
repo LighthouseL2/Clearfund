@@ -1,41 +1,20 @@
 "use client";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
-import { LogOut, Settings, ChevronRight, Menu, X } from "lucide-react";
-import BackgroundSlider from "@/components/BackgroundSlider";
+
 import Sidebar from "@/components/Sidebar";
-import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { logout } from "@/features/user/userSlice";
-import { Clock, ArrowRight } from "lucide-react";
+
 import { cn } from "@/lib/utils"; // if using classNames utility
 import GrantDashboard from "@/components/GrantDashboard";
 import ProtectedRoute from "@/lib/withAuth";
-// import { checkAuth } from "@/features/user/userSlice";
+
+
+
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter()
-
-
-
-
-  // useEffect(() => {
-  //     dispatch(checkAuth()).then((res) => {
-  //       console.log(res.payload);
-  //       if(!res.payload.success) return router.push("https://clearfund.netlify.app/?route=login")
-  //     })
-  // }, [router, dispatch])
-
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search)
-  //   const token = params.get('token')
-  //   if(token) {
-  //     localStorage.setItem("token", token)
-  //     router.replace("/dashboard")
-  //   }
-  // })
-
   
 
 

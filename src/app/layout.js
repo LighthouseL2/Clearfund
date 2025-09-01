@@ -1,10 +1,12 @@
+"use client"
+
 // import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from 'next/font/google'
 
-import { ReduxProvider } from "@/redux/reduxProvider";
 import "./globals.css";
 import next from "next";
 import { Suspense } from 'react';
+import { PrivyProvider } from "@privy-io/react-auth"
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,10 +22,10 @@ const inter = Inter({ subsets: ['latin'] })
 //   subsets: ["latin"],
 // });
 
-export const metadata = {
-  title: "ClearFund",
-  description:"ClearFund allows you to explore past grants data, find new funding oppourtunities and stay updated with real-time alerts from Web3 grants platforms",
-};
+// export const metadata = {
+//   title: "ClearFund",
+//   description:"ClearFund allows you to explore past grants data, find new funding oppourtunities and stay updated with real-time alerts from Web3 grants platforms",
+// };
 
 export default function RootLayout({ children }) {
   return (
@@ -35,11 +37,27 @@ export default function RootLayout({ children }) {
         </link>
       </head>
       <body className={inter.className}>
-        <ReduxProvider>
-          <Suspense fallback={<div>Loading ...</div>}>
-            {children}
+
+        <PrivyProvider 
+          appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
+          config={{
+            loginMethods: ["email", "google", "twitter", "wallet"],
+            appearance: {
+              theme: "light",
+              accentColor: "#4f46e5",
+              logo: "/projectLogo.png"
+            },
+            embeddedWallets: {
+              createOnLogin: "users-without-wallets",
+            },
+            
+          }}
+        >
+          <Suspense fallback={<div></div>}>
+              {children}
           </Suspense>
-        </ReduxProvider>
+        </PrivyProvider>
+
       </body>
     </html>
 
