@@ -6,13 +6,23 @@ import LoginForm from './LoginForm'
 // import ResetPassword from './ResetPassword'
 import { useSearchParams } from "next/navigation";
 import Link from 'next/link'
+import { usePrivy } from '@privy-io/react-auth';
+// import CustomPrivyModal from './CustomPrivyModal';
+import { useState } from 'react';
 
-const HeroSection = ({open, setOpen, blur, setBlur}) => {
+const HeroSection = () => {
 
+  // const [ isOpen, setIsOpen ] = useState(false)
+  const { login, user, connectWallet } = usePrivy()
 
-  const searchParams = useSearchParams()
-  const modal = searchParams.get("route")
-
+  async function handleLogin() {
+    try {
+      login()
+      if(user) window.location.href = "/dashboard"
+    } catch (error) {
+      console.error("login Failed", error)
+    }
+  }
 
   return (
     <div className="px-[5%]  flex justify-center items-center mx-auto text-center flex-col">
@@ -21,20 +31,18 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
         </h1>
         <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-medium font-sans">
             ClearFund provides clarity and access to Web3 funding by aggregating past
-             <br className='hidden lg:block'/>funding data, open and upcoming funding opportunities 
+             <br className='hidden lg:block'/>funding data, open and upcoming funding opportunities
              in one place.
         </p>
 
 
-        <Link href="/?route=login"
+        <button
           className="w-[202.19px] mb-30 flex items-center justify-center font-semibold
               hover:scale-105 transition-all
-             hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md" onClick={() => {
-            setOpen(true)
-            setBlur(true)
-          }}>
+             hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md"
+             onClick={handleLogin}>
             Get started
-        </Link>
+        </button>
 
 
         {/* <Link
@@ -45,7 +53,7 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
             Get started
         </Link> */}
 
-        {
+        {/* {
           modal === "login" ? (
             <LoginForm open={open} setOpen={setOpen} blur={blur} setBlur={setBlur}/>
           ) : modal === "signup" ? (
@@ -53,7 +61,9 @@ const HeroSection = ({open, setOpen, blur, setBlur}) => {
           ) : modal === "reset" && (
             <LoginForm open={open}  setOpen={setOpen}/>
           )
-        }
+        } */}
+
+        {/* <CustomPrivyModal isOpen={isOpen}/> */}
     </div>
   )
 }

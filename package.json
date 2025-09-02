@@ -19,6 +19,8 @@
     "@reduxjs/toolkit": "^2.8.2",
     "@reown/appkit": "^1.8.1",
     "@reown/appkit-wagmi": "^1.0.7",
+    "@walletconnect/client": "^1.8.0",
+    "@walletconnect/qrcode-modal": "^1.8.0",
     "@web3modal/react": "^2.7.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
