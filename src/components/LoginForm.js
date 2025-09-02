@@ -4,38 +4,54 @@
 import { Dialog, DialogContent,  DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { initialFormData } from '@/lib/config'
-import { signInWithPopup } from 'firebase/auth'
-import { auth, provider } from '@/lib/firebase'
-import { jwtDecode } from 'jwt-decode'
+
+import { usePrivy, useWallets } from '@privy-io/react-auth'
 import { ethers }from 'ethers'
 
 
 
 const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
-
+    const { login, authenticated, ready } = usePrivy()
+    const { wallets } = useWallets()
     const router = useRouter()
 
-    const handleLogin = async () => {
-        try {
-            const result = await signInWithPopup(auth, provider)
-            const user = result.user
+    // const handleLogin = async () => {
+    //     try {
+    //         const result = await signInWithPopup(auth, provider)
+    //         const user = result.user
 
 
-            const token = await user.getIdToken()
-            const decoded = jwtDecode(token)
+    //         const token = await user.getIdToken()
+    //         const decoded = jwtDecode(token)
 
-            console.log("Decoded", decoded);
+    //         console.log("Decoded", decoded);
 
-            localStorage.setItem("token", token)
+    //         localStorage.setItem("token", token)
+    //         router.push("/dashboard")
+
+    //         return { user, token, decoded }
+    //     } catch (error) {
+    //         console.error("login failed", error);
+    //     }
+    // }
+
+    useEffect(() => {
+        if(ready && authenticated) {
             router.push("/dashboard")
+        }
+    }, [ready, authenticated, router])
 
-            return { user, token, decoded }
+
+
+    const handleLoginPrivy = async () => {
+        try {
+             login()
+            
         } catch (error) {
-            console.error("login failed", error);
+            console.log("Error logging In", error);
         }
     }
 
@@ -74,7 +90,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
 
                     <div className='w-[321px]'>
-                        <div className='shadow mt-5 border border-black/20 w-full flex px-3 items-center h-[49px] rounded-md mb-6'>
+                        {/* <div className='shadow mt-5 border border-black/20 w-full flex px-3 items-center h-[49px] rounded-md mb-6'>
 
 
                             <button onClick={handleLogin} className='flex font-sans border-0
@@ -91,13 +107,13 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                                     </span>
                                 </div>
                             </button>
-                        </div>
+                        </div> */}
 
                         <div className='shadow mt-5  w-full border border-black/20 flex px-3 items-center h-[49px] rounded-md mb-6'>
 
 
                             <button className='flex font-sans border-0
-                            justify-center w-full items-center outline-0 cursor-not-allowed' disabled>
+                            justify-center w-full items-center outline-0' onClick={handleLoginPrivy}>
                                 <div className='flex items-center gap-2'>
                                     <Image
                                         src={"/ethLogo.png"}
@@ -106,7 +122,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                                         height={23.11}
                                     />
                                     <span className='text-[14px] font-sans font-medium text-black/60'>
-                                    Sign in with Ethereum
+                                    Sign in with Privy
                                     </span>
                                 </div>
                             </button>

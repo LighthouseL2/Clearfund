@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Notification from "@/components/Notification";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+import { usePrivy } from "@privy-io/react-auth";
 
-import { useRouter } from "next/navigation";
+
 
 
 
@@ -17,25 +16,11 @@ export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter()
+  const { logout } = usePrivy()
 
 
-  function handleLogout() {
 
-    signOut(auth)
-    router.push("/?route=login")
-  }
-  // come back to this later
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if(!user) {
-        router.push("/?route=login")
-      }
-    })
-    return () => unsubscribe()
-  }, [router])
 
-  // Sample notifications data
   const notifications = [
     {
       id: 1,
@@ -311,7 +296,7 @@ export default function Sidebar() {
 
         <div className="mt-6 space-y-2">
           <button className="flex cursor-pointer items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
-           hover:bg-gray-50 rounded-lg w-full text-left" onClick={handleLogout}>
+           hover:bg-gray-50 rounded-lg w-full text-left" onClick={logout}>
             <LogOut size={18} />
             Logout
           </button>
