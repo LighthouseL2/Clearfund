@@ -10,12 +10,13 @@ import GrantBox from "@/components/grantBox";
 import Footer from "@/components/Footer";
 import RecentPost from "@/components/recentPost";
 import FaqSection from "@/components/faq";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import MenuDropdown from "@/components/menuDropdown";
 import Image from "next/image";
 import { LoadingSlide } from "@/components/LoaderSlider";
 import { usePathname, useSearchParams } from "next/navigation";
+
 
 
 
@@ -28,6 +29,7 @@ export default function Home() {
     const [loading, setLoading] = useState(false)
     const pathname = usePathname()
     const route = useSearchParams().get("route")
+
 
 
     const [progress, setProgress] = useState(10)
@@ -97,9 +99,8 @@ export default function Home() {
             toggle={open}
             setToggle={setOpen}
         />
-        <Suspense fallback={<div>Loading...</div>}>
-            <HeroSection open={open} setOpen={setOpen} setBlur={setBlur} blur={blur}/>
-        </Suspense>
+        
+        <HeroSection />
 
         <StatSection />
 

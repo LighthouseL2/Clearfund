@@ -4,9 +4,12 @@
 import { Menu, MenuIcon, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import { usePrivy } from '@privy-io/react-auth'
 
 
 const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
+
+  const { login } = usePrivy()
 
   return (
     <nav className="px-[5%] flex justify-between items-end py-4 sticky top-0 z-50 bg-white ">
@@ -21,15 +24,12 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
         </ul>
 
 
-        <Link href="/?route=login"
+        <button
           className="w-[159.17px] md:flex items-center font-sans justify-center
             font-bold hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
-          text-white text-[16px] h-[52px]  rounded-md" onClick={() => {
-            setToggle(true)
-            setBlur(true)
-          }}>
+          text-white text-[16px] h-[52px]  rounded-md" onClick={login}>
             Login / Register
-        </Link>
+        </button>
 
         <div className="flex items-center md:hidden" onClick={() => setOpenMenu(!openMenu)}>
           {/* <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden border-0 items-center justify-center flex flex-col group w-8 h-8">
