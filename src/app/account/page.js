@@ -41,8 +41,9 @@ const Account = () => {
         <main className='md:ml-64 px-10 py-[7.8rem]  md:w-3/4 w-full'>
             <h1 className='text-[20px] font-semibold'>Login Information</h1>
             <p className='text-[16px] text-black/60 mt-3'>Manage the wallet address you use to login.</p>
-            <div className='flex md:w-md items-center justify-between mt-20 lg:gap-20'>
-              <span className='text-[16px]'>Address</span> <span className='text-[#00000099]'>{address}</span>
+            <div className='md:w-md items-center justify-between mt-20 space-y-4'>
+              <p className='text-[16px] font-semibold'>Wallet</p>
+              <p className='text-[#00000099] wrap-break-word'>{address}</p>
             </div>
 
             <hr className='mt-16'/>

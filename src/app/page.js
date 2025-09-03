@@ -29,10 +29,10 @@ export default function Home() {
     const [open, setOpen] = useState(true)
     const [openMenu, setOpenMenu] = useState(false)
     const [blur, setBlur] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const pathname = usePathname()
+    // const [loading, setLoading] = useState(false)
+    // const pathname = usePathname()
     const [modalOpen, setModalOpen] = useState(false)
-    const route = useSearchParams().get("route")
+    // const route = useSearchParams().get("route")
     const router = useRouter()
     const [redirected, setRedirected] = useState(true)
 
@@ -43,32 +43,32 @@ export default function Home() {
 
 
 
-    const [progress, setProgress] = useState(10)
+    // const [progress, setProgress] = useState(10)
 
 
-    let interval = 60
+    // let interval = 60
 
 
-    useEffect(() => {
-        if(pathname === "/" && !route){
-            setLoading(true)
-            const timer = setInterval(() => {
-            setProgress((oldProgress) => {
-                if(oldProgress >= 100) {
-                    clearInterval(timer)
-                    setTimeout(() => {
-                        setLoading(false)
-                    }, 1000)
-                    return 100
-                }
-                return oldProgress + 1
-            })
-            }, interval)
-            localStorage.setItem("hasVisited", "true")
-            return () => clearInterval(timer)
-        }
+    // useEffect(() => {
+    //     if(pathname === "/" && !route){
+    //         setLoading(true)
+    //         const timer = setInterval(() => {
+    //         setProgress((oldProgress) => {
+    //             if(oldProgress >= 100) {
+    //                 clearInterval(timer)
+    //                 setTimeout(() => {
+    //                     setLoading(false)
+    //                 }, 1000)
+    //                 return 100
+    //             }
+    //             return oldProgress + 1
+    //         })
+    //         }, interval)
+    //         localStorage.setItem("hasVisited", "true")
+    //         return () => clearInterval(timer)
+    //     }
 
-    },[setLoading,setProgress,interval, pathname, route])
+    // },[setLoading,setProgress,interval, pathname, route])
 
 
     useEffect(() => {
@@ -83,37 +83,37 @@ export default function Home() {
   
   
 
-    if (loading){
-        return (
+    // if (loading){
+    //     return (
             
-            <div className="flex h-screen items-center justify-center transition-all flex-col">
-                <div className="text-xl font-semibold mb-10 animate-bounce">
-                    <Image
-                        alt="clearfund"
-                        src={"/loadingIcon.png"}
-                        width={72}
-                        height={72}
-                    />
-                </div>
-                <div className="md:w-[333px] w-[95%] h-[17px] bg-black  overflow-hidden">
-                    <div className="h-full bg-green-500 text-white font-bold text-[12px] flex items-center justify-end transition-all ease-linear px-4"
-                        style={{width: `${progress}%`}}>
-                            {progress}%
-                    </div>
+    //         <div className="flex h-screen items-center justify-center transition-all flex-col">
+    //             <div className="text-xl font-semibold mb-10 animate-bounce">
+    //                 <Image
+    //                     alt="clearfund"
+    //                     src={"/loadingIcon.png"}
+    //                     width={72}
+    //                     height={72}
+    //                 />
+    //             </div>
+    //             <div className="md:w-[333px] w-[95%] h-[17px] bg-black  overflow-hidden">
+    //                 <div className="h-full bg-green-500 text-white font-bold text-[12px] flex items-center justify-end transition-all ease-linear px-4"
+    //                     style={{width: `${progress}%`}}>
+    //                         {progress}%
+    //                 </div>
 
-                </div>
-                <LoadingSlide />
-            </div>
+    //             </div>
+    //             <LoadingSlide />
+    //         </div>
            
-        )
-    }
+    //     )
+    // }
 
 
   return (
     
     <div className={`bg-white min-h-screen relative min-w-xs ${blur && "blur"}`}>
         <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-            setOpenMenu={setOpenMenu} setBlur={setBlur} setModalOpen={setModalOpen}
+            setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
         <MenuDropdown
             openMenu={openMenu}
@@ -146,8 +146,7 @@ export default function Home() {
 
                 <p className="text-[22px] text-center md:w-[36.1rem] font-semibold text-black/70
                     leading-[1.8rem] font-sans">
-                    From past funding data to open funding applications,
-                    all in one searchable place.
+                    Past funding data to open funding opportunities, all in <br />one searchable place.
                 </p>
 
                 {/* <Link href="/dashboard"
