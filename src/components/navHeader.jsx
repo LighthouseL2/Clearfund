@@ -4,16 +4,17 @@
 import { Menu, MenuIcon, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { usePrivy } from '@privy-io/react-auth'
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 
-const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
 
-  const { login } = usePrivy()
+const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur, modalOpen, setModalOpen}) => {
+
+
 
   return (
-    <nav className="px-[5%] flex justify-between items-end py-4 sticky top-0 z-50 bg-white ">
-        <div className="md:w-[150px] w-[100px] relative flex items-center">
+    <nav className="px-[5%] flex justify-between items-end py-3 sticky top-0 z-50 bg-white ">
+        <div className="md:w-[150px] w-[100px] relative flex items-center justify-center">
           <Link href="/"><img src="/projectLogo.png" alt="logo" /></Link>
         </div>
 
@@ -24,12 +25,34 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
         </ul>
 
 
-        <button
+        {/* <button
           className="w-[159.17px] md:flex items-center font-sans justify-center
             font-bold hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
-          text-white text-[16px] h-[52px]  rounded-md" onClick={login}>
+          text-white text-[16px] h-[52px]  rounded-md" >
             Login / Register
-        </button>
+        </button> */}
+
+        <ConnectButton.Custom>
+          {({ account, openConnectModal, mounted }) => {
+            const connected = mounted && account
+
+            const handleClick = async () => {
+              setModalOpen(true)
+              openConnectModal()
+              {/* setModalOpen(false) */}
+              {/* !connected && openConnectModal() */}
+            }
+
+            return (
+              <button onClick={handleClick}
+                className='btn bg-[#198038] h-[52px] hidden hover:scale-105 transition-all
+                text-white text-[16px] md:flex items-center font-sans justify-center
+                  font-bold hover:bg-black w-[159.17px] rounded-md'>
+                {connected ? "Logout" : "Login / Register"}
+              </button>
+            )
+          }}
+        </ConnectButton.Custom>
 
         <div className="flex items-center md:hidden" onClick={() => setOpenMenu(!openMenu)}>
           {/* <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden border-0 items-center justify-center flex flex-col group w-8 h-8">

@@ -5,17 +5,15 @@ import Sidebar from '@/components/Sidebar'
 import { useRouter } from 'next/navigation';
 import DeleteAccountDialog from '@/components/ResetPassword';
 import ProtectedRoute from '@/lib/withAuth';
-import { usePrivy } from '@privy-io/react-auth';
+import { useAccount } from 'wagmi';
+// import { usePrivy } from '@privy-io/react-auth';
 
 
 const Account = () => {
 
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const { user } = usePrivy()
-
-  // const user = auth.currentUser
-  
+  const { address, isConnected } = useAccount()
 
 
 
@@ -34,15 +32,17 @@ const Account = () => {
       }
     }
   }
+
+
   return (
     <ProtectedRoute>
       <div className={`h-screen font-sans ${open ? "bg-black/60" : "bg-white"} `} >
         <Sidebar />
         <main className='md:ml-64 px-10 py-[7.8rem]  md:w-3/4 w-full'>
             <h1 className='text-[20px] font-semibold'>Login Information</h1>
-            <p className='text-[16px] text-black/60 mt-3'>Manage the email you use to login.</p>
-            <div className='flex md:w-md items-center justify-between mt-20'>
-              <span className='text-[16px]'>Email</span> <span className='text-[#00000099]'>{user?.wallet?.address || "User"}</span>
+            <p className='text-[16px] text-black/60 mt-3'>Manage the wallet address you use to login.</p>
+            <div className='flex md:w-md items-center justify-between mt-20 lg:gap-20'>
+              <span className='text-[16px]'>Address</span> <span className='text-[#00000099]'>{address}</span>
             </div>
 
             <hr className='mt-16'/>

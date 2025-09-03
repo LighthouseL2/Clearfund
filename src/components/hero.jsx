@@ -2,27 +2,16 @@
 
 
 import LoginForm from './LoginForm'
-// import SignupForm from './SignupForm'
-// import ResetPassword from './ResetPassword'
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from 'next/link'
-import { usePrivy } from '@privy-io/react-auth';
-// import CustomPrivyModal from './CustomPrivyModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount, useChainId } from 'wagmi';
 
-const HeroSection = () => {
 
-  // const [ isOpen, setIsOpen ] = useState(false)
-  const { login, user, connectWallet } = usePrivy()
 
-  async function handleLogin() {
-    try {
-      login()
-      if(user) window.location.href = "/dashboard"
-    } catch (error) {
-      console.error("login Failed", error)
-    }
-  }
+const HeroSection = ({setModalOpen}) => {
+
 
   return (
     <div className="px-[5%]  flex justify-center items-center mx-auto text-center flex-col">
@@ -36,34 +25,27 @@ const HeroSection = () => {
         </p>
 
 
-        <button
-          className="w-[202.19px] mb-30 flex items-center justify-center font-semibold
-              hover:scale-105 transition-all
-             hover:bg-black bg-[#198038] text-white text-[16px] h-[52px] px-8 rounded-md"
-             onClick={handleLogin}>
-            Get started
-        </button>
+        <ConnectButton.Custom>
+          {({ account, openConnectModal, openAccountModal, mounted }) => {
+            const connected = mounted && account
 
+            const handleClick = async () => {
+              setModalOpen(true)
+              openConnectModal()
+              {/* setModalOpen(false) */}
+            }
 
-        {/* <Link
-          href="/?route=login"
-          className="bg-[#00CD5D] hover:bg-black font-semibold text-white px-8 py-3 rounded-md text-[16px]"
-          onClick={() =>setOpen(!open)}
-          >
-            Get started
-        </Link> */}
+            return (
+              <button onClick={handleClick}
+                className='btn bg-[#198038] h-[52px] hidden hover:scale-105 transition-all
+                text-white text-[16px] md:flex items-center font-sans justify-center
+                  font-bold hover:bg-black w-[202.19px] rounded-md'>
+                {connected ? "Go to Dashboard" : "Get started"}
+              </button>
+            )
+          }}
+        </ConnectButton.Custom>
 
-        {/* {
-          modal === "login" ? (
-            <LoginForm open={open} setOpen={setOpen} blur={blur} setBlur={setBlur}/>
-          ) : modal === "signup" ? (
-            <LoginForm open={open}  setOpen={setOpen}/>
-          ) : modal === "reset" && (
-            <LoginForm open={open}  setOpen={setOpen}/>
-          )
-        } */}
-
-        {/* <CustomPrivyModal isOpen={isOpen}/> */}
     </div>
   )
 }

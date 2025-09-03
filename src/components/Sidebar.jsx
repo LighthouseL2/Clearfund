@@ -6,7 +6,9 @@ import Image from "next/image";
 import Notification from "@/components/Notification";
 import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
-import { usePrivy } from "@privy-io/react-auth";
+// import { usePrivy } from "@privy-io/react-auth";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useDisconnect } from "wagmi"
 
 
 
@@ -16,7 +18,8 @@ export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const pathname = usePathname();
-  const { logout } = usePrivy()
+  const { disconnect } = useDisconnect()
+  // const { logout } = usePrivy()
 
 
 
@@ -295,11 +298,35 @@ export default function Sidebar() {
         </div> */}
 
         <div className="mt-6 space-y-2">
-          <button className="flex cursor-pointer items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
-           hover:bg-gray-50 rounded-lg w-full text-left" onClick={logout}>
+          {/* <button className="flex cursor-pointer items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
+           hover:bg-gray-50 rounded-lg w-full text-left">
             <LogOut size={18} />
             Logout
-          </button>
+          </button> */}
+
+
+          <ConnectButton.Custom>
+            {({ account, openAccountModal, mounted }) => {
+              const connected = mounted && account
+
+              {/* const handleClick = () => {
+                if(connected) {
+                  openAccountModal()
+                }else{
+                  window.location.href = "/"
+                }
+              } */}
+
+              return (
+                <button onClick={() => disconnect()}
+                  className='btn flex cursor-pointer items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
+                  hover:bg-gray-50 rounded-lg w-full text-left'>
+                  <LogOut size={18} />
+                    Logout
+                </button>
+              )
+            }}
+          </ConnectButton.Custom>
         </div>
       </aside>
 

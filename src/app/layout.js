@@ -6,7 +6,9 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import next from "next";
 import { Suspense } from 'react';
-import { PrivyProvider } from "@privy-io/react-auth"
+import Providers from '@/components/Provider';
+
+// import { PrivyProvider } from "@privy-io/react-auth"
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -38,7 +40,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
 
-        <PrivyProvider
+        {/* <PrivyProvider
           appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
           config={{
             loginMethods: ["wallet", "google", "email"],
@@ -57,7 +59,11 @@ export default function RootLayout({ children }) {
           <Suspense fallback={<div></div>}>
               {children}
           </Suspense>
-        </PrivyProvider>
+        </PrivyProvider> */}
+
+        <Providers>
+          {children}
+        </Providers>
 
       </body>
     </html>

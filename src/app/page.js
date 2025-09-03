@@ -15,7 +15,10 @@ import Link from "next/link";
 import MenuDropdown from "@/components/menuDropdown";
 import Image from "next/image";
 import { LoadingSlide } from "@/components/LoaderSlider";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useAccount, useChainId } from 'wagmi';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 
 
 
@@ -28,7 +31,15 @@ export default function Home() {
     const [blur, setBlur] = useState(false)
     const [loading, setLoading] = useState(false)
     const pathname = usePathname()
+    const [modalOpen, setModalOpen] = useState(false)
     const route = useSearchParams().get("route")
+    const router = useRouter()
+    const [redirected, setRedirected] = useState(true)
+
+
+    const { isConnected, account } = useAccount()
+    const chainId = useChainId()
+    
 
 
 
@@ -60,6 +71,17 @@ export default function Home() {
     },[setLoading,setProgress,interval, pathname, route])
 
 
+    useEffect(() => {
+    if(modalOpen && isConnected ) {
+        setRedirected(false)
+        router.push("/dashboard")
+        setModalOpen(false)
+    }
+  }, [router, modalOpen, isConnected])
+
+  
+  
+  
 
     if (loading){
         return (
@@ -91,7 +113,7 @@ export default function Home() {
     
     <div className={`bg-white min-h-screen relative min-w-xs ${blur && "blur"}`}>
         <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-            setOpenMenu={setOpenMenu} setBlur={setBlur}
+            setOpenMenu={setOpenMenu} setBlur={setBlur} setModalOpen={setModalOpen}
         />
         <MenuDropdown
             openMenu={openMenu}
@@ -100,7 +122,7 @@ export default function Home() {
             setToggle={setOpen}
         />
         
-        <HeroSection />
+        <HeroSection modalOpen={modalOpen} setModalOpen={setModalOpen}/>
 
         <StatSection />
 
@@ -128,13 +150,33 @@ export default function Home() {
                     all in one searchable place.
                 </p>
 
-                <Link href="/dashboard"
+                {/* <Link href="/dashboard"
                     className=" flex items-center justify-center font-semibold
                     hover:bg-black transition-all hover:scale-110 font-sans
                          bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded"
                          >
                         Explore ClearFund
-                </Link>
+                </Link> */}
+
+                <ConnectButton.Custom>
+                    {({ account, openConnectModal, mounted }) => {
+                        const connected = mounted && account
+
+                        const handleClick = async () => {
+                        setModalOpen(true)
+                        openConnectModal()
+                        }
+
+                        return (
+                        <button onClick={handleClick}
+                            className='btn flex items-center justify-center font-semibold
+                                hover:bg-black transition-all hover:scale-110 font-sans
+                                bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded'>
+                            {connected ? "Go to Dashboard" : "Explore ClearFund"}
+                        </button>
+                        )
+                    }}
+                </ConnectButton.Custom>
             </div>
         </div>
         <div className="p-10 mt-10">

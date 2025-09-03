@@ -1,21 +1,31 @@
+"use client"
+
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { usePrivy } from "@privy-io/react-auth"
+import { useAccount, useChainId } from "wagmi"
+
 
 
 
 const ProtectedRoute = ({ children }) => {
     const router = useRouter()
-    const { ready, authenticated, } = usePrivy()
+    const { isConnected } = useAccount()
+    const chainId = useChainId()
 
 
     useEffect(() => {
-        if(ready && !authenticated) {
-          router.push("/?route=login")
-        }
-      }, [ready, authenticated, router])
+
+      if(!isConnected ) {
+        router.replace("/")
+      }
+    }, [isConnected, router])
+
+    if(!isConnected || chainId !== 42220) {
+      return <p className="h-screen flex items-center justify-center text-4xl">Redirecting to login...</p>
+    }
     
-      if(!ready) return <p>Loading...</p>
+    console.log(chainId, "chainId");
+    // console.log(account, "Account");
 
     return <>{children}</>
 }
