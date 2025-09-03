@@ -40,27 +40,6 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
 
-        {/* <PrivyProvider
-          appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
-          config={{
-            loginMethods: ["wallet", "google", "email"],
-            appearance: {
-              theme: "light",
-              accentColor: "#4f46e5",
-              // walletChainType: "ethereum-only",
-              // walletList: ["metamask", "rainbow", "wallet_connect", "binance"],
-            },
-            externalWallets: {
-              coinbaseWallet: true,
-              walletConnect: true,
-            }
-          }}
-        >
-          <Suspense fallback={<div></div>}>
-              {children}
-          </Suspense>
-        </PrivyProvider> */}
-
         <Providers>
           <Suspense fallback={<div></div>}>
             {children}
