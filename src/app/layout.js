@@ -62,7 +62,9 @@ export default function RootLayout({ children }) {
         </PrivyProvider> */}
 
         <Providers>
-          {children}
+          <Suspense fallback={<div></div>}>
+            {children}
+          </Suspense>
         </Providers>
 
       </body>
