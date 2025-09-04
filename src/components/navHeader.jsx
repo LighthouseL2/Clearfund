@@ -47,6 +47,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
             const handleClick = async () => {
               setModalOpen(true)
               openConnectModal()
+              localStorage.setItem("login", "true")
             }
 
             return (

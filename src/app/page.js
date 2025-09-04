@@ -24,6 +24,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 
 
+
+
 export default function Home() {
 
     const [open, setOpen] = useState(true)
@@ -110,7 +112,7 @@ export default function Home() {
 
 
   return (
-    
+
     <div className={`bg-white min-h-screen relative min-w-xs ${blur && "blur"}`}>
         <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
@@ -121,7 +123,7 @@ export default function Home() {
             toggle={open}
             setToggle={setOpen}
         />
-        
+
         <HeroSection modalOpen={modalOpen} setModalOpen={setModalOpen}/>
 
         <StatSection />

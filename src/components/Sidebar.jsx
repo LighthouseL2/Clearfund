@@ -309,16 +309,13 @@ export default function Sidebar() {
             {({ account, openAccountModal, mounted }) => {
               const connected = mounted && account
 
-              {/* const handleClick = () => {
-                if(connected) {
-                  openAccountModal()
-                }else{
-                  window.location.href = "/"
-                }
-              } */}
+              const logout = () => {
+                localStorage.removeItem("login")
+                disconnect()
+              }
 
               return (
-                <button onClick={() => disconnect()}
+                <button onClick={logout}
                   className='btn flex cursor-pointer items-center gap-3 text-[#9197B3] text-sm px-4 py-2 font-medium
                   hover:bg-gray-50 rounded-lg w-full text-left'>
                   <LogOut size={18} />
