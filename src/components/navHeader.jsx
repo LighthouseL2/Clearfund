@@ -3,12 +3,28 @@
 
 import { Menu, MenuIcon, X } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { useRouter } from "next/navigation"
+import { useAccount } from "wagmi"
 
 
 
-const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur, modalOpen, setModalOpen}) => {
+const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
+
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const router = useRouter()
+  const { isConnected, account } = useAccount()
+
+
+  useEffect(() => {
+    if(modalOpen && isConnected ) {
+        // setRedirected(false)
+        router.push("/dashboard")
+        setModalOpen(false)
+    }
+  }, [router, modalOpen, isConnected])
 
 
 
@@ -24,14 +40,6 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur, modalOpen
             <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://clearfund.substack.com"}>Blog</Link></li>
         </ul>
 
-
-        {/* <button
-          className="w-[159.17px] md:flex items-center font-sans justify-center
-            font-bold hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
-          text-white text-[16px] h-[52px]  rounded-md" >
-            Login / Register
-        </button> */}
-
         <ConnectButton.Custom>
           {({ account, openConnectModal, mounted }) => {
             const connected = mounted && account
@@ -39,8 +47,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur, modalOpen
             const handleClick = async () => {
               setModalOpen(true)
               openConnectModal()
-              {/* setModalOpen(false) */}
-              {/* !connected && openConnectModal() */}
+              localStorage.setItem("login", "true")
             }
 
             return (
@@ -48,7 +55,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur, modalOpen
                 className='btn bg-[#198038] h-[52px] hidden hover:scale-105 transition-all
                 text-white text-[16px] md:flex items-center font-sans justify-center
                   font-bold hover:bg-black w-[159.17px] rounded-md'>
-                {connected ? "Logout" : "Login / Register"}
+                {connected ? "Connect wallet" : "Connect wallet"}
               </button>
             )
           }}

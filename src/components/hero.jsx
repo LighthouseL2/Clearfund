@@ -7,6 +7,8 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useChainId } from 'wagmi';
+import { saveSession } from '@/lib/session';
+
 
 
 
@@ -32,7 +34,8 @@ const HeroSection = ({setModalOpen}) => {
             const handleClick = async () => {
               setModalOpen(true)
               openConnectModal()
-              {/* setModalOpen(false) */}
+              localStorage.setItem("login", "true")
+              {/* saveSession() */}
             }
 
             return (
@@ -40,7 +43,7 @@ const HeroSection = ({setModalOpen}) => {
                 className='btn bg-[#198038] h-[52px]  hover:scale-105 transition-all
                 text-white text-[16px] flex items-center font-sans justify-center
                   font-bold hover:bg-black w-[202.19px] rounded-md'>
-                {connected ? "Go to Dashboard" : "Get started"}
+                {connected ? "Connect wallet" : "Connect wallet"}
               </button>
             )
           }}
