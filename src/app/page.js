@@ -122,9 +122,10 @@ export default function Home() {
             setOpenMenu={setOpenMenu}
             toggle={open}
             setToggle={setOpen}
+            setModalOpen={setModalOpen}
         />
 
-        <HeroSection modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+        <HeroSection setModalOpen={setModalOpen}/>
 
         <StatSection />
 
