@@ -9,7 +9,7 @@ const GrantBox = () => {
     <div className="px-[5%]  py-[5rem] relative pb-[7rem] ">
         <header className="py-[3rem] text-center">
             <h1 className="font-extrabold sm:leading-16 mb-5 text-4xl sm:text-[64px] text-black w-full text-center">
-                Uncover What’s Next in Web3 <br className="hidden md:block"/><span className="text-[#7CB53E]">Funding</span>
+                Uncover What’s Next in Web3 <br className="hidden xl:block"/><span className="text-[#7CB53E]">Funding</span>
             </h1>
             {/* <p className="text-[25px] font-medium">View past grant history, active and upcoming funding opportunities all in one place.</p> */}
         </header>
@@ -62,7 +62,8 @@ const GrantBox = () => {
 
         </div> */}
 
-        <div className="flex items-center flex-wrap md:px-30 mx-auto font-sans gap-30 mt-15">
+        <div className="flex items-center flex-wrap w-full  lg:w-full lg:justify-start xl:w-[62rem] md:mx-auto font-sans
+        lg:gap-15 xl:gap-25 mt-15 md:gap-20 gap-20 md:w-[80%] justify-between sm:justify-center sm:w-full">
             <div className="md:w-[252px]">
                 <img src="/uncover-icons/img1.png" alt="" />
                 <h1 className="font-bold text-[24px] mt-3">Opportunities</h1>

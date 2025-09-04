@@ -35,6 +35,7 @@ const HeroSection = ({setModalOpen}) => {
               setModalOpen(true)
               openConnectModal()
               localStorage.setItem("login", "true")
+              
               {/* saveSession() */}
             }
 
