@@ -151,14 +151,6 @@ export default function Home() {
                     Past funding data to open funding opportunities, all in <br />one searchable place.
                 </p>
 
-                {/* <Link href="/dashboard"
-                    className=" flex items-center justify-center font-semibold
-                    hover:bg-black transition-all hover:scale-110 font-sans
-                         bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded"
-                         >
-                        Explore ClearFund
-                </Link> */}
-
                 <ConnectButton.Custom>
                     {({ account, openConnectModal, mounted }) => {
                         const connected = mounted && account
