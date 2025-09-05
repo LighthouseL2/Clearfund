@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, ArrowRight, DollarSign, Layers, RefreshCcw, Share2, Archive, CircleDollarSign, Bolt } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function GrantDashboard() {
 
@@ -135,68 +136,112 @@ export default function GrantDashboard() {
             </div>
 
             {/* Timeline */}
-            <div className="text-gray-800 font-sans py-14">
-                <div className="bg-white rounded-xl shadow-sm p-6 border-2">
-                    <h3 className="text-lg font-semibold mb-12 py-3">Recent Grant recipient</h3>
+            <div className="text-gray-800 font-sans py-14 flex gap-5">
 
-                    <div className="px-2 sm:px-4">
-                        <div className="relative border-l-2 border-gray-200">
-                            {timelineData.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={`pl-8 relative ${index !== timelineData.length - 1 ? 'mb-8' : ''}`}
-                                >
-                                    <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
-                                        <Clock className="w-6 h-6 text-[#008767]" />
-                                    </div>
-                                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-sm text-gray-500">{item.date}</p>
-                                            <p className="text-sm break-words  text-black font-extrabold">
-                                                <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
-                                            </p>
+                <div className="w-1/2 border  rounded-xl py-10">
+                    <div className="w-full flex justify-center items-center">
+                        <img src="/grantDashboard-icons/good.png" alt="" />
+                    </div>
+
+                    <h1 className="text-center text-[24px] font-sans text-[#00AFFF] leading-7 mt-5">
+                        Empower Communities. <br />Maximize Impact
+                    </h1>
+
+                    <div className="w-full flex justify-center items-center">
+                        <img src="/grantDashboard-icons/flower.png" alt="" />
+                    </div>
+                    <p className="w-[333px] text-black/70 leading-3.5 mt-2 text-[12px] mx-auto text-center">
+                        GoodCollective is committed to empowering individuals and communities
+                        by providing direct digital payments to those who need it most.
+                    </p>
+
+                    <Link href="/account" className="flex w-[251px] items-center justify-center rounded-full
+                     bg-[#95EED8] mx-auto mt-12 h-[40px] text-[16px] font-sans">
+                        Donate
+                    </Link>
+
+                    <small className="underline mt-12 block text-center text-black/80 text-[12px] font-sans">
+                        Powered by GoodDollar
+                    </small>
+                </div>
+
+
+
+                <div className="w-1/2">
+                    <div className="bg-white rounded-xl shadow-sm p-6 border-2">
+                        <h3 className="text-lg font-semibold mb-12 py-3">Recent Grant recipient</h3>
+
+                        <div className="px-2 sm:px-4 pb-10">
+                            <div className="relative border-l-2 border-gray-200">
+                                {timelineData.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`pl-8 relative ${index !== timelineData.length - 1 ? 'mb-8' : ''}`}
+                                    >
+                                        <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
+                                            <Clock className="w-6 h-6 text-[#008767]" />
                                         </div>
-                                        {item.link && (
-                                            <a href={item.link} target="_blank" rel="noopener noreferrer">
-                                                <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
-                                            </a>
-                                        )}
+                                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-sm text-gray-500">{item.date}</p>
+                                                <p className="text-sm break-words  text-black font-extrabold">
+                                                    <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
+                                                </p>
+                                            </div>
+                                            {item.link && (
+                                                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                                    <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
+
+                            <div className="h-10 border-l-2 border-gray-200 ml-[-1px]"></div>
+
+                            {/* <p className="py-5 text-[#00000099]">Thurs July 24, 2025</p> */}
+
+                            {/* <div className="relative border-l-2 border-gray-200">
+                                {timelineDatas.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`pl-8 relative ${index !== timelineDatas.length - 1 ? 'mb-8' : ''}`}
+                                    >
+                                        <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
+                                            <Clock className="w-6 h-6 text-[#008767]" />
+                                        </div>
+                                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-sm text-gray-500">{item.date}</p>
+                                                <p className="text-sm break-words text-black font-extrabold">
+                                                    <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
+                                                </p>
+                                            </div>
+                                            {item.link && (
+                                                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                                    <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="h-10 border-l-2 border-gray-200 ml-[-1px]"></div> */}
+                            
+                        </div>
+                    </div>
+
+                    <div className="border mt-2 w-full h-fit bg-gray-600 py-5 rounded-xl flex px-3 justify-between">
+                        <div>
+                            <img src="/grantDashboard-icons/money.png" alt="donate icon" />
                         </div>
 
-                        <div className="h-10 border-l-2 border-gray-200 ml-[-1px]"></div>
-
-                        <p className="py-5 text-[#00000099]">Thurs July 24, 2025</p>
-
-                        <div className="relative border-l-2 border-gray-200">
-                            {timelineDatas.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={`pl-8 relative ${index !== timelineDatas.length - 1 ? 'mb-8' : ''}`}
-                                >
-                                    <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
-                                        <Clock className="w-6 h-6 text-[#008767]" />
-                                    </div>
-                                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-sm text-gray-500">{item.date}</p>
-                                            <p className="text-sm break-words text-black font-extrabold">
-                                                <span className="text-[#008767] font-medium">{item.title}</span> {item.description}
-                                            </p>
-                                        </div>
-                                        {item.link && (
-                                            <a href={item.link} target="_blank" rel="noopener noreferrer">
-                                                <ArrowRight className="w-6 h-6 text-[#26A17B] mt-1" />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
+                        <div>
+                            {/* <img src="/grantDashboard-icons/money.png" alt="donate icon" /> */}
+                            <h1 className="text-[32px] font-extrabold w-[190.921875px]">Grants, Bounties, Gigs</h1>
+                            <p className="w-[190.921875px] font-sans text-[16px]">Connecting builders with opportunities to earn, innovate, and grow.</p>
                         </div>
-                         <div className="h-10 border-l-2 border-gray-200 ml-[-1px]"></div>
-                        
                     </div>
                 </div>
             </div>

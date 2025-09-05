@@ -144,7 +144,7 @@ export default function Home() {
             <div className="flex items-center justify-center flex-col space-y-10">
                 <h1 className="text-black font-extrabold text-[36px] md:text-[76px] w-full
                     lg:w-[800px] text-center md:leading-24 leading-10" style={{fontWeight: 900}}>
-                    All Funding Details <br /> <span className="text-white">in One Hub</span>
+                    All Funding Details <br /> <span className="text-white">In One Hub</span>
                 </h1>
 
                 <p className="text-[22px] text-center md:w-[36.1rem] font-semibold text-black/70
