@@ -12,7 +12,7 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle, setModalOpen}) 
                     <Link target="_blank" href={"https://github.com/LighthouseL2/Clearfund"} onClick={() =>setOpenMenu(false)}>Github</Link>
                 </li>
                 <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#198038] w-full p-3 rounded-md font-bold ">
-                    <Link target="_blank" href={"/about"} onClick={() =>setOpenMenu(false)}>About</Link>
+                    <Link href={"/about"} onClick={() =>setOpenMenu(false)}>About</Link>
                 </li>
                 <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#198038] w-full p-3 font-bold rounded-md">
                     <Link target="_blank" href={"https://clearfund.substack.com"} onClick={() =>setOpenMenu(false)}>Blog</Link>
