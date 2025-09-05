@@ -44,15 +44,24 @@ const GrantRoundCard = ({ grants }) => {
             </div>
             <div className="px-5 py-2 mb-2 mt-auto">
               {item.link && (
-                <Link
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontSize: '16px' }}
-                  className="block font-sans bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] transition w-full py-2.5 text-center font-medium"
-                >
-                  Apply
-                </Link>
+                item.status === "past" ? (
+                  <span
+                    style={{ fontSize: '16px' }}
+                    className="block font-sans bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] opacity-60 cursor-not-allowed transition w-full py-2.5 text-center font-medium"
+                  >
+                    Ended
+                  </span>
+                ) : (
+                  <Link
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: '16px' }}
+                    className="block font-sans bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] transition w-full py-2.5 text-center font-medium"
+                  >
+                    Apply
+                  </Link>
+                )
               )}
             </div>
           </div>
