@@ -174,9 +174,9 @@ export default function Sidebar() {
             </Link>
 
 
-            <Link href="/grant-rounds">
+            <Link href="/funding-stream">
               <button
-                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-rounds" && !isNotificationModalOpen
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/funding-stream" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -184,7 +184,7 @@ export default function Sidebar() {
                 <span className="flex items-center gap-3">
                   <Image
                     src={
-                      pathname === "/grant-rounds" && !isNotificationModalOpen
+                      pathname === "/funding-stream" && !isNotificationModalOpen
                         ? "/sidebar-icons/grant-round-white-icon.svg"
                         : "/sidebar-icons/grant-round-icon.svg" 
                     }
@@ -196,14 +196,14 @@ export default function Sidebar() {
                 </span>
                 <ChevronRight
                   size={16}
-                  className={pathname === "/grant-rounds" ? "text-white" : "text-gray-400"}
+                  className={pathname === "/funding-stream" ? "text-white" : "text-gray-400"}
                 />
               </button>
             </Link>
 
-            <Link href="/grant-history">
+            <Link href="/past-funding">
               <button
-                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-history" && !isNotificationModalOpen
+                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/past-funding" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -211,7 +211,7 @@ export default function Sidebar() {
                 <span className="flex items-center gap-3">
                   <Image
                     src={
-                      pathname === "/grant-history" && !isNotificationModalOpen
+                      pathname === "/past-funding" && !isNotificationModalOpen
                         ? "/sidebar-icons/grant-history-white-icon.svg"
                         : "/sidebar-icons/past-grant-data-icon.svg"
                     }
@@ -219,11 +219,11 @@ export default function Sidebar() {
                     width={18}
                     height={18}
                   />
-                  Grant History
+               Past Funding
                 </span>
                 <ChevronRight
                   size={16}
-                  className={pathname === "/grant-history" ? "text-white" : "text-gray-400"}
+                  className={pathname === "/past-funding" ? "text-white" : "text-gray-400"}
                 />
               </button>
             </Link>
