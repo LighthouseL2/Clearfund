@@ -11,7 +11,7 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [programOpen, setProgramOpen] = useState(false);
-  // const [statusOpen, setStatusOpen] = useState(false);
+  const [statusOpen, setStatusOpen] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
@@ -20,7 +20,7 @@ export default function Dashboard() {
   const [selectedStatus, setSelectedStatus] = useState("");
 
   const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thrive", "Optimism", "Others"];
-  // const statuses = ["all"];
+  const statuses = ["Open Application", "Upcoming", "Past Rounds"];
 
   const [search, setSearch] = useState("");
 
@@ -59,7 +59,7 @@ export default function Dashboard() {
     },
     {
       image: "/grant-round-images/celo-proof-of-ship.svg",
-      title: " Celo-Proof of Ship",
+      title: " Celo-Proof of Ship 7",
       desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
       amount: "15k Celo",
       date: "End- Aug 29, 2025",
@@ -131,11 +131,19 @@ export default function Dashboard() {
     },
     {
       image: "/grant-round-images/giveth-round-image.svg",
-      title: "Giveth Causes QF Round",
+      title: "Giveth Causes Round",
       desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
       amount: "$20 K",
       date: "End- Sep 5, 2025",
       link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
+    },
+       {
+      image: "/grant-round-images/prezenti-round-image.svg",
+      title: "Prezenti Grant",
+      desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
+      amount: "$25-50k",
+      date: "End-  Dec 10, 2025",
+      link: "https://charmverse.prezenti.xyz/invite/f90c14"
     },
   ];
 
@@ -153,11 +161,11 @@ export default function Dashboard() {
       );
 
 
-    // const matchStatus =
-    //   selectedStatus === "" ||
-    //   grant.status.toLowerCase() === selectedStatus.toLowerCase();
+    const matchStatus =
+      selectedStatus === "" ||
+      grant.status.toLowerCase() === selectedStatus.toLowerCase();
 
-    return matchSearch && matchProgram
+    return matchSearch && matchProgram && matchStatus;
   });
 
   const toggleProgram = (program) => {
@@ -281,13 +289,13 @@ export default function Dashboard() {
               )}
             </div>
 
-            {/* Status Dropdown (Single Select) */}
+              {/* Status Dropdown (Single Select) */}
             <div className="relative w-full md:w-[230px]" ref={statusRef}>
               <button
                 onClick={() => setStatusOpen(!statusOpen)}
                 className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
               >
-                {selectedStatus || "All"}
+                {selectedStatus || "Select Status"}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-gray-400"
@@ -300,7 +308,44 @@ export default function Dashboard() {
                 </svg>
               </button>
 
+              {statusOpen && (
+                <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
+                  <div className="p-2 space-y-2">
+                    {/* All Option */}
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={selectedStatus === ""}
+                        onChange={() => {
+                          setSelectedStatus("");
+                          setStatusOpen(false);
+                        }}
+                        className="form-checkbox h-4 w-4 text-green-500"
+                      />
+                      <span className="text-sm text-gray-700">All</span>
+                    </label>
 
+                    {/* Status Options */}
+                    {statuses.map((status) => (
+                      <label
+                        key={status}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedStatus === status}
+                          onChange={() => {
+                            setSelectedStatus(status);
+                            setStatusOpen(false);
+                          }}
+                          className="form-checkbox h-4 w-4 text-green-500"
+                        />
+                        <span className="text-sm text-gray-700 capitalize">{status}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
             {/* Filter icon */}
             <button className="flex items-center justify-center w-10 h-10">
