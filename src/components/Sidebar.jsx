@@ -250,9 +250,9 @@ export default function Sidebar() {
             </button>
 
 
-            <Link href="/grant-history">
+            <Link href="/donate">
               <button
-                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-history" && !isNotificationModalOpen
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/donate" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -278,7 +278,7 @@ export default function Sidebar() {
 
                 <ChevronRight
                   size={16}
-                  className={pathname === "/grant-history" ? "text-white" : "text-gray-400"}
+                  className={pathname === "/donate" ? "text-white" : "text-gray-400"}
                 />
               </button>
             </Link>

@@ -18,12 +18,12 @@ const HeroSection = ({setModalOpen}) => {
   return (
     <div className="px-[5%]  flex justify-center items-center mx-auto text-center flex-col">
         <h1 className="mt-[103.5px] lg:w-[53.8rem] font-extrabold text-4xl md:text-[64px] mb-10">
-          Track Grants. Discover   <br className='hidden sm:block'/>Open <span className='text-[#7CB53E]'>Applications.</span>
+          Your Gateway to Web3
+          <br className='hidden sm:block'/>Funding and <span className='text-[#7CB53E]'>Opportunities </span>
         </h1>
         <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-medium font-sans">
-            ClearFund provides clarity and access to Web3 funding by aggregating past
-             <br className='hidden lg:block'/>funding data, open and upcoming funding opportunities
-             in one place.
+            Connecting builders, creators, and communities to funding
+             <br className='hidden lg:block'/>opportunities that drive innovation and growth.
         </p>
 
 
@@ -41,7 +41,7 @@ const HeroSection = ({setModalOpen}) => {
 
             return (
               <button onClick={handleClick}
-                className='btn bg-[#198038] h-[52px]  hover:scale-105 transition-all
+                className='btn bg-[#39B54A] h-[52px]  hover:scale-105 transition-all
                 text-white text-[16px] flex items-center font-sans justify-center
                   font-bold hover:bg-black w-[202.19px] rounded-md'>
                 {connected ? "Connect wallet" : "Connect wallet"}
