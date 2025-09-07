@@ -74,7 +74,7 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="relative z-10 px-6  py-[7rem] md:max-w-[660px] w-full text-white mx-auto text-center">
+        <div className="relative z-10 px-6  py-[7rem] md:max-w-[639px] w-full text-white mx-auto text-center">
           <h2 className="text-3xl md:text-[64px] font-bold mb-10 text-white/90">About</h2>
           <p className="mb-6 text-[16px] leading-relaxed text-white/90">
             ClearFund is a data aggregation and transparency platform for
