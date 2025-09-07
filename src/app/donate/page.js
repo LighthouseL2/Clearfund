@@ -91,7 +91,7 @@ const GoodCollective = () => {
                             />
                         </div>
 
-                        <div className="mt-7 flex flex-col w-full px-8 relative h-[293px]">
+                        <div className="mt-7 flex flex-col w-full px-8 relative lg:h-[293px]">
                             <h1 className="text-[16px] font-extrabold">{item.title}</h1>
                             <p className="mt-5">
                                 This pool provides additional daily G$ to women in Colombia
@@ -99,10 +99,10 @@ const GoodCollective = () => {
                             </p>
 
                             <Link href={"/"} className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center rounded-full mt-10 mx-auto absolute bottom-16 left-14">
+                            items-center justify-center rounded-full mt-10 mx-auto lg:absolute bottom-16 left-14">
                                 Donate
                             </Link>
-                            <div className="absolute bottom-0 w-[314px] left-6">
+                            <div className="lg:absolute bottom-0 lg:w-[314px] left-6">
                                 <hr className="mt-10"/>
                                 <div className="flex mt-2 justify-between items-center w-full">
                                     <p className="border text-[10px] rounded-full px-2 ">{item.date}</p>
