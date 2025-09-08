@@ -100,19 +100,19 @@ export default function GrantDashboard() {
 
         <div className="">
             <div className="flex justify-end items-center gap-5 mb-10 px-8 text-[#008767]">
-                <p className="rounded-full px-3 py-1 border font-bold text-[14px]">Celo</p>
-                <div className="flex items-center gap-5 border py-1 px-2 rounded-full font-sans">
-                    <span className="text-[14px] font-bold">G$ 122.10</span>
+                {/* <p className="rounded-full px-3 py-1 border font-bold text-[14px]">Celo</p> */}
+                <div className="flex items-center gap-5  py-1 px-2 rounded-full font-sans">
+                    {/* <span className="text-[14px] font-bold">G$ 122.10</span> */}
                     <div className="flex items-center gap-1">
                         <ConnectButton
-                            showBalance={true}
+                            // showBalance={true}
                         />
                     </div>
                 </div>
             </div>
 
 
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6 font-sans">
+            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
                 {/* Metric Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-800">
                     {[...metricData, ...sideCardData].map((item, index) => (
@@ -274,7 +274,7 @@ export default function GrantDashboard() {
 
                         <div className="w-full h-[281px] mt-10 lg:mt-2 relative" style={{backgroundImage: "url(/grantDashboard-icons/money.png)", backgroundRepeat: "no-repeat"}}>
                             <div className="w-2/3 absolute right-0 py-5 ">
-                                <h1 className="text-[35px] font-extrabold">Funding Stream</h1>
+                                <h1 className="text-[35px] font-extrabold text-[#273142]">Funding Stream</h1>
                                 <p className="mt-3  w-[245.5px] text-[16px] font-sans text-[#273142]">
                                     Access Grant, bounties and gigs across Web3 ecosytem that can help
                                     Builders and creators earn, innovate and grow.

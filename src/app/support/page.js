@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const cards = [
   {
-    icon: "question-icon.svg",
+    icon: "/support-icons/question.png",
     alt: "Question Icon",
     title: "Got a question?",
     description: "We are here to help. Reach out and we will get back\nto you as soon as possible.",
@@ -18,7 +18,7 @@ const cards = [
     link: "https://form.typeform.com/to/ujmDipM7"
   },
   {
-    icon: "feedback-icon.svg",
+    icon: "/support-icons/feedback.png",
     alt: "Feedback Icon",
     title: "Give Feedback",
     description: "Tell us what you think, your input helps us\ngrow and improve.",
@@ -26,7 +26,7 @@ const cards = [
     link: "https://form.typeform.com/to/qJv3uhi8"
   },
   {
-    icon: "bug-icon.svg",
+    icon: "/support-icons/bug.png",
     alt: "Bug Icon",
     title: "Flag a bug",
     description: "Notice something broken or off? Let us know so\nwe can fix it quickly.",
@@ -34,7 +34,7 @@ const cards = [
     link: "https://form.typeform.com/to/qNFZI89F"
   },
   {
-    icon: "feature-icon.svg",
+    icon: "/support-icons/feature.png",
     alt: "Feature Icon",
     title: "Suggest a Feature",
     description: "Have an idea that could make ClearFund better?\nWe would love to hear it!",
@@ -53,14 +53,14 @@ export default function SupportSection() {
   return (
     <section>
       <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-            setOpenMenu={setOpenMenu} setBlur={setBlur}
-        />
-        <MenuDropdown
-            openMenu={openMenu}
-            setOpenMenu={setOpenMenu}
-            toggle={open}
-            setToggle={setOpen}
-        />
+        setOpenMenu={setOpenMenu} setBlur={setBlur}
+      />
+      <MenuDropdown
+        openMenu={openMenu}
+        setOpenMenu={setOpenMenu}
+        toggle={open}
+        setToggle={setOpen}
+      />
       <HeroSection />
 
       <div className="px-4 py-16 bg-gray-50 font-sans">
@@ -74,7 +74,7 @@ export default function SupportSection() {
               duration-300 md:h-[531px] h-[450px]"
             >
               <Image
-                src={`/${card.icon}`}
+                src={card.icon}
                 alt={card.alt}
                 width={64}
                 height={64}
@@ -82,7 +82,7 @@ export default function SupportSection() {
               />
               <h3 className="text-[32px] font-medium text-[#1C4B2A] mb-2">{card.title}</h3>
               <p className="text-base text-gray-700 mb-6 whitespace-pre-line text-[16px]">{card.description}</p>
-              <Link href={card.link} target="_blank" className="w-[202.1923828125px] h-[52px] bg-green-700 
+              <Link href={card.link} target="_blank" className="w-[202.1923828125px] h-[52px] bg-[#39B54A]
                 text-white text-sm font-medium rounded hover:bg-green-800 transition flex items-center justify-center">
                 {card.buttonText}
               </Link>
