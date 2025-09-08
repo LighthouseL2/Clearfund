@@ -1,8 +1,9 @@
+
 "use client";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { LogOut, Settings, ChevronRight } from "lucide-react";
+import { LogOut, Settings, ChevronRight, InfoIcon } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
 import Sidebar from "@/components/Sidebar";
 import ProtectedRoute from "@/lib/withAuth";
@@ -11,7 +12,7 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [programOpen, setProgramOpen] = useState(false);
-  // const [statusOpen, setStatusOpen] = useState(false);
+  const [statusOpen, setStatusOpen] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
@@ -20,7 +21,7 @@ export default function Dashboard() {
   const [selectedStatus, setSelectedStatus] = useState("");
 
   const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thrive", "Optimism", "Others"];
-  // const statuses = ["all"];
+  const statuses = ["Grant", "Bounties & paid gigs", "Past opportunities", "Upcoming"];
 
   const [search, setSearch] = useState("");
 
@@ -59,7 +60,7 @@ export default function Dashboard() {
     },
     {
       image: "/grant-round-images/celo-proof-of-ship.svg",
-      title: " Celo-Proof of Ship",
+      title: " Celo-Proof of Ship 7",
       desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
       amount: "15k Celo",
       date: "End- Aug 29, 2025",
@@ -131,19 +132,39 @@ export default function Dashboard() {
     },
     {
       image: "/grant-round-images/giveth-round-image.svg",
-      title: "Giveth Causes QF Round",
+      title: "Giveth Causes Round",
       desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
       amount: "$20 K",
       date: "End- Sep 5, 2025",
       link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
     },
+    {
+      image: "/grant-round-images/prezenti-round-image.svg",
+      title: "Prezenti Grant",
+      desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
+      amount: "$25-50k",
+      date: "End-  Dec 10, 2025",
+      link: "https://charmverse.prezenti.xyz/invite/f90c14"
+    },
   ];
 
+  const getGrantStatus = (grant) => {
+    if (grant.status === "bounties") return "bounties";
+    const now = new Date();
+    const dateMatch = grant.date?.match(/End-\s*(.*)/i);
+    if (!dateMatch) return "live";
 
+    const grantEnd = new Date(dateMatch[1]);
+    return grantEnd < now ? "past" : "live";
+  };
 
+  const enrichedGrants = grants.map((grant) => ({
+    ...grant,
+    status: getGrantStatus(grant),
+  }));
 
-  // Filter logic
-  const filteredGrants = grants.filter((grant) => {
+  // --- grant filter logic ---
+  const filteredGrants = enrichedGrants.filter((grant) => {
     const matchSearch = grant.title.toLowerCase().includes(search.toLowerCase());
 
     const matchProgram =
@@ -152,12 +173,13 @@ export default function Dashboard() {
         grant.title.toLowerCase().includes(program.toLowerCase())
       );
 
+    const matchStatus =
+      selectedStatus === "" ||
+      (selectedStatus === "Grant" && grant.status === "live") ||
+      (selectedStatus === "Past opportunities" && grant.status === "past") ||
+      (selectedStatus === "Bounties & paid gigs" && grant.status === "bounties");
 
-    // const matchStatus =
-    //   selectedStatus === "" ||
-    //   grant.status.toLowerCase() === selectedStatus.toLowerCase();
-
-    return matchSearch && matchProgram
+    return matchSearch && matchProgram && matchStatus;
   });
 
   const toggleProgram = (program) => {
@@ -168,14 +190,14 @@ export default function Dashboard() {
     );
   };
 
-  // pagination logic
+  // code pagination logic
   const totalPages = Math.ceil(filteredGrants.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentGrants = filteredGrants.slice(startIndex, startIndex + itemsPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top on page change
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const programRef = useRef(null);
@@ -194,63 +216,36 @@ export default function Dashboard() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // reset to first page when search filter fails 
   useEffect(() => {
     setCurrentPage(1);
   }, [search, selectedPrograms, selectedStatus]);
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative font-sans">
+      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
+        <Sidebar />
 
-      {/* Sidebar */}
-      <Sidebar />
+        <main className="flex-1 p-4 md:p-6 md:ml-64">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-2xl font-bold text-center mb-2">Funding Stream</h1>
+            <p className="text-center text-base text-gray-600 mb-6">
+              Explore active grant, bounties and other funding opportunities across several ecosystems.
+            </p>
 
-      {/* Main */}
-      <main className="flex-1 p-4 md:p-6 md:ml-64">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold text-center mb-2">Funding Stream</h1>
-          <p className="text-center text-base text-gray-600 mb-6">
-            Explore current, upcoming grant and other funding opportunities across several ecosystem.
-          </p>
-
-          {/* Filters Card */}
-          <div className="bg-white rounded-xl shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
-            {/* Search */}
-            <div className="relative w-full md:w-[290px]">
-              <input
-                type="text"
-                placeholder="Search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-12 pl-10 pr-4 text-sm border rounded-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z"
+            {/* Filters Card */}
+            <div className="bg-white rounded-xl shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
+              {/* Search */}
+              <div className="relative w-full md:w-[290px]">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full h-12 pl-10 pr-4 text-sm border rounded-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
-              </svg>
-            </div>
-
-            {/* Program Dropdown */}
-            <div className="relative w-full md:w-[230px]" ref={programRef}>
-              <button
-                onClick={() => setProgramOpen(!programOpen)}
-                className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
-              >
-                Ecosystem
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
+                  className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -259,81 +254,130 @@ export default function Dashboard() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
+                    d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z"
                   />
                 </svg>
-              </button>
-              {programOpen && (
-                <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
-                  <div className="p-2">
-                    {programs.map((p) => (
-                      <label key={p} className="flex items-center gap-2 mb-1">
+              </div>
+
+              {/* Program Dropdown */}
+              <div className="relative w-full md:w-[230px]" ref={programRef}>
+                <button
+                  onClick={() => setProgramOpen(!programOpen)}
+                  className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
+                >
+                  Ecosystem
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                {programOpen && (
+                  <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
+                    <div className="p-2">
+                      {programs.map((p) => (
+                        <label key={p} className="flex items-center gap-2 mb-1">
+                          <input
+                            type="checkbox"
+                            checked={selectedPrograms.includes(p)}
+                            onChange={() => toggleProgram(p)}
+                          />
+                          {p}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* status dropdown section */}
+              <div className="relative w-full md:w-[230px]" ref={statusRef}>
+                <button
+                  onClick={() => setStatusOpen(!statusOpen)}
+                  className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
+                >
+                  {selectedStatus || "Select Status"}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {statusOpen && (
+                  <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
+                    <div className="p-2 space-y-2">
+                      {/* All Option */}
+                      <label className="flex items-center space-x-2 cursor-pointer">
                         <input
                           type="checkbox"
-                          checked={selectedPrograms.includes(p)}
-                          onChange={() => toggleProgram(p)}
+                          checked={selectedStatus === ""}
+                          onChange={() => {
+                            setSelectedStatus("");
+                            setStatusOpen(false);
+                          }}
+                          className="form-checkbox h-4 w-4 text-green-500"
                         />
-                        {p}
+                        <span className="text-sm text-gray-700">All</span>
                       </label>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
 
-            {/* Status Dropdown (Single Select) */}
-            <div className="relative w-full md:w-[230px]" ref={statusRef}>
+                      {/* Status Options */}
+                      {statuses.map((status) => (
+                        <label
+                          key={status}
+                          className="flex items-center space-x-2 cursor-pointer"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedStatus === status}
+                            onChange={() => {
+                              setSelectedStatus(status);
+                              setStatusOpen(false);
+                            }}
+                            className="form-checkbox h-4 w-4 text-green-500"
+                          />
+                          <span className="text-sm text-gray-700 capitalize">{status}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* filter icon */}
               <button
-                onClick={() => setStatusOpen(!statusOpen)}
-                className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
+                style={{ fontSize: '13px' }}
+                className="px-6 h-12 font-medium rounded border text-[#000000]/50 whitespace-nowrap flex items-center justify-center"
               >
-                {selectedStatus || "All"}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <span style={{ fontSize: '20px' }} className="items-center px-2">+ </span> Add New
               </button>
 
-
-            </div>
-            {/* Filter icon */}
-            <button className="flex items-center justify-center w-10 h-10">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 018 21v-7.586L3.293 6.707A1 1 0 013 6V4z"
+              <button className="flex items-center justify-center ">
+                <InfoIcon
+                  className="w-5 h-5 ml-1 text-[#999999] transition-transform duration-200"
                 />
-              </svg>
-            </button>
-
-            {/* Filter count button */}
-            <button className="px-4 h-10 rounded-full border text-sm text-gray-700 whitespace-nowrap">
-              {selectedPrograms.length + (selectedStatus ? 1 : 0)} programs
-            </button>
+              </button>
+            </div>
           </div>
-        </div >
 
-        {
-          filteredGrants.length > 0 ? (
+          {filteredGrants.length > 0 ? (
             <>
               <GrantRoundCard grants={currentGrants} />
-
-              {/* Pagination Controls - Updated UI */}
-              <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-6 text-sm text-gray-500">
+              {/* Pagination */}
+              <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-12 text-sm text-gray-500 mb-4">
                 {/* Previous Button */}
                 <button
                   disabled={currentPage === 1}
@@ -364,7 +408,7 @@ export default function Dashboard() {
                 <button
                   disabled={currentPage === totalPages}
                   onClick={() => handlePageChange(currentPage + 1)}
-                  className="w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border  rounded-md text-[#404B52] font-bold bg-[#F5F5F5]  disabled:opacity-50"
+                  className="w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border rounded-md text-[#404B52] font-bold bg-[#F5F5F5]  disabled:opacity-50"
                 >
                   &gt;
                 </button>
@@ -374,10 +418,10 @@ export default function Dashboard() {
             <div className="text-center mt-10 text-gray-500 text-md">
               No grant rounds found for your search.
             </div>
-          )
-        }
-      </main >
-    </div >
+          )}
+        </main>
+      </div>
     </ProtectedRoute>
   );
 }
+
