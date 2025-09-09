@@ -14,7 +14,7 @@ export default function HomePage() {
 
 
   return (
-    <div className="bg-white text-black font-sans">
+    <div className="bg-white text-black">
       <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
@@ -26,112 +26,41 @@ export default function HomePage() {
         />
 
       {/* Top Logo Background */}
-      <section
-  className="w-full h-[25vh] bg-center bg-no-repeat bg-[length:250px] sm:bg-[length:250px] md:bg-[length:900px]"
-  style={{ backgroundImage: "url('clearfund-bg-logo.svg')" }}
-/>
+      <div className='w-full flex flex-wrap justify-between  px-[5%] lg:h-[80vh]'>
+          <div className='lg:w-1/2 flex w-full flex-col mt-30 justify-center lg:justify-start'>
+            <p className='text-[#00000080]'>OPPORTUNITY TO EARN</p>
+            <h1 className='text-[96px] mt-10'>About</h1>
+            <div className='lg:w-[456px] font-sans text-[18px] space-y-10'>
+              <p>
+              ClearFund is designed as a dedicated platform that helps builders navigate Web3 opportunities by searching, curating, and presenting open grants, bounties, and paid gigs across the ecosystem.
+            </p>
 
-      {/* Hero Section */}
-      <div className='w-full h-[80vh] relative font-sans'>
-        <section
-        className="w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('aboutImg.jpg') "}}
-        />
+            <p>
+               By aggregating funding opportunities, ClearFund helps developers, startups, innovators, and community members to find relevant opportunities to innovate and grow.
+            </p>
+            </div>
+          </div>
 
-        <div className='w-full h-full bg-black/80 absolute top-0 '>
-
-        </div>
+          <div className='lg:w-1/2 xl:w-[620.9999389648438px] w-full relative h-[566px] flex items-center justify-center lg:mt-32'>
+            <Image
+              src={"/about-icons/money.png"}
+              alt='about icon'
+              fill
+            />
+          </div>
       </div>
 
-      {/* Public Goods Info Section */}
-      <section className="bg-[#F7F2EF] px-4 py-16 flex items-center justify-center  md:h-[70vh]">
-        <div className="mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-[72px] font-bold text-[#198038] mb-6 md:whitespace-nowrap">
-            Unifying Web3 Grant Data
-          </h1>
-          <p className="text-[18px] md:w-4xl font-sans mx-auto text-center text-gray-800 mb-10">
-            ClearFund is a data aggregation and transparency platform for Web3 public
-             goods funding. It unifies past funding data and open funding opportunities
-              into one accessible and searchable place.
-          </p>
-          <a href='https://giveth.io/project/clearfund' target='_blank' className="bg-[#198038] text-white block mx-auto py-4 text-sm rounded
-           hover:bg-green-800 transition w-[202.1923828125px] font-bold">
-            Support ClearFund
-          </a>
+      <div className='h-screen w-full bg-black mt-20'>
 
-        </div>
-      </section>
-
-      {/* About Section with Background Image */}
-      <section className="relative h-auto min-h-[500px] w-full pb-[3rem]">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/about-hero.svg"
-            alt="About Background"
-            fill
-            priority
-            className="object-cover w-full h-full"
-          />
-        </div>
-
-        <div className="relative z-10 px-6  py-[7rem] md:max-w-[660px] w-full text-white mx-auto text-center">
-          <h2 className="text-3xl md:text-[64px] font-bold mb-10 text-white/90">About</h2>
-          <p className="mb-6 text-[16px] leading-relaxed text-white/90">
-            ClearFund is a data aggregation and transparency platform for
-             the Web3 public goods funding ecosystem. It brings together past
-              funding data and open grant applications from decentralized grant
-               platforms into one accessible and searchable place. 
-          </p>
-
-          <p className="mb-6 text-[16px] leading-relaxed text-white/90">
-            Whether you’re a grantee, donor, DAO contributor, researcher, or
-             policymaker, ClearFund makes it easy to trace funding histories,
-              discover open funding opportunities, identify trends, and assess
-               the real-world impact of Web3 funding.
-          </p>
-            
-          <p className="mb-6 text-[16px] leading-relaxed text-white/90">
-            We solve the problem of fragmented information, a major barrier to
-             transparency and accountability in decentralized ecosystems by creating
-              a unified home for both historical grant data and open grant listings.
-          </p>
-
-          <h2 className='mt-20 mb-10 font-bold text-3xl md:text-[64px]'>Why This Matters: </h2>
-          <p className='text-[16px] text-white/90 mb-10'>
-            Public goods funding in Web3 has grown significantly. But as more platforms
-            experiment with new models Retroactive Public Goods Funding, Quadratic Funding,
-            streaming grants, on-chain bounties, the data trail has become messy.
-
-          </p>
-
-
-          <p className='text-[16px] text-white/90 mb-10'>
-            Each platform publishes funding outcomes and active rounds in its own format.
-            Some share spreadsheets, others release blog summaries, while many projects
-            receive or seek funding with minimal public visibility.
-          </p>
-
-        </div>
-      </section>
+      </div>
       <Footer />
     </div>
   );
 }
 
 
+
 `
-
-
-
-
-
-Why This Matters: 
-
-
-Public goods funding in Web3 has grown significantly. But as more platforms experiment with new models Retroactive Public Goods Funding, Quadratic Funding, streaming grants, on-chain bounties, the data trail has become messy.
-
-Each platform publishes funding outcomes and active rounds in its own format. Some share spreadsheets, others release blog summaries, while many projects receive or seek funding with minimal public visibility.
-
-
+ By aggregating funding opportunities, ClearFund helps developers, startups, innovators, and community members to find relevant opportunities to innovate and grow.
 
 `

@@ -20,11 +20,11 @@ function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative font-sans">
+      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
       {/* Sidebar imported */}
       <Sidebar />
 
-      <main className="flex-1 p-4 md:p-6 md:ml-64 font-sans">
+      <main className="flex-1 p-4 md:p-6 md:ml-64">
      <GrantDashboard />
       </main>
     </div>

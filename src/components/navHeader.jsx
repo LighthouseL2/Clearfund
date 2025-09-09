@@ -52,7 +52,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
 
             return (
               <button onClick={handleClick}
-                className='btn bg-[#198038] h-[52px] hidden hover:scale-105 transition-all
+                className='btn bg-[#39B54A] h-[52px] hidden hover:scale-105 transition-all
                 text-white text-[16px] md:flex items-center font-sans justify-center
                   font-bold hover:bg-black w-[159.17px] rounded-md'>
                 {connected ? "Connect wallet" : "Connect wallet"}

@@ -9,14 +9,14 @@ import Footer from "@/components/Footer";
 
 const faqs = [
   {
-    question: "How often is the data updated?",
+    question: "How often are opportunities updated on ClearFund?",
     answer:
-      "We update regularly to reflect new grants, active rounds, and funding outcomes.",
+      "We update regularly to ensure creators and builders have access to the latest funding programs, grants, and gigs in Web3.",
   },
   {
-    question: "Can I filter grants by platform or round?",
+    question: "What ecosystems does ClearFund cover?",
     answer:
-      "Yes, you can explore grants by platform, round, category, and timeline.",
+      "ClearFund covers multiple Web3 ecosystems, including DeFi, DAOs, ReFi, NFTs, and blockchain networks like Celo, Ethereum, Polygon, and more.",
   },
   {
     question: "Can I suggest a new feature or improvement?",
@@ -24,9 +24,9 @@ const faqs = [
       "Yes! We welcome suggestions. If you have ideas to make ClearFund better, please contact us and share your feedback.",
   },
   {
-    question: "Is ClearFund part of any grant platform?",
+    question: "What is the role of GoodCollective on ClearFund?",
     answer:
-      "No, we are an independent archive and transparency tool. We aggregate data across platforms.",
+      "GoodCollective is a public good initiative of Gooddollar that provides direct digital payments to people who need it most.",
   },
   {
     question: "Can I use ClearFund data for research or reporting?",
@@ -34,9 +34,9 @@ const faqs = [
       "Absolutely. Our platform is open for researchers, analysts, and storytellers.",
   },
   {
-    question: "How do I stay updated on new grant rounds?",
+    question: "How does ClearFund ensure transparency in Web3 funding?",
     answer:
-      "Follow us on social media or subscribe to our updates for alerts on new opportunities.",
+      "We curate past and ongoing opportunities in one place, making it easier to track programs, recipients, and overall funding activity.",
   },
   {
     question: "Does ClearFund include non-Web3 or traditional funding?",
@@ -56,7 +56,7 @@ export default function FaqSection() {
     };
 
     return (
-        <main className="bg-[#FAFAFA] font-sans">
+        <main className="bg-[#FAFAFA]">
           <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
@@ -75,11 +75,10 @@ export default function FaqSection() {
   <div className="absolute inset-0 bg-[#000000E5] bg-opacity-60 z-0"></div>
 
   {/* Hero section content */}
-  <div className="h-full w-full font-sans flex items-center justify-center px-4 md:px-24 relative z-10">
+  <div className="h-full w-full flex items-center justify-center px-4 md:px-24 relative z-10">
     <div className="text-white text-center ">
-      <h1 className="font-extrabold text-5xl sm:text-6xl md:text-6xl mb-4 leading-tight text-center">
-        <span className="text-white font-extrabold">Frequently</span> asked
-        questions
+      <h1 className="font-extrabold text-[75px] mb-4 leading-tight text-center">
+        FAQS
       </h1>
     </div>
   </div>
@@ -97,23 +96,23 @@ export default function FaqSection() {
             className="w-full flex items-center justify-between text-left px-6 py-5 focus:outline-none"
           >
             <span
-              className={`text-base sm:text-lg transition font-medium ${
+              className={`text-base sm:text-[22px] transition font-medium ${
                 activeIndex === index ? 'font-semibold' : 'font-bold'
               }`}
             >
               {item.question}
             </span>
-            <span className="ml-4 text-black">
+            <span className="ml-4">
               {activeIndex === index ? (
-                <FiMinus size={20} />
+                <FiMinus size={20} className="text-black/60"/>
               ) : (
-                <FiPlus size={20} />
+                <FiPlus size={20} className="text-black/60"/>
               )}
             </span>
           </button>
 
           {activeIndex === index && (
-            <div className="px-6 pb-12 text-black text-sm sm:text-base leading-relaxed">
+            <div className="px-6 pb-12 text-black text-[15px] sm:text-base leading-relaxed">
               {item.answer}
             </div>
           )}

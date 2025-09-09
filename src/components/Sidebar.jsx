@@ -144,7 +144,7 @@ export default function Sidebar() {
             <Link href="/dashboard">
               <button
                 className={`w-full flex items-center cursor-pointer justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -176,8 +176,10 @@ export default function Sidebar() {
 
             <Link href="/funding-stream">
               <button
+
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/funding-stream" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
+
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -203,8 +205,10 @@ export default function Sidebar() {
 
             <Link href="/past-funding">
               <button
+
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/past-funding" && !isNotificationModalOpen
                   ? "bg-[#174123] text-white"
+
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -232,7 +236,7 @@ export default function Sidebar() {
             <button
               onClick={() => setIsNotificationModalOpen(true)}
               className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${isNotificationModalOpen
-                ? "bg-[#174123] text-white"
+                ? "bg-[#39B54A] text-white"
                 : "text-[#9197B3] hover:bg-gray-50"
                 }`}
             >
@@ -250,10 +254,10 @@ export default function Sidebar() {
             </button>
 
 
-            <Link href="/grant-history">
+            <Link href="/donate">
               <button
-                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-history" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/donate" && !isNotificationModalOpen
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -278,7 +282,7 @@ export default function Sidebar() {
 
                 <ChevronRight
                   size={16}
-                  className={pathname === "/grant-history" ? "text-white" : "text-gray-400"}
+                  className={pathname === "/donate" ? "text-white" : "text-gray-400"}
                 />
               </button>
             </Link>
@@ -301,7 +305,7 @@ export default function Sidebar() {
             <Link href="/account">
               <button
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`} onClick={() => setIsNotificationModalOpen(false)}
               >
