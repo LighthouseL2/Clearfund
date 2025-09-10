@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function DashboardCards() {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center py-10">
+    <div className="min-h-screen bg-white flex flex-col items-center py-10 font-sans">
       <div className="w-full max-w-6xl flex justify-center sm:justify-start mb-8">
         <button
           className="px-7 py-1 rounded-[5px] text-xs sm:text-sm border-2 border-[#26A17B] bg-[#A6E7D8]/40 text-[#26A17B] font-medium transition"
