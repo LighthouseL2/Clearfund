@@ -148,28 +148,3 @@ export default function TermsAndConditions() {
     </section>
   );
 }
-
-
-
-`
-
-
-12. Prohibited Uses
-You agree not to: I. Use the Platform for any illegal or unauthorized purpose. II. Attempt to reverse engineer, scrape, or extract large volumes of data without permission. III. Upload or transmit any malicious code or material.
-
-13. Changes to the Platform
-We reserve the right to modify or discontinue the Platform, or any part of it, at any time, with or without notice.
-
-14. Limitation of Liability
-ClearFund and its contributors are not liable for any damages or losses arising from your use of, or reliance on, the Platform. All services are provided “as is” and “as available.
-
-15. Modifications to These Terms
-We may update these terms periodically. Any changes will be posted here with a revised "Effective Date." Continued use of the Platform after changes constitutes your acceptance of the new Terms.
-
-16. Governing Law
-These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which the ClearFund project is primarily maintained, without regard to its conflict of law provisions. However, since ClearFund is an open-source, global platform, users agree that any legal matters shall be resolved in a fair and neutral manner, prioritizing cooperative resolution.
-
- By using ClearFund, you acknowledge that local laws may apply depending on your location, and you are responsible for compliance with them.
-
-
-`
