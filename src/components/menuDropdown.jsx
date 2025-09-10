@@ -45,9 +45,9 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle, setModalOpen}) 
         
                     return (
                         <button onClick={handleClick}
-                        className='btn bg-[#198038] h-[52px]  hover:scale-105 transition-all
+                        className='btn bg-[#39B54A] h-[52px]  hover:scale-105 transition-all
                         text-white text-[16px] flex items-center font-sans justify-center
-                            font-bold hover:bg-black w-[202.19px] rounded-md'>
+                            font-bold hover:bg-black w-[202.19px] rounded-full'>
                         {connected ? "Connect wallet" : "Connect wallet"}
                         </button>
                     )
