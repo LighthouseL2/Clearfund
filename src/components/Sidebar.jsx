@@ -101,7 +101,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md">
+      <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
         <div className="relative w-[120px] h-[30px]">
           <Image
             src="/clearfund-dashboard-logo.svg"
@@ -144,7 +144,7 @@ export default function Sidebar() {
             <Link href="/dashboard">
               <button
                 className={`w-full flex items-center cursor-pointer justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -177,7 +177,7 @@ export default function Sidebar() {
             <Link href="/funding-stream">
               <button
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/funding-stream" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -204,7 +204,7 @@ export default function Sidebar() {
             <Link href="/past-funding">
               <button
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/past-funding" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -232,7 +232,7 @@ export default function Sidebar() {
             <button
               onClick={() => setIsNotificationModalOpen(true)}
               className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${isNotificationModalOpen
-                ? "bg-[#174123] text-white"
+                ? "bg-[#39B54A] text-white"
                 : "text-[#9197B3] hover:bg-gray-50"
                 }`}
             >
@@ -245,7 +245,7 @@ export default function Sidebar() {
               </span>
               <ChevronRight
                 size={16}
-                className={isNotificationModalOpen ? "text-[#174123]" : "text-gray-400"}
+                className={isNotificationModalOpen ? "text-[#39B54A]" : "text-gray-400"}
               />
             </button>
 
@@ -253,7 +253,7 @@ export default function Sidebar() {
             <Link href="/grant-history">
               <button
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/grant-history" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
               >
@@ -289,7 +289,7 @@ export default function Sidebar() {
 
             {/* <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
               ${pathname === "/account"
-                    ? "bg-[#174123] text-white"
+                    ? "bg-[#39B54A] text-white"
                     : "text-[#9197B3] hover:bg-gray-50"
                 } font-medium  rounded-lg w-full text-left`}>
                 <Settings size={18} />
@@ -301,7 +301,7 @@ export default function Sidebar() {
             <Link href="/account">
               <button
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account" && !isNotificationModalOpen
-                  ? "bg-[#174123] text-white"
+                  ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`} onClick={() => setIsNotificationModalOpen(false)}
               >
