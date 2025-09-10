@@ -66,7 +66,7 @@ export default function PastGrantRounds() {
   );
 
   return (
-    <div className="px-4 md:px-10 py-4 text-black">
+    <div className="px-4 md:px-10 py-4 text-black font-sans">
       {/* Search */}
       <div className="max-w-4xl mx-auto mb-6">
         <div className="relative">
@@ -159,7 +159,7 @@ export default function PastGrantRounds() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-sm border-1 border-[#26A17B] text-[#008767] py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
+                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-full border-1 border-[#26A17B] text-[#008767] py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
                   >
                     Open
                     

@@ -374,7 +374,7 @@ export default function Dashboard() {
             <>
               <GrantRoundCard grants={currentGrants} />
               {/* pagination for grant list */}
-              <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-12 text-sm text-gray-500 mb-4">
+              <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-34 text-sm text-gray-500 ">
                 {/* Previous Button */}
                 <button
                   disabled={currentPage === 1}

@@ -47,7 +47,7 @@ const GrantRoundCard = ({ grants }) => {
                 item.status === "past" ? (
                   <span
                     style={{ fontSize: '16px' }}
-                    className="block font-sans bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] opacity-60 cursor-not-allowed transition w-full py-2.5 text-center font-medium"
+                    className="block font-sans bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] opacity-60 cursor-not-allowed transition w-full py-2.5 text-center font-medium rounded-full"
                   >
                     Ended
                   </span>
@@ -57,7 +57,7 @@ const GrantRoundCard = ({ grants }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ fontSize: '16px' }}
-                    className="block font-sans bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] transition w-full py-2.5 text-center font-medium"
+                    className="block font-sans bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] transition w-full py-2.5 text-center font-medium rounded-full"
                   >
                     Apply
                   </Link>
