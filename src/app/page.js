@@ -133,13 +133,15 @@ export default function Home() {
 
         <DiscoverBox />
 
-        <GrantBox />
-
-        <FaqSection />
+        {/* <GrantBox /> */}
 
         <RecentPost />
 
-        <div className={`px-[5%] w-[90%] mx-auto rounded-2xl h-[621px]
+        <FaqSection />
+
+
+
+        <div className={`px-[5%] w-[90%] mx-auto rounded-2xl h-[621px] mt-30
          flex items-center justify-center flex-col bg-[url(/details.jpg)] bg-cover bg-center`}>
             <div className="flex items-center justify-center flex-col space-y-10">
                 <h1 className="text-black font-extrabold text-[36px] md:text-[76px] w-full
@@ -149,7 +151,7 @@ export default function Home() {
 
                 <p className="text-[22px] text-center md:w-[36.1rem] font-semibold text-black/70
                     leading-[1.8rem] font-sans">
-                    Past funding data to open funding opportunities, all in <br />one searchable place.
+                    Helping builders discover and access funding <br />opportunities with ease
                 </p>
 
                 <ConnectButton.Custom>
@@ -165,7 +167,7 @@ export default function Home() {
                         <button onClick={handleClick}
                             className='btn flex items-center justify-center font-semibold
                                 hover:bg-black transition-all hover:scale-110 font-sans
-                                bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded'>
+                                bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-full'>
                             {connected ? "Go to Dashboard" : "Explore ClearFund"}
                         </button>
                         )
