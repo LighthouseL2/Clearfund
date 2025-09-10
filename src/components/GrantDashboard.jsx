@@ -22,10 +22,10 @@ export default function GrantDashboard() {
         },
 
         {
-            title: "Active Round",
-            value: "14",
+            title: "Opportunities",
+            value: "13",
             img: "/grant-icons/active-round-icon.svg",
-            footer: { text: "Ongoing", icon: "/card-icons/ongoing-round-icon.svg" },
+            footer: { text: "Open Applications", icon: "/card-icons/ongoing-round-icon.svg" },
         },
 
 

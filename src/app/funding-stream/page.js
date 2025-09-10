@@ -1,4 +1,3 @@
-
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,20 +9,35 @@ import ProtectedRoute from "@/lib/withAuth";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const [showTooltip, setShowTooltip] = useState(false);
   const [programOpen, setProgramOpen] = useState(false);
   const [statusOpen, setStatusOpen] = useState(false);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
-
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
-
-  const programs = ["Gitcoin", "Celo", "Octant", "Good Dollar", "Arbitrum", "Lisk", "Thrive", "Optimism", "Others"];
-  const statuses = ["Grant", "Bounties & paid gigs", "Past opportunities", "Upcoming"];
-
   const [search, setSearch] = useState("");
+
+  const programs = [
+    "Gitcoin",
+    "Celo",
+    "Octant",
+    "Good Dollar",
+    "Arbitrum",
+    "Lisk",
+    "Thrive",
+    "Optimism",
+    "Others",
+  ];
+  const statuses = [
+    "Grant",
+    "Bounties & paid gigs",
+    "Past opportunities",
+    "Upcoming",
+  ];
 
   const grants = [
     {
@@ -38,7 +52,7 @@ export default function Dashboard() {
       image: "/grant-round-images/octant-image.svg",
       title: "Octant",
       desc: `Funding the journalists, storytellers, content creators, and others who’ve helped make Ethereum legible.`,
-      amount: "TBA",
+      amount: "$1m",
       date: "End- Aug 27, 2025",
       link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
     },
@@ -134,26 +148,24 @@ export default function Dashboard() {
       image: "/grant-round-images/giveth-round-image.svg",
       title: "Giveth Causes Round",
       desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
-      amount: "$20 K",
+      amount: "$40K",
       date: "End- Sep 5, 2025",
       link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
     },
     {
       image: "/grant-round-images/prezenti-round-image.svg",
-      title: "Prezenti Grant",
+      title: "Celo Prezenti Grant",
       desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
       amount: "$25-50k",
       date: "End-  Dec 10, 2025",
       link: "https://charmverse.prezenti.xyz/invite/f90c14"
     },
   ];
-
   const getGrantStatus = (grant) => {
     if (grant.status === "bounties") return "bounties";
     const now = new Date();
     const dateMatch = grant.date?.match(/End-\s*(.*)/i);
     if (!dateMatch) return "live";
-
     const grantEnd = new Date(dateMatch[1]);
     return grantEnd < now ? "past" : "live";
   };
@@ -163,22 +175,21 @@ export default function Dashboard() {
     status: getGrantStatus(grant),
   }));
 
-  // --- grant filter logic ---
   const filteredGrants = enrichedGrants.filter((grant) => {
-    const matchSearch = grant.title.toLowerCase().includes(search.toLowerCase());
-
+    const matchSearch = grant.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
     const matchProgram =
       selectedPrograms.length === 0 ||
-      selectedPrograms.some(program =>
+      selectedPrograms.some((program) =>
         grant.title.toLowerCase().includes(program.toLowerCase())
       );
-
     const matchStatus =
       selectedStatus === "" ||
       (selectedStatus === "Grant" && grant.status === "live") ||
       (selectedStatus === "Past opportunities" && grant.status === "past") ||
-      (selectedStatus === "Bounties & paid gigs" && grant.status === "bounties");
-
+      (selectedStatus === "Bounties & paid gigs" &&
+        grant.status === "bounties");
     return matchSearch && matchProgram && matchStatus;
   });
 
@@ -190,10 +201,12 @@ export default function Dashboard() {
     );
   };
 
-  // code pagination logic
   const totalPages = Math.ceil(filteredGrants.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentGrants = filteredGrants.slice(startIndex, startIndex + itemsPerPage);
+  const currentGrants = filteredGrants.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -213,7 +226,8 @@ export default function Dashboard() {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -222,19 +236,20 @@ export default function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
+      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative font-sans">
         <Sidebar />
 
         <main className="flex-1 p-4 md:p-6 md:ml-64">
           <div className="max-w-6xl mx-auto">
-            <h1 className="text-2xl font-bold text-center mb-2">Funding Stream</h1>
+            <h1 className="text-2xl font-bold text-center mb-2">
+              Funding Stream
+            </h1>
             <p className="text-center text-base text-gray-600 mb-6">
-              Explore active grant, bounties and other funding opportunities across several ecosystems.
+              Explore active grant, bounties and other funding opportunities
+              across several ecosystems.
             </p>
-
-            {/* Filters Card */}
             <div className="bg-white rounded-xl shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
-              {/* Search */}
+              {/* Search bar component */}
               <div className="relative w-full md:w-[290px]">
                 <input
                   type="text"
@@ -259,27 +274,14 @@ export default function Dashboard() {
                 </svg>
               </div>
 
-              {/* Program Dropdown */}
+              {/* ecosystem dropdown section*/}
               <div className="relative w-full md:w-[230px]" ref={programRef}>
                 <button
                   onClick={() => setProgramOpen(!programOpen)}
                   className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
                 >
                   Ecosystem
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+                  <ChevronRight className="h-4 w-4 text-gray-400 rotate-90" />
                 </button>
                 {programOpen && (
                   <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
@@ -299,29 +301,18 @@ export default function Dashboard() {
                 )}
               </div>
 
-              {/* status dropdown section */}
+              {/* grant status dropdown section */}
               <div className="relative w-full md:w-[230px]" ref={statusRef}>
                 <button
                   onClick={() => setStatusOpen(!statusOpen)}
                   className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
                 >
                   {selectedStatus || "Select Status"}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <ChevronRight className="h-4 w-4 text-gray-400 rotate-90" />
                 </button>
-
                 {statusOpen && (
                   <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
                     <div className="p-2 space-y-2">
-                      {/* All Option */}
                       <label className="flex items-center space-x-2 cursor-pointer">
                         <input
                           type="checkbox"
@@ -330,12 +321,9 @@ export default function Dashboard() {
                             setSelectedStatus("");
                             setStatusOpen(false);
                           }}
-                          className="form-checkbox h-4 w-4 text-green-500"
                         />
                         <span className="text-sm text-gray-700">All</span>
                       </label>
-
-                      {/* Status Options */}
                       {statuses.map((status) => (
                         <label
                           key={status}
@@ -348,35 +336,44 @@ export default function Dashboard() {
                               setSelectedStatus(status);
                               setStatusOpen(false);
                             }}
-                            className="form-checkbox h-4 w-4 text-green-500"
                           />
-                          <span className="text-sm text-gray-700 capitalize">{status}</span>
+                          <span className="text-sm text-gray-700 capitalize">
+                            {status}
+                          </span>
                         </label>
                       ))}
                     </div>
                   </div>
                 )}
               </div>
-              {/* filter icon */}
+
+              {/* Add new button section modal */}
               <button
-                style={{ fontSize: '13px' }}
+                onClick={() => setIsModalOpen(true)}
+                style={{ fontSize: "13px" }}
                 className="px-6 h-12 font-medium rounded border text-[#000000]/50 whitespace-nowrap flex items-center justify-center"
               >
-                <span style={{ fontSize: '20px' }} className="items-center px-2">+ </span> Add New
+                <span style={{ fontSize: "20px" }} className="items-center px-2">
+                  +
+                </span>{" "}
+                Add New
               </button>
-
-              <button className="flex items-center justify-center ">
-                <InfoIcon
-                  className="w-5 h-5 ml-1 text-[#999999] transition-transform duration-200"
-                />
+              <button className="relative group flex items-center justify-center">
+                <InfoIcon className="w-5 h-5 ml-1 text-[#198038]" />
+                <span className="absolute bottom-full mb-2 hidden group-hover:block whitespace-nowrap bg-gray-800 text-white text-[10px] rounded-md px-2 py-1">
+                  Add a new grant, bounty, gigs to <br />
+                  help builders, creators, and <br /> communities discover and
+                  apply.
+                </span>
               </button>
             </div>
           </div>
 
+          {/* grant list section */}
           {filteredGrants.length > 0 ? (
             <>
               <GrantRoundCard grants={currentGrants} />
-              {/* Pagination */}
+              {/* pagination for grant list */}
               <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-12 text-sm text-gray-500 mb-4">
                 {/* Previous Button */}
                 <button
@@ -386,8 +383,6 @@ export default function Dashboard() {
                 >
                   &lt;
                 </button>
-
-                {/* Page Numbers */}
                 {Array.from({ length: totalPages }, (_, i) => {
                   const page = i + 1;
                   return (
@@ -403,8 +398,6 @@ export default function Dashboard() {
                     </button>
                   );
                 })}
-
-                {/* Next Button */}
                 <button
                   disabled={currentPage === totalPages}
                   onClick={() => handlePageChange(currentPage + 1)}
@@ -416,12 +409,90 @@ export default function Dashboard() {
             </>
           ) : (
             <div className="text-center mt-10 text-gray-500 text-md">
-              No grant rounds found for your search.
+              {selectedStatus === "Bounties & paid gigs" && "No bounties yet. Please check back later."}
+              {selectedStatus === "Upcoming" && "No upcoming grants. Please check back later."}
+              {selectedStatus === "" && "No grant rounds found for your search."}
             </div>
           )}
         </main>
+
+        {/* add new grant modal section */}
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+              onClick={() => setIsModalOpen(false)}
+            />
+
+
+            <div className="relative bg-white rounded-lg shadow-lg w-full max-w-lg mx-4 p-6 z-10">
+
+              <div className="flex justify-between items-center mb-12">
+                <h2 className="text-[16px] font-bold">
+                  Add new opportunity
+                </h2>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-800"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* form section for adding new grant */}
+              <form className="space-y-4">
+                <div className="mb-8">
+                  <label className="block text-sm font-medium mb-1">
+                    Short Description
+                  </label>
+                  <textarea className="w-full border rounded-[5px] p-2 text-sm" rows="3"></textarea>
+                </div>
+                <div className="mb-8">
+                  <label className="block text-sm font-medium mb-1">
+                    Link to grant/bounties/gigs
+                  </label>
+                  <input type="text" className="w-full border rounded-[5px] p-2 text-sm" />
+                </div>
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Start Date</label>
+                    <input type="date" className="w-full border rounded-[5px] p-2 text-sm" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">End Date</label>
+                    <input type="date" className="w-full border rounded-[5px] p-2 text-sm" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 mb-4">
+                  <div >
+                    <label className="block text-sm font-medium mb-1">Amount</label>
+                    <input type="text" placeholder="Optional" className="w-full border rounded-[5px] p-2 text-sm" />
+                  </div>
+                </div>
+
+                <p className="text-[10px] text-[#000000]/50 mb-8">
+                  Please note that grant/bounties/gigs will only be added after verification
+                </p>
+                <div className="flex justify-between mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-6 py-2 rounded-full border border-gray-400 text-gray-600"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2 rounded-full bg-[#39B54A] text-white font-medium"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </ProtectedRoute>
   );
 }
-
