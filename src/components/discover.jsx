@@ -58,14 +58,14 @@ const DiscoverBox = () => {
         <div className="h-full grid lg:grid-cols-2 gap-10 xl:w-[63rem] lg:w-[62rem] w-full  text-white mb-10 md:mb-0">
             {dicoverData.map((item, index) => (
                 <div className="bg-[#111111] w-full md:w-[474px] px-10 py-10 h-[229px]
-                     rounded-md hover:scale-105 pt-8 pb-8 lg:pb-0 mx-auto font-sans
+                     rounded-md hover:scale-105 pt-8 pb-8 lg:pb-0 mx-auto
                     transition duration-300 ease-in-out hover:shadow-[#00CD5D] hover:shadow-2xl" key={index}>
 
                     <span className='block mb-1'>{item.icon}</span>
 
 
-                    <h3 className="text-[22px] font-semibold mb-5">{item.title}</h3>
-                    <p className='text-[16px]'>{item.desc}</p>
+                    <h3 className="text-[22px] font-bold mb-5">{item.title}</h3>
+                    <p className='text-[16px] font-sans'>{item.desc}</p>
                 </div>
             ))}
         </div>
