@@ -54,25 +54,14 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
               <button onClick={handleClick}
                 className='btn bg-[#39B54A] h-[52px] hidden hover:scale-105 transition-all
                 text-white text-[16px] md:flex items-center font-sans justify-center
-                  font-bold hover:bg-black w-[159.17px] rounded-md'>
-                {connected ? "Connect wallet" : "Connect wallet"}
+                  font-bold hover:bg-black w-[159.17px] rounded-full'>
+                {connected ? "Connect Wallet" : "Connect Wallet"}
               </button>
             )
           }}
         </ConnectButton.Custom>
 
         <div className="flex items-center md:hidden" onClick={() => setOpenMenu(!openMenu)}>
-          {/* <button onClick={() => setOpenMenu(!openMenu)} className="lg:hidden border-0 items-center justify-center flex flex-col group w-8 h-8">
-            <span
-                className={`w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && " rotate-45 translate-y-3"}`}
-            />
-            <span
-                className={`${!toggle && "mt-1"} w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && "opacity-0"}`}
-            />
-            <span
-                className={`${!toggle && "mt-1"} w-6 h-[3px] bg-black transition-all duration-300 ease-in-out ${openMenu && "-rotate-45 -translate-y-0"}`}
-            />
-          </button> */}
           {!openMenu ? <MenuIcon /> :
           <X />}
         </div>

@@ -139,7 +139,7 @@ export default function Home() {
 
         <FaqSection />
 
-        
+
 
         <div className={`px-[5%] w-[90%] mx-auto rounded-2xl h-[621px] mt-30
          flex items-center justify-center flex-col bg-[url(/details.jpg)] bg-cover bg-center`}>
@@ -167,7 +167,7 @@ export default function Home() {
                         <button onClick={handleClick}
                             className='btn flex items-center justify-center font-semibold
                                 hover:bg-black transition-all hover:scale-110 font-sans
-                                bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded'>
+                                bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-full'>
                             {connected ? "Go to Dashboard" : "Explore ClearFund"}
                         </button>
                         )

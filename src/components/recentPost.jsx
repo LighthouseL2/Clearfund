@@ -32,7 +32,7 @@ const RecentPost = () => {
             {/* <a href="" className="bg-[#198038] block text-center text-white mt-20 h-[52px] w-[202.1923828125px] mx-auto">
                 Visit Blog
             </a> */}
-            <div className="bg-[#39B54A] rounded-md w-[202px] hover:bg-black hover:scale-105 transition-all mx-auto flex justify-center items-center h-[52px] mt-20">
+            <div className="bg-[#39B54A] rounded-full w-[202px] hover:bg-black hover:scale-105 transition-all mx-auto flex justify-center items-center h-[52px] mt-20">
                 <Link href="https://clearfund.substack.com" target="_blank" className="text-white ">Visit Blog</Link>
             </div>
         </div>

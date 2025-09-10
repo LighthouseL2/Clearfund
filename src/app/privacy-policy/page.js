@@ -19,34 +19,43 @@ export default function PrivacyPolicy() {
     paragraph: `At ClearFund ("we", "us", or "our"), your privacy matters. This Privacy Policy outlines how we handle information when you access or use our platform`,
     content: [
       {
-        heading: "1. No Personal Data Collection",
-        text: `ClearFund allows users to create accounts and log in using Google OAuth. When you sign up or log in with your Google account, we collect the following information from your Google profile (with your consent): Email address, Google user ID (non-public, used for authentication). We do not access your Google password or other sensitive account information.
-        
-        Authentication is securely handled through Google’s OAuth system, and we only receive the minimum information required to manage your account. We may also collect: Basic usage analytics to understand and improve the platform, Optional information you provide via forms or newsletters. We do not sell or share your personal data with third parties for marketing purposes.`,
+        heading: "1. Information We Collect",
+        text: `When you use ClearFund, we may collect: Wallet Information: Public wallet addresses you connect. User Submissions: Content, applications, or information you provide. Usage Data: Non-personal data such as browser type, device, and platform interactions.`,
       },
       {
-        heading: "2. What We Display",
-        text: `The information on ClearFund includes: 1. Publicly available data about past and ongoing grant rounds, 2. Grant round details such as project names, funding amounts, round names, and platforms (e.g., Gitcoin, Giveth, Octant), 3. Data presented through charts, tables, and visualizations for transparency and educational purposes. This data is either publicly accessible or submitted by users with consent for display.`,
+        heading: "2. How We Use Information",
+        text: `We use collected information to: Connect users with grants, bounties, and funding opportunities. Improve and personalize the Platform. Communicate updates, opportunities, or platform-related notices. Ensure security and prevent misuse of the Platform.`,
       },
       {
-        heading: "3. Cookies & Analytics",
-        text: `We may use basic cookies or third-party analytics tools (such as Google Analytics) to understand how users interact with our site purely to improve performance and content delivery. These cookies do not track personal identity, and you can disable them in your browser settings.`,
+        heading: "3. Wallet & Blockchain Data",
+        text: `Interactions with ClearFund may involve blockchain transactions. Please note: Blockchain transactions are public and permanent.
+We do not control or alter blockchain records. You are solely responsible for safeguarding your wallet and private keys.`,
       },
       {
-        heading: "4. Third-Party Links",
-        text: `ClearFund may contain links to third-party websites and platforms (e.g., funding platforms or project sites). We are not responsible for the privacy practices of those websites. Please review their privacy policies before interacting with them.`,
+        heading: "4. Cookies & Tracking",
+        text: `We may use cookies or similar technologies to: Analyze platform usage. Improve performance and user experience. Store your preferences. You can disable cookies in your browser, but some features may not work properly.`,
       },
       {
         heading: "5. Data Security",
-        text: `We prioritize the protection of your personal information and implement strong security measures to safeguard it. Authentication is handled securely via Google OAuth, meaning we do not collect or store your Google password. We only receive minimal information from Google (such as your email address) needed to create and manage your account.`,
+        text: `We use reasonable measures to protect your information. However, no method of transmission over the internet or blockchain is 100% secure. Use the Platform at your own risk.`,
       },
       {
-        heading: "6. Changes to This Policy",
-        text: `We may update this Privacy Policy from time to time. The latest version will always be available on this page with the revised "Effective Date."`,
+        heading: "6. Third-Party Links",
+        text: `ClearFund may link to third-party websites. We are not responsible for their privacy practices. We encourage you to review their privacy policies.`,
       },
       {
-        heading: "7. Contact Us",
-        text: `If you have any questions or concerns regarding this Privacy Policy or our data practices, please contact us at phweb3connect@gmail.com `,
+        heading: "7. Children’s Privacy",
+        text: `ClearFund is not intended for users under 18 years of age (or the legal age of majority in your region). We do not knowingly collect personal information from minors.`,
+      },
+
+      {
+        heading: "8. Changes to This Policy",
+        text: `We may update this Privacy Policy from time to time. Updates will be posted with a revised “Effective Date.” Continued use of ClearFund after updates means you accept the changes.`
+      },
+
+      {
+        heading: "Contact Us",
+        text: `If you have any questions or concerns regarding this Privacy Policy or our data practices, please contact us at phweb3connect@gmail.com.`
       },
     ],
   };
@@ -96,3 +105,37 @@ export default function PrivacyPolicy() {
     
   );
 }
+
+
+
+`
+
+At ClearFund ("we", "us", or "our"), your privacy matters. This Privacy Policy outlines how we handle information when you access or use our platform clearfund.netlify.app.
+
+1. Information We Collect
+
+2. How We Use Information
+
+
+3. Wallet & Blockchain Data
+
+
+4. Cookies & Tracking
+
+
+5. Data Security
+
+6. Third-Party Links
+
+7. Children’s Privacy
+
+8. Changes to This Policy
+
+9. Contact Us
+If you have any questions or concerns regarding this Privacy Policy or our data practices, please contact us at phweb3connect@gmail.com.
+
+
+ 
+
+
+`
