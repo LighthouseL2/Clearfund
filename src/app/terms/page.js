@@ -33,9 +33,7 @@ export default function TermsAndConditions() {
       },
       {
         heading: "4. Funding Opportunities",
-        text: `ClearFund curates and lists opportunities; we do not control or guarantee the outcome of third-party grants, bounties, or paid gigs.
-              Any agreement, contract, or funding between you and an external party is independent of ClearFund. 
-              We are not responsible for losses, delays, or disputes that arise from third-party opportunities.`,
+        text: `ClearFund curates and lists opportunities; we do not control or guarantee the outcome of third-party grants, bounties, or paid gigs. Any agreement, contract, or funding between you and an external party is independent of ClearFund. We are not responsible for losses, delays, or disputes that arise from third-party opportunities.`,
       },
       {
         heading: "5. Wallet & Payments",
@@ -55,8 +53,7 @@ export default function TermsAndConditions() {
       },
       {
         heading: "9. Limitation of Liability",
-        text: `To the fullest extent permitted by law, ClearFund is not liable for: Losses arising from participation in third-party opportunities. Security breaches due to user negligence (e.g., lost private keys). Any indirect, 
-                incidental, or consequential damages.`,
+        text: `To the fullest extent permitted by law, ClearFund is not liable for: Losses arising from participation in third-party opportunities. Security breaches due to user negligence (e.g., lost private keys). Any indirect, incidental, or consequential damages.`,
       },
       {
         heading: "10. Third-Party Links",

@@ -21,7 +21,7 @@ const HeroSection = ({setModalOpen}) => {
           Your Gateway to Web3
           <br className='hidden sm:block'/>Funding and <span className='text-[#39B54A]'>Opportunities </span>
         </h1>
-        <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-medium font-sans">
+        <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-semibold font-sans">
             ClearFund Connect builders to funding opportunities
              <br className='hidden lg:block'/>that drive innovation and growth.
         </p>
