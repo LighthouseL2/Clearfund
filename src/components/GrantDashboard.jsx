@@ -98,7 +98,7 @@ export default function GrantDashboard() {
 
     return (
 
-        <div className="">
+        <div className="font-sans">
             <div className="flex justify-end items-center gap-5 mb-10 px-8 text-[#008767]">
                 {/* <p className="rounded-full px-3 py-1 border font-bold text-[14px]">Celo</p> */}
                 <div className="flex items-center gap-5  py-1 px-2 rounded-full font-sans">
