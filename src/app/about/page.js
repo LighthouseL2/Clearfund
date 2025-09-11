@@ -33,7 +33,7 @@ export default function HomePage() {
             <h1 className='text-[96px] mt-10'>About</h1>
             <div className='lg:w-full font-sans text-[18px] space-y-10'>
               <p className='text-[16px] text-black/80 mb-10 lg:pr-20'>ClearFund is an open platform that makes Web3 funding opportunities more transparent and accessible. We help individuals and communities discover grants, bounties, and paid gigs in the decentralized ecosystem while also providing visibility into previously funded projects.</p>
-              <Link href={"/"} className='w-[202.1923828125px] flex items-center justify-center text-white text-[16px] hover:bg-black h-[52px] bg-[#39B54A] font-sans rounded-full'>
+              <Link href={"https://giveth.io/project/clearfund"} className='w-[202.1923828125px] flex items-center justify-center text-white text-[16px] hover:bg-black h-[52px] bg-[#39B54A] font-sans rounded-full'>
                 Support ClearFund
               </Link>
             </div>
