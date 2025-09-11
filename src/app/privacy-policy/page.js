@@ -28,8 +28,7 @@ export default function PrivacyPolicy() {
       },
       {
         heading: "3. Wallet & Blockchain Data",
-        text: `Interactions with ClearFund may involve blockchain transactions. Please note: Blockchain transactions are public and permanent.
-We do not control or alter blockchain records. You are solely responsible for safeguarding your wallet and private keys.`,
+        text: `Interactions with ClearFund may involve blockchain transactions. Please note: Blockchain transactions are public and permanent. We do not control or alter blockchain records. You are solely responsible for safeguarding your wallet and private keys.`,
       },
       {
         heading: "4. Cookies & Tracking",

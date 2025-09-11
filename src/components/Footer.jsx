@@ -109,7 +109,7 @@ const Footer = () => {
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>
                                 About</Link></li>
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"/faq"}>
-                                FAQ</Link></li>
+                                FAQs</Link></li>
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" href={"https://clearfund.substack.com"} target="_blank">
                                 Blog</Link></li>
                             <li><Link className="font-semibold hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://docs.google.com/forms/d/e/1FAIpQLSen8RTa49H2W_8VUgX-Z-5i08LUjLf1x0Cey_1aB9dAs6qkFA/viewform?usp=header"}>
