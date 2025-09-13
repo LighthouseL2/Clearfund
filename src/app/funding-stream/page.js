@@ -156,7 +156,7 @@ export default function Dashboard() {
       image: "/grant-round-images/prezenti-round-image.svg",
       title: "Celo Prezenti Grant",
       desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
-      amount: "$25-50k",
+      amount: "$50k",
       date: "End-  Dec 10, 2025",
       link: "https://charmverse.prezenti.xyz/invite/f90c14"
     },
@@ -379,7 +379,7 @@ export default function Dashboard() {
                 <button
                   disabled={currentPage === 1}
                   onClick={() => handlePageChange(currentPage - 1)}
-                  className="w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border  rounded-md text-[#404B52] font-bold bg-[#F5F5F5]  disabled:opacity-50"
+                  className="w-8 h-8 sm:w-8 sm:h-8 text-xs sm:text-sm flex items-center justify-center border-[2px]  rounded-[4px] text-[#404B52] font-medium bg-[#F5F5F5]  disabled:opacity-50"
                 >
                   &lt;
                 </button>
@@ -389,9 +389,9 @@ export default function Dashboard() {
                     <button
                       key={page}
                       onClick={() => handlePageChange(page)}
-                      className={`w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center rounded-md border ${currentPage === page
-                        ? "bg-[#198038] text-white"
-                        : "bg-[#EEEEEE] border-[#EEEEEE] text-[#404B52] hover:bg-gray-100"
+                      className={`w-8 h-8 sm:w-8 sm:h-8 text-xs sm:text-sm flex items-center justify-center rounded-[4px] border-[2px] font-medium  ${currentPage === page
+                        ? "bg-[#198038] text-white border-[#198038]"
+                        : "bg-[#F5F5F5] border-[#EEEEEE] text-[#404B52] hover:bg-gray-100"
                         }`}
                     >
                       {page}
@@ -401,7 +401,7 @@ export default function Dashboard() {
                 <button
                   disabled={currentPage === totalPages}
                   onClick={() => handlePageChange(currentPage + 1)}
-                  className="w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center border rounded-md text-[#404B52] font-bold bg-[#F5F5F5]  disabled:opacity-50"
+                  className="w-8 h-8 sm:w-8 sm:h-8 text-xs sm:text-sm flex items-center justify-center border-[2px] rounded-[4px] text-[#404B52] font-medium bg-[#F5F5F5]  disabled:opacity-50"
                 >
                   &gt;
                 </button>

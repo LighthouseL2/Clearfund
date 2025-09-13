@@ -75,7 +75,7 @@ export default function PastGrantRounds() {
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full border rounded py-4 pl-17 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 shadow-lg"
+            className="w-full border rounded-full py-4 pl-17 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 shadow-lg"
           />
           <svg
             className="absolute left-9 top-1/2 -translate-y-1/2 text-gray-400"
@@ -92,9 +92,9 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Active Tabs */}
-      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between rounded bg-[#D9D9D933] border py-1">
+      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between rounded-full bg-[#D9D9D933] border py-1">
         <button
-          className="p-2 hover:bg-gray-200 "
+          className="p-2 hover:bg-gray-200 rounded-full "
           onClick={() => scrollTabs("left")}
         >
           <ChevronLeft size={20} />
@@ -107,7 +107,7 @@ export default function PastGrantRounds() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-12 py-2 text-sm font-medium whitespace-nowrap ${activeTab === tab
+              className={`px-12 py-2 text-sm font-bold whitespace-nowrap ${activeTab === tab
                   ? "bg-white text-black border rounded border-gray-100 cursor-pointer"
                   : " text-black hover:bg-gray-100"
                 }`}
@@ -117,7 +117,7 @@ export default function PastGrantRounds() {
           ))}
         </div>
         <button
-          className="p-2 hover:bg-gray-200 "
+          className="p-2 hover:bg-gray-200 rounded-full "
           onClick={() => scrollTabs("right")}
         >
           <ChevronRight size={20} />
@@ -125,12 +125,12 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Archive List */}
-      <div className="max-w-4xl mx-auto space-y-2">
+      <div className="max-w-4xl mx-auto space-y-1">
         {filteredData.length > 0 ? (
           filteredData.map((item, index) => (
             <div
               key={index}
-              className="p-4 transition"
+              className="px-4 py-2 transition"
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 w-full">
@@ -142,7 +142,7 @@ export default function PastGrantRounds() {
                       height={40}
                     />
                   </div>
-                  <div className="items-center space-y-2">
+                  <div className="items-center space-y-1">
                     <div className="flex flex-wrap items-center gap-x-2">
                       <h3 style={{ fontSize: '12px' }} className=" font-semibold text-black/70">{item.title}</h3>
                       <p style={{ fontSize: '10px' }} className="text-[#008767] pl-1">{item.date}</p>
@@ -159,7 +159,7 @@ export default function PastGrantRounds() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-full border-1 border-[#26A17B] text-[#008767] py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
+                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-full border-1 border-[#26A17B] text-[#008767] py-2 px-8 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
                   >
                     Open
                     
