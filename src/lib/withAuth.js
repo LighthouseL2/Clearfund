@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
     useEffect(() => {
 
       if(!isConnected && !localStorage.getItem("login") ) {
-        // router.replace("/")
+        router.replace("/")
       }
 
       // const session = removeSession()
