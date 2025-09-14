@@ -25,7 +25,7 @@ const GrantRoundCard = ({ grants }) => {
             <div className="flex-grow mt-3 px-5 pb-4 flex flex-col">
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-[16px] text-[#000000] font-style inter leading-snug">
+                  <h3 className="text-[16px] text-[#000000] font-style latin leading-snug">
                     {item.title}
                   </h3>
                   <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px] font-sans font-medium mt-3 w-fit">
@@ -60,10 +60,9 @@ const GrantRoundCard = ({ grants }) => {
                   )
                 )}
               </div>
-              <hr className="" />
-              <div className="flex items-start mt-3">
+              <hr className=" mt-2" />
+              <div className="flex items-start mt-3 py-2">
               <p className="text-[10px] text-[#000000] font-sans font-medium border bg-[#FFFFFF] border-black/15 rounded-[50px] px-2 py-1">{item.date}</p>
-
               </div>
             </div>
 
