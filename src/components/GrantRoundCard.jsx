@@ -28,7 +28,7 @@ const GrantRoundCard = ({ grants }) => {
                   <h3 className="text-[16px] text-[#000000] font-style latin leading-snug">
                     {item.title}
                   </h3>
-                  <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px] font-sans font-medium mt-3 w-fit">
+                  <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px] font-sans font-medium  w-fit">
                     <span className="font-bold">{item.amount}</span>
                     {/* <span>{item.coin}</span> */}
                   </p>
