@@ -184,7 +184,7 @@ export default function GrantDashboard() {
                                 <Link href={"/donate"} className="mt-10 text-[#3A7768] py-2 px-13 font-black items-center justify-center rounded-full bg-[#95EED8] text-[16px] font-sans inline-flex">
                                     Donate Now
                                 </Link>
-                                <p className="text-[12px] text-gray-500 underline py-8 mt-4">
+                                <p className="text-[12px] text-gray-500 py-8 mt-4">
                                     Powered by <a href="#">GoodDollar</a>
                                 </p>
                             </div>
@@ -223,7 +223,7 @@ export default function GrantDashboard() {
                                                 raised 23.875 ETH in octant epoch 8
                                             </p>
 
-                                            <Link href={"/"}>
+                                            <Link href={"https://octant.app/project/8/0x9438b8B447179740cD97869997a2FCc9b4AA63a2"}>
                                                 <div className="mt-1 flex items-center gap-2">
                                                     <span className="text-[14px] font-medium">round</span>
                                                     <svg
@@ -254,7 +254,7 @@ export default function GrantDashboard() {
                                                 <span className="text-[#008767]"> Dappnode </span>
                                                 raised 22.868 ETH in octant epoch 8
                                             </p>
-                                            <Link href={"/"}>
+                                            <Link href={"https://octant.app/project/8/0x54E38C5F55c1F7A9AfF534132544dA3e5b77cd89"}>
                                                 <div className="mt-1 flex items-center gap-2">
                                                     <span className="text-[14px] font-medium">round</span>
                                                     <svg
@@ -297,7 +297,7 @@ export default function GrantDashboard() {
                                 </p>
                                 <Link
                                     href="/funding-stream"
-                                    className="inline-flex items-center justify-center bg-[#FFFFFF] rounded-[50px] mt-6 sm:mt-8 px-8 sm:px-10 lg:px-12 py-2 text-sm sm:text-[15px] lg:text-[16px] font-medium hover:bg-gray-100"
+                                    className="inline-flex items-center justify-center bg-[#FFFFFF] rounded-[50px] mt-6 sm:mt-8 px-8 sm:px-10 lg:px-12 py-3 text-sm sm:text-[15px] lg:text-[16px] font-medium hover:bg-gray-100 mb-2"
                                 >
                                     Explore
                                 </Link>
