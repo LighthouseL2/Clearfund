@@ -153,78 +153,71 @@ export default function GrantDashboard() {
                         </div>
                     ))}
                 </div>
-
                 {/* Timeline */}
                 <div className="w-full flex flex-wrap gap-5 font-sans py-10">
 
-                    <div className="lg:w-[43%] w-full border rounded-2xl p-6 flex flex-col justify-between text-center lg:h-[90vh]">
+
+                    <div className="lg:w-[43%] w-full border rounded-[20px] p-6 flex flex-col justify-between text-center h-auto">
                         <div>
-                            <div className="w-full flex justify-center items-center py-2 mt-3 font-">
-                                <img src="/grantDashboard-icons/good.png" alt="" />
+                            <div className="w-full flex justify-center items-center py-2 mt-3">
+                                <img src="/grantDashboard-icons/good.png" alt="GoodDollar" />
                             </div>
 
-                            <h1 className="text-center text-[24px] font-sans text-[#00AFFF] leading-7  font-black mt-5">
+                            <h1 className="text-center text-[24px] font-sans text-[#00AFFF] leading-7 font-black mt-5">
                                 Empower Communities. <br />Maximize Impact
                             </h1>
-                            <div className="flex justify-center mt-6">
+
+                            <div className="flex justify-center mt-8">
                                 <img
                                     src="/grantDashboard-icons/flower.png"
                                     alt="Good Collective"
                                     className="w-[220px] h-[200px]"
                                 />
                             </div>
-                            <p className="mb-10 py-4 text-[#00000080]/70 leading-3.5 mx-auto text-[14px] font-bold">
+
+                            <p className=" mt-8 text-[#00000080]/70 leading-3.5 mx-auto text-[14px] font-bold">
                                 GoodCollective is committed to empowering individuals and communities
                                 by providing direct digital payments to those who need it most.
                             </p>
-                            <div className="">
-                                <Link href={"/"} >
-                                    <button className="mb-8 text-[#3A7768]  py-2 px-12 font-black items-center justify-center rounded-full bg-[#95EED8]  text-[16px] font-sans">
-                                        Donate Now
-                                    </button>
+
+                            <div>
+                                <Link href={"/donate"} className="mt-10 text-[#3A7768] py-2 px-13 font-black items-center justify-center rounded-full bg-[#95EED8] text-[16px] font-sans inline-flex">
+                                    Donate Now
                                 </Link>
-                                <p className="text-xs text-gray-500 underline mt-2 mb-5">
-                                    Powered by <a href="#" className="">GoodDollar</a>
+                                <p className="text-[12px] text-gray-500 underline py-8 mt-4">
+                                    Powered by <a href="#">GoodDollar</a>
                                 </p>
                             </div>
                         </div>
-
                     </div>
 
-                    {/* Right Column */}
                     <div className="lg:w-[54%] w-full flex flex-col gap-5 font-sans">
-                        <div className="border rounded-2xl p-6 flex flex-col lg:h-[48vh]">
-                            <h3 className="text-lg font-semibold py-1 mb-2">Recent Grant recipient</h3>
+                        <div className="border rounded-2xl p-6 flex flex-col h-auto">
+                            <h3 className="text-lg font-semibold py-1 mb-8">Recent Grant recipient</h3>
                             <div className="px-2 sm:px-4">
                                 <div className="pl-8 relative mb-6">
-                                    {/* Round Icon */}
                                     <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
                                         <Clock className="w-6 h-6 text-[#008767]" />
                                     </div>
                                     <span className="text-[16px] font-medium text-[#999999]">July 24, 2025</span>
-                                    {/* Content */}
+
                                     <div className="flex flex-col w-5/6 mt-1">
                                         <Link href={"/"} className="relative">
-                                            <p className="text-[14px]">
-                                                <span className="text-[#008767]">Growthepie </span>
-                                                raised 23.875 ETH in octant epoch 8
+                                            <p className="text-[14px] text-[#008767]">
+                                                Octant epoch 8 ended with 787.2165 ETH raised
+
                                             </p>
-
-
                                         </Link>
                                     </div>
                                 </div>
 
                                 <div className="relative border-l-2 border-gray-200">
-
                                     <div className="pl-8 relative mb-6">
                                         <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
                                             <Clock className="w-6 h-6 text-[#008767]" />
                                         </div>
                                         <span className="text-[16px] font-medium text-[#999999]">July 24, 2025</span>
                                         <div className="flex flex-col w-5/6 mt-1">
-
-
                                             <p className="text-[14px]">
                                                 <span className="text-[#008767]">Growthepie </span>
                                                 raised 23.875 ETH in octant epoch 8
@@ -251,17 +244,14 @@ export default function GrantDashboard() {
                                         </div>
                                     </div>
 
-
-                                    <div className="pl-8 relative mb-6">
+                                    <div className="pl-8 relative mb-2">
                                         <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
                                             <Clock className="w-6 h-6 text-[#008767]" />
                                         </div>
                                         <span className="text-[16px] font-medium text-[#999999]">July 24, 2025</span>
                                         <div className="flex flex-col w-5/6 mt-1">
-
-
                                             <p className="text-[14px]">
-                                                <span className="text-[#008767]">Dappnode</span>
+                                                <span className="text-[#008767]"> Dappnode </span>
                                                 raised 22.868 ETH in octant epoch 8
                                             </p>
                                             <Link href={"/"}>
@@ -289,7 +279,7 @@ export default function GrantDashboard() {
                             </div>
                         </div>
                         <div
-                            className="border rounded-2xl p-6 flex flex-col justify-between relative w-full lg:min-h-[39vh]"
+                            className="border rounded-2xl p-6 flex flex-col justify-between relative w-full h-auto"
                             style={{
                                 backgroundImage: "url('/grantDashboard-icons/funding-stream-image.svg')",
                                 backgroundRepeat: "no-repeat",
@@ -311,13 +301,12 @@ export default function GrantDashboard() {
                                 >
                                     Explore
                                 </Link>
-
                             </div>
                         </div>
 
-
                     </div>
                 </div>
+
 
 
             </div>
