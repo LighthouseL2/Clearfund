@@ -223,7 +223,7 @@ export default function GrantDashboard() {
                                                 raised 23.875 ETH in octant epoch 8
                                             </p>
 
-                                            <Link href={"https://octant.app/project/8/0x9438b8B447179740cD97869997a2FCc9b4AA63a2"}>
+                                            <Link target="_blank" href={"https://octant.app/project/8/0x9438b8B447179740cD97869997a2FCc9b4AA63a2"}>
                                                 <div className="mt-1 flex items-center gap-2">
                                                     <span className="text-[14px] font-medium">round</span>
                                                     <svg
@@ -254,7 +254,7 @@ export default function GrantDashboard() {
                                                 <span className="text-[#008767]"> Dappnode </span>
                                                 raised 22.868 ETH in octant epoch 8
                                             </p>
-                                            <Link href={"https://octant.app/project/8/0x54E38C5F55c1F7A9AfF534132544dA3e5b77cd89"}>
+                                            <Link target="_blank" href={"https://octant.app/project/8/0x54E38C5F55c1F7A9AfF534132544dA3e5b77cd89"}>
                                                 <div className="mt-1 flex items-center gap-2">
                                                     <span className="text-[14px] font-medium">round</span>
                                                     <svg
