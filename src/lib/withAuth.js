@@ -18,7 +18,7 @@ const ProtectedRoute = ({ children }) => {
 
     useEffect(() => {
 
-      if(!isConnected && !localStorage.getItem("login") ) {
+      if(!isConnected) {
         router.replace("/")
       }
 
