@@ -22,9 +22,9 @@ const GrantRoundCard = ({ grants }) => {
               />
             </div>
             {/* Card content */}
-            <div className="flex-grow mt-3 px-5 pb-4 flex flex-col">
+            <div className="flex-grow mt-4 px-5 pb-4 flex flex-col">
               <div>
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-2 py-4">
                   <h3 className="text-[16px] text-[#000000] font-style latin leading-snug">
                     {item.title}
                   </h3>

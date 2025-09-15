@@ -121,7 +121,7 @@ export default function GrantDashboard() {
                     {[...metricData, ...sideCardData].map((item, index) => (
                         <div
                             key={index}
-                            className="min-h-[160px] py-6 px-5 rounded-xl border-2 border-[#0000004D]/30 shadow-sm bg-white flex flex-col justify-between "
+                            className="min-h-[160px] py-6 px-5 rounded-xl border-2 border-[#0000004D]/30  bg-white flex flex-col justify-between "
                         >
                             <div className="flex items-center justify-between">
                                 <span className="text-[16px] text-black/50 break-words font-bold">{item.title}</span>
