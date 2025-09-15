@@ -12,41 +12,56 @@ const GoodCollective = () => {
             title: "GoodDollar UBI+ for Women – Colombia",
             description: "This pool provides additional daily G$ to women in Colombia through a segmented basic income model.",
             date: "Created: October 20, 2024",
-            twitter: "",
+            twitter: "https://x.com/gooddollarorg",
+            web: "https://gooddapp.org/",
+            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
             image: "/donate-icons/happy.png",
+            link: "https://goodcollective.xyz/collective/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
             id: 1
         },
         {
             title: "Silvi - Kenya’s Kakamega forest",
             description: "This Collective directly supports smallholder farmers around Kenya’s Kakamega forest.",
             date: "Created: October 21, 2024",
-            twitter: "",
+            twitter: "https://x.com/gooddollarorg",
+            web: "https://gooddapp.org/",
+            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
             image: "/donate-icons/grass.jpg",
-            id: 2
+            id: 2,
+            link: "https://goodcollective.xyz/collective/0xc1dcdf8e70acb44cdbb688c91a4883cf9052ea9c"
         },
         {
             title: "GoodDollar UBI+ for Women – Nigeria",
             description: "This pool provides additional daily G$ to women in Nigeria through a segmented basic income model",
             date: "Created: October 20, 2024",
-            twitter: "",
+            twitter: "https://x.com/gooddollarorg",
+            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+            web: "https://gooddapp.org/",
             image: "/donate-icons/laugh.png",
-            id: 3
+            id: 3,
+            link: "https://goodcollective.xyz/collective/0xdd1c12f197e6d1e2fba15487aaae500ef6e07bca"
         },
         {
             title: "Pesia's Kitchen EAT Initiative",
             description: "A community-powered food rescue initiative committed to reducing waste and ensuring food security.",
             date: "Created: May 30, 2025",
-            twitter: "",
+            twitter: "https://x.com/gooddollarorg",
+            web: "https://gooddapp.org/",
+            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
             image: "/donate-icons/cooking.jpg",
-            id: 4
+            id: 4,
+            link: "https://goodcollective.xyz/collective/0xe4f65e8644c0f3a1c7ef0ba0f1428a82cdc0e7bc"
         },
         {
             title: "Global Classrooms Environmental Education",
             description: "Global Classrooms connects students worldwide to collaborate on environmental projects aligned with UN Sustainable Development Goals.",
             date: "Created: May 30, 2025",
-            twitter: "",
+            twitter: "https://x.com/gooddollarorg",
+            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+            web: "https://gooddapp.org/",
             image: "/donate-icons/cartoon.jpg",
-            id: 5
+            id: 5,
+            link: "https://goodcollective.xyz/collective/0xf3d629a2c198fc91d7d3f18217684166c83c7312"
         },
     ]
 
@@ -79,9 +94,9 @@ const GoodCollective = () => {
         <section className="">
             <h1 className="text-[32px] text-[#0000004D] mt-10 mb-10">Projects: 5</h1>
 
-            <div className="flex flex-wrap w-full items-center gap-4">
+            <div className="grid xl:grid-cols-3 lg:grid-cols-2">
                 {collectives.map((item) =>
-                    <div key={item.id} className="lg:w-[366px] border rounded-xl pb-3">
+                    <div key={item.id} className="lg:w-[366px] border rounded-xl pb-3 mb-10">
                         <div className="relative w-full h-[166px] rounded-t-xl">
                             <Image
                                 alt="/donate-icons/donate.png"
@@ -91,15 +106,15 @@ const GoodCollective = () => {
                             />
                         </div>
 
-                        <div className="mt-7 flex flex-col w-full px-8 relative lg:h-[293px]">
+                        <div className="mt-7 flex flex-col w-full px-8 relative lg:h-[250px]">
                             <h1 className="text-[16px] font-extrabold">{item.title}</h1>
                             <p className="mt-5">
                                 This pool provides additional daily G$ to women in Colombia
                                 through a segmented basic income model.
                             </p>
 
-                            <Link href={"/"} className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center rounded-full mt-10 mx-auto lg:absolute bottom-16 left-14">
+                            <Link href={item.link} target="_blank" className="bg-[#95EED8] w-[251px] h-[40px] flex
+                                items-center justify-center rounded-full mt-10 mx-auto bottom-16 lg:absolute  left-14">
                                 Donate
                             </Link>
                             <div className="lg:absolute bottom-0 lg:w-[314px] left-6">
@@ -108,7 +123,8 @@ const GoodCollective = () => {
                                     <p className="border text-[10px] rounded-full px-2 ">{item.date}</p>
                                     <div className="flex gap-2">
 
-                                        <Link href={"/"}>
+
+                                        <Link href={item.web} target="_blank">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clipPath="url(#clip0_2937_140)">
                                                     <path d="M20.1328 9.88991C20.1328 4.42786 15.705 0 10.2429 0C4.78089 0 0.353027 4.42786 0.353027 9.88991C0.353027 15.352 4.78089 19.7798 10.2429 19.7798C15.705 19.7798 20.1328 15.352 20.1328 9.88991Z" fill="#E2EAFF"/>
@@ -123,7 +139,7 @@ const GoodCollective = () => {
 
                                         </Link>
 
-                                        <Link href={"/"}>
+                                        <Link href={item.twitter} target="_blank">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clipPath="url(#clip0_2937_143)">
                                                     <path d="M10.4998 19.7798C15.9618 19.7798 20.3897 15.352 20.3897 9.88991C20.3897 4.42786 15.9618 0 10.4998 0C5.03773 0 0.609863 4.42786 0.609863 9.88991C0.609863 15.352 5.03773 19.7798 10.4998 19.7798Z" fill="#E2EAFF"/>
@@ -138,12 +154,12 @@ const GoodCollective = () => {
 
                                         </Link>
 
-                                        <Link href={"/"}>
+                                        <Link href={item.scan} target="_blank">
                                             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clipPath="url(#clip0_2937_135)">
                                                     <path d="M20.6465 9.88991C20.6465 4.42786 16.2187 0 10.7566 0C5.29456 0 0.866699 4.42786 0.866699 9.88991C0.866699 15.352 5.29456 19.7798 10.7566 19.7798C16.2187 19.7798 20.6465 15.352 20.6465 9.88991Z" fill="#E2EAFF"/>
                                                     <path d="M12.6404 6.12207C13.6647 6.12777 14.2195 6.17319 14.5813 6.53507C14.9951 6.94887 14.9951 7.61492 14.9951 8.94695V11.7726C14.9951 13.1047 14.9951 13.7707 14.5813 14.1845C14.1675 14.5983 13.5015 14.5983 12.1694 14.5983H9.34375C8.01173 14.5983 7.34569 14.5983 6.93188 14.1845C6.51807 13.7707 6.51807 13.1047 6.51807 11.7726V8.94695C6.51807 7.61492 6.51807 6.94887 6.93188 6.53507C7.29375 6.17319 7.84847 6.12777 8.87278 6.12207" stroke="#2B4483"/>
-                                                    <path d="M9.34375 10.5492L10.1511 11.3027L12.1694 9.41895" stroke="#2B4483" strokeLinecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.34375 10.5492L10.1511 11.3027L12.1694 9.41895" stroke="#2B4483" strokeLinecap="round" strokeLinejoin="round"/>
                                                     <path d="M8.87305 5.88709C8.87305 5.49694 9.18931 5.18066 9.57947 5.18066H11.9342C12.3243 5.18066 12.6406 5.49694 12.6406 5.88709V6.35804C12.6406 6.74818 12.3243 7.06446 11.9342 7.06446H9.57947C9.18931 7.06446 8.87305 6.74818 8.87305 6.35804V5.88709Z" stroke="#2B4483"/>
                                                 </g>
                                                 <defs>

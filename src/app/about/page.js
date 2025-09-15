@@ -30,7 +30,7 @@ export default function HomePage() {
       <div className='w-full grid lg:grid-cols-2 lg:h-[80vh] px-[5%]'>
           <div className='lg:w-full flex w-full flex-col mt-40'>
             <p className='text-[#00000080] font-extrabold text-[12px]'>OPPORTUNITY TO EARN</p>
-            <h1 className='text-[96px] mt-10'>About</h1>
+            <h1 className='text-[96px] mt-10 font-extrabold'>About</h1>
             <div className='font-sans space-y-10 lg:w-5/6'>
               <p className='text-[16px] text-black/80 mb-10'>ClearFund is an open platform that makes Web3 funding opportunities more transparent and accessible. We help individuals and communities discover grants, bounties, and paid gigs in the decentralized ecosystem while also providing visibility into previously funded projects.</p>
               <Link href={"https://giveth.io/project/clearfund"} target='_blank' className='w-[202.1923828125px] flex items-center justify-center text-white text-[16px] hover:bg-black h-[52px] bg-[#39B54A] font-sans rounded-full'>
