@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**ClearFund** is an open platform that makes Web3 funding opportunities more transparent and accessible.
+We help individuals and communities discover grants, bounties, and paid gigs in the decentralized 
+ecosystem while also providing visibility into previously funded projects.
 
-## Getting Started
 
-First, run the development server:
+**🚀 Mission**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Web3 has unlocked new ways of funding innovation from Quadratic
+Funding rounds to public goods support. ClearFund exists to:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-Connect builders and creators with relevant funding opportunities.
+-Foster transparency by curating and visualizing previously funded projects.
+-Empower communities by highlighting funding programs, grants, and impact initiatives.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**✨ Features**
 
-## Learn More
+-Grant Directory: A curated list of active Web3 grants.
 
-To learn more about Next.js, take a look at the following resources:
+-Bounties & Paid Gigs: Find tasks, challenges, and opportunities to earn.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-Funded Projects Archive: Explore funding history and learn from past initiatives.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-Multi-chain Support: Focused on Web3-native funding platforms (Gitcoin, Giveth, Octant, Celo, etc.).
 
-## Deploy on Vercel
+-GoodCollective Integration: Support GoodDollar initiative by providing direct digital payments to people who need it most.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**🛠️ Tech Stack**
+
+-Frontend: Next.js / React
+
+-Styling: Tailwind CSS + ShadCN
+
+-Backend: Firebase
+
+-Database: Firestore
+
+-Blockchain Integration: Wagmi + Rainbow
+
+
+**📚 Roadmap**
+
+-Multi-chain wallet support
+
+-Advanced filtering for grants and bounties
+
+-Impact visualization dashboards
+
+-DAO governance & funding proposals integration
+
+
+🌐 Links
+
+Website: clearfund.netlify.app
+
+Twitter: @ClearFund
