@@ -27,7 +27,7 @@ export default function HomePage() {
         />
 
       {/* Top Logo Background */}
-      <div className='w-full grid lg:grid-cols-2 lg:h-[80vh] px-[5%]'>
+      <div className='w-full grid lg:grid-cols-2 lg:h-[90vh] px-[5%]'>
           <div className='lg:w-full flex w-full flex-col mt-40'>
             <p className='text-[#00000080] font-extrabold text-[12px]'>OPPORTUNITY TO EARN</p>
             <h1 className='text-[96px] mt-10 font-extrabold'>About</h1>
@@ -56,8 +56,8 @@ export default function HomePage() {
               <h3 className='mb-3 text-[#54295B] text-[14px] font-extrabold'>DECENTRALIZATION</h3>
               <p className='font-sans text-[16px] font-bold text-black'>
                 Web3 is built on decentralization, but with decentralization comes a level of
-                complexity. <br /> Opportunities for funding and collaboration are scattered across
-                multiple platforms, protocols, <br /> and ecosystems.
+                complexity. <br className='hidden lg:block'/> Opportunities for funding and collaboration are scattered across
+                multiple platforms, protocols, <br className='hidden lg:block'/> and ecosystems.
               </p>
             </div>
 
