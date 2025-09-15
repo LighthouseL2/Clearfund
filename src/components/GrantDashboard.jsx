@@ -105,7 +105,7 @@ export default function GrantDashboard() {
                     {/* <span className="text-[14px] font-bold">G$ 122.10</span> */}
                     <div className="flex items-center gap-1">
                         <ConnectButton
-                            // showBalance={true}
+                            
                         />
                     </div>
                 </div>

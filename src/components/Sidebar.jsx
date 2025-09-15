@@ -328,7 +328,7 @@ export default function Sidebar() {
           </button> */}
 
 
-          <ConnectButton.Custom>
+          {/* <ConnectButton.Custom>
             {({ account, openAccountModal, mounted }) => {
               const connected = mounted && account
 
@@ -346,7 +346,7 @@ export default function Sidebar() {
                 </button>
               )
             }}
-          </ConnectButton.Custom>
+          </ConnectButton.Custom> */}
         </div>
       </aside>
 
