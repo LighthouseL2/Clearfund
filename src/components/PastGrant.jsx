@@ -1,20 +1,32 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function PastGrantRounds() {
-  const tabs = ["GoodDollar", "Gitcoin", "Octant", "Celo", "Giveth"];
+  const tabs = ["GoodDollar", "Gitcoin", "Octant", "Celo", "Optimism", "Giveth"];
   const [activeTab, setActiveTab] = useState("Gitcoin");
   const [searchTerm, setSearchTerm] = useState("");
+  const scrollContainerRef = useRef(null); // Ref for horizontal scrolling
 
   const tabImages = {
-    GoodDollar: "/gooddollar-round-icon.svg",
-    Gitcoin: "/gitcoin-regen-icon.svg",
-    Octant: "/octant-epoch-icon.svg",
-    Celo: "/celo-round-icon.svg",
-    Giveth: "/giveth-round-icon.svg",
+    GoodDollar: "/round-icons/gooddollar-round-icon.svg",
+    Gitcoin: "/round-icons/gitcoin-regen-icon.svg",
+    Octant: "round-icons/octant-epoch-icon.svg",
+    Celo: "/round-icons/celo-round-icon.svg",
+    Optimism:"/round-icons/optimism-round-icon.svg",
+    Giveth: "/round-icons/giveth-round-icon.svg",
+  };
+
+  const scrollTabs = (direction) => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 150;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
   };
 
   const data = {
@@ -35,10 +47,18 @@ export default function PastGrantRounds() {
     Celo: [
       { title: "Celo Citizen Round Results", date: "-Dec 20 2024 - Jan 31, 2025", pool: "Pool: 200K Celo", link: "https://docs.google.com/spreadsheets/d/1Dcb6cQ3laWtAHOGVtSH8H6q3SlzF6pskxS1-wKg85VQ/edit?gid=1691188219#gid=1691188219" },
     ],
+    Optimism: [
+      { title: "Round 4: Onchain Builders ", date: " - 2024", link: "https://atlas.optimism.io/round/results?rounds=4" },
+      { title: "Round 5: OP Stack", date: " - 2024", link: "https://atlas.optimism.io/round/results?rounds=5" },
+      { title: "Round 6: Governance", date: " - 2024", link: "https://atlas.optimism.io/round/results?rounds=6" },
+      { title: "Retro Funding: Dev Tooling", date: " - 2025", link: "https://atlas.optimism.io/round/results?rounds=7" },
+      { title: "Retro Funding: Onchain Builders", date: " - 2025", link:"https://atlas.optimism.io/round/results?rounds=8" },
+    ],
     Giveth: [
       { title: "Loving on Public Goods QF Round ", date: "-Jan 28 - Feb 14, 2025", pool: "Matching Pool: $100K ", link: "https://docs.google.com/spreadsheets/d/1rNFouxlS5gmodhvkLNAsbYHyp-xJtx6PpbkZCkUBQFc/edit?gid=612313385#gid=612313385" },
       { title: "ENS x Octant Public Goods Round 5", date: "-March 18 - April 1, 2025", pool: "Matching Pool: $80k", link: "https://docs.google.com/spreadsheets/d/1xedHZh8OZvptIbijORGhe8nMbyUw8wrtgO5iPNdyxU4/edit?usp=sharing" },
     ],
+
   };
 
   const filteredData = data[activeTab].filter((item) =>
@@ -46,7 +66,7 @@ export default function PastGrantRounds() {
   );
 
   return (
-    <div className="px-4 md:px-10 py-4 text-black ">
+    <div className="px-4 md:px-10 py-4 text-black font-sans">
       {/* Search */}
       <div className="max-w-4xl mx-auto mb-6">
         <div className="relative">
@@ -55,7 +75,7 @@ export default function PastGrantRounds() {
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full border rounded py-4 pl-17 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 shadow-lg"
+            className="w-full border rounded-full py-4 pl-17 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 shadow-lg"
           />
           <svg
             className="absolute left-9 top-1/2 -translate-y-1/2 text-gray-400"
@@ -72,36 +92,45 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Active Tabs */}
-      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between rounded bg-[#D9D9D933] border py-1 ">
-        <button className="p-2 hover:bg-gray-100 rounded">
+      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between rounded-full bg-[#D9D9D933] border py-1">
+        <button
+          className="p-2 hover:bg-gray-200 rounded-full "
+          onClick={() => scrollTabs("left")}
+        >
           <ChevronLeft size={20} />
         </button>
-        <div className="flex-1 flex justify-between space-x-4 overflow-x-auto">
+        <div
+          ref={scrollContainerRef}
+          className="flex-1 flex justify-between space-x-4 overflow-x-auto scrollbar-hide"
+        >
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-12 py-2 text-sm font-medium whitespace-nowrap ${activeTab === tab
-                ? "bg-white text-black border rounded  border-gray-100 cursor-pointer"
-                : " text-black hover:bg-gray-100"
+              className={`px-12 py-2 text-sm font-bold whitespace-nowrap ${activeTab === tab
+                  ? "bg-white text-black border rounded border-gray-100 cursor-pointer"
+                  : " text-black hover:bg-gray-100"
                 }`}
             >
               {tab}
             </button>
           ))}
         </div>
-        <button className="p-2 hover:bg-gray-100 rounded">
+        <button
+          className="p-2 hover:bg-gray-200 rounded-full "
+          onClick={() => scrollTabs("right")}
+        >
           <ChevronRight size={20} />
         </button>
       </div>
 
       {/* Archive List */}
-      <div className="max-w-4xl mx-auto space-y-2">
+      <div className="max-w-4xl mx-auto space-y-1">
         {filteredData.length > 0 ? (
           filteredData.map((item, index) => (
             <div
               key={index}
-              className="p-4 transition"
+              className="px-4 py-2 transition"
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 w-full">
@@ -113,12 +142,12 @@ export default function PastGrantRounds() {
                       height={40}
                     />
                   </div>
-                  <div className="items-center space-y-2">
+                  <div className="items-center space-y-1">
                     <div className="flex flex-wrap items-center gap-x-2">
-                      <h3 style={{ fontSize: '12px' }}  className=" font-semibold text-black/70">{item.title}</h3>
+                      <h3 style={{ fontSize: '12px' }} className=" font-semibold text-black/70">{item.title}</h3>
                       <p style={{ fontSize: '10px' }} className="text-[#008767] pl-1">{item.date}</p>
                     </div>
-                    <span style={{ fontSize: '10px' }}  className="inline-block  font-extrabold bg-[#A6E7D8]/50 rounded-3xl border-1 border-[#26A17B] text-[#008767] py-1 px-4 shadow-2xl">
+                    <span style={{ fontSize: '10px' }} className="inline-block  font-extrabold bg-[#A6E7D8]/50 rounded-3xl border-1 border-[#26A17B] text-[#008767] py-1 px-4 shadow-2xl">
                       {item.pool}
                     </span>
                   </div>
@@ -128,20 +157,12 @@ export default function PastGrantRounds() {
                 {item.link && (
                   <Link
                     href={item.link}
-                     target="_blank"
-                  rel="noopener noreferrer"
-                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-sm border-1 border-[#26A17B] text-[#008767] py-2 px-4 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-full border-1 border-[#26A17B] text-[#008767] py-2 px-8 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
                   >
-                    View Data
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
+                    Open
+                    
                   </Link>
                 )}
               </div>
@@ -156,6 +177,7 @@ export default function PastGrantRounds() {
           </div>
         )}
       </div>
+
     </div>
   );
 }

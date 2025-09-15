@@ -65,7 +65,7 @@ export default function Dashboard() {
         <div className="max-w-6xl mx-auto">
           <h1 className="text-2xl font-bold text-center py-4">Past Funding</h1>
           <p className="text-center text-base text-gray-600 mb-8">
-            An archive of historical funding rounds and their recipients
+            Directory of past funding data and their recipients
           </p>
 
           <PastGrant />
