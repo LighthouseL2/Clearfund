@@ -28,7 +28,7 @@ const Footer = () => {
         let domain = emailArray[1]
         let username = emailArray[0]
 
-        
+
         window.open(`https://substack.com/sign-in?redirect=https%3A%2F%2Fclearfund.substack.com%2F&for_pub=clearfund&email=${username}%40${domain}&change_user=false`, '_blank')
         return true
     }
@@ -137,7 +137,7 @@ const Footer = () => {
 
             </div>
 
-            <div className="mt-[316px] justify-between w-full ">
+            <div className="mt-[190px] justify-between w-full ">
                 <p className="text-[14px] text-[#99999999] font-sans">© {today} ClearFund. All rights reserved</p>
             </div>
         </div>

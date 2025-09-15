@@ -46,10 +46,10 @@ const Account = () => {
               <p className='text-[#00000099] wrap-break-word'>{address}</p>
             </div>
 
-            <hr className='mt-16'/>
+            <hr className='mt-14'/>
 
 
-            <div className='mt-16'>
+            {/* <div className='mt-16'>
               <h2 className='text-[20px]'>Delete account</h2>
 
               <div className='border-[#FF0000] items-center border mt-10 text-[#FF0000]
@@ -65,11 +65,11 @@ const Account = () => {
                 </button>
 
               </div>
-            </div>
+            </div> */}
 
             {/* <ResetPassword open={open} setOpen={() => setOpen(!open)}/> */}
-            <DeleteAccountDialog open={open} setOpen={() => setOpen(!open)}
-              deleteAccount={deleteAccount}/>
+            {/* <DeleteAccountDialog open={open} setOpen={() => setOpen(!open)}
+              deleteAccount={deleteAccount}/> */}
         </main>
     </div>
     </ProtectedRoute>
