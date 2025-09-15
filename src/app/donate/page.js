@@ -7,63 +7,63 @@ import Link from "next/link"
 
 const GoodCollective = () => {
 
-    const collectives = [
-        {
-            title: "GoodDollar UBI+ for Women – Colombia",
-            description: "This pool provides additional daily G$ to women in Colombia through a segmented basic income model.",
-            date: "Created: October 20, 2024",
-            twitter: "https://x.com/gooddollarorg",
-            web: "https://gooddapp.org/",
-            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-            image: "/donate-icons/happy.png",
-            link: "https://goodcollective.xyz/collective/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-            id: 1
-        },
-        {
-            title: "Silvi - Kenya’s Kakamega forest",
-            description: "This Collective directly supports smallholder farmers around Kenya’s Kakamega forest.",
-            date: "Created: October 21, 2024",
-            twitter: "https://x.com/gooddollarorg",
-            web: "https://gooddapp.org/",
-            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-            image: "/donate-icons/grass.jpg",
-            id: 2,
-            link: "https://goodcollective.xyz/collective/0xc1dcdf8e70acb44cdbb688c91a4883cf9052ea9c"
-        },
-        {
-            title: "GoodDollar UBI+ for Women – Nigeria",
-            description: "This pool provides additional daily G$ to women in Nigeria through a segmented basic income model",
-            date: "Created: October 20, 2024",
-            twitter: "https://x.com/gooddollarorg",
-            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-            web: "https://gooddapp.org/",
-            image: "/donate-icons/laugh.png",
-            id: 3,
-            link: "https://goodcollective.xyz/collective/0xdd1c12f197e6d1e2fba15487aaae500ef6e07bca"
-        },
-        {
-            title: "Pesia's Kitchen EAT Initiative",
-            description: "A community-powered food rescue initiative committed to reducing waste and ensuring food security.",
-            date: "Created: May 30, 2025",
-            twitter: "https://x.com/gooddollarorg",
-            web: "https://gooddapp.org/",
-            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-            image: "/donate-icons/cooking.jpg",
-            id: 4,
-            link: "https://goodcollective.xyz/collective/0xe4f65e8644c0f3a1c7ef0ba0f1428a82cdc0e7bc"
-        },
-        {
-            title: "Global Classrooms Environmental Education",
-            description: "Global Classrooms connects students worldwide to collaborate on environmental projects aligned with UN Sustainable Development Goals.",
-            date: "Created: May 30, 2025",
-            twitter: "https://x.com/gooddollarorg",
-            scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-            web: "https://gooddapp.org/",
-            image: "/donate-icons/cartoon.jpg",
-            id: 5,
-            link: "https://goodcollective.xyz/collective/0xf3d629a2c198fc91d7d3f18217684166c83c7312"
-        },
-    ]
+    // const collectives = [
+    //     {
+    //         title: "GoodDollar UBI+ for Women – Colombia",
+    //         description: "This pool provides additional daily G$ to women in Colombia through a segmented basic income model.",
+    //         date: "Created: October 20, 2024",
+    //         twitter: "https://x.com/gooddollarorg",
+    //         web: "https://gooddapp.org/",
+    //         scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+    //         image: "/donate-icons/happy.png",
+    //         link: "https://goodcollective.xyz/collective/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+    //         id: 1
+    //     },
+    //     {
+    //         title: "Silvi - Kenya’s Kakamega forest",
+    //         description: "This Collective directly supports smallholder farmers around Kenya’s Kakamega forest.",
+    //         date: "Created: October 21, 2024",
+    //         twitter: "https://x.com/gooddollarorg",
+    //         web: "https://gooddapp.org/",
+    //         scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+    //         image: "/donate-icons/grass.jpg",
+    //         id: 2,
+    //         link: "https://goodcollective.xyz/collective/0xc1dcdf8e70acb44cdbb688c91a4883cf9052ea9c"
+    //     },
+    //     {
+    //         title: "GoodDollar UBI+ for Women – Nigeria",
+    //         description: "This pool provides additional daily G$ to women in Nigeria through a segmented basic income model",
+    //         date: "Created: October 20, 2024",
+    //         twitter: "https://x.com/gooddollarorg",
+    //         scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+    //         web: "https://gooddapp.org/",
+    //         image: "/donate-icons/laugh.png",
+    //         id: 3,
+    //         link: "https://goodcollective.xyz/collective/0xdd1c12f197e6d1e2fba15487aaae500ef6e07bca"
+    //     },
+    //     {
+    //         title: "Pesia's Kitchen EAT Initiative",
+    //         description: "A community-powered food rescue initiative committed to reducing waste and ensuring food security.",
+    //         date: "Created: May 30, 2025",
+    //         twitter: "https://x.com/gooddollarorg",
+    //         web: "https://gooddapp.org/",
+    //         scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+    //         image: "/donate-icons/cooking.jpg",
+    //         id: 4,
+    //         link: "https://goodcollective.xyz/collective/0xe4f65e8644c0f3a1c7ef0ba0f1428a82cdc0e7bc"
+    //     },
+    //     {
+    //         title: "Global Classrooms Environmental Education",
+    //         description: "Global Classrooms connects students worldwide to collaborate on environmental projects aligned with UN Sustainable Development Goals.",
+    //         date: "Created: May 30, 2025",
+    //         twitter: "https://x.com/gooddollarorg",
+    //         scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
+    //         web: "https://gooddapp.org/",
+    //         image: "/donate-icons/cartoon.jpg",
+    //         id: 5,
+    //         link: "https://goodcollective.xyz/collective/0xf3d629a2c198fc91d7d3f18217684166c83c7312"
+    //     },
+    // ]
 
 
   return (
@@ -76,7 +76,7 @@ const GoodCollective = () => {
         <div className="bg-[#9FD762D4] relative w-full h-[252px] rounded-t-2xl flex items-center justify-between mt-12">
             <div className="px-10">
                 <h1 className="text-[32px] font-black">Explore GoodCollective Pools</h1>
-                <p className="text-[16px] font-sans">
+                <p className="text-[16px] font-sans font-bold">
                     Check out existing GoodCollective pools and support existing members.
                 </p>
             </div>
@@ -107,8 +107,8 @@ const GoodCollective = () => {
                     </div>
 
                     <div className="mt-7 flex flex-col w-full px-5 relative ">
-                        <h2 className="text-[16px] font-black">GoodDollar UBI+ for Women – Colombia</h2>
-                        <p className="font-thin text-[16px] mt-5">
+                        <h2 className="text-[16px] font-black  xl:absolute -top-2">GoodDollar UBI+ for Women – Colombia</h2>
+                        <p className="text-[16px] xl:mt-13 mt-5">
                             This pool provides additional daily G$ to women in Colombia through a segmented basic income model.
                         </p>
 
@@ -187,8 +187,8 @@ const GoodCollective = () => {
                     </div>
 
                     <div className="mt-7 flex flex-col w-full px-5 relative ">
-                        <h2 className="text-[16px] font-black">Silvi - Kenya’s Kakamega forest</h2>
-                        <p className="font-thin text-[16px] mt-5">
+                        <h2 className="text-[16px] font-black xl:absolute -top-2">Silvi - Kenya’s Kakamega forest</h2>
+                        <p className=" text-[16px] xl:mt-13 mt-5">
                             This Collective directly supports smallholder farmers around Kenya’s Kakamega forest.
                         </p>
 
@@ -268,8 +268,8 @@ const GoodCollective = () => {
                     </div>
 
                     <div className="mt-7 flex flex-col w-full px-5 relative ">
-                        <h2 className="text-[16px] font-black">GoodDollar UBI+ for Women – Nigeria</h2>
-                        <p className="font-thin text-[16px] mt-5">
+                        <h2 className="text-[16px] font-black xl:absolute -top-2">GoodDollar UBI+ for Women – Nigeria</h2>
+                        <p className=" text-[16px] mt-5 xl:mt-13">
                             This pool provides additional daily G$ to women in Nigeria through a segmented basic income model
                         </p>
 
@@ -351,7 +351,7 @@ const GoodCollective = () => {
 
                     <div className="mt-7 flex flex-col w-full px-5 relative ">
                         <h2 className="text-[16px] font-black">Pesia&apos;s Kitchen EAT Initiative</h2>
-                        <p className="font-thin text-[16px] mt-5">
+                        <p className=" text-[16px] mt-5">
                             A community-powered food rescue initiative committed to reducing waste and ensuring food security.
                         </p>
 
@@ -432,7 +432,7 @@ const GoodCollective = () => {
 
                     <div className="mt-7 flex flex-col w-full px-5 relative ">
                         <h2 className="text-[16px] font-black lg:absolute lg:-top-5">Global Classrooms Environmental Education</h2>
-                        <p className="font-thin text-[16px] mt-5 lg:mt-11">
+                        <p className=" text-[16px] mt-5 lg:mt-11">
                             Global Classrooms connects students worldwide to collaborate on environmental projects aligned 
                             with UN Sustainable Development Goals.
                         </p>
