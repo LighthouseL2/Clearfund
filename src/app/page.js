@@ -18,10 +18,37 @@ import { LoadingSlide } from "@/components/LoaderSlider";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useAccount, useChainId } from 'wagmi';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import GrantRoundCard from "@/components/GrantRoundCard";
 
 
 
-
+const grants = [
+    {
+      image: "/grant-round-images/good-dollar-image.svg",
+      title: "Good Dollar",
+      desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
+      amount: "$ 250k",
+      date: "End- Oct 8, 2025",
+      link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
+    },
+    
+    {
+      image: "/grant-round-images/optimism.image.png",
+      title: "Optimism Season 8",
+      desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
+      amount: "6.29M OP",
+      date: "End- Nov 12, 2025",
+      link: "https://www.opgrants.io/"
+    },
+    {
+      image: "/grant-round-images/thrive-protocol-image.svg",
+      title: "Thrive Protocol",
+      desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
+      amount: "$ 100k",
+      date: "End- Jul 31, 2026",
+      link: "https://portals.thrive.xyz/"
+    },
+  ];
 
 
 
@@ -134,6 +161,20 @@ export default function Home() {
         <DiscoverBox />
 
         {/* <GrantBox /> */}
+
+        <div className="w-full px-[5%]">
+            <header className="text-center pb-10">
+                <h1 className="text-[45px] font-black text-center mt-20">Featured Funding</h1>
+                <p className="font-sans text-[18px]">Grants, bounties and gigs across the ecosystem helping builders access the support they need.</p>
+            </header>
+
+            <GrantRoundCard grants={grants}/>
+
+            <Link href={"/funding-stream"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
+                mx-auto h-[52px] mt-30 rounded-full hover:bg-black transition-all">
+                View All
+            </Link>
+        </div>
 
         <RecentPost />
 
