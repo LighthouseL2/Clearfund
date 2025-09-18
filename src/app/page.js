@@ -162,18 +162,106 @@ export default function Home() {
 
         {/* <GrantBox /> */}
 
-        <div className="w-full px-[5%]">
+        <div className="w-full px-[5%] bg-[#FAFAFA] py-20">
             <header className="text-center pb-10">
-                <h1 className="text-[45px] font-black text-center mt-20">Featured Funding</h1>
+                <h1 className="text-[45px] font-black text-center">Featured Funding</h1>
                 <p className="font-sans text-[18px]">Grants, bounties and gigs across the ecosystem helping builders access the support they need.</p>
             </header>
 
-            <GrantRoundCard grants={grants}/>
+            {/* <GrantRoundCard grants={grants}/> */}
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10  mt-16 w-full text-black justify-items-center">
+                    {grants.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col justify-between h-full w-full max-w-[360px] border-1 rounded-xl border-[#000000]/40 bg-white hover:shadow-md transition"
+                      >
+                        {/* Top image */}
+                        <div className="rounded-t-xl overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            className="w-full h-auto object-cover rounded-t-xl"
+                          />
+                        </div>
+                        {/* Card content */}
+                        <div className="flex-grow mt-4 px-5 pb-4 flex flex-col">
+                          <div>
+                            <div className="flex justify-between items-center pt-4 mb-2">
+                              <h3 className="text-[16px] text-[#000000] font-black leading-snug">
+                                {item.title}
+                              </h3>
+                              <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px]  font-medium  w-fit">
+                                <span className="font-bold">{item.amount}</span>
+                                {/* <span>{item.coin}</span> */}
+                              </p>
+                            </div>
+            
+                            <p className="text-[16px] leading-snug text-gray-700 mb-8 pt-4">
+                              {item.desc}
+                            </p>
+                          </div>
+                          <div className="px-5 py-2 mb-2 mt-auto">
+                            {item.link && (
+                              item.status === "past" ? (
+                                <span
+                                  style={{ fontSize: '16px' }}
+                                  className="block  bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] opacity-60 cursor-not-allowed transition w-full py-2.5 text-center font-medium rounded-full"
+                                >
+                                  Ended
+                                </span>
+                              ) : (
+                                <Link
+                                  href={item.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{ fontSize: '16px' }}
+                                  className="block  bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] transition w-full py-2.5 text-center font-bold rounded-full"
+                                >
+                                  Apply
+                                </Link>
+                              )
+                            )}
+                          </div>
+                          <hr className=" mt-4" />
+                          <div className="flex items-start mt-3 py-2">
+                            <p className="text-[10px] text-[#000000]  font-medium border bg-[#FFFFFF] border-black/15 rounded-[50px] px-2 py-1">{item.date}</p>
+                          </div>
+                        </div>
+            
+                      </div>
+            
+                    ))}
+                  </div>
 
-            <Link href={"/funding-stream"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
+            {/* <Link href={"/funding-stream"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
                 mx-auto h-[52px] mt-30 rounded-full hover:bg-black transition-all">
                 View All
-            </Link>
+            </Link> */}
+            <ConnectButton.Custom>
+          {({ account, openConnectModal, openAccountModal, mounted }) => {
+            const connected = mounted && account
+
+            const handleClick = async () => {
+              setModalOpen(true)
+              openConnectModal()
+              localStorage.setItem("login", "true")
+              
+              {/* saveSession() */}
+            }
+
+            return (
+              <button onClick={handleClick}
+                className='btn bg-[#39B54A] h-[52px]  hover:scale-105 transition-all
+                text-white text-[16px] flex items-center font-sans justify-center
+                  font-bold hover:bg-black w-[202.19px] rounded-full mx-auto mt-32 mb-10'>
+                {connected ? "View All" : "View All"}
+              </button>
+            )
+          }}
+        </ConnectButton.Custom>
         </div>
 
         <RecentPost />
