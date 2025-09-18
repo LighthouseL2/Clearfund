@@ -171,7 +171,7 @@ export default function Home() {
             <GrantRoundCard grants={grants}/>
 
             <Link href={"/funding-stream"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
-                mx-auto h-[52px] mt-30 rounded-full">
+                mx-auto h-[52px] mt-30 rounded-full hover:bg-black transition-all">
                 View All
             </Link>
         </div>
