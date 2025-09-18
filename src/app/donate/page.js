@@ -91,7 +91,7 @@ const GoodCollective = () => {
             </div>
         </div>
 
-        <section className="">
+        <section className="pb-10">
             <h1 className="text-[32px] text-[#0000004D] mt-10 mb-10 font-black">Projects: 5</h1>
 
             <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-10">
