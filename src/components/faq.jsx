@@ -56,10 +56,10 @@ const FaqSection = () => {
 
 
   return (
-    <div className="bg-black px-[5%] pb-[10rem] text-white pt-[7rem] mb-10 lg:mb-0">
+    <div className="bg-black px-[5%] pb-[10rem] text-white pt-[7rem] mb-10 lg:mb-0 font-sans">
         <h1 className="text-[75px] mb-20 font-extrabold">FAQs</h1>
         {questionsData.map((faq, index) => (
-            <div key={index} className="py-7 border-t border-b">
+            <div key={index} className="h-[105px] justify-center flex flex-col border-t border-b">
                 <button
                     onClick={() => toggleFAQ(index)}
                     className="w-full flex justify-between items-center text-left focus:outline-none"
@@ -81,15 +81,15 @@ const FaqSection = () => {
                     </span>
 
                 </button>
-            <div
-                className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                openIndex === index
-                    ? "max-h-40 opacity-100 translate-y-0"
-                    : "max-h-0 opacity-0 -translate-y-2"
-                }`}
-            >
-                <p className="mt-2 text-white/70 font-sans text-[20px]">{faq.ans}</p>
-            </div>
+                <div
+                    className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                    openIndex === index
+                        ? "max-h-40 opacity-100 translate-y-0"
+                        : "max-h-0 opacity-0 -translate-y-2"
+                    }`}
+                >
+                    <p className="mt-2 text-white/70 font-sans text-[20px]">{faq.ans}</p>
+                </div>
             </div>
         ))}
         
