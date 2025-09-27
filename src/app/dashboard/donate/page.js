@@ -4,6 +4,7 @@ import ProtectedRoute from "@/lib/withAuth"
 import Sidebar from "@/components/Sidebar"
 import Image from "next/image"
 import Link from "next/link"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 const GoodCollective = () => {
 
@@ -67,13 +68,13 @@ const GoodCollective = () => {
 
 
   return (
-    <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
-      {/* Sidebar imported */}
-      <Sidebar />
-
-      <main className="flex-1 p-4 md:p-6 md:ml-64">
-        <div className="bg-[#9FD762D4] relative w-full h-[252px] rounded-t-2xl flex items-center justify-between mt-12">
+    <main className="flex-1 p-4 md:px-6">
+        {/* connect button */}
+        <div className="flex justify-end sticky top-0 bg-white z-50 py-2">
+            <ConnectButton
+            />
+        </div>
+        <div className="bg-[#9FD762D4] relative w-full h-[252px] rounded-t-2xl flex items-center justify-between mt-10">
             <div className="px-10">
                 <h1 className="text-[32px] font-black">Explore GoodCollective Pools</h1>
                 <p className="text-[16px] font-sans font-bold">
@@ -504,8 +505,6 @@ const GoodCollective = () => {
             </div>
         </section>
       </main>
-    </div>
-    </ProtectedRoute>
   )
 }
 

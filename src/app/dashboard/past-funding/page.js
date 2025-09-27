@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { LogOut, Settings, ChevronRight } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
 import PastGrant from "@/components/PastGrant";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Sidebar from "@/components/Sidebar";
 import ProtectedRoute from "@/lib/withAuth";
 
@@ -52,18 +53,9 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
-
-      {/* Sidebar */}
-
-      <Sidebar />
-
-
-      {/* Main */}
-      <main className="flex-1 p-4 md:p-6 md:ml-64">
+   <main className="flex-1 p-4 md:p-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between  mx-auto max-w-5xl mt-5">
+          <div className="flex justify-between mx-auto max-w-5xl">
             <div className="">
               <h1 className="text-2xl font-bold mb-4">Past Grants</h1>
               <p className="text-base text-gray-600 mb-8">
@@ -71,17 +63,18 @@ export default function Dashboard() {
               </p>
             </div>
 
-            <div className="md:flex justify-end w-[212px] bg-amber-400 h-[38px] hidden ">
+            {/* <div className="md:flex justify-end w-[212px] bg-amber-400 h-[38px] hidden ">
 
+            </div> */}
+            <div className="flex ">
+                  <ConnectButton
+                      
+                  />
+              </div>
             </div>
-          </div>
 
           <PastGrant />
         </div>
-      </main>
-
-
-    </div>
-    </ProtectedRoute>
+    </main>
   );
 }

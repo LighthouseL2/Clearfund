@@ -174,7 +174,7 @@ export default function Sidebar() {
             </Link>
 
 
-            <Link href="/funding-stream">
+            <Link href="/dashboard/funding-stream">
               <button
 
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/funding-stream" && !isNotificationModalOpen
@@ -202,7 +202,7 @@ export default function Sidebar() {
               </button>
             </Link>
 
-            <Link href="/past-funding">
+            <Link href="/dashboard/past-funding">
               <button
 
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/past-funding" && !isNotificationModalOpen
@@ -234,7 +234,7 @@ export default function Sidebar() {
             
 
 
-            <Link href="/donate">
+            <Link href="/dashboard/donate">
               <button
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/donate" && !isNotificationModalOpen
                   ? "bg-[#39B54A] text-white"
