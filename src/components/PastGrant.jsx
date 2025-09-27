@@ -68,7 +68,7 @@ export default function PastGrantRounds() {
   return (
     <div className="px-4 md:px-10 py-4 text-black font-sans">
       {/* Search */}
-      <div className="max-w-4xl mx-auto mb-6">
+      <div className="max-w-6xl mx-auto mb-6">
         <div className="relative">
           <input
             type="text"
@@ -92,7 +92,7 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Active Tabs */}
-      <div className="max-w-4xl mx-auto mb-6 flex items-center justify-between rounded-full bg-[#D9D9D933] border py-1">
+      <div className="max-w-6xl mx-auto mb-6 flex items-center justify-between rounded-full bg-[#D9D9D933] border py-1">
         <button
           className="p-2 hover:bg-gray-200 rounded-full "
           onClick={() => scrollTabs("left")}
@@ -125,7 +125,7 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Archive List */}
-      <div className="max-w-4xl mx-auto space-y-1">
+      <div className="max-w-6xl mx-auto space-y-1">
         {filteredData.length > 0 ? (
           filteredData.map((item, index) => (
             <div

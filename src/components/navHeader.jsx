@@ -40,7 +40,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
             <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://clearfund.substack.com"}>Blog</Link></li>
         </ul>
 
-        <ConnectButton.Custom>
+        {/* <ConnectButton.Custom>
           {({ account, openConnectModal, mounted }) => {
             const connected = mounted && account
 
@@ -59,7 +59,11 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
               </button>
             )
           }}
-        </ConnectButton.Custom>
+        </ConnectButton.Custom> */}
+        <Link href={"/dashboard"} className="w-[159.16796875] h-[52px] bg-[#39B54A] flex items-center justify-center text-white
+          text-[16px] font-sans rounded-full">
+          Open App
+        </Link>
 
         <div className="flex items-center md:hidden" onClick={() => setOpenMenu(!openMenu)}>
           {!openMenu ? <MenuIcon /> :

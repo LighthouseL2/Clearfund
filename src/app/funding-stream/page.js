@@ -241,14 +241,22 @@ export default function Dashboard() {
 
         <main className="flex-1 p-4 md:p-6 md:ml-64">
           <div className="max-w-6xl mx-auto">
-            <h1 className="text-2xl font-bold text-center mb-2">
-              Funding Stream
-            </h1>
-            <p className="text-center text-base text-gray-600 mb-6">
-              Explore active grant, bounties and other funding opportunities
-              across several ecosystems.
-            </p>
-            <div className="bg-white rounded-xl shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
+            <div className="flex justify-between mt-5">
+              <div>
+                <h1 className="text-2xl font-bold text-center md:text-left mb-2">
+                  Active Grants
+                </h1>
+                <p className="text-base text-gray-600 mb-6 text-center md:text-left">
+                  Explore active grant, bounties and other funding opportunities
+                  across several ecosystems.
+                </p>
+              </div>
+
+              <div className="md:flex justify-end w-[212px] bg-amber-400 h-[38px] hidden">
+
+              </div>
+            </div>
+            <div className="bg-white rounded-xl mt-5 shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
               {/* Search bar component */}
               <div className="relative w-full md:w-[290px]">
                 <input

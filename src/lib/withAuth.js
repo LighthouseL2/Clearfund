@@ -16,18 +16,15 @@ const ProtectedRoute = ({ children }) => {
 
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-      if(!isConnected) {
-        router.replace("/")
-      }
+    //   if(!isConnected) {
+    //     router.replace("/")
+    //   }
 
-      // const session = removeSession()
-      // if(!session && chainId !== 42220) {
-      //   router.push("/")
-      //   disconnect()
+     
       
-    },[isConnected, router])
+    // },[isConnected, router])
 
     // if(!isConnected || chainId !== 42220 || !localStorage.getItem("login")) {
     //   return <p className="h-screen flex items-center justify-center text-4xl">Redirecting to login...</p>
