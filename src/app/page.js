@@ -164,8 +164,7 @@ export default function Home() {
 
         <div className="w-full px-[5%] bg-[#FAFAFA] py-20">
             <header className="text-center pb-10">
-                <h1 className="text-[45px] font-black text-center">Featured Funding</h1>
-                <p className="font-sans text-[18px]">Grants, bounties and gigs across the ecosystem helping builders access the support they need.</p>
+                <h1 className="text-[65px] font-black text-center">Featured Grant</h1>
             </header>
 
             {/* <GrantRoundCard grants={grants}/> */}
@@ -240,28 +239,27 @@ export default function Home() {
                 mx-auto h-[52px] mt-30 rounded-full hover:bg-black transition-all">
                 View All
             </Link> */}
-            <ConnectButton.Custom>
-          {({ account, openConnectModal, openAccountModal, mounted }) => {
-            const connected = mounted && account
+          {/* <ConnectButton.Custom>
+            {({ account, openConnectModal, openAccountModal, mounted }) => {
+              const connected = mounted && account
 
-            const handleClick = async () => {
-              setModalOpen(true)
-              openConnectModal()
-              localStorage.setItem("login", "true")
-              
-              {/* saveSession() */}
-            }
+              const handleClick = async () => {
+                setModalOpen(true)
+                openConnectModal()
+                localStorage.setItem("login", "true")
+                
+              }
 
-            return (
-              <button onClick={handleClick}
-                className='btn bg-[#39B54A] h-[52px]  hover:scale-105 transition-all
-                text-white text-[16px] flex items-center font-sans justify-center
-                  font-bold hover:bg-black w-[202.19px] rounded-full mx-auto mt-32 mb-10'>
-                {connected ? "View All" : "View All"}
-              </button>
-            )
-          }}
-        </ConnectButton.Custom>
+              return (
+                <button onClick={handleClick}
+                  className='btn bg-[#39B54A] h-[52px]  hover:scale-105 transition-all
+                  text-white text-[16px] flex items-center font-sans justify-center
+                    font-bold hover:bg-black w-[202.19px] rounded-full mx-auto mt-32 mb-10'>
+                  {connected ? "View All" : "View All"}
+                </button>
+              )
+            }}
+          </ConnectButton.Custom> */}
         </div>
 
         <RecentPost />

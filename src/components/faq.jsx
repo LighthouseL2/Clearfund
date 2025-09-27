@@ -56,8 +56,8 @@ const FaqSection = () => {
 
 
   return (
-    <div className="bg-black px-[5%] pb-[10rem] text-white pt-[7rem] mb-10 lg:mb-0 font-sans">
-        <h1 className="text-[75px] mb-20 font-extrabold">FAQs</h1>
+    <div className="bg-black px-[5%] pb-[10rem] text-white pt-[7rem] mb-10 lg:mb-0">
+        <h1 className="text-[75px] mb-20 font-black">FAQs</h1>
         {questionsData.map((faq, index) => (
             <div key={index} className="h-[105px] justify-center flex flex-col border-t border-b">
                 <button

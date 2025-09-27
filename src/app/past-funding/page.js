@@ -53,7 +53,7 @@ export default function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative font-sans">
+      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
 
       {/* Sidebar */}
 
@@ -63,16 +63,21 @@ export default function Dashboard() {
       {/* Main */}
       <main className="flex-1 p-4 md:p-6 md:ml-64">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold text-center py-4">Past Funding</h1>
-          <p className="text-center text-base text-gray-600 mb-8">
-            Directory of past funding data and their recipients
-          </p>
+          <div className="flex justify-between  mx-auto max-w-5xl mt-5">
+            <div className="">
+              <h1 className="text-2xl font-bold mb-4">Past Grants</h1>
+              <p className="text-base text-gray-600 mb-8">
+                Directory of past funding data and their recipients
+              </p>
+            </div>
+
+            <div className="md:flex justify-end w-[212px] bg-amber-400 h-[38px] hidden ">
+
+            </div>
+          </div>
 
           <PastGrant />
         </div>
-
-
-
       </main>
 
 

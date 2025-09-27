@@ -27,7 +27,7 @@ const HeroSection = ({setModalOpen}) => {
         </p>
 
 
-        <ConnectButton.Custom>
+        {/* <ConnectButton.Custom>
           {({ account, openConnectModal, openAccountModal, mounted }) => {
             const connected = mounted && account
 
@@ -36,7 +36,7 @@ const HeroSection = ({setModalOpen}) => {
               openConnectModal()
               localStorage.setItem("login", "true")
               
-              {/* saveSession() */}
+             
             }
 
             return (
@@ -48,7 +48,11 @@ const HeroSection = ({setModalOpen}) => {
               </button>
             )
           }}
-        </ConnectButton.Custom>
+        </ConnectButton.Custom> */}
+        <Link href={"/dashboard"} className="w-[202.1923828125] h-[52px] bg-[#39B54A] flex items-center justify-center text-white
+          text-[16px] font-sans rounded-full">
+          Open App
+        </Link>
 
     </div>
   )
