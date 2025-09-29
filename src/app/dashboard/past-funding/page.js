@@ -7,9 +7,12 @@ import PastGrant from "@/components/PastGrant";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Sidebar from "@/components/Sidebar";
 import ProtectedRoute from "@/lib/withAuth";
+import { usePrivy } from "@privy-io/react-auth";
+import UserDetails from "@/components/userDetails";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { ready, authenticated, login, logout, user } = usePrivy()
 
   const [programOpen, setProgramOpen] = useState(false);
   const [statusOpen, setStatusOpen] = useState(false);
@@ -19,6 +22,8 @@ export default function Dashboard() {
 
   const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar", "Arbitrum", "Others"];
   const statuses = ["Ongoing", "Upcoming", "Applications Open"];
+  const address = user?.wallet?.address
+  
 
   const toggleProgram = (program) => {
     setSelectedPrograms((prev) =>
@@ -55,7 +60,7 @@ export default function Dashboard() {
   return (
    <main className="flex-1 p-4 md:p-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between mx-auto max-w-5xl">
+          <div className="flex md:justify-between mx-auto max-w-5xl flex-wrap-reverse justify-end">
             <div className="">
               <h1 className="text-2xl font-bold mb-4">Past Grants</h1>
               <p className="text-base text-gray-600 mb-8">
@@ -63,13 +68,17 @@ export default function Dashboard() {
               </p>
             </div>
 
-            {/* <div className="md:flex justify-end w-[212px] bg-amber-400 h-[38px] hidden ">
+            <div className="flex">
 
-            </div> */}
-            <div className="flex ">
-                  <ConnectButton
-                      
-                  />
+                  {!authenticated ?
+                  <button
+                      onClick={login}
+                      className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white
+                        rounded-full w-[159.16796875px]"
+                      >
+                      Connect wallet
+                  </button> : <UserDetails walletAddress={address} logout={logout}/>
+                }
               </div>
             </div>
 

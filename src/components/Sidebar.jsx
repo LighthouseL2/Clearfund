@@ -18,8 +18,7 @@ export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const pathname = usePathname();
-  const { disconnect } = useDisconnect()
-  // const { logout } = usePrivy()
+
 
 
 
@@ -121,7 +120,7 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-white px-6 pt-6 pb-8 shadow-md transform transition-transform duration-300 ease-in-out flex flex-col justify-between
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white px-6 pt-6 pb-8 shadow-md transform transition-transform duration-300 ease-in-out flex flex-col justify-between
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         <div>
@@ -177,7 +176,7 @@ export default function Sidebar() {
             <Link href="/dashboard/funding-stream">
               <button
 
-                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/funding-stream" && !isNotificationModalOpen
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/dashboard/funding-stream" && !isNotificationModalOpen
                   ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -185,7 +184,7 @@ export default function Sidebar() {
                 <span className="flex items-center gap-3">
                   <Image
                     src={
-                      pathname === "/funding-stream" && !isNotificationModalOpen
+                      pathname === "/dashboard/funding-stream" && !isNotificationModalOpen
                         ? "/sidebar-icons/grant-round-white-icon.svg"
                         : "/sidebar-icons/grant-round-icon.svg" 
                     }
@@ -197,7 +196,7 @@ export default function Sidebar() {
                 </span>
                 <ChevronRight
                   size={16}
-                  className={pathname === "/funding-stream" ? "text-white" : "text-gray-400"}
+                  className={pathname === "/dashboard/funding-stream" ? "text-white" : "text-gray-400"}
                 />
               </button>
             </Link>
@@ -205,7 +204,7 @@ export default function Sidebar() {
             <Link href="/dashboard/past-funding">
               <button
 
-                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/past-funding" && !isNotificationModalOpen
+                className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/dashboard/past-funding" && !isNotificationModalOpen
                   ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -213,7 +212,7 @@ export default function Sidebar() {
                 <span className="flex items-center gap-3">
                   <Image
                     src={
-                      pathname === "/past-funding" && !isNotificationModalOpen
+                      pathname === "/dashboard/past-funding" && !isNotificationModalOpen
                         ? "/sidebar-icons/grant-history-white-icon.svg"
                         : "/sidebar-icons/past-grant-data-icon.svg"
                     }
@@ -225,7 +224,7 @@ export default function Sidebar() {
                 </span>
                 <ChevronRight
                   size={16}
-                  className={pathname === "/past-funding" ? "text-white" : "text-gray-400"}
+                  className={pathname === "/dashboard/past-funding" ? "text-white" : "text-gray-400"}
                 />
               </button>
             </Link>
@@ -236,7 +235,7 @@ export default function Sidebar() {
 
             <Link href="/dashboard/donate">
               <button
-                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/donate" && !isNotificationModalOpen
+                className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/dashboard/donate" && !isNotificationModalOpen
                   ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -244,7 +243,7 @@ export default function Sidebar() {
                 <span className="flex items-center gap-3">
                   <Image
                     src={
-                      pathname === "/donate"  && !isNotificationModalOpen
+                      pathname === "/dashboard/donate"  && !isNotificationModalOpen
                         ? "/sidebar-icons/good-white-icon.svg"
                         : "/sidebar-icons/good-grey-icon.svg"
                     }
@@ -262,7 +261,7 @@ export default function Sidebar() {
 
                 <ChevronRight
                   size={16}
-                  className={pathname === "/donate" ? "text-white" : "text-gray-400"}
+                  className={pathname === "/dashboard/donate" ? "text-white" : "text-gray-400"}
                 />
               </button>
             </Link>
@@ -297,7 +296,7 @@ export default function Sidebar() {
       {/* Overlay for mobile when sidebar is open */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-30 md:hidden"
+          className="fixed inset-0 bg-black/40 z-50 md:hidden"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}

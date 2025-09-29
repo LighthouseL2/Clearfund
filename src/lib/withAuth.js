@@ -9,10 +9,10 @@ import { removeSession } from "./session"
 
 
 const ProtectedRoute = ({ children }) => {
-    const router = useRouter()
-    const { isConnected } = useAccount()
-    const chainId = useChainId()
-    const { disconnect } = useDisconnect()
+    // const router = useRouter()
+    // const { isConnected } = useAccount()
+    // const chainId = useChainId()
+    // const { disconnect } = useDisconnect()
 
 
 
@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children }) => {
     //   return <p className="h-screen flex items-center justify-center text-4xl">Redirecting to login...</p>
     // }
     
-    console.log(chainId, "chainId");
+    // console.log(chainId, "chainId");
     // console.log(account, "Account");
 
     return <>{children}</>

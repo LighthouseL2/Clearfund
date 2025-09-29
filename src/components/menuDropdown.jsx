@@ -30,7 +30,7 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle, setModalOpen}) 
                         Login / Register
                 </Link> */}
 
-                <ConnectButton.Custom>
+                {/* <ConnectButton.Custom>
                     {({ account, openConnectModal, openAccountModal, mounted }) => {
                     const connected = mounted && account
         
@@ -40,7 +40,7 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle, setModalOpen}) 
                         setOpenMenu(false)
                         setToggle(!toggle)
                         localStorage.setItem("login", "true")
-                        {/* saveSession() */}
+                        
                     }
         
                     return (
@@ -52,7 +52,7 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle, setModalOpen}) 
                         </button>
                     )
                     }}
-                </ConnectButton.Custom>
+                </ConnectButton.Custom> */}
             </div>
     </div>
   )

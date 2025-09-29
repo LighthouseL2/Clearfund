@@ -1,11 +1,29 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, ArrowRight, DollarSign, Layers, RefreshCcw, Share2, Archive, CircleDollarSign, Bolt } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { usePrivy } from "@privy-io/react-auth";
+import UserDetails from "@/components/userDetails";
+import { useState } from "react";
+import { MoveDown, LogOut } from "lucide-react";
+import { ShortAddress, handleLogout} from "@/components/userDetails"
+
+"36Qcnw5DT6mVZck9cjok4jb1LnrEAoz4ppg6m1RaAGkWr2258P2KTd8CBxwEWD5xzNeaW6cAAY7rbYHcUeEXfskx"
+
+
+const appID = "cmg51ycr8005bl20dwfr7ok1d"
+const appSecret = "2WALFTLq7RpCLALUVXpFEvSqGmRShTi26xBEvkBQwTvoWFtmXr2op4eMjLhDMuz9vNVg8oK438yw2ZHh75rwEpcF"
+const jwtEndPont = "https://auth.privy.io/api/v1/apps/cmf1msigj001jic0b7lssgbls/jwks.json"
 
 
 export default function GrantDashboard() {
+
+    const { ready, authenticated, login, logout, user } = usePrivy()
+    const [toggle, setToggle] = useState(false)
+
 
     const metricData = [
 
@@ -99,22 +117,24 @@ export default function GrantDashboard() {
 
     ];
 
+    const address = user?.wallet?.address
+
     return (
 
         <div className="font-sans">
-            <div className="flex py-4 sticky z-50 top-0 justify-end bg-white px-10">
-                <ConnectButton
+            <div className="flex py-4 sticky z-10 top-0 justify-end  px-10">
+                {!authenticated ?
+                    <button
+                        onClick={login}
+                        className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
+                        >
+                        Connect wallet
+                    </button> :
                     
-                />
+                    <UserDetails walletAddress={address} logout={logout}/>
+                    
+                }
             </div>
-            {/* <div className="flex justify-end items-center gap-5 mb-10 px-8 text-[#008767]">
-                
-                <div className="flex items-center gap-5  py-1 px-2 rounded-full font-sans">
-                    
-                    
-                </div>
-            </div> */}
-
 
             <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
                 {/* Metric Cards */}

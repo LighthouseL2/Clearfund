@@ -64,7 +64,7 @@ const FaqSection = () => {
                     onClick={() => toggleFAQ(index)}
                     className="w-full flex justify-between items-center text-left focus:outline-none"
                     >
-                    <span className="text-[22px] font-extrabold">{faq.question}</span>
+                    <span className="text-[22px] font-extrabold font-sans">{faq.question}</span>
                     <span
                     className={`relative w-3 h-3 transition-transform duration-300 ease-in-out ${
                         openIndex === index ? "rotate-180" : "rotate-0"
