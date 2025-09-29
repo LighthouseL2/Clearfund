@@ -15,16 +15,16 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
 
   const [modalOpen, setModalOpen] = useState(false)
   const router = useRouter()
-  const { isConnected, account } = useAccount()
+  // const { isConnected, account } = useAccount()
 
 
   useEffect(() => {
-    if(modalOpen && isConnected ) {
+    if(modalOpen ) {
         // setRedirected(false)
         router.push("/dashboard")
         setModalOpen(false)
     }
-  }, [router, modalOpen, isConnected])
+  }, [router, modalOpen])
 
 
 
@@ -61,7 +61,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
           }}
         </ConnectButton.Custom> */}
         <Link href={"/dashboard"} className="w-[159.16796875] h-[52px] bg-[#39B54A] flex items-center justify-center text-white
-          text-[16px] font-sans rounded-full">
+          text-[16px] font-sans rounded-full font-black">
           Open App
         </Link>
 

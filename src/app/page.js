@@ -66,8 +66,8 @@ export default function Home() {
     const [redirected, setRedirected] = useState(true)
 
 
-    const { isConnected, account } = useAccount()
-    const chainId = useChainId()
+    // const { isConnected, account } = useAccount()
+    // const chainId = useChainId()
     
 
 
@@ -100,13 +100,13 @@ export default function Home() {
     // },[setLoading,setProgress,interval, pathname, route])
 
 
-    useEffect(() => {
-    if(modalOpen && isConnected ) {
-        setRedirected(false)
-        router.push("/dashboard")
-        setModalOpen(false)
-    }
-  }, [router, modalOpen, isConnected])
+  //   useEffect(() => {
+  //   if(modalOpen && isConnected ) {
+  //       setRedirected(false)
+  //       router.push("/dashboard")
+  //       setModalOpen(false)
+  //   }
+  // }, [router, modalOpen, isConnected])
 
   
   
@@ -281,7 +281,7 @@ export default function Home() {
                     Helping builders discover and access funding <br />opportunities with ease
                 </p>
 
-                <ConnectButton.Custom>
+                {/* <ConnectButton.Custom>
                     {({ account, openConnectModal, mounted }) => {
                         const connected = mounted && account
 
@@ -299,7 +299,7 @@ export default function Home() {
                         </button>
                         )
                     }}
-                </ConnectButton.Custom>
+                </ConnectButton.Custom> */}
             </div>
         </div>
         <div className="p-10 mt-10">

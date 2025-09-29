@@ -6,6 +6,9 @@ import { LogOut, Settings, ChevronRight, InfoIcon } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
 import Sidebar from "@/components/Sidebar";
 import ProtectedRoute from "@/lib/withAuth";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { usePrivy } from "@privy-io/react-auth";
+import UserDetails from "@/components/userDetails";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,6 +23,9 @@ export default function Dashboard() {
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
   const [search, setSearch] = useState("");
+  const { ready, authenticated, login, logout, user } = usePrivy()
+  
+  const address = user?.wallet?.address
 
   const programs = [
     "Gitcoin",
@@ -237,11 +243,11 @@ export default function Dashboard() {
   return (
     <ProtectedRoute>
       <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative ">
-        <Sidebar />
+        {/* <Sidebar /> */}
 
-        <main className="flex-1 p-4 md:p-6 md:ml-64">
+        <main className="flex-1 p-4 md:p-6">
           <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between mt-5">
+            <div className="flex md:justify-between justify-end flex-wrap-reverse">
               <div>
                 <h1 className="text-2xl font-bold text-center md:text-left mb-2">
                   Active Grants
@@ -252,8 +258,15 @@ export default function Dashboard() {
                 </p>
               </div>
 
-              <div className="md:flex justify-end w-[212px] bg-amber-400 h-[38px] hidden">
-
+              <div className="flex">
+                {!authenticated ?
+                  <button
+                      onClick={login}
+                      className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
+                      >
+                      Connect wallet
+                  </button> : <UserDetails walletAddress={address} logout={logout}/>
+                }
               </div>
             </div>
             <div className="bg-white rounded-xl mt-5 shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
