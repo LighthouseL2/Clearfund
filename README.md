@@ -5,9 +5,6 @@ ecosystem while also providing visibility into previously funded projects.
 
 **🚀 Mission**
 
-Web3 has unlocked new ways of funding innovation from Quadratic
-Funding rounds to public goods support. ClearFund exists to:
-
 -Connect builders and creators with relevant funding opportunities.
 -Foster transparency by curating and visualizing previously funded projects.
 -Empower communities by highlighting funding programs, grants, and impact initiatives.
