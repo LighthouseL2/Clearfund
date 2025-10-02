@@ -11,7 +11,7 @@ const GrantRoundCard = ({ grants }) => {
             className="flex flex-col justify-between h-full w-full max-w-[360px] border-1 rounded-xl border-[#000000]/40 bg-white hover:shadow-md transition"
           >
             {/* Top image */}
-            <div className="rounded-t-xl overflow-hidden">
+            {/* <div className="rounded-t-xl overflow-hidden">
               <Image
                 src={item.image}
                 alt={item.title}
@@ -20,6 +20,15 @@ const GrantRoundCard = ({ grants }) => {
                 sizes="100vw"
                 className="w-full h-auto object-cover rounded-t-xl"
               />
+            </div> */}
+            <div className="rounded-t-xl overflow-hidden w-full h-[166px]  relative">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="w-full h-auto object-cover rounded-t-xl"
+              />
+
             </div>
             {/* Card content */}
             <div className="flex-grow mt-4 px-5 pb-4 flex flex-col">

@@ -192,7 +192,7 @@ export default function Sidebar() {
                     width={18}
                     height={18}
                   />
-                  Active Grants
+                  Grants
                 </span>
                 <ChevronRight
                   size={16}

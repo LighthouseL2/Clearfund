@@ -23,14 +23,24 @@ import GrantRoundCard from "@/components/GrantRoundCard";
 
 
 const grants = [
+    // {
+    //   image: "/grant-round-images/good-dollar-image.svg",
+    //   title: "Good Dollar",
+    //   desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
+    //   amount: "$ 250k",
+    //   date: "End- Oct 8, 2025",
+    //   link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
+    // },
+
     {
-      image: "/grant-round-images/good-dollar-image.svg",
-      title: "Good Dollar",
-      desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
-      amount: "$ 250k",
-      date: "End- Oct 8, 2025",
-      link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
+      title: "Polygon AI ",
+      amount: "50k Pol",
+      date: "End- Nov 23, 2025",
+      link: "https://www.encodeclub.com/programmes/polygon-grants",
+      image: "/grant-round-images/polygon.jpg",
+      desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
     },
+    
     
     {
       image: "/grant-round-images/optimism.image.png",
@@ -40,14 +50,25 @@ const grants = [
       date: "End- Nov 12, 2025",
       link: "https://www.opgrants.io/"
     },
+
     {
-      image: "/grant-round-images/thrive-protocol-image.svg",
-      title: "Thrive Protocol",
-      desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
-      amount: "$ 100k",
-      date: "End- Jul 31, 2026",
-      link: "https://portals.thrive.xyz/"
+      title: "Scroll Grants",
+      amount: "312.5k SCR",
+      date: "End- Dec 19, 2025",
+      link: "https://tally.so/r/mVrrPj",
+      image: "/grant-round-images/feature.jpg",
+      desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
+
     },
+
+    // {
+    //   image: "/grant-round-images/thrive-protocol-image.svg",
+    //   title: "Thrive Protocol",
+    //   desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
+    //   amount: "$ 100k",
+    //   date: "End- Jul 31, 2026",
+    //   link: "https://portals.thrive.xyz/"
+    // },
   ];
 
 
@@ -175,15 +196,14 @@ export default function Home() {
                         className="flex flex-col justify-between h-full w-full max-w-[360px] border-1 rounded-xl border-[#000000]/40 bg-white hover:shadow-md transition"
                       >
                         {/* Top image */}
-                        <div className="rounded-t-xl overflow-hidden">
+                        <div className="rounded-t-xl overflow-hidden w-full h-[166px]  relative">
                           <Image
                             src={item.image}
                             alt={item.title}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="w-full h-auto object-cover rounded-t-xl"
+                            fill
+                            className="w-full h-auto object-cover  rounded-t-xl"
                           />
+
                         </div>
                         {/* Card content */}
                         <div className="flex-grow mt-4 px-5 pb-4 flex flex-col">
@@ -235,10 +255,10 @@ export default function Home() {
                     ))}
                   </div>
 
-            {/* <Link href={"/funding-stream"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
-                mx-auto h-[52px] mt-30 rounded-full hover:bg-black transition-all">
+            <Link href={"/dashboard/funding-stream"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
+                mx-auto h-[52px] mt-20 rounded-full hover:bg-black transition-all">
                 View All
-            </Link> */}
+            </Link>
           {/* <ConnectButton.Custom>
             {({ account, openConnectModal, openAccountModal, mounted }) => {
               const connected = mounted && account
@@ -281,25 +301,11 @@ export default function Home() {
                     Helping builders discover and access funding <br />opportunities with ease
                 </p>
 
-                {/* <ConnectButton.Custom>
-                    {({ account, openConnectModal, mounted }) => {
-                        const connected = mounted && account
-
-                        const handleClick = async () => {
-                        setModalOpen(true)
-                        openConnectModal()
-                        }
-
-                        return (
-                        <button onClick={handleClick}
-                            className='btn flex items-center justify-center font-semibold
-                                hover:bg-black transition-all hover:scale-110 font-sans
-                                bg-white hover:text-white text-black text-[16px] h-[52px] px-8 rounded-full'>
-                            {connected ? "Go to Dashboard" : "Explore ClearFund"}
-                        </button>
-                        )
-                    }}
-                </ConnectButton.Custom> */}
+                <Link href={"/dashboard"} className="w-[202.1923828125px] bg-white
+                 text-black flex justify-center items-center hover:text-white
+                mx-auto h-[52px]  rounded-full hover:bg-black transition-all">
+                Explore Clearfund
+            </Link>
             </div>
         </div>
         <div className="p-10 mt-10">

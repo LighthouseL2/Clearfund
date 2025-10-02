@@ -47,6 +47,53 @@ export default function Dashboard() {
 
   const grants = [
     {
+      image: "/grant-round-images/internet.jpg",
+      title: "ENS PG Builder Grants",
+      desc: `PG Builder Grants program is designed to support foundational public goods in the Ethereum and Web3 ecosystems. `,
+      amount: "50k USDC",
+      date: "Ongoing",
+      link : "https://builder.ensgrants.xyz/"
+    },
+
+    {
+      title: "Polygon AI ",
+      amount: "50k Pol",
+      date: "End- Nov 23, 2025",
+      link: "https://www.encodeclub.com/programmes/polygon-grants",
+      image: "/grant-round-images/polygon.jpg",
+      desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
+    },
+
+    {
+      title: "Scroll Grants",
+      amount: "312.5k SCR",
+      date: "End- Dec 19, 2025",
+      link: "https://tally.so/r/mVrrPj",
+      image: "/grant-round-images/feature.jpg",
+      desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
+
+    },
+
+
+    {
+      title: "Grants & Programs",
+      amount: "$250M",
+      date: "Ongoing",
+      link: "https://build.avax.network/grants#programs",
+      image: "/grant-round-images/avalache.jpg",
+      desc: `Empowering innovators to build the future of blockchain technology with scalable and sustainable solutions.`,
+    },
+
+    {
+      title: "Incubator program",
+      amount: "$ 9k",
+      date: "End- Oct 7, 2025",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSffpxsP1KZnvd3mx41wQYNCoTQ9_Jphql3TwnZ3RluwXXnI2A/viewform",
+      image: "/grant-round-images/celo-incubator.png",
+      desc: `The Celo Africa DAO Incubator Program aims to enhance the capabilities of early-stage founders through hands-on mentorship.`
+    },
+
+    {
       image: "/grant-round-images/good-dollar-image.svg",
       title: "Good Dollar",
       desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
@@ -54,6 +101,7 @@ export default function Dashboard() {
       date: "End- Oct 8, 2025",
       link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
     },
+
     {
       image: "/grant-round-images/octant-image.svg",
       title: "Octant",
@@ -167,6 +215,7 @@ export default function Dashboard() {
       link: "https://charmverse.prezenti.xyz/invite/f90c14"
     },
   ];
+
   const getGrantStatus = (grant) => {
     if (grant.status === "bounties") return "bounties";
     const now = new Date();
@@ -328,7 +377,7 @@ export default function Dashboard() {
                   onClick={() => setStatusOpen(!statusOpen)}
                   className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
                 >
-                  {selectedStatus || "Select Status"}
+                  {selectedStatus || "All"}
                   <ChevronRight className="h-4 w-4 text-gray-400 rotate-90" />
                 </button>
                 {statusOpen && (
