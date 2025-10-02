@@ -36,7 +36,7 @@ export default function GrantDashboard() {
 
         {
             title: "Opportunities",
-            value: "10",
+            value: "15",
             img: "/grant-icons/ecosystem-icon.svg",
             footer: { text: "Open Applications", icon: "/card-icons/ongoing-round-icon.svg" },
         },
