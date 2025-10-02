@@ -206,7 +206,7 @@ export default function Home() {
 
                         </div>
                         {/* Card content */}
-                        <div className="flex-grow mt-4 px-5 pb-4 flex flex-col">
+                        <div className="flex-grow mt-4 px-4 pb-4 flex flex-col">
                           <div>
                             <div className="flex justify-between items-center pt-4 mb-2">
                               <h3 className="text-[16px] text-[#000000] font-black leading-snug">
