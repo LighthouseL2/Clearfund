@@ -1,5 +1,5 @@
 **ClearFund** is an open platform that makes Web3 funding opportunities more transparent and accessible.
-We help individuals and communities discover grants, bounties, and paid gigs in the decentralized 
+We help individuals and communities discover grants the decentralized 
 ecosystem while also providing visibility into previously funded projects.
 
 
