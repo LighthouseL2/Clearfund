@@ -15,7 +15,7 @@ const UserDetails = ({walletAddress, logout}) => {
         logout()
     }
 
-    function shortAddress(address, chars = 3) {
+    function shortAddress(address, chars = 4) {
         if (!address) return "";
         console.log(address.slice(0, chars + 2) + "..." + address.slice(-chars));
         let addressString = String(address.slice(0, chars + 2) + "..." + address.slice(-chars))
@@ -25,10 +25,10 @@ const UserDetails = ({walletAddress, logout}) => {
   return (
     <div className='flex items-start mb-10'>
         <div className=" flex items-center justify-between gap-5 relative rounded-md">
-        <div className='bg-yellow-300 w-[30px] h-[30px] flex items-center justify-center rounded-full'>
+        <div className='w-[44px] h-[38px] flex items-center justify-center bg-white shadow rounded border border-[#0000001A] p-0.5'>
             <img src="/round-icons/celo-round-icon.svg" alt="" className='w-full h-full'/>
         </div>
-        <button className='flex justify-between items-center px-1 border w-[150px] h-[37px] relative' onClick={()=> setToggle(!toggle)}>
+        <button className='flex gap-3  items-center px-1 border w-[150px] h-[37px] relative' onClick={()=> setToggle(!toggle)}>
             <span>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 9.99791C19.0028 11.7847 18.4714 13.5315 17.474 15.0139C16.6514 16.2409 15.5391 17.2463 14.2356 17.9412C12.932 18.6361 11.4772 18.999 10 18.9979C8.52277 18.999 7.06804 18.6361 5.76444 17.9412C4.46085 17.2463 3.34858 16.2409 2.526 15.0139C1.74273 13.8463 1.2439 12.5115 1.06951 11.1164C0.895109 9.72124 1.05 8.30467 1.52175 6.9802C1.9935 5.65573 2.769 4.46021 3.78607 3.48947C4.80314 2.51873 6.0335 1.79978 7.37851 1.39025C8.72352 0.980724 10.1458 0.892009 11.5312 1.13122C12.9167 1.37043 14.2269 1.93091 15.3567 2.76773C16.4865 3.60455 17.4046 4.69444 18.0373 5.95002C18.67 7.20559 18.9997 8.59194 19 9.99791Z" stroke="black" strokeWidth="1.5"/>

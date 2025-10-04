@@ -308,7 +308,7 @@ export default function Dashboard() {
               </div>
 
               <div className="flex">
-                {!authenticated ?
+                {authenticated ?
                   <button
                       onClick={login}
                       className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
