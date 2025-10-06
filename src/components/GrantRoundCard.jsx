@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const GrantRoundCard = ({ grants }) => {
+const GrantRoundCard = ({ grants, grantStatus }) => {
   return (
     <div className="relative mb-6">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-16 w-full text-black justify-items-center">
@@ -10,17 +10,7 @@ const GrantRoundCard = ({ grants }) => {
             key={index}
             className="flex flex-col justify-between h-full w-full max-w-[360px] border-1 rounded-xl border-[#000000]/40 bg-white hover:shadow-md transition"
           >
-            {/* Top image */}
-            {/* <div className="rounded-t-xl overflow-hidden">
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="w-full h-auto object-cover rounded-t-xl"
-              />
-            </div> */}
+            
             <div className="rounded-t-xl overflow-hidden w-full h-[166px]  relative">
               <Image
                 src={item.image}

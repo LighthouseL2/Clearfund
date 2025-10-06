@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { LogOut, Settings, ChevronRight, InfoIcon } from "lucide-react";
+import { Plus } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
 import Sidebar from "@/components/Sidebar";
 import ProtectedRoute from "@/lib/withAuth";
@@ -11,39 +11,22 @@ import { usePrivy } from "@privy-io/react-auth";
 import UserDetails from "@/components/userDetails";
 
 export default function Dashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
-  const [programOpen, setProgramOpen] = useState(false);
-  const [statusOpen, setStatusOpen] = useState(false);
+  // const [sidebarOpen, setSidebarOpen] = useState(false);
+  // const [showTooltip, setShowTooltip] = useState(false);
+  // const [programOpen, setProgramOpen] = useState(false);
+  // const [statusOpen, setStatusOpen] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [grantStatus, setGrantStatus] = useState("all")
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
-  const [selectedPrograms, setSelectedPrograms] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [search, setSearch] = useState("");
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const itemsPerPage = 9;
+  const [filter, setFilter] = useState("all")
   const { ready, authenticated, login, logout, user } = usePrivy()
   
   const address = user?.wallet?.address
 
-  const programs = [
-    "Gitcoin",
-    "Celo",
-    "Octant",
-    "Good Dollar",
-    "Arbitrum",
-    "Lisk",
-    "Thrive",
-    "Optimism",
-    "Others",
-  ];
-  const statuses = [
-    "Grant",
-    "Bounties & paid gigs",
-    "Past opportunities",
-    "Upcoming",
-  ];
+  const today = new Date()
 
   const grants = [
     {
@@ -52,6 +35,7 @@ export default function Dashboard() {
       desc: `PG Builder Grants program is designed to support foundational public goods in the Ethereum and Web3 ecosystems. `,
       amount: "50k USDC",
       date: "Ongoing",
+      deadline: "Ongoing",
       link : "https://builder.ensgrants.xyz/"
     },
 
@@ -59,6 +43,7 @@ export default function Dashboard() {
       title: "Polygon AI ",
       amount: "50k Pol",
       date: "End- Nov 23, 2025",
+      deadline: "Nov 23, 2025",
       link: "https://www.encodeclub.com/programmes/polygon-grants",
       image: "/grant-round-images/polygon.jpg",
       desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
@@ -68,6 +53,7 @@ export default function Dashboard() {
       title: "Scroll Grants",
       amount: "312.5k SCR",
       date: "End- Dec 19, 2025",
+      deadline: "Dec 19, 2025",
       link: "https://tally.so/r/mVrrPj",
       image: "/grant-round-images/feature.jpg",
       desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
@@ -79,6 +65,7 @@ export default function Dashboard() {
       title: "Grants & Programs",
       amount: "$250M",
       date: "Ongoing",
+      deadline: "Ongoing",
       link: "https://build.avax.network/grants#programs",
       image: "/grant-round-images/avalache.jpg",
       desc: `Empowering innovators to build the future of blockchain technology with scalable and sustainable solutions.`,
@@ -88,6 +75,7 @@ export default function Dashboard() {
       title: "Incubator program",
       amount: "$ 9k",
       date: "End- Oct 7, 2025",
+      deadline: "Oct 7, 2025",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSffpxsP1KZnvd3mx41wQYNCoTQ9_Jphql3TwnZ3RluwXXnI2A/viewform",
       image: "/grant-round-images/celo-incubator.png",
       desc: `The Celo Africa DAO Incubator Program aims to enhance the capabilities of early-stage founders through hands-on mentorship.`
@@ -99,6 +87,7 @@ export default function Dashboard() {
       desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
       amount: "$ 250k",
       date: "End- Oct 8, 2025",
+      deadline: "Oct 8, 2025",
       link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
     },
 
@@ -108,6 +97,7 @@ export default function Dashboard() {
       desc: `Funding the journalists, storytellers, content creators, and others who’ve helped make Ethereum legible.`,
       amount: "$1m",
       date: "End- Aug 27, 2025",
+      deadline: "Aug 27, 2025",
       link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
     },
     {
@@ -116,6 +106,7 @@ export default function Dashboard() {
       desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
       amount: "$ 100k",
       date: "End- Jul 31, 2026",
+      deadline: "Jul 31, 2026",
       link: "https://portals.thrive.xyz/"
     },
     {
@@ -124,6 +115,7 @@ export default function Dashboard() {
       desc: `A Program to nurture a community of developers and creators within the Lisk ecosystem.`,
       amount: "$ 80k",
       date: "End- Oct, 2025",
+      deadline: "Oct, 2025",
       link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
     },
     {
@@ -132,6 +124,7 @@ export default function Dashboard() {
       desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
       amount: "15k Celo",
       date: "End- Aug 29, 2025",
+      deadline: "Aug 29, 2025",
       link: "https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship"
     },
     {
@@ -140,6 +133,7 @@ export default function Dashboard() {
       desc: `Thrive Horizen funds the new era of privacy first apps on Base.`,
       amount: "$ 100k",
       date: "End-  Aug 13, 2026",
+      deadline: "Aug 13, 2026",
       link: "https://horizen.thrive.xyz/"
     },
     {
@@ -148,6 +142,7 @@ export default function Dashboard() {
       desc: `Active Gardens Funding Pools on Celo network are eligible for streaming matching funds.`,
       amount: "3k Celo",
       date: "End-  Nov 5, 2025",
+      deadline: "Nov 5, 2025",
       link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
     },
     {
@@ -156,6 +151,7 @@ export default function Dashboard() {
       desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
       amount: "6.29M OP",
       date: "End- Nov 12, 2025",
+      deadline: "Nov 12, 2025",
       link: "https://www.opgrants.io/"
     },
     {
@@ -164,6 +160,7 @@ export default function Dashboard() {
       desc: `Grant for innovators building new projects natively on Boba. Supports early-stage teams developing real-world applications.`,
       amount: "1m Boba",
       date: "End- Dec 31, 2025",
+      deadline: "Dec 31, 2025",
       link: "https://app.thrive.xyz/programs/23"
     },
     {
@@ -172,6 +169,7 @@ export default function Dashboard() {
       desc: `Hedera is allocating 4M HBAR to support projects from other ecosystems looking to deploy on Hedera`,
       amount: "4m hbar",
       date: "End- Dec 31, 2025",
+      deadline: "Dec 31, 2025",
       link: "https://app.thrive.xyz/programs/16"
     },
     {
@@ -180,6 +178,7 @@ export default function Dashboard() {
       desc: `For existing projects from other ecosystems looking to deploy or expand on Boba. This track supports teams ready to scale.`,
       amount: "1m Boba",
       date: "End-Dec 31, 2025",
+      deadline: "Dec 31, 2025",
       link: "https://app.thrive.xyz/programs/2"
     },
     {
@@ -187,7 +186,7 @@ export default function Dashboard() {
       title: "Thrive Swell",
       desc: `For existing products and dApps from other ecosystems looking to integrate Swellchain.  Supports teams ready to expand.`,
       amount: "75m Swell",
-      date: "End- Aug 31, 2025",
+      deadline: "Aug 31, 2025",
       link: "https://app.thrive.xyz/programs/12"
     },
     {
@@ -196,6 +195,7 @@ export default function Dashboard() {
       desc: `Allocating up to 3,000,000 OP in funding for approved projects driving transaction volume on Base.`,
       amount: "3m OP",
       date: "End- Aug 29, 2025",
+      deadline: "Aug 29, 2025",
       link: "https://app.thrive.xyz/programs/31"
     },
     {
@@ -204,6 +204,7 @@ export default function Dashboard() {
       desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
       amount: "$40K",
       date: "End- Sep 5, 2025",
+      deadline: "Sep 5, 2025",
       link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
     },
     {
@@ -212,82 +213,18 @@ export default function Dashboard() {
       desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
       amount: "$50k",
       date: "End-  Dec 10, 2025",
+      deadline: "Dec 10, 2025",
       link: "https://charmverse.prezenti.xyz/invite/f90c14"
     },
   ];
 
-  const getGrantStatus = (grant) => {
-    if (grant.status === "bounties") return "bounties";
-    const now = new Date();
-    const dateMatch = grant.date?.match(/End-\s*(.*)/i);
-    if (!dateMatch) return "live";
-    const grantEnd = new Date(dateMatch[1]);
-    return grantEnd < now ? "past" : "live";
-  };
+   const activeGrants = grants.filter(grant => {
+    if(!grant.deadline) return false
+    if(grant.deadline.toLowerCase() === "ongoing") return true
+    return new Date(grant.deadline) >= today
+   })
+   const expiredGrants = grants.filter(grant => new Date(grant.deadline) < today)
 
-  const enrichedGrants = grants.map((grant) => ({
-    ...grant,
-    status: getGrantStatus(grant),
-  }));
-
-  const filteredGrants = enrichedGrants.filter((grant) => {
-    const matchSearch = grant.title
-      .toLowerCase()
-      .includes(search.toLowerCase());
-    const matchProgram =
-      selectedPrograms.length === 0 ||
-      selectedPrograms.some((program) =>
-        grant.title.toLowerCase().includes(program.toLowerCase())
-      );
-    const matchStatus =
-      selectedStatus === "" ||
-      (selectedStatus === "Grant" && grant.status === "live") ||
-      (selectedStatus === "Past opportunities" && grant.status === "past") ||
-      (selectedStatus === "Bounties & paid gigs" &&
-        grant.status === "bounties");
-    return matchSearch && matchProgram && matchStatus;
-  });
-
-  const toggleProgram = (program) => {
-    setSelectedPrograms((prev) =>
-      prev.includes(program)
-        ? prev.filter((p) => p !== program)
-        : [...prev, program]
-    );
-  };
-
-  const totalPages = Math.ceil(filteredGrants.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentGrants = filteredGrants.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const programRef = useRef(null);
-  const statusRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (programRef.current && !programRef.current.contains(e.target)) {
-        setProgramOpen(false);
-      }
-      if (statusRef.current && !statusRef.current.contains(e.target)) {
-        setStatusOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, selectedPrograms, selectedStatus]);
 
   return (
     <ProtectedRoute>
@@ -299,153 +236,29 @@ export default function Dashboard() {
             <div className="flex md:justify-between justify-end flex-wrap-reverse">
               <div>
                 <h1 className="text-2xl font-bold text-center md:text-left mb-2">
-                  Active Grants
+                  Grants
                 </h1>
-                <p className="text-base text-gray-600 mb-6 text-center md:text-left">
-                  Explore active grant, bounties and other funding opportunities
-                  across several ecosystems.
-                </p>
-              </div>
-
-              <div className="flex">
-                {authenticated ?
-                  <button
-                      onClick={login}
-                      className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
-                      >
-                      Connect wallet
-                  </button> : <UserDetails walletAddress={address} logout={logout}/>
-                }
               </div>
             </div>
-            <div className="bg-white rounded-xl mt-5 shadow-md border p-4 md:p-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 min-h-[100px]">
-              {/* Search bar component */}
-              <div className="relative w-full md:w-[290px]">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full h-12 pl-10 pr-4 text-sm border rounded-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z"
-                  />
-                </svg>
-              </div>
 
-              {/* ecosystem dropdown section*/}
-              <div className="relative w-full md:w-[230px]" ref={programRef}>
-                <button
-                  onClick={() => setProgramOpen(!programOpen)}
-                  className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
-                >
-                  Ecosystem
-                  <ChevronRight className="h-4 w-4 text-gray-400 rotate-90" />
-                </button>
-                {programOpen && (
-                  <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
-                    <div className="p-2">
-                      {programs.map((p) => (
-                        <label key={p} className="flex items-center gap-2 mb-1">
-                          <input
-                            type="checkbox"
-                            checked={selectedPrograms.includes(p)}
-                            onChange={() => toggleProgram(p)}
-                          />
-                          {p}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
+            <div className="flex  mt-10 font-sans justify-between w-full flex-wrap-reverse gap-10 items-center">
+              <div className="flex gap-5">
+                <button onClick={()=> setGrantStatus("all")} className={`text-[15px] w-[100px] md:w-[112px] h-[38px] rounded-4xl ${grantStatus === 'all' && "bg-[#39B54A] text-white"} text-black`}>All</button>
+                <button onClick={()=> setGrantStatus("active")} className={`text-[15px] w-[100px] md:w-[112px] h-[38px] rounded-4xl ${grantStatus === 'active' && "bg-[#39B54A] text-white"} text-black`}>Active</button>
+                <button onClick={()=> setGrantStatus("ended")} className={`text-[15px] w-[100px] md:w-[112px] h-[38px] rounded-4xl ${grantStatus === 'ended' && "bg-[#39B54A] text-white"} text-black`}>Ended</button>
               </div>
-
-              {/* grant status dropdown section */}
-              <div className="relative w-full md:w-[230px]" ref={statusRef}>
-                <button
-                  onClick={() => setStatusOpen(!statusOpen)}
-                  className="w-full h-12 border rounded-sm px-4 flex items-center justify-between text-sm text-gray-700"
-                >
-                  {selectedStatus || "All"}
-                  <ChevronRight className="h-4 w-4 text-gray-400 rotate-90" />
-                </button>
-                {statusOpen && (
-                  <div className="absolute mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
-                    <div className="p-2 space-y-2">
-                      <label className="flex items-center space-x-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={selectedStatus === ""}
-                          onChange={() => {
-                            setSelectedStatus("");
-                            setStatusOpen(false);
-                          }}
-                        />
-                        <span className="text-sm text-gray-700">All</span>
-                      </label>
-                      {statuses.map((status) => (
-                        <label
-                          key={status}
-                          className="flex items-center space-x-2 cursor-pointer"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selectedStatus === status}
-                            onChange={() => {
-                              setSelectedStatus(status);
-                              setStatusOpen(false);
-                            }}
-                          />
-                          <span className="text-sm text-gray-700 capitalize">
-                            {status}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Add new button section modal */}
-              <button
-                onClick={() => setIsModalOpen(true)}
-                style={{ fontSize: "13px" }}
-                className="px-6 h-12 font-medium rounded border text-[#000000]/50 whitespace-nowrap flex items-center justify-center"
-              >
-                <span style={{ fontSize: "20px" }} className="items-center px-2">
-                  +
-                </span>{" "}
-                Add New
-              </button>
-              <button className="relative group flex items-center justify-center">
-                <InfoIcon className="w-5 h-5 ml-1 text-[#198038]" />
-                <span className="absolute bottom-full mb-2 hidden group-hover:block whitespace-nowrap bg-gray-800 text-white text-[10px] rounded-md px-2 py-1">
-                  Add a new grant, bounty, gigs to <br />
-                  help builders, creators, and <br /> communities discover and
-                  apply.
-                </span>
-              </button>
+                <button onClick={() => setIsModalOpen(true)}
+                  className="bg-[#39B54A] flex items-center justify-center text-white rounded-4xl w-[112px] h-[38]"><Plus size={20}/>Add New</button>
             </div>
           </div>
 
           {/* grant list section */}
-          {filteredGrants.length > 0 ? (
+          {/* {filteredGrants.length > 0 ? (
             <>
               <GrantRoundCard grants={currentGrants} />
-              {/* pagination for grant list */}
+              pagination for grant list
               <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-34 text-sm text-gray-500 ">
-                {/* Previous Button */}
+                
                 <button
                   disabled={currentPage === 1}
                   onClick={() => handlePageChange(currentPage - 1)}
@@ -483,7 +296,13 @@ export default function Dashboard() {
               {selectedStatus === "Upcoming" && "No upcoming grants. Please check back later."}
               {selectedStatus === "" && "No grant rounds found for your search."}
             </div>
-          )}
+          )} */}
+          {
+            grantStatus === "all" ? <GrantRoundCard grants={grants} />
+            : grantStatus === "active" ? <GrantRoundCard grants={activeGrants} />
+            : grantStatus === "ended" && <GrantRoundCard grants={expiredGrants} />
+            
+          }
         </main>
 
         {/* add new grant modal section */}
