@@ -36,7 +36,7 @@ const FaqSection = () => {
         },
 
         {
-            question: "How does ClearFund help creators and builders?",
+            question: "How does ClearFund help builders?",
             ans: `By providing a single platform where they can discover earning opportunities, apply for funding, and grow their projects.`,
             id: 4
         },
