@@ -80,7 +80,7 @@ const GoodCollective = () => {
   return (
     <main className="flex-1 p-4 md:px-6">
 
-        <div className="flex justify-end sticky top-0 bg-white z-50 py-2">
+        <div className="flex justify-end bg-white py-2">
             {
                 toggle && <ModalConnect setCloseModal={setToggle}/>
             }
@@ -88,7 +88,8 @@ const GoodCollective = () => {
             {!authenticated ?
                 <button
                     onClick={login}
-                    className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
+                    className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A]
+                        text-white rounded-full w-[159.16796875px]"
                     >
                     Connect wallet
                 </button> : <UserDetails walletAddress={address} logout={logout}/>

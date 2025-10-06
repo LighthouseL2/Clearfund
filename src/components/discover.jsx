@@ -10,8 +10,8 @@ const DiscoverBox = () => {
                   </svg>
 
 ,
-            title: "Opportunities",
-            desc: "Discover grants, bounties and paid gigs on ClearFund helping builders and creators access the support they need."
+            title: "Grants",
+            desc: "Discover grants that help builders access funding, resources, and opportunities to bring their projects to life."
         },
 
         {

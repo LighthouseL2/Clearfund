@@ -24,7 +24,8 @@ export default function PrivacyPolicy() {
       },
       {
         heading: "2. How We Use Information",
-        text: `We use collected information to: Connect users with grants, bounties, and funding opportunities. Improve and personalize the Platform. Communicate updates, opportunities, or platform-related notices. Ensure security and prevent misuse of the Platform.`,
+        text: `We use collected information to: Connect users with grants and funding opportunities. Improve and personalize the Platform.
+Communicate updates, opportunities, or platform-related notices. Ensure security and prevent misuse of the Platform.`,
       },
       {
         heading: "3. Wallet & Blockchain Data",
@@ -106,35 +107,3 @@ export default function PrivacyPolicy() {
 }
 
 
-
-`
-
-At ClearFund ("we", "us", or "our"), your privacy matters. This Privacy Policy outlines how we handle information when you access or use our platform clearfund.netlify.app.
-
-1. Information We Collect
-
-2. How We Use Information
-
-
-3. Wallet & Blockchain Data
-
-
-4. Cookies & Tracking
-
-
-5. Data Security
-
-6. Third-Party Links
-
-7. Children’s Privacy
-
-8. Changes to This Policy
-
-9. Contact Us
-If you have any questions or concerns regarding this Privacy Policy or our data practices, please contact us at phweb3connect@gmail.com.
-
-
- 
-
-
-`

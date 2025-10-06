@@ -20,7 +20,7 @@ export default function TermsAndConditions() {
     content: [
       {
         heading: "1. Use of the Platform",
-        text: `ClearFund is an open platform that connects builders, creators, and communities with grants, bounties, and other Web3 opportunities. You agree to use the Platform only for lawful purposes and in compliance with all applicable regulations.`,
+        text: `ClearFund is an open platform that connects web3 builders and communities with grants and other funding opportunities. You agree to use the Platform only for lawful purposes and in compliance with all applicable regulations.`,
       },
       {
         heading: "2. Eligibility",
@@ -33,7 +33,8 @@ export default function TermsAndConditions() {
       },
       {
         heading: "4. Funding Opportunities",
-        text: `ClearFund curates and lists opportunities; we do not control or guarantee the outcome of third-party grants, bounties, or paid gigs. Any agreement, contract, or funding between you and an external party is independent of ClearFund. We are not responsible for losses, delays, or disputes that arise from third-party opportunities.`,
+        text: `ClearFund curates and lists opportunities; we do not control or guarantee the outcome of third-party grants.
+Any agreement, contract, or funding between you and an external party is independent of ClearFund. We are not responsible for losses, delays, or disputes that arise from third-party opportunities.`,
       },
       {
         heading: "5. Wallet & Payments",
@@ -145,3 +146,4 @@ export default function TermsAndConditions() {
     </section>
   );
 }
+
