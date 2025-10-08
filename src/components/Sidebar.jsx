@@ -6,15 +6,15 @@ import Image from "next/image";
 import Notification from "@/components/Notification";
 import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+import { shortAddress } from "./userDetails";
 // import { usePrivy } from "@privy-io/react-auth";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useDisconnect } from "wagmi"
 
 
 
 
 
-export default function Sidebar() {
+
+export default function Sidebar({authenticated, address, login}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const pathname = usePathname();
@@ -43,58 +43,6 @@ export default function Sidebar() {
       time: "1 day ago",
     },
   ];
-
-
-  // Sample notifications data
-
-
-
-
-  // Sample notifications data
-  // const notifications = [
-  //   {
-  //     id: 1,
-  //     title: "New Grant Round",
-  //     message: "Grant Round #42 has been created.",
-  //     time: "2 hours ago",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Application Received",
-  //     message: "New application submitted for Grant Round #41.",
-  //     time: "5 hours ago",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Funding Update",
-  //     message: "Funding allocation completed for Q3 2025.",
-  //     time: "1 day ago",
-  //   },
-  // ];
-
-
- 
-  // Sample notifications data
-  // const notifications = [
-  //   {
-  //     id: 1,
-  //     title: "New Grant Round",
-  //     message: "Grant Round #42 has been created.",
-  //     time: "2 hours ago",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Application Received",
-  //     message: "New application submitted for Grant Round #41.",
-  //     time: "5 hours ago",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Funding Update",
-  //     message: "Funding allocation completed for Q3 2025.",
-  //     time: "1 day ago",
-  //   },
-  // ];
 
 
   return (
@@ -138,6 +86,42 @@ export default function Sidebar() {
             <span className="text-[10px] text-gray-400 ml-1 mb-1">v.01</span>
           </div>
 
+          {
+            authenticated ? (
+              <div className="w-[210px] h-[114px] border border-[#7CB53E] rounded-md p-7">
+                <div className="flex items-center gap-3">
+                  <h2 className="font-black text-[20px] text-[#39B54A]">Account</h2>
+                  <section className="flex items-center gap-2 text-[#E2A426]">
+                    <span>
+                      <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.5 1L1 2.75V6C1 7.75 2.75 10.5 5 11C7.25 10.5 9 7.75 9 6V2.75L5 1H5.5Z" stroke="#E2A426" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
+                    <span className="text-[14px]">verify</span>
+                  </section>
+                </div>
+                <p className="text-[14px] text-black/50 mt-2">{shortAddress(address)}</p>
+              </div>
+            ) :
+            (
+              <button onClick={login} className="w-[210px] mb-13 h-[50px] justify-between px-5 rounded-md border border-[#39B54A] bg-[#34C7591A] flex items-center">
+                <span>
+                  <svg width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.1108 11H19.5553V15.8889H17.1108V11Z" fill="#39B54A"/>
+                  <path d="M22 4.88889V2.44444C22 1.09633 20.9037 0 19.5556 0H3.66667C1.64511 0 0 1.64511 0 3.66667V18.3333C0 21.0234 2.19267 22 3.66667 22H22C23.3481 22 24.4444 20.9037 24.4444 19.5556V7.33333C24.4444 5.98522 23.3481 4.88889 22 4.88889ZM3.66667 2.44444H19.5556V4.88889H3.66667C3.35197 4.87481 3.05483 4.73989 2.83712 4.51222C2.6194 4.28455 2.4979 3.98168 2.4979 3.66667C2.4979 3.35165 2.6194 3.04878 2.83712 2.82111C3.05483 2.59344 3.35197 2.45852 3.66667 2.44444ZM22 19.5556H3.68133C3.11667 19.5409 2.44444 19.3172 2.44444 18.3333V7.10722C2.82822 7.24533 3.23522 7.33333 3.66667 7.33333H22V19.5556Z" fill="#39B54A"/>
+                  </svg>
+                </span>
+                <span className="text-[16px] text-[#39B54A]">Connect wallet</span>
+                <span>
+                  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 9L5 5L1 1" stroke="#39B54A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+
+                </span>
+              </button>
+            )
+          }
+
           {/* Nav */}
           <nav className="space-y-3 my-6">
             <Link href="/dashboard">
@@ -158,7 +142,7 @@ export default function Sidebar() {
                     width={18}
                     height={18}
                   />
-                  Analytics
+                  Home
                 </span>
                 <ChevronRight
                   size={16}
@@ -201,7 +185,7 @@ export default function Sidebar() {
               </button>
             </Link>
 
-            <div onClick={() => alert("hello")}>
+            <Link href={"/dashboard/past-funding"}>
               <button
 
                 className={`w-full flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/dashboard/past-funding"
@@ -227,10 +211,8 @@ export default function Sidebar() {
                   className={pathname === "/dashboard/past-funding" ? "text-white" : "text-gray-400"}
                 />
               </button>
-            </div>
+            </Link>
 
-            
-            
 
 
             <Link href="/dashboard/donate">

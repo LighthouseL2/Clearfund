@@ -6,6 +6,14 @@ import { usePrivy } from '@privy-io/react-auth';
 
 
 
+export function shortAddress(address, chars = 4) {
+    if (!address) return "";
+    console.log(address.slice(0, chars + 2) + "..." + address.slice(-chars));
+    let addressString = String(address.slice(0, chars + 2) + "..." + address.slice(-chars))
+    
+    return `${addressString}`;
+}
+
 const UserDetails = ({walletAddress, logout}) => {
     const [toggle, setToggle] = useState(false)
     // const { user } = usePrivy()
@@ -15,13 +23,7 @@ const UserDetails = ({walletAddress, logout}) => {
         logout()
     }
 
-    function shortAddress(address, chars = 4) {
-        if (!address) return "";
-        console.log(address.slice(0, chars + 2) + "..." + address.slice(-chars));
-        let addressString = String(address.slice(0, chars + 2) + "..." + address.slice(-chars))
-        
-        return `${addressString}`;
-    }
+    
   return (
     <div className='flex items-start mb-10'>
         <div className=" flex items-center justify-between gap-5 relative rounded-md">

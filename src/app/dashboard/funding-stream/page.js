@@ -30,6 +30,16 @@ export default function Dashboard() {
 
   const grants = [
     {
+      image: "/grant-round-images/qura.jpg",
+      title: "The DeQUIP Grant Program",
+      desc: `Quranium’s initiative that supports developers worldwide in creating future-proof projects that enable adoption and remain uncrackable.`,
+      amount: "$5m",
+      date: "Ongoing",
+      deadline: "Ongoing",
+      link : "https://www.quranium.org/apply-grant-program",
+    },
+
+    {
       image: "/grant-round-images/internet.jpg",
       title: "ENS PG Builder Grants",
       desc: `PG Builder Grants program is designed to support foundational public goods in the Ethereum and Web3 ecosystems. `,
@@ -37,6 +47,38 @@ export default function Dashboard() {
       date: "Ongoing",
       deadline: "Ongoing",
       link : "https://builder.ensgrants.xyz/"
+    },
+
+    {
+      image: "/grant-round-images/gitcoin.png",
+      title: "Gitcoin Grants 24",
+      subTitle: "Developer Tooling & Infra",
+      desc: `This round is designed to support projects that strengthen Ethereum’s core infrastructure.`,
+      amount: "$200k",
+      date: "End- Oct 17, 2025",
+      deadline: "Oct 17, 2025",
+      link : "https://giveth.typeform.com/gg24-dti?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
+    },
+
+    {
+      image: "/grant-round-images/gitcoin.png",
+      title: "Gitcoin Grants 24",
+      subTitle: "Interop Standards, Infra & Analytics",
+      desc: `This round is designed to support projects that strengthen Ethereum’s multi-chain ecosystem by building open standards.`,
+      amount: "$100k",
+      date: "End- Oct 17, 2025",
+      deadline: "Oct 17, 2025",
+      link : "https://giveth.typeform.com/gg24-isia?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
+    },
+
+    {
+      image: "/grant-round-images/base.png",
+      title: "Base Builder Grants",
+      desc: `These are small grants for builders with early ideas or initial prototypes, hacking away on nights and weekends. `,
+      amount: "5 ETH",
+      date: "Ongoing",
+      deadline: "Ongoing",
+      link : "https://docs.google.com/forms/d/e/1FAIpQLSfXuEzmiAzRhie_z9raFCF1BXweXgVt18o-DvBuRRgyTygL2A/viewform"
     },
 
     {
@@ -62,12 +104,12 @@ export default function Dashboard() {
 
 
     {
-      title: "Grants & Programs",
-      amount: "$250M",
+      title: "Avalanche Grants & Programs",
+      amount: null,
       date: "Ongoing",
       deadline: "Ongoing",
       link: "https://build.avax.network/grants#programs",
-      image: "/grant-round-images/avalache.jpg",
+      image: "/grant-round-images/ava.png",
       desc: `Empowering innovators to build the future of blockchain technology with scalable and sustainable solutions.`,
     },
 
@@ -77,7 +119,7 @@ export default function Dashboard() {
       date: "End- Oct 7, 2025",
       deadline: "Oct 7, 2025",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSffpxsP1KZnvd3mx41wQYNCoTQ9_Jphql3TwnZ3RluwXXnI2A/viewform",
-      image: "/grant-round-images/celo-incubator.png",
+      image: "/grant-round-images/celo.png",
       desc: `The Celo Africa DAO Incubator Program aims to enhance the capabilities of early-stage founders through hands-on mentorship.`
     },
 
@@ -186,6 +228,7 @@ export default function Dashboard() {
       title: "Thrive Swell",
       desc: `For existing products and dApps from other ecosystems looking to integrate Swellchain.  Supports teams ready to expand.`,
       amount: "75m Swell",
+      date: "End-Aug 31, 2025",
       deadline: "Aug 31, 2025",
       link: "https://app.thrive.xyz/programs/12"
     },
@@ -209,7 +252,7 @@ export default function Dashboard() {
     },
     {
       image: "/grant-round-images/prezenti-round-image.svg",
-      title: "Celo Prezenti Grant",
+      title: "Prezenti Season 1 Peach Grant Round",
       desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
       amount: "$50k",
       date: "End-  Dec 10, 2025",
@@ -242,7 +285,7 @@ export default function Dashboard() {
             </div>
 
             <div className="flex  mt-10 font-sans justify-between w-full flex-wrap-reverse gap-10 items-center">
-              <div className="flex gap-5">
+              <div className="flex gap-5 font-black">
                 <button onClick={()=> setGrantStatus("all")} className={`text-[15px] w-[100px] md:w-[112px] h-[38px] rounded-4xl ${grantStatus === 'all' && "bg-[#39B54A] text-white"} text-black`}>All</button>
                 <button onClick={()=> setGrantStatus("active")} className={`text-[15px] w-[100px] md:w-[112px] h-[38px] rounded-4xl ${grantStatus === 'active' && "bg-[#39B54A] text-white"} text-black`}>Active</button>
                 <button onClick={()=> setGrantStatus("ended")} className={`text-[15px] w-[100px] md:w-[112px] h-[38px] rounded-4xl ${grantStatus === 'ended' && "bg-[#39B54A] text-white"} text-black`}>Ended</button>
@@ -253,50 +296,7 @@ export default function Dashboard() {
           </div>
 
           {/* grant list section */}
-          {/* {filteredGrants.length > 0 ? (
-            <>
-              <GrantRoundCard grants={currentGrants} />
-              pagination for grant list
-              <div className="flex flex-wrap justify-center sm:justify-end items-center gap-1 sm:gap-2 mt-34 text-sm text-gray-500 ">
-                
-                <button
-                  disabled={currentPage === 1}
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  className="w-8 h-8 sm:w-8 sm:h-8 text-xs sm:text-sm flex items-center justify-center border-[2px]  rounded-[4px] text-[#404B52] font-medium bg-[#F5F5F5]  disabled:opacity-50"
-                >
-                  &lt;
-                </button>
-                {Array.from({ length: totalPages }, (_, i) => {
-                  const page = i + 1;
-                  return (
-                    <button
-                      key={page}
-                      onClick={() => handlePageChange(page)}
-                      className={`w-8 h-8 sm:w-8 sm:h-8 text-xs sm:text-sm flex items-center justify-center rounded-[4px] border-[2px] font-medium  ${currentPage === page
-                        ? "bg-[#198038] text-white border-[#198038]"
-                        : "bg-[#F5F5F5] border-[#EEEEEE] text-[#404B52] hover:bg-gray-100"
-                        }`}
-                    >
-                      {page}
-                    </button>
-                  );
-                })}
-                <button
-                  disabled={currentPage === totalPages}
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="w-8 h-8 sm:w-8 sm:h-8 text-xs sm:text-sm flex items-center justify-center border-[2px] rounded-[4px] text-[#404B52] font-medium bg-[#F5F5F5]  disabled:opacity-50"
-                >
-                  &gt;
-                </button>
-              </div>
-            </>
-          ) : (
-            <div className="text-center mt-10 text-gray-500 text-md">
-              {selectedStatus === "Bounties & paid gigs" && "No bounties yet. Please check back later."}
-              {selectedStatus === "Upcoming" && "No upcoming grants. Please check back later."}
-              {selectedStatus === "" && "No grant rounds found for your search."}
-            </div>
-          )} */}
+          
           {
             grantStatus === "all" ? <GrantRoundCard grants={grants} />
             : grantStatus === "active" ? <GrantRoundCard grants={activeGrants} />
