@@ -24,7 +24,7 @@ export default function Dashboard() {
   const [filter, setFilter] = useState("all")
   const { ready, authenticated, login, logout, user } = usePrivy()
   
-  // const address = user?.wallet?.address
+  const address = user?.wallet?.address
 
   const today = new Date()
 
@@ -284,10 +284,20 @@ export default function Dashboard() {
         <main className="flex-1 p-4 md:p-6">
           <div className="max-w-6xl mx-auto">
             <div className="flex md:justify-between justify-end flex-wrap-reverse">
-              <div>
+              <div className={"flex items-center justify-between w-full"}>
                 <h1 className="text-2xl font-bold text-center md:text-left mb-2">
                   Grants
                 </h1>
+
+                {!authenticated ?
+                        <button
+                            onClick={login}
+                            className="font-sans font-black hover:bg-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
+                            >
+                            Connect wallet
+                        </button> :
+                        <UserDetails walletAddress={address} logout={logout}/>
+                    }
               </div>
             </div>
 

@@ -31,7 +31,7 @@ const FaqSection = () => {
 
         {
             question: "What kind of opportunities are listed on ClearFund?",
-            ans: `You’ll find curated grants, bounties, paid gigs, and other funding programs across multiple Web3 ecosystems.`,
+            ans: `You’ll find curated grants and other funding programs across multiple Web3 ecosystems.`,
             id: 3
         },
 
