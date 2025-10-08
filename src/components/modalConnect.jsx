@@ -31,8 +31,8 @@ const ModalConnect = ({setCloseModal}) => {
                     </span>
 
 
-                    <h2 className="text-[24px] font-sans font-black">Wallet not Connected</h2>
-                    <p className="text-[14px]">Please connect wallet to continue.</p>
+                    <h2 className="text-[24px] font-sans font-black mb-5">Wallet not Connected</h2>
+                    {/* <p className="text-[14px]">Please connect wallet to continue.</p> */}
                     <button
                         onClick={handleLogin}
                         className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white

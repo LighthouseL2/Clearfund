@@ -9,7 +9,8 @@ import { usePrivy } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
 import { X } from "lucide-react"
 import ModalConnect from "@/components/modalConnect"
-import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 const GoodCollective = () => {
 
@@ -71,10 +72,32 @@ const GoodCollective = () => {
     //     },
     // ]
 
-    const { ready, authenticated, login, logout, user } = usePrivy()
+    const { ready, authenticated, login, logout, user, onAuthChange } = usePrivy()
     const [toggle, setToggle] = useState(false)
+    const [targetLink, setTargetLink] = useState(null)
+    const router = useRouter()
 
     const address = user?.wallet?.address
+
+    useEffect(() => {
+        if(ready && authenticated && targetLink) {
+            router.push(targetLink)
+            setTargetLink(null)
+            setToggle(false)
+        }
+    }, [authenticated, router, targetLink, ready])
+
+
+    const handleGrantClick = async (link) => {
+        // if(!ready) return
+
+        if(authenticated){
+            router.push(link)
+        }else {
+            setTargetLink(link)
+            setToggle(true)
+        }
+    }
 
 
   return (
@@ -89,22 +112,22 @@ const GoodCollective = () => {
                 <button
                     onClick={login}
                     className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A]
-                        text-white rounded-full w-[159.16796875px]"
+                        text-white rounded-full w-[159.16796875px] hover:bg-black"
                     >
                     Connect wallet
                 </button> : <UserDetails walletAddress={address} logout={logout}/>
             }
         </div>
-        <div className="bg-[#9FD762D4] relative w-full h-[252px] rounded-t-2xl flex items-center justify-between mt-10">
-            <div className="px-10">
-                <h1 className="text-[32px] font-black">Explore GoodCollective Pools</h1>
+        <div className="bg-[#9FD762D4] relative w-full py-10  lg:h-[252px] rounded-t-2xl flex flex-wrap lg:flex-nowrap items-center justify-between mt-10">
+            <div className="lg:px-10 px-5 flex flex-col ">
+                <h1 className="text-[32px] font-black">Donate To GoodCollective</h1>
                 <p className="text-[16px] font-sans font-bold">
-                    Check out existing GoodCollective pools and support existing members.
+                    GoodCollective is a community-driven Gooddollar initiative that channels donations into meaningful impact. By donating, you’re not just giving, you’re joining a collective effort to support people in need through direct, transparent, and digital-first solutions.
                 </p>
             </div>
 
 
-            <div className="w-[302.79443359375px] h-[239.4612274169922px]  relative ">
+            <div className="w-full lg:w-2/3 h-[239.4612274169922px]  relative ">
                 <Image
                 src={"/donate-icons/donate.png"}
                 alt="donate logo"
@@ -139,12 +162,14 @@ const GoodCollective = () => {
                             Donate
                         </Link> */}
 
-                        <button onClick={() => !authenticated ? setToggle(true) : ""}
-                            className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
-                            Donate
+
+                        <button onClick={() => handleGrantClick("https://goodcollective.xyz/collective/0x0d43131f1577310d6349baf9d6da4fc1cd39764c")}
+                        className="bg-[#95EED8] w-[251px] h-[40px] flex
+                        items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
+                        Donate
                         </button>
-                        
+
+
                         <div className="border-t mt-8">
                             <div className="flex py-2 justify-between items-center w-full">
                                 <p className="border text-[10px] rounded-full px-2 ">Created: October 20, 2024</p>
@@ -220,15 +245,26 @@ const GoodCollective = () => {
                             This Collective directly supports smallholder farmers around Kenya’s Kakamega forest.
                         </p>
 
-                        {/* <Link href="https://goodcollective.xyz/collective/0xc1dcdf8e70acb44cdbb688c91a4883cf9052ea9c" target="_blank" className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
-                            Donate
-                        </Link> */}
+                        
 
-                        <button onClick={() => !authenticated ? setToggle(true) : ""}
-                            className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
-                            Donate
+                        {/* {
+                            !authenticated ? 
+                                <button onClick={() => !authenticated ? setToggle(true) : ""}
+                                className="bg-[#95EED8] w-[251px] h-[40px] flex
+                                items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
+                                Donate
+                                </button> :
+
+                                <Link href="https://goodcollective.xyz/collective/0xc1dcdf8e70acb44cdbb688c91a4883cf9052ea9c" target="_blank" className="bg-[#95EED8] w-[251px] h-[40px] flex
+                                    items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
+                                    Donate
+                                </Link>
+                        } */}
+
+                        <button onClick={() => handleGrantClick("https://goodcollective.xyz/collective/0xc1dcdf8e70acb44cdbb688c91a4883cf9052ea9c")}
+                        className="bg-[#95EED8] w-[251px] h-[40px] flex
+                        items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
+                        Donate
                         </button>
                         
                         <div className="border-t mt-8">
@@ -312,10 +348,10 @@ const GoodCollective = () => {
                             Donate
                         </Link> */}
 
-                        <button onClick={() => !authenticated ? setToggle(true) : ""}
-                            className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
-                            Donate
+                        <button onClick={() => handleGrantClick("https://goodcollective.xyz/collective/0xdd1c12f197e6d1e2fba15487aaae500ef6e07bca")}
+                        className="bg-[#95EED8] w-[251px] h-[40px] flex
+                        items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
+                        Donate
                         </button>
 
 
@@ -402,10 +438,10 @@ const GoodCollective = () => {
                             Donate
                         </Link> */}
 
-                        <button onClick={() => !authenticated ? setToggle(true) : ""}
-                            className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center font-extrabold rounded-full mt-14 mx-auto">
-                            Donate
+                        <button onClick={() => handleGrantClick("https://goodcollective.xyz/collective/0xe4f65e8644c0f3a1c7ef0ba0f1428a82cdc0e7bc")}
+                        className="bg-[#95EED8] w-[251px] h-[40px] flex
+                        items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
+                        Donate
                         </button>
                         
                         <div className="border-t mt-8">
@@ -492,10 +528,10 @@ const GoodCollective = () => {
                         </Link> */}
 
                         
-                        <button onClick={() => !authenticated ? setToggle(true) : alert("hello")}
-                            className="bg-[#95EED8] w-[251px] h-[40px] flex
-                            items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
-                            Donate
+                        <button onClick={() => handleGrantClick("https://goodcollective.xyz/collective/0xf3d629a2c198fc91d7d3f18217684166c83c7312")}
+                        className="bg-[#95EED8] w-[251px] h-[40px] flex
+                        items-center justify-center font-extrabold rounded-full mt-8 mx-auto">
+                        Donate
                         </button>
                         
                         

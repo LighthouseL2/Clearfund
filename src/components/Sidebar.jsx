@@ -83,7 +83,7 @@ export default function Sidebar({authenticated, address, login}) {
                 priority
               />
             </div>
-            <span className="text-[10px] text-gray-400 ml-1 mb-1">v.01</span>
+            {/* <span className="text-[10px] text-gray-400 ml-1 mb-1">v.01</span> */}
           </div>
 
           {
@@ -123,7 +123,7 @@ export default function Sidebar({authenticated, address, login}) {
           }
 
           {/* Nav */}
-          <nav className="space-y-3 my-6">
+          <nav className="space-y-3 my-6 font-sans">
             <Link href="/dashboard">
               <button
                 className={`w-full flex items-center cursor-pointer justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard" && !isNotificationModalOpen
@@ -134,14 +134,15 @@ export default function Sidebar({authenticated, address, login}) {
                 <span className="flex items-center gap-3">
                   <Image
                     src={
-                      pathname === "/dashboard" && !isNotificationModalOpen
-                        ? "/sidebar-icons/dashboard-icon-white.svg"
-                        : "/sidebar-icons/dashboard-icon-gray.svg"
+                      pathname === "/dashboard"
+                        ? "/sidebar-icons/dashboard.svg"
+                        : "/sidebar-icons/dashboard.svg"
                     }
                     alt="Dashboard"
                     width={18}
                     height={18}
                   />
+                  
                   Home
                 </span>
                 <ChevronRight
@@ -170,7 +171,7 @@ export default function Sidebar({authenticated, address, login}) {
                     src={
                       pathname === "/dashboard/funding-stream"
                         ? "/sidebar-icons/grant-round-white-icon.svg"
-                        : "/sidebar-icons/grant-round-icon.svg"
+                        : "/sidebar-icons/grants.svg"
                     }
                     alt="Grant Rounds"
                     width={18}
@@ -198,7 +199,7 @@ export default function Sidebar({authenticated, address, login}) {
                     src={
                       pathname === "/dashboard/past-funding"
                         ? "/sidebar-icons/grant-history-white-icon.svg"
-                        : "/sidebar-icons/past-grant-data-icon.svg"
+                        : "/sidebar-icons/past-grants.svg"
                     }
                     alt="Past Grant Data"
                     width={18}
@@ -245,7 +246,7 @@ export default function Sidebar({authenticated, address, login}) {
             </Link>
 
 
-            <Link href="#">
+            {/* <Link href="#">
               <button
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account"
                   ? "bg-[#39B54A] text-white"
@@ -263,12 +264,24 @@ export default function Sidebar({authenticated, address, login}) {
                 </span>
               </button>
 
-            </Link>
+            </Link> */}
 
           </nav>
         </div>
 
+        <div className="flex gap-3 items-center">
+          <Link href={"https://x.com/Clear_Fund"} target="_blank">
+            <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.8144 0.706055H21.2836L13.7054 9.38947L22.6215 21.2076H15.6411L10.17 14.0414L3.91675 21.2076H0.44435L8.5493 11.9166L0 0.70767H7.15808L12.096 7.25659L17.8144 0.706055ZM16.5945 19.1264H18.5173L6.1078 2.67897H4.04601L16.5945 19.1264Z" fill="#9197B3"/>
+            </svg>
+          </Link>
 
+          <Link href={"https://t.me/+fU2kPPjZ50MxMTE0"} target="_blank">
+            <svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 7.75L10.3333 12.25L17.3333 19L22 1L1 8.875L5.66667 11.125L8 17.875L11.5 13.375" stroke="#9197B3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
+        </div>
       </aside>
 
       {/* Overlay for mobile when sidebar is open */}
@@ -284,6 +297,7 @@ export default function Sidebar({authenticated, address, login}) {
         onClose={() => setIsNotificationModalOpen(false)}
         notifications={notifications}
       />
+
 
     </>
   );

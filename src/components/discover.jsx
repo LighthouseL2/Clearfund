@@ -32,7 +32,7 @@ const DiscoverBox = () => {
 
 ,
             title: "GoodCollective",
-            desc: "Donate to GoodDollar initiative on ClearFund empowering those in need through direct digital payments and get rewarded for your generosity.",
+            desc: "Donate to GoodDollar initiative on ClearFund empowering those in need through direct digital payments.",
         },
 
         {

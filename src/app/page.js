@@ -303,7 +303,7 @@ export default function Home() {
 
                 <Link href={"/dashboard"} className="w-[202.1923828125px] bg-white
                  text-black flex justify-center items-center hover:text-white
-                mx-auto h-[52px]  rounded-full hover:bg-black transition-all">
+                mx-auto h-[52px]  rounded-full font-black hover:bg-black transition-all">
                 Explore Clearfund
             </Link>
             </div>
