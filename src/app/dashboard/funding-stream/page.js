@@ -24,9 +24,16 @@ export default function Dashboard() {
   const [filter, setFilter] = useState("all")
   const { ready, authenticated, login, logout, user } = usePrivy()
   
-  const address = user?.wallet?.address
+  // const address = user?.wallet?.address
 
   const today = new Date()
+
+  function getStatus(endDate) {
+    const end = new Date(endDate)
+
+    if(today <= end) return "past"
+    return "past"
+  }
 
   const grants = [
     {
@@ -36,6 +43,7 @@ export default function Dashboard() {
       amount: "$5m",
       date: "Ongoing",
       deadline: "Ongoing",
+      
       link : "https://www.quranium.org/apply-grant-program",
     },
 
@@ -93,13 +101,12 @@ export default function Dashboard() {
 
     {
       title: "Scroll Grants",
-      amount: "312.5k SCR",
+      amount: "312k SCR",
       date: "End- Dec 19, 2025",
       deadline: "Dec 19, 2025",
       link: "https://tally.so/r/mVrrPj",
       image: "/grant-round-images/feature.jpg",
       desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
-
     },
 
 
@@ -301,7 +308,7 @@ export default function Dashboard() {
             grantStatus === "all" ? <GrantRoundCard grants={grants} />
             : grantStatus === "active" ? <GrantRoundCard grants={activeGrants} />
             : grantStatus === "ended" && <GrantRoundCard grants={expiredGrants} />
-            
+
           }
         </main>
 
@@ -338,7 +345,7 @@ export default function Dashboard() {
                 </div>
                 <div className="mb-8">
                   <label className="block text-sm font-medium mb-1">
-                    Link to grant/bounties/gigs
+                    Link to Grant
                   </label>
                   <input type="text" className="w-full border rounded-[5px] p-2 text-sm" />
                 </div>
@@ -360,7 +367,7 @@ export default function Dashboard() {
                 </div>
 
                 <p className="text-[10px] text-[#000000]/50 mb-8">
-                  Please note that grant/bounties/gigs will only be added after verification
+                  Please note that grant will only be added after verification.
                 </p>
                 <div className="flex justify-between mb-4">
                   <button

@@ -104,7 +104,7 @@ function DashboardLayout({ children }) {
                   <Image
                     src={
                       pathname === "/dashboard"
-                        ? "/sidebar-icons/dashboard-icon-white.svg"
+                        ? "/sidebar-icons/dashboard.svg"
                         : "/sidebar-icons/dashboard-icon-gray.svg"
                     }
                     alt="Dashboard"
@@ -139,7 +139,7 @@ function DashboardLayout({ children }) {
                     src={
                       pathname === "/dashboard/funding-stream"
                         ? "/sidebar-icons/grant-round-white-icon.svg"
-                        : "/sidebar-icons/grant-round-icon.svg"
+                        : "/sidebar-icons/grants.svg"
                     }
                     alt="Grant Rounds"
                     width={18}
@@ -167,7 +167,7 @@ function DashboardLayout({ children }) {
                     src={
                       pathname === "/dashboard/past-funding"
                         ? "/sidebar-icons/grant-history-white-icon.svg"
-                        : "/sidebar-icons/past-grant-data-icon.svg"
+                        : "/sidebar-icons/past-grants.svg"
                     }
                     alt="Past Grant Data"
                     width={18}
@@ -216,7 +216,7 @@ function DashboardLayout({ children }) {
             </Link>
 
 
-            <Link href="#">
+            {/* <Link href="#">
               <button onClick={() => setSidebarOpen(false)}
                 className={`w-full cursor-pointer flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4  ${pathname === "/account"
                   ? "bg-[#39B54A] text-white"
@@ -234,7 +234,7 @@ function DashboardLayout({ children }) {
                 </span>
               </button>
 
-            </Link>
+            </Link> */}
 
             </nav>
           </div>

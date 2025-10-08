@@ -30,23 +30,23 @@ export default function GrantDashboard() {
 
         {
             title: "Total Amount",
-            value: "$7,508,841",
+            value: "$11,526419",
             img: "/grant-icons/active-round-icon.svg",
-            footer: { text: " Active Funding", icon: "/card-icons/funding-icon.svg" },
+            footer: { text: "Funding", icon: "/card-icons/funding-icon.svg" },
         },
 
         {
-            title: "Opportunities",
-            value: "15",
+            title: "Grants",
+            value: "17",
             img: "/grant-icons/ecosystem-icon.svg",
-            footer: { text: "Open Applications", icon: "/card-icons/ongoing-round-icon.svg" },
+            footer: { text: "Opportunities", icon: "/card-icons/ongoing-round-icon.svg" },
         },
 
         {
-            title: "Upcoming Round",
-            value: "2",
-            img: "/grant-icons/upcoming-round-icon.svg",
-            footer: { text: "Next", icon: "/card-icons/upcoming-label-icon.svg" },
+            title: "Past Grants",
+            value: "23",
+            img: "/grant-icons/upcoming-icon.svg",
+            footer: { text: "Data", icon: "/card-icons/upcoming.svg" },
         },
 
 
@@ -127,7 +127,7 @@ export default function GrantDashboard() {
                     {!authenticated ?
                         <button
                             onClick={login}
-                            className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
+                            className="font-sans font-black hover:bg-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
                             >
                             Connect wallet
                         </button> :
@@ -138,10 +138,10 @@ export default function GrantDashboard() {
                 <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
                     {/* Metric Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-800">
-                        {[...metricData, ...sideCardData].map((item, index) => (
+                        {[...metricData].map((item, index) => (
                             <div
                                 key={index}
-                                className="min-h-[160px] py-6 px-5 rounded-xl border-2 border-[#0000004D]/30  bg-white flex flex-col justify-between "
+                                className="min-h-[160px] hover:scale-105 transition-all py-6 px-5 rounded-xl border-2 border-[#0000004D]/30  bg-white flex flex-col justify-between "
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="text-[16px] text-black/50 break-words font-bold">{item.title}</span>
@@ -154,12 +154,12 @@ export default function GrantDashboard() {
                                         />
                                     </div>
                                 </div>
-                                <div className="text-xl font-extrabold text-black font-sans   mb-4 py-4 ">
+                                <div className="text-xl text-black font-black font-sans mb-4 py-4 ">
                                     {item.value}
                                 </div>
 
                                 {item.footer && (
-                                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-3">
+                                    <div className="flex items-center gap-2 text-black mt-3 font-sans">
                                         <Image
                                             src={item.footer.icon}
                                             alt={item.footer.text}
@@ -167,7 +167,7 @@ export default function GrantDashboard() {
                                             height={20}
                                             className="object-contain"
                                         />
-                                        <p className="px-1 text-[14px] font-bold">{item.footer.text}</p>
+                                        <p className="px-1 text-[14px] font-black text-black">{item.footer.text}</p>
                                     </div>
                                 )}
                             </div>
@@ -307,17 +307,16 @@ export default function GrantDashboard() {
                                     backgroundPosition: "center",
                                 }}
                             >
-                                <div className="w-full sm:w-[80%] lg:w-[70%] pl-2 sm:pl-4 lg:pl-5">
+                                <div className="w-full sm:w-[80%] lg:w-[65%] pl-2 sm:pl-4 lg:pl-5">
                                     <h2 className="text-[22px] sm:text-[28px] lg:text-[35px] font-black text-[#273142] font-inter leading-snug sm:leading-tight">
                                         Funding Stream
                                     </h2>
-                                    <p className="text-[14px] sm:text-[15px] lg:text-[16px] text-[#273142] mt-3 sm:mt-4 leading-relaxed sm:leading-normal lg:leading-7">
-                                        Access Grant, bounties and gigs across Web3 ecosystem helping Builders to
-                                        earn, innovate and grow.
+                                    <p className="text-[14px]  sm:text-[15px] lg:text-[16px] text-[#273142] mt-3 sm:mt-4 leading-relaxed sm:leading-normal lg:leading-7">
+                                        Access Grant across several Web3 ecosytem helping Builders to earn, innovate and grow.
                                     </p>
                                     <Link
                                         href="dashboard/funding-stream"
-                                        className="inline-flex items-center justify-center bg-[#FFFFFF] rounded-[50px] mt-6 sm:mt-8 px-8 sm:px-10 lg:px-12 py-3 text-sm sm:text-[15px] lg:text-[16px] font-medium hover:bg-gray-100 mb-2"
+                                        className="inline-flex items-center justify-center bg-[#FFFFFF] rounded-[50px] mt-6 sm:mt-8 px-8 sm:px-10 lg:px-12 py-3 text-sm sm:text-[15px] lg:text-[16px] font-black hover:bg-gray-100 mb-2"
                                     >
                                         Explore
                                     </Link>
@@ -331,7 +330,7 @@ export default function GrantDashboard() {
 
                 </div>
 
-             </div>
+            </div>
         </div>
     );
 }
