@@ -122,7 +122,6 @@ export default function GrantDashboard() {
 
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative ">
-            
             <div className="font-sans">
                 <div className="flex py-4  top-0 justify-end  px-10">
                     {!authenticated ?
@@ -132,9 +131,7 @@ export default function GrantDashboard() {
                             >
                             Connect wallet
                         </button> :
-                        
                         <UserDetails walletAddress={address} logout={logout}/>
-                        
                     }
                 </div>
 
@@ -215,7 +212,7 @@ export default function GrantDashboard() {
                         </div>
 
                         <div className="lg:w-[54%] w-full flex flex-col gap-5 font-sans">
-                            <div className="border rounded-2xl p-6 flex flex-col h-auto">
+                            {/* <div className="border rounded-2xl p-6 flex flex-col h-auto">
                                 <h3 className="text-lg font-semibold py-1 mb-8">Recent Grant recipient</h3>
                                 <div className="px-2 sm:px-4">
                                     <div className="pl-8 relative mb-6">
@@ -300,7 +297,7 @@ export default function GrantDashboard() {
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> */}
                             <div
                                 className="border rounded-2xl p-6 flex flex-col justify-between relative w-full h-auto"
                                 style={{

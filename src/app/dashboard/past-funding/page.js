@@ -4,9 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { LogOut, Settings, ChevronRight } from "lucide-react";
 import GrantRoundCard from "@/components/GrantRoundCard";
 import PastGrant from "@/components/PastGrant";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Sidebar from "@/components/Sidebar";
-import ProtectedRoute from "@/lib/withAuth";
 import { usePrivy } from "@privy-io/react-auth";
 import UserDetails from "@/components/userDetails";
 

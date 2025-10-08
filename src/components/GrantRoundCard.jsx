@@ -24,18 +24,23 @@ const GrantRoundCard = ({ grants, grantStatus }) => {
             <div className="flex-grow mt-4 px-5 pb-4 flex flex-col">
               <div>
                 <div className="flex justify-between items-center pt-4 mb-2">
-                  <h3 className="text-[16px] text-[#000000] font-bold leading-snug">
+                  <h2 className="text-[16px] text-[#000000] font-black leading-snug w-2/3">
                     {item.title}
-                  </h3>
-                  <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px]  font-medium  w-fit">
+                  </h2>
+                  
+                  <p className={item.amount !== null && "inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px]  font-medium  w-fit"}>
                     <span className="font-bold">{item.amount}</span>
                     {/* <span>{item.coin}</span> */}
                   </p>
                 </div>
 
-                <p className="text-[14px] leading-snug text-gray-700 mb-8 pt-4">
+                <div className="pt-4">
+                  <h3 className="underline font-black text-[16px] font-sans">{item.subTitle}</h3>
+
+                <p className="text-[14px] leading-snug text-gray-700 mb-8">
                   {item.desc}
                 </p>
+                </div>
               </div>
               <div className="px-5 py-2 mb-2 mt-auto">
                 {item.link && (

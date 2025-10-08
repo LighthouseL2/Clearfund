@@ -12,6 +12,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils"; // if using classNames utility
 import GrantDashboard from "@/components/GrantDashboard";
 import ProtectedRoute from "@/lib/withAuth";
+import { usePrivy } from "@privy-io/react-auth";
+import { shortAddress } from "@/components/userDetails";
 
 
 
@@ -20,6 +22,9 @@ function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter()
+  const { ready, authenticated, login, logout, user } = usePrivy()
+
+  const address = user?.wallet?.address
   
 
 
@@ -47,11 +52,50 @@ function DashboardLayout({ children }) {
           </div>
 
           {
-            sidebarOpen && <div className="fixed h-screen top-0 z-50 bg-white w-1/2">
-            <nav className="space-y-3 my-6 px-5 mt-10">
+            sidebarOpen && <div className="fixed h-screen top-0 z-50 bg-white w-[60%] px-5">
+
+
+            {
+              authenticated ?
+              <div className="h-[114px] border border-[#7CB53E] rounded-md p-7 mt-20">
+                <div className="flex items-center gap-3">
+                  <h2 className="font-black text-[20px] text-[#39B54A]">Account</h2>
+                  <section className="flex items-center gap-2 text-[#E2A426]">
+                    <span>
+                      <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.5 1L1 2.75V6C1 7.75 2.75 10.5 5 11C7.25 10.5 9 7.75 9 6V2.75L5 1H5.5Z" stroke="#E2A426" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span className="text-[14px]">verify</span>
+                  </section>
+                </div>
+                <p className="text-[14px] text-black/50 mt-2">{shortAddress(address)}</p>
+              </div>
+              :
+              
+              <button onClick={login} className="w-[210px] mt-20 mb-13 h-[50px] justify-between px-5 rounded-md border border-[#39B54A] bg-[#34C7591A] flex items-center">
+                <span>
+                  <svg width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.1108 11H19.5553V15.8889H17.1108V11Z" fill="#39B54A"/>
+                  <path d="M22 4.88889V2.44444C22 1.09633 20.9037 0 19.5556 0H3.66667C1.64511 0 0 1.64511 0 3.66667V18.3333C0 21.0234 2.19267 22 3.66667 22H22C23.3481 22 24.4444 20.9037 24.4444 19.5556V7.33333C24.4444 5.98522 23.3481 4.88889 22 4.88889ZM3.66667 2.44444H19.5556V4.88889H3.66667C3.35197 4.87481 3.05483 4.73989 2.83712 4.51222C2.6194 4.28455 2.4979 3.98168 2.4979 3.66667C2.4979 3.35165 2.6194 3.04878 2.83712 2.82111C3.05483 2.59344 3.35197 2.45852 3.66667 2.44444ZM22 19.5556H3.68133C3.11667 19.5409 2.44444 19.3172 2.44444 18.3333V7.10722C2.82822 7.24533 3.23522 7.33333 3.66667 7.33333H22V19.5556Z" fill="#39B54A"/>
+                  </svg>
+                </span>
+                <span className="text-[16px] text-[#39B54A]">Connect wallet</span>
+                <span>
+                  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 9L5 5L1 1" stroke="#39B54A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+
+                </span>
+              </button>
+            }
+
+
+
+            <nav className="space-y-3 my-6  mt-10 w-full">
             <Link href="/dashboard">
               <button onClick={() => setSidebarOpen(false)}
-                className={`w-full flex items-center cursor-pointer justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard"
+                className={`w-full flex items-center cursor-pointer  justify-between rounded-lg px-4 py-3 text-sm font-medium mb-4 ${pathname === "/dashboard"
                   ? "bg-[#39B54A] text-white"
                   : "text-[#9197B3] hover:bg-gray-50"
                   }`}
@@ -67,7 +111,7 @@ function DashboardLayout({ children }) {
                     width={18}
                     height={18}
                   />
-                  Analytics
+                  Home
                 </span>
                 <ChevronRight
                   size={16}
@@ -197,7 +241,7 @@ function DashboardLayout({ children }) {
           }
 
           <div className="hidden md:flex">
-            <Sidebar />
+            <Sidebar authenticated={authenticated} address={address} login={login}/>
           </div>
 
             <main className="flex-1 p-4 md:px-6 md:ml-64">
