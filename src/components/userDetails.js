@@ -23,7 +23,14 @@ const UserDetails = ({walletAddress, logout}) => {
         logout()
     }
 
-    
+    async function handleCopy() {
+        try {
+            await navigator.clipboard.writeText(walletAddress)
+            alert("copied")
+        } catch (error) {
+            alert("failed to copy", error)
+        }
+    }
   return (
     <div className='flex items-start mb-10'>
         <div className=" flex items-center justify-between gap-5 relative rounded-md">
@@ -43,7 +50,7 @@ const UserDetails = ({walletAddress, logout}) => {
             {
             toggle &&
             <ul className='w-full absolute bg-white border rounded-md text-left left-0 top-12 z-30'>
-                <li className='w-full px-3 py-4 gap-2 text-[14px] font-black font-sans flex'>
+                <li className='w-full px-3 py-4 gap-2 text-[14px] font-black font-sans flex' onClick={handleCopy}>
                     <span>
                         <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 18H2V5C2 4.45 1.55 4 1 4C0.45 4 0 4.45 0 5V18C0 19.1 0.9 20 2 20H12C12.55 20 13 19.55 13 19C13 18.45 12.55 18 12 18ZM17 14V2C17 0.9 16.1 0 15 0H6C4.9 0 4 0.9 4 2V14C4 15.1 4.9 16 6 16H15C16.1 16 17 15.1 17 14ZM15 14H6V2H15V14Z" fill="black" fill-opacity="0.3"/>
