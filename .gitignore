@@ -15,4 +15,4 @@ node_modules/
 turbo/
 # clerk configuration (can include secrets)
 /.clerk/
-.DS_Store
+.DS_Store.DS_Store
