@@ -163,11 +163,7 @@ export default function PastGrantRounds() {
                 {item.link && (
                   <Link
                     href={`/spreadsheet-analytics?link=${encodeURIComponent(item.link)}`}
-                    className="text-[10px] sm:text-xs font-extrabold
-    bg-[#A6E7D8]/50 rounded-3xl border border-[#26A17B] text-[#008767]
-    py-1 px-1 sm:py-2 sm:px-8 
-    shadow-2xl flex items-center justify-center 
-    whitespace-nowrap cursor-pointer"
+                    className="text-[10px] w-[120px] sm:w-auto sm:text-xs font-extrabold bg-[#A6E7D8]/50 rounded-3xl border border-[#26A17B] text-[#008767] py-1 px-1 sm:py-2 sm:px-8 shadow-2xl flex items-center justify-center whitespace-nowrap cursor-pointer"
                   >
                     Open
                   </Link>
