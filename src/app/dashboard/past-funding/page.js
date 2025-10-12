@@ -59,7 +59,7 @@ export default function Dashboard() {
         <div className="max-w-6xl mx-auto">
           <div className="flex md:justify-between mx-auto max-w-5xl flex-wrap-reverse justify-end">
             <div className="">
-              <h1 className="text-2xl font-bold mb-4">Past Grants</h1>
+              <h1 className="text-2xl font-bold mb-4">Archive</h1>
               <p className="text-base text-gray-600 mb-8">
                 Directory of past funding data and their recipients
               </p>

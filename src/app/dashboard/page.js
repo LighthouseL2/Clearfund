@@ -122,7 +122,7 @@ export default function GrantDashboard() {
 
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative ">
-            <div className="font-sans">
+            <div className="">
                 <div className="flex py-4  top-0 justify-end  px-10">
                     {!authenticated ?
                         <button
@@ -174,7 +174,7 @@ export default function GrantDashboard() {
                         ))}
                     </div>
                     {/* Timeline */}
-                    <div className="w-full flex flex-wrap gap-5 font-sans py-10">
+                    <div className="w-full flex flex-wrap gap-5  py-10">
 
 
                         <div className="lg:w-[43%] w-full border rounded-[20px] p-6 flex flex-col justify-between text-center h-auto">
@@ -211,7 +211,7 @@ export default function GrantDashboard() {
                             </div>
                         </div>
 
-                        <div className="lg:w-[54%] w-full flex flex-col gap-5 font-sans">
+                        <div className="lg:w-[54%] w-full flex flex-col gap-5">
                             {/* <div className="border rounded-2xl p-6 flex flex-col h-auto">
                                 <h3 className="text-lg font-semibold py-1 mb-8">Recent Grant recipient</h3>
                                 <div className="px-2 sm:px-4">
@@ -308,15 +308,16 @@ export default function GrantDashboard() {
                                 }}
                             >
                                 <div className="w-full sm:w-[80%] lg:w-[65%] pl-2 sm:pl-4 lg:pl-5">
-                                    <h2 className="text-[22px] sm:text-[28px] lg:text-[35px] font-black text-[#273142] font-inter leading-snug sm:leading-tight">
+                                    <h2 className="text-[22px] sm:text-[28px] lg:text-[35px] font-black text-[#273142]  leading-snug sm:leading-tight">
                                         Funding Stream
                                     </h2>
-                                    <p className="text-[14px]  sm:text-[15px] lg:text-[16px] text-[#273142] mt-3 sm:mt-4 leading-relaxed sm:leading-normal lg:leading-7">
+                                    <p className="text-[14px]  sm:text-[15px] lg:text-[16px] text-[#273142] mt-3 
+                                        sm:mt-4 leading-relaxed sm:leading-normal lg:leading-5 font-semibold">
                                         Access Grant across several Web3 ecosytem helping Builders to earn, innovate and grow.
                                     </p>
                                     <Link
                                         href="dashboard/funding-stream"
-                                        className="inline-flex items-center justify-center bg-[#FFFFFF] rounded-[50px] mt-6 sm:mt-8 px-8 sm:px-10 lg:px-12 py-3 text-sm sm:text-[15px] lg:text-[16px] font-black hover:bg-gray-100 mb-2"
+                                        className="inline-flex items-center font-semibold justify-center bg-[#FFFFFF] rounded-[50px] mt-6 sm:mt-8 px-8 sm:px-10 lg:px-12 py-3 text-sm sm:text-[15px] lg:text-[16px] hover:bg-gray-100 mb-2"
                                     >
                                         Explore
                                     </Link>
