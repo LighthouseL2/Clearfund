@@ -118,21 +118,23 @@ const GoodCollective = () => {
                 </button> : <UserDetails walletAddress={address} logout={logout}/>
             }
         </div>
-        <div className="bg-[#9FD762D4] relative w-full py-10  lg:h-[252px] rounded-t-2xl flex flex-wrap lg:flex-nowrap items-center justify-between mt-10">
-            <div className="lg:px-10 px-5 flex flex-col ">
-                <h1 className="text-[32px] font-black">Donate To GoodCollective</h1>
+        <div className="bg-[#9FD762D4] relative w-full lg:h-[252px] rounded-t-2xl flex flex-wrap lg:flex-nowrap  justify-between mt-10">
+            <div className="lg:px-10 px-5 flex flex-col mt-8">
+                <h1 className="text-[32px] font-black mb-3">Donate To GoodCollective</h1>
                 <p className="text-[16px] font-sans font-bold">
                     GoodCollective is a community-driven Gooddollar initiative that channels donations into meaningful impact. By donating, you’re not just giving, you’re joining a collective effort to support people in need through direct, transparent, and digital-first solutions.
                 </p>
             </div>
 
 
-            <div className="w-full lg:w-2/3 h-[239.4612274169922px]  relative ">
+            <div className="w-full lg:w-2/3 h-[239.4612274169922px]  relative">
+                <div className="w-full h-full">
                 <Image
                 src={"/donate-icons/donate.png"}
                 alt="donate logo"
                 fill
                 />
+            </div>
             </div>
         </div>
 
