@@ -35,6 +35,8 @@ export default function RootLayout({ children }) {
 
     <html lang="en">
       <head>
+        <meta name='mobile-web-app-capable' content='yes'/>
+        <meta name='apple-mobile-web-app-capable' content='yes'/>
         <link href="https://db.onlinewebfonts.com/c/74613e9d0612d09be09dd6de7c898d50?family=Modern+Era"
           rel="stylesheet">
         </link>
@@ -47,13 +49,16 @@ export default function RootLayout({ children }) {
           appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
           config={{
             loginMethods: ["wallet"],
+            embeddedWallets: {
+              createOnLogin: "users-without-wallets"
+            },
             appearance: {
               theme: "light",
               landingHeader: <span style={{fontFamily: "monospace"}}>Connect your wallet to continue</span>,
               accentColor: "#4f46e5",
               fontFamily: "Poppins, sans-serif",
-              showWalletLoginFirst: false,
-              
+              showWalletLoginFirst: true,
+
               // 👇 Add your logo here
               logo: "/projectLogo.png",
               walletList: [
