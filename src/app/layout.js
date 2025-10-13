@@ -58,9 +58,11 @@ export default function RootLayout({ children }) {
               logo: "/projectLogo.png",
               walletList: [
                 "detected_ethereum_wallets",
+                "metamask",
                 "wallet_connect",
                 "coinbase_wallet"
-              ]
+              ],
+              
             },
             
           }}
