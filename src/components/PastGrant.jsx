@@ -162,7 +162,7 @@ export default function PastGrantRounds() {
                     className="text-xs font-medium bg-[#A6E7D8]/50 rounded-full border-1 border-[#26A17B] text-[#008767] py-2 px-8 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
                   >
                     Open
-                    
+
                   </Link>
                 )}
               </div>

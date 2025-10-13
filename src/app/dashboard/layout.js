@@ -79,7 +79,7 @@ function DashboardLayout({ children }) {
 
 
             <nav className="space-y-3 my-6 font-sans">
-            <Link href="/dashboard">
+            {/* <Link href="/dashboard">
               <button
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
                 rounded-r-full px-9 py-3
@@ -89,16 +89,7 @@ function DashboardLayout({ children }) {
                   }`}
               >
                 <span className="flex items-center gap-3">
-                  {/* <Image
-                    src={
-                      pathname === "/dashboard"
-                        ? "/sidebar-icons/dashboard.svg"
-                        : "/sidebar-icons/dashboard.svg"
-                    }
-                    alt="Dashboard"
-                    width={18}
-                    height={18}
-                  /> */}
+                  
                     <span>
                       <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M26.8048 12.7575L14.1013 0.242616C13.9426 0.0872218 13.728 0 13.5042 0C13.2805 0 13.0658 0.0872218 12.9072 0.242616L0.203643 12.7575C0.0648987 12.9171 -0.00760126 13.1224 0.000631604 13.3324C0.00886447 13.5424 0.0972238 13.7416 0.248052 13.8901C0.398881 14.0387 0.60107 14.1258 0.814215 14.1339C1.02736 14.142 1.23576 14.0706 1.39777 13.9339L13.5 2.01139L25.6022 13.9422C25.7642 14.0789 25.9726 14.1503 26.1858 14.1422C26.3989 14.1341 26.6011 14.0471 26.7519 13.8985C26.9028 13.7499 26.9911 13.5507 26.9994 13.3407C27.0076 13.1308 26.9351 12.9254 26.7964 12.7658L26.8048 12.7575Z" fill="#39B54A"/>
@@ -110,21 +101,14 @@ function DashboardLayout({ children }) {
                   
                   <span className="flex items-center">Home</span>
                 </span>
-                {/* <ChevronRight
-                  size={16}
-                  className={
-                    pathname === "/dashboard"
-                      ? "text-white"
-                      : "text-gray-400"
-                  }
-                /> */}
+                
               </button>
 
-            </Link>
+            </Link> */}
 
 
-            <Link href="/dashboard/funding-stream">
-              <button
+            <Link href="/dashboard">
+              <button onClick={() => setSidebarOpen(false)}
 
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
                 rounded-r-full px-9
@@ -149,7 +133,7 @@ function DashboardLayout({ children }) {
             </Link>
 
             <Link href={"/dashboard/past-funding"}>
-              <button
+              <button onClick={() => setSidebarOpen(false)}
 
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
                 rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/dashboard/past-funding"
@@ -176,7 +160,7 @@ function DashboardLayout({ children }) {
 
 
             <Link href="/dashboard/donate">
-              <button
+              <button onClick={() => setSidebarOpen(false)}
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
                 rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/dashboard/donate"
                   ? "bg-[#EAF9EE] "
