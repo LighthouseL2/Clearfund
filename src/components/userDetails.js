@@ -32,7 +32,7 @@ const UserDetails = ({walletAddress, logout}) => {
         }
     }
   return (
-    <div className='flex items-start mb-10'>
+    <div className='flex items-center'>
         <div className=" flex items-center justify-between gap-5 relative rounded-md">
         <div className='w-[44px] h-[38px] flex items-center justify-center bg-white shadow rounded border border-[#0000001A] p-0.5'>
             <img src="/round-icons/celo-round-icon.svg" alt="round icon" className='w-full h-full'/>

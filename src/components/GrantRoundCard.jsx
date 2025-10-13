@@ -1,9 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePrivy } from "@privy-io/react-auth";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-const GrantRoundCard = ({ grants, grantStatus }) => {
+
+
+const GrantRoundCard = ({ grants, setToggle }) => {
+  const { ready, authenticated, login, logout, user } = usePrivy()
+  const [targetLink, setTargetLink] = useState(null)
+  const router = useRouter()
 
   const start = new Date()
+
+  useEffect(() => {
+    if(ready && authenticated && targetLink) {
+        router.push(targetLink)
+        setTargetLink(null)
+        setToggle(false)
+    }
+  }, [authenticated, router, targetLink, ready])
+  
+  
+    const handleGrantClick = async (link) => {
+        // if(!ready) return
+
+        if(authenticated){
+            router.push(link)
+        }else {
+            setTargetLink(link)
+            setToggle(true)
+        }
+    }
 
   return (
     <div className="relative mb-6">
@@ -41,7 +69,7 @@ const GrantRoundCard = ({ grants, grantStatus }) => {
                     {item.title}
                   </h2>
 
-                  <p className={item.amount !== null && "inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px]  font-medium  w-fit"}>
+                  <p className={item.amount !== null ? "inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px]  font-medium  w-fit" : undefined}>
                     <span className="font-bold">{item.amount}</span>
                     {/* <span>{item.coin}</span> */}
                   </p>
@@ -55,29 +83,32 @@ const GrantRoundCard = ({ grants, grantStatus }) => {
                 </p>
                 </div>
               </div>
-              <div className="px-5 py-2 mb-2 mt-auto">
-                {item.link && (
-                  status === "past" ? (
-                    <span
-                      style={{ fontSize: '16px' }}
-                      className="block  bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] opacity-60 cursor-not-allowed transition w-full py-2.5 text-center font-medium rounded-full"
-                    >
-                      Ended
-                    </span>
-                  ) : (
-                    <Link
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ fontSize: '16px' }}
-                      className="block  bg-[#A6E7D8]/50 border-1 border-[#008767]
-                      text-[#008767] transition w-full py-2.5 text-center font-bold rounded-full"
-                    >
-                      Apply
-                    </Link>
-                  )
-                )}
-              </div>
+              
+                
+                  <div className="px-5 py-2 mb-2 mt-auto">
+                    {item.link && (
+                      status === "past" ? (
+                        <span
+                          style={{ fontSize: '16px' }}
+                          className="block  bg-[#A6E7D8]/50 border-1 border-[#008767] text-[#008767] opacity-60 cursor-not-allowed transition w-full py-2.5 text-center font-medium rounded-full"
+                        >
+                          Ended
+                        </span>
+                      ) : (
+                        <button
+                          // href={item.link}
+                          onClick={() => handleGrantClick(item.link)}
+                          // target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontSize: '16px' }}
+                          className="block  bg-[#A6E7D8]/50 border-1 border-[#008767]
+                          text-[#008767] transition w-full py-2.5 text-center font-bold rounded-full"
+                        >
+                          Apply
+                        </button>
+                      )
+                    )}
+                  </div>
               <hr className=" mt-4" />
               <div className="flex items-start mt-3 py-2 ">
                 <p className="text-[10px] text-[#000000] w-[116.5px] h-[23px] flex items-center justify-center  font-medium border bg-[#FFFFFF] border-black/15 rounded-[50px]">{item.date}</p>

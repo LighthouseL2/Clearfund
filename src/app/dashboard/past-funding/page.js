@@ -7,6 +7,9 @@ import PastGrant from "@/components/PastGrant";
 import { usePrivy } from "@privy-io/react-auth";
 import UserDetails from "@/components/userDetails";
 
+
+
+
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { ready, authenticated, login, logout, user } = usePrivy()
@@ -16,6 +19,7 @@ export default function Dashboard() {
 
   const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState([]);
+  const [toggle, setToggle] = useState(false)
 
   const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar", "Arbitrum", "Others"];
   const statuses = ["Ongoing", "Upcoming", "Applications Open"];
@@ -53,6 +57,27 @@ export default function Dashboard() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+
+  // useEffect(() => {
+  //       if(ready && authenticated && targetLink) {
+  //           router.push(targetLink)
+  //           setTargetLink(null)
+  //           setToggle(false)
+  //       }
+  //   }, [authenticated, router, targetLink, ready])
+
+
+    // const handleGrantClick = async (link) => {
+    //     // if(!ready) return
+
+    //     if(authenticated){
+    //         router.push(link)
+    //     }else {
+    //         setTargetLink(link)
+    //         setToggle(true)
+    //     }
+    // }
 
   return (
    <main className="flex-1 p-4 md:p-6">

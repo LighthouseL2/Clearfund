@@ -49,11 +49,20 @@ export default function RootLayout({ children }) {
             loginMethods: ["wallet"],
             appearance: {
               theme: "light",
+              landingHeader: <span style={{fontFamily: "monospace"}}>Connect your wallet to continue</span>,
               accentColor: "#4f46e5",
+              fontFamily: "Poppins, sans-serif",
               showWalletLoginFirst: false,
+              
               // 👇 Add your logo here
-              logo: "/projectLogo.png"
+              logo: "/projectLogo.png",
+              walletList: [
+                "detected_ethereum_wallets",
+                "wallet_connect",
+                "coinbase_wallet"
+              ]
             },
+            
           }}
         >
           {children}

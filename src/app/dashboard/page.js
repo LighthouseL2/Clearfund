@@ -9,6 +9,7 @@ import ProtectedRoute from "@/lib/withAuth";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { usePrivy } from "@privy-io/react-auth";
 import UserDetails from "@/components/userDetails";
+import ModalConnect from "@/components/modalConnect";
 
 export default function Dashboard() {
   // const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function Dashboard() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [grantStatus, setGrantStatus] = useState("all")
+  const [toggle, setToggle] = useState(false)
 
   // const [currentPage, setCurrentPage] = useState(1);
   // const itemsPerPage = 9;
@@ -28,12 +30,12 @@ export default function Dashboard() {
 
   const today = new Date()
 
-  function getStatus(endDate) {
-    const end = new Date(endDate)
+  // function getStatus(endDate) {
+  //   const end = new Date(endDate)
 
-    if(today <= end) return "past"
-    return "past"
-  }
+  //   if(today <= end) return "past"
+  //   return "past"
+  // }
 
   const grants = [
     {
@@ -278,26 +280,29 @@ export default function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative ">
+      <div className="min-h-screen flex flex-col md:flex-row  text-gray-800 relative ">
         {/* <Sidebar /> */}
+        {
+          toggle && <ModalConnect setCloseModal={setToggle}/>
+        }
 
         <main className="flex-1 p-4 md:p-6">
           <div className="max-w-6xl mx-auto">
             <div className="flex md:justify-between justify-end flex-wrap-reverse">
-              <div className={"flex items-center justify-between w-full"}>
-                <h1 className="text-2xl font-bold text-center md:text-left mb-2">
+              <div className={"flex items-center justify-between w-full mb-10"}>
+                <h1 className="text-2xl font-bold  md:text-left ">
                   Grants
                 </h1>
 
                 {!authenticated ?
-                        <button
-                            onClick={login}
-                            className="font-sans font-black hover:bg-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
-                            >
-                            Connect wallet
-                        </button> :
-                        <UserDetails walletAddress={address} logout={logout}/>
-                    }
+                  <button
+                      onClick={login}
+                      className="font-sans font-black hover:bg-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px]"
+                      >
+                      Connect wallet
+                  </button> :
+                  <UserDetails walletAddress={address} logout={logout}/>
+                }
               </div>
             </div>
 
@@ -315,10 +320,10 @@ export default function Dashboard() {
           {/* grant list section */}
           
           {
-            grantStatus === "all" ? <GrantRoundCard grants={grants} />
-            : grantStatus === "active" ? <GrantRoundCard grants={activeGrants} />
-            : grantStatus === "ended" && <GrantRoundCard grants={expiredGrants} />
-
+            grantStatus === "all" ? <GrantRoundCard grants={grants} setToggle={setToggle}/>
+            : grantStatus === "active" ? <GrantRoundCard grants={activeGrants} setToggle={setToggle}/>
+            : grantStatus === "ended" ? <GrantRoundCard grants={expiredGrants} />
+            : undefined
           }
         </main>
 
