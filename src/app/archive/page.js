@@ -1,37 +1,103 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
+import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+import PastGrant from "@/components/PastGrant";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
+import UserDetails from "@/components/userDetails";
 
 import Sidebar from "@/components/Sidebar";
 import { useRouter } from "next/navigation";
-import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
-import Image from "next/image";
+
+
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils"; // if using classNames utility
-import GrantDashboard from "@/components/GrantDashboard";
-import ProtectedRoute from "@/lib/withAuth";
-import { usePrivy } from "@privy-io/react-auth";
+
+
 import { shortAddress } from "@/components/userDetails";
 
 
 
 
-function DashboardLayout({ children }) {
+export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter()
   const { ready, authenticated, login, logout, user } = usePrivy()
+  const { wallets } = useWallets()
 
-  const address = user?.wallet?.address
+  const address = wallets[0]?.address
+
+
+  // const [programOpen, setProgramOpen] = useState(false);
+  // const [statusOpen, setStatusOpen] = useState(false);
+
+  // const [selectedPrograms, setSelectedPrograms] = useState([]);
+  // const [selectedStatus, setSelectedStatus] = useState([]);
+  // const [toggle, setToggle] = useState(false)
+
+  // const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar", "Arbitrum", "Others"];
+  // const statuses = ["Ongoing", "Upcoming", "Applications Open"];
+
   
 
+  // const toggleProgram = (program) => {
+  //   setSelectedPrograms((prev) =>
+  //     prev.includes(program)
+  //       ? prev.filter((p) => p !== program)
+  //       : [...prev, program]
+  //   );
+  // };
 
+  // const toggleStatus = (status) => {
+  //   setSelectedStatus((prev) =>
+  //     prev.includes(status)
+  //       ? prev.filter((s) => s !== status)
+  //       : [...prev, status]
+  //   );
+  // };
+
+  const programRef = useRef(null);
+  const statusRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (programRef.current && !programRef.current.contains(e.target)) {
+        setProgramOpen(false);
+      }
+      if (statusRef.current && !statusRef.current.contains(e.target)) {
+        setStatusOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+  // useEffect(() => {
+  //       if(ready && authenticated && targetLink) {
+  //           router.push(targetLink)
+  //           setTargetLink(null)
+  //           setToggle(false)
+  //       }
+  //   }, [authenticated, router, targetLink, ready])
+
+
+    // const handleGrantClick = async (link) => {
+    //     // if(!ready) return
+
+    //     if(authenticated){
+    //         router.push(link)
+    //     }else {
+    //         setTargetLink(link)
+    //         setToggle(true)
+    //     }
+    // }
 
   return (
-    <ProtectedRoute>
-        <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
+
+       <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
       {/* Sidebar imported */}
           <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
             <div className="relative w-[120px] h-[30px]">
@@ -107,12 +173,12 @@ function DashboardLayout({ children }) {
             </Link> */}
 
 
-            <Link href="/dashboard">
+            <Link href="/grants">
               <button onClick={() => setSidebarOpen(false)}
 
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
                 rounded-r-full px-9
-                py-3  font-bold mb-4  ${pathname === "/dashboard/funding-stream"
+                py-3  font-bold mb-4  ${pathname === "/grants"
                   ? "bg-[#EAF9EE]"
                   : " hover:bg-gray-50"
                   }`}
@@ -132,11 +198,11 @@ function DashboardLayout({ children }) {
               </button>
             </Link>
 
-            <Link href={"/dashboard/past-funding"}>
+            <Link href={"/archive"}>
               <button onClick={() => setSidebarOpen(false)}
 
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
-                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/dashboard/past-funding"
+                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/archive"
                   ? "bg-[#EAF9EE]"
                   : " hover:bg-gray-50"
                   }`}
@@ -159,10 +225,10 @@ function DashboardLayout({ children }) {
 
 
 
-            <Link href="/dashboard/donate">
+            <Link href="/donate">
               <button onClick={() => setSidebarOpen(false)}
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
-                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/dashboard/donate"
+                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/donate"
                   ? "bg-[#EAF9EE] "
                   : " hover:bg-gray-50"
                   }`}
@@ -212,13 +278,41 @@ function DashboardLayout({ children }) {
           </div>
 
             <main className="flex-1 p-4 md:px-6 md:ml-64">
-                { children }
+                <main className="flex-1 p-4 md:p-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex md:justify-between mx-auto max-w-5xl flex-wrap-reverse justify-end">
+            <div className="">
+              <h1 className="text-2xl font-bold mb-4">Archive</h1>
+              <p className="text-base text-gray-600 mb-8">
+                Directory of past funding data and their recipients
+              </p>
+            </div>
+
+            <div className="flex">
+
+                  {!authenticated ?
+                  <button
+                      onClick={login}
+                      className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white
+                        rounded-full w-[159.16796875px] hover:bg-black"
+                      >
+                      Connect wallet
+                  </button> : <UserDetails walletAddress={address} logout={logout}/>
+                }
+              </div>
+            </div>
+
+          <PastGrant />
+        </div>
+    </main>
             </main>
         </div>
-    </ProtectedRoute>
+
+
+
+
+
+
+   
   );
 }
-
-
-// export default withAuth(Dashboard)
-export default DashboardLayout

@@ -255,7 +255,7 @@ export default function Home() {
                     ))}
                   </div>
 
-            <Link href={"/dashboard/funding-stream"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
+            <Link href={"/grants"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
                 mx-auto h-[52px] mt-20 rounded-full hover:bg-black transition-all">
                 View All
             </Link>

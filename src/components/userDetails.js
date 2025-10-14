@@ -8,7 +8,7 @@ import { usePrivy } from '@privy-io/react-auth';
 
 export function shortAddress(address, chars = 4) {
     if (!address) return "";
-    console.log(address.slice(0, chars + 2) + "..." + address.slice(-chars));
+    // console.log(address.slice(0, chars + 2) + "..." + address.slice(-chars));
     let addressString = String(address.slice(0, chars + 2) + "..." + address.slice(-chars))
     
     return `${addressString}`;
