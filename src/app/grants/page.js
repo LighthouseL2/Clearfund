@@ -92,7 +92,7 @@ function DashboardLayout({ children }) {
       date: "End- Dec 31, 2025",
       deadline: "Dec 31, 2025",
       label: "Apply",
-      link : "https://www.quranium.org/apply-grant-program",
+      link : "https://docs.space.id/domain-and-payment-id/domain-programs/space-id-grant-program",
     },
     {
       image: "/grant-round-images/ecochain.jpg",
@@ -132,12 +132,12 @@ function DashboardLayout({ children }) {
       date: "End- Oct 17, 2025",
       deadline: "Oct 17, 2025",
       label: "Apply",
-      link : "https://forum.superfluid.org/t/invitation-for-season-4-campaign-ideas/1228",
+      link : "https://superfluidorg.notion.site/sup-for-growth",
     },
     {
       image: "/grant-round-images/yapper.png",
       title: <span>Arbitrum x Kaito <br />Season 2</span>,
-      desc: `Quranium’s initiative that supports developers worldwide in creating future-proof projects that enable adoption and remain uncrackable.`,
+      desc: `The Kaito ARB Grant will distribute 700,000 ARB across 150 creators, with grants split into three tiers: the Top 10, the Next 40, and the Remaining 100.`,
       amount: "700k ARB",
       date: "End- Dec 31, 2025",
       deadline: "Dec 31, 2025",
