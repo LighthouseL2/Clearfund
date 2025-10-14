@@ -67,9 +67,7 @@ export default function RootLayout({ children }) {
                 "wallet_connect",
                 "coinbase_wallet"
               ],
-              
             },
-            
           }}
         >
           {children}
