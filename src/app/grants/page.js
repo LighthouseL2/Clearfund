@@ -61,10 +61,129 @@ function DashboardLayout({ children }) {
       amount: "$5m",
       date: "Ongoing",
       deadline: "Ongoing",
-      
+      label: "Apply",
       link : "https://www.quranium.org/apply-grant-program",
     },
-
+    {
+      image: "/grant-round-images/baseBuild.png",
+      title: "Base Ecosystem Fund",
+      desc: `The Base Ecosystem Fund will invest in and support early stage projects (pre-seed to seed) building on Base.`,
+      amount: null,
+      date: "Ongoing",
+      deadline: "Ongoing",
+      label: "Apply",
+      link : "https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform",
+    },
+    {
+      image: "/grant-round-images/starknet1.png",
+      title: "Starknet Grants",
+      desc: `Starknet Grants enable builders, empower vibrant communities, increase adoption and make the Starknet ecosystem more open and accessible for everyone.`,
+      amount: null,
+      date: "Ongoing",
+      deadline: "Ongoing",
+      label: "Apply",
+      link : "https://www.starknet.io/grants/",
+    },
+    {
+      image: "/grant-round-images/space.jpg",
+      title: "SPACE ID Grant Program",
+      desc: `A long-term funding initiative designed to support and enrich the blockchain community.`,
+      amount: "$39 k",
+      date: "End- Dec 31, 2025",
+      deadline: "Dec 31, 2025",
+      label: "Apply",
+      link : "https://www.quranium.org/apply-grant-program",
+    },
+    {
+      image: "/grant-round-images/ecochain.jpg",
+      title: "X1 EcoChain Grants",
+      desc: `This Program aims to grow the $X1 network by funding projects that enhance both dev tools and UX on its low-energy, EVM-compatible blockchain.`,
+      amount: "$5m",
+      date: "Ongoing",
+      deadline: "Ongoing",
+      label: "Apply",
+      link : "https://grant.x1ecochain.com/",
+    },
+    {
+      image: "/grant-round-images/web3grants.png",
+      title: "Web3 Foundation Grants",
+      desc: `Funding Software Development and Research Efforts related to Polkadot and Kusama.`,
+      amount: null,
+      date: "Ongoing",
+      deadline: "Ongoing",
+      label: "Apply",
+      link : "https://grants.web3.foundation/",
+    },
+    {
+      image: "/grant-round-images/ship.jpg",
+      title: "Celo-Proof of Ship 9",
+      desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
+      amount: "15k Celo",
+      date: "End- Oct 31, 2025",
+      deadline: "Oct 31, 2025",
+      label: "Apply",
+      link : "https://x.com/CeloDevs/status/1975456087299268656",
+    },
+    {
+      image: "/grant-round-images/sup.jpg",
+      title: "SPR Season 4",
+      desc: `SUP is the governance token of Superfluid DAO Distributed to users of ecosystem applications via Streaming Programmatic Rewards.`,
+      amount: null,
+      date: "End- Oct 17, 2025",
+      deadline: "Oct 17, 2025",
+      label: "Apply",
+      link : "https://forum.superfluid.org/t/invitation-for-season-4-campaign-ideas/1228",
+    },
+    {
+      image: "/grant-round-images/yapper.png",
+      title: <span>Arbitrum x Kaito <br />Season 2</span>,
+      desc: `Quranium’s initiative that supports developers worldwide in creating future-proof projects that enable adoption and remain uncrackable.`,
+      amount: "700k ARB",
+      date: "End- Dec 31, 2025",
+      deadline: "Dec 31, 2025",
+      label: "Apply",
+      link : "https://blog.arbitrum.io/arbitrum-x-kaito-season-2/",
+    },
+    {
+      image: "/grant-round-images/destino.png",
+      title: "Destino Devconnect grants",
+      desc: `Destino Devconnect is a local grants round focused on supporting events and initiatives that help bring Argentina and the broader Latam region onchain.`,
+      amount: null,
+      date: "End- Nov 22, 2025",
+      deadline: "Nov 22, 2025",
+      label: "Apply",
+      link : "https://esp.ethereum.foundation/devcon-grants",
+    },
+    {
+      image: "/grant-round-images/web3grants1.png",
+      title: "Gear Foundation Grants",
+      desc: `This Grant Program is designed to offer teams, individuals, and creators non-dilutive funding to further accelerate the growth of the Gear ecosystem.`,
+      amount: null,
+      date: "Ongoing",
+      deadline: "Ongoing",
+      label: "Apply",
+      link : "https://vara.network/grants",
+    },
+    {
+      image: "/grant-round-images/ecochain.jpg",
+      title: "X1 EcoChain Rewards",
+      desc: `Galxe Starboard, an interactive leaderboard that distributes $100,000 in X1 Coins to standout contributors.`,
+      amount: "$ 100k",
+      date: "End- Nov 25, 2025",
+      deadline: "Nov 25, 2025",
+      label: "Details",
+      link : "https://medium.com/@X1_EcoChain/x1-ecochain -launches-galxe-starboard-100-000-community-rewards-09c1d8325015",
+    },
+    {
+      image: "/grant-round-images/lisk.png",
+      title: "Lisk EMpower Fund",
+      desc: `Equip founders in Africa, Southeast Asia, and Latin America with the capital and networks to compete on a global stage.`,
+      amount: "$15M",
+      date: "Ongoing",
+      deadline: "Ongoing",
+      label: "Apply",
+      link : "https://lisk.com/fund/",
+    },
     {
       image: "/grant-round-images/internet.jpg",
       title: "ENS PG Builder Grants",
@@ -72,6 +191,7 @@ function DashboardLayout({ children }) {
       amount: "50k USDC",
       date: "Ongoing",
       deadline: "Ongoing",
+      label: "Apply",
       link : "https://builder.ensgrants.xyz/"
     },
 
@@ -83,6 +203,7 @@ function DashboardLayout({ children }) {
       amount: "$200k",
       date: "End- Oct 17, 2025",
       deadline: "Oct 17, 2025",
+      label: "Apply",
       link : "https://giveth.typeform.com/gg24-dti?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
     },
 
@@ -94,6 +215,7 @@ function DashboardLayout({ children }) {
       amount: "$100k",
       date: "End- Oct 17, 2025",
       deadline: "Oct 17, 2025",
+      label: "Apply",
       link : "https://giveth.typeform.com/gg24-isia?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
     },
 
@@ -104,6 +226,7 @@ function DashboardLayout({ children }) {
       amount: "5 ETH",
       date: "Ongoing",
       deadline: "Ongoing",
+      label: "Apply",
       link : "https://docs.google.com/forms/d/e/1FAIpQLSfXuEzmiAzRhie_z9raFCF1BXweXgVt18o-DvBuRRgyTygL2A/viewform"
     },
 
@@ -112,6 +235,7 @@ function DashboardLayout({ children }) {
       amount: "50k Pol",
       date: "End- Nov 23, 2025",
       deadline: "Nov 23, 2025",
+      label: "Apply",
       link: "https://www.encodeclub.com/programmes/polygon-grants",
       image: "/grant-round-images/polygon.jpg",
       desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
@@ -124,6 +248,7 @@ function DashboardLayout({ children }) {
       deadline: "Dec 19, 2025",
       link: "https://tally.so/r/mVrrPj",
       image: "/grant-round-images/feature.jpg",
+      label: "Apply",
       desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
     },
 
@@ -135,6 +260,7 @@ function DashboardLayout({ children }) {
       deadline: "Ongoing",
       link: "https://build.avax.network/grants#programs",
       image: "/grant-round-images/ava.png",
+      label: "Apply",
       desc: `Empowering innovators to build the future of blockchain technology with scalable and sustainable solutions.`,
     },
 
@@ -143,6 +269,7 @@ function DashboardLayout({ children }) {
       amount: "$ 9k",
       date: "End- Oct 7, 2025",
       deadline: "Oct 7, 2025",
+      label: "Apply",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSffpxsP1KZnvd3mx41wQYNCoTQ9_Jphql3TwnZ3RluwXXnI2A/viewform",
       image: "/grant-round-images/celo.png",
       desc: `The Celo Africa DAO Incubator Program aims to enhance the capabilities of early-stage founders through hands-on mentorship.`
@@ -155,6 +282,7 @@ function DashboardLayout({ children }) {
       amount: "$ 250k",
       date: "End- Oct 8, 2025",
       deadline: "Oct 8, 2025",
+      label: "Apply",
       link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
     },
 
@@ -165,6 +293,7 @@ function DashboardLayout({ children }) {
       amount: "$1m",
       date: "End- Aug 27, 2025",
       deadline: "Aug 27, 2025",
+      label: "Apply",
       link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
     },
     {
@@ -174,6 +303,7 @@ function DashboardLayout({ children }) {
       amount: "$ 100k",
       date: "End- Jul 31, 2026",
       deadline: "Jul 31, 2026",
+      label: "Apply",
       link: "https://portals.thrive.xyz/"
     },
     {
@@ -183,6 +313,7 @@ function DashboardLayout({ children }) {
       amount: "$ 80k",
       date: "End- Oct, 2025",
       deadline: "Oct, 2025",
+      label: "Apply",
       link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
     },
     {
@@ -192,6 +323,7 @@ function DashboardLayout({ children }) {
       amount: "15k Celo",
       date: "End- Aug 29, 2025",
       deadline: "Aug 29, 2025",
+      label: "Apply",
       link: "https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship"
     },
     {
@@ -201,6 +333,7 @@ function DashboardLayout({ children }) {
       amount: "$ 100k",
       date: "End-  Aug 13, 2026",
       deadline: "Aug 13, 2026",
+      label: "Apply",
       link: "https://horizen.thrive.xyz/"
     },
     {
@@ -210,6 +343,7 @@ function DashboardLayout({ children }) {
       amount: "3k Celo",
       date: "End-  Nov 5, 2025",
       deadline: "Nov 5, 2025",
+      label: "Apply",
       link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
     },
     {
@@ -219,6 +353,7 @@ function DashboardLayout({ children }) {
       amount: "6.29M OP",
       date: "End- Nov 12, 2025",
       deadline: "Nov 12, 2025",
+      label: "Apply",
       link: "https://www.opgrants.io/"
     },
     {
@@ -228,6 +363,7 @@ function DashboardLayout({ children }) {
       amount: "1m Boba",
       date: "End- Dec 31, 2025",
       deadline: "Dec 31, 2025",
+      label: "Apply",
       link: "https://app.thrive.xyz/programs/23"
     },
     {
@@ -237,6 +373,7 @@ function DashboardLayout({ children }) {
       amount: "4m hbar",
       date: "End- Dec 31, 2025",
       deadline: "Dec 31, 2025",
+      label: "Apply",
       link: "https://app.thrive.xyz/programs/16"
     },
     {
@@ -246,6 +383,7 @@ function DashboardLayout({ children }) {
       amount: "1m Boba",
       date: "End-Dec 31, 2025",
       deadline: "Dec 31, 2025",
+      label: "Apply",
       link: "https://app.thrive.xyz/programs/2"
     },
     {
@@ -254,6 +392,7 @@ function DashboardLayout({ children }) {
       desc: `For existing products and dApps from other ecosystems looking to integrate Swellchain.  Supports teams ready to expand.`,
       amount: "75m Swell",
       date: "End-Aug 31, 2025",
+      label: "Apply",
       deadline: "Aug 31, 2025",
       link: "https://app.thrive.xyz/programs/12"
     },
@@ -264,6 +403,7 @@ function DashboardLayout({ children }) {
       amount: "3m OP",
       date: "End- Aug 29, 2025",
       deadline: "Aug 29, 2025",
+      label: "Apply",
       link: "https://app.thrive.xyz/programs/31"
     },
     {
@@ -272,16 +412,18 @@ function DashboardLayout({ children }) {
       desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
       amount: "$40K",
       date: "End- Sep 5, 2025",
+      label: "Apply",
       deadline: "Sep 5, 2025",
       link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
     },
     {
       image: "/grant-round-images/prezenti-round-image.svg",
-      title: "Prezenti Season 1 Peach Grant Round",
+      title: <span>Prezenti Season 1 <br/> Peach Grant Round</span>,
       desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
       amount: "250k cUSD",
       date: "End-  Dec 10, 2025",
       deadline: "Dec 10, 2025",
+      label: "Apply",
       link: "https://charmverse.prezenti.xyz/invite/f90c14"
     },
   ];

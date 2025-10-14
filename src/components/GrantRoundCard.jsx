@@ -26,7 +26,8 @@ const GrantRoundCard = ({ grants, setToggle }) => {
         // if(!ready) return
 
         if(authenticated){
-            router.push(link)
+            // router.push(link)
+            window.open(link, "_blank")
         }else {
             setTargetLink(link)
             setToggle(true)
@@ -104,7 +105,7 @@ const GrantRoundCard = ({ grants, setToggle }) => {
                           className="block  bg-[#A6E7D8]/50 border-1 border-[#008767]
                           text-[#008767] transition w-full py-2.5 text-center font-bold rounded-full"
                         >
-                          Apply
+                          {item.label}
                         </button>
                       )
                     )}
