@@ -93,7 +93,7 @@ export default function Sidebar({authenticated, address, login}) {
               <div className="w-[210px] h-[114px] border border-[#7CB53E] rounded-md p-7">
                 <div className="flex items-center gap-3">
                   <h2 className="font-black text-[20px] text-[#39B54A]">Account</h2>
-                  <section className="flex items-center gap-2 text-[#E2A426]">
+                  <section className="flex items-center gap-2 text-[#E2A426] bg-[#FEFCE8] px-2 rounded-full">
                     <span>
                       <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.5 1L1 2.75V6C1 7.75 2.75 10.5 5 11C7.25 10.5 9 7.75 9 6V2.75L5 1H5.5Z" stroke="#E2A426" strokeLinecap="round" strokeLinejoin="round"/>
@@ -102,7 +102,7 @@ export default function Sidebar({authenticated, address, login}) {
                     <span className="text-[14px]">verify</span>
                   </section>
                 </div>
-                <p className="text-[14px] text-black/50 mt-2">{shortAddress(address)}</p>
+                <p className="text-[14px] text-black/50 mt-2 bg-[#FAFBFD] rounded-full px-2">{shortAddress(address)}</p>
               </div>
             ) 
             
@@ -154,12 +154,12 @@ export default function Sidebar({authenticated, address, login}) {
             </Link> */}
 
 
-            <Link href="/dashboard">
-              <button 
+            <Link href="/grants">
+              <button
 
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
                 rounded-r-full px-9
-                py-3  font-bold mb-4  ${pathname === "/dashboard/funding-stream"
+                py-3  font-bold mb-4  ${pathname === "/grants"
                   ? "bg-[#EAF9EE]"
                   : " hover:bg-gray-50"
                   }`}
@@ -191,11 +191,11 @@ export default function Sidebar({authenticated, address, login}) {
               </button>
             </Link>
 
-            <Link href={"/dashboard/past-funding"}>
+            <Link href={"/archive"}>
               <button
 
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
-                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/dashboard/past-funding"
+                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/archive"
                   ? "bg-[#EAF9EE]"
                   : " hover:bg-gray-50"
                   }`}
@@ -232,10 +232,10 @@ export default function Sidebar({authenticated, address, login}) {
 
 
 
-            <Link href="/dashboard/donate">
+            <Link href="/donate">
               <button
                 className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
-                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/dashboard/donate"
+                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/donate"
                   ? "bg-[#EAF9EE] "
                   : " hover:bg-gray-50"
                   }`}

@@ -48,19 +48,19 @@ export default function RootLayout({ children }) {
         <PrivyProvider
           appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
           config={{
-            loginMethods: ["wallet"],
+            loginMethods: ["email", "wallet"],
             embeddedWallets: {
-              createOnLogin: "users-without-wallets"
+              createOnLogin: "all-users"
             },
             appearance: {
               theme: "light",
-              landingHeader: <span style={{fontFamily: "monospace"}}>Connect your wallet to continue</span>,
+              landingHeader: <span style={{fontFamily: "monospace", fontWeight: 900}}>Connect to ClearFund</span>,
               accentColor: "#4f46e5",
               fontFamily: "Poppins, sans-serif",
-              showWalletLoginFirst: true,
+              showWalletLoginFirst: false,
 
               // 👇 Add your logo here
-              logo: "/projectLogo.png",
+              logo: "/loadingIcon.png",
               walletList: [
                 "detected_ethereum_wallets",
                 "metamask",

@@ -49,7 +49,7 @@ const HeroSection = ({setModalOpen}) => {
             )
           }}
         </ConnectButton.Custom> */}
-        <Link href={"/dashboard"} className="w-[202.1923828125] h-[52px] bg-[#39B54A] flex items-center justify-center text-white
+        <Link href={"/grants"} className="w-[202.1923828125] h-[52px] bg-[#39B54A] flex items-center justify-center text-white
           text-[16px] font-sans rounded-full font-black hover:bg-black ">
           Open App
         </Link>
