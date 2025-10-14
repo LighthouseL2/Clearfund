@@ -102,7 +102,7 @@ const GrantRoundCard = ({ grants, setToggle }) => {
                           // target="_blank"
                           rel="noopener noreferrer"
                           style={{ fontSize: '16px' }}
-                          className="block  bg-[#A6E7D8]/50 border-1 border-[#008767]
+                          className="block  bg-[#A6E7D8]/50 border-1 border-[#008767] cursor-pointer
                           text-[#008767] transition w-full py-2.5 text-center font-bold rounded-full"
                         >
                           {item.label}

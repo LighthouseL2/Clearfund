@@ -30,34 +30,6 @@ export default function Dashboard() {
   const address = wallets[0]?.address
 
 
-  // const [programOpen, setProgramOpen] = useState(false);
-  // const [statusOpen, setStatusOpen] = useState(false);
-
-  // const [selectedPrograms, setSelectedPrograms] = useState([]);
-  // const [selectedStatus, setSelectedStatus] = useState([]);
-  // const [toggle, setToggle] = useState(false)
-
-  // const programs = ["Gitcoin", "Celo", "Octant", "GoodDollar", "Arbitrum", "Others"];
-  // const statuses = ["Ongoing", "Upcoming", "Applications Open"];
-
-  
-
-  // const toggleProgram = (program) => {
-  //   setSelectedPrograms((prev) =>
-  //     prev.includes(program)
-  //       ? prev.filter((p) => p !== program)
-  //       : [...prev, program]
-  //   );
-  // };
-
-  // const toggleStatus = (status) => {
-  //   setSelectedStatus((prev) =>
-  //     prev.includes(status)
-  //       ? prev.filter((s) => s !== status)
-  //       : [...prev, status]
-  //   );
-  // };
-
   const programRef = useRef(null);
   const statusRef = useRef(null);
 
@@ -75,30 +47,11 @@ export default function Dashboard() {
   }, []);
 
 
-  // useEffect(() => {
-  //       if(ready && authenticated && targetLink) {
-  //           router.push(targetLink)
-  //           setTargetLink(null)
-  //           setToggle(false)
-  //       }
-  //   }, [authenticated, router, targetLink, ready])
-
-
-    // const handleGrantClick = async (link) => {
-    //     // if(!ready) return
-
-    //     if(authenticated){
-    //         router.push(link)
-    //     }else {
-    //         setTargetLink(link)
-    //         setToggle(true)
-    //     }
-    // }
 
   return (
 
        <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
-      {/* Sidebar imported */}
+      
           <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
             <div className="relative w-[120px] h-[30px]">
               <Image
@@ -145,33 +98,6 @@ export default function Dashboard() {
 
 
             <nav className="space-y-3 my-6 font-sans">
-            {/* <Link href="/dashboard">
-              <button
-                className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
-                rounded-r-full px-9 py-3
-                  text-[16px] font-bold mb-4 ${pathname === "/dashboard"
-                  ? "bg-[#EAF9EE] "
-                  : "hover:bg-gray-50"
-                  }`}
-              >
-                <span className="flex items-center gap-3">
-                  
-                    <span>
-                      <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M26.8048 12.7575L14.1013 0.242616C13.9426 0.0872218 13.728 0 13.5042 0C13.2805 0 13.0658 0.0872218 12.9072 0.242616L0.203643 12.7575C0.0648987 12.9171 -0.00760126 13.1224 0.000631604 13.3324C0.00886447 13.5424 0.0972238 13.7416 0.248052 13.8901C0.398881 14.0387 0.60107 14.1258 0.814215 14.1339C1.02736 14.142 1.23576 14.0706 1.39777 13.9339L13.5 2.01139L25.6022 13.9422C25.7642 14.0789 25.9726 14.1503 26.1858 14.1422C26.3989 14.1341 26.6011 14.0471 26.7519 13.8985C26.9028 13.7499 26.9911 13.5507 26.9994 13.3407C27.0076 13.1308 26.9351 12.9254 26.7964 12.7658L26.8048 12.7575Z" fill="#39B54A"/>
-                      <path d="M21.5355 25.2585H17.5176V16.5499H9.48193V25.2585H5.46408V13.0664L3.85693 14.8082V25.2585C3.85693 25.7205 4.02626 26.1635 4.32765 26.4901C4.62905 26.8168 5.03784 27.0003 5.46408 27.0003H11.0891V18.2916H15.9105V27.0003H21.5355C21.9617 27.0003 22.3705 26.8168 22.6719 26.4901C22.9733 26.1635 23.1426 25.7205 23.1426 25.2585V14.5992L21.5355 12.8574V25.2585Z" fill="#39B54A"/>
-                      </svg>
-                    </span>
-
-
-                  
-                  <span className="flex items-center">Home</span>
-                </span>
-                
-              </button>
-
-            </Link> */}
-
 
             <Link href="/grants">
               <button onClick={() => setSidebarOpen(false)}

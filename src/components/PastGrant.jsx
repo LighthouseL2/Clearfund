@@ -1,6 +1,10 @@
 "use client";
+
+
+
 import Link from "next/link";
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -8,14 +12,14 @@ export default function PastGrantRounds() {
   const tabs = ["GoodDollar", "Gitcoin", "Octant", "Celo", "Optimism", "Giveth"];
   const [activeTab, setActiveTab] = useState("Gitcoin");
   const [searchTerm, setSearchTerm] = useState("");
-  const scrollContainerRef = useRef(null); // Ref for horizontal scrolling
+  const scrollContainerRef = useRef(null); 
 
   const tabImages = {
     GoodDollar: "/round-icons/gooddollar-round-icon.svg",
     Gitcoin: "/round-icons/gitcoin-regen-icon.svg",
     Octant: "round-icons/octant-epoch-icon.svg",
     Celo: "/round-icons/celo-round-icon.svg",
-    Optimism:"/round-icons/optimism-round-icon.svg",
+    Optimism: "/round-icons/optimism-round-icon.svg",
     Giveth: "/round-icons/giveth-round-icon.svg",
   };
 
@@ -52,7 +56,7 @@ export default function PastGrantRounds() {
       { title: "Round 5: OP Stack", date: " - 2024", link: "https://atlas.optimism.io/round/results?rounds=5" },
       { title: "Round 6: Governance", date: " - 2024", link: "https://atlas.optimism.io/round/results?rounds=6" },
       { title: "Retro Funding: Dev Tooling", date: " - 2025", link: "https://atlas.optimism.io/round/results?rounds=7" },
-      { title: "Retro Funding: Onchain Builders", date: " - 2025", link:"https://atlas.optimism.io/round/results?rounds=8" },
+      { title: "Retro Funding: Onchain Builders", date: " - 2025", link: "https://atlas.optimism.io/round/results?rounds=8" },
     ],
     Giveth: [
       { title: "Loving on Public Goods QF Round ", date: "-Jan 28 - Feb 14, 2025", pool: "Matching Pool: $100K ", link: "https://docs.google.com/spreadsheets/d/1rNFouxlS5gmodhvkLNAsbYHyp-xJtx6PpbkZCkUBQFc/edit?gid=612313385#gid=612313385" },
@@ -64,11 +68,11 @@ export default function PastGrantRounds() {
   const filteredData = data[activeTab].filter((item) =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  const router = useRouter();
   return (
     <div className="px-4 md:px-10 py-4 text-black font-sans">
       {/* Search */}
-      <div className="max-w-6xl mx-auto mb-6">
+      <div className="max-w-5xl mx-auto mb-6">
         <div className="relative">
           <input
             type="text"
@@ -92,7 +96,7 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Active Tabs */}
-      <div className="max-w-6xl mx-auto mb-6 flex items-center justify-between rounded-full bg-[#D9D9D933] border py-1">
+      <div className="max-w-5xl mx-auto mb-6 flex items-center justify-between rounded-full bg-[#D9D9D933] border py-1">
         <button
           className="p-2 hover:bg-gray-200 rounded-full "
           onClick={() => scrollTabs("left")}
@@ -108,8 +112,8 @@ export default function PastGrantRounds() {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-12 py-2 text-sm font-bold whitespace-nowrap ${activeTab === tab
-                  ? "bg-white text-black border rounded border-gray-100 cursor-pointer"
-                  : " text-black hover:bg-gray-100"
+                ? "bg-white text-black border rounded border-gray-100 cursor-pointer"
+                : " text-black hover:bg-gray-100"
                 }`}
             >
               {tab}
@@ -125,7 +129,7 @@ export default function PastGrantRounds() {
       </div>
 
       {/* Archive List */}
-      <div className="max-w-6xl mx-auto space-y-1">
+      <div className="max-w-5xl mx-auto space-y-1">
         {filteredData.length > 0 ? (
           filteredData.map((item, index) => (
             <div
@@ -147,22 +151,24 @@ export default function PastGrantRounds() {
                       <h3 style={{ fontSize: '12px' }} className=" font-semibold text-black/70">{item.title}</h3>
                       <p style={{ fontSize: '10px' }} className="text-[#008767] pl-1">{item.date}</p>
                     </div>
-                    <span style={{ fontSize: '10px' }} className="inline-block  font-extrabold bg-[#A6E7D8]/50 rounded-3xl border-1 border-[#26A17B] text-[#008767] py-1 px-4 shadow-2xl">
-                      {item.pool}
-                    </span>
+                    {item.pool && (
+                      <span
+                        style={{ fontSize: "10px" }}
+                        className="inline-block font-extrabold bg-[#A6E7D8]/50 rounded-3xl border border-[#26A17B] text-[#008767] py-1 px-4 shadow-2xl min-w-[80px] text-center"
+                      >
+                        {item.pool}
+                      </span>
+                    )}
                   </div>
 
                 </div>
 
                 {item.link && (
                   <Link
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-medium bg-[#A6E7D8]/50 rounded-full border-1 border-[#26A17B] text-[#008767] py-2 px-8 shadow-2xl flex items-center gap-1 hover:underline whitespace-nowrap"
+                    href={`/spreadsheet-analytics?link=${encodeURIComponent(item.link)}`}
+                    className="text-[10px] w-[120px] sm:w-auto sm:text-xs font-extrabold bg-[#A6E7D8]/50 rounded-3xl border border-[#26A17B] text-[#008767] py-1 px-1 sm:py-2 sm:px-8 shadow-2xl flex items-center justify-center whitespace-nowrap cursor-pointer"
                   >
                     Open
-
                   </Link>
                 )}
               </div>

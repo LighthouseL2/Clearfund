@@ -70,7 +70,9 @@ export default function RootLayout({ children }) {
             },
           }}
         >
-          {children}
+          <Suspense fallback={<div>Loading ...</div>}>
+            {children}
+          </Suspense>
         </PrivyProvider>
 
       </body>
