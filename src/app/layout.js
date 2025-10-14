@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
           config={{
             loginMethods: ["email", "wallet"],
             embeddedWallets: {
-              createOnLogin: "all-users"
+              createOnLogin: "users-without-wallets"
             },
             appearance: {
               theme: "light",
