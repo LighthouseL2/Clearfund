@@ -95,7 +95,7 @@ function DashboardLayout({ children }) {
       link : "https://docs.space.id/domain-and-payment-id/domain-programs/space-id-grant-program",
     },
     {
-      image: "/grant-round-images/ecochain.jpg",
+      image: "/grant-round-images/xeco.jpg",
       title: "X1 EcoChain Grants",
       desc: `This Program aims to grow the $X1 network by funding projects that enhance both dev tools and UX on its low-energy, EVM-compatible blockchain.`,
       amount: "$5m",
@@ -361,8 +361,8 @@ function DashboardLayout({ children }) {
       title: "Thrive Boba",
       desc: `Grant for innovators building new projects natively on Boba. Supports early-stage teams developing real-world applications.`,
       amount: "1m Boba",
-      date: "End- Dec 31, 2025",
-      deadline: "Dec 31, 2025",
+      date: "End- Sep 12, 2025",
+      deadline: "Sep 12, 2025",
       label: "Apply",
       link: "https://app.thrive.xyz/programs/23"
     },
@@ -381,8 +381,8 @@ function DashboardLayout({ children }) {
       title: "Thrive Boba",
       desc: `For existing projects from other ecosystems looking to deploy or expand on Boba. This track supports teams ready to scale.`,
       amount: "1m Boba",
-      date: "End-Dec 31, 2025",
-      deadline: "Dec 31, 2025",
+      date: "End- Sep 12, 2025",
+      deadline: "Sep 12, 2025",
       label: "Apply",
       link: "https://app.thrive.xyz/programs/2"
     },

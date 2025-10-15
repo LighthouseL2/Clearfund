@@ -23,7 +23,7 @@ const HeroSection = ({setModalOpen}) => {
         </h1>
         <p className="text-[18px] md:text-[20px] lg:w-[60.8rem] mb-14 font-semibold font-sans">
             ClearFund Connect builders to funding opportunities
-             <br className='hidden lg:block'/>that drive innovation and growth.
+             <br className='hidden lg:block'/> that drive innovation and growth.
         </p>
 
 

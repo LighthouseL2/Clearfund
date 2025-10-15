@@ -301,7 +301,7 @@ export default function Home() {
                     Helping builders discover and access funding <br />opportunities with ease
                 </p>
 
-                <Link href={"/dashboard"} className="w-[202.1923828125px] bg-white
+                <Link href={"/grants"} className="w-[202.1923828125px] bg-white
                  text-black flex justify-center items-center hover:text-white
                 mx-auto h-[52px]  rounded-full font-black hover:bg-black transition-all">
                 Explore Clearfund
