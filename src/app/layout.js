@@ -24,6 +24,8 @@ const inter = Inter({ subsets: ['latin'] })
 //   subsets: ["latin"],
 // });
 
+
+
 // export const metadata = {
 //   title: "ClearFund",
 //   description:"ClearFund allows you to explore past grants data, find new funding oppourtunities and stay updated with real-time alerts from Web3 grants platforms",
