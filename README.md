@@ -1,13 +1,4 @@
-**ClearFund** is an open platform that makes Web3 funding opportunities more transparent and accessible.
-We help individuals and communities discover grants in the decentralized ecosystem while also providing visibility into previously funded projects.
-
-
-**🚀 Mission**
-
--Connect builders and creators with relevant funding opportunities.
--Foster transparency by curating and visualizing previously funded projects.
--Empower communities by highlighting funding programs, grants, and impact initiatives.
-
+Clearfund addresses the fragmented and inefficient experience builders and creators face when discovering funding opportunities across the Ethereum ecosystem. It aggregates active grants, web3 micro tasks from multiple platforms into one unified dashboard, streamlining access and improving visibility.
 
 🌐 Links
 
