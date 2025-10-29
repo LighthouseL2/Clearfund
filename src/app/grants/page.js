@@ -67,6 +67,18 @@ function DashboardLayout({ children }) {
 
 
     {
+      image: "/grant-round-images/arb.png",
+      title: "Arb D.A.O Grant Program",
+      desc: `The Arbitrum D.A.O. (Domain Allocator Offering) grant program is a 1 year program divided in five Domains, aimed to be the entry point of grants in the Arbitrum ecosystem.`,
+      amount: "$1.5M",
+      date: "March, 2026",
+      deadline: "March, 2026",
+      label: "Apply",
+      link : "https://arbitrumdaogrants.notion.site/landing",
+    },
+
+
+    {
       image: "/grant-round-images/celoStream.png",
       title: "Celo Support Streams",
       desc: `Support Streams are Celo Protocol Incentives that are distributed Monthly to Protocols on Celo through a stCELO vote in the CeloPG Snapshot space. that enable adoption and remain uncrackable.`,
