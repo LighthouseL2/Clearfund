@@ -36,7 +36,7 @@ function DashboardLayout({ children }) {
   const [grantStatus, setGrantStatus] = useState("all")
   const [toggle, setToggle] = useState(false)
 
-  
+
   const pathname = usePathname();
   const router = useRouter()
   const { ready, authenticated, login, logout, user } = usePrivy()
@@ -64,6 +64,77 @@ function DashboardLayout({ children }) {
       label: "Apply",
       link : "https://www.quranium.org/apply-grant-program",
     },
+
+
+    {
+      image: "/grant-round-images/celoStream.png",
+      title: "Celo Support Streams",
+      desc: `Support Streams are Celo Protocol Incentives that are distributed Monthly to Protocols on Celo through a stCELO vote in the CeloPG Snapshot space. that enable adoption and remain uncrackable.`,
+      amount: "150K CELO",
+      date: "End- Jan 31, 2026",
+      deadline: "Jan 31, 2026",
+      label: "Apply",
+      link : "https://app.charmverse.io/celopg/celo-support-streams-08274005568032872",
+    },
+
+    {
+      image: "/grant-round-images/builder.jpg",
+      title: "Celo Builder Fund",
+      desc: `Apply for the celo builder fund to receive an investment of $25k per project with the potential for additional funding from verda ventures.`,
+      amount: "25k cUSD",
+      date: "End- Dec 31, 2025",
+      deadline: "Dec 31, 2025",
+      label: "Apply",
+      link : "https://www.celopg.eco/programs/celo-builder-fund",
+    },
+
+
+    {
+      image: "/grant-round-images/miniApp.png",
+      title: "Mini App Mondays",
+      desc: `Mini App Mondays is a weekly showcase designed to highlight the most exciting mini apps on Celo. Each week, one app will be featured on Farcaster.`,
+      amount: "1k CELO",
+      date: "End- Dec 29, 2025",
+      deadline: "Dec 29, 2025",
+      label: "Apply",
+      link : "https://www.celopg.eco/programs/mini-app-mondays",
+    },
+
+
+    {
+      image: "/grant-round-images/impact.png",
+      title: "Proof of Impact (S1)",
+      desc: `A fully onchain reward program offering a streamlined and transparent system to rewards apps based on the gas fees their users generate, reinforcing long-term network growth.`,
+      amount: "250K CELO",
+      date: "End- Dec 16, 2025",
+      deadline: "Dec 16, 2025",
+      label: "Apply",
+      link : "https://www.celopg.eco/programs/proof-of-impact-s1",
+    },
+
+
+    {
+      image: "/grant-round-images/local.png",
+      title: "Local Grant Programs",
+      desc: `Empowering local hubs to channel funding through local grant programs into community activities, showcasing Ethereum as practical infrastructure.`,
+      amount: "$ 125k",
+      date: "End- March 1, 2026",
+      deadline: "March 1, 2026",
+      label: "Apply",
+      link : "https://app.karmahq.xyz/localism-fund/programs/975",
+    },
+
+    {
+      image: "/grant-round-images/africa.png",
+      title: "Lisk Startup Support ",
+      desc: `This initiative provide hands-on support to founders at the early stage of their startup journey whether you need technical guidance or growth strategies to take your product to the next level.`,
+      amount: null,
+      date: "Ongoing",
+      deadline: "Ongoing",
+      label: "Apply",
+      link : "https://docs.google.com/forms/d/e/1FAIpQLSezQFvA4AtKz4i6mT_m4knOPFkxxD8PNqFrX9TvK2pBv-Vdow/viewform",
+    },
+
     {
       image: "/grant-round-images/baseBuild.png",
       title: "Base Ecosystem Fund",

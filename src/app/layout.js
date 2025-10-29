@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet">
         </link>
         <title>ClearFund</title>
-        <link rel="shortcut icon" href="/projectLogo.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="/loadingIcon.png" type="image/x-icon" />
       </head>
       <body className={inter.className}>
 
