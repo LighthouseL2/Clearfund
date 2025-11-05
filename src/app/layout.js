@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import next from "next";
 import { Suspense } from 'react';
-// import Providers from '@/components/Provider';
+import Providers from '@/components/Provider';
 
 import { PrivyProvider } from "@privy-io/react-auth"
 
@@ -45,37 +45,38 @@ export default function RootLayout({ children }) {
         <title>ClearFund</title>
         <link rel="shortcut icon" href="/loadingIcon.png" type="image/x-icon" />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
+        <Providers>
+          <PrivyProvider
+            appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
+            config={{
+              loginMethods: ["email", "wallet"],
+              embeddedWallets: {
+                createOnLogin: "users-without-wallets"
+              },
+              appearance: {
+                theme: "light",
+                landingHeader: <span style={{fontFamily: "monospace", fontWeight: 900}}>Connect to ClearFund</span>,
+                accentColor: "#4f46e5",
+                fontFamily: "Poppins, sans-serif",
+                showWalletLoginFirst: false,
 
-        <PrivyProvider
-          appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
-          config={{
-            loginMethods: ["email", "wallet"],
-            embeddedWallets: {
-              createOnLogin: "users-without-wallets"
-            },
-            appearance: {
-              theme: "light",
-              landingHeader: <span style={{fontFamily: "monospace", fontWeight: 900}}>Connect to ClearFund</span>,
-              accentColor: "#4f46e5",
-              fontFamily: "Poppins, sans-serif",
-              showWalletLoginFirst: false,
-
-              // 👇 Add your logo here
-              logo: "/loadingIcon.png",
-              walletList: [
-                "detected_ethereum_wallets",
-                "metamask",
-                "wallet_connect",
-                "coinbase_wallet"
-              ],
-            },
-          }}
-        >
-          <Suspense fallback={<div>Loading ...</div>}>
-            {children}
-          </Suspense>
-        </PrivyProvider>
+                // 👇 Add your logo here
+                logo: "/loadingIcon.png",
+                walletList: [
+                  "detected_ethereum_wallets",
+                  "metamask",
+                  "wallet_connect",
+                  "coinbase_wallet"
+                ],
+              },
+            }}
+          >
+            <Suspense fallback={<div>Loading ...</div>}>
+              {children}
+            </Suspense>
+          </PrivyProvider>
+        </Providers>
 
       </body>
     </html>

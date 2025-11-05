@@ -2,16 +2,17 @@
 
 
 import { http, createConfig } from "wagmi"
-import { celo } from "viem/chains"
+import { celo, baseSepolia } from "viem/chains"
 import { getDefaultConfig } from "@rainbow-me/rainbowkit"
 
 
 export const config = getDefaultConfig({
     appName: "ClearFund",
     projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
-    chains: [celo],
+    chains: [celo, baseSepolia],
     transports: {
         [celo.id]: http(),
+        [baseSepolia.id]: http(),
     },
     ssr: true
 })
