@@ -3,15 +3,30 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from 'next/font/google'
 
+
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import "./globals.css";
 import next from "next";
 import { Suspense } from 'react';
 import Providers from '@/components/Provider';
+import Script from "next/script";
+import * as gtag from "@/lib/gtag";
 
 import { PrivyProvider } from "@privy-io/react-auth"
 
 
 const inter = Inter({ subsets: ['latin'] })
+
+function AnalyticsWrapper({ children }) {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    gtag.pageview(window.location.pathname);
+  }, [pathname]);
+
+  return children;
+}
 
 
 // const geistSans = mordern({
@@ -44,6 +59,25 @@ export default function RootLayout({ children }) {
         </link>
         <title>ClearFund</title>
         <link rel="shortcut icon" href="/loadingIcon.png" type="image/x-icon" />
+        {/* google analytics script */}
+         <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <Providers>
@@ -73,7 +107,7 @@ export default function RootLayout({ children }) {
             }}
           >
             <Suspense fallback={<div>Loading ...</div>}>
-              {children}
+            <AnalyticsWrapper>{children}</AnalyticsWrapper>
             </Suspense>
           </PrivyProvider>
         </Providers>
