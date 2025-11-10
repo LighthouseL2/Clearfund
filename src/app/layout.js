@@ -7,7 +7,6 @@ import { Inter } from 'next/font/google'
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import "./globals.css";
-import next from "next";
 import { Suspense } from 'react';
 import Providers from '@/components/Provider';
 import Script from "next/script";

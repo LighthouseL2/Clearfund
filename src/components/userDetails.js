@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { MoveDown, LogOut } from "lucide-react";
 import { usePrivy } from '@privy-io/react-auth';
+import Image from 'next/image';
 
 
 
@@ -35,7 +36,7 @@ const UserDetails = ({walletAddress, logout}) => {
     <div className='flex items-center'>
         <div className=" flex items-center justify-between gap-5 relative rounded-md">
         <div className='w-[44px] h-[38px] flex items-center justify-center bg-white shadow rounded border border-[#0000001A] p-0.5'>
-            <img src="/round-icons/celo-round-icon.svg" alt="round icon" className='w-full h-full'/>
+            <Image src="/round-icons/celo-round-icon.svg" alt="round icon" width={44} height={38} className='w-full h-full'/>
         </div>
         <button className='flex gap-3 rounded-xl  items-center px-2.5 border w-fit h-[37px] relative' onClick={()=> setToggle(!toggle)}>
             <span>
