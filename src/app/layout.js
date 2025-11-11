@@ -9,6 +9,8 @@ import "./globals.css";
 import { Suspense } from 'react';
 import Providers from '@/components/Provider';
 import Script from "next/script";
+
+// import code for google analytics tag
 import * as gtag from "@/lib/gtag";
 
 import { PrivyProvider } from "@privy-io/react-auth"
