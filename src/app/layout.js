@@ -3,7 +3,6 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from 'next/font/google'
 
-
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import "./globals.css";
