@@ -10,7 +10,7 @@ ClearFund addresses the fragmented and inefficient experience builders and creat
 - **Past Grant Data**: Access historical grant data for research and analysis
 - **Wallet Integration**: Connect with multiple wallet providers (MetaMask, WalletConnect, Coinbase Wallet)
 - **User Authentication**: Secure authentication with Privy (email and wallet login)
-- **Analytics Dashboard**: View grant analytics and funding statistics
+
 
 ## 🛠️ Tech Stack
 
@@ -267,7 +267,7 @@ Required environment variables:
 
 ## 🚢 Deployment
 
-The application is configured for deployment on platforms like Vercel or Netlify. The `@netlify/plugin-nextjs` is included in devDependencies.
+The application is configured for deployment on Netlify. The `@netlify/plugin-nextjs` is included in devDependencies.
 
 ### Build for Production
 
@@ -283,7 +283,7 @@ This project is private and proprietary.
 ## 🙏 Acknowledgments
 
 - Built with Next.js and React
-- Web3 integration powered by Wagmi, RainbowKit, and Privy
+- Web3 integration powered by Wagmi, and Privy
 - UI components from Radix UI and shadcn/ui
 
 ---
