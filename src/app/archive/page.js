@@ -6,7 +6,7 @@ import PastGrant from "@/components/PastGrant";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import UserDetails from "@/components/userDetails";
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/SideBar2";
 import { useRouter } from "next/navigation";
 
 
