@@ -1,7 +1,7 @@
 "use client"
 
 import ProtectedRoute from "@/lib/withAuth"
-import Sidebar from "@/components/Sidebar"
+import Sidebar from "@/components/SideBar2"
 import Image from "next/image"
 import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
