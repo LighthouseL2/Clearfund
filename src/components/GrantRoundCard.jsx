@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePrivy } from "@privy-io/react-auth";
@@ -27,7 +29,9 @@ const GrantRoundCard = ({ grants, setToggle }) => {
 
         if(authenticated){
             // router.push(link)
-            window.open(link, "_blank")
+            if (typeof window !== 'undefined') {
+                window.open(link, "_blank")
+            }
         }else {
             setTargetLink(link)
             setToggle(true)
@@ -58,6 +62,7 @@ const GrantRoundCard = ({ grants, setToggle }) => {
                 src={item.image}
                 alt={item.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="w-full h-auto object-cover rounded-t-xl"
               />
 

@@ -18,7 +18,12 @@ import { set } from "mongoose";
 export default function Sidebar({authenticated, address, login}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
 
 
@@ -45,6 +50,10 @@ export default function Sidebar({authenticated, address, login}) {
     },
   ];
 
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <>

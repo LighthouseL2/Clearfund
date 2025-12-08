@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { MoveDown, LogOut } from "lucide-react";
 import { usePrivy } from '@privy-io/react-auth';
+import Image from 'next/image';
 
 
 
@@ -35,7 +36,7 @@ const UserDetails = ({walletAddress, logout}) => {
     <div className='flex items-center'>
         <div className=" flex items-center justify-between gap-5 relative rounded-md">
         <div className='w-[44px] h-[38px] flex items-center justify-center bg-white shadow rounded border border-[#0000001A] p-0.5'>
-            <img src="/round-icons/celo-round-icon.svg" alt="round icon" className='w-full h-full'/>
+            <Image src="/round-icons/celo-round-icon.svg" alt="round icon" width={44} height={38} className='w-full h-full'/>
         </div>
         <button className='flex gap-3 rounded-xl  items-center px-2.5 border w-fit h-[37px] relative' onClick={()=> setToggle(!toggle)}>
             <span>
@@ -47,7 +48,7 @@ const UserDetails = ({walletAddress, logout}) => {
             <span className='text-[14px]'>{shortAddress(walletAddress)}</span>
             <span>
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L5 5L9 1" stroke="black" strokeOpacity="0.7" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L5 5L9 1" stroke="black" strokeOpacity="0.7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
 
             </span>
@@ -59,7 +60,7 @@ const UserDetails = ({walletAddress, logout}) => {
                 <li className='w-full px-3 py-4 gap-2 text-[14px] font-black font-sans flex' onClick={handleCopy}>
                     <span>
                         <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 18H2V5C2 4.45 1.55 4 1 4C0.45 4 0 4.45 0 5V18C0 19.1 0.9 20 2 20H12C12.55 20 13 19.55 13 19C13 18.45 12.55 18 12 18ZM17 14V2C17 0.9 16.1 0 15 0H6C4.9 0 4 0.9 4 2V14C4 15.1 4.9 16 6 16H15C16.1 16 17 15.1 17 14ZM15 14H6V2H15V14Z" fill="black" fill-opacity="0.3"/>
+                        <path d="M12 18H2V5C2 4.45 1.55 4 1 4C0.45 4 0 4.45 0 5V18C0 19.1 0.9 20 2 20H12C12.55 20 13 19.55 13 19C13 18.45 12.55 18 12 18ZM17 14V2C17 0.9 16.1 0 15 0H6C4.9 0 4 0.9 4 2V14C4 15.1 4.9 16 6 16H15C16.1 16 17 15.1 17 14ZM15 14H6V2H15V14Z" fill="black" fillOpacity="0.3"/>
                         </svg>
 
                     </span>
