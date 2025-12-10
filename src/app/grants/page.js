@@ -42,16 +42,16 @@
 
 //   const address = wallets[0]?.address
 
-//   const today = new Date()
+  const today = new Date()
 
 
 
 //    const activeGrants = grants.filter(grant => {
-//     if(!grant.deadline) return false
-//     if(grant.deadline.toLowerCase() === "ongoing") return true
-//     return new Date(grant.deadline) >= today
+//     if(!grant.endDate) return false
+//     if(grant.endDate.toLowerCase() === "ongoing") return true
+//     return new Date(grant.endDate) >= today
 //    })
-//    const expiredGrants = grants.filter(grant => new Date(grant.deadline) < today)
+//    const expiredGrants = grants.filter(grant => new Date(grant.endDate) < today)
   
 
 
@@ -456,7 +456,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `The Arbitrum D.A.O. (Domain Allocator Offering) grant program is a 1 year program divided in five Domains, aimed to be the entry point of grants in the Arbitrum ecosystem.`,
       amount: "$1.5M",
       date: "March, 2026",
-      deadline: "March, 2026",
+      endDate: "March, 2026",
       label: "Apply",
       link : "https://arbitrumdaogrants.notion.site/landing",
     },
@@ -468,7 +468,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Support Streams are Celo Protocol Incentives that are distributed Monthly to Protocols on Celo through a stCELO vote in the CeloPG Snapshot space. that enable adoption and remain uncrackable.`,
       amount: "150K CELO",
       date: "End- Jan 31, 2026",
-      deadline: "Jan 31, 2026",
+      endDate: "Jan 31, 2026",
       label: "Apply",
       link : "https://app.charmverse.io/celopg/celo-support-streams-08274005568032872",
     },
@@ -479,7 +479,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Apply for the celo builder fund to receive an investment of $25k per project with the potential for additional funding from verda ventures.`,
       amount: "25k cUSD",
       date: "End- Dec 31, 2025",
-      deadline: "Dec 31, 2025",
+      endDate: "Dec 31, 2025",
       label: "Apply",
       link : "https://www.celopg.eco/programs/celo-builder-fund",
     },
@@ -491,7 +491,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Mini App Mondays is a weekly showcase designed to highlight the most exciting mini apps on Celo. Each week, one app will be featured on Farcaster.`,
       amount: "1k CELO",
       date: "End- Dec 29, 2025",
-      deadline: "Dec 29, 2025",
+      endDate: "Dec 29, 2025",
       label: "Apply",
       link : "https://www.celopg.eco/programs/mini-app-mondays",
     },
@@ -503,7 +503,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `A fully onchain reward program offering a streamlined and transparent system to rewards apps based on the gas fees their users generate, reinforcing long-term network growth.`,
       amount: "250K CELO",
       date: "End- Dec 16, 2025",
-      deadline: "Dec 16, 2025",
+      endDate: "Dec 16, 2025",
       label: "Apply",
       link : "https://www.celopg.eco/programs/proof-of-impact-s1",
     },
@@ -515,7 +515,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Empowering local hubs to channel funding through local grant programs into community activities, showcasing Ethereum as practical infrastructure.`,
       amount: "$ 125k",
       date: "End- March 1, 2026",
-      deadline: "March 1, 2026",
+      endDate: "March 1, 2026",
       label: "Apply",
       link : "https://app.karmahq.xyz/localism-fund/programs/975",
     },
@@ -526,7 +526,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `This initiative provide hands-on support to founders at the early stage of their startup journey whether you need technical guidance or growth strategies to take your product to the next level.`,
       amount: null,
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://docs.google.com/forms/d/e/1FAIpQLSezQFvA4AtKz4i6mT_m4knOPFkxxD8PNqFrX9TvK2pBv-Vdow/viewform",
     },
@@ -537,7 +537,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `The Base Ecosystem Fund will invest in and support early stage projects (pre-seed to seed) building on Base.`,
       amount: null,
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform",
     },
@@ -547,7 +547,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Starknet Grants enable builders, empower vibrant communities, increase adoption and make the Starknet ecosystem more open and accessible for everyone.`,
       amount: null,
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://www.starknet.io/grants/",
     },
@@ -557,7 +557,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `A long-term funding initiative designed to support and enrich the blockchain community.`,
       amount: "$39 k",
       date: "End- Dec 31, 2025",
-      deadline: "Dec 31, 2025",
+      endDate: "Dec 31, 2025",
       label: "Apply",
       link : "https://docs.space.id/domain-and-payment-id/domain-programs/space-id-grant-program",
     },
@@ -567,7 +567,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `This Program aims to grow the $X1 network by funding projects that enhance both dev tools and UX on its low-energy, EVM-compatible blockchain.`,
       amount: "$5m",
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://grant.x1ecochain.com/",
     },
@@ -577,7 +577,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Funding Software Development and Research Efforts related to Polkadot and Kusama.`,
       amount: null,
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://grants.web3.foundation/",
     },
@@ -587,7 +587,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
       amount: "15k Celo",
       date: "End- Oct 31, 2025",
-      deadline: "Oct 31, 2025",
+      endDate: "Oct 31, 2025",
       label: "Apply",
       link : "https://x.com/CeloDevs/status/1975456087299268656",
     },
@@ -597,7 +597,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `SUP is the governance token of Superfluid DAO Distributed to users of ecosystem applications via Streaming Programmatic Rewards.`,
       amount: null,
       date: "End- Oct 17, 2025",
-      deadline: "Oct 17, 2025",
+      endDate: "Oct 17, 2025",
       label: "Apply",
       link : "https://superfluidorg.notion.site/sup-for-growth",
     },
@@ -607,7 +607,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `The Kaito ARB Grant will distribute 700,000 ARB across 150 creators, with grants split into three tiers: the Top 10, the Next 40, and the Remaining 100.`,
       amount: "700k ARB",
       date: "End- Dec 31, 2025",
-      deadline: "Dec 31, 2025",
+      endDate: "Dec 31, 2025",
       label: "Apply",
       link : "https://blog.arbitrum.io/arbitrum-x-kaito-season-2/",
     },
@@ -617,7 +617,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Destino Devconnect is a local grants round focused on supporting events and initiatives that help bring Argentina and the broader Latam region onchain.`,
       amount: null,
       date: "End- Nov 22, 2025",
-      deadline: "Nov 22, 2025",
+      endDate: "Nov 22, 2025",
       label: "Apply",
       link : "https://esp.ethereum.foundation/devcon-grants",
     },
@@ -627,7 +627,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `This Grant Program is designed to offer teams, individuals, and creators non-dilutive funding to further accelerate the growth of the Gear ecosystem.`,
       amount: null,
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://vara.network/grants",
     },
@@ -637,7 +637,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Galxe Starboard, an interactive leaderboard that distributes $100,000 in X1 Coins to standout contributors.`,
       amount: "$ 100k",
       date: "End- Nov 25, 2025",
-      deadline: "Nov 25, 2025",
+      endDate: "Nov 25, 2025",
       label: "Details",
       link : "https://medium.com/@X1_EcoChain/x1-ecochain -launches-galxe-starboard-100-000-community-rewards-09c1d8325015",
     },
@@ -647,7 +647,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Equip founders in Africa, Southeast Asia, and Latin America with the capital and networks to compete on a global stage.`,
       amount: "$15M",
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://lisk.com/fund/",
     },
@@ -657,7 +657,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `PG Builder Grants program is designed to support foundational public goods in the Ethereum and Web3 ecosystems. `,
       amount: "50k USDC",
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://builder.ensgrants.xyz/"
     },
@@ -669,7 +669,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `This round is designed to support projects that strengthen Ethereum’s core infrastructure.`,
       amount: "$200k",
       date: "End- Oct 17, 2025",
-      deadline: "Oct 17, 2025",
+      endDate: "Oct 17, 2025",
       label: "Apply",
       link : "https://giveth.typeform.com/gg24-dti?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
     },
@@ -681,7 +681,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `This round is designed to support projects that strengthen Ethereum’s multi-chain ecosystem by building open standards.`,
       amount: "$100k",
       date: "End- Oct 17, 2025",
-      deadline: "Oct 17, 2025",
+      endDate: "Oct 17, 2025",
       label: "Apply",
       link : "https://giveth.typeform.com/gg24-isia?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
     },
@@ -692,7 +692,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `These are small grants for builders with early ideas or initial prototypes, hacking away on nights and weekends. `,
       amount: "5 ETH",
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       label: "Apply",
       link : "https://docs.google.com/forms/d/e/1FAIpQLSfXuEzmiAzRhie_z9raFCF1BXweXgVt18o-DvBuRRgyTygL2A/viewform"
     },
@@ -701,7 +701,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       title: "Polygon AI ",
       amount: "50k Pol",
       date: "End- Nov 23, 2025",
-      deadline: "Nov 23, 2025",
+      endDate: "Nov 23, 2025",
       label: "Apply",
       link: "https://www.encodeclub.com/programmes/polygon-grants",
       image: "/grant-round-images/polygon.jpg",
@@ -712,7 +712,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       title: "Scroll Grants",
       amount: "312k SCR",
       date: "End- Dec 19, 2025",
-      deadline: "Dec 19, 2025",
+      endDate: "Dec 19, 2025",
       link: "https://tally.so/r/mVrrPj",
       image: "/grant-round-images/feature.jpg",
       label: "Apply",
@@ -724,7 +724,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       title: "Avalanche Grants & Programs",
       amount: "$250m",
       date: "Ongoing",
-      deadline: "Ongoing",
+      endDate: "Ongoing",
       link: "https://build.avax.network/grants#programs",
       image: "/grant-round-images/ava.png",
       label: "Apply",
@@ -735,7 +735,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       title: "Incubator program",
       amount: "$ 9k",
       date: "End- Oct 7, 2025",
-      deadline: "Oct 7, 2025",
+      endDate: "Oct 7, 2025",
       label: "Apply",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSffpxsP1KZnvd3mx41wQYNCoTQ9_Jphql3TwnZ3RluwXXnI2A/viewform",
       image: "/grant-round-images/celo.png",
@@ -748,7 +748,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
       amount: "$ 250k",
       date: "End- Oct 8, 2025",
-      deadline: "Oct 8, 2025",
+      endDate: "Oct 8, 2025",
       label: "Apply",
       link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
     },
@@ -759,7 +759,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Funding the journalists, storytellers, content creators, and others who’ve helped make Ethereum legible.`,
       amount: "$1m",
       date: "End- Aug 27, 2025",
-      deadline: "Aug 27, 2025",
+      endDate: "Aug 27, 2025",
       label: "Apply",
       link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
     },
@@ -769,7 +769,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
       amount: "$ 100k",
       date: "End- Jul 31, 2026",
-      deadline: "Jul 31, 2026",
+      endDate: "Jul 31, 2026",
       label: "Apply",
       link: "https://portals.thrive.xyz/"
     },
@@ -779,7 +779,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `A Program to nurture a community of developers and creators within the Lisk ecosystem.`,
       amount: "$ 80k",
       date: "End- Oct, 2025",
-      deadline: "Oct, 2025",
+      endDate: "Oct, 2025",
       label: "Apply",
       link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
     },
@@ -789,7 +789,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
       amount: "15k Celo",
       date: "End- Aug 29, 2025",
-      deadline: "Aug 29, 2025",
+      endDate: "Aug 29, 2025",
       label: "Apply",
       link: "https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship"
     },
@@ -799,7 +799,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Thrive Horizen funds the new era of privacy first apps on Base.`,
       amount: "$ 100k",
       date: "End-  Aug 13, 2026",
-      deadline: "Aug 13, 2026",
+      endDate: "Aug 13, 2026",
       label: "Apply",
       link: "https://horizen.thrive.xyz/"
     },
@@ -809,7 +809,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Active Gardens Funding Pools on Celo network are eligible for streaming matching funds.`,
       amount: "3k Celo",
       date: "End-  Nov 5, 2025",
-      deadline: "Nov 5, 2025",
+      endDate: "Nov 5, 2025",
       label: "Apply",
       link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
     },
@@ -819,7 +819,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
       amount: "6.29M OP",
       date: "End- Nov 12, 2025",
-      deadline: "Nov 12, 2025",
+      endDate: "Nov 12, 2025",
       label: "Apply",
       link: "https://www.opgrants.io/"
     },
@@ -829,7 +829,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Grant for innovators building new projects natively on Boba. Supports early-stage teams developing real-world applications.`,
       amount: "1m Boba",
       date: "End- Sep 12, 2025",
-      deadline: "Sep 12, 2025",
+      endDate: "Sep 12, 2025",
       label: "Apply",
       link: "https://app.thrive.xyz/programs/23"
     },
@@ -839,7 +839,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Hedera is allocating 4M HBAR to support projects from other ecosystems looking to deploy on Hedera`,
       amount: "4m hbar",
       date: "End- Dec 31, 2025",
-      deadline: "Dec 31, 2025",
+      endDate: "Dec 31, 2025",
       label: "Apply",
       link: "https://app.thrive.xyz/programs/16"
     },
@@ -849,7 +849,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `For existing projects from other ecosystems looking to deploy or expand on Boba. This track supports teams ready to scale.`,
       amount: "1m Boba",
       date: "End- Sep 12, 2025",
-      deadline: "Sep 12, 2025",
+      endDate: "Sep 12, 2025",
       label: "Apply",
       link: "https://app.thrive.xyz/programs/2"
     },
@@ -860,7 +860,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       amount: "75m Swell",
       date: "End-Aug 31, 2025",
       label: "Apply",
-      deadline: "Aug 31, 2025",
+      endDate: "Aug 31, 2025",
       link: "https://app.thrive.xyz/programs/12"
     },
     {
@@ -869,7 +869,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Allocating up to 3,000,000 OP in funding for approved projects driving transaction volume on Base.`,
       amount: "3m OP",
       date: "End- Aug 29, 2025",
-      deadline: "Aug 29, 2025",
+      endDate: "Aug 29, 2025",
       label: "Apply",
       link: "https://app.thrive.xyz/programs/31"
     },
@@ -880,7 +880,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       amount: "$40K",
       date: "End- Sep 5, 2025",
       label: "Apply",
-      deadline: "Sep 5, 2025",
+      endDate: "Sep 5, 2025",
       link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
     },
     {
@@ -889,7 +889,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
       desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
       amount: "250k cUSD",
       date: "End-  Dec 10, 2025",
-      deadline: "Dec 10, 2025",
+      endDate: "Dec 10, 2025",
       label: "Apply",
       link: "https://charmverse.prezenti.xyz/invite/f90c14"
     },
@@ -908,13 +908,49 @@ export default function LayOut() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const grantsPerPage = 6;
 
-  const displayedGrants = grantsData.slice(0, currentPage * grantsPerPage);
+
+  const sorted = sortGrantsWithStatusPriority(grantsData);
+
+  const displayedGrants = sorted.slice(0, currentPage * grantsPerPage);
+
+
+  
 
   const loadMore = () => {
     setCurrentPage(prev => prev + 1);
   };
 
+
+  function sortGrantsWithStatusPriority(grants) {
+  const now = new Date();
+
+  // compute status and keep everything together
+  const withStatus = grants.map(grant => {
+    const status = new Date(grant.endDate) >= now ? "open" : "ended";
+    return { ...grant, status };
+  });
+
+  return withStatus.sort((a, b) => {
+    // 1️⃣ Sort by status: open first
+    if (a.status !== b.status) {
+      return a.status === "open" ? -1 : 1;
+    }
+
+    // 2️⃣ Then sort by endDate within the same status
+    return new Date(a.endDate) - new Date(b.endDate);
+  });
+}
+
+
+
+
+
+
+
   const [isHidden, setIsHidden] = useState(false)
+
+
+  
 
   return (
     <div className="bg-white min-h-screen relative">
@@ -964,8 +1000,8 @@ export default function LayOut() {
                 <GrantCard
                   key={grant.desc}
                   title={grant.title}
-                  description={grant.description}
-                  category={grant.category}
+                  description={grant.desc}
+                  category={"ENC"}
                   status={grant.status}
                   amount={grant.amount}
                   logo={grant.image}
