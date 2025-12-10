@@ -61,7 +61,7 @@ export default function GrantCard({
           </span>
 
           {/* Amount Badge */}
-          <span className="inline-flex items-center h-[19px] px-2 bg-emerald-100 border-[0.5px] border-[#198038] rounded-[50px] font-['Inter:Bold',sans-serif] font-bold text-[10px] leading-[20px] text-[#198038]">
+          <span className={`${amount && "inline-flex items-center h-[19px] px-2 bg-emerald-100 border-[0.5px] border-[#198038] rounded-[50px] font-['Inter:Bold',sans-serif] font-bold text-[10px] leading-[20px] text-[#198038]"} `}>
             {amount}
           </span>
         </div>

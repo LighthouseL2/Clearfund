@@ -20,6 +20,7 @@ export default function Sidebar({ isOpen = false, onClose }){
           className="w-40 h-auto"
         /> */}
         <Image 
+          alt="Clearfund Logo" 
           src={"/assets/projectIcon.png"}
           width={170}
           height={20}
@@ -82,6 +83,7 @@ export default function Sidebar({ isOpen = false, onClose }){
       <div className="px-7 py-9 flex items-center justify-between">
        
         <Image 
+          alt="Clearfund Logo" 
           src={"/assets/projectIcon.png"}
           width={140}
           height={100}
@@ -96,8 +98,8 @@ export default function Sidebar({ isOpen = false, onClose }){
       {/* Navigation */}
       <nav className="mt-8">
         <div className="bg-[#eaf9ee] rounded-br-[50px] rounded-tr-[50px] w-[203px]">
-          <a 
-            href="#" 
+          <a
+            href="#"
             className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
             onClick={onClose}
           >
