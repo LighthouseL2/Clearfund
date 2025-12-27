@@ -59,10 +59,10 @@ export function Badge({ children }) {
 
 
 // Apply button
-export function ApplyButton() {
+export function ApplyButton({link, setToggle}) {
   return (
-    <button className="flex items-center justify-center px-8 py-3 rounded-full border-2 border-[#10B981] bg-[#D1FAE5] hover:bg-[#A7F3D0] transition-colors">
-      <span className={`text-[15px] font-bold text-[#059669] ${modernEraFont}`}>Click here to apply</span>
+    <button className="flex items-center justify-center px-8 py-3 rounded-full border-2 border-[#10B981] bg-[#D1FAE5] hover:bg-[#A7F3D0] transition-colors" onClick={() => setToggle(false)}>
+      <a href={link} className={`text-[15px] font-bold text-[#059669] ${modernEraFont}`}>Click here to apply</a>
     </button>
   );
 }
