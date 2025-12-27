@@ -1,4 +1,7 @@
 // import imgImages5 from "../imports/figma:asset/81e4423f33f222c09352ac3d12f03fbff9690375.png";
+import Link from "next/link";
+import { useGrantStore } from "@/store/grantStore";
+import { useRouter } from "next/navigation";
 import { imgImages4 } from "../components/imports/svgImage";
 
 // interface GrantCardProps {
@@ -16,8 +19,13 @@ export default function GrantCard({
   category,
   status,
   amount,
+  displayGrant,
+  index,
   logo,
 }) {
+
+  // const router = useRouter()
+  // const setGrant = useGrantStore((s) => s.setGrant)
   return (
     <div className="bg-white rounded-[10px] border border-[rgba(0,0,0,0.2)] p-6 hover:shadow-lg transition-shadow">
       <div className="flex items-start gap-6 mb-4">
@@ -67,11 +75,13 @@ export default function GrantCard({
         </div>
 
         {/* Details Button */}
-        <button className="flex items-center gap-2 text-[#198038] hover:underline transition-all group flex-shrink-0">
-          <span className="font-['Modern_Era:Bold',sans-serif] text-[14px] leading-[20px]">
+        <button
+          onClick={() => displayGrant()}
+          className="flex items-center gap-2 text-[#198038] hover:underline transition-all group flex-shrink-0">
+          <span className="font-['Modern_Era:Bold',sans-serif] text-[14px] leading-5">
             Details
           </span>
-          <div className="h-[6px] w-[18px] relative">
+          <div className="h-1.5 w-[18px] relative">
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 8">
               <path d="M16 1L19 4M19 4L16 7M19 4H1" stroke="#198038" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
             </svg>

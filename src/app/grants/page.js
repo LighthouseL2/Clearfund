@@ -360,6 +360,11 @@ import GrantCard from '../../components/GrantCard';
 import Pagination from '../../components/Pagination';
 import { Form } from '../../components/Form';
 import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { useGrantStore } from "@/store/grantStore";
+import { useRouter } from "next/navigation";
+import Application from './[id]/page';
+import { CloseIcon, Badge, ApplyButton } from '@/components/overview';
+import { X } from "lucide-react";
 
 
 // Mock data for grants
@@ -906,6 +911,9 @@ export default function LayOut() {
   const { wallets } = useWallets()
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [showDetails, setShowDetails] = useState(false)
+  const router = useRouter()
+  const setGrant = useGrantStore((s) => s.setGrant)
   const grantsPerPage = 6;
 
 
@@ -941,6 +949,9 @@ export default function LayOut() {
   });
 }
 
+function displayGrant () {
+  setShowDetails(true)
+}
 
 
 
@@ -954,13 +965,64 @@ export default function LayOut() {
 
   return (
     <div className="bg-white min-h-screen relative">
+      
+
+      {
+        showDetails && (
+          <div className={`min-h-screen fixed z-50 lg:left-32 w-full flex items-center justify-center p-4 md:p-8 `}>
+      {/* Modal Card */}
+      <div className="relative w-[900px] h-[563px] bg-white rounded-2xl shadow-2xl p-8 md:p-10">
+        {/* Close button - top right */}
+        <div className="absolute top-6 right-6">
+          {/* <CloseIcon /> */}
+          <X className='opacity-80'/>
+        </div>
+
+        {/* Badges */}
+        <div className="flex flex-wrap items-center gap-6 mb-8">
+          <Badge>Direct Grants</Badge>
+          <Badge>Early Stage Startups</Badge>
+          <Badge>Open source project</Badge>
+        </div>
+
+        {/* Overview Section */}
+        <div className="mb-6">
+          <div className="flex items-center gap-2.5 mb-4">
+            <h1 className="text-[24px] font-bold text-black">Overview</h1>
+          </div>
+
+          {/* Description */}
+          <div className="space-y-4 mb-8">
+            <p className="text-[15px] leading-[1.6] text-[#4B5563]">
+              PG Builder Grants program is designed to support foundational public goods in the Ethereum and Web3 ecosystems. The program aims to empower projects that have demonstrated exceptional usefulness and impact for developers and users alike.
+            </p>
+            <p className="text-[15px] leading-[1.6] text-[#4B5563]">
+              By providing significant financial support, we help projects continue to drive innovation and growth within the ecosystem. Whether you&apos;re building infrastructure, developing tools, or creating educational resources, PG Builder Grants offer a pathway to secure the funding you need to make a lasting difference.
+            </p>
+          </div>
+        </div>
+
+        {/* Application Period Section */}
+        <div className="space-y-2">
+          <h2 className="text-[18px] font-bold text-black">Application Period</h2>
+          <div className="flex items-center justify-between">
+            <p className="text-[15px] font-semibold text-[#059669]">Sep 26 - Mar 1, 2026</p>
+            <ApplyButton />
+          </div>
+        </div>
+      </div>
+    </div>
+        )
+      }
+
+
       {/* Sidebar */}
       <Sidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
       
       {/* Main Content */}
       <div className="lg:ml-64 w-full lg:w-auto">
         {/* Mobile Menu Button */}
-        <button 
+        <button
           onClick={() => setIsMobileSidebarOpen(true)}
           className="lg:hidden fixed top-4 left-4 z-40 bg-white p-2 rounded-lg shadow-md"
         >
@@ -994,9 +1056,11 @@ export default function LayOut() {
             {/* Search and Filters */}
             <SearchFilters />
 
+            
+
             {/* Grant Cards Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-              {displayedGrants.map((grant) => (
+              {displayedGrants.map((grant, index) => (
                 <GrantCard
                   key={grant.desc}
                   title={grant.title}
@@ -1005,6 +1069,7 @@ export default function LayOut() {
                   status={grant.status}
                   amount={grant.amount}
                   logo={grant.image}
+                  displayGrant={() => displayGrant()}
                 />
               ))}
             </div>

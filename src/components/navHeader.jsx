@@ -29,7 +29,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
 
 
   return (
-    <nav className="px-[5%] flex justify-between items-end py-3 sticky top-0 z-50 bg-white ">
+    <nav className="px-[5%]  flex justify-between items-end py-3 sticky top-0 z-50 bg-white ">
         <div className="md:w-[150px] w-[100px] relative flex items-center justify-center">
           <Link href="/"><img src="/projectLogo.png" alt="logo" /></Link>
         </div>
