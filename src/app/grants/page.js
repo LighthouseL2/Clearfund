@@ -360,6 +360,11 @@ import GrantCard from '../../components/GrantCard';
 import Pagination from '../../components/Pagination';
 import { Form } from '../../components/Form';
 import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { useGrantStore } from "@/store/grantStore";
+import { useRouter } from "next/navigation";
+import Application from './[id]/page';
+import { CloseIcon, Badge, ApplyButton } from '@/components/overview';
+import { X } from "lucide-react";
 
 
 // Mock data for grants
@@ -906,6 +911,9 @@ export default function LayOut() {
   const { wallets } = useWallets()
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  // const [showDetails, setShowDetails] = useState(false)
+  const router = useRouter()
+  const setGrant = useGrantStore((s) => s.setGrant)
   const grantsPerPage = 6;
 
 
@@ -941,6 +949,9 @@ export default function LayOut() {
   });
 }
 
+// function displayGrant () {
+//   setShowDetails(true)
+// }
 
 
 
@@ -954,13 +965,18 @@ export default function LayOut() {
 
   return (
     <div className="bg-white min-h-screen relative">
+      
+
+      
+
+
       {/* Sidebar */}
       <Sidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
       
       {/* Main Content */}
       <div className="lg:ml-64 w-full lg:w-auto">
         {/* Mobile Menu Button */}
-        <button 
+        <button
           onClick={() => setIsMobileSidebarOpen(true)}
           className="lg:hidden fixed top-4 left-4 z-40 bg-white p-2 rounded-lg shadow-md"
         >
@@ -994,9 +1010,11 @@ export default function LayOut() {
             {/* Search and Filters */}
             <SearchFilters />
 
+            
+
             {/* Grant Cards Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-              {displayedGrants.map((grant) => (
+              {displayedGrants.map((grant, index) => (
                 <GrantCard
                   key={grant.desc}
                   title={grant.title}
@@ -1005,6 +1023,9 @@ export default function LayOut() {
                   status={grant.status}
                   amount={grant.amount}
                   logo={grant.image}
+                  
+                  link={grant.link}
+                  deadline={grant.endDate}
                 />
               ))}
             </div>

@@ -161,7 +161,7 @@ export default function Home() {
 
   return (
 
-    <div className={`bg-white min-h-screen relative min-w-xs ${blur && "blur"}`}>
+    <div className={`bg-white min-h-screen absolute top-5 w-full min-w-xs ${blur && "blur"}`}>
         <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
             setOpenMenu={setOpenMenu} setBlur={setBlur}
         />
