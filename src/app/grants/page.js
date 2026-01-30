@@ -355,16 +355,9 @@
 import { useState } from 'react';
 import Sidebar from '../../components/SideBar2';
 import HeroBanner from '../../components/HeroBanner';
-import SearchFilters from '../../components/SearchFilter';
-import GrantCard from '../../components/GrantCard';
-import Pagination from '../../components/Pagination';
+import AirtableEmbed from '../../components/AirtableEmbed';
 import { Form } from '../../components/Form';
-import { usePrivy, useWallets } from "@privy-io/react-auth";
-import { useGrantStore } from "@/store/grantStore";
-import { useRouter } from "next/navigation";
-import Application from './[id]/page';
-import { CloseIcon, Badge, ApplyButton } from '@/components/overview';
-import { X } from "lucide-react";
+import { useWallets } from "@privy-io/react-auth";
 
 
 // Mock data for grants
@@ -907,61 +900,13 @@ import { X } from "lucide-react";
 // }));
 
 export default function LayOut() {
-
-  const { wallets } = useWallets()
-  const [currentPage, setCurrentPage] = useState(1);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  // const [showDetails, setShowDetails] = useState(false)
-  const router = useRouter()
-  const setGrant = useGrantStore((s) => s.setGrant)
-  const grantsPerPage = 6;
+  const [isHidden, setIsHidden] = useState(false);
+
+  // Get Airtable embed URL from environment variable
+  const AIRTABLE_EMBED_URL = process.env.NEXT_PUBLIC_AIRTABLE_GRANTS_EMBED_URL;
 
 
-  const sorted = sortGrantsWithStatusPriority(grantsData);
-
-  const displayedGrants = sorted.slice(0, currentPage * grantsPerPage);
-
-
-  
-
-  const loadMore = () => {
-    setCurrentPage(prev => prev + 1);
-  };
-
-
-  function sortGrantsWithStatusPriority(grants) {
-  const now = new Date();
-
-  // compute status and keep everything together
-  const withStatus = grants.map(grant => {
-    const status = new Date(grant.endDate) >= now ? "open" : "ended";
-    return { ...grant, status };
-  });
-
-  return withStatus.sort((a, b) => {
-    // 1️⃣ Sort by status: open first
-    if (a.status !== b.status) {
-      return a.status === "open" ? -1 : 1;
-    }
-
-    // 2️⃣ Then sort by endDate within the same status
-    return new Date(a.endDate) - new Date(b.endDate);
-  });
-}
-
-// function displayGrant () {
-//   setShowDetails(true)
-// }
-
-
-
-
-
-
-  const [isHidden, setIsHidden] = useState(false)
-
-
-  
 
   return (
     <div className="bg-white min-h-screen relative">
@@ -1007,36 +952,10 @@ export default function LayOut() {
               </button>
             </div>
 
-            {/* Search and Filters */}
-            <SearchFilters />
-
-            
-
-            {/* Grant Cards Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-              {displayedGrants.map((grant, index) => (
-                <GrantCard
-                  key={grant.desc}
-                  title={grant.title}
-                  description={grant.desc}
-                  category={"ENC"}
-                  status={grant.status}
-                  amount={grant.amount}
-                  logo={grant.image}
-                  
-                  link={grant.link}
-                  deadline={grant.endDate}
-                />
-              ))}
-            </div>
-
-            {/* Pagination */}
-            <Pagination
-              currentPage={currentPage}
-              totalPages={Math.ceil(grantsData.length / grantsPerPage)}
-              totalGrants={grantsData.length}
-              grantsPerPage={grantsPerPage}
-              onPageChange={loadMore}
+            {/* Airtable Embed - Replaces Search, Filters, Grant Cards, and Pagination */}
+            <AirtableEmbed
+              embedUrl={AIRTABLE_EMBED_URL}
+              height="1000px"
             />
           </div>
         </div>
