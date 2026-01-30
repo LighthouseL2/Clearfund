@@ -6,19 +6,10 @@ import NavHeader from "@/components/navHeader";
 import StatSection from "@/components/stats";
 import SliderLogos from "@/components/slider";
 import DiscoverBox from "@/components/discover";
-import GrantBox from "@/components/grantBox";
 import Footer from "@/components/Footer";
-import RecentPost from "@/components/recentPost";
-import FaqSection from "@/components/faq";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import MenuDropdown from "@/components/menuDropdown";
-import Image from "next/image";
-import { LoadingSlide } from "@/components/LoaderSlider";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useAccount, useChainId } from 'wagmi';
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import GrantRoundCard from "@/components/GrantRoundCard";
 
 
 
@@ -79,12 +70,7 @@ export default function Home() {
     const [open, setOpen] = useState(true)
     const [openMenu, setOpenMenu] = useState(false)
     const [blur, setBlur] = useState(false)
-    // const [loading, setLoading] = useState(false)
-    // const pathname = usePathname()
     const [modalOpen, setModalOpen] = useState(false)
-    // const route = useSearchParams().get("route")
-    const router = useRouter()
-    const [redirected, setRedirected] = useState(true)
 
 
     // const { isConnected, account } = useAccount()
@@ -258,7 +244,7 @@ export default function Home() {
             </Link>
         </div> */}
 
-        <RecentPost />
+        {/* <RecentPost /> */}
 
         {/* <FaqSection /> */}
 
