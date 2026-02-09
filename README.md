@@ -23,13 +23,9 @@ ClearFund addresses the fragmented and inefficient experience builders and creat
   - Lucide React icons
 - **Web3 Integration**:
   - Wagmi 2.16.9
-  - RainbowKit 2.2.8
-  - Viem 2.37.1
   - Privy 2.0.0
 - **State Management**: Redux Toolkit 2.8.2
-- **Data Fetching**: TanStack Query 5.85.9
-- **Authentication**: Privy, Firebase
-- **Database**: Firebase Firestore, Mongoose
+- **Authentication**: Privy
 - **Other**:
   - Embla Carousel
   - Ethers.js 6.15.0
