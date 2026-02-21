@@ -5,7 +5,7 @@ ClearFund addresses the fragmented and inefficient experience builders and creat
 ## 🌟 Features
 
 - **Unified Grant Dashboard**: Discover active grants and funding opportunities from multiple Web3 platforms
-- **Real-time Updates**: Stay updated with the latest funding programs and opportunities
+- **GoodCollective**: A community-driven Gooddollar initiative that channels donations into meaningful impact.
 - **Multi-chain Support**: Explore opportunities across various blockchain ecosystems (Celo, Ethereum, Polygon, Optimism, etc.)
 - **Past Grant Data**: Access historical grant data for research and analysis
 - **Wallet Integration**: Connect with multiple wallet providers (MetaMask, WalletConnect, Coinbase Wallet)
