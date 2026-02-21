@@ -46,10 +46,10 @@ export default function Sidebar({ isOpen = false, onClose }){
           href="archive" 
           className="flex items-center gap-4 px-8 py-6 text-[#39b54a] mt-8"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 25 26">
-            <path d={svgPaths.p1da46600} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-            <path d={svgPaths.p2f3cba00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-            <path d={svgPaths.p39240cc0} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 26">
+            <path d={svgPaths.pc466180} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
+            <path d={svgPaths.p12c72500} stroke="#39B54A" strokeWidth="1.5" />
+            <path d={svgPaths.p22093f00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
           </svg>
           <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Archive</span>
         </a>
@@ -58,11 +58,12 @@ export default function Sidebar({ isOpen = false, onClose }){
           href="donate" 
           className="flex items-center gap-4 px-8 py-6 text-[#39b54a] mt-8"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 26">
-            <path d={svgPaths.pc466180} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
-            <path d={svgPaths.p12c72500} stroke="#39B54A" strokeWidth="1.5" />
-            <path d={svgPaths.p22093f00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+           <svg className="w-6 h-6" fill="none" viewBox="0 0 25 26">
+            <path d={svgPaths.p1da46600} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+            <path d={svgPaths.p2f3cba00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+            <path d={svgPaths.p39240cc0} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
           </svg>
+        
           <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Donate</span>
         </a>
       </nav>
