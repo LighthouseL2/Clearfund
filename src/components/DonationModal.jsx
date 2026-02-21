@@ -2,8 +2,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const currencies = [
-    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4, bg: "bg-[#EFF6FF]", hover: "hover:bg-[#EFF6FF", selected: "bg-[#EFF6FF]" },
-    { name: "Celo", symbol: "CELO", icon: "/donate-icons/celo-icon.svg", balance: 3.78, bg: "bg-white", hover: "hover:bg-[#EFF6FF", selected: "bg-white" },
+    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4, bg: "bg-[#EFF6FF]", hover: "hover:bg-[#c2ede0]", selected: "bg-[#95EED8]", border: "border border-[#198038]/20"  },
+    { name: "Celo", symbol: "CELO", icon: "/donate-icons/celo-icon.svg", balance: 3.78, bg: "bg-white", },
 ];
 export default function DonationModal({ onClose }) {
     const [selectedCurrency, setSelectedCurrency] = useState(null);
@@ -79,7 +79,7 @@ export default function DonationModal({ onClose }) {
                                 const val = e.target.value;
                                 if (/^\d*\.?\d*$/.test(val)) setAmount(val);
                             }}
-                            className="flex-1 bg-transparent px-3 py-4.5 text-sm focus:outline-none"
+                            className="flex-1 bg-transparent px-3.5 py-4.5 text-sm focus:outline-none text-right"
                         />
                     </div>
 
@@ -90,9 +90,9 @@ export default function DonationModal({ onClose }) {
                                 <div
                                     key={currency.name}
                                     onClick={() => handleSelectCurrency(currency)}
-                                    className={`flex items-center gap-3 px-3 py-3 cursor-pointer border bored-[1px] border-[#198038]/20 rounded-lg transition-colors ${selectedCurrency?.name === currency.name
-                                        ? currency.selected
-                                        : `${currency.bg} ${currency.hover}`
+                                    className={`flex items-center gap-3 px-3 py-3 cursor-pointer ${currency.border} rounded-lg transition-colors ${selectedCurrency?.name === currency.name
+                                            ? currency.selected
+                                            : `${currency.bg} ${currency.hover}`
                                         }`}
                                 >
                                     <img src={currency.icon} alt={currency.name} className="w-8 h-8" />
@@ -104,7 +104,7 @@ export default function DonationModal({ onClose }) {
                     )}
                 </div>
 
-              
+
 
                 {/* Confirm Button */}
                 <button
