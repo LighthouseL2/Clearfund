@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const currencies = [
-    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4, bg: "bg-[#EFF6FF]", hover: "hover:bg-[#c2ede0]", selected: "bg-[#95EED8]", border: "border border-[#198038]/20"  },
+    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4, bg: "bg-[#EFF6FF]", hover: "hover:bg-[#c2ede0]", selected: "bg-[#95EED8]", border: "border border-[#198038]/20" },
     { name: "Celo", symbol: "CELO", icon: "/donate-icons/celo-icon.svg", balance: 3.78, bg: "bg-white", },
 ];
 export default function DonationModal({ onClose }) {
@@ -79,7 +79,7 @@ export default function DonationModal({ onClose }) {
                                 const val = e.target.value;
                                 if (/^\d*\.?\d*$/.test(val)) setAmount(val);
                             }}
-                            className="flex-1 bg-transparent px-3.5 py-4.5 text-sm focus:outline-none text-right"
+                            className="flex-1 bg-transparent px-1 py-4.5 text-sm focus:outline-none text-right"
                         />
                     </div>
 
@@ -91,8 +91,8 @@ export default function DonationModal({ onClose }) {
                                     key={currency.name}
                                     onClick={() => handleSelectCurrency(currency)}
                                     className={`flex items-center gap-3 px-3 py-3 cursor-pointer ${currency.border} rounded-lg transition-colors ${selectedCurrency?.name === currency.name
-                                            ? currency.selected
-                                            : `${currency.bg} ${currency.hover}`
+                                        ? currency.selected
+                                        : `${currency.bg} ${currency.hover}`
                                         }`}
                                 >
                                     <img src={currency.icon} alt={currency.name} className="w-8 h-8" />
