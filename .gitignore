@@ -33,6 +33,7 @@ yarn-error.log*
 .env*.local
 .env.local
 .env*.local
+.env*.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -59,6 +60,8 @@ next-env.d.ts
 # OS
 .DS_Store
 .DS_Store?
+.DS_Store
+**/.DS_Store
 ._*
 .Spotlight-V100
 .Trashes
