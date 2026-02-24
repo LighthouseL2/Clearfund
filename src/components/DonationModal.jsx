@@ -2,8 +2,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const currencies = [
-    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4, bg: "bg-[#EFF6FF]", hover: "hover:bg-[#c2ede0]", selected: "bg-[#95EED8]", border: "border border-[#198038]/20" },
-    { name: "Celo", symbol: "CELO", icon: "/donate-icons/celo-icon.svg", balance: 3.78, bg: "bg-white", },
+    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4,  bg: "bg-white", hover: "hover:bg-[#EFF6FF]/50", selected: "bg-[#EFF6FF]", border: "border border-[#198038]/20" },
+    { name: "Celo", symbol: "CELO", icon: "/donate-icons/celo-icon.svg", balance: 3.78,  bg: "bg-white",  hover: "hover:bg-[#EFF6FF]/50", selected: "bg-[#EFF6FF]", border: "border border-[#198038]/20"},
 ];
 export default function DonationModal({ onClose }) {
     const [selectedCurrency, setSelectedCurrency] = useState(null);
@@ -34,7 +34,7 @@ export default function DonationModal({ onClose }) {
         <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 text-black">
             <div className="bg-white rounded-2xl shadow-xl w-full max-w-[418px] min-h-[350px] p-6 relative">
 
-                {/* Close button */}
+               
                 <button
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg leading-none"
                     onClick={onClose}
@@ -42,17 +42,17 @@ export default function DonationModal({ onClose }) {
                     ✕
                 </button>
 
-                {/* Title */}
+    
                 <h2 className="text-lg font-semibold mb-1">How much?</h2>
                 <p className="text-sm text-gray-500 mb-5">
                     Donate using G$ token on Celo
                 </p>
 
-                {/* Input Row */}
+               
                 <div className="relative mb-4" ref={dropdownRef}>
                     <div className="flex items-center border-[1px] border-[#E2EAFF] rounded-lg bg-gray-50 focus-within:ring-1 focus-within:ring-[#D9D9D9] focus-within:border-gray-200 overflow-visible">
 
-                        {/* Token Selector */}
+           
                         <button
                             onClick={() => setDropdownOpen((prev) => !prev)}
                             className="flex items-center justify-between px-3.5 mx-1 py-3.5 bg-[#DBF5EF] rounded-lg shrink-0 gap-6"
@@ -70,7 +70,7 @@ export default function DonationModal({ onClose }) {
                             </svg>
                         </button>
 
-                        {/* Amount Input */}
+       
                         <input
                             inputMode="decimal"
                             placeholder="0.00"
@@ -83,7 +83,7 @@ export default function DonationModal({ onClose }) {
                         />
                     </div>
 
-                    {/* Dropdown */}
+                  
                     {dropdownOpen && (
                         <div className="flex flex-col gap-2 p-1 mt-1">
                             {currencies.map((currency) => (
@@ -104,9 +104,6 @@ export default function DonationModal({ onClose }) {
                     )}
                 </div>
 
-
-
-                {/* Confirm Button */}
                 <button
                     disabled={!isConfirmEnabled}
                     className={`w-full py-2.5 rounded-full text-sm font-semibold transition-all duration-200 mt-2.5 mb-3.5 ${isConfirmEnabled
@@ -117,7 +114,7 @@ export default function DonationModal({ onClose }) {
                     Confirm
                 </button>
 
-                {/* Info Text */}
+              
                 <div className="border border-[#D9D9D9] px-4 py-4 my-2 rounded-lg">
                     <h1 className="mb-2 text-sm font-medium text-black leading-tight">
                         You are about to make a donation.

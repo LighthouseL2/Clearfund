@@ -11,6 +11,7 @@ import ModalConnect from "@/components/modalConnect"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import DonationModal from "@/components/DonationModal";
+import DonationHistory from "@/components/DonationHistory";
 
 import { usePathname } from "next/navigation";
 import { shortAddress } from "@/components/userDetails";
@@ -278,6 +279,7 @@ const GoodCollective = () => {
                         {modalOpen && <DonationModal onClose={() => setModalOpen(false)} />}
                     </section>
                 </main>
+                <DonationHistory />
             </main>
         </div>
     )
