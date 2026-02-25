@@ -17,7 +17,7 @@ function ExternalLinkIcon() {
 export default function DonationHistory() {
     return (
         <div className="w-full max-w-3xl px-8 py-6">
-            <h2 className="text-[30px] font-bold inter text-[#082553] mb-5">Donation History</h2>
+      <h2 className="text-xl md:text-2xl lg:text-[30px] font-bold inter text-[#082553] mb-7">Donation History</h2>
 
             <div className="flex flex-col gap-6">
                 {donations.map((donation, i) => (
