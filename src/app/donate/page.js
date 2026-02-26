@@ -78,6 +78,14 @@ const GoodCollective = () => {
     const router = useRouter()
     const address = wallets[0]?.address
     const [modalOpen, setModalOpen] = useState(false)
+    const [pendingDonation, setPendingDonation] = useState(false)
+
+    useEffect(() => {
+        if (ready && authenticated && pendingDonation) {
+            setModalOpen(true);
+            setPendingDonation(false);
+        }
+    }, [ready, authenticated, pendingDonation]);
 
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative ">
@@ -259,6 +267,7 @@ const GoodCollective = () => {
                                             <button
                                                 onClick={() => {
                                                     if (!authenticated) {
+                                                        setPendingDonation(true);
                                                         login();
                                                     } else {
                                                         setModalOpen(true);
