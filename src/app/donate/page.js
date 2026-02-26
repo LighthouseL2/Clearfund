@@ -231,7 +231,7 @@ const GoodCollective = () => {
                                 GoodCollective
                             </h1>
                             <p className="font-['Inter:Regular',sans-serif] font-normal text-[18px] lg:text-[20px] leading-relaxed">
-                                GoodCollective is a community-driven Gooddollar initiative that channels donations into meaningful impact. By donating, you're not just giving, you're joining a collective effort to support people in need.
+                                GoodCollective is a community-driven Gooddollar initiative that channels donations into meaningful impact. By donating, you&apos;re not just giving, you&apos;re joining a collective effort to support people in need.
                             </p>
                         </div>
 
