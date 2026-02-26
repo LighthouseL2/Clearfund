@@ -12,7 +12,6 @@ export default function AirtableEmbed({ embedUrl, height = "1000px" }) {
           border: '1px solid #ccc',
           borderRadius: '8px'
         }}
-        onMouseWheel=""
       />
     </div>
   );

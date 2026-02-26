@@ -42,7 +42,7 @@
 
 //   const address = wallets[0]?.address
 
-  const today = new Date()
+const today = new Date()
 
 
 
@@ -52,7 +52,7 @@
 //     return new Date(grant.endDate) >= today
 //    })
 //    const expiredGrants = grants.filter(grant => new Date(grant.endDate) < today)
-  
+
 
 
 
@@ -99,14 +99,14 @@
 //                 </div>
 //                 <p className="text-[14px] text-black/50 mt-2">{shortAddress(address)}</p>
 //               </div>
-             
+
 //             }
 //             </div>
 
 
 
 //             <nav className="space-y-3 my-6 font-sans">
-            
+
 
 
 //             <Link href="/grants">
@@ -120,7 +120,7 @@
 //                   }`}
 //               >
 //                 <span className="flex items-center gap-3">
-                  
+
 //                   <span>
 //                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 //                     <path d="M16.4286 1.25714C15.5971 1.08743 14.74 1.00171 13.8571 1C6.75614 1 1 6.74971 1 13.843C1 20.9363 6.75614 26.686 13.8571 26.686C20.9581 26.686 26.7143 20.9363 26.7143 13.843C26.7126 12.9627 26.6269 12.1064 26.4571 11.2741" stroke="#39B54A" stroke-width="1.5" stroke-linecap="round"/>
@@ -130,7 +130,7 @@
 //                   </span>
 //                   Grants
 //                 </span>
-                
+
 //               </button>
 //             </Link>
 
@@ -145,14 +145,14 @@
 //               >
 //                 <span className="flex items-center gap-3">
 
-                  
+
 //                   <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 //                   <path d="M9.35714 24.7857H5.5C4.30653 24.7857 3.16193 24.3116 2.31802 23.4677C1.47411 22.6238 1 21.4792 1 20.2857V5.5C1 4.30653 1.47411 3.16193 2.31802 2.31802C3.16193 1.47411 4.30653 1 5.5 1H17.7143C18.9078 1 20.0524 1.47411 20.8963 2.31802C21.7402 3.16193 22.2143 4.30653 22.2143 5.5V8.07143" stroke="#39B54A" stroke-width="1.5" stroke-linecap="round"/>
 //                   <path d="M6.78564 1H16.4285V4.21429C16.4285 4.89627 16.1576 5.55032 15.6753 6.03256C15.1931 6.5148 14.5391 6.78571 13.8571 6.78571H9.35707C8.67509 6.78571 8.02104 6.5148 7.5388 6.03256C7.05656 5.55032 6.78564 4.89627 6.78564 4.21429V1Z" stroke="#39B54A" stroke-width="1.5"/>
 //                   <path d="M12.5713 14.5004C12.5713 13.6479 12.9099 12.8304 13.5127 12.2276C14.1155 11.6248 14.9331 11.2861 15.7856 11.2861H20.2856C21.1381 11.2861 21.9556 11.6248 22.5584 12.2276C23.1612 12.8304 23.4999 13.6479 23.4999 14.5004V21.5718C23.4999 22.4243 23.1612 23.2419 22.5584 23.8447C21.9556 24.4475 21.1381 24.7861 20.2856 24.7861H15.7856C14.9331 24.7861 14.1155 24.4475 13.5127 23.8447C12.9099 23.2419 12.5713 22.4243 12.5713 21.5718V14.5004Z" stroke="#39B54A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 //                   </svg>
 
-                  
+
 
 //                   Archive
 //                 </span>
@@ -178,17 +178,17 @@
 // </svg>
 
 //                   </span>
-                  
+
 //                   Donate
 //                 </span>
 
-                
+
 //               </button>
 //             </Link>
 
 
-            
-                  
+
+
 //           </nav>
 
 //           <div className="flex gap-3 items-center px-9 absolute bottom-10">
@@ -214,7 +214,7 @@
 //           </div>
 
 //             <main className="flex-1 p-4 md:px-6 md:ml-64">
-                
+
 
 
 //                 <div className="min-h-screen flex flex-col md:flex-row  text-gray-800 relative ">
@@ -255,7 +255,7 @@
 //           </div>
 
 
-          
+
 //           {
 //             grantStatus === "all" ? <GrantRoundCard grants={grants} setToggle={setToggle}/>
 //             : grantStatus === "active" ? <GrantRoundCard grants={activeGrants} setToggle={setToggle}/>
@@ -357,7 +357,9 @@ import Sidebar from '../../components/SideBar2';
 import HeroBanner from '../../components/HeroBanner';
 import AirtableEmbed from '../../components/AirtableEmbed';
 import { Form } from '../../components/Form';
-import { useWallets } from "@privy-io/react-auth";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
+import UserDetails from "../../components/userDetails";
+import ModalConnect from "../../components/modalConnect";
 
 
 // Mock data for grants
@@ -444,454 +446,454 @@ import { useWallets } from "@privy-io/react-auth";
 //   },
 // ];
 
-  const grantsData = [
-    
+const grantsData = [
 
 
-    {
-      image: "/grant-round-images/arb.png",
-      title: "Arb D.A.O Grant Program",
-      desc: `The Arbitrum D.A.O. (Domain Allocator Offering) grant program is a 1 year program divided in five Domains, aimed to be the entry point of grants in the Arbitrum ecosystem.`,
-      amount: "$1.5M",
-      date: "March, 2026",
-      endDate: "March, 2026",
-      label: "Apply",
-      link : "https://arbitrumdaogrants.notion.site/landing",
-    },
+
+  {
+    image: "/grant-round-images/arb.png",
+    title: "Arb D.A.O Grant Program",
+    desc: `The Arbitrum D.A.O. (Domain Allocator Offering) grant program is a 1 year program divided in five Domains, aimed to be the entry point of grants in the Arbitrum ecosystem.`,
+    amount: "$1.5M",
+    date: "March, 2026",
+    endDate: "March, 2026",
+    label: "Apply",
+    link: "https://arbitrumdaogrants.notion.site/landing",
+  },
 
 
-    {
-      image: "/grant-round-images/celoStream.png",
-      title: "Celo Support Streams",
-      desc: `Support Streams are Celo Protocol Incentives that are distributed Monthly to Protocols on Celo through a stCELO vote in the CeloPG Snapshot space. that enable adoption and remain uncrackable.`,
-      amount: "150K CELO",
-      date: "End- Jan 31, 2026",
-      endDate: "Jan 31, 2026",
-      label: "Apply",
-      link : "https://app.charmverse.io/celopg/celo-support-streams-08274005568032872",
-    },
+  {
+    image: "/grant-round-images/celoStream.png",
+    title: "Celo Support Streams",
+    desc: `Support Streams are Celo Protocol Incentives that are distributed Monthly to Protocols on Celo through a stCELO vote in the CeloPG Snapshot space. that enable adoption and remain uncrackable.`,
+    amount: "150K CELO",
+    date: "End- Jan 31, 2026",
+    endDate: "Jan 31, 2026",
+    label: "Apply",
+    link: "https://app.charmverse.io/celopg/celo-support-streams-08274005568032872",
+  },
 
-    {
-      image: "/grant-round-images/builder.jpg",
-      title: "Celo Builder Fund",
-      desc: `Apply for the celo builder fund to receive an investment of $25k per project with the potential for additional funding from verda ventures.`,
-      amount: "25k cUSD",
-      date: "End- Dec 31, 2025",
-      endDate: "Dec 31, 2025",
-      label: "Apply",
-      link : "https://www.celopg.eco/programs/celo-builder-fund",
-    },
-
-
-    {
-      image: "/grant-round-images/miniApp.png",
-      title: "Mini App Mondays",
-      desc: `Mini App Mondays is a weekly showcase designed to highlight the most exciting mini apps on Celo. Each week, one app will be featured on Farcaster.`,
-      amount: "1k CELO",
-      date: "End- Dec 29, 2025",
-      endDate: "Dec 29, 2025",
-      label: "Apply",
-      link : "https://www.celopg.eco/programs/mini-app-mondays",
-    },
+  {
+    image: "/grant-round-images/builder.jpg",
+    title: "Celo Builder Fund",
+    desc: `Apply for the celo builder fund to receive an investment of $25k per project with the potential for additional funding from verda ventures.`,
+    amount: "25k cUSD",
+    date: "End- Dec 31, 2025",
+    endDate: "Dec 31, 2025",
+    label: "Apply",
+    link: "https://www.celopg.eco/programs/celo-builder-fund",
+  },
 
 
-    {
-      image: "/grant-round-images/impact.png",
-      title: "Proof of Impact (S1)",
-      desc: `A fully onchain reward program offering a streamlined and transparent system to rewards apps based on the gas fees their users generate, reinforcing long-term network growth.`,
-      amount: "250K CELO",
-      date: "End- Dec 16, 2025",
-      endDate: "Dec 16, 2025",
-      label: "Apply",
-      link : "https://www.celopg.eco/programs/proof-of-impact-s1",
-    },
+  {
+    image: "/grant-round-images/miniApp.png",
+    title: "Mini App Mondays",
+    desc: `Mini App Mondays is a weekly showcase designed to highlight the most exciting mini apps on Celo. Each week, one app will be featured on Farcaster.`,
+    amount: "1k CELO",
+    date: "End- Dec 29, 2025",
+    endDate: "Dec 29, 2025",
+    label: "Apply",
+    link: "https://www.celopg.eco/programs/mini-app-mondays",
+  },
 
 
-    {
-      image: "/grant-round-images/local.png",
-      title: "Local Grant Programs",
-      desc: `Empowering local hubs to channel funding through local grant programs into community activities, showcasing Ethereum as practical infrastructure.`,
-      amount: "$ 125k",
-      date: "End- March 1, 2026",
-      endDate: "March 1, 2026",
-      label: "Apply",
-      link : "https://app.karmahq.xyz/localism-fund/programs/975",
-    },
-
-    {
-      image: "/grant-round-images/africa.png",
-      title: "Lisk Startup Support ",
-      desc: `This initiative provide hands-on support to founders at the early stage of their startup journey whether you need technical guidance or growth strategies to take your product to the next level.`,
-      amount: null,
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://docs.google.com/forms/d/e/1FAIpQLSezQFvA4AtKz4i6mT_m4knOPFkxxD8PNqFrX9TvK2pBv-Vdow/viewform",
-    },
-
-    {
-      image: "/grant-round-images/baseBuild.png",
-      title: "Base Ecosystem Fund",
-      desc: `The Base Ecosystem Fund will invest in and support early stage projects (pre-seed to seed) building on Base.`,
-      amount: null,
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform",
-    },
-    {
-      image: "/grant-round-images/starknet1.png",
-      title: "Starknet Grants",
-      desc: `Starknet Grants enable builders, empower vibrant communities, increase adoption and make the Starknet ecosystem more open and accessible for everyone.`,
-      amount: null,
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://www.starknet.io/grants/",
-    },
-    {
-      image: "/grant-round-images/space.jpg",
-      title: "SPACE ID Grant Program",
-      desc: `A long-term funding initiative designed to support and enrich the blockchain community.`,
-      amount: "$39 k",
-      date: "End- Dec 31, 2025",
-      endDate: "Dec 31, 2025",
-      label: "Apply",
-      link : "https://docs.space.id/domain-and-payment-id/domain-programs/space-id-grant-program",
-    },
-    {
-      image: "/grant-round-images/xeco.jpg",
-      title: "X1 EcoChain Grants",
-      desc: `This Program aims to grow the $X1 network by funding projects that enhance both dev tools and UX on its low-energy, EVM-compatible blockchain.`,
-      amount: "$5m",
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://grant.x1ecochain.com/",
-    },
-    {
-      image: "/grant-round-images/web3grants.png",
-      title: "Web3 Foundation Grants",
-      desc: `Funding Software Development and Research Efforts related to Polkadot and Kusama.`,
-      amount: null,
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://grants.web3.foundation/",
-    },
-    {
-      image: "/grant-round-images/ship.jpg",
-      title: "Celo-Proof of Ship 9",
-      desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
-      amount: "15k Celo",
-      date: "End- Oct 31, 2025",
-      endDate: "Oct 31, 2025",
-      label: "Apply",
-      link : "https://x.com/CeloDevs/status/1975456087299268656",
-    },
-    {
-      image: "/grant-round-images/sup.jpg",
-      title: "SPR Season 4",
-      desc: `SUP is the governance token of Superfluid DAO Distributed to users of ecosystem applications via Streaming Programmatic Rewards.`,
-      amount: null,
-      date: "End- Oct 17, 2025",
-      endDate: "Oct 17, 2025",
-      label: "Apply",
-      link : "https://superfluidorg.notion.site/sup-for-growth",
-    },
-    {
-      image: "/grant-round-images/yapper.png",
-      title: <span>Arbitrum x Kaito <br />Season 2</span>,
-      desc: `The Kaito ARB Grant will distribute 700,000 ARB across 150 creators, with grants split into three tiers: the Top 10, the Next 40, and the Remaining 100.`,
-      amount: "700k ARB",
-      date: "End- Dec 31, 2025",
-      endDate: "Dec 31, 2025",
-      label: "Apply",
-      link : "https://blog.arbitrum.io/arbitrum-x-kaito-season-2/",
-    },
-    {
-      image: "/grant-round-images/destino.png",
-      title: "Destino Devconnect grants",
-      desc: `Destino Devconnect is a local grants round focused on supporting events and initiatives that help bring Argentina and the broader Latam region onchain.`,
-      amount: null,
-      date: "End- Nov 22, 2025",
-      endDate: "Nov 22, 2025",
-      label: "Apply",
-      link : "https://esp.ethereum.foundation/devcon-grants",
-    },
-    {
-      image: "/grant-round-images/web3grants1.png",
-      title: "Gear Foundation Grants",
-      desc: `This Grant Program is designed to offer teams, individuals, and creators non-dilutive funding to further accelerate the growth of the Gear ecosystem.`,
-      amount: null,
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://vara.network/grants",
-    },
-    {
-      image: "/grant-round-images/ecochain.jpg",
-      title: "X1 EcoChain Rewards",
-      desc: `Galxe Starboard, an interactive leaderboard that distributes $100,000 in X1 Coins to standout contributors.`,
-      amount: "$ 100k",
-      date: "End- Nov 25, 2025",
-      endDate: "Nov 25, 2025",
-      label: "Details",
-      link : "https://medium.com/@X1_EcoChain/x1-ecochain -launches-galxe-starboard-100-000-community-rewards-09c1d8325015",
-    },
-    {
-      image: "/grant-round-images/lisk.png",
-      title: "Lisk EMpower Fund",
-      desc: `Equip founders in Africa, Southeast Asia, and Latin America with the capital and networks to compete on a global stage.`,
-      amount: "$15M",
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://lisk.com/fund/",
-    },
-    {
-      image: "/grant-round-images/internet.jpg",
-      title: "ENS PG Builder Grants",
-      desc: `PG Builder Grants program is designed to support foundational public goods in the Ethereum and Web3 ecosystems. `,
-      amount: "50k USDC",
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://builder.ensgrants.xyz/"
-    },
-
-    {
-      image: "/grant-round-images/gitcoin.png",
-      title: "Gitcoin Grants 24",
-      subTitle: "Developer Tooling & Infra",
-      desc: `This round is designed to support projects that strengthen Ethereum’s core infrastructure.`,
-      amount: "$200k",
-      date: "End- Oct 17, 2025",
-      endDate: "Oct 17, 2025",
-      label: "Apply",
-      link : "https://giveth.typeform.com/gg24-dti?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
-    },
-
-    {
-      image: "/grant-round-images/gitcoin.png",
-      title: "Gitcoin Grants 24",
-      subTitle: "Interop Standards, Infra & Analytics",
-      desc: `This round is designed to support projects that strengthen Ethereum’s multi-chain ecosystem by building open standards.`,
-      amount: "$100k",
-      date: "End- Oct 17, 2025",
-      endDate: "Oct 17, 2025",
-      label: "Apply",
-      link : "https://giveth.typeform.com/gg24-isia?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
-    },
-
-    {
-      image: "/grant-round-images/base.png",
-      title: "Base Builder Grants",
-      desc: `These are small grants for builders with early ideas or initial prototypes, hacking away on nights and weekends. `,
-      amount: "5 ETH",
-      date: "Ongoing",
-      endDate: "Ongoing",
-      label: "Apply",
-      link : "https://docs.google.com/forms/d/e/1FAIpQLSfXuEzmiAzRhie_z9raFCF1BXweXgVt18o-DvBuRRgyTygL2A/viewform"
-    },
-
-    {
-      title: "Polygon AI ",
-      amount: "50k Pol",
-      date: "End- Nov 23, 2025",
-      endDate: "Nov 23, 2025",
-      label: "Apply",
-      link: "https://www.encodeclub.com/programmes/polygon-grants",
-      image: "/grant-round-images/polygon.jpg",
-      desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
-    },
-
-    {
-      title: "Scroll Grants",
-      amount: "312k SCR",
-      date: "End- Dec 19, 2025",
-      endDate: "Dec 19, 2025",
-      link: "https://tally.so/r/mVrrPj",
-      image: "/grant-round-images/feature.jpg",
-      label: "Apply",
-      desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
-    },
+  {
+    image: "/grant-round-images/impact.png",
+    title: "Proof of Impact (S1)",
+    desc: `A fully onchain reward program offering a streamlined and transparent system to rewards apps based on the gas fees their users generate, reinforcing long-term network growth.`,
+    amount: "250K CELO",
+    date: "End- Dec 16, 2025",
+    endDate: "Dec 16, 2025",
+    label: "Apply",
+    link: "https://www.celopg.eco/programs/proof-of-impact-s1",
+  },
 
 
-    {
-      title: "Avalanche Grants & Programs",
-      amount: "$250m",
-      date: "Ongoing",
-      endDate: "Ongoing",
-      link: "https://build.avax.network/grants#programs",
-      image: "/grant-round-images/ava.png",
-      label: "Apply",
-      desc: `Empowering innovators to build the future of blockchain technology with scalable and sustainable solutions.`,
-    },
+  {
+    image: "/grant-round-images/local.png",
+    title: "Local Grant Programs",
+    desc: `Empowering local hubs to channel funding through local grant programs into community activities, showcasing Ethereum as practical infrastructure.`,
+    amount: "$ 125k",
+    date: "End- March 1, 2026",
+    endDate: "March 1, 2026",
+    label: "Apply",
+    link: "https://app.karmahq.xyz/localism-fund/programs/975",
+  },
 
-    {
-      title: "Incubator program",
-      amount: "$ 9k",
-      date: "End- Oct 7, 2025",
-      endDate: "Oct 7, 2025",
-      label: "Apply",
-      link: "https://docs.google.com/forms/d/e/1FAIpQLSffpxsP1KZnvd3mx41wQYNCoTQ9_Jphql3TwnZ3RluwXXnI2A/viewform",
-      image: "/grant-round-images/celo.png",
-      desc: `The Celo Africa DAO Incubator Program aims to enhance the capabilities of early-stage founders through hands-on mentorship.`
-    },
+  {
+    image: "/grant-round-images/africa.png",
+    title: "Lisk Startup Support ",
+    desc: `This initiative provide hands-on support to founders at the early stage of their startup journey whether you need technical guidance or growth strategies to take your product to the next level.`,
+    amount: null,
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSezQFvA4AtKz4i6mT_m4knOPFkxxD8PNqFrX9TvK2pBv-Vdow/viewform",
+  },
 
-    {
-      image: "/grant-round-images/good-dollar-image.svg",
-      title: "Good Dollar",
-      desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
-      amount: "$ 250k",
-      date: "End- Oct 8, 2025",
-      endDate: "Oct 8, 2025",
-      label: "Apply",
-      link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
-    },
+  {
+    image: "/grant-round-images/baseBuild.png",
+    title: "Base Ecosystem Fund",
+    desc: `The Base Ecosystem Fund will invest in and support early stage projects (pre-seed to seed) building on Base.`,
+    amount: null,
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSeiSAod4PAbXlvvDGtHWu-GqzGpvHYfaTQR2f77AawD7GYc4Q/viewform",
+  },
+  {
+    image: "/grant-round-images/starknet1.png",
+    title: "Starknet Grants",
+    desc: `Starknet Grants enable builders, empower vibrant communities, increase adoption and make the Starknet ecosystem more open and accessible for everyone.`,
+    amount: null,
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://www.starknet.io/grants/",
+  },
+  {
+    image: "/grant-round-images/space.jpg",
+    title: "SPACE ID Grant Program",
+    desc: `A long-term funding initiative designed to support and enrich the blockchain community.`,
+    amount: "$39 k",
+    date: "End- Dec 31, 2025",
+    endDate: "Dec 31, 2025",
+    label: "Apply",
+    link: "https://docs.space.id/domain-and-payment-id/domain-programs/space-id-grant-program",
+  },
+  {
+    image: "/grant-round-images/xeco.jpg",
+    title: "X1 EcoChain Grants",
+    desc: `This Program aims to grow the $X1 network by funding projects that enhance both dev tools and UX on its low-energy, EVM-compatible blockchain.`,
+    amount: "$5m",
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://grant.x1ecochain.com/",
+  },
+  {
+    image: "/grant-round-images/web3grants.png",
+    title: "Web3 Foundation Grants",
+    desc: `Funding Software Development and Research Efforts related to Polkadot and Kusama.`,
+    amount: null,
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://grants.web3.foundation/",
+  },
+  {
+    image: "/grant-round-images/ship.jpg",
+    title: "Celo-Proof of Ship 9",
+    desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
+    amount: "15k Celo",
+    date: "End- Oct 31, 2025",
+    endDate: "Oct 31, 2025",
+    label: "Apply",
+    link: "https://x.com/CeloDevs/status/1975456087299268656",
+  },
+  {
+    image: "/grant-round-images/sup.jpg",
+    title: "SPR Season 4",
+    desc: `SUP is the governance token of Superfluid DAO Distributed to users of ecosystem applications via Streaming Programmatic Rewards.`,
+    amount: null,
+    date: "End- Oct 17, 2025",
+    endDate: "Oct 17, 2025",
+    label: "Apply",
+    link: "https://superfluidorg.notion.site/sup-for-growth",
+  },
+  {
+    image: "/grant-round-images/yapper.png",
+    title: <span>Arbitrum x Kaito <br />Season 2</span>,
+    desc: `The Kaito ARB Grant will distribute 700,000 ARB across 150 creators, with grants split into three tiers: the Top 10, the Next 40, and the Remaining 100.`,
+    amount: "700k ARB",
+    date: "End- Dec 31, 2025",
+    endDate: "Dec 31, 2025",
+    label: "Apply",
+    link: "https://blog.arbitrum.io/arbitrum-x-kaito-season-2/",
+  },
+  {
+    image: "/grant-round-images/destino.png",
+    title: "Destino Devconnect grants",
+    desc: `Destino Devconnect is a local grants round focused on supporting events and initiatives that help bring Argentina and the broader Latam region onchain.`,
+    amount: null,
+    date: "End- Nov 22, 2025",
+    endDate: "Nov 22, 2025",
+    label: "Apply",
+    link: "https://esp.ethereum.foundation/devcon-grants",
+  },
+  {
+    image: "/grant-round-images/web3grants1.png",
+    title: "Gear Foundation Grants",
+    desc: `This Grant Program is designed to offer teams, individuals, and creators non-dilutive funding to further accelerate the growth of the Gear ecosystem.`,
+    amount: null,
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://vara.network/grants",
+  },
+  {
+    image: "/grant-round-images/ecochain.jpg",
+    title: "X1 EcoChain Rewards",
+    desc: `Galxe Starboard, an interactive leaderboard that distributes $100,000 in X1 Coins to standout contributors.`,
+    amount: "$ 100k",
+    date: "End- Nov 25, 2025",
+    endDate: "Nov 25, 2025",
+    label: "Details",
+    link: "https://medium.com/@X1_EcoChain/x1-ecochain -launches-galxe-starboard-100-000-community-rewards-09c1d8325015",
+  },
+  {
+    image: "/grant-round-images/lisk.png",
+    title: "Lisk EMpower Fund",
+    desc: `Equip founders in Africa, Southeast Asia, and Latin America with the capital and networks to compete on a global stage.`,
+    amount: "$15M",
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://lisk.com/fund/",
+  },
+  {
+    image: "/grant-round-images/internet.jpg",
+    title: "ENS PG Builder Grants",
+    desc: `PG Builder Grants program is designed to support foundational public goods in the Ethereum and Web3 ecosystems. `,
+    amount: "50k USDC",
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://builder.ensgrants.xyz/"
+  },
 
-    {
-      image: "/grant-round-images/octant-image.svg",
-      title: "Octant",
-      desc: `Funding the journalists, storytellers, content creators, and others who’ve helped make Ethereum legible.`,
-      amount: "$1m",
-      date: "End- Aug 27, 2025",
-      endDate: "Aug 27, 2025",
-      label: "Apply",
-      link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
-    },
-    {
-      image: "/grant-round-images/thrive-protocol-image.svg",
-      title: "Thrive Protocol",
-      desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
-      amount: "$ 100k",
-      date: "End- Jul 31, 2026",
-      endDate: "Jul 31, 2026",
-      label: "Apply",
-      link: "https://portals.thrive.xyz/"
-    },
-    {
-      image: "/grant-round-images/lisk-l2-program.svg",
-      title: "Lisk L2",
-      desc: `A Program to nurture a community of developers and creators within the Lisk ecosystem.`,
-      amount: "$ 80k",
-      date: "End- Oct, 2025",
-      endDate: "Oct, 2025",
-      label: "Apply",
-      link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
-    },
-    {
-      image: "/grant-round-images/celo-proof-of-ship.svg",
-      title: " Celo-Proof of Ship 7",
-      desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
-      amount: "15k Celo",
-      date: "End- Aug 29, 2025",
-      endDate: "Aug 29, 2025",
-      label: "Apply",
-      link: "https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship"
-    },
-    {
-      image: "/grant-round-images/thrive-horizon.svg",
-      title: "Thrive Protocol",
-      desc: `Thrive Horizen funds the new era of privacy first apps on Base.`,
-      amount: "$ 100k",
-      date: "End-  Aug 13, 2026",
-      endDate: "Aug 13, 2026",
-      label: "Apply",
-      link: "https://horizen.thrive.xyz/"
-    },
-    {
-      image: "/grant-round-images/stream-garden-image.svg",
-      title: "Stream On Garden ",
-      desc: `Active Gardens Funding Pools on Celo network are eligible for streaming matching funds.`,
-      amount: "3k Celo",
-      date: "End-  Nov 5, 2025",
-      endDate: "Nov 5, 2025",
-      label: "Apply",
-      link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
-    },
-    {
-      image: "/grant-round-images/optimism.image.png",
-      title: "Optimism Season 8",
-      desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
-      amount: "6.29M OP",
-      date: "End- Nov 12, 2025",
-      endDate: "Nov 12, 2025",
-      label: "Apply",
-      link: "https://www.opgrants.io/"
-    },
-    {
-      image: "/grant-round-images/boba-round-image.svg",
-      title: "Thrive Boba",
-      desc: `Grant for innovators building new projects natively on Boba. Supports early-stage teams developing real-world applications.`,
-      amount: "1m Boba",
-      date: "End- Sep 12, 2025",
-      endDate: "Sep 12, 2025",
-      label: "Apply",
-      link: "https://app.thrive.xyz/programs/23"
-    },
-    {
-      image: "/grant-round-images/hedera-round-image.svg",
-      title: "Thrive Hedera",
-      desc: `Hedera is allocating 4M HBAR to support projects from other ecosystems looking to deploy on Hedera`,
-      amount: "4m hbar",
-      date: "End- Dec 31, 2025",
-      endDate: "Dec 31, 2025",
-      label: "Apply",
-      link: "https://app.thrive.xyz/programs/16"
-    },
-    {
-      image: "/grant-round-images/boba-round-image.svg",
-      title: "Thrive Boba",
-      desc: `For existing projects from other ecosystems looking to deploy or expand on Boba. This track supports teams ready to scale.`,
-      amount: "1m Boba",
-      date: "End- Sep 12, 2025",
-      endDate: "Sep 12, 2025",
-      label: "Apply",
-      link: "https://app.thrive.xyz/programs/2"
-    },
-    {
-      image: "/grant-round-images/swell-round-image.svg",
-      title: "Thrive Swell",
-      desc: `For existing products and dApps from other ecosystems looking to integrate Swellchain.  Supports teams ready to expand.`,
-      amount: "75m Swell",
-      date: "End-Aug 31, 2025",
-      label: "Apply",
-      endDate: "Aug 31, 2025",
-      link: "https://app.thrive.xyz/programs/12"
-    },
-    {
-      image: "/grant-round-images/trading-info-round-image.svg",
-      title: "Trading Infr Program",
-      desc: `Allocating up to 3,000,000 OP in funding for approved projects driving transaction volume on Base.`,
-      amount: "3m OP",
-      date: "End- Aug 29, 2025",
-      endDate: "Aug 29, 2025",
-      label: "Apply",
-      link: "https://app.thrive.xyz/programs/31"
-    },
-    {
-      image: "/grant-round-images/giveth-round-image.svg",
-      title: "Giveth Causes Round",
-      desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
-      amount: "$40K",
-      date: "End- Sep 5, 2025",
-      label: "Apply",
-      endDate: "Sep 5, 2025",
-      link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
-    },
-    {
-      image: "/grant-round-images/prezenti-round-image.svg",
-      title: <span>Prezenti Season 1 <br/> Peach Grant Round</span>,
-      desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
-      amount: "250k cUSD",
-      date: "End-  Dec 10, 2025",
-      endDate: "Dec 10, 2025",
-      label: "Apply",
-      link: "https://charmverse.prezenti.xyz/invite/f90c14"
-    },
-  ];
+  {
+    image: "/grant-round-images/gitcoin.png",
+    title: "Gitcoin Grants 24",
+    subTitle: "Developer Tooling & Infra",
+    desc: `This round is designed to support projects that strengthen Ethereum’s core infrastructure.`,
+    amount: "$200k",
+    date: "End- Oct 17, 2025",
+    endDate: "Oct 17, 2025",
+    label: "Apply",
+    link: "https://giveth.typeform.com/gg24-dti?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
+  },
+
+  {
+    image: "/grant-round-images/gitcoin.png",
+    title: "Gitcoin Grants 24",
+    subTitle: "Interop Standards, Infra & Analytics",
+    desc: `This round is designed to support projects that strengthen Ethereum’s multi-chain ecosystem by building open standards.`,
+    amount: "$100k",
+    date: "End- Oct 17, 2025",
+    endDate: "Oct 17, 2025",
+    label: "Apply",
+    link: "https://giveth.typeform.com/gg24-isia?apcid=006677578599e2590fc7e200&utm_campaign=gitcoin-gg24-applications&utm_content=gitcoin-gg24-applications&utm_medium=email&utm_source=ortto"
+  },
+
+  {
+    image: "/grant-round-images/base.png",
+    title: "Base Builder Grants",
+    desc: `These are small grants for builders with early ideas or initial prototypes, hacking away on nights and weekends. `,
+    amount: "5 ETH",
+    date: "Ongoing",
+    endDate: "Ongoing",
+    label: "Apply",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSfXuEzmiAzRhie_z9raFCF1BXweXgVt18o-DvBuRRgyTygL2A/viewform"
+  },
+
+  {
+    title: "Polygon AI ",
+    amount: "50k Pol",
+    date: "End- Nov 23, 2025",
+    endDate: "Nov 23, 2025",
+    label: "Apply",
+    link: "https://www.encodeclub.com/programmes/polygon-grants",
+    image: "/grant-round-images/polygon.jpg",
+    desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
+  },
+
+  {
+    title: "Scroll Grants",
+    amount: "312k SCR",
+    date: "End- Dec 19, 2025",
+    endDate: "Dec 19, 2025",
+    link: "https://tally.so/r/mVrrPj",
+    image: "/grant-round-images/feature.jpg",
+    label: "Apply",
+    desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
+  },
+
+
+  {
+    title: "Avalanche Grants & Programs",
+    amount: "$250m",
+    date: "Ongoing",
+    endDate: "Ongoing",
+    link: "https://build.avax.network/grants#programs",
+    image: "/grant-round-images/ava.png",
+    label: "Apply",
+    desc: `Empowering innovators to build the future of blockchain technology with scalable and sustainable solutions.`,
+  },
+
+  {
+    title: "Incubator program",
+    amount: "$ 9k",
+    date: "End- Oct 7, 2025",
+    endDate: "Oct 7, 2025",
+    label: "Apply",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSffpxsP1KZnvd3mx41wQYNCoTQ9_Jphql3TwnZ3RluwXXnI2A/viewform",
+    image: "/grant-round-images/celo.png",
+    desc: `The Celo Africa DAO Incubator Program aims to enhance the capabilities of early-stage founders through hands-on mentorship.`
+  },
+
+  {
+    image: "/grant-round-images/good-dollar-image.svg",
+    title: "Good Dollar",
+    desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
+    amount: "$ 250k",
+    date: "End- Oct 8, 2025",
+    endDate: "Oct 8, 2025",
+    label: "Apply",
+    link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
+  },
+
+  {
+    image: "/grant-round-images/octant-image.svg",
+    title: "Octant",
+    desc: `Funding the journalists, storytellers, content creators, and others who’ve helped make Ethereum legible.`,
+    amount: "$1m",
+    date: "End- Aug 27, 2025",
+    endDate: "Aug 27, 2025",
+    label: "Apply",
+    link: "https://octant.fillout.com/epoch9-ethereum-stories?ref=blog.octant.build"
+  },
+  {
+    image: "/grant-round-images/thrive-protocol-image.svg",
+    title: "Thrive Protocol",
+    desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
+    amount: "$ 100k",
+    date: "End- Jul 31, 2026",
+    endDate: "Jul 31, 2026",
+    label: "Apply",
+    link: "https://portals.thrive.xyz/"
+  },
+  {
+    image: "/grant-round-images/lisk-l2-program.svg",
+    title: "Lisk L2",
+    desc: `A Program to nurture a community of developers and creators within the Lisk ecosystem.`,
+    amount: "$ 80k",
+    date: "End- Oct, 2025",
+    endDate: "Oct, 2025",
+    label: "Apply",
+    link: "https://lisk.com/blog/posts/say-hello-to-the-new-lisk-l2-grant-program/"
+  },
+  {
+    image: "/grant-round-images/celo-proof-of-ship.svg",
+    title: " Celo-Proof of Ship 7",
+    desc: `Proof-of-Ship is a monthly contest that rewards builders for actively building on Celo.`,
+    amount: "15k Celo",
+    date: "End- Aug 29, 2025",
+    endDate: "Aug 29, 2025",
+    label: "Apply",
+    link: "https://docs.gap.karmahq.xyz/how-to-guides/integrations/celo-proof-of-ship"
+  },
+  {
+    image: "/grant-round-images/thrive-horizon.svg",
+    title: "Thrive Protocol",
+    desc: `Thrive Horizen funds the new era of privacy first apps on Base.`,
+    amount: "$ 100k",
+    date: "End-  Aug 13, 2026",
+    endDate: "Aug 13, 2026",
+    label: "Apply",
+    link: "https://horizen.thrive.xyz/"
+  },
+  {
+    image: "/grant-round-images/stream-garden-image.svg",
+    title: "Stream On Garden ",
+    desc: `Active Gardens Funding Pools on Celo network are eligible for streaming matching funds.`,
+    amount: "3k Celo",
+    date: "End-  Nov 5, 2025",
+    endDate: "Nov 5, 2025",
+    label: "Apply",
+    link: "https://1hive-gardens.notion.site/Celo-Support-Streams-on-Gardens-246d6929d01480209ca4dbc2f8d26bfd"
+  },
+  {
+    image: "/grant-round-images/optimism.image.png",
+    title: "Optimism Season 8",
+    desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
+    amount: "6.29M OP",
+    date: "End- Nov 12, 2025",
+    endDate: "Nov 12, 2025",
+    label: "Apply",
+    link: "https://www.opgrants.io/"
+  },
+  {
+    image: "/grant-round-images/boba-round-image.svg",
+    title: "Thrive Boba",
+    desc: `Grant for innovators building new projects natively on Boba. Supports early-stage teams developing real-world applications.`,
+    amount: "1m Boba",
+    date: "End- Sep 12, 2025",
+    endDate: "Sep 12, 2025",
+    label: "Apply",
+    link: "https://app.thrive.xyz/programs/23"
+  },
+  {
+    image: "/grant-round-images/hedera-round-image.svg",
+    title: "Thrive Hedera",
+    desc: `Hedera is allocating 4M HBAR to support projects from other ecosystems looking to deploy on Hedera`,
+    amount: "4m hbar",
+    date: "End- Dec 31, 2025",
+    endDate: "Dec 31, 2025",
+    label: "Apply",
+    link: "https://app.thrive.xyz/programs/16"
+  },
+  {
+    image: "/grant-round-images/boba-round-image.svg",
+    title: "Thrive Boba",
+    desc: `For existing projects from other ecosystems looking to deploy or expand on Boba. This track supports teams ready to scale.`,
+    amount: "1m Boba",
+    date: "End- Sep 12, 2025",
+    endDate: "Sep 12, 2025",
+    label: "Apply",
+    link: "https://app.thrive.xyz/programs/2"
+  },
+  {
+    image: "/grant-round-images/swell-round-image.svg",
+    title: "Thrive Swell",
+    desc: `For existing products and dApps from other ecosystems looking to integrate Swellchain.  Supports teams ready to expand.`,
+    amount: "75m Swell",
+    date: "End-Aug 31, 2025",
+    label: "Apply",
+    endDate: "Aug 31, 2025",
+    link: "https://app.thrive.xyz/programs/12"
+  },
+  {
+    image: "/grant-round-images/trading-info-round-image.svg",
+    title: "Trading Infr Program",
+    desc: `Allocating up to 3,000,000 OP in funding for approved projects driving transaction volume on Base.`,
+    amount: "3m OP",
+    date: "End- Aug 29, 2025",
+    endDate: "Aug 29, 2025",
+    label: "Apply",
+    link: "https://app.thrive.xyz/programs/31"
+  },
+  {
+    image: "/grant-round-images/giveth-round-image.svg",
+    title: "Giveth Causes Round",
+    desc: `Climate, ReFi, Women in Web3, and open Source Infra, Causes let you strengthen entire ecosystems with a single contribution.`,
+    amount: "$40K",
+    date: "End- Sep 5, 2025",
+    label: "Apply",
+    endDate: "Sep 5, 2025",
+    link: "https://giveth.typeform.com/causesqf?apcid=0067b653ad43512d7e91ab00&utm_campaign=causes-qf-announcement&utm_content=causes-qf-announcement-var&utm_medium=email&utm_source=ortto"
+  },
+  {
+    image: "/grant-round-images/prezenti-round-image.svg",
+    title: <span>Prezenti Season 1 <br /> Peach Grant Round</span>,
+    desc: `Funded through the Celo Community Fund treasury, as a community driven grants programme.`,
+    amount: "250k cUSD",
+    date: "End-  Dec 10, 2025",
+    endDate: "Dec 10, 2025",
+    label: "Apply",
+    link: "https://charmverse.prezenti.xyz/invite/f90c14"
+  },
+];
 
 // Extend to 1200 grants for pagination demo
 // const allGrants = Array.from({ length: 1200 }, (_, i) => ({
@@ -902,6 +904,10 @@ import { useWallets } from "@privy-io/react-auth";
 export default function LayOut() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const { ready, authenticated, login, logout, user } = usePrivy();
+  const { wallets } = useWallets();
+  const address = wallets[0]?.address;
+  const [toggle, setToggle] = useState(false);
 
   // Get Airtable embed URL from environment variable
   const AIRTABLE_EMBED_URL = process.env.NEXT_PUBLIC_AIRTABLE_GRANTS_EMBED_URL;
@@ -910,16 +916,16 @@ export default function LayOut() {
 
   return (
     <div className="bg-white min-h-screen relative">
-      
 
-      
+
+
 
 
       {/* Sidebar */}
       <Sidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
-      
+
       {/* Main Content */}
-      <div className="lg:ml-64 w-full lg:w-auto">
+      <div className="lg:ml-64 w-full lg:w-auto flex-1">
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileSidebarOpen(true)}
@@ -929,36 +935,36 @@ export default function LayOut() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        
-        
-          {/* Hero Banner */}
-        {isHidden && <Form setIsHidden={setIsHidden}/>}
+
+
+        {/* Hero Banner */}
+        {isHidden && <Form setIsHidden={setIsHidden} />}
         <div className={isHidden ? "opacity-60" : undefined}>
-        <HeroBanner />
+          <HeroBanner />
 
-        {/* Main Section */}
-        <div className="bg-[#f5f7fa] min-h-[calc(100vh-323px)]">
-          <div className="max-w-[1191px] mx-auto px-4 sm:px-6 lg:px-9 py-8 lg:py-12">
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-              <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[24px] sm:text-[32px] text-black">
-                Explore
-              </h2>
-              <button onClick={() => setIsHidden(!isHidden)}
-                className="bg-[#00cd5d] hover:bg-[#00b851] transition-colors rounded-[50px] h-[44px] px-6 flex items-center justify-center whitespace-nowrap">
-                <span className="font-['Modern_Era:Bold',sans-serif] text-[14px] text-white">
-                  Add new grant
-                </span>
-              </button>
+          {/* Main Section */}
+          <div className="bg-[#f5f7fa] min-h-[calc(100vh-323px)]">
+            <div className="max-w-[1191px] mx-auto px-4 sm:px-6 lg:px-9 py-8 lg:py-12">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+                <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[24px] sm:text-[32px] text-black">
+                  Explore
+                </h2>
+                <button onClick={() => setIsHidden(!isHidden)}
+                  className="bg-[#00cd5d] hover:bg-[#00b851] transition-colors rounded-[50px] h-[44px] px-6 flex items-center justify-center whitespace-nowrap">
+                  <span className="font-['Modern_Era:Bold',sans-serif] text-[14px] text-white">
+                    Add new grant
+                  </span>
+                </button>
+              </div>
+
+              {/* Airtable Embed - Replaces Search, Filters, Grant Cards, and Pagination */}
+              <AirtableEmbed
+                embedUrl={AIRTABLE_EMBED_URL}
+                height="1000px"
+              />
             </div>
-
-            {/* Airtable Embed - Replaces Search, Filters, Grant Cards, and Pagination */}
-            <AirtableEmbed
-              embedUrl={AIRTABLE_EMBED_URL}
-              height="1000px"
-            />
           </div>
-        </div>
         </div>
       </div>
     </div>

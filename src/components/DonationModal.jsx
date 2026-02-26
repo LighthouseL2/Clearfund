@@ -2,8 +2,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const currencies = [
-    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4,  bg: "bg-white", hover: "hover:bg-[#EFF6FF]/50", selected: "bg-[#EFF6FF]", border: "border border-[#198038]/20" },
-    { name: "Celo", symbol: "CELO", icon: "/donate-icons/celo-icon.svg", balance: 3.78,  bg: "bg-white",  hover: "hover:bg-[#EFF6FF]/50", selected: "bg-[#EFF6FF]", border: "border border-[#198038]/20"},
+    { name: "GoodDollar", symbol: "G$", icon: "/donate-icons/gooddollar-icon.svg", balance: 609.4, bg: "bg-white", hover: "hover:bg-[#EFF6FF]/50", selected: "bg-[#EFF6FF]", border: "border border-[#198038]/20" },
+    { name: "Celo", symbol: "CELO", icon: "/donate-icons/celo-icon.svg", balance: 3.78, bg: "bg-white", hover: "hover:bg-[#EFF6FF]/50", selected: "bg-[#EFF6FF]", border: "border border-[#198038]/20" },
 ];
 export default function DonationModal({ onClose }) {
     const [selectedCurrency, setSelectedCurrency] = useState(null);
@@ -11,8 +11,10 @@ export default function DonationModal({ onClose }) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
+    const isInsufficientBalance = selectedCurrency !== null && amount !== "" && parseFloat(amount) > selectedCurrency.balance;
+
     const isConfirmEnabled =
-        selectedCurrency !== null && amount !== "" && parseFloat(amount) > 0;
+        selectedCurrency !== null && amount !== "" && parseFloat(amount) > 0 && !isInsufficientBalance;
 
     // Close dropdown on outside click
     useEffect(() => {
@@ -34,7 +36,7 @@ export default function DonationModal({ onClose }) {
         <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 text-black">
             <div className="bg-white rounded-2xl shadow-xl w-full max-w-[418px] min-h-[350px] p-6 relative">
 
-               
+
                 <button
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg leading-none"
                     onClick={onClose}
@@ -42,17 +44,17 @@ export default function DonationModal({ onClose }) {
                     ✕
                 </button>
 
-    
+
                 <h2 className="text-lg font-semibold mb-1">How much?</h2>
                 <p className="text-sm text-gray-500 mb-5">
                     Donate using G$ token on Celo
                 </p>
 
-               
+
                 <div className="relative mb-4" ref={dropdownRef}>
                     <div className="flex items-center border-[1px] border-[#E2EAFF] rounded-lg bg-gray-50 focus-within:ring-1 focus-within:ring-[#D9D9D9] focus-within:border-gray-200 overflow-visible">
 
-           
+
                         <button
                             onClick={() => setDropdownOpen((prev) => !prev)}
                             className="flex items-center justify-between px-3.5 mx-1 py-3.5 bg-[#DBF5EF] rounded-lg shrink-0 gap-6"
@@ -70,7 +72,7 @@ export default function DonationModal({ onClose }) {
                             </svg>
                         </button>
 
-       
+
                         <input
                             inputMode="decimal"
                             placeholder="0.00"
@@ -79,11 +81,14 @@ export default function DonationModal({ onClose }) {
                                 const val = e.target.value;
                                 if (/^\d*\.?\d*$/.test(val)) setAmount(val);
                             }}
-                            className="flex-1 bg-transparent px-1 py-4.5 text-sm focus:outline-none text-right"
+                            className="flex-1 bg-transparent px-4 py-4.5 text-sm font-bold focus:outline-none text-left"
                         />
                     </div>
+                    {isInsufficientBalance && (
+                        <p className="text-red-500 text-xs mt-2 ml-1">Insufficient balance</p>
+                    )}
 
-                  
+
                     {dropdownOpen && (
                         <div className="flex flex-col gap-2 p-1 mt-1">
                             {currencies.map((currency) => (
@@ -97,7 +102,7 @@ export default function DonationModal({ onClose }) {
                                 >
                                     <img src={currency.icon} alt={currency.name} className="w-8 h-8" />
                                     <span className="flex-1 text-sm font-medium text-gray-800">{currency.name}</span>
-                                    <span className="text-sm text-gray-500">Balance: {currency.balance}</span>
+                                    <span className="text-sm text-gray-500">{currency.balance}</span>
                                 </div>
                             ))}
                         </div>
@@ -114,7 +119,7 @@ export default function DonationModal({ onClose }) {
                     Confirm
                 </button>
 
-              
+
                 <div className="border border-[#D9D9D9] px-4 py-4 my-2 rounded-lg">
                     <h1 className="mb-2 text-sm font-medium text-black leading-tight">
                         You are about to make a donation.
