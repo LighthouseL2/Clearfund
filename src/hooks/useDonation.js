@@ -1,7 +1,7 @@
 'use client'
 
 import { useReadContract, useBalance } from 'wagmi'
-import { parseUnits, formatUnits, createWalletClient, custom } from 'viem'
+import { parseUnits, formatUnits, createWalletClient, custom, createPublicClient, http } from 'viem'
 import { celo } from 'viem/chains'
 import { useState, useCallback } from 'react'
 import { useWallets } from '@privy-io/react-auth'
@@ -133,7 +133,13 @@ export function useDonate() {
                     }
                 }
 
-                // Register the provider with viem
+                // Create a separate public client with a stable HTTP transport for estimation and waiting
+                const publicClient = createPublicClient({
+                    chain: stableCelo,
+                    transport: http("https://1rpc.io/celo")
+                })
+
+                // Register the provider with viem for the wallet client
                 const walletClient = createWalletClient({
                     chain: stableCelo,
                     transport: custom(provider),
@@ -144,33 +150,74 @@ export function useDonate() {
 
                 if (token.isNative) {
                     // Native CELO transfer
-                    // Added gas limit and simplified call for MetaMask compatibility
+                    // Estimate gas first to be safe, then let wallet client handle it or provide the estimate
+                    let gasLimit;
+                    try {
+                        gasLimit = await publicClient.estimateGas({
+                            account: wallet.address,
+                            to: recipient,
+                            value: parsedAmount,
+                        });
+                        // Add 20% buffer to estimate
+                        gasLimit = (gasLimit * 120n) / 100n;
+                    } catch (e) {
+                        console.warn('Gas estimation failed, using fallback:', e);
+                        gasLimit = 100000n; // Safe fallback for native transfer to contracts
+                    }
+
                     hash = await walletClient.sendTransaction({
                         to: recipient,
                         value: parsedAmount,
-                        // Specify a generous gas limit to bypass MetaMask simulation failures
-                        gas: 50000n
+                        gas: gasLimit
                     })
                 } else {
                     // ERC20 transfer (G$) using writeContract
-                    // Added gas limit and simplified call for MetaMask compatibility
+                    let gasLimit;
+                    try {
+                        gasLimit = await publicClient.estimateContractGas({
+                            address: token.address,
+                            abi: ERC20_ABI,
+                            functionName: 'transfer',
+                            args: [recipient, parsedAmount],
+                            account: wallet.address,
+                        });
+                        // Add 20% buffer
+                        gasLimit = (gasLimit * 120n) / 100n;
+                    } catch (e) {
+                        console.warn('Contract gas estimation failed, using fallback:', e);
+                        gasLimit = 300000n; // Safe fallback for most ERC20s with some hooks
+                    }
+
                     hash = await walletClient.writeContract({
                         address: token.address,
                         abi: ERC20_ABI,
                         functionName: 'transfer',
                         args: [recipient, parsedAmount],
-                        // G$ can use more gas if it has hooks; 300k is safe
-                        gas: 300000n
+                        gas: gasLimit
                     })
                 }
 
                 if (!hash) throw new Error('No transaction hash returned')
 
                 setTxHash(hash)
+                setStatus('confirming')
+
+                // Use the same public client to wait for transaction to be mined
+                const receipt = await publicClient.waitForTransactionReceipt({
+                    hash,
+                    confirmations: 1,
+                    timeout: 60000 // 60s timeout
+                })
+
+                if (receipt.status !== 'success') {
+                    console.error('Transaction receipt indicated failure:', receipt)
+                    throw new Error('Transaction reverted on-chain. This may be due to insufficient allowance or a contract-level rejection.')
+                }
+
                 setStatus('success')
                 return hash
             } catch (err) {
-                console.error('Detailed Donation Error:', err)
+                console.error('Detailed Donation Error:', err?.message || err)
 
                 // Detailed error mapping
                 let message = err.shortMessage || err.message || 'Transaction failed'

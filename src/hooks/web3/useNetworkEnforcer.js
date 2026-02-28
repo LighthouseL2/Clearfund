@@ -65,7 +65,7 @@ export function useNetworkEnforcer() {
         return await asyncFn()
       } catch (error) {
         if (silent) {
-          console.error('Network enforcement error:', error)
+          console.error('Network enforcement error:', error?.message || error)
           return null
         }
         throw error

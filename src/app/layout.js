@@ -86,7 +86,7 @@ export default function RootLayout({ children }) {
               },
               appearance: {
                 theme: "light",
-                landingHeader: <span style={{ fontFamily: "'Modern Era', sans-serif", fontWeight: "bold", fontSize: "1.2rem" }}>Connect to ClearFund</span>,
+                landingHeader: <span key="privy-header" style={{ fontFamily: "'Modern Era', sans-serif", fontWeight: "bold", fontSize: "1.2rem" }}>Connect to ClearFund</span>,
                 accentColor: "#39B54A",
                 fontFamily: "'Modern Era', sans-serif",
                 showWalletLoginFirst: false,

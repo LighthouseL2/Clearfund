@@ -76,14 +76,14 @@ export const SUPPORTED_TOKENS = [
         icon: '/donate-icons/Gooddollar-icon.svg',
         isNative: false,
     },
-    {
+    /* {
         name: 'Celo',
         symbol: 'CELO',
         address: CELO_TOKEN_ADDRESS,
         decimals: 18, // CELO uses 18 decimals
         icon: '/donate-icons/celo-icon.svg',
         isNative: true, // CELO is the native gas token
-    },
+    }, */
 ]
 
 // Collective pool addresses (the addresses that receive donations)

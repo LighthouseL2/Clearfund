@@ -33,38 +33,62 @@ export function useContractRead(functionName, args = [], enabled = true) {
  */
 export function useContractWrite() {
   const { executeWithNetworkCheck, isSwitching } = useNetworkEnforcer()
-  const { writeContract, data: hash, isPending, error } = useWriteContract()
-  const {
-    data: receipt,
-    isLoading: isConfirming,
-    isSuccess: isConfirmed,
-    error: receiptError
-  } = useWaitForTransactionReceipt({
+  const { writeContractAsync, data: hash, isPending, error } = useWriteContract()
+
+  // Use a stable public client for estimation
+  const { data: receipt, isLoading: isConfirming, isSuccess: isConfirmed, error: receiptError } = useWaitForTransactionReceipt({
     hash,
   })
 
-  /**
-   * Execute a contract write function
-   * Network validation is handled automatically by executeWithNetworkCheck
-   * @param {string} functionName - Contract function name
-   * @param {Array} args - Function arguments
-   * @returns {Promise<void>}
-   * @throws {Error} If contract not configured, network switch fails, or user declines switch
-   */
   const execute = async (functionName, args) => {
     if (!CONTRACT_ADDRESSES.ClearFundRegistry) {
       throw new Error('Contract address not configured')
     }
 
-    // executeWithNetworkCheck handles network validation and auto-switching
-    await executeWithNetworkCheck(async () => {
-      await writeContract({
-        address: CONTRACT_ADDRESSES.ClearFundRegistry,
-        abi: CLEARFUND_REGISTRY_ABI,
-        functionName,
-        args,
+    try {
+      return await executeWithNetworkCheck(async () => {
+        // We use createPublicClient directly for gas estimation to be more reliable
+        // than the wallet's internal estimation which often fails on Celo
+        const { createPublicClient, http } = await import('viem');
+        const { celo } = await import('viem/chains');
+
+        const publicClient = createPublicClient({
+          chain: celo,
+          transport: http("https://1rpc.io/celo")
+        });
+
+        console.log(`Estimating gas for ${functionName}...`);
+        let gasLimit;
+        try {
+          const { wallets } = await import('@privy-io/react-auth');
+          // This is a bit complex in a hook, but we can try to get the address
+          // For now, let's try to estimate without 'account' if possible or use a fallback
+          gasLimit = await publicClient.estimateContractGas({
+            address: CONTRACT_ADDRESSES.ClearFundRegistry,
+            abi: CLEARFUND_REGISTRY_ABI,
+            functionName,
+            args,
+          });
+          // Add 30% buffer
+          gasLimit = (gasLimit * 130n) / 100n;
+        } catch (estimErr) {
+          console.warn("Gas estimation failed, using safety fallback:", estimErr);
+          gasLimit = 500000n; // Generous fallback for registry operations
+        }
+
+        const txHash = await writeContractAsync({
+          address: CONTRACT_ADDRESSES.ClearFundRegistry,
+          abi: CLEARFUND_REGISTRY_ABI,
+          functionName,
+          args,
+          gas: gasLimit,
+        })
+        return txHash;
       })
-    })
+    } catch (err) {
+      console.error(`Contract write error (${functionName}):`, err?.message || err)
+      throw err
+    }
   }
 
   return {

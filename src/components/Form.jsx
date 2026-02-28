@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { usePrivy } from "@privy-io/react-auth";
 import { useContractWrite } from "@/hooks/web3/useContract";
+import { useNetworkCheck } from "@/hooks/web3/useNetworkCheck";
 import { useIPFSUpload } from "@/hooks/ipfs/useIPFSUpload";
 import { dateToTimestamp } from "@/lib/services/grant.service";
 // import svgPaths from "../components/svgs";
@@ -9,6 +10,7 @@ import { dateToTimestamp } from "@/lib/services/grant.service";
 export function Form({ setIsHidden }) {
     const { authenticated, login } = usePrivy();
     const { execute, isPending: isSubmitting, isConfirmed } = useContractWrite();
+    const { isCorrectNetwork, switchToCelo } = useNetworkCheck();
     const { uploadFile, isUploading } = useIPFSUpload();
 
     const [grantName, setGrantName] = useState("");
@@ -18,6 +20,8 @@ export function Form({ setIsHidden }) {
     const [shouldSubmitAfterLogin, setShouldSubmitAfterLogin] = useState(false);
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         if (authenticated && shouldSubmitAfterLogin) {
@@ -45,7 +49,25 @@ export function Form({ setIsHidden }) {
             return;
         }
 
+        if (!grantName.trim() || !grantLink.trim()) {
+            setErrorMessage("Grant name and link are required.");
+            setIsError(true);
+            return;
+        }
+
         try {
+            setIsError(false);
+
+            // Auto network switch
+            if (!isCorrectNetwork) {
+                const switched = await switchToCelo();
+                if (!switched) {
+                    throw new Error("Please switch to Celo network to submit a grant.");
+                }
+                // Wait for provider/wagmi to sync after switch
+                await new Promise(r => setTimeout(r, 2000));
+            }
+
             let imageCID = "";
             if (logoFile) {
                 imageCID = await uploadFile(logoFile);
@@ -53,7 +75,18 @@ export function Form({ setIsHidden }) {
                 imageCID = "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco";
             }
 
-            const deadlineTimestamp = grantDeadline ? dateToTimestamp(grantDeadline) : 0;
+            // Set default deadline to 30 days from now if not provided
+            // This prevents contract reverts on MIN_DEADLINE_DURATION
+            const thirtyDaysInSeconds = 30 * 24 * 60 * 60;
+            const defaultTimestamp = Math.floor(Date.now() / 1000) + thirtyDaysInSeconds;
+            const deadlineTimestamp = grantDeadline ? dateToTimestamp(grantDeadline) : defaultTimestamp;
+
+            console.log("Submitting grant:", {
+                title: grantName.trim(),
+                url: grantLink.trim(),
+                deadline: deadlineTimestamp,
+                imageCID
+            });
 
             await execute("submitGrant", [
                 grantName.trim(),
@@ -63,39 +96,90 @@ export function Form({ setIsHidden }) {
             ]);
         } catch (error) {
             console.error("Submission failed:", error);
-            alert("Submission failed. Please try again.");
+            const detailedError = error?.message || "Something went wrong. Please check your wallet and try again.";
+            setErrorMessage(detailedError);
+            setIsError(true);
         }
     };
 
     if (isSubmitted) {
         return (
             <div className="fixed inset-0 flex justify-center items-center z-50 p-4">
-                <div className="absolute inset-0 bg-black/20" onClick={() => setIsHidden(false)}></div>
-                <div className="relative w-full max-w-[624px] bg-white rounded-2xl shadow-2xl overflow-hidden flex animate-in fade-in zoom-in duration-300">
-                    <div className="w-3 bg-[#39B54A]"></div>
-                    <div className="flex-1 p-8 flex items-center justify-between">
-                        <div className="flex items-center gap-5">
-                            <div className="w-[60px] h-[60px] flex-shrink-0">
-                                <Image
-                                    src="/assets/donate_successful_icon.png"
-                                    alt="Success"
-                                    width={60}
-                                    height={60}
-                                    className="object-contain"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <h2 className="text-[28px] font-bold text-[#39B54A] font-sans">Submitted !</h2>
-                                <p className="text-[16px] text-[#00000080] font-sans">Grant added and submitted successfully.</p>
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsHidden(false)}></div>
+                <div className="relative w-full max-w-[420px] bg-white rounded-[32px] shadow-2xl overflow-hidden flex flex-col p-8 animate-in fade-in zoom-in duration-300">
+                    {/* Close button */}
+                    <button
+                        onClick={() => setIsHidden(false)}
+                        className="absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                    </button>
+
+                    <div className="flex flex-col items-center justify-center py-4 px-2">
+                        {/* Glow effect container */}
+                        <div className="relative mb-6">
+                            <div className="absolute inset-0 bg-[#39B54A] opacity-20 blur-xl rounded-full"></div>
+                            <div className="relative w-24 h-24 bg-[#39B54A] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(57,181,74,0.4)]">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M20 6L9 17l-5-5" />
+                                </svg>
                             </div>
                         </div>
+
+                        <h2 className="text-[20px] leading-tight font-bold text-gray-800 text-center mb-10 max-w-[280px]">
+                            Your grant has been submitted successfully!
+                        </h2>
+
                         <button
                             onClick={() => setIsHidden(false)}
-                            className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors border border-gray-200"
+                            className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-[#2e943c] transition-all shadow-lg active:scale-[0.98]"
                         >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M18 6L6 18M6 6l12 12" />
-                            </svg>
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (isError) {
+        return (
+            <div className="fixed inset-0 flex justify-center items-center z-50 p-4">
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsError(false)}></div>
+                <div className="relative w-full max-w-[420px] bg-white rounded-[32px] shadow-2xl overflow-hidden flex flex-col p-8 animate-in fade-in zoom-in duration-300">
+                    {/* Close button */}
+                    <button
+                        onClick={() => setIsError(false)}
+                        className="absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                    </button>
+
+                    <div className="flex flex-col items-center justify-center py-4 px-2">
+                        {/* Error Circle */}
+                        <div className="relative mb-6">
+                            <div className="absolute inset-0 bg-[#FF2E2E] opacity-20 blur-xl rounded-full"></div>
+                            <div className="relative w-24 h-24 bg-[#FF2E2E] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255,46,46,0.4)]">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M18 6L6 18M6 6l12 12" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <h2 className="text-[24px] font-black text-gray-800 text-center mb-1">Error!</h2>
+                        <p className="text-[16px] text-gray-500 text-center mb-10 font-medium">
+                            Your grant submission could not be processed.
+                        </p>
+
+                        <button
+                            onClick={() => setIsError(false)}
+                            className="w-full bg-[#FF2E2E] text-white font-bold py-4 rounded-full hover:bg-[#e62929] transition-all shadow-lg active:scale-[0.98]"
+                        >
+                            Try again
                         </button>
                     </div>
                 </div>

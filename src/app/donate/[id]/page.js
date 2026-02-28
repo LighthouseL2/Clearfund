@@ -10,14 +10,14 @@ import UserDetails from "@/components/userDetails"
 import ModalConnect from "@/components/modalConnect"
 import CampaignInfoModal from "@/components/CampaignInfoModal"
 import DonationSuccessModal from "@/components/DonationSuccessModal"
+import DonationErrorModal from "@/components/DonationErrorModal"
 import ShareCampaignModal from "@/components/ShareCampaignModal"
 import WalletNotConnectedModal from "@/components/WalletNotConnectedModal"
 import { useTokenBalance, useDonate } from "@/hooks/useDonation"
 import { COLLECTIVE_ADDRESSES, DEFAULT_COLLECTIVE_ADDRESS, SUPPORTED_TOKENS } from "@/lib/contracts/donation"
 import { getCollectiveById } from "@/lib/collectivesData"
 import { usePathname } from "next/navigation"
-import { shortAddress } from "@/components/userDetails"
-import { Menu, X } from "lucide-react"
+import { Menu } from "lucide-react"
 
 export default function CampaignDonatePage() {
     const params = useParams()
@@ -32,6 +32,7 @@ export default function CampaignDonatePage() {
     const [toggle, setToggle] = useState(false)
     const [showInfoModal, setShowInfoModal] = useState(false)
     const [showSuccessModal, setShowSuccessModal] = useState(false)
+    const [showErrorModal, setShowErrorModal] = useState(false)
     const [showShareModal, setShowShareModal] = useState(false)
     const [showWalletModal, setShowWalletModal] = useState(false)
     const [amount, setAmount] = useState('')
@@ -60,13 +61,12 @@ export default function CampaignDonatePage() {
     const { donate, status, txHash, error, reset, isLoading, isSuccess, isError } = useDonate()
 
     const balance = activeBalanceHook.balance || 0
-    const balanceLoading = activeBalanceHook.isLoading
-    const collectiveAddress = collective ? COLLECTIVE_ADDRESSES[collective.id] || DEFAULT_COLLECTIVE_ADDRESS : DEFAULT_COLLECTIVE_ADDRESS
-
     const parsedAmount = parseFloat(amount) || 0
     const isInsufficientBalance = authenticated && amount !== '' && parsedAmount > balance
     const isWrongNetwork = authenticated && activeWallet && activeWallet.chainId !== 'eip155:42220'
-    const isConfirmEnabled = (!authenticated) || (!isWrongNetwork && amount !== '' && parsedAmount > 0 && !isInsufficientBalance && !isLoading)
+    const isConfirmEnabled = amount !== '' && parsedAmount > 0 && !isLoading && (!authenticated || (!isWrongNetwork && !isInsufficientBalance))
+
+    const collectiveAddress = collective ? COLLECTIVE_ADDRESSES[collective.id] || DEFAULT_COLLECTIVE_ADDRESS : DEFAULT_COLLECTIVE_ADDRESS
 
     const handleSwitchNetwork = async () => {
         if (!activeWallet) return
@@ -111,12 +111,15 @@ export default function CampaignDonatePage() {
         setShowShareModal(true)
     }
 
-    // Watch for success from hook
+    // Watch for success/error from hook
     useEffect(() => {
         if (isSuccess && txHash && !showSuccessModal) {
             setShowSuccessModal(true)
         }
-    }, [isSuccess, txHash])
+        if (isError && !showErrorModal) {
+            setShowErrorModal(true)
+        }
+    }, [isSuccess, isError, txHash])
 
     if (!collective) {
         return (
@@ -148,40 +151,26 @@ export default function CampaignDonatePage() {
                     />
                 </div>
                 <button
-                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    onClick={() => setSidebarOpen(true)}
                     className="p-2 rounded-lg hover:bg-gray-100"
                 >
-                    {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+                    <Menu size={24} />
                 </button>
             </div>
 
-            {/* Mobile Sidebar */}
-            {sidebarOpen && (
-                <div className="fixed h-screen top-0 z-50 bg-white w-[80%] shadow-xl">
-                    <nav className="space-y-3 my-6 font-sans pt-16 px-4">
-                        <Link href="/grants">
-                            <button onClick={() => setSidebarOpen(false)} className="flex text-[#39B54A] items-center cursor-pointer h-[50px] w-full rounded-r-full px-6 py-3 font-bold mb-2 hover:bg-gray-50">
-                                Grants
-                            </button>
-                        </Link>
-                        <Link href="/donate">
-                            <button onClick={() => setSidebarOpen(false)} className="flex text-[#39B54A] items-center cursor-pointer h-[50px] w-full rounded-r-full px-6 py-3 font-bold mb-2 bg-[#EAF9EE]">
-                                Donate
-                            </button>
-                        </Link>
-                    </nav>
-                </div>
-            )}
-
-            {/* Desktop Sidebar */}
-            <div className="hidden md:flex">
-                <Sidebar authenticated={authenticated} address={address} login={login} />
-            </div>
+            {/* Unified Sidebar */}
+            <Sidebar
+                isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+                authenticated={authenticated}
+                address={address}
+                login={login}
+            />
 
             {/* Main Content */}
             <div className="lg:ml-64 w-full lg:w-auto flex-1">
                 {/* Top bar */}
-                <div className="flex justify-end items-center gap-4 bg-white py-2 px-6">
+                <div className="flex justify-end items-center gap-4 bg-white py-2 px-6 shadow-sm">
                     {toggle && <ModalConnect setCloseModal={setToggle} />}
                     {!authenticated ? (
                         <button
@@ -227,7 +216,6 @@ export default function CampaignDonatePage() {
                                         {collective.title}
                                     </h1>
                                     <div className="flex items-center gap-3 shrink-0">
-                                        {/* Share icon */}
                                         <button
                                             onClick={handleShare}
                                             className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-gray-300 transition-colors shadow-sm"
@@ -241,7 +229,6 @@ export default function CampaignDonatePage() {
                                                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
                                             </svg>
                                         </button>
-                                        {/* Info icon */}
                                         <button
                                             onClick={() => setShowInfoModal(true)}
                                             className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-gray-300 transition-colors shadow-sm"
@@ -255,8 +242,6 @@ export default function CampaignDonatePage() {
                                         </button>
                                     </div>
                                 </div>
-
-                                {/* Location */}
                                 <div className="flex items-center gap-2 mt-3">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
@@ -278,27 +263,24 @@ export default function CampaignDonatePage() {
                         </div>
 
                         {/* RIGHT COLUMN — Donation Panel */}
-                        <div className="w-full lg:w-[360px] shrink-0">
-                            <div className="bg-white rounded-2xl border border-gray-200 shadow-[0px_2px_8px_rgba(0,0,0,0.04)] p-6 lg:sticky lg:top-8">
-                                {/* How much header */}
-                                <h2 className="text-[20px] font-bold text-gray-900 mb-1">How much?</h2>
-                                <p className="text-[14px] text-gray-700 mb-4">Donate using G$ on celo</p>
+                        <div className="w-full lg:w-[400px] shrink-0">
+                            <div className="bg-white rounded-[28px] border border-gray-300 shadow-[0px_8px_30px_rgba(0,0,0,0.04)] p-9 lg:sticky lg:top-8">
+                                <h2 className="text-[22px] font-black text-gray-900 mb-2 tracking-tight">How much?</h2>
+                                <p className="text-[14px] text-gray-500 mb-8 font-medium">Donate using Gooddollar on Celo</p>
 
-                                {/* selected token dropdown + amount input */}
-                                <div className="border border-[#FFB84D] focus-within:border-[#F59E0B] focus-within:ring-1 focus-within:ring-[#F59E0B] transition-shadow rounded-[24px] px-3 py-3 flex items-center justify-between mb-2 relative">
-                                    {/* Dropdown Toggle */}
+                                <div className="border border-gray-300 focus-within:border-black focus-within:ring-1 focus-within:ring-black/5 transition-all rounded-[24px] px-4 py-4 flex items-center justify-between mb-8 relative bg-gray-50/30">
                                     <div className="relative" ref={dropdownRef}>
                                         <button
                                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                             className="flex items-center gap-2 bg-[#EEF2FF] hover:bg-[#E0E7FF] transition-colors rounded-xl px-4 py-2.5 text-[#1E3A8A] font-bold text-[15px]"
                                         >
-                                            {selectedToken.symbol}
+                                            <img src={selectedToken.icon} alt="" className="w-5 h-5 rounded-full object-contain bg-white" />
+                                            {selectedToken.symbol === 'G$' ? 'Gooddollar' : selectedToken.symbol}
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
                                                 <polyline points="6 9 12 15 18 9"></polyline>
                                             </svg>
                                         </button>
 
-                                        {/* Dropdown Menu */}
                                         {isDropdownOpen && (
                                             <div className="absolute top-[110%] left-0 w-[180px] bg-white border border-gray-100 shadow-[0px_8px_24px_rgba(0,0,0,0.12)] rounded-xl py-2 z-50">
                                                 {SUPPORTED_TOKENS.map((token) => (
@@ -311,7 +293,7 @@ export default function CampaignDonatePage() {
                                                         className={`w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left ${selectedToken.symbol === token.symbol ? 'bg-blue-50/50' : ''}`}
                                                     >
                                                         <img src={token.icon} alt={token.symbol} className="w-6 h-6 rounded-full object-contain bg-white shrink-0 shadow-sm" />
-                                                        <span className="text-[14px] font-bold text-gray-900">{token.symbol}</span>
+                                                        <span className="text-[14px] font-bold text-gray-900">{token.symbol === 'G$' ? 'Gooddollar' : token.symbol}</span>
                                                     </button>
                                                 ))}
                                             </div>
@@ -332,18 +314,16 @@ export default function CampaignDonatePage() {
                                     />
                                 </div>
 
-                                {/* Insufficient balance warning */}
                                 {isInsufficientBalance && (
-                                    <div className="flex items-center px-1 mb-5">
-                                        <span className="text-[11px] text-red-500 font-medium">Insufficient balance</span>
+                                    <div className="flex items-center px-1 mb-6">
+                                        <span className="text-[12px] text-red-500 font-bold italic">Insufficient balance</span>
                                     </div>
                                 )}
 
-                                {/* Confirm button */}
                                 {isWrongNetwork ? (
                                     <button
                                         onClick={handleSwitchNetwork}
-                                        className="w-full py-3 rounded-full text-[15px] font-bold transition-all duration-200 mb-5 bg-[#e4be36] text-gray-900 hover:bg-[#d8b534] cursor-pointer"
+                                        className="w-full py-4 rounded-full text-[16px] font-black transition-all duration-200 mb-8 bg-[#FFE500] text-gray-900 hover:bg-[#FACC15] cursor-pointer shadow-md active:scale-[0.98]"
                                     >
                                         Switch to Celo Network
                                     </button>
@@ -351,9 +331,9 @@ export default function CampaignDonatePage() {
                                     <button
                                         onClick={handleConfirm}
                                         disabled={!isConfirmEnabled}
-                                        className={`w-full py-3 rounded-full text-[15px] font-bold transition-all duration-200 mb-5 ${isConfirmEnabled
-                                            ? 'bg-[#95EED8] text-gray-900 hover:bg-[#7de0c8] cursor-pointer'
-                                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                        className={`w-full py-4 rounded-full text-[16px] font-black transition-all duration-200 mb-8 shadow-lg active:scale-[0.98] ${isConfirmEnabled
+                                            ? 'bg-[#95EED8] text-gray-900 hover:bg-[#D5F8EE] cursor-pointer'
+                                            : 'bg-gray-200 text-gray-600 cursor-not-allowed'
                                             }`}
                                     >
                                         {isLoading ? (
@@ -365,20 +345,12 @@ export default function CampaignDonatePage() {
                                                 {status === 'sending' ? 'Confirm in wallet...' : 'Processing...'}
                                             </span>
                                         ) : (
-                                            authenticated ? 'Confirm' : 'Continue'
+                                            'Confirm'
                                         )}
                                     </button>
                                 )}
 
-                                {/* Error message */}
-                                {isError && error && (
-                                    <div className="bg-red-50 border border-red-200 text-red-600 text-xs rounded-lg p-3 mb-4">
-                                        {error}
-                                    </div>
-                                )}
-
-                                {/* Info box */}
-                                <div className="border border-gray-200 rounded-xl px-4 py-4">
+                                <div className="border border-gray-300 rounded-xl px-4 py-4">
                                     <h3 className="text-[13px] font-semibold text-gray-900 mb-1.5">
                                         You are about to make a donation.
                                     </h3>
@@ -405,6 +377,15 @@ export default function CampaignDonatePage() {
                 <DonationSuccessModal
                     onClose={() => { setShowSuccessModal(false); reset(); }}
                     onDonateAgain={handleDonateAgain}
+                />
+            )}
+
+            {/* Donation Error Modal */}
+            {showErrorModal && (
+                <DonationErrorModal
+                    onClose={() => { setShowErrorModal(false); reset(); }}
+                    onRetry={() => { setShowErrorModal(false); handleConfirm(); }}
+                    error={error}
                 />
             )}
 

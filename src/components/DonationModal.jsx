@@ -9,27 +9,24 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
     const { wallets } = useWallets();
     const address = wallets[0]?.address;
 
-    const [selectedCurrency, setSelectedCurrency] = useState(null);
+    const [selectedCurrency, setSelectedCurrency] = useState(SUPPORTED_TOKENS[0]);
     const [amount, setAmount] = useState("");
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
     // Real balance hooks
     const gDollarBalance = useTokenBalance('G$', address);
-    const celoBalance = useTokenBalance('CELO', address);
 
     // Donation hook
     const { donate, status, txHash, error, reset, isLoading, isSuccess, isError } = useDonate();
 
     const getBalance = (symbol) => {
         if (symbol === 'G$') return gDollarBalance.balance;
-        if (symbol === 'CELO') return celoBalance.balance;
         return 0;
     };
 
     const getBalanceLoading = (symbol) => {
         if (symbol === 'G$') return gDollarBalance.isLoading;
-        if (symbol === 'CELO') return celoBalance.isLoading;
         return false;
     };
 
@@ -67,7 +64,6 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
         if (hash) {
             // Refetch balances after successful donation
             gDollarBalance.refetch();
-            celoBalance.refetch();
 
             if (onDonationSuccess) {
                 onDonationSuccess({
@@ -92,8 +88,8 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
     }));
 
     return (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 text-black">
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-[418px] min-h-[350px] p-6 relative">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 text-black px-4">
+            <div className="bg-white rounded-[32px] shadow-2xl w-full max-w-[440px] p-10 relative animate-in fade-in zoom-in duration-300">
 
                 <button
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg leading-none"
@@ -103,51 +99,83 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
                 </button>
 
                 {/* Success State */}
-                {isSuccess && txHash ? (
-                    <div className="flex flex-col items-center justify-center py-8 gap-4">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                            <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
+                {isSuccess ? (
+                    <div className="flex flex-col items-center justify-center py-6 px-4">
+                        {/* Glow effect container */}
+                        <div className="relative mb-6">
+                            <div className="absolute inset-0 bg-[#39B54A] opacity-20 blur-xl rounded-full"></div>
+                            <div className="relative w-24 h-24 bg-[#39B54A] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(57,181,74,0.4)]">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                            </div>
                         </div>
-                        <h2 className="text-xl font-bold text-green-700">Donation Successful!</h2>
-                        <p className="text-sm text-gray-500 text-center">
-                            Your donation of {amount} {selectedCurrency?.symbol} has been sent successfully.
-                        </p>
-                        <Link
-                            href={CELOSCAN_TX_URL(txHash)}
-                            target="_blank"
-                            className="text-sm text-blue-600 hover:underline flex items-center gap-1"
+
+                        <h2 className="text-[22px] leading-tight font-bold text-gray-800 text-center mb-8 max-w-[260px]">
+                            Your donation has been processed successfully!
+                        </h2>
+
+                        <button
+                            onClick={() => { reset(); setAmount(""); }}
+                            className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-[#2e943c] transition-all shadow-lg active:scale-[0.98]"
                         >
-                            View on Celoscan
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                        </Link>
+                            Donate again
+                        </button>
                         <button
                             onClick={() => { reset(); onClose(); }}
-                            className="mt-4 bg-[#95EED8] text-[#3A7768] font-semibold py-2.5 px-8 rounded-full hover:bg-[#7de0c8] transition-colors"
+                            className="mt-4 text-gray-400 font-medium hover:text-gray-600 transition-colors text-sm"
                         >
-                            Done
+                            Close
                         </button>
+                    </div>
+                ) : isError ? (
+                    <div className="flex flex-col items-center justify-center py-6 px-4">
+                        {/* Error Circle */}
+                        <div className="relative mb-6">
+                            <div className="absolute inset-0 bg-[#FF2E2E] opacity-20 blur-xl rounded-full"></div>
+                            <div className="relative w-24 h-24 bg-[#FF2E2E] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255,46,46,0.4)]">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M18 6L6 18M6 6l12 12" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <h2 className="text-[24px] font-black text-gray-800 text-center mb-1">Error!</h2>
+                        <p className="text-[16px] text-gray-500 text-center mb-8 font-medium">
+                            Your donation request could not be processed.
+                        </p>
+
+                        <button
+                            onClick={() => { reset(); }}
+                            className="w-full bg-[#FF2E2E] text-white font-bold py-4 rounded-full hover:bg-[#e62929] transition-all shadow-lg active:scale-[0.98]"
+                        >
+                            Try again
+                        </button>
+
+                        {error && (
+                            <p className="mt-4 text-xs text-red-500 text-center max-w-xs">{error}</p>
+                        )}
                     </div>
                 ) : (
                     <>
-                        <h2 className="text-lg font-semibold mb-1">How much?</h2>
-                        <p className="text-sm text-gray-500 mb-5">
-                            Donate using G$ on celo
+                        <h2 className="text-[22px] font-black tracking-tight mb-1.5">How much?</h2>
+                        <p className="text-sm text-gray-500 mb-8 font-medium">
+                            Donate using Gooddollar on celo
                         </p>
 
-                        <div className="relative mb-4" ref={dropdownRef}>
-                            <div className="flex items-center border-[1px] border-[#E2EAFF] rounded-lg bg-gray-50 focus-within:ring-1 focus-within:ring-[#D9D9D9] focus-within:border-gray-200 overflow-visible">
+                        <div className="relative mb-8" ref={dropdownRef}>
+                            <div className="flex items-center border border-gray-100 rounded-[20px] bg-gray-50/50 focus-within:ring-1 focus-within:ring-black/5 focus-within:border-black/10 overflow-visible p-1.5">
                                 <button
                                     onClick={() => setDropdownOpen((prev) => !prev)}
-                                    className="flex items-center justify-between px-3.5 mx-1 py-3.5 bg-[#DBF5EF] rounded-lg shrink-0 gap-6"
+                                    className="flex items-center justify-between px-3.5 mx-1 py-3.5 bg-[#DBF5EF] rounded-lg shrink-0 gap-3"
                                     disabled={isLoading}
                                 >
-                                    <span className="text-[#3A7768] font-semibold text-sm whitespace-nowrap">
-                                        {selectedCurrency ? selectedCurrency.symbol : "G$"}
-                                    </span>
+                                    <div className="flex items-center gap-2">
+                                        {selectedCurrency && <img src={selectedCurrency.icon} alt="" className="w-5 h-5 rounded-full" />}
+                                        <span className="text-[#3A7768] font-semibold text-sm whitespace-nowrap">
+                                            {selectedCurrency ? (selectedCurrency.symbol === 'G$' ? 'Gooddollar' : selectedCurrency.symbol) : "Gooddollar"}
+                                        </span>
+                                    </div>
                                     <svg
                                         className={`w-5 h-5 text-[#3A7768] transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
                                         fill="none"
@@ -209,7 +237,7 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
                                                 }`}
                                         >
                                             <img src={currency.icon} alt={currency.name} className="w-8 h-8" />
-                                            <span className="flex-1 text-sm font-medium text-gray-800">{currency.symbol}</span>
+                                            <span className="flex-1 text-sm font-medium text-gray-800">{currency.symbol === 'G$' ? 'Gooddollar' : currency.symbol}</span>
                                             <span className="text-sm text-gray-500">
                                                 {currency.balanceLoading ? '...' : currency.balance.toFixed(currency.symbol === 'CELO' ? 4 : 2)}
                                             </span>
@@ -229,9 +257,9 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
                         <button
                             disabled={!isConfirmEnabled}
                             onClick={handleConfirm}
-                            className={`w-full py-2.5 rounded-full text-sm font-semibold transition-all duration-200 mt-2.5 mb-3.5 ${isConfirmEnabled
-                                ? "bg-[#95EED8] text-[#3A7768] hover:bg-[#7de0c8] cursor-pointer"
-                                : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            className={`w-full py-4 rounded-full text-[16px] font-black transition-all duration-200 mt-2 mb-8 shadow-lg active:scale-[0.98] ${isConfirmEnabled
+                                ? "bg-[#39B54A] text-white hover:bg-black cursor-pointer"
+                                : "bg-gray-100 text-gray-300 cursor-not-allowed"
                                 }`}
                         >
                             {isLoading ? (

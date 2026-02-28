@@ -38,7 +38,7 @@ function getQueryClient() {
   return clientQueryClientSingleton
 }
 
-export default function Providers({children}) {
+export default function Providers({ children }) {
   // Use useRef to ensure queryClient persists across re-renders
   const queryClientRef = useRef(null)
 
@@ -46,14 +46,16 @@ export default function Providers({children}) {
     queryClientRef.current = getQueryClient()
   }
 
-    return (
-        <WagmiProvider config={config}>
-            <QueryClientProvider client={queryClientRef.current}>
-                <RainbowKitProvider>
-                    <NetworkAlert />
-                    {children}
-                </RainbowKitProvider>
-            </QueryClientProvider>
-        </WagmiProvider>
-    )
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClientRef.current}>
+        <RainbowKitProvider>
+          <>
+            <NetworkAlert />
+            {children}
+          </>
+        </RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
 }
