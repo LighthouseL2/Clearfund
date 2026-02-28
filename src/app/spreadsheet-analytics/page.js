@@ -1,15 +1,10 @@
 "use client";
 
-
-
 import Image from "next/image";
-import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense } from "react";
 
-
-
-function SearchKey({link}) {
+function SearchKey({ link }) {
   return (
     <div className="flex justify-center">
       {link ? (
@@ -21,30 +16,25 @@ function SearchKey({link}) {
         >
           View
         </a>
-        ) : (
-          <button
-            disabled
-            className="mx-auto mt-6 bg-gray-400 text-white text-sm font-medium py-4 px-14 rounded-[5px] cursor-not-allowed"
-          >
-            No Link Selected
-          </button>
-        )
-      }
+      ) : (
+        <button
+          disabled
+          className="mx-auto mt-6 bg-gray-400 text-white text-sm font-medium py-4 px-14 rounded-[5px] cursor-not-allowed"
+        >
+          No Link Selected
+        </button>
+      )}
     </div>
   )
 }
 
-
-
-export default function DashboardCards() {
+function DashboardContent() {
   const searchParams = useSearchParams();
   const link = searchParams.get("link");
   const router = useRouter();
 
-
   return (
-    
-      <div className="min-h-screen bg-white flex flex-col items-center py-10 font-sans">
+    <div className="min-h-screen bg-white flex flex-col items-center py-10 font-sans">
       <div className="w-full max-w-6xl flex justify-center sm:justify-start mb-8">
         <button onClick={() => router.back()}
           className="px-7 py-1 rounded-[5px] text-xs sm:text-sm border-2 border-[#26A17B] bg-[#A6E7D8]/40 text-[#26A17B] font-medium transition cursor-pointer"
@@ -70,13 +60,10 @@ export default function DashboardCards() {
               funding details.
             </p>
           </div>
-          
-         
-          <SearchKey link={link}/>
-          
-          
 
+          <SearchKey link={link} />
         </div>
+
         <div className="w-full sm:w-90 h-80 bg-white flex flex-col justify-between p-6 border-[3px] border-[#0000004D]/30 rounded-[20px]">
           <div className="flex flex-col items-center text-center">
             <Image
@@ -103,5 +90,13 @@ export default function DashboardCards() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function DashboardCards() {
+  return (
+    <Suspense fallback={<div>Loading analytics...</div>}>
+      <DashboardContent />
+    </Suspense>
   );
 }
