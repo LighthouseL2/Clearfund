@@ -78,7 +78,7 @@ export default function RootLayout({ children }) {
           <PrivyProvider
             appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
             config={{
-              loginMethods: ["email", "wallet"],
+              loginMethods: ["wallet"],
               defaultChain: celoWithRpc,
               supportedChains: [celoWithRpc, baseSepolia],
               embeddedWallets: {
@@ -86,11 +86,15 @@ export default function RootLayout({ children }) {
               },
               appearance: {
                 theme: "light",
-                landingHeader: <span key="privy-header" style={{ fontFamily: "'Modern Era', sans-serif", fontWeight: "bold", fontSize: "1.2rem" }}>Connect to ClearFund</span>,
+                landingHeader: (
+                  <div key="custom-privy-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0.5rem', marginBottom: '1rem', width: '100%' }}>
+                    <img key="privy-logo" src="https://auth.privy.io/logos/privy-logo-dark.png" alt="Privy" style={{ height: '36px', marginBottom: '1.5rem', objectFit: 'contain' }} />
+                    <span key="privy-title" style={{ fontFamily: 'monospace', fontSize: '24px', fontWeight: 'bold' }}>Log in or sign up</span>
+                  </div>
+                ),
                 accentColor: "#39B54A",
-                fontFamily: "'Modern Era', sans-serif",
-                showWalletLoginFirst: false,
-                logo: "/loadingIcon.png",
+                fontFamily: "monospace",
+                showWalletLoginFirst: true,
                 walletList: [
                   "detected_ethereum_wallets",
                   "metamask",

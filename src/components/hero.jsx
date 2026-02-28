@@ -12,13 +12,13 @@ const HeroSection = ({ setModalOpen }) => {
     {
       heading: "Your Gateway to Web3 Funding and Opportunities.",
       subtext: "ClearFund connects builders to vital funding resources to drive continuous innovation and scalable growth.",
-      btnText: "Explore →",
+      btnText: "Explore",
       btnLink: "/grants"
     },
     {
       heading: "Support GoodCollective \n And Empower Communities.",
       subtext: "Donate tokens today to directly fund essential initiatives and create lasting\nsocial change.",
-      btnText: "Donate Now →",
+      btnText: "Donate Now",
       btnLink: "/donate"
     }
   ]
@@ -62,13 +62,13 @@ const HeroSection = ({ setModalOpen }) => {
         </span>
       </h1>
 
-      <p className={`font-sans text-[17px] md:text-[20px] mb-10 text-black transition-opacity duration-500 max-w-4xl mx-auto leading-relaxed font-semibold whitespace-pre-line ${text.length < currentContent.heading.length / 2 && !isDeleting ? 'opacity-0' : 'opacity-100'}`}>
+      <p className={`font-sans text-[17px] md:text-[20px] mb-10 text-gray-500 transition-opacity duration-500 max-w-4xl mx-auto leading-relaxed font-semibold whitespace-pre-line ${text.length < currentContent.heading.length / 2 && !isDeleting ? 'opacity-0' : 'opacity-100'}`}>
         {currentContent.subtext}
       </p>
 
       <Link
         href={currentContent.btnLink}
-        className={`flex items-center justify-center bg-[#39B54A] text-white px-8 h-[52px] rounded-full text-[16px] font-sans font-black hover:bg-black transition-all transform hover:scale-105 duration-300 shadow-sm ${text.length < currentContent.heading.length / 2 && !isDeleting ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        className={`flex items-center justify-center bg-[#39B54A] text-white w-[160px] h-[52px] rounded-full text-[16px] font-sans font-black hover:bg-black transition-all transform hover:scale-105 duration-300 shadow-sm mx-auto ${text.length < currentContent.heading.length / 2 && !isDeleting ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
       >
         {currentContent.btnText}
       </Link>
