@@ -1,0 +1,238 @@
+commit 90a1004c8ab131bd773ca62338b8d0f4ccfea1bd
+Author: iamonuwacj <onuwachinedu66@gmail.com>
+Date:   Tue Aug 5 10:28:49 2025 +0100
+
+    added whitespace and background images to support
+
+diff --git a/src/app/about/page.js b/src/app/about/page.js
+index ed90f46..9fd1cd3 100644
+--- a/src/app/about/page.js
++++ b/src/app/about/page.js
+@@ -26,7 +26,7 @@ export default function HomePage() {
+       </div>
+ 
+       {/* Public Goods Info Section */}
+-      <section className="bg-[#F7F2EF] px-4 py-16 flex items-center justify-center  h-[65vh]">
++      <section className="bg-[#F7F2EF] px-4 py-16 flex items-center justify-center  md:h-[70vh]">
+         <div className="mx-auto text-center">
+           <h1 className="text-4xl sm:text-5xl md:text-[72px] font-bold text-[#198038] mb-6 md:whitespace-nowrap">
+             Unifying Web3 Grant Data
+@@ -37,7 +37,7 @@ export default function HomePage() {
+              It makes it easy to follow the money and understand the impact.
+           </p>
+           <a href='https://giveth.io/project/clearfund' target='_blank' className="bg-[#198038] text-white block mx-auto py-4 text-sm rounded
+-           hover:bg-green-800 transition w-[202.1923828125px]">
++           hover:bg-green-800 transition w-[202.1923828125px] font-bold">
+             Support Us
+           </a>
+           
+@@ -56,9 +56,9 @@ export default function HomePage() {
+           />
+         </div>
+ 
+-        <div className="relative z-10 px-6 md:px-20 py-20 max-w-5xl text-white">
+-          <h2 className="text-3xl md:text-5xl font-bold mb-6">About</h2>
+-          <p className="mb-6 text-base md:text-lg leading-relaxed">
++        <div className="relative z-10 px-6 md:px-20 py-20 md:max-w-5xl w-full text-white">
++          <h2 className="text-3xl md:text-[64px] font-bold mb-6">About</h2>
++          <p className="mb-6 text-[18px] leading-relaxed">
+             From the early days of Gitcoin’s Quadratic Funding rounds to
+             the emergence of new players like Octant, Celo and others thousands
+             of projects have received vital support. However, the problem
+@@ -67,17 +67,17 @@ export default function HomePage() {
+              That’s where ClearFund comes in.
+           </p>
+ 
+-          <h2 className='mt-10 mb-10 bold text-[20px]'>What Is ClearFund?</h2>
++          <h2 className='mt-10 mb-10 font-bold text-[20px]'>What Is ClearFund?</h2>
+           <p className='text-[18px]'>ClearFund is a data aggregation and transparency platform for the Web3 public goods funding ecosystem. It brings together past funding data from decentralized grant platforms into one accessible, searchable archive. Whether you’re a grantee, donor, DAO contributor, researcher, or policymaker, ClearFund makes it easy to trace funding histories, identify trends, and assess the real-world impact of Web3 funding. 
+ 
+             We solve the problem of fragmented information, a major barrier to transparency and accountability in decentralized ecosystems by creating a unified home for past grant data.</p>
+ 
+-          <h2 className='mt-10 mb-10 bold text-[20px]'>Why This Matters:</h2>
+-          <p>Public goods funding in Web3 has grown significantly. But as more platforms experiment with new models Retroactive Public Goods Funding, Quadratic Funding, streaming grants, on-chain bounties the data trail has become messy. Each platform publishes funding outcomes in its own format. Some share spreadsheets, others release blog summaries, while many projects receive funding with minimal public visibility.</p>
++          <h2 className='mt-10 mb-10 font-bold text-[20px]'>Why This Matters:</h2>
++          <p className='text-[18px]'>Public goods funding in Web3 has grown significantly. But as more platforms experiment with new models Retroactive Public Goods Funding, Quadratic Funding, streaming grants, on-chain bounties the data trail has become messy. Each platform publishes funding outcomes in its own format. Some share spreadsheets, others release blog summaries, while many projects receive funding with minimal public visibility.</p>
+ 
+-          <h2 className='mt-10 mb-10 bold text-[20px]'>Problems:</h2>
++          <h2 className='mt-10 mb-10 font-bold text-[20px]'>Problems:</h2>
+ 
+-          <ul className='list-disc ml-10 space-y-10'>
++          <ul className='list-disc ml-10 space-y-10 text-[18px]'>
+             <li>Fragmented Funding Data: Information about funded projects is spread across various individual platforms, making it challenging to get a comprehensive view. ClearFund brings all this data together into one place, making it easier to explore, compare, and analyze projects across the Web3 funding ecosystem.</li>
+             <li>Difficult to measure impact: Without organized data, it’s hard to evaluate how effective grant programs have been.</li>
+             <li>Inaccessible to non-experts: Community members, students, and even funders struggle to understand what’s happening across the broader ecosystem.</li>
+@@ -91,7 +91,7 @@ export default function HomePage() {
+             Whether you’re a builder seeking visibility, a donor seeking transparency, or a curious onlooker exploring
+             the ReFi space, ClearFund is here to guide your journey.
+           </p> */}
+-          <p className='mt-10'>ClearFund was created to address these challenges head-on.</p>
++          <p className='mt-10 text-[18px]'>ClearFund was created to address these challenges head-on.</p>
+         </div>
+       </section>
+ 
+diff --git a/src/app/connect-with-us/page.js b/src/app/connect-with-us/page.js
+index 2026c54..2a0bb50 100644
+--- a/src/app/connect-with-us/page.js
++++ b/src/app/connect-with-us/page.js
+@@ -73,13 +73,13 @@ export default function SupportSection() {
+             setToggle={setOpen}
+         />
+           <header
+-      className="bg-center bg-black bg-no-repeat bg-cover h-[90vh] relative"
+-      // style={{
+-      //   backgroundImage: `url('/support-bg.svg')`,
+-      // }}
++      className="bg-center  bg-no-repeat bg-cover h-[90vh] relative"
++      style={{
++        backgroundImage: `url('/support-bg.svg')`,
++      }}
+     >
+       {/* Overlay */}
+-      <div className="h-full w-full flex items-center justify-center px-4 md:px-24">
++      <div className="h-full w-full flex items-center justify-center px-4 md:px-24 bg-black/90">
+         <div className="text-white max-w-3xl text-center md:text-left">
+           <h1 className="font-extrabold text-5xl text-center sm:text-6xl md:text-[88px] mb-4 leading-tight">
+           Connect with Us
+diff --git a/src/app/privacy-policy/page.js b/src/app/privacy-policy/page.js
+index 57bb4c8..dfdf1ce 100644
+--- a/src/app/privacy-policy/page.js
++++ b/src/app/privacy-policy/page.js
+@@ -67,11 +67,11 @@ export default function PrivacyPolicy() {
+             setToggle={setOpen}
+         />
+       
+- <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
++ <div className="min-h-screen flex items-center justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
+       <div className="max-w-3xl w-full  p-8 ">
+         <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
+-        <p className="text-sm text-black mb-6">{policy.effectiveDate}</p>
+-        <p className="text-sm text-black mb-6">{policy.paragraph} {' '}<a
++        <p className="text-[16px] text-black mb-6">{policy.effectiveDate}</p>
++        <p className="text-[16px] text-black mb-6">{policy.paragraph} {' '}<a
+             href="https://clearfund.netlify.app"
+             className="text-blue-600 underline"
+             target="_blank"
+@@ -121,6 +121,6 @@ export default function PrivacyPolicy() {
+ 
+ 6. Changes to This Policy
+ 
+-
++"
+ 
+ 7. Contact Us`
+\ No newline at end of file
+diff --git a/src/app/support/page.js b/src/app/support/page.js
+index cd34557..01fd1f3 100644
+--- a/src/app/support/page.js
++++ b/src/app/support/page.js
+@@ -59,12 +59,14 @@ export default function SupportSection() {
+       <HeroSection />
+ 
+       <div className="px-4 py-16 bg-gray-50">
+-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 -mt-44 z-10 relative">
++        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10
++           -mt-44 z-10 relative">
+           {cards.map((card, index) => (
+             <div
+               key={index}
+               className="bg-white border border-gray-200 rounded-lg  flex flex-col mb-20
+-              items-center justify-center text-center shadow-sm hover:shadow-md transition duration-300 h-[33.2rem]"
++              items-center justify-center text-center shadow-sm hover:shadow-md transition
++              duration-300 md:h-[531px] h-[450px]"
+             >
+               <Image
+                 src={`/${card.icon}`}
+diff --git a/src/app/terms/page.js b/src/app/terms/page.js
+index 9eb07ef..dc6eed3 100644
+--- a/src/app/terms/page.js
++++ b/src/app/terms/page.js
+@@ -68,7 +68,7 @@ export default function TermsAndConditions() {
+   };
+ 
+   return (
+-    <section>
++    <section className="bg-[#FAFAFA]">
+       <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+             setOpenMenu={setOpenMenu} setBlur={setBlur}
+         />
+@@ -79,7 +79,7 @@ export default function TermsAndConditions() {
+             setToggle={setOpen}
+         />
+         
+-      <div className="min-h-screen flex items-center justify-center px-4 py-[5rem]">
++      <div className="min-h-screen flex items-center justify-center px-4 pb-[8rem] pt-[5rem]">
+         <div className="max-w-3xl w-full p-8">
+           <h1 className="text-3xl font-bold mb-4">{terms.title}</h1>
+           <p className="text-sm text-black mb-6">{terms.effectiveDate}</p>
+diff --git a/src/components/Footer.jsx b/src/components/Footer.jsx
+index 52acc64..a5d8a1b 100644
+--- a/src/components/Footer.jsx
++++ b/src/components/Footer.jsx
+@@ -136,7 +136,7 @@ const Footer = () => {
+ 
+             </div>
+ 
+-            <div className="mt-[5rem] justify-between w-full ">
++            <div className="mt-[6rem] justify-between w-full ">
+                 <p className="text-[14px] text-[#99999999] font-sans">© {today} ClearFund. All rights reserved</p>
+             </div>
+         </div>
+diff --git a/src/components/HeroSection.js b/src/components/HeroSection.js
+index 3368cec..aa9b58e 100644
+--- a/src/components/HeroSection.js
++++ b/src/components/HeroSection.js
+@@ -4,12 +4,12 @@ export default function HeroHeader() {
+   return (
+     <header
+       className="bg-center bg-fixed bg-no-repeat bg-cover h-[75vh] relative bg-black"
+-      // style={{
+-      //   backgroundImage: `url('/support-bg.svg')`,
+-      // }}
++      style={{
++        backgroundImage: `url('/support-bg.svg')`,
++      }}
+     >
+       {/* Overlay */}
+-      <div className="h-full w-full flex items-center justify-center  px-4 md:px-24">
++      <div className="h-full w-full flex items-center justify-center  px-4 md:px-24 bg-black/90">
+         <div className="text-white max-w-6xl text-center">
+           <h1 className="font-extrabold md:text-[88px] text-5xl mb-4 leading-tight">
+             <span className="text-white">How</span> Can we
+diff --git a/src/components/Sidebar.jsx b/src/components/Sidebar.jsx
+index 7de3109..3750960 100644
+--- a/src/components/Sidebar.jsx
++++ b/src/components/Sidebar.jsx
+@@ -157,14 +157,15 @@ export default function Sidebar() {
+           <hr className="mt-4" />
+ 
+           <div className="mt-5">
+-            <Link href={"/account"} className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-2
++            <Link href={"/account"} >
++              <button className={`flex items-center gap-3 text-[#9197B3] text-sm px-4 py-3
+               ${pathname === "/account"
+                     ? "bg-[#174123] text-white"
+                     : "text-[#9197B3] hover:bg-gray-50"
+                 } font-medium  rounded-lg w-full text-left`}>
+-              <Settings size={18} />
+-              Setting
+-                      
++                <Settings size={18} />
++                Setting
++              </button>
+             </Link>
+           </div>
+         </div>
+diff --git a/src/components/navHeader.jsx b/src/components/navHeader.jsx
+index dd7236f..074eeb1 100644
+--- a/src/components/navHeader.jsx
++++ b/src/components/navHeader.jsx
+@@ -23,7 +23,7 @@ const NavHeader = ({toggle, setToggle, setOpenMenu, openMenu, setBlur}) => {
+ 
+         <Link href="/?route=login"
+           className="w-[159.17px] md:flex items-center font-sans justify-center
+-            font-medium hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
++            font-bold hover:bg-black bg-[#198038] hidden hover:scale-105 transition-all
+           text-white text-[16px] h-[52px]  rounded-md" onClick={() => {
+             setToggle(true)
+             setBlur(true)

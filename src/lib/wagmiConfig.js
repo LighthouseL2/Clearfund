@@ -11,7 +11,7 @@ export const config = getDefaultConfig({
     projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
     chains: [celo, baseSepolia],
     transports: {
-        [celo.id]: http(),
+        [celo.id]: http("https://1rpc.io/celo"),
         [baseSepolia.id]: http(),
     },
     ssr: true

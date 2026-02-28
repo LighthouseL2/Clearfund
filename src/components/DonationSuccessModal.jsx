@@ -28,7 +28,7 @@ export default function DonationSuccessModal({ onClose, onDonateAgain }) {
                 <div className="flex flex-col items-center mb-6 mt-2">
                     <div className="w-24 h-24 relative">
                         <Image
-                            src="/assets/donate successful_icon.png"
+                            src="/assets/donate_successful_icon.png"
                             alt="Donation Successful"
                             fill
                             className="object-contain"

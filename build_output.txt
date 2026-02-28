@@ -1,0 +1,76 @@
+
+> clearfund@0.1.0 build
+> next build
+
+   ??? Next.js 15.3.4
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+node.exe : <w> 
+[webpack.cache.PackFileCacheStrategy] 
+Caching failed for pack: Error: ENOSPC: 
+no space left on device, write
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecifi 
+   ed: (<w> [webpack.ca...n device, wri  
+  te:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeComm 
+   andError
+ 
+Failed to compile.
+
+./src/store/grantStore.js
+Module not found: Can't resolve 'zustand'
+
+https://nextjs.org/docs/messages/module-n
+ot-found
+
+Import trace for requested module:
+./src/app/grants/[id]/page.js
+
+./node_modules/porto/dist/core/Porto.js
+Module not found: Can't resolve 
+'zustand/middleware'
+
+https://nextjs.org/docs/messages/module-n
+ot-found
+
+Import trace for requested module:
+./node_modules/porto/dist/index.js
+./node_modules/wagmi/node_modules/@wagmi/
+connectors/dist/esm/porto.js
+./node_modules/wagmi/node_modules/@wagmi/
+connectors/dist/esm/exports/index.js
+./node_modules/wagmi/dist/esm/exports/con
+nectors.js
+./node_modules/@rainbow-me/rainbowkit/dis
+t/index.js
+./src/components/Provider.jsx
+./src/app/layout.js
+
+./node_modules/porto/dist/core/Porto.js
+Module not found: Can't resolve 
+'zustand/vanilla'
+
+https://nextjs.org/docs/messages/module-n
+ot-found
+
+Import trace for requested module:
+./node_modules/porto/dist/index.js
+./node_modules/wagmi/node_modules/@wagmi/
+connectors/dist/esm/porto.js
+./node_modules/wagmi/node_modules/@wagmi/
+connectors/dist/esm/exports/index.js
+./node_modules/wagmi/dist/esm/exports/con
+nectors.js
+./node_modules/@rainbow-me/rainbowkit/dis
+t/index.js
+./src/components/Provider.jsx
+./src/app/layout.js
+
+
+> Build failed because of webpack errors

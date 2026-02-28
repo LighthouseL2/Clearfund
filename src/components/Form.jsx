@@ -77,7 +77,7 @@ export function Form({ setIsHidden }) {
                         <div className="flex items-center gap-5">
                             <div className="w-[60px] h-[60px] flex-shrink-0">
                                 <Image
-                                    src="/assets/donate successful_icon.png"
+                                    src="/assets/donate_successful_icon.png"
                                     alt="Success"
                                     width={60}
                                     height={60}
@@ -131,7 +131,7 @@ export function Form({ setIsHidden }) {
                     {/* Illustration */}
                     <div className="relative mt-2 w-full h-[220px] lg:h-[260px]">
                         <Image
-                            src="/assets/add grant form image.png"
+                            src="/assets/add_grant_form_image.png"
                             alt="Contribute Illustration"
                             fill
                             className="object-contain object-left-bottom"

@@ -1,0 +1,157 @@
+commit 17f3318a3ef1b53c6eaaaa16b94e01c033e05591
+Author: DannyThomx <dannithomx@gmail.com>
+Date:   Fri Jan 30 17:18:37 2026 +0100
+
+    chore(homepage): hide blog section and remove Netlify plugin
+    
+    Remove RecentPost component from homepage and unpin @netlify/plugin-nextjs
+    to enable automatic adapter updates per Netlify best practices.
+
+diff --git a/src/app/page.js b/src/app/page.js
+index 0757975..db82541 100644
+--- a/src/app/page.js
++++ b/src/app/page.js
+@@ -6,19 +6,10 @@ import NavHeader from "@/components/navHeader";
+ import StatSection from "@/components/stats";
+ import SliderLogos from "@/components/slider";
+ import DiscoverBox from "@/components/discover";
+-import GrantBox from "@/components/grantBox";
+ import Footer from "@/components/Footer";
+-import RecentPost from "@/components/recentPost";
+-import FaqSection from "@/components/faq";
+-import { useEffect, useState } from "react";
++import { useState } from "react";
+ import Link from "next/link";
+ import MenuDropdown from "@/components/menuDropdown";
+-import Image from "next/image";
+-import { LoadingSlide } from "@/components/LoaderSlider";
+-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+-import { useAccount, useChainId } from 'wagmi';
+-import { ConnectButton } from "@rainbow-me/rainbowkit";
+-import GrantRoundCard from "@/components/GrantRoundCard";
+ 
+ 
+ 
+@@ -79,12 +70,7 @@ export default function Home() {
+     const [open, setOpen] = useState(true)
+     const [openMenu, setOpenMenu] = useState(false)
+     const [blur, setBlur] = useState(false)
+-    // const [loading, setLoading] = useState(false)
+-    // const pathname = usePathname()
+     const [modalOpen, setModalOpen] = useState(false)
+-    // const route = useSearchParams().get("route")
+-    const router = useRouter()
+-    const [redirected, setRedirected] = useState(true)
+ 
+ 
+     // const { isConnected, account } = useAccount()
+@@ -258,7 +244,7 @@ export default function Home() {
+             </Link>
+         </div> */}
+ 
+-        <RecentPost />
++        {/* <RecentPost /> */}
+ 
+         {/* <FaqSection /> */}
+ 
+
+commit bf520e6061f27c186b8a01c7a98dea93f8543d4e
+Author: DannyThomx <dannithomx@gmail.com>
+Date:   Fri Jan 30 15:22:33 2026 +0100
+
+    chore(homepage): remove faq and featured grants components from homepage
+
+diff --git a/src/app/page.js b/src/app/page.js
+index ada134a..0757975 100644
+--- a/src/app/page.js
++++ b/src/app/page.js
+@@ -183,19 +183,18 @@ export default function Home() {
+ 
+         {/* <GrantBox /> */}
+ 
+-        <div className="w-full px-[5%] bg-[#FAFAFA] py-20">
++        {/* Featured Grants Section - Hidden */}
++        {/* <div className="w-full px-[5%] bg-[#FAFAFA] py-20">
+             <header className="text-center pb-10">
+                 <h1 className="text-[65px] font-black text-center">Featured Grant</h1>
+             </header>
+ 
+-            {/* <GrantRoundCard grants={grants}/> */}
+             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10  mt-16 w-full text-black justify-items-center">
+                     {grants.map((item, index) => (
+                       <div
+                         key={index}
+                         className="flex flex-col justify-between h-full w-full max-w-[360px] border-1 rounded-xl border-[#000000]/40 bg-white hover:shadow-md transition"
+                       >
+-                        {/* Top image */}
+                         <div className="rounded-t-xl overflow-hidden w-full h-[166px]  relative">
+                           <Image
+                             src={item.image}
+@@ -205,7 +204,6 @@ export default function Home() {
+                           />
+ 
+                         </div>
+-                        {/* Card content */}
+                         <div className="flex-grow mt-4 px-4 pb-4 flex flex-col">
+                           <div>
+                             <div className="flex justify-between items-center pt-4 mb-2">
+@@ -214,10 +212,9 @@ export default function Home() {
+                               </h3>
+                               <p className="inline-flex items-center border bg-[#D1FAE5] border-black/15 text-[#198038] rounded-[5px] px-2 gap-1 text-[14px]  font-medium  w-fit">
+                                 <span className="font-bold">{item.amount}</span>
+-                                {/* <span>{item.coin}</span> */}
+                               </p>
+                             </div>
+-            
++
+                             <p className="text-[16px] leading-snug text-gray-700 mb-8 pt-4">
+                               {item.desc}
+                             </p>
+@@ -249,42 +246,21 @@ export default function Home() {
+                             <p className="text-[10px] text-[#000000]  font-medium border bg-[#FFFFFF] border-black/15 rounded-[50px] px-2 py-1">{item.date}</p>
+                           </div>
+                         </div>
+-            
++
+                       </div>
+-            
++
+                     ))}
+                   </div>
+ 
+-            <Link href={"/grants"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center 
++            <Link href={"/grants"} className="w-[202.1923828125px] bg-[#39B54A] text-white flex justify-center items-center
+                 mx-auto h-[52px] mt-20 rounded-full hover:bg-black transition-all">
+                 View All
+             </Link>
+-          {/* <ConnectButton.Custom>
+-            {({ account, openConnectModal, openAccountModal, mounted }) => {
+-              const connected = mounted && account
+-
+-              const handleClick = async () => {
+-                setModalOpen(true)
+-                openConnectModal()
+-                localStorage.setItem("login", "true")
+-                
+-              }
+-
+-              return (
+-                <button onClick={handleClick}
+-                  className='btn bg-[#39B54A] h-[52px]  hover:scale-105 transition-all
+-                  text-white text-[16px] flex items-center font-sans justify-center
+-                    font-bold hover:bg-black w-[202.19px] rounded-full mx-auto mt-32 mb-10'>
+-                  {connected ? "View All" : "View All"}
+-                </button>
+-              )
+-            }}
+-          </ConnectButton.Custom> */}
+-        </div>
++        </div> */}
+ 
+         <RecentPost />
+ 
+-        <FaqSection />
++        {/* <FaqSection /> */}
+ 
+ 
+ 

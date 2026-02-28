@@ -29,6 +29,17 @@ function AnalyticsWrapper({ children }) {
 }
 
 
+import { celo, baseSepolia } from "viem/chains"
+
+const celoWithRpc = {
+  ...celo,
+  rpcUrls: {
+    ...celo.rpcUrls,
+    default: { http: ["https://1rpc.io/celo", "https://forno.celo.org"] },
+    public: { http: ["https://1rpc.io/celo", "https://forno.celo.org"] },
+  }
+}
+
 export default function RootLayout({ children }) {
 
   return (
@@ -68,6 +79,8 @@ export default function RootLayout({ children }) {
             appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
             config={{
               loginMethods: ["email", "wallet"],
+              defaultChain: celoWithRpc,
+              supportedChains: [celoWithRpc, baseSepolia],
               embeddedWallets: {
                 createOnLogin: "users-without-wallets"
               },
@@ -75,7 +88,7 @@ export default function RootLayout({ children }) {
                 theme: "light",
                 landingHeader: <span style={{ fontFamily: "'Modern Era', sans-serif", fontWeight: "bold", fontSize: "1.2rem" }}>Connect to ClearFund</span>,
                 accentColor: "#39B54A",
-                fontFamily: "Inter, sans-serif",
+                fontFamily: "'Modern Era', sans-serif",
                 showWalletLoginFirst: false,
                 logo: "/loadingIcon.png",
                 walletList: [

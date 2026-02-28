@@ -110,26 +110,25 @@ export function useDonate() {
                 setTxHash(null)
 
                 // Switch to Celo network if needed
-                try {
-                    await wallet.switchChain(CELO_CHAIN_ID)
-                } catch (switchErr) {
-                    console.warn('Chain switch warning:', switchErr)
+                if (wallet.chainId !== `eip155:${CELO_CHAIN_ID}`) {
+                    try {
+                        await wallet.switchChain(CELO_CHAIN_ID)
+                        // Wait for provider to sync after chain switch
+                        await new Promise(resolve => setTimeout(resolve, 1000))
+                    } catch (switchErr) {
+                        console.warn('Chain switch warning:', switchErr)
+                    }
                 }
 
                 // Get the Privy wallet's EIP-1193 provider
                 const provider = await wallet.getEthereumProvider()
 
-                // Request accounts to ensure provider is connected
-                await provider.request({ method: 'eth_requestAccounts' })
-
-                // Create a viem wallet client from the Privy provider
+                // Register the provider with viem
                 const walletClient = createWalletClient({
                     chain: celo,
                     transport: custom(provider),
+                    account: wallet.address
                 })
-
-                // Get the account address from the provider
-                const [account] = await walletClient.getAddresses()
 
                 let hash
 
@@ -138,7 +137,8 @@ export function useDonate() {
                     hash = await walletClient.sendTransaction({
                         to: recipient,
                         value: parsedAmount,
-                        account,
+                        chain: celo,
+                        account: wallet.address
                     })
                 } else {
                     // ERC20 transfer (G$) using writeContract
@@ -147,22 +147,31 @@ export function useDonate() {
                         abi: ERC20_ABI,
                         functionName: 'transfer',
                         args: [recipient, parsedAmount],
-                        account,
+                        chain: celo,
+                        account: wallet.address
                     })
                 }
+
+                if (!hash) throw new Error('No transaction hash returned')
 
                 setTxHash(hash)
                 setStatus('success')
                 return hash
             } catch (err) {
                 console.error('Donation error:', err)
-                const message = err.shortMessage || err.message || 'Transaction failed'
-                // User rejected
-                if (message.toLowerCase().includes('reject') || message.toLowerCase().includes('denied')) {
-                    setError('Transaction was rejected by user')
-                } else {
-                    setError(message)
+
+                // Detailed error mapping
+                let message = err.shortMessage || err.message || 'Transaction failed'
+
+                if (message.includes('User rejected') || message.includes('denied') || message.includes('User denied')) {
+                    message = 'Transaction was rejected in your wallet'
+                } else if (message.includes('RPC error') || message.includes('Unknown RPC error')) {
+                    message = 'Network error: The Celo RPC is currently unstable. Please try again in a moment.'
+                } else if (message.includes('insufficient funds')) {
+                    message = 'Insufficient funds for transaction and gas fees'
                 }
+
+                setError(message)
                 setStatus('error')
                 return null
             }
