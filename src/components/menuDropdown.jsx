@@ -1,21 +1,18 @@
 import Link from "next/link"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 
-const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle, setModalOpen}) => {
-  return (
-    <div className={`md:hidden p-5 bg-white w-full h-screen  top-0 fixed z-50  transition-transform
+const MenuDropdown = ({ openMenu, setOpenMenu, toggle, setToggle, setModalOpen }) => {
+    return (
+        <div className={`md:hidden p-5 bg-white w-full h-screen  top-0 fixed z-50  transition-transform
         duration-300 left-0 ease-in-out ${!openMenu ? "-translate-y-full "
-            : "translate-y-14 -translate-x-0"} transform`}>
+                : "translate-y-14 -translate-x-0"} transform`}>
 
             <ul className="w-full bg-white h-fit space-y-5 font-sans">
                 <li className="hover:bg-white/50 block w-full p-3 rounded-md font-bold hover:scale-105 transition-all hover:text-[#198038]">
-                    <Link target="_blank" href={"https://github.com/LighthouseL2/Clearfund"} onClick={() =>setOpenMenu(false)}>Github</Link>
+                    <Link target="_blank" href={"https://github.com/LighthouseL2/Clearfund"} onClick={() => setOpenMenu(false)}>Github</Link>
                 </li>
                 <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#198038] w-full p-3 rounded-md font-bold ">
-                    <Link href={"/about"} onClick={() =>setOpenMenu(false)}>About</Link>
-                </li>
-                <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#198038] w-full p-3 font-bold rounded-md">
-                    <Link target="_blank" href={"https://clearfund.substack.com"} onClick={() =>setOpenMenu(false)}>Blog</Link>
+                    <Link href={"/about"} onClick={() => setOpenMenu(false)}>About</Link>
                 </li>
             </ul>
 
@@ -54,8 +51,8 @@ const MenuDropdown = ({openMenu, setOpenMenu, toggle, setToggle, setModalOpen}) 
                     }}
                 </ConnectButton.Custom> */}
             </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default MenuDropdown

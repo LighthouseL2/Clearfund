@@ -17,18 +17,17 @@ export default function Sidebar({ isOpen = false, onClose }) {
       {/* Desktop Sidebar */}
       <div className="fixed left-0 top-0 h-screen w-64 bg-white shadow-[0px_10px_60px_0px_rgba(226,236,249,0.5)] z-50 hidden lg:block">
         {/* Logo */}
-        <div className="px-7 py-9">
-          {/* <img 
-          src={imgClearfundLogo011} 
-          alt="Clearfund Logo" 
-          className="w-40 h-auto"
-        /> */}
-          <Image
-            alt="Clearfund Logo"
-            src={"/assets/projectIcon.png"}
-            width={170}
-            height={20}
-          />
+        <div className="px-7 py-9 shrink-0">
+          <Link href="/">
+            <Image
+              alt="Clearfund Logo"
+              src={"/assets/projectIcon.png"}
+              width={170}
+              height={20}
+              className="shrink-0"
+              priority
+            />
+          </Link>
         </div>
 
         {/* Navigation */}
@@ -102,14 +101,17 @@ export default function Sidebar({ isOpen = false, onClose }) {
       {/* Mobile Sidebar */}
       <div className={`fixed left-0 top-0 h-screen w-64 bg-white shadow-[0px_10px_60px_0px_rgba(226,236,249,0.5)] z-50 lg:hidden transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         {/* Logo */}
-        <div className="px-7 py-9 flex items-center justify-between">
-
-          <Image
-            alt="Clearfund Logo"
-            src={"/assets/projectIcon.png"}
-            width={140}
-            height={100}
-          />
+        <div className="px-7 py-9 flex items-center justify-between shrink-0">
+          <Link href="/">
+            <Image
+              alt="Clearfund Logo"
+              src={"/assets/projectIcon.png"}
+              width={140}
+              height={100}
+              className="shrink-0"
+              priority
+            />
+          </Link>
           <button onClick={onClose} className="text-[#39b54a]">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

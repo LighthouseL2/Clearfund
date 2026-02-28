@@ -21,7 +21,7 @@ export default function HeroBanner() {
       />
 
       {/* Content overlay */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between h-full px-6 lg:px-11 py-8 lg:py-0 gap-6">
+      <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between h-full px-6 lg:px-11 py-8 lg:py-0 w-full gap-6">
         <div className="text-white max-w-2xl">
           <h1 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] lg:text-[48px] leading-normal mb-4 lg:mb-6">
             All Grants. One Dashboard.
@@ -31,7 +31,6 @@ export default function HeroBanner() {
             in one place.
           </p>
         </div>
-
       </div>
     </div>
   );

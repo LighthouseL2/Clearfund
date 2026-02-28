@@ -14,97 +14,97 @@ import MenuDropdown from "@/components/menuDropdown";
 
 
 const grants = [
-    // {
-    //   image: "/grant-round-images/good-dollar-image.svg",
-    //   title: "Good Dollar",
-    //   desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
-    //   amount: "$ 250k",
-    //   date: "End- Oct 8, 2025",
-    //   link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
-    // },
+  // {
+  //   image: "/grant-round-images/good-dollar-image.svg",
+  //   title: "Good Dollar",
+  //   desc: `An initiative fueling innovation with G$, offering support, funding, and mentorship to builders.`,
+  //   amount: "$ 250k",
+  //   date: "End- Oct 8, 2025",
+  //   link: "https://gooddollar.notion.site/GoodBuilders-Program-Round-2-goes-streaming-200f258232f0802b960ad1dab7ad5fd2"
+  // },
 
-    {
-      title: "Polygon AI ",
-      amount: "50k Pol",
-      date: "End- Nov 23, 2025",
-      link: "https://www.encodeclub.com/programmes/polygon-grants",
-      image: "/grant-round-images/polygon.jpg",
-      desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
-    },
-    
-    
-    {
-      image: "/grant-round-images/optimism.image.png",
-      title: "Optimism Season 8",
-      desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
-      amount: "6.29M OP",
-      date: "End- Nov 12, 2025",
-      link: "https://www.opgrants.io/"
-    },
+  {
+    title: "Polygon AI ",
+    amount: "50k Pol",
+    date: "End- Nov 23, 2025",
+    link: "https://www.encodeclub.com/programmes/polygon-grants",
+    image: "/grant-round-images/polygon.jpg",
+    desc: `Funding from 10k-50k POL across three tiers for teams building innovative apps that combine AI with blockchain tech on Polygon.`
+  },
 
-    {
-      title: "Scroll Grants",
-      amount: "312.5k SCR",
-      date: "End- Dec 19, 2025",
-      link: "https://tally.so/r/mVrrPj",
-      image: "/grant-round-images/feature.jpg",
-      desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
 
-    },
+  {
+    image: "/grant-round-images/optimism.image.png",
+    title: "Optimism Season 8",
+    desc: `Funding projects that build innovative applications and contribute to public goods on Optimism.`,
+    amount: "6.29M OP",
+    date: "End- Nov 12, 2025",
+    link: "https://www.opgrants.io/"
+  },
 
-    // {
-    //   image: "/grant-round-images/thrive-protocol-image.svg",
-    //   title: "Thrive Protocol",
-    //   desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
-    //   amount: "$ 100k",
-    //   date: "End- Jul 31, 2026",
-    //   link: "https://portals.thrive.xyz/"
-    // },
-  ];
+  {
+    title: "Scroll Grants",
+    amount: "312.5k SCR",
+    date: "End- Dec 19, 2025",
+    link: "https://tally.so/r/mVrrPj",
+    image: "/grant-round-images/feature.jpg",
+    desc: `Scroll DAO Community Council introduces the Community Grants Program. This is an effort to support communities worldwide with their community activations.`
+
+  },
+
+  // {
+  //   image: "/grant-round-images/thrive-protocol-image.svg",
+  //   title: "Thrive Protocol",
+  //   desc: `Thrive Portals is funding the next wave of studios and indies building with the Portals Engine.`,
+  //   amount: "$ 100k",
+  //   date: "End- Jul 31, 2026",
+  //   link: "https://portals.thrive.xyz/"
+  // },
+];
 
 
 
 
 export default function Home() {
 
-    const [open, setOpen] = useState(true)
-    const [openMenu, setOpenMenu] = useState(false)
-    const [blur, setBlur] = useState(false)
-    const [modalOpen, setModalOpen] = useState(false)
+  const [open, setOpen] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
+  const [blur, setBlur] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
 
-    // const { isConnected, account } = useAccount()
-    // const chainId = useChainId()
-    
+  // const { isConnected, account } = useAccount()
+  // const chainId = useChainId()
 
 
 
-    // const [progress, setProgress] = useState(10)
+
+  // const [progress, setProgress] = useState(10)
 
 
-    // let interval = 60
+  // let interval = 60
 
 
-    // useEffect(() => {
-    //     if(pathname === "/" && !route){
-    //         setLoading(true)
-    //         const timer = setInterval(() => {
-    //         setProgress((oldProgress) => {
-    //             if(oldProgress >= 100) {
-    //                 clearInterval(timer)
-    //                 setTimeout(() => {
-    //                     setLoading(false)
-    //                 }, 1000)
-    //                 return 100
-    //             }
-    //             return oldProgress + 1
-    //         })
-    //         }, interval)
-    //         localStorage.setItem("hasVisited", "true")
-    //         return () => clearInterval(timer)
-    //     }
+  // useEffect(() => {
+  //     if(pathname === "/" && !route){
+  //         setLoading(true)
+  //         const timer = setInterval(() => {
+  //         setProgress((oldProgress) => {
+  //             if(oldProgress >= 100) {
+  //                 clearInterval(timer)
+  //                 setTimeout(() => {
+  //                     setLoading(false)
+  //                 }, 1000)
+  //                 return 100
+  //             }
+  //             return oldProgress + 1
+  //         })
+  //         }, interval)
+  //         localStorage.setItem("hasVisited", "true")
+  //         return () => clearInterval(timer)
+  //     }
 
-    // },[setLoading,setProgress,interval, pathname, route])
+  // },[setLoading,setProgress,interval, pathname, route])
 
 
   //   useEffect(() => {
@@ -115,62 +115,62 @@ export default function Home() {
   //   }
   // }, [router, modalOpen, isConnected])
 
-  
-  
-  
 
-    // if (loading){
-    //     return (
-            
-    //         <div className="flex h-screen items-center justify-center transition-all flex-col">
-    //             <div className="text-xl font-semibold mb-10 animate-bounce">
-    //                 <Image
-    //                     alt="clearfund"
-    //                     src={"/loadingIcon.png"}
-    //                     width={72}
-    //                     height={72}
-    //                 />
-    //             </div>
-    //             <div className="md:w-[333px] w-[95%] h-[17px] bg-black  overflow-hidden">
-    //                 <div className="h-full bg-green-500 text-white font-bold text-[12px] flex items-center justify-end transition-all ease-linear px-4"
-    //                     style={{width: `${progress}%`}}>
-    //                         {progress}%
-    //                 </div>
 
-    //             </div>
-    //             <LoadingSlide />
-    //         </div>
-           
-    //     )
-    // }
+
+
+  // if (loading){
+  //     return (
+
+  //         <div className="flex h-screen items-center justify-center transition-all flex-col">
+  //             <div className="text-xl font-semibold mb-10 animate-bounce">
+  //                 <Image
+  //                     alt="clearfund"
+  //                     src={"/loadingIcon.png"}
+  //                     width={72}
+  //                     height={72}
+  //                 />
+  //             </div>
+  //             <div className="md:w-[333px] w-[95%] h-[17px] bg-black  overflow-hidden">
+  //                 <div className="h-full bg-green-500 text-white font-bold text-[12px] flex items-center justify-end transition-all ease-linear px-4"
+  //                     style={{width: `${progress}%`}}>
+  //                         {progress}%
+  //                 </div>
+
+  //             </div>
+  //             <LoadingSlide />
+  //         </div>
+
+  //     )
+  // }
 
 
   return (
+    <div className={`bg-white min-h-screen relative w-full min-w-xs ${blur && "blur"}`}>
+      {/* Top Banner Removed */}
+      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
+        setOpenMenu={setOpenMenu} setBlur={setBlur}
+      />
+      <MenuDropdown
+        openMenu={openMenu}
+        setOpenMenu={setOpenMenu}
+        toggle={open}
+        setToggle={setOpen}
+        setModalOpen={setModalOpen}
+      />
 
-    <div className={`bg-white min-h-screen absolute top-5 w-full min-w-xs ${blur && "blur"}`}>
-        <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-            setOpenMenu={setOpenMenu} setBlur={setBlur}
-        />
-        <MenuDropdown
-            openMenu={openMenu}
-            setOpenMenu={setOpenMenu}
-            toggle={open}
-            setToggle={setOpen}
-            setModalOpen={setModalOpen}
-        />
+      <HeroSection setModalOpen={setModalOpen} />
 
-        <HeroSection setModalOpen={setModalOpen}/>
+      <StatSection />
 
-        <StatSection />
+      <SliderLogos />
 
-        <SliderLogos />
+      <DiscoverBox />
 
-        <DiscoverBox />
+      {/* <GrantBox /> */}
 
-        {/* <GrantBox /> */}
-
-        {/* Featured Grants Section - Hidden */}
-        {/* <div className="w-full px-[5%] bg-[#FAFAFA] py-20">
+      {/* Featured Grants Section - Hidden */}
+      {/* <div className="w-full px-[5%] bg-[#FAFAFA] py-20">
             <header className="text-center pb-10">
                 <h1 className="text-[65px] font-black text-center">Featured Grant</h1>
             </header>
@@ -244,36 +244,36 @@ export default function Home() {
             </Link>
         </div> */}
 
-        {/* <RecentPost /> */}
+      {/* <RecentPost /> */}
 
-        {/* <FaqSection /> */}
+      {/* <FaqSection /> */}
 
 
 
-        <div className={`px-[5%] w-[90%] mx-auto rounded-2xl h-[621px] mt-30
+      <div className={`px-[5%] w-[90%] mx-auto rounded-2xl h-[621px] mt-30
          flex items-center justify-center flex-col bg-[url(/details.jpg)] bg-cover bg-center`}>
-            <div className="flex items-center justify-center flex-col space-y-10">
-                <h1 className="text-black font-extrabold text-[36px] md:text-[76px] w-full
-                    lg:w-[800px] text-center md:leading-24 leading-10" style={{fontWeight: 900}}>
-                    All Funding Details <br /> <span className="text-white">In One Hub</span>
-                </h1>
+        <div className="flex items-center justify-center flex-col space-y-10">
+          <h1 className="text-black font-extrabold text-[36px] md:text-[76px] w-full
+                    lg:w-[800px] text-center md:leading-24 leading-10" style={{ fontWeight: 900 }}>
+            All Funding Details <br /> <span className="text-white">In One Hub</span>
+          </h1>
 
-                <p className="text-[22px] text-center md:w-[36.1rem] font-semibold text-black/70
+          <p className="text-[22px] text-center md:w-[36.1rem] font-semibold text-black/70
                     leading-[1.8rem] font-sans">
-                    Helping builders discover and access funding <br />opportunities with ease
-                </p>
+            Helping builders discover and access funding <br />opportunities with ease
+          </p>
 
-                <Link href={"/grants"} className="w-[202.1923828125px] bg-white
+          <Link href={"/grants"} className="w-[202.1923828125px] bg-white
                  text-black flex justify-center items-center hover:text-white
                 mx-auto h-[52px]  rounded-full font-black hover:bg-black transition-all">
-                Explore Clearfund
-            </Link>
-            </div>
+            Explore Clearfund
+          </Link>
         </div>
-        <div className="p-10 mt-10">
-            <hr />
-        </div>
-        <Footer />
+      </div>
+      <div className="p-10 mt-10">
+        <hr />
+      </div>
+      <Footer />
     </div>
 
   );

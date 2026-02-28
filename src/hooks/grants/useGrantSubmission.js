@@ -54,10 +54,10 @@ export function useGrantSubmission() {
       errors.url = urlValidation.error;
     }
 
-    const imageValidation = validateImageCID(imageCID);
-    if (!imageValidation.valid) {
-      errors.image = imageValidation.error;
-    }
+    // const imageValidation = validateImageCID(imageCID);
+    // if (!imageValidation.valid) {
+    //   errors.image = imageValidation.error;
+    // }
 
     const deadlineValidation = validateDeadline(
       formData.deadline,
@@ -87,7 +87,7 @@ export function useGrantSubmission() {
     const submissionData = formatGrantSubmissionData(
       formData,
       deadlineValidation.deadlineTimestamp,
-      imageCID
+      imageCID || "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco" // Default image CID
     );
 
     // Execute contract call

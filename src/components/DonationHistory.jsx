@@ -1,50 +1,230 @@
 "use client";
 
-const donations = [
-    { address: "0xf8a...eea7", amount: "10.00", symbol: "G$", time: "2 minutes ago" },
-    { address: "0x123...abc4", amount: "5.50", symbol: "CELO", time: "15 minutes ago" },
-    { address: "0x456...def8", amount: "15.50", symbol: "G$", time: "1 hour ago" },
-    { address: "0x789...ghi2", amount: "20.00", symbol: "CELO", time: "4 hours ago" },
-    { address: "0xf8a...eea7", amount: "20.00", symbol: "G$", time: "3 days ago" },
-    { address: "0xabc...1234", amount: "8.50", symbol: "CELO", time: "1 day ago" },
-    { address: "0xdef...5678", amount: "12.00", symbol: "G$", time: "2 days ago" },
-    { address: "0x789...0123", amount: "50.00", symbol: "CELO", time: "7 days ago" },
-    { address: "0xf8a...eea7 ", amount: "450.00", symbol: "G$", time: "2 months ago" },
-    { address: "0x321...cba9", amount: "2.00", symbol: "CELO", time: "3 months ago" },
-    { address: "0xabc...d3f2", amount: "75.00", symbol: "G$", time: "4 months ago" },
-    { address: "0xdef...9876", amount: "12.00", symbol: "CELO", time: "5 months ago" },
-    { address: "0x123...4567", amount: "5.50", symbol: "G$", time: "6 months ago" },
-    { address: "0x789...abcd", amount: "6.00", symbol: "CELO", time: "7 months ago" },
-    { address: "0xf8a...eea7", amount: "1.00", symbol: "G$", time: "8 months ago" },
-];
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { createPublicClient, http, formatUnits, parseAbiItem } from "viem";
+import { celo } from "viem/chains";
+import {
+    G_DOLLAR_ADDRESS,
+    CELO_TOKEN_ADDRESS,
+    DEFAULT_COLLECTIVE_ADDRESS,
+    COLLECTIVE_ADDRESSES,
+    CELOSCAN_TX_URL,
+    CELOSCAN_ADDRESS_URL,
+} from "@/lib/contracts/donation";
+
+// Create a public client for reading blockchain data
+const publicClient = createPublicClient({
+    chain: celo,
+    transport: http(),
+});
+
+// Transfer event signature for ERC20 tokens
+const transferEvent = parseAbiItem(
+    "event Transfer(address indexed from, address indexed to, uint256 value)"
+);
+
+function shortAddress(addr) {
+    if (!addr) return "";
+    return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+}
+
+function timeAgo(timestamp) {
+    const now = Date.now();
+    const diff = now - timestamp * 1000;
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+
+    if (months > 0) return `${months} month${months > 1 ? "s" : ""} ago`;
+    if (days > 0) return `${days} day${days > 1 ? "s" : ""} ago`;
+    if (hours > 0) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+    if (minutes > 0) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+    return "just now";
+}
 
 function ExternalLinkIcon() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
         </svg>
     );
 }
 
 export default function DonationHistory() {
+    const [donations, setDonations] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetchDonationHistory();
+    }, []);
+
+    async function fetchDonationHistory() {
+        try {
+            setLoading(true);
+            setError(null);
+
+            // Get all collective addresses to monitor
+            const collectiveAddresses = [
+                ...new Set(Object.values(COLLECTIVE_ADDRESSES)),
+            ];
+
+            const allDonations = [];
+
+            // Fetch G$ Transfer events to collective addresses
+            for (const collectiveAddr of collectiveAddresses) {
+                try {
+                    // Get latest block number
+                    const latestBlock = await publicClient.getBlockNumber();
+                    // Look back ~30 days (roughly 120,000 blocks at 5s/block on Celo)
+                    const fromBlock = latestBlock - BigInt(120000);
+
+                    // Fetch G$ token transfers TO the collective
+                    const gDollarLogs = await publicClient.getLogs({
+                        address: G_DOLLAR_ADDRESS,
+                        event: transferEvent,
+                        args: {
+                            to: collectiveAddr,
+                        },
+                        fromBlock: fromBlock > 0n ? fromBlock : 0n,
+                        toBlock: "latest",
+                    });
+
+                    // Process G$ donations
+                    for (const log of gDollarLogs) {
+                        const block = await publicClient.getBlock({
+                            blockNumber: log.blockNumber,
+                        });
+
+                        allDonations.push({
+                            address: log.args.from,
+                            amount: parseFloat(formatUnits(log.args.value, 18)).toFixed(2), // G$ has 18 decimals on Celo
+                            symbol: "G$",
+                            txHash: log.transactionHash,
+                            timestamp: Number(block.timestamp),
+                            time: timeAgo(Number(block.timestamp)),
+                            blockNumber: Number(log.blockNumber),
+                        });
+                    }
+
+                    // Fetch CELO (native) transfers to the collective
+                    // For native transfers we check internal transactions via block scanning
+                    // Using the wrapped CELO token transfers as a proxy
+                    const celoLogs = await publicClient.getLogs({
+                        address: CELO_TOKEN_ADDRESS,
+                        event: transferEvent,
+                        args: {
+                            to: collectiveAddr,
+                        },
+                        fromBlock: fromBlock > 0n ? fromBlock : 0n,
+                        toBlock: "latest",
+                    });
+
+                    // Process CELO donations
+                    for (const log of celoLogs) {
+                        const block = await publicClient.getBlock({
+                            blockNumber: log.blockNumber,
+                        });
+
+                        allDonations.push({
+                            address: log.args.from,
+                            amount: parseFloat(formatUnits(log.args.value, 18)).toFixed(4),
+                            symbol: "CELO",
+                            txHash: log.transactionHash,
+                            timestamp: Number(block.timestamp),
+                            time: timeAgo(Number(block.timestamp)),
+                            blockNumber: Number(log.blockNumber),
+                        });
+                    }
+                } catch (fetchErr) {
+                    console.warn(`Error fetching logs for ${collectiveAddr}:`, fetchErr);
+                }
+            }
+
+            // Sort by timestamp descending (newest first)
+            allDonations.sort((a, b) => b.timestamp - a.timestamp);
+
+            setDonations(allDonations);
+        } catch (err) {
+            console.error("Error fetching donation history:", err);
+            setError("Failed to load donation history");
+        } finally {
+            setLoading(false);
+        }
+    }
+
     const displayedDonations = donations.slice(0, 15);
 
     return (
         <div className="w-full max-w-3xl py-6 pt-28">
-            <h2 className="text-[36px] font-black inter text-[#082553] mb-4 text-left">Donation History</h2>
+            <h2 className="text-[36px] font-black inter text-[#082553] mb-4 text-left">
+                History
+            </h2>
 
-            <div className="flex flex-col gap-6">
-                {displayedDonations.map((donation, i) => (
-                    <div key={i} className={`flex items-center justify-between px-6 ${i % 2 === 0 ? "bg-[#F3F4F6] rounded-lg py-5" : "bg-white"}`}>
-                        <span className="text-[24px] font-black text-[#082553] space-y-4">
-                            {donation.address} donated {donation.amount}{donation.symbol} {donation.time}
-                        </span>
-                        <button className="ml-4 text-[#1e3a5f] hover:opacity-60 transition-opacity">
-                            <ExternalLinkIcon />
-                        </button>
-                    </div>
-                ))}
-            </div>
+            {loading ? (
+                <div className="flex flex-col gap-4">
+                    {[...Array(5)].map((_, i) => (
+                        <div key={i} className="animate-pulse flex items-center justify-between px-6 py-5 bg-gray-100 rounded-lg">
+                            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                            <div className="h-4 bg-gray-200 rounded w-8"></div>
+                        </div>
+                    ))}
+                    <p className="text-center text-sm text-gray-400 mt-2">
+                        Loading donations from Celo blockchain...
+                    </p>
+                </div>
+            ) : error ? (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                    <p className="text-red-600 text-sm">{error}</p>
+                    <button
+                        onClick={fetchDonationHistory}
+                        className="mt-3 text-sm text-blue-600 hover:underline"
+                    >
+                        Try again
+                    </button>
+                </div>
+            ) : displayedDonations.length === 0 ? (
+                <div className="bg-gray-50 rounded-lg p-8 text-center">
+                    <p className="text-gray-500 text-sm">No donations found yet. Be the first to donate!</p>
+                </div>
+            ) : (
+                <div className="flex flex-col gap-6">
+                    {displayedDonations.map((donation, i) => (
+                        <div
+                            key={`${donation.txHash}-${i}`}
+                            className={`flex items-center justify-between px-6 ${i % 2 === 0 ? "bg-[#F3F4F6] rounded-lg py-5" : "bg-white"}`}
+                        >
+                            <span className="text-[24px] font-black text-[#082553] space-y-4">
+                                <Link
+                                    href={CELOSCAN_ADDRESS_URL(donation.address)}
+                                    target="_blank"
+                                    className="hover:text-blue-600 transition-colors"
+                                >
+                                    {shortAddress(donation.address)}
+                                </Link>
+                                {" "}donated {donation.amount}{donation.symbol} {donation.time}
+                            </span>
+                            <Link
+                                href={CELOSCAN_TX_URL(donation.txHash)}
+                                target="_blank"
+                                className="ml-4 text-[#1e3a5f] hover:opacity-60 transition-opacity"
+                                title="View transaction on Celoscan"
+                            >
+                                <ExternalLinkIcon />
+                            </Link>
+                        </div>
+                    ))}
+
+                    {donations.length > 15 && (
+                        <p className="text-center text-sm text-gray-400 mt-2">
+                            Showing 15 of {donations.length} donations
+                        </p>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

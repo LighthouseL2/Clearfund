@@ -29,38 +29,21 @@ function AnalyticsWrapper({ children }) {
 }
 
 
-// const geistSans = mordern({
-//   src: '/fonts/ModernEra.woff',
-//   variable: "--font-my-font"
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-
-
-// export const metadata = {
-//   title: "ClearFund",
-//   description:"ClearFund allows you to explore past grants data, find new funding oppourtunities and stay updated with real-time alerts from Web3 grants platforms",
-// };
-
 export default function RootLayout({ children }) {
 
   return (
 
     <html lang="en">
       <head>
-        <meta name='mobile-web-app-capable' content='yes'/>
-        <meta name='apple-mobile-web-app-capable' content='yes'/>
+        <meta name='mobile-web-app-capable' content='yes' />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
         <link href="https://db.onlinewebfonts.com/c/74613e9d0612d09be09dd6de7c898d50?family=Modern+Era"
           rel="stylesheet">
         </link>
         <title>ClearFund</title>
         <link rel="shortcut icon" href="/loadingIcon.png" type="image/x-icon" />
         {/* google analytics script */}
-         <Script
+        <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         />
@@ -90,12 +73,10 @@ export default function RootLayout({ children }) {
               },
               appearance: {
                 theme: "light",
-                landingHeader: <span style={{fontFamily: "monospace", fontWeight: 900}}>Connect to ClearFund</span>,
-                accentColor: "#4f46e5",
-                fontFamily: "Poppins, sans-serif",
+                landingHeader: <span style={{ fontFamily: "'Modern Era', sans-serif", fontWeight: "bold", fontSize: "1.2rem" }}>Connect to ClearFund</span>,
+                accentColor: "#39B54A",
+                fontFamily: "Inter, sans-serif",
                 showWalletLoginFirst: false,
-
-                // 👇 Add your logo here
                 logo: "/loadingIcon.png",
                 walletList: [
                   "detected_ethereum_wallets",
@@ -107,7 +88,7 @@ export default function RootLayout({ children }) {
             }}
           >
             <Suspense fallback={<div>Loading ...</div>}>
-            <AnalyticsWrapper>{children}</AnalyticsWrapper>
+              <AnalyticsWrapper>{children}</AnalyticsWrapper>
             </Suspense>
           </PrivyProvider>
         </Providers>

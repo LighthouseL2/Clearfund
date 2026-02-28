@@ -8,108 +8,108 @@ import Autoplay from "embla-carousel-autoplay"
 const SliderLogos = () => {
 
     const items = [
-            {
-                // name: <img
-                src: "/gitcoin.png",
-                alt: "gitconin logo"
-                // />
-,
+        {
+            // name: <img
+            src: "/gitcoin.png",
+            alt: "gitconin logo"
+            // />
+            ,
 
-            },
-            {
-                // name: <img
-                src: "/giveth.png",
-                alt: "giveth logo"
-                // />,
-            },
-            {
-                // name: <img
-                src: "/octant.png",
-                alt: "octant logo"
-                // />,
-            },
-            {
-                // name: <img
-                    src: "/celo.png",
-                    alt: "celo logo"
-                // />,
-            },
-            {
-                // name: <img
-                src: "/thrive.png",
-                alt: "thrive logo"
-                // />,
-            },
+        },
+        {
+            // name: <img
+            src: "/giveth.png",
+            alt: "giveth logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/octant.png",
+            alt: "octant logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/celo.png",
+            alt: "celo logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/thrive.png",
+            alt: "thrive logo"
+            // />,
+        },
 
-            {
-                // name: <img
-                src: "/gooddollar.png",
-                alt: "Gooddollar logo"
-                // />,
-            },
-            {
-                // name: <img
-                src: "/arbitrum.png",
-                alt: "Arbitrum logo"
-                // />,
-            },
-            {
-                // name: <img
-                src: "/gitcoin.png",
-                alt: "gitconin logo"
-                // />
-,
+        {
+            // name: <img
+            src: "/gooddollar.png",
+            alt: "Gooddollar logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/arbitrum.png",
+            alt: "Arbitrum logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/gitcoin.png",
+            alt: "gitconin logo"
+            // />
+            ,
 
-            },
-            {
-                // name: <img
-                src: "/giveth.png",
-                alt: "giveth logo"
-                // />,
-            },
-            {
-                // name: <img
-                src: "/octant.png",
-                alt: "octant logo"
-                // />,
-            },
-            {
-                // name: <img
-                    src: "/celo.png",
-                    alt: "celo logo"
-                // />,
-            },
-            {
-                // name: <img
-                src: "/thrive.png",
-                alt: "thrive logo"
-                // />,
-            },
+        },
+        {
+            // name: <img
+            src: "/giveth.png",
+            alt: "giveth logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/octant.png",
+            alt: "octant logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/celo.png",
+            alt: "celo logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/thrive.png",
+            alt: "thrive logo"
+            // />,
+        },
 
-            {
-                // name: <img
-                src: "/gooddollar.png",
-                alt: "Gooddollar logo"
-                // />,
-            },
-            {
-                // name: <img
-                src: "/arbitrum.png",
-                alt: "Arbitrum logo"
-                // />,
-            },
+        {
+            // name: <img
+            src: "/gooddollar.png",
+            alt: "Gooddollar logo"
+            // />,
+        },
+        {
+            // name: <img
+            src: "/arbitrum.png",
+            alt: "Arbitrum logo"
+            // />,
+        },
 
-            
 
-        ]
-    
-        const plugin = useRef(
-            Autoplay({
-                delay: 1000,
-                stopOnInteraction: true
-            })
-        )
-  return (
+
+    ]
+
+    const plugin = useRef(
+        Autoplay({
+            delay: 1000,
+            stopOnInteraction: true
+        })
+    )
+    return (
         // <Carousel className={"w-full bg-[#A2845E1A] px-[5%] py-5 mt-10 lg:mt-0"} opts={{
         //     align: "start",
         //     slidesToScroll: 1,
@@ -133,15 +133,14 @@ const SliderLogos = () => {
                                 key={index}
                                 src={item.src}
                                 alt={item.alt}
-                                className="object-contain"
-                                style={{width: "full"}}
+                                className="object-contain w-24 h-6 md:w-32 md:h-8 shrink-0 mix-blend-multiply"
                             />
                         ))}
                     </div>
                 </div>
             </div>
         </div>
-  )
+    )
 }
 
 export default SliderLogos

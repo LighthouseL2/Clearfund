@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { usePrivy } from '@privy-io/react-auth'
 import { useGrantSubmission } from '@/hooks/grants/useGrantSubmission'
 import { useIPFSUpload } from '@/hooks/ipfs/useIPFSUpload'
 import { useGrantLimits } from '@/hooks/grants/useGrantLimits'
@@ -23,6 +24,15 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
     deadline: '',
   })
   const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const { login } = usePrivy()
+  const [shouldSubmitAfterLogin, setShouldSubmitAfterLogin] = useState(false)
+
+  useEffect(() => {
+    if (isConnected && shouldSubmitAfterLogin) {
+      setShouldSubmitAfterLogin(false)
+      handleSubmit()
+    }
+  }, [isConnected, shouldSubmitAfterLogin])
 
   const { uploadFile, isUploading, uploadedCID, uploadError, reset: resetUpload } = useIPFSUpload()
   const limits = useGrantLimits()
@@ -68,17 +78,18 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    if (e && e.preventDefault) e.preventDefault()
 
     if (!isConnected) {
-      alert('Please connect your wallet')
+      setShouldSubmitAfterLogin(true)
+      login()
       return
     }
 
-    if (!uploadedCID) {
-      alert('Please upload an image first')
-      return
-    }
+    // if (!uploadedCID) {
+    //   alert('Please upload an image first')
+    //   return
+    // }
 
     try {
       await submitGrant(formData, uploadedCID, limits)
@@ -89,22 +100,22 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
       // Error is already handled in useGrantSubmission hook
     }
   }
-  
+
   const minDeadline = formatMinDeadlineDate(limits.minDeadlineDuration)
-  
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <GrantFormFields 
+      <GrantFormFields
         formData={formData}
         onChange={(field, value) => setFormData(prev => ({ ...prev, [field]: value }))}
         errors={validationErrors}
         minDeadline={minDeadline}
       />
-      
+
       <div className="mb-8">
-        <label className="block text-sm font-medium mb-1">Grant Image *</label>
-        <input 
-          type="file" 
+        <label className="block text-sm font-medium mb-1">Grant Image (Optional)</label>
+        <input
+          type="file"
           accept="image/*"
           className="w-full border rounded-[5px] p-2 text-sm"
           onChange={(e) => {
@@ -113,7 +124,6 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
               handleFileChange(file)
             }
           }}
-          required
         />
         {isUploading && (
           <p className="text-xs text-gray-500 mt-1">Uploading to IPFS...</p>
@@ -130,20 +140,20 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
           <p className="text-red-500 text-xs mt-1">{validationErrors.image}</p>
         )}
       </div>
-      
-      <GrantLimitIndicator 
-        grantCount={limits.grantCount} 
-        maxGrants={limits.maxGrants} 
+
+      <GrantLimitIndicator
+        grantCount={limits.grantCount}
+        maxGrants={limits.maxGrants}
       />
-      
+
       {validationErrors.limits && (
         <p className="text-red-500 text-sm mb-4">{validationErrors.limits}</p>
       )}
-      
+
       <p className="text-[10px] text-[#000000]/50 mb-8">
         Please note that grant will only be added after verification.
       </p>
-      
+
       <div className="flex justify-between mb-4">
         <button
           type="button"
@@ -156,7 +166,7 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
         <button
           type="submit"
           className="px-6 py-2 rounded-full bg-[#39B54A] text-white font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={isPending || isConfirming || isUploading || !isConnected || !uploadedCID || isSwitching}
+          disabled={isPending || isConfirming || isUploading || isSwitching}
         >
           {isSwitching ? 'Switching network...' : isPending ? 'Sending transaction...' : isConfirming ? 'Confirming transaction...' : 'Submit'}
         </button>

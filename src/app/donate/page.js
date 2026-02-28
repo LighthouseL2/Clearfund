@@ -1,91 +1,46 @@
 "use client"
 
-import ProtectedRoute from "@/lib/withAuth"
 import Sidebar from "@/components/SideBar2"
 import Image from "next/image"
 import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
-import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import ModalConnect from "@/components/modalConnect"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import DonationModal from "@/components/DonationModal";
-import DonationHistory from "@/components/DonationHistory";
+import { useState } from "react"
+import { collectives } from "@/lib/collectivesData"
+import DonationHistory from "@/components/DonationHistory"
+import { useTokenBalance } from "@/hooks/useDonation"
 
 import { usePathname } from "next/navigation";
 import { shortAddress } from "@/components/userDetails";
 
-const collectives = [
-    {
-        id: 1,
-        title: "GoodDollar UBI+ for Women – Colombia",
-        description: "This pool provides additional daily G$ to women in Colombia through a segmented basic income model.",
-        date: "Created: October 20, 2024",
-        twitter: "https://x.com/gooddollarorg",
-        web: "https://gooddapp.org/",
-        scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-        image: "/donate-images/happy.png",
-    },
-    {
-        id: 2,
-        title: "Silvi - Kenya's Kakamega forest",
-        description: "This Collective directly supports smallholder farmers around Kenya's Kakamega forest.",
-        date: "Created: October 21, 2024",
-        twitter: "https://x.com/gooddollarorg",
-        web: "https://gooddapp.org/",
-        scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-        image: "/donate-images/grass.jpg",
-    },
-    {
-        id: 3,
-        title: "GoodDollar UBI+ for Women – Nigeria",
-        description: "This pool provides additional daily G$ to women in Nigeria through a segmented basic income model.",
-        date: "Created: October 20, 2024",
-        twitter: "https://x.com/gooddollarorg",
-        web: "https://gooddapp.org/",
-        scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-        image: "/donate-images/laugh.png",
-    },
-    {
-        id: 4,
-        title: "Pesia's Kitchen EAT Initiative",
-        description: "A community-powered food rescue initiative committed to reducing waste and ensuring food security.",
-        date: "Created: May 30, 2025",
-        twitter: "https://x.com/gooddollarorg",
-        web: "https://gooddapp.org/",
-        scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-        image: "/donate-images/cooking.jpg",
-    },
-    {
-        id: 5,
-        title: "Global Classrooms Environmental Education",
-        description: "Global Classrooms connects students worldwide to collaborate on environmental projects aligned with UN Sustainable Development Goals.",
-        date: "Created: May 30, 2025",
-        twitter: "https://x.com/gooddollarorg",
-        web: "https://gooddapp.org/",
-        scan: "https://celoscan.io/address/0x0d43131f1577310d6349baf9d6da4fc1cd39764c",
-        image: "/donate-images/cartoon.jpg",
-    },
-]
-
 const GoodCollective = () => {
-    const { ready, authenticated, login, logout, user, onAuthChange } = usePrivy()
+    const { ready, authenticated, login, logout } = usePrivy()
     const [toggle, setToggle] = useState(false)
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const pathname = usePathname();
     const { wallets } = useWallets()
     const router = useRouter()
-    const address = wallets[0]?.address
-    const [modalOpen, setModalOpen] = useState(false)
-    const [pendingDonation, setPendingDonation] = useState(false)
+    const address = wallets?.[0]?.address
 
-    useEffect(() => {
-        if (ready && authenticated && pendingDonation) {
-            setModalOpen(true);
-            setPendingDonation(false);
+    const gDollarBalance = useTokenBalance('G$', address)
+    const balance = gDollarBalance.balance || 0
+    const balanceLoading = gDollarBalance.isLoading
+
+    const handleDonate = (collective) => {
+        router.push(`/donate/${collective.id}`)
+    }
+
+    // After login, redirect to pending donation page if applicable
+    if (ready && authenticated) {
+        const pendingId = typeof window !== 'undefined' ? sessionStorage.getItem('pendingDonateId') : null
+        if (pendingId) {
+            sessionStorage.removeItem('pendingDonateId')
+            router.push(`/donate/${pendingId}`)
         }
-    }, [ready, authenticated, pendingDonation]);
+    }
 
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative ">
@@ -173,8 +128,8 @@ const GoodCollective = () => {
                                     <span>
 
                                         <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.35714 24.7857H5.5C4.30653 24.7857 3.16193 24.3116 2.31802 23.4677C1.47411 22.6238 1 21.4792 1 20.2857V5.5C1 4.30653 1.47411 3.16193 2.31802 2.31802C3.16193 1.47411 4.30653 1 5.5 1H17.7143C18.9078 1 20.0524 1.47411 20.8963 2.31802C21.7402 3.16193 22.2143 4.30653 22.2143 5.5V8.07143" stroke="#39B54A" stroke-width="1.5" stroke-linecap="round" />
-                                            <path d="M6.78564 1H16.4285V4.21429C16.4285 4.89627 16.1576 5.55032 15.6753 6.03256C15.1931 6.5148 14.5391 6.78571 13.8571 6.78571H9.35707C8.67509 6.78571 8.02104 6.5148 7.5388 6.03256C7.05656 5.55032 6.78564 4.89627 6.78564 4.21429V1Z" stroke="#39B54A" stroke-width="1.5" />
+                                            <path d="M9.35714 24.7857H5.5C4.30653 24.7857 3.16193 24.3116 2.31802 23.4677C1.47411 22.6238 1 21.4792 1 20.2857V5.5C1 4.30653 1.47411 3.16193 2.31802 2.31802C3.16193 1.47411 4.30653 1 5.5 1H17.7143C18.9078 1 20.0524 1.47411 20.8963 2.31802C21.7402 3.16193 22.2143 4.30653 22.2143 5.5V8.07143" stroke="#39B54A" strokeWidth="1.5" strokeLinecap="round" />
+                                            <path d="M6.78564 1H16.4285V4.21429C16.4285 4.89627 16.1576 5.55032 15.6753 6.03256C15.1931 6.5148 14.5391 6.78571 13.8571 6.78571H9.35707C8.67509 6.78571 8.02104 6.5148 7.5388 6.03256C7.05656 5.55032 6.78564 4.89627 6.78564 4.21429V1Z" stroke="#39B54A" strokeWidth="1.5" />
                                             <path d="M12.5713 14.5004C12.5713 13.6479 12.9099 12.8304 13.5127 12.2276C14.1155 11.6248 14.9331 11.2861 15.7856 11.2861H20.2856C21.1381 11.2861 21.9556 11.6248 22.5584 12.2276C23.1612 12.8304 23.4999 13.6479 23.4999 14.5004V21.5718C23.4999 22.4243 23.1612 23.2419 22.5584 23.8447C21.9556 24.4475 21.1381 24.7861 20.2856 24.7861H15.7856C14.9331 24.7861 14.1155 24.4475 13.5127 23.8447C12.9099 23.2419 12.5713 22.4243 12.5713 21.5718V14.5004Z" stroke="#39B54A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </span>
@@ -204,53 +159,43 @@ const GoodCollective = () => {
             </div>
 
             <div className="lg:ml-64 w-full lg:w-auto flex-1">
-                <div className="flex justify-end bg-white py-2 px-6">
+
+                <div className="flex justify-end items-center gap-4 bg-white py-3 px-6 mb-3">
                     {toggle && <ModalConnect setCloseModal={setToggle} />}
-                    {!authenticated ?
+                    {!authenticated ? (
                         <button
                             onClick={login}
-                            className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[159.16796875px] hover:bg-black"
+                            className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[160px] hover:bg-black transition-colors"
                         >
                             Connect wallet
-                        </button> : <UserDetails walletAddress={address} logout={logout} />
-                    }
+                        </button>
+                    ) : (
+                        <UserDetails walletAddress={address} logout={logout} />
+                    )}
                 </div>
 
-                {/* Uniform Hero Banner */}
-                <div className="relative h-[323px] w-full overflow-hidden flex flex-col lg:flex-row items-center justify-between">
+                {/* Good Collective Hero Banner */}
+                <div className="relative w-full">
                     <Image
-                        src={"/assets/banner.png"}
-                        alt="Banner"
-                        fill
-                        className="absolute inset-0 w-full h-full object-cover"
+                        src="/assets/goodcollective_banner.png"
+                        alt="Good Collective Banner"
+                        width={1600}
+                        height={600}
+                        className="w-full h-auto object-contain"
+                        priority
                     />
-
-                    <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between h-full px-6 lg:px-11 py-8 lg:py-0 w-full gap-6">
-                        <div className="text-white max-w-2xl">
-                            <h1 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] lg:text-[48px] leading-normal mb-2">
-                                GoodCollective
-                            </h1>
-                            <p className="font-['Inter:Regular',sans-serif] font-normal text-[18px] lg:text-[20px] leading-relaxed">
-                                GoodCollective is a community-driven Gooddollar initiative that channels donations into meaningful impact. By donating, you&apos;re not just giving, you&apos;re joining a collective effort to support people in need.
-                            </p>
-                        </div>
-
-                        <div className="relative w-[180px] h-[180px] lg:w-[308px] lg:h-[243px] flex-shrink-0">
-                            <Image src="/donate-icons/donate-hero.png" alt="Donate" fill className="object-contain" />
-                        </div>
-                    </div>
                 </div>
 
-                <div className="bg-white min-h-[calc(100vh-323px)]">
-                    <div className="max-w-[1191px] mx-auto px-4 sm:px-6 lg:px-9 py-8 lg:py-12">
+                <div className="bg-white min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-280px)]">
+                    <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-9 py-8 lg:py-12">
                         <section className="pb-10">
                             <h1 className="text-[24px] lg:text-[32px] text-[#0000004D] mb-6 lg:mb-10 font-black">
                                 Projects: {collectives.length}
                             </h1>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-10">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
                                 {collectives.map((collective) => (
-                                    <div key={collective.id} className="w-full border rounded-xl flex flex-col">
+                                    <div key={collective.id} className="w-full border border-gray-300 rounded-xl flex flex-col hover:shadow-sm transition-shadow">
                                         <div className="relative w-full h-[166px] rounded-t-xl flex-shrink-0">
                                             <Image
                                                 alt={collective.title}
@@ -265,14 +210,7 @@ const GoodCollective = () => {
                                             <p className="text-[15px] mt-5 flex-1">{collective.description}</p>
 
                                             <button
-                                                onClick={() => {
-                                                    if (!authenticated) {
-                                                        setPendingDonation(true);
-                                                        login();
-                                                    } else {
-                                                        setModalOpen(true);
-                                                    }
-                                                }}
+                                                onClick={() => handleDonate(collective)}
                                                 className="bg-[#95EED8] hover:bg-[#D5F8EE] cursor-pointer transition-colors w-full max-w-[251px] h-[40px] flex items-center justify-center font-extrabold rounded-full mt-8 mx-auto"
                                             >
                                                 Donate
@@ -298,7 +236,6 @@ const GoodCollective = () => {
                                     </div>
                                 ))}
                             </div>
-                            {modalOpen && <DonationModal onClose={() => setModalOpen(false)} />}
                         </section>
                         <DonationHistory />
                     </div>

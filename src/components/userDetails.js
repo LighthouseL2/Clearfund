@@ -11,12 +11,13 @@ export function shortAddress(address, chars = 4) {
     if (!address) return "";
     // console.log(address.slice(0, chars + 2) + "..." + address.slice(-chars));
     let addressString = String(address.slice(0, chars + 2) + "..." + address.slice(-chars))
-    
+
     return `${addressString}`;
 }
 
-const UserDetails = ({walletAddress, logout}) => {
+const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
     const [toggle, setToggle] = useState(false)
+    const [isCopied, setIsCopied] = useState(false)
     // const { user } = usePrivy()
 
     function handleLogout() {
@@ -27,58 +28,73 @@ const UserDetails = ({walletAddress, logout}) => {
     async function handleCopy() {
         try {
             await navigator.clipboard.writeText(walletAddress)
-            alert("copied")
+            setIsCopied(true)
+            setTimeout(() => {
+                setIsCopied(false)
+                setToggle(false)
+            }, 1500)
         } catch (error) {
-            alert("failed to copy", error)
+            console.error("failed to copy", error)
         }
     }
-  return (
-    <div className='flex items-center'>
-        <div className=" flex items-center justify-between gap-5 relative rounded-md">
-        <div className='w-[44px] h-[38px] flex items-center justify-center bg-white shadow rounded border border-[#0000001A] p-0.5'>
-            <Image src="/round-icons/celo-round-icon.svg" alt="round icon" width={44} height={38} className='w-full h-full'/>
-        </div>
-        <button className='flex gap-3 rounded-xl  items-center px-2.5 border w-fit h-[37px] relative' onClick={()=> setToggle(!toggle)}>
-            <span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 9.99791C19.0028 11.7847 18.4714 13.5315 17.474 15.0139C16.6514 16.2409 15.5391 17.2463 14.2356 17.9412C12.932 18.6361 11.4772 18.999 10 18.9979C8.52277 18.999 7.06804 18.6361 5.76444 17.9412C4.46085 17.2463 3.34858 16.2409 2.526 15.0139C1.74273 13.8463 1.2439 12.5115 1.06951 11.1164C0.895109 9.72124 1.05 8.30467 1.52175 6.9802C1.9935 5.65573 2.769 4.46021 3.78607 3.48947C4.80314 2.51873 6.0335 1.79978 7.37851 1.39025C8.72352 0.980724 10.1458 0.892009 11.5312 1.13122C12.9167 1.37043 14.2269 1.93091 15.3567 2.76773C16.4865 3.60455 17.4046 4.69444 18.0373 5.95002C18.67 7.20559 18.9997 8.59194 19 9.99791Z" stroke="black" strokeWidth="1.5"/>
-                <path d="M11.2501 6.99805C11.2501 7.68805 10.6901 8.24805 10.0001 8.24805V9.74805C10.7294 9.74805 11.4289 9.45832 11.9446 8.94259C12.4603 8.42687 12.7501 7.72739 12.7501 6.99805H11.2501ZM10.0001 8.24805C9.31008 8.24805 8.75008 7.68805 8.75008 6.99805H7.25008C7.25008 7.72739 7.53981 8.42687 8.05553 8.94259C8.57126 9.45832 9.27073 9.74805 10.0001 9.74805V8.24805ZM8.75008 6.99805C8.75008 6.30805 9.31008 5.74805 10.0001 5.74805V4.24805C9.27073 4.24805 8.57126 4.53778 8.05553 5.0535C7.53981 5.56923 7.25008 6.2687 7.25008 6.99805H8.75008ZM10.0001 5.74805C10.6901 5.74805 11.2501 6.30805 11.2501 6.99805H12.7501C12.7501 6.2687 12.4603 5.56923 11.9446 5.0535C11.4289 4.53778 10.7294 4.24805 10.0001 4.24805V5.74805ZM3.16608 15.854L2.44708 15.64L2.33008 16.032L2.59708 16.342L3.16608 15.854ZM16.8341 15.854L17.4041 16.343L17.6701 16.033L17.5531 15.64L16.8341 15.854ZM7.00008 13.748H13.0001V12.248H7.00008V13.748ZM7.00008 12.248C5.9771 12.2478 4.98136 12.5778 4.16101 13.1889C3.34067 13.8001 2.73954 14.6598 2.44708 15.64L3.88508 16.068C4.08533 15.3975 4.49665 14.8095 5.05789 14.3915C5.61912 13.9735 6.30029 13.7479 7.00008 13.748V12.248ZM10.0001 18.248C8.80949 18.2494 7.63279 17.9924 6.55116 17.4949C5.46954 16.9973 4.50874 16.271 3.73508 15.366L2.59708 16.342C3.51154 17.411 4.64692 18.27 5.92497 18.8578C7.20301 19.4457 8.59333 19.7494 10.0001 19.748V18.248ZM13.0001 13.748C14.4701 13.748 15.7151 14.726 16.1151 16.068L17.5531 15.64C17.2606 14.6598 16.6595 13.8001 15.8391 13.1889C15.0188 12.5778 14.0231 12.2478 13.0001 12.248V13.748ZM16.2651 15.366C15.4914 16.271 14.5306 16.9973 13.449 17.4949C12.3674 17.9924 11.1907 18.2494 10.0001 18.248V19.748C11.4068 19.7494 12.7971 19.4457 14.0752 18.8578C15.3532 18.27 16.4896 17.412 17.4041 16.343L16.2651 15.366Z" fill="black"/>
-                </svg>
-            </span>
-            <span className='text-[14px]'>{shortAddress(walletAddress)}</span>
-            <span>
-                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L5 5L9 1" stroke="black" strokeOpacity="0.7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+    return (
+        <div className='flex items-center gap-4'>
+            {/* Celo Icon Box */}
+            <div className='w-11 h-11 flex items-center justify-center bg-white shadow-sm rounded-2xl border border-gray-200 p-[3px] shrink-0'>
+                <Image src="/round-icons/celo-round-icon.svg" alt="Celo Network" width={38} height={38} className='w-full h-full object-contain' />
+            </div>
 
-            </span>
-            {/* <span onClick={()=> setToggle(!toggle)}><MoveDown /></span> */}
+            {/* Wallet Pill */}
+            <div className="flex items-center gap-3 border border-gray-200 rounded-full p-1 pl-1 bg-white relative">
 
-            {
-            toggle &&
-            <ul className='w-full absolute bg-white border rounded-md text-left left-0 top-12 z-30'>
-                <li className='w-full px-3 py-4 gap-2 text-[14px] font-black font-sans flex' onClick={handleCopy}>
-                    <span>
-                        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 18H2V5C2 4.45 1.55 4 1 4C0.45 4 0 4.45 0 5V18C0 19.1 0.9 20 2 20H12C12.55 20 13 19.55 13 19C13 18.45 12.55 18 12 18ZM17 14V2C17 0.9 16.1 0 15 0H6C4.9 0 4 0.9 4 2V14C4 15.1 4.9 16 6 16H15C16.1 16 17 15.1 17 14ZM15 14H6V2H15V14Z" fill="black" fillOpacity="0.3"/>
-                        </svg>
+                {/* Address Button */}
+                <button
+                    className='flex gap-2 rounded-full items-center px-4 py-2 bg-[#EAF9EE] text-[#1E3A2A] hover:bg-[#dff5e5] transition-colors relative z-10'
+                    onClick={() => setToggle(!toggle)}
+                >
+                    {/* User Icon SVG */}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="8" r="5" />
+                        <path d="M20 21a8 8 0 00-16 0" />
+                    </svg>
 
+                    <span className='text-[14px] font-semibold tracking-wide'>
+                        {shortAddress(walletAddress)}
                     </span>
-                    Copy address
-                </li>
-                <li className='w-full px-3 flex gap-2 bg-[#F8F9FA] py-4 border-t text-[16px]
-                    font-black font-sans' onClick={handleLogout}>
-                    <span><LogOut /></span>
-                    Disconnect
-                </li>
-            </ul>
-        }
-        </button>
 
-        
-    </div>
-    </div>
-  )
+                    {/* Chevron */}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+
+                {/* Dropdown Menu */}
+                {toggle && (
+                    <ul className='w-[160px] absolute bg-white shadow-[0px_4px_16px_rgba(0,0,0,0.08)] border border-gray-100 rounded-xl text-left right-0 top-[110%] z-30 overflow-hidden'>
+                        <li className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-gray-700 hover:bg-gray-50 flex items-center cursor-pointer transition-colors border-b border-gray-100' onClick={handleCopy}>
+                            {isCopied ? (
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#39b54a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M5 13l4 4L19 7" />
+                                </svg>
+                            ) : (
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 0 012-2h9a2 0 012 2v1" />
+                                </svg>
+                            )}
+                            <span className={isCopied ? "text-[#39b54a]" : ""}>
+                                {isCopied ? "Copied!" : "Copy address"}
+                            </span>
+                        </li>
+                        <li className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-red-600 hover:bg-red-50 flex items-center cursor-pointer transition-colors' onClick={handleLogout}>
+                            <LogOut size={16} />
+                            Disconnect
+                        </li>
+                    </ul>
+                )}
+            </div>
+        </div>
+    )
 }
 
 export default UserDetails
