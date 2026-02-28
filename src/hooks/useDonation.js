@@ -114,7 +114,7 @@ export function useDonate() {
                     try {
                         await wallet.switchChain(CELO_CHAIN_ID)
                         // Wait for provider to sync after chain switch
-                        await new Promise(resolve => setTimeout(resolve, 1000))
+                        await new Promise(resolve => setTimeout(resolve, 2000))
                     } catch (switchErr) {
                         console.warn('Chain switch warning:', switchErr)
                     }
@@ -144,21 +144,23 @@ export function useDonate() {
 
                 if (token.isNative) {
                     // Native CELO transfer
+                    // Added gas limit and simplified call for MetaMask compatibility
                     hash = await walletClient.sendTransaction({
                         to: recipient,
                         value: parsedAmount,
-                        chain: stableCelo,
-                        account: wallet.address
+                        // Specify a generous gas limit to bypass MetaMask simulation failures
+                        gas: 50000n
                     })
                 } else {
                     // ERC20 transfer (G$) using writeContract
+                    // Added gas limit and simplified call for MetaMask compatibility
                     hash = await walletClient.writeContract({
                         address: token.address,
                         abi: ERC20_ABI,
                         functionName: 'transfer',
                         args: [recipient, parsedAmount],
-                        chain: stableCelo,
-                        account: wallet.address
+                        // G$ can use more gas if it has hooks; 300k is safe
+                        gas: 300000n
                     })
                 }
 
