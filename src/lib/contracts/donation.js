@@ -72,7 +72,7 @@ export const SUPPORTED_TOKENS = [
         name: 'GoodDollar',
         symbol: 'G$',
         address: G_DOLLAR_ADDRESS,
-        decimals: 18, // G$ uses 18 decimals on Celo
+        decimals: 18, // G$ uses 18 decimals on Celo (verified on CeloScan)
         icon: '/donate-icons/Gooddollar-icon.svg',
         isNative: false,
     },

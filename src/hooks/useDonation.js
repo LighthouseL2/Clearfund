@@ -123,9 +123,19 @@ export function useDonate() {
                 // Get the Privy wallet's EIP-1193 provider
                 const provider = await wallet.getEthereumProvider()
 
+                // Create a stable chain object with fallback RPCs
+                const stableCelo = {
+                    ...celo,
+                    rpcUrls: {
+                        ...celo.rpcUrls,
+                        default: { http: ["https://1rpc.io/celo", "https://forno.celo.org"] },
+                        public: { http: ["https://1rpc.io/celo", "https://forno.celo.org"] },
+                    }
+                }
+
                 // Register the provider with viem
                 const walletClient = createWalletClient({
-                    chain: celo,
+                    chain: stableCelo,
                     transport: custom(provider),
                     account: wallet.address
                 })
@@ -137,7 +147,7 @@ export function useDonate() {
                     hash = await walletClient.sendTransaction({
                         to: recipient,
                         value: parsedAmount,
-                        chain: celo,
+                        chain: stableCelo,
                         account: wallet.address
                     })
                 } else {
@@ -147,7 +157,7 @@ export function useDonate() {
                         abi: ERC20_ABI,
                         functionName: 'transfer',
                         args: [recipient, parsedAmount],
-                        chain: celo,
+                        chain: stableCelo,
                         account: wallet.address
                     })
                 }
@@ -158,17 +168,23 @@ export function useDonate() {
                 setStatus('success')
                 return hash
             } catch (err) {
-                console.error('Donation error:', err)
+                console.error('Detailed Donation Error:', err)
 
                 // Detailed error mapping
                 let message = err.shortMessage || err.message || 'Transaction failed'
 
                 if (message.includes('User rejected') || message.includes('denied') || message.includes('User denied')) {
-                    message = 'Transaction was rejected in your wallet'
-                } else if (message.includes('RPC error') || message.includes('Unknown RPC error')) {
-                    message = 'Network error: The Celo RPC is currently unstable. Please try again in a moment.'
+                    message = 'Transaction was rejected in your wallet.'
                 } else if (message.includes('insufficient funds')) {
-                    message = 'Insufficient funds for transaction and gas fees'
+                    message = 'Insufficient CELO for gas fees. Please add some CELO to your wallet.'
+                } else if (message.includes('RPC error') || message.includes('Unknown RPC error')) {
+                    // Provide actually helpful advice for common RPC issues
+                    message = 'Network connectivity issue. Please ensure your wallet is on Celo Mainnet and your internet is stable. If the problem persists, try again in a few minutes.'
+                } else if (message.includes('exceeds the balance')) {
+                    message = `Insufficient ${tokenSymbol} balance for this donation.`
+                } else {
+                    // Fallback to the short message if possible
+                    message = err.shortMessage || "The transaction couldn't be simulated. This usually happens if you don't have enough CELO for gas or if the amount is too high."
                 }
 
                 setError(message)
