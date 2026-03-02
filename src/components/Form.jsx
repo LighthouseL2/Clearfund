@@ -9,7 +9,7 @@ import { dateToTimestamp } from "@/lib/services/grant.service";
 
 export function Form({ setIsHidden }) {
     const { authenticated, login } = usePrivy();
-    const { execute, isPending: isSubmitting, isConfirmed } = useContractWrite();
+    const { execute, isPending: isSubmitting, isConfirmed, isConfirming, isSwitching } = useContractWrite();
     const { isCorrectNetwork, switchToCelo } = useNetworkCheck();
     const { uploadFile, isUploading } = useIPFSUpload();
 
@@ -49,8 +49,22 @@ export function Form({ setIsHidden }) {
             return;
         }
 
-        if (!grantName.trim() || !grantLink.trim()) {
-            setErrorMessage("Grant name and link are required.");
+        if (!grantName.trim()) {
+            setErrorMessage("Grant name is required.");
+            setIsError(true);
+            return;
+        }
+
+        if (!grantLink.trim()) {
+            setErrorMessage("Grant link is required.");
+            setIsError(true);
+            return;
+        }
+
+        try {
+            new URL(grantLink.trim());
+        } catch (e) {
+            setErrorMessage("Please enter a valid URL (e.g. https://example.com)");
             setIsError(true);
             return;
         }
@@ -68,20 +82,38 @@ export function Form({ setIsHidden }) {
                 await new Promise(r => setTimeout(r, 2000));
             }
 
+            console.log("Starting submission process...");
+
             let imageCID = "";
             if (logoFile) {
-                imageCID = await uploadFile(logoFile);
+                try {
+                    console.log("Uploading logo to IPFS...");
+                    imageCID = await uploadFile(logoFile);
+                } catch (uploadErr) {
+                    console.error("IPFS Upload failed:", uploadErr);
+                    throw new Error("Failed to upload image. Please try again or submit without an image.");
+                }
             } else {
                 imageCID = "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco";
             }
 
             // Set default deadline to 30 days from now if not provided
-            // This prevents contract reverts on MIN_DEADLINE_DURATION
             const thirtyDaysInSeconds = 30 * 24 * 60 * 60;
             const defaultTimestamp = Math.floor(Date.now() / 1000) + thirtyDaysInSeconds;
-            const deadlineTimestamp = grantDeadline ? dateToTimestamp(grantDeadline) : defaultTimestamp;
 
-            console.log("Submitting grant:", {
+            let deadlineTimestamp = defaultTimestamp;
+            if (grantDeadline) {
+                deadlineTimestamp = dateToTimestamp(grantDeadline);
+
+                // If the selected date has already started, ensure it's at least 'now' + some buffer
+                // This prevents contract reverts on MIN_DEADLINE_DURATION
+                const minFutureTimestamp = Math.floor(Date.now() / 1000) + (3 * 24 * 60 * 60); // 3 days buffer
+                if (deadlineTimestamp < minFutureTimestamp) {
+                    deadlineTimestamp = defaultTimestamp; // Fallback to 30 days
+                }
+            }
+
+            console.log("Submitting to contract:", {
                 title: grantName.trim(),
                 url: grantLink.trim(),
                 deadline: deadlineTimestamp,
@@ -96,7 +128,7 @@ export function Form({ setIsHidden }) {
             ]);
         } catch (error) {
             console.error("Submission failed:", error);
-            const detailedError = error?.message || "Something went wrong. Please check your wallet and try again.";
+            const detailedError = error?.shortMessage || error?.message || "Something went wrong. Please check your wallet and try again.";
             setErrorMessage(detailedError);
             setIsError(true);
         }
@@ -170,10 +202,12 @@ export function Form({ setIsHidden }) {
                             </div>
                         </div>
 
-                        <h2 className="text-[24px] font-black text-gray-800 text-center mb-1">Error!</h2>
-                        <p className="text-[16px] text-gray-500 text-center mb-10 font-medium">
-                            Your grant submission could not be processed.
-                        </p>
+                        <h2 className="text-[22px] font-black text-gray-800 text-center mb-2">Submission Failed</h2>
+                        <div className="w-full bg-red-50 rounded-2xl p-4 mb-8 border border-red-100">
+                            <p className="text-[14px] text-red-600 text-center font-medium leading-relaxed">
+                                {errorMessage}
+                            </p>
+                        </div>
 
                         <button
                             onClick={() => setIsError(false)}
@@ -298,13 +332,13 @@ export function Form({ setIsHidden }) {
                             {/* Add Grant Button */}
                             <button
                                 onClick={handleSubmit}
-                                disabled={!grantName || !grantLink || isSubmitting || isUploading}
+                                disabled={!grantName || !grantLink || isSubmitting || isConfirming || isUploading || isSwitching}
                                 className="group relative flex h-[48px] w-full items-center justify-center gap-3 rounded-full bg-black px-8 transition-all hover:bg-gray-900 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed shadow-lg"
                             >
                                 <span className="text-[15px] font-bold text-white font-sans">
-                                    {isSubmitting ? "Submitting..." : "Add Grant"}
+                                    {isSwitching ? "Switching network..." : isSubmitting ? "Sending transaction..." : isConfirming ? "Confirming..." : "Add Grant"}
                                 </span>
-                                {!isSubmitting && (
+                                {!isSubmitting && !isConfirming && !isSwitching && (
                                     <svg className="transition-transform group-hover:translate-x-1" width="18" height="14" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.5227 8.4375H0V6.5625H16.5227L11.4318 1.3125L12.7273 0L20 7.5L12.7273 15L11.4318 13.6875L16.5227 8.4375Z" fill="white" />
                                     </svg>
