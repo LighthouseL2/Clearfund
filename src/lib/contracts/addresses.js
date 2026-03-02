@@ -4,6 +4,9 @@
  */
 
 export const CONTRACT_ADDRESSES = {
-  ClearFundRegistry: process.env.NEXT_PUBLIC_CLEARFUND_REGISTRY_ADDRESS || '',
+  // Celo Mainnet registry address with hardcoded fallback to ensure functionality
+  ClearFundRegistry:
+    process.env.NEXT_PUBLIC_CLEARFUND_REGISTRY_ADDRESS ||
+    '0x492D1E598Dd031Cf83a18A802eCD31905dD52BA5',
 }
 
