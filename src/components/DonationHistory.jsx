@@ -57,6 +57,7 @@ export default function DonationHistory() {
     const [donations, setDonations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [displayCount, setDisplayCount] = useState(15);
 
     useEffect(() => {
         fetchDonationHistory();
@@ -147,6 +148,7 @@ export default function DonationHistory() {
             // Sort by timestamp descending (newest first)
             allDonations.sort((a, b) => b.timestamp - a.timestamp);
 
+            // Store all donations; display will be handled by displayCount
             setDonations(allDonations);
         } catch (err) {
             console.error("Error fetching donation history:", err);
@@ -156,7 +158,7 @@ export default function DonationHistory() {
         }
     }
 
-    const displayedDonations = donations.slice(0, 15);
+    const displayedDonations = donations.slice(0, displayCount);
 
     return (
         <div className="w-full max-w-3xl py-6 pt-28">
@@ -218,10 +220,16 @@ export default function DonationHistory() {
                         </div>
                     ))}
 
-                    {donations.length > 15 && (
-                        <p className="text-center text-sm text-gray-400 mt-2">
-                            Showing 15 of {donations.length} donations
-                        </p>
+
+                    {donations.length > displayCount && (
+                        <div className="flex justify-center mt-4">
+                            <button
+                                onClick={() => setDisplayCount(prev => prev + 15)}
+                                className="px-6 py-2 bg-[#082553] text-white rounded-lg font-bold hover:bg-opacity-90 transition-all"
+                            >
+                                Load more
+                            </button>
+                        </div>
                     )}
                 </div>
             )}
