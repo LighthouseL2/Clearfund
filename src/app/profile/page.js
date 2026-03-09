@@ -140,7 +140,7 @@ export default function ProfilePage() {
                         Object.entries(totals).map(([token, amount]) => (
                             <div key={token} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center border-l-4 border-l-[#00AFAA]">
                                 <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Total Tipped ({token})</span>
-                                <span className="text-3xl font-black text-[#00AFAA]">${amount.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</span>
+                                <span className="text-3xl font-black text-[#00AFAA]">{amount.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })} <span className="text-lg">{token}</span></span>
                             </div>
                         ))
                     ) : (
@@ -190,7 +190,7 @@ export default function ProfilePage() {
                                     </div>
                                     <div className="flex items-center gap-6 justify-between md:justify-end">
                                         <div className="text-right">
-                                            <div className="text-lg font-black text-[#00AFAA]">${parseFloat(d.amount).toLocaleString()} {d.token || 'G$'}</div>
+                                            <div className="text-lg font-black text-[#00AFAA]">{parseFloat(d.amount).toLocaleString()} {d.token || 'G$'}</div>
                                         </div>
                                         {d.txHash && (
                                             <a
@@ -208,6 +208,21 @@ export default function ProfilePage() {
                             ))}
                         </div>
                     )}
+                </div>
+
+                {/* CTA — Explore Projects */}
+                <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-[#003E52] rounded-[2rem] text-white">
+                    <div>
+                        <div className="text-xs font-black uppercase tracking-widest opacity-50 mb-1">Keep Going</div>
+                        <div className="font-bold text-lg">Discover more impact projects to support</div>
+                    </div>
+                    <Link
+                        href="/projects"
+                        className="shrink-0 flex items-center gap-2 px-8 py-4 bg-[#00AFAA] text-white font-black text-[10px] uppercase tracking-widest rounded-2xl hover:bg-white hover:text-[#003E52] transition-all shadow-xl active:scale-95"
+                    >
+                        Browse Projects
+                        <ArrowRight className="w-4 h-4" />
+                    </Link>
                 </div>
             </main>
         </div>

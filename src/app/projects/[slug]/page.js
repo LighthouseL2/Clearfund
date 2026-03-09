@@ -317,7 +317,7 @@ const ProjectDetailPage = ({ params }) => {
                             <div className="mt-6 flex gap-12 border-t border-gray-100 pt-6">
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Tipped</div>
-                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">${(project.totalRaised || 0).toLocaleString()}</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">{(project.totalRaised || 0).toLocaleString()} G$</div>
                                 </div>
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Backers</div>
@@ -413,7 +413,7 @@ const ProjectDetailPage = ({ params }) => {
                                             </div>
                                             <div className="flex items-center gap-3">
                                                 <span className="text-sm font-bold text-gray-700 font-mono">
-                                                    ${parseFloat(d.amount).toFixed(1)} {d.token || 'G$'}
+                                                    {parseFloat(d.amount).toFixed(1)} {d.token || 'G$'}
                                                 </span>
                                                 <a href={`https://celoscan.io/tx/${d.txHash || d._id || ''}`} target="_blank" rel="noopener noreferrer">
                                                     <ExternalLink className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600" />

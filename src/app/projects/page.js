@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useCallback } from "react"
-import { Search, ArrowRight } from "lucide-react"
+import { Search, ArrowRight, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
@@ -54,9 +54,11 @@ export default function ProjectsPage() {
             <header className="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-[100]">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center text-[#003E52]">
                     <div className="flex items-center gap-6">
-                        <Link href="/" className="p-2 hover:bg-gray-50 rounded-full transition-colors group" title="Home">
-                            <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-[#00AFAA] rotate-180" />
+                        <Link href="/" className="flex items-center gap-1.5 text-gray-400 hover:text-[#00AFAA] transition-colors group" title="Home">
+                            <ArrowLeft className="h-4 w-4" />
+                            <span className="text-xs font-bold hidden sm:block">Home</span>
                         </Link>
+                        <div className="w-px h-4 bg-gray-200" />
                         <nav className="flex items-center gap-8">
                             <Link href="/projects" className="text-sm font-bold text-[#00AFAA] border-b-2 border-[#00AFAA] pb-1 translate-y-0.5">
                                 Impact projects

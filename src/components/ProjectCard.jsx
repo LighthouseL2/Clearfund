@@ -75,7 +75,7 @@ const ProjectCard = ({ project }) => {
                     <div className="flex items-center pt-6 mt-4 border-t border-gray-100/50 justify-between">
                         <div>
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Total Tipped</div>
-                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">${totalRaised.toLocaleString()}</div>
+                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">{totalRaised.toLocaleString()} G$</div>
                         </div>
                         <div className="text-center">
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Backers</div>

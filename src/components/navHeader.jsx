@@ -19,9 +19,9 @@ const NavHeader = () => {
       <div className="flex items-center gap-2">
         <Link href="/" className="flex items-center gap-2 group">
           <img
-            src="/assets/clearfund_logo.png"
+            src="/assets/clearfund-brand.svg"
             alt="ClearFund"
-            className="h-10 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
       </div>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ClearFund Logo – brand teal #00AFAA applied to letterforms -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   viewBox="0 0 201.73 45.98" style="enable-background:new 0 0 201.73 45.98;" xml:space="preserve">
+<style type="text/css">
+  /* Replace near-black with ClearFund brand teal */
+  .st0{fill:#00AFAA;stroke:#00AFAA;stroke-width:2;stroke-miterlimit:10;}
+  .st1{fill:#FFFFFF;}
+  .st2{fill:#00AFAA;}
+  .st3{fill:#006838;}
+  .st4{fill:#39B54A;}
+  .st5{clip-path:url(#SVGID_4_);}
+  .st6{clip-path:url(#SVGID_4_);fill:#EEFFF2;}
+  .st7{fill:url(#SVGID_5_);}
+  .st8{fill:url(#SVGID_6_);}
+  .st9{fill:url(#SVGID_7_);}
+  .st10{fill:url(#SVGID_8_);}
+  .st11{fill:url(#SVGID_9_);}
+  .st12{fill:url(#SVGID_10_);}
+  .st13{fill:#75E0A0;}
+  .st14{fill:url(#SVGID_11_);}
+  .st15{fill:url(#SVGID_12_);}
+  .st16{fill:url(#SVGID_13_);}
+  .st17{fill:#C0FFCE;}
+  .st18{fill:url(#SVGID_14_);}
+  .st19{fill:url(#SVGID_15_);}
+  .st20{fill:url(#SVGID_16_);}
+  .st119{fill:#FBFAF9;}
+</style>
+<g>
+  <path class="st0" d="M2.21,23.94c0-5.51,3.48-9.44,9.15-9.44c4.73,0,7.98,2.76,8.76,7.41h-3.2c-0.57-2.86-2.68-4.6-5.56-4.6
+    c-3.67,0-5.96,2.57-5.96,6.63c0,4.16,2.29,6.71,5.96,6.71c2.94,0,4.99-1.69,5.56-4.58h3.2c-0.83,4.73-4,7.41-8.76,7.41
+    C5.77,33.48,2.21,29.63,2.21,23.94z"/>
+  <path class="st0" d="M26.09,33.09v-18.2h3.12v15.39h9.28v2.81H26.09z"/>
+  <path class="st0" d="M46.24,33.09v-18.2h12.74v2.81h-9.65v4.68h8.74v2.73h-8.74v5.17h9.88v2.81H46.24z"/>
+  <path class="st0" d="M67.7,33.09l7.44-18.2h3.12l7.46,18.2h-3.22l-1.85-4.5h-7.88l-1.85,4.5H67.7z M73.89,25.83h5.64l-2.81-6.92
+    L73.89,25.83z"/>
+  <path class="st0" d="M93.08,33.09v-18.2h8.89c3.46,0,5.85,2.11,5.85,5.15c0,2.24-1.59,4.08-4,4.71c1.2,0.23,2.05,0.96,2.5,2.08
+    l2.34,6.27h-3.33l-2.11-5.75c-0.26-0.73-0.86-1.12-1.69-1.12H96.2v6.86H93.08z M96.2,23.47h5.62c1.92,0,2.91-1.38,2.91-2.96
+    c0-1.66-1.14-2.81-2.91-2.81H96.2V23.47z"/>
+  <path class="st0" d="M117.15,33.09v-18.2h12.9v2.81h-9.78v5.02h9.07v2.81h-9.07v7.57H117.15z"/>
+  <path class="st0" d="M137.68,27.03V14.89h3.12v12.06c0,2.34,1.9,3.67,4.45,3.67c2.57,0,4.47-1.33,4.47-3.67V14.89h3.12v12.14
+    c0,3.64-2.83,6.45-7.57,6.45C140.59,33.48,137.68,30.72,137.68,27.03z"/>
+  <path class="st0" d="M160.47,33.09v-18.2h3.38l9.02,13.7v-13.7H176v18.2h-3.38l-9.02-13.7v13.7H160.47z"/>
+  <path class="st0" d="M183.79,33.09v-18.2h6.55c5.41,0,9.18,3.69,9.18,9c0,5.43-3.77,9.2-9.18,9.2H183.79z M186.91,30.28h3.64
+    c3.38,0,5.75-2.63,5.75-6.4c0-3.56-2.37-6.19-5.75-6.19h-3.64V30.28z"/>
+</g>
+</svg>

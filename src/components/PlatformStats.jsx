@@ -11,14 +11,20 @@ const PlatformStats = () => {
     });
 
     useEffect(() => {
-        fetch('/api/stats')
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    setStats(data.data);
-                }
-            })
-            .catch(err => console.error("Error fetching stats:", err));
+        const fetchStats = () => {
+            fetch('/api/stats')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        setStats(data.data);
+                    }
+                })
+                .catch(err => console.error("Error fetching stats:", err));
+        };
+
+        fetchStats(); // initial fetch
+        const interval = setInterval(fetchStats, 15000); // poll every 15s
+        return () => clearInterval(interval);
     }, []);
 
     const formatNumber = (num) => {
