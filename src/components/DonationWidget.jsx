@@ -6,8 +6,8 @@ import { useTokenBalance, useDonate } from '@/hooks/useDonation';
 import { CheckCircle2, AlertCircle, Loader2, Wallet, Coins, ChevronDown } from 'lucide-react';
 
 const TOKENS = [
-    { symbol: 'G$', name: 'GoodDollar', icon: 'https://assets.coingecko.com/coins/images/28445/standard/G%24-logo-round-blue.png' },
-    { symbol: 'cUSD', name: 'cUSD', icon: 'https://cryptologos.cc/logos/celo-dollar-cusd-logo.png' }
+    { symbol: 'G$', name: 'GoodDollar', icon: '/donate-icons/Gooddollar-icon.svg' },
+    { symbol: 'cUSD', name: 'cUSD', icon: '/assets/cusd.png' }
 ];
 
 const DonationWidget = ({ project, onDonationSuccess }) => {

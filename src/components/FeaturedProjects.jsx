@@ -60,7 +60,7 @@ const FeaturedProjects = () => {
                             Real Impact, <br /><span className="text-[#00AFAA]">On Chain</span>
                         </h2>
                         <p className="text-gray-400 font-medium text-lg leading-relaxed max-w-lg">
-                            Curated Regenerative Finance (ReFi) initiatives driving real-world change — open for direct, transparent crypto donations.
+                            Curated Regenerative Finance (ReFi) initiatives driving real-world change — open for direct, transparent on-chain tipping.
                         </p>
                     </div>
 
