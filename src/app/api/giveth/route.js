@@ -40,7 +40,7 @@ const CURATED_REFI_PROJECTS = [
     {
         _id: "gc1",
         name: "GoodDollar UBI+ for Women – Colombia",
-        tagline: "This pool provides additional daily G$ to women in Colombia through a segmented basic income model.",
+        tagline: "Bridging the financial exclusion gap for Colombian women by providing a sustainable, daily GoodDollar basic income to fuel community growth and personal economic autonomy.",
         category: "SOCIAL_IMPACT",
         logo: "/donate-images/happy.png",
         totalRaised: 0,
@@ -56,7 +56,7 @@ const CURATED_REFI_PROJECTS = [
     {
         _id: "gc2",
         name: "Silvi - Kenya's Kakamega forest",
-        tagline: "This Collective directly supports smallholder farmers around Kenya's Kakamega forest.",
+        tagline: "Restoring the vital canopy of Kenya's last tropical rainforest through direct micro-grants to smallholder farmers implementing sustainable agroforestry and native restoration.",
         category: "CLIMATE",
         logo: "/donate-images/grass.jpg",
         totalRaised: 0,
@@ -72,7 +72,7 @@ const CURATED_REFI_PROJECTS = [
     {
         _id: "gc3",
         name: "GoodDollar UBI+ for Women – Nigeria",
-        tagline: "This pool provides additional daily G$ to women in Nigeria through a segmented basic income model.",
+        tagline: "Empowering female entrepreneurs across Nigeria with direct blockchain-based basic income to foster localized mutual-aid networks and drive grassroots financial independence.",
         category: "SOCIAL_IMPACT",
         logo: "/donate-images/laugh.png",
         totalRaised: 0,
@@ -88,7 +88,7 @@ const CURATED_REFI_PROJECTS = [
     {
         _id: "gc4",
         name: "Pesia's Kitchen EAT Initiative",
-        tagline: "A community-powered food rescue initiative committed to reducing waste and ensuring food security.",
+        tagline: "Combating food insecurity and urban waste by rescuing surplus nutritional resources from local markets and redistributing them directly to the most vulnerable families.",
         category: "SOCIAL_IMPACT",
         logo: "/donate-images/cooking.jpg",
         totalRaised: 0,
@@ -104,7 +104,7 @@ const CURATED_REFI_PROJECTS = [
     {
         _id: "gc5",
         name: "Global Classrooms Environmental Education",
-        tagline: "Global Classrooms connects students worldwide to collaborate on environmental projects aligned with UN Sustainable Development Goals.",
+        tagline: "Connecting students across the globe to collaborate on environmental restoration and climate solutions through a transparent, gamified digital learning curriculum.",
         category: "EDUCATION",
         logo: "/donate-images/cartoon.jpg",
         totalRaised: 0,
@@ -120,7 +120,7 @@ const CURATED_REFI_PROJECTS = [
     {
         _id: "g2",
         name: "Greenpill Nigeria",
-        tagline: "Empowering local communities with regenerative finance tools and sustainable initiatives across Nigeria.",
+        tagline: "Decentralizing impact through Regenerative Finance (ReFi) tools, empowering local Nigerian builders to create high-impact, transparent public goods for their own communities.",
         category: "SOCIAL_IMPACT",
         logo: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80",
         totalRaised: 0,

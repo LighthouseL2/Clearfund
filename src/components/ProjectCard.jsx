@@ -58,7 +58,7 @@ const ProjectCard = ({ project }) => {
                                 <span className="text-xs font-bold">{location}</span>
                             </div>
                         )}
-                        <p className="text-gray-400 font-medium text-[13px] line-clamp-2 leading-relaxed tracking-tight group-hover/card:text-gray-500 transition-colors">
+                        <p className="text-gray-400 font-medium text-[14px] line-clamp-4 leading-relaxed tracking-tight group-hover/card:text-gray-600 transition-colors">
                             {tagline}
                         </p>
                     </div>
