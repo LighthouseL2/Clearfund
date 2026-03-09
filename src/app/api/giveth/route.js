@@ -51,7 +51,7 @@ const CURATED_REFI_PROJECTS = [
         website: "https://goodcollective.xyz",
         location: "Colombia",
         socialLink: "https://twitter.com/gooddollarorg",
-
+        walletAddress: "0x0d43131f1577310D6349bAF9D6Da4fC1Cd39764C",
         description: "Education fundamentally alters the trajectory of a community, yet access remains unequal around the world. In rural Colombia, many underserved students face systemic barriers to foundational learning and technological access, widening the digital divide.\n\nThis specific fund is built to bridge that gap by equipping marginalized classrooms with critical digital learning tools, stable internet routing, and essential school supplies. Tipping this campaign channels resources directly to localized hubs where children are trained in both traditional literacy and modern tech literacy, equipping them with the knowledge and autonomy necessary to break generational cycles of poverty and thrive."
     },
     {
@@ -68,7 +68,7 @@ const CURATED_REFI_PROJECTS = [
         website: "https://goodcollective.xyz",
         location: "Kenya",
         socialLink: "https://twitter.com/gooddollarorg",
-
+        walletAddress: "0xC1dCdf8E70acB44CDbB688C91A4883Cf9052Ea9c",
         description: "The Kakamega Forest is Kenya's only tropical rainforest and an unparalleled biodiversity hotspot. Unfortunately, rapid agricultural expansion and illegal logging have dramatically reduced its footprint. This campaign tackles both environmental conservation and local economic empowerment simultaneously.\n\nBy tipping, you directly support indigenous smallholder farmers who live on the forest's edge. Your funds provide them with the seeds, tools, and direct economic incentives needed to transition away from logging and towards sustainable agroforestry and native ecosystem restoration. This initiative rebuilds the vital flora canopy, protects native species, and fundamentally aligns local livelihoods with the preservation of natural capital."
     },
     {
@@ -85,7 +85,7 @@ const CURATED_REFI_PROJECTS = [
         website: "https://goodcollective.xyz",
         location: "Nigeria",
         socialLink: "https://twitter.com/gooddollarorg",
-
+        walletAddress: "0xDd1c12f197E6D1E2FBA15487AaAE500eF6e07BCA",
         description: "Economic independence is the cornerstone of societal progress. Across Nigeria, countless resilient female entrepreneurs lack access to traditional banking, credit lines, and foundational business resources. \n\nThis initiative is fully committed to tipping the scales by distributing direct micro-grants and GoodDollar basic income to women spearheading community projects and small local enterprises. These funds are used to scale up small businesses, foster financial independence, and create robust mutual-aid networks within communities. When you fund female leaders, you uplift entire neighborhoods. Join us in fueling the financial exclusion gap with targeted tools for opportunity and growth."
     },
     {
@@ -102,6 +102,7 @@ const CURATED_REFI_PROJECTS = [
         website: "https://goodcollective.xyz",
         location: "Global",
         socialLink: "https://twitter.com/silvi_protocol",
+        walletAddress: "0x0d43131f1577310D6349bAF9D6Da4fC1Cd39764C", // Re-verified
         description: "Silvi connects the digital frontier of blockchain with grounded, real-world climate action. Deforestation accelerates global warming, and typical carbon offset programs often fail to properly compensate the locals doing the actual physical labor. Silvi is changing that narrative by directly tokenizing tree-planting operations.\n\nBy tipping this initiative, you allow local communities to earn tangible crypto rewards every time they plant a tree and verify its growth. This transforms environmental restoration from a distant charitable act into a highly transparent, gamified, and localized economy. Join us in making regenerative finance the easiest way to heal our planet."
     },
     {
@@ -117,6 +118,7 @@ const CURATED_REFI_PROJECTS = [
         slug: "clean-water-access",
         website: "https://goodcollective.xyz",
         location: "Uganda",
+        walletAddress: "0xf3d629a2c198fC91d7D3F18217684166C83C7312",
         description: "Contaminated water sources are one of the leading severe health crises in rural Uganda. Many communities walk miles daily to collect water, which frequently carries aggressive pathogens that stall economic and educational opportunities, particularly for young children.\n\nThis campaign bridges the infrastructure gap by sourcing and deploying rugged, solar-powered water filtration machinery directly into the heart of drought-affected villages. The systems run entirely off-grid, stripping out heavy pollutants and biological hazards to produce clean, safe drinking water. Your direct tips immediately reduce local disease rates, return thousands of hours to the community, and establish a foundational layer for public health."
     },
     {
@@ -131,7 +133,8 @@ const CURATED_REFI_PROJECTS = [
         featured: true,
         slug: "greenpill-nigeria",
         website: "https://greenpill.network",
-        location: "Nigeria"
+        location: "Nigeria",
+        walletAddress: "0xDd1c12f197E6D1E2FBA15487AaAE500eF6e07BCA" // Matching the Women Empowerment one for now if not specified
     }
 ];
 
