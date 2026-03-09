@@ -7,10 +7,10 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
 import UserDetails from "../../components/userDetails";
 import ModalConnect from "../../components/modalConnect";
 import Image from "next/image";
-import { Form } from "../../components/Form";
+
 
 export default function GrantsPage() {
-  const [isHidden, setIsHidden] = useState(false);
+
   const { authenticated, login, logout } = usePrivy();
   const { wallets } = useWallets();
   const address = wallets[0]?.address;
@@ -59,20 +59,15 @@ export default function GrantsPage() {
 
 
         {/* Form Modal */}
-        {isHidden && <Form setIsHidden={setIsHidden} />}
 
-        <div className={isHidden ? "opacity-60" : ""}>
+
+        <div>
           {/* Header Section */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 border-b border-gray-100 pb-12">
             <h2 className="text-2xl font-black tracking-tight mb-3">
               Available Funding
             </h2>
-            <button
-              onClick={() => setIsHidden(!isHidden)}
-              className="bg-[#003E52] hover:bg-[#00AFAA] text-white transition-all rounded-2xl h-[44px] px-8 flex items-center justify-center whitespace-nowrap font-bold text-sm uppercase tracking-widest shadow-lg active:scale-95"
-            >
-              Add new funding
-            </button>
+
           </div>
 
           {/* Airtable Embed */}
