@@ -97,7 +97,7 @@ const CURATED_REFI_PROJECTS = [
         totalRaised: 0,
         fundingGoal: 100,
         donationCount: 0,
-        featured: false,
+        featured: true,
         slug: "silvi-trees",
         website: "https://goodcollective.xyz",
         location: "Global",
