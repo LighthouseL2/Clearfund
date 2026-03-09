@@ -26,9 +26,11 @@ export async function GET() {
             { $group: { _id: null, total: { $sum: '$totalRaised' } } },
         ]);
 
-        const projectCount = await Project.countDocuments({ status: 'APPROVED' });
+        // Real number of projects: Curated (6) + Approved in DB
+        const dbProjectCount = await Project.countDocuments({ status: 'APPROVED' });
+        const projectCount = 6 + dbProjectCount;
 
-        // Count unique donor wallets
+        // Count unique donor wallets (tippers)
         const donors = await Donation.distinct('donorWallet');
 
         return NextResponse.json({

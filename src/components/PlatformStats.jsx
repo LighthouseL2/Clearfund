@@ -45,7 +45,7 @@ const PlatformStats = () => {
             bgColor: "bg-[#00AFAA]/5"
         },
         {
-            label: "Community Donors",
+            label: "Tippers",
             value: stats.donorCount.toString(),
             suffix: "+",
             icon: <Users className="w-8 h-8" />,
@@ -67,7 +67,7 @@ const PlatformStats = () => {
                         Our <span className="text-[#00AFAA]">Impact</span>
                     </h2>
                     <p className="max-w-xl mx-auto text-gray-400 font-medium text-lg leading-relaxed">
-                        Real-time metrics from the ClearFund ecosystem — transparent and verifiable on-chain.
+                        Real-time metrics from ClearFund — transparent and verifiable on-chain.
                     </p>
                 </div>
 

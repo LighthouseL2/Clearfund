@@ -62,7 +62,7 @@ export default function HomePage() {
                 </p>
 
                 <p>
-                  But ClearFund is more than a directory. Building on that foundation, we introduced GoodCollective a feature built on top of GoodDollar that takes funding a step further. Through GoodCollective, users can directly contribute to existing community pools, putting resources behind the causes and communities they believe in. Whether you are a developer, donor, or community member, GoodCollective makes participation simple, transparent, and on-chain.
+                  But ClearFund is more than a directory. Building on that foundation, we introduced GoodCollective a feature built on top of GoodDollar that takes funding a step further. Through GoodCollective, users can directly contribute to existing community pools, putting resources behind the causes and communities they believe in. Whether you are a developer, tipper, or community member, GoodCollective makes participation simple, transparent, and on-chain.
                 </p>
               </div>
             </div>

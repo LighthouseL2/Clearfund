@@ -27,7 +27,7 @@ const StatSection = () => {
 
     const items = [
         {
-            label: 'Total G$ Donated',
+            label: 'Total G$ Tipped',
             value: stats.totalGDonated.toLocaleString(),
             icon: <Coins className="h-6 w-6 text-gd-teal" />,
             color: 'bg-gd-teal/10',
@@ -39,7 +39,7 @@ const StatSection = () => {
             color: 'bg-gd-dark-blue/10',
         },
         {
-            label: 'Generous Donors',
+            label: 'Tippers',
             value: stats.donorCount,
             icon: <Heart className="h-6 w-6 text-pink-500 fill-current" />,
             color: 'bg-pink-50',

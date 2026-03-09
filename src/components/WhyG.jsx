@@ -6,7 +6,7 @@ const WhyG = () => {
     const points = [
         {
             title: "100% Direct",
-            description: "Donations go directly to project wallets on the Celo blockchain, bypassing middlemen.",
+            description: "Tips go directly to project wallets on the Celo blockchain, bypassing middlemen.",
             icon: <Zap className="w-6 h-6" />,
             color: "text-gd-teal",
             bgColor: "bg-gd-teal/10"
@@ -20,7 +20,7 @@ const WhyG = () => {
         },
         {
             title: "Global Reach",
-            description: "GoodDollar connects donors and impact builders across borders without friction.",
+            description: "GoodDollar connects tippers and impact builders across borders without friction.",
             icon: <Globe className="w-6 h-6" />,
             color: "text-gd-gold",
             bgColor: "bg-gd-gold/10"
@@ -34,7 +34,7 @@ const WhyG = () => {
             <div className="relative z-10">
                 <h3 className="text-4xl font-black text-gd-dark-blue mb-6 tracking-tighter">Why G$ Matters</h3>
                 <p className="text-gray-500 font-medium leading-relaxed mb-12 text-lg">
-                    GoodDollar (G$) is a digital currency designed to reduce wealth inequality. By donating G$, you're participating in a global movement of sustainable philanthropy.
+                    GoodDollar (G$) is a digital currency designed to reduce wealth inequality. By tipping G$, you're participating in a global movement of sustainable philanthropy.
                 </p>
 
                 <div className="space-y-8">

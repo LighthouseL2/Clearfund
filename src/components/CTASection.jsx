@@ -24,8 +24,8 @@ const CTASection = () => {
                         </h2>
 
                         <p className="text-white/70 text-lg md:text-xl font-medium leading-relaxed mb-16 px-4">
-                            Whether you're a donor looking to fund change or a builder with a vision,
-                            ClearFund is your home for high-impact project discovery and direct crypto donations.
+                            Whether you're a tipper looking to fund change or a builder with a vision,
+                            ClearFund is your home for high-impact project discovery and direct on-chain tipping.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
