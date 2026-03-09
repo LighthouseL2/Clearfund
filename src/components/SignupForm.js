@@ -75,10 +75,11 @@ const SignupForm = ({ open, setOpen }) => {
                         <div className='flex justify-center  items-center mt-10'>
 
                             <Image
-                                width={154.32}
-                                height={33.07}
-                                src={"/projectLogo.png"}
+                                width={180}
+                                height={45}
+                                src={"/assets/clearfund%20logo.png"}
                                 alt='clearfund logo'
+                                className="h-auto"
                             />
                         </div>
 

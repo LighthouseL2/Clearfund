@@ -274,9 +274,11 @@ const ProjectDetailPage = ({ params }) => {
 
             {/* Minimal Header / Back Button */}
             <div className="bg-white border-b border-gray-100 py-4 px-6 md:px-12 sticky top-0 z-50 flex justify-between items-center">
-                <div className="flex items-center gap-6">
-                    <Link href="/" className="p-2 hover:bg-gray-50 rounded-full transition-colors group" title="Home">
+                <div className="flex items-center relative">
+                    {/* Home Arrow - absolute to not push the back link */}
+                    <Link href="/" className="md:absolute md:right-full md:mr-10 p-2 hover:bg-gray-50 rounded-full transition-colors group flex items-center gap-2" title="Home">
                         <ArrowLeft className="h-5 w-5 text-gray-400 group-hover:text-[#00AFAA]" />
+                        <span className="text-xs font-bold text-gray-400 group-hover:text-[#00AFAA] md:hidden">Home</span>
                     </Link>
                     <Link href="/projects" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">
                         Back to Projects
@@ -317,7 +319,7 @@ const ProjectDetailPage = ({ params }) => {
                             <div className="mt-6 flex gap-12 border-t border-gray-100 pt-6">
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Tipped</div>
-                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">{(project.totalRaised || 0).toLocaleString()} G$</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">(G$) {(project.totalRaised || 0).toLocaleString()}</div>
                                 </div>
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Backers</div>
@@ -413,7 +415,7 @@ const ProjectDetailPage = ({ params }) => {
                                             </div>
                                             <div className="flex items-center gap-3">
                                                 <span className="text-sm font-bold text-gray-700 font-mono">
-                                                    {parseFloat(d.amount).toFixed(1)} {d.token || 'G$'}
+                                                    (G$) {parseFloat(d.amount).toFixed(1)}
                                                 </span>
                                                 <a href={`https://celoscan.io/tx/${d.txHash || d._id || ''}`} target="_blank" rel="noopener noreferrer">
                                                     <ExternalLink className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600" />

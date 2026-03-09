@@ -1,18 +1,18 @@
 "use client"
 
 
-import { Dialog, DialogContent,  DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { usePrivy, useWallets } from '@privy-io/react-auth'
-import { ethers }from 'ethers'
+import { ethers } from 'ethers'
 
 
 
-const LoginForm = ({open, setOpen, blur, setBlur }) => {
+const LoginForm = ({ open, setOpen, blur, setBlur }) => {
 
     const { login, authenticated, ready } = usePrivy()
     const { wallets } = useWallets()
@@ -39,7 +39,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
     // }
 
     useEffect(() => {
-        if(ready && authenticated) {
+        if (ready && authenticated) {
             router.push("/dashboard")
         }
     }, [ready, authenticated, router])
@@ -48,8 +48,8 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
     const handleLoginPrivy = async () => {
         try {
-             login()
-            
+            login()
+
         } catch (error) {
             console.log("Error logging In", error);
         }
@@ -60,7 +60,7 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
 
 
 
-    function handleDialog(){
+    function handleDialog() {
         setOpen(!open)
         // setShowPassword(false)
         // setFormdata(initialFormData)
@@ -68,25 +68,26 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
         // setErrors(null)
     }
 
-  return (
-    <Dialog open={open} onOpenChange={handleDialog}>
-        <form>
+    return (
+        <Dialog open={open} onOpenChange={handleDialog}>
+            <form>
 
-            <DialogContent className={`sm:max-w-[431px] max-w-[387px]
+                <DialogContent className={`sm:max-w-[431px] max-w-[387px]
                 flex items-center justify-center h-[326px] p-10 bg-white shadow-2xl`}>
-                <DialogHeader className={"bg-white"}>
-                    <DialogTitle className={"text-center font-bold font-sans text-[14px] text-black/50 hidden"}>Log in</DialogTitle>
+                    <DialogHeader className={"bg-white"}>
+                        <DialogTitle className={"text-center font-bold font-sans text-[14px] text-black/50 hidden"}>Log in</DialogTitle>
 
 
                         <div className='mt-16  justify-center items-center hidden'>
                             <Image
-                                width={154.32}
-                                height={33.07}
-                                src={"/projectLogo.png"}
+                                width={180}
+                                height={45}
+                                src={"/assets/clearfund%20logo.png"}
                                 alt='clearfund logo'
+                                className="h-auto"
                             />
                         </div>
-                </DialogHeader>
+                    </DialogHeader>
 
 
                     <div className='w-[321px]'>
@@ -122,17 +123,17 @@ const LoginForm = ({open, setOpen, blur, setBlur }) => {
                                         height={23.11}
                                     />
                                     <span className='text-[14px] font-sans font-medium text-black/60'>
-                                    Sign in with Privy
+                                        Sign in with Privy
                                     </span>
                                 </div>
                             </button>
                         </div>
                     </div>
 
-            </DialogContent>
-        </form>
-    </Dialog>
-  )
+                </DialogContent>
+            </form>
+        </Dialog>
+    )
 }
 
 export default LoginForm

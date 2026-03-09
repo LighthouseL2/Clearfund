@@ -89,7 +89,7 @@ const DonationFeed = () => {
                                             {d.anonymous ? "Anonymous" : `${d.donorWallet?.substring(0, 6)}...${d.donorWallet?.substring(38)}`}
                                         </span>
                                         <span className="text-xs font-medium text-gray-400">sent</span>
-                                        <span className="text-lg font-black text-gd-teal tabular-nums">{d.amount.toLocaleString()}<span className="text-xs ml-1">G$</span></span>
+                                        <span className="text-lg font-black text-gd-teal tabular-nums">(G$) {d.amount.toLocaleString()}</span>
                                     </div>
                                     <div className="flex items-center gap-1.5 mt-1 overflow-hidden">
                                         <span className="text-xs font-medium text-gray-400 shrink-0">to</span>

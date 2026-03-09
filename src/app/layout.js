@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet">
         </link>
         <title>ClearFund</title>
-        <link rel="shortcut icon" href="/loadingIcon.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="/assets/clearfund%20logo.png" type="image/x-icon" />
         {/* google analytics script */}
         <Script
           strategy="afterInteractive"
@@ -88,7 +88,7 @@ export default function RootLayout({ children }) {
                 theme: "light",
                 landingHeader: (
                   <div key="custom-privy-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0.5rem', marginBottom: '1rem', width: '100%' }}>
-                    <img key="privy-logo" src="https://auth.privy.io/logos/privy-logo-dark.png" alt="Privy" style={{ height: '36px', marginBottom: '1.5rem', objectFit: 'contain' }} />
+                    <img key="privy-logo" src="/assets/clearfund%20logo.png" alt="ClearFund" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain' }} />
                     <span key="privy-title" style={{ fontFamily: 'monospace', fontSize: '24px', fontWeight: 'bold' }}>Log in or sign up</span>
                   </div>
                 ),

@@ -19,7 +19,7 @@ const NavHeader = () => {
       <div className="flex items-center gap-2">
         <Link href="/" className="flex items-center gap-2 group">
           <img
-            src="/assets/clearfund-brand.svg"
+            src="/assets/clearfund%20logo.png"
             alt="ClearFund"
             className="h-12 w-auto"
           />
