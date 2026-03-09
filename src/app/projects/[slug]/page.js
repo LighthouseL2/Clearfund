@@ -258,7 +258,17 @@ const ProjectDetailPage = ({ params }) => {
                                     </button>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-1.5 text-gray-500 mt-4">
+                            <div className="mt-6 flex gap-12 border-t border-gray-100 pt-6">
+                                <div>
+                                    <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Tipped</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">${(project.totalRaised || 0).toLocaleString()}</div>
+                                </div>
+                                <div>
+                                    <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Backers</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">{project.donationCount || 0}</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-gray-500 mt-6 pt-4 border-t border-gray-50/50">
                                 <MapPin className="w-4 h-4 text-[#00AFAA]" />
                                 <span className="text-sm font-medium">{project.location || 'Global'}</span>
                             </div>

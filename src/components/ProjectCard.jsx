@@ -72,13 +72,15 @@ const ProjectCard = ({ project }) => {
                     </div>
 
                     {/* STATS */}
-                    <div className={`flex items-center pt-6 mt-4 border-t border-gray-100/50 ${totalRaised > 0 ? 'justify-between' : 'justify-end'}`}>
-                        {totalRaised > 0 && (
-                            <div>
-                                <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Total Tips</div>
-                                <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">${totalRaised.toLocaleString()}</div>
-                            </div>
-                        )}
+                    <div className="flex items-center pt-6 mt-4 border-t border-gray-100/50 justify-between">
+                        <div>
+                            <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Total Tipped</div>
+                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">${totalRaised.toLocaleString()}</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Backers</div>
+                            <div className="text-xl font-black text-[#003E52] tracking-tight">{donationCount}</div>
+                        </div>
                         <div className="text-right">
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Category</div>
                             <div className="text-[12px] font-black text-[#003E52] tracking-tight">{categoryLabels[category] || 'Impact'}</div>

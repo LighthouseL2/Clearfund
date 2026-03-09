@@ -75,7 +75,7 @@ export function GrantFormFields({ formData, onChange, errors }) {
 
         <div>
           <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-            Recipient Wallet (Celo Network) *
+            Recipient Wallet *
           </label>
           <input
             type="text"

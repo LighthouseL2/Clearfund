@@ -27,7 +27,7 @@ export default function ProfilePage() {
     const fetchUserTips = async () => {
         setLoading(true)
         try {
-            const resp = await fetch(`/api/donations?donorWallet=${address}`)
+            const resp = await fetch(`/api/donations?donorWallet=${address}&t=${Date.now()}`, { cache: 'no-store' })
             const data = await resp.json()
             if (data.success) {
                 setTips(data.data)

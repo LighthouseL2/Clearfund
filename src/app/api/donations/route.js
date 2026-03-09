@@ -3,6 +3,8 @@ import dbConnect from '@/lib/db';
 import Donation from '@/models/Donation';
 import Project from '@/models/Project';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request) {
     try {
         const { searchParams } = new URL(request.url);

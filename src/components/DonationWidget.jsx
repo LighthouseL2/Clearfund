@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { usePrivy } from '@privy-io/react-auth';
 import { useTokenBalance, useDonate } from '@/hooks/useDonation';
 import { CheckCircle2, AlertCircle, Loader2, Wallet, Coins, ChevronDown } from 'lucide-react';
@@ -100,16 +101,24 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
                         {txHash}
                     </a>
                 </div>
-                <button
-                    onClick={() => {
-                        setIsSuccess(false);
-                        setAmount('');
-                        reset();
-                    }}
-                    className="w-full py-3 bg-[#00AFAA] text-white font-bold rounded-xl hover:bg-opacity-90 transition-all block text-center"
-                >
-                    Tip Again
-                </button>
+                <div className="flex flex-col gap-3">
+                    <button
+                        onClick={() => {
+                            setIsSuccess(false);
+                            setAmount('');
+                            reset();
+                        }}
+                        className="w-full py-4 bg-gray-100 text-[#003E52] font-black rounded-3xl hover:bg-gray-200 transition-all block text-center text-[10px] uppercase tracking-widest"
+                    >
+                        Tip Again
+                    </button>
+                    <Link
+                        href="/profile"
+                        className="w-full py-4 bg-[#00AFAA] text-white font-black rounded-3xl hover:bg-[#003E52] transition-all block text-center text-[10px] uppercase tracking-widest shadow-lg"
+                    >
+                        View History
+                    </Link>
+                </div>
             </div>
         );
     }
