@@ -196,7 +196,7 @@ export default function ProjectsPage() {
                     <div className="flex gap-8">
                         <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">GitHub</Link>
                         <Link href="https://x.com/Clear_Fund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Twitter</Link>
-                        <Link href="https://discord.gg/4ePswVpuvd" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Discord</Link>
+                        <Link href="https://t.me/+fU2kPPjZ50MxMTE0" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Telegram</Link>
                     </div>
                 </div>
             </footer>
