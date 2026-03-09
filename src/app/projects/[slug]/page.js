@@ -16,11 +16,11 @@ const InfoPopup = ({ project, onClose }) => {
 
                 <div className="flex justify-between items-start mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-[#EAF9EE] rounded-full flex items-center justify-center text-[#39B54A]">
+                        <div className="w-12 h-12 bg-[#00AFAA]/10 rounded-full flex items-center justify-center text-[#00AFAA]">
                             <Info className="w-6 h-6" />
                         </div>
                         <div>
-                            <div className="text-[10px] font-black text-[#39B54A] tracking-widest uppercase mb-1">Campaign Info</div>
+                            <div className="text-[10px] font-black text-[#00AFAA] tracking-widest uppercase mb-1">Impact Info</div>
                             <h2 className="text-xl font-bold text-gray-800 leading-tight">{project.name}</h2>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ const InfoPopup = ({ project, onClose }) => {
                 <div className="bg-[#FAFBFD] rounded-2xl border border-gray-100 flex flex-col">
                     <div className="flex justify-between items-center p-4 border-b border-gray-100">
                         <span className="text-gray-500 text-sm font-medium">Status</span>
-                        <span className="font-bold text-[#39B54A] text-sm">Active</span>
+                        <span className="font-bold text-[#00AFAA] text-sm">Active</span>
                     </div>
                     <div className="flex justify-between items-center p-4 border-b border-gray-100">
                         <span className="text-gray-500 text-sm font-medium">Launch</span>
@@ -81,11 +81,11 @@ const SharePopup = ({ project, onClose }) => {
 
                 <div className="flex justify-between items-start mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-[#EAF9EE] rounded-full flex items-center justify-center text-[#39B54A]">
+                        <div className="w-12 h-12 bg-[#00AFAA]/10 rounded-full flex items-center justify-center text-[#00AFAA]">
                             <Share2 className="w-5 h-5" />
                         </div>
                         <div>
-                            <div className="text-[10px] font-black text-[#39B54A] tracking-widest uppercase mb-1">Share Campaign</div>
+                            <div className="text-[10px] font-black text-[#00AFAA] tracking-widest uppercase mb-1">Share Impact</div>
                             <h2 className="text-xl font-bold text-gray-800 leading-tight">{project.name}</h2>
                         </div>
                     </div>
@@ -96,12 +96,12 @@ const SharePopup = ({ project, onClose }) => {
                     </button>
                 </div>
 
-                <div className="bg-[#F8FCF9] border border-[#EAF9EE] rounded-2xl p-5 mb-6">
-                    <h3 className="text-[#39B54A] font-bold flex items-center gap-2 mb-2">
+                <div className="bg-[#00AFAA]/5 border border-[#00AFAA]/10 rounded-2xl p-5 mb-6">
+                    <h3 className="text-[#00AFAA] font-bold flex items-center gap-2 mb-2">
                         🌎 Amplify the Impact
                     </h3>
                     <p className="text-gray-600 text-[14px] leading-relaxed">
-                        Every share brings this campaign closer to its goal. When you spread the word, you connect people who care with causes that matter. Share this campaign with your network and help channel GoodDollar donations to those who need it most.
+                        Every share brings this campaign closer to its goal. When you spread the word, you connect people who care with causes that matter. Share this initiative with your network and help channel crypto tips to those who need it most.
                     </p>
                 </div>
 
@@ -170,7 +170,7 @@ const ProjectDetailPage = ({ params }) => {
             if (pData.success) {
                 setProject(pData.data);
 
-                // Fetch recent donations for this project
+                // Fetch recent tips for this project
                 const dResp = await fetch(`/api/donations?projectId=${pData.data._id}`);
                 const dData = await dResp.json();
                 if (dData.success) {
@@ -213,7 +213,7 @@ const ProjectDetailPage = ({ params }) => {
         );
     }
 
-    const displayDonations = donations;
+    const displayTips = donations;
 
     return (
         <div className="bg-[#FAFBFD] min-h-screen pb-32 font-sans">
@@ -259,7 +259,7 @@ const ProjectDetailPage = ({ params }) => {
                                 </div>
                             </div>
                             <div className="flex items-center gap-1.5 text-gray-500 mt-4">
-                                <MapPin className="w-4 h-4 text-[#39B54A]" />
+                                <MapPin className="w-4 h-4 text-[#00AFAA]" />
                                 <span className="text-sm font-medium">{project.location || 'Global'}</span>
                             </div>
                         </div>
@@ -273,7 +273,7 @@ const ProjectDetailPage = ({ params }) => {
 
                             {isExpanded && (
                                 <div className="mt-6 p-5 bg-[#F4F9F6] border border-[#EAF9EE] rounded-2xl animate-in slide-in-from-top-2 duration-300">
-                                    <h3 className="text-[#39B54A] font-bold mb-2 flex items-center gap-2">
+                                    <h3 className="text-[#00AFAA] font-bold mb-2 flex items-center gap-2">
                                         🌱 Understanding the Impact
                                     </h3>
                                     <p className="text-gray-600 text-sm leading-relaxed mb-4">
@@ -328,12 +328,12 @@ const ProjectDetailPage = ({ params }) => {
                             </button>
                         </div>
 
-                        {/* Transactions Card */}
-                        {displayDonations.length > 0 && (
+                        {/* Tip History Card */}
+                        {displayTips.length > 0 && (
                             <div className="bg-[#F8F9FA] rounded-[1.5rem] border border-gray-200 p-6 shadow-sm">
-                                <h2 className="text-lg font-bold text-[#111827] mb-4 px-2">Transactions</h2>
+                                <h2 className="text-lg font-bold text-[#111827] mb-4 px-2">Recent Tips</h2>
                                 <div className="space-y-3">
-                                    {displayDonations.map((d, i) => (
+                                    {displayTips.map((d, i) => (
                                         <div key={i} className="flex justify-between items-center bg-white border border-gray-200 rounded-xl p-4">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-4 h-4 rounded-full bg-gradient-to-r from-green-400 to-blue-500 shrink-0"></div>
@@ -349,7 +349,7 @@ const ProjectDetailPage = ({ params }) => {
                                                 <span className="text-sm font-bold text-gray-700 font-mono">
                                                     ${parseFloat(d.amount).toFixed(1)} {d.token || 'G$'}
                                                 </span>
-                                                <a href={`https://celoscan.io/tx/${d._id || ''}`} target="_blank" rel="noopener noreferrer">
+                                                <a href={`https://celoscan.io/tx/${d.txHash || d._id || ''}`} target="_blank" rel="noopener noreferrer">
                                                     <ExternalLink className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600" />
                                                 </a>
                                             </div>
@@ -362,7 +362,17 @@ const ProjectDetailPage = ({ params }) => {
 
                     {/* RIGHT COLUMN: DONATE WIDGET */}
                     <div className="lg:col-span-4 mt-8 lg:mt-0 sticky top-24">
-                        <DonationWidget project={project} onDonationSuccess={(d) => setDonations([d, ...donations])} />
+                        <DonationWidget
+                            project={project}
+                            onDonationSuccess={(d) => {
+                                setDonations(prev => [d, ...prev]);
+                                setProject(prev => ({
+                                    ...prev,
+                                    totalRaised: (prev.totalRaised || 0) + d.amount,
+                                    donationCount: (prev.donationCount || 0) + 1
+                                }));
+                            }}
+                        />
                     </div>
 
                 </div>

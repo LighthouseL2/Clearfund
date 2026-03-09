@@ -9,7 +9,7 @@
  * @param {Object} props.errors - Validation errors object
  * @param {string} props.minDeadline - Minimum deadline date string (YYYY-MM-DD)
  */
-export function GrantFormFields({ formData, onChange, errors, minDeadline }) {
+export function GrantFormFields({ formData, onChange, errors }) {
   return (
     <>
       <div className="mb-6">
@@ -75,7 +75,7 @@ export function GrantFormFields({ formData, onChange, errors, minDeadline }) {
 
         <div>
           <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-            Recipient Wallet *
+            Recipient Wallet (Celo Network) *
           </label>
           <input
             type="text"
@@ -105,20 +105,6 @@ export function GrantFormFields({ formData, onChange, errors, minDeadline }) {
         )}
       </div>
 
-      <div className="mb-8">
-        <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">Deadline *</label>
-        <input
-          type="date"
-          className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA] transition-all"
-          value={formData.deadline || ''}
-          onChange={(e) => onChange('deadline', e.target.value)}
-          min={minDeadline}
-          required
-        />
-        {errors.deadline && (
-          <p className="text-red-500 text-xs mt-1 font-bold">{errors.deadline}</p>
-        )}
-      </div>
     </>
   )
 }

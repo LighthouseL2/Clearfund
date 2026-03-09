@@ -12,28 +12,28 @@ export default function ProfilePage() {
     const address = wallets?.[0]?.address
     const router = useRouter()
 
-    const [donations, setDonations] = useState([])
+    const [tips, setTips] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         if (ready && authenticated && address) {
-            fetchUserDonations()
+            fetchUserTips()
         } else if (ready && !authenticated) {
             // If they just logged out or aren't logged in, redirect to projects
             router.push('/projects')
         }
     }, [ready, authenticated, address, router])
 
-    const fetchUserDonations = async () => {
+    const fetchUserTips = async () => {
         setLoading(true)
         try {
             const resp = await fetch(`/api/donations?donorWallet=${address}`)
             const data = await resp.json()
             if (data.success) {
-                setDonations(data.data)
+                setTips(data.data)
             }
         } catch (err) {
-            console.error("Failed to fetch donations", err)
+            console.error("Failed to fetch tips", err)
         } finally {
             setLoading(false)
         }
@@ -52,7 +52,7 @@ export default function ProfilePage() {
             <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-8 text-center text-[#111827]">
                 <Wallet className="w-16 h-16 text-gray-300 mb-6" />
                 <h1 className="text-3xl font-black mb-4">Connect Your Wallet</h1>
-                <p className="text-gray-500 mb-8 max-w-md">You need to connect your wallet to view your profile and donation history.</p>
+                <p className="text-gray-500 mb-8 max-w-md">You need to connect your wallet to view your profile and tip history.</p>
                 <button
                     onClick={login}
                     className="px-8 py-4 bg-[#00AFAA] text-white font-black text-[10px] uppercase tracking-[0.2em] rounded-2xl hover:bg-[#003E52] transition-all shadow-xl active:scale-95 flex items-center gap-3"
@@ -63,8 +63,8 @@ export default function ProfilePage() {
         )
     }
 
-    // Calculate total G$ and cUSD donated
-    const totals = donations.reduce((acc, d) => {
+    // Calculate total G$ and cUSD tipped
+    const totals = tips.reduce((acc, d) => {
         const t = d.token || 'G$'
         acc[t] = (acc[t] || 0) + parseFloat(d.amount)
         return acc
@@ -94,16 +94,16 @@ export default function ProfilePage() {
             <main className="max-w-[1000px] mx-auto px-6 lg:px-8 mt-12">
                 <div className="mb-10 text-center md:text-left">
                     <h1 className="text-3xl md:text-4xl font-black text-[#111827] mb-2 tracking-tight">Your Impact Profile</h1>
-                    <p className="text-gray-500 font-medium">Track your donations and on-chain contributions</p>
+                    <p className="text-gray-500 font-medium">Track your tips and on-chain contributions</p>
                 </div>
 
                 {/* Dashboard Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                     <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center">
                         <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Total Tips</span>
-                        <span className="text-3xl font-black text-[#111827]">{donations.length}</span>
+                        <span className="text-3xl font-black text-[#111827]">{tips.length}</span>
                     </div>
-                    {donations.length > 0 ? (
+                    {tips.length > 0 ? (
                         Object.entries(totals).map(([token, amount]) => (
                             <div key={token} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center border-l-4 border-l-[#00AFAA]">
                                 <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Total Tipped ({token})</span>
@@ -126,11 +126,11 @@ export default function ProfilePage() {
                     <div className="p-6 md:p-8 border-b border-gray-100 flex items-center justify-between">
                         <h2 className="text-xl font-bold text-[#003E52] flex items-center gap-2">
                             <Activity className="w-5 h-5 text-[#00AFAA]" />
-                            Donation History
+                            Tip History
                         </h2>
                     </div>
 
-                    {donations.length === 0 ? (
+                    {tips.length === 0 ? (
                         <div className="p-12 text-center">
                             <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <Heart className="w-8 h-8 text-gray-300" />
@@ -145,7 +145,7 @@ export default function ProfilePage() {
                         </div>
                     ) : (
                         <div className="divide-y divide-gray-50">
-                            {donations.map((d, index) => (
+                            {tips.map((d, index) => (
                                 <div key={d._id || index} className="p-6 px-8 hover:bg-gray-50 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
                                     <div>
                                         <div className="text-[#111827] font-bold mb-1 line-clamp-1">

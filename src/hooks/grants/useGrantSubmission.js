@@ -59,13 +59,9 @@ export function useGrantSubmission() {
     //   errors.image = imageValidation.error;
     // }
 
-    const deadlineValidation = validateDeadline(
-      formData.deadline,
-      limits.minDeadlineDuration
-    );
-    if (!deadlineValidation.valid) {
-      errors.deadline = deadlineValidation.error;
-    }
+    // Default 30-day deadline since it's removed from UI
+    const defaultDeadlineTimestamp = Math.floor(Date.now() / 1000) + 2592000;
+    const deadlineTimestamp = defaultDeadlineTimestamp;
 
     const limitsValidation = validateGrantLimits(
       limits.grantCount,
@@ -86,7 +82,7 @@ export function useGrantSubmission() {
     // Prepare submission data
     const submissionData = formatGrantSubmissionData(
       formData,
-      deadlineValidation.deadlineTimestamp,
+      deadlineTimestamp,
       imageCID || "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco" // Default image CID
     );
 

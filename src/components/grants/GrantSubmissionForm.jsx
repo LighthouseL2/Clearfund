@@ -25,7 +25,6 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
     category: 'SOCIAL_IMPACT',
     walletAddress: '',
     url: '',
-    deadline: '',
   })
   const [showSuccessModal, setShowSuccessModal] = useState(false)
   const { login } = usePrivy()
@@ -71,8 +70,7 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
       description: '',
       category: 'SOCIAL_IMPACT',
       walletAddress: '',
-      url: '',
-      deadline: ''
+      url: ''
     })
     resetUpload()
     onSuccess?.()
@@ -125,7 +123,6 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
     }
   }
 
-  const minDeadline = formatMinDeadlineDate(limits.minDeadlineDuration)
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -133,7 +130,6 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
         formData={formData}
         onChange={(field, value) => setFormData(prev => ({ ...prev, [field]: value }))}
         errors={validationErrors}
-        minDeadline={minDeadline}
       />
 
       <div className="mb-8">
@@ -164,10 +160,6 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
         )}
       </div>
 
-      <GrantLimitIndicator
-        grantCount={limits.grantCount}
-        maxGrants={limits.maxGrants}
-      />
 
       <p className="text-[11px] text-gray-400 font-medium mb-8 leading-relaxed">
         Your project will be submitted both to the blockchain and our discovery feed. Ensure all details are accurate.
@@ -184,7 +176,7 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
         </button>
         <button
           type="submit"
-          className="px-8 py-3 bg-[#39B54A] text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-lg flex-1 disabled:opacity-50"
+          className="px-8 py-3 bg-[#00AFAA] text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#003E52] transition-all shadow-lg flex-1 disabled:opacity-50"
           disabled={isPending || isConfirming || isUploading || isSwitching}
         >
           {isSwitching ? 'Switching...' : isPending ? 'Securing...' : isConfirming ? 'Finalizing...' : 'Submit Project'}

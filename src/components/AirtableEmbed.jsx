@@ -9,8 +9,8 @@ export default function AirtableEmbed({ embedUrl, height = "1000px" }) {
         height="100%"
         style={{
           background: 'transparent',
-          border: '1px solid #ccc',
-          borderRadius: '8px'
+          border: 'none',
+          borderRadius: '0'
         }}
       />
     </div>

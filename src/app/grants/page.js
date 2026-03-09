@@ -7,6 +7,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
 import UserDetails from "../../components/userDetails";
 import ModalConnect from "../../components/modalConnect";
 import Image from "next/image";
+import { Form } from "../../components/Form";
 
 export default function GrantsPage() {
   const [isHidden, setIsHidden] = useState(false);
@@ -22,7 +23,7 @@ export default function GrantsPage() {
     <div className="min-h-screen bg-[#F9FAFB] text-[#003E52] font-sans selection:bg-[#00AFAA] selection:text-white">
       {/* Light Theme Header (consistent with projects page) */}
       <header className="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-[100]">
-        <div className="max-w-[1180px] mx-auto px-12 md:px-16 lg:px-20 py-4 flex justify-between items-center">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-8">
             <nav className="flex items-center gap-8">
               <Link href="/projects" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">Projects</Link>
@@ -45,7 +46,7 @@ export default function GrantsPage() {
         </div>
       </header>
 
-      <main className="max-w-[1180px] mx-auto px-12 md:px-16 lg:px-20 py-16 flex-1">
+      <main className="max-w-[1440px] mx-auto px-6 md:px-8 py-16 flex-1">
         {/* HERO SECTION */}
         <div className="mb-20">
           <h1 className="text-6xl md:text-7xl font-black tracking-tighter mb-6 leading-[0.9]">
@@ -75,7 +76,7 @@ export default function GrantsPage() {
           </div>
 
           {/* Airtable Embed */}
-          <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden p-8">
+          <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden p-0">
             <AirtableEmbed
               embedUrl={AIRTABLE_EMBED_URL}
               height="1000px"
@@ -86,7 +87,7 @@ export default function GrantsPage() {
 
       {/* Footer consistent with projects page */}
       <footer className="border-t border-gray-100 py-20 px-[10%] mt-20 bg-white">
-        <div className="max-w-[1180px] mx-auto flex justify-between items-center text-[#003E52]">
+        <div className="max-w-[1440px] mx-auto flex justify-between items-center text-[#003E52]">
           <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">© 2026 Portal</p>
           <div className="flex gap-8">
             <Link href="#" className="text-xs font-black text-gray-400 hover:text-[#00AFAA] transition-colors">GitHub</Link>

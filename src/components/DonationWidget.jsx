@@ -87,7 +87,7 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
                 <p className="text-gray-500 text-sm mb-6">
-                    Your donation of {amount} {selectedToken} has been processed successfully.
+                    Your tip of {amount} {selectedToken} has been processed successfully.
                 </p>
                 <div className="bg-white rounded-xl p-3 mb-6 flex items-center justify-between text-xs border border-gray-200">
                     <span className="text-gray-400 font-bold uppercase">Tx Hash</span>
@@ -100,12 +100,16 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
                         {txHash}
                     </a>
                 </div>
-                <a
-                    href="/projects"
+                <button
+                    onClick={() => {
+                        setIsSuccess(false);
+                        setAmount('');
+                        reset();
+                    }}
                     className="w-full py-3 bg-[#00AFAA] text-white font-bold rounded-xl hover:bg-opacity-90 transition-all block text-center"
                 >
-                    Back to Projects
-                </a>
+                    Tip Again
+                </button>
             </div>
         );
     }
@@ -113,12 +117,12 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
     return (
         <div className="bg-[#F8F9FA] rounded-[1.5rem] shadow-sm p-6 lg:p-8 border border-gray-200">
             <p className="text-gray-500 text-sm mb-4">
-                Donate with GoodDollar, cUSD on Celo network
+                Tip with GoodDollar, cUSD on Celo network
             </p>
             <div className="space-y-6">
                 {/* Token Selector */}
                 <div>
-                    <label className="text-xs font-bold text-gray-800 mb-2 block">Donation Token</label>
+                    <label className="text-xs font-bold text-gray-800 mb-2 block">Tip Token</label>
                     <div className="relative">
                         <button
                             onClick={() => setShowTokenMenu(!showTokenMenu)}
@@ -154,7 +158,7 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
 
                 {/* Amount Input */}
                 <div>
-                    <label className="text-xs font-bold text-gray-800 mb-2 block">Donation Amount</label>
+                    <label className="text-xs font-bold text-gray-800 mb-2 block">Tip Amount</label>
                     <div className="relative bg-white border border-gray-200 text-gray-800 rounded-xl flex items-center focus-within:ring-2 focus-within:ring-[#00AFAA] focus-within:border-[#00AFAA] transition-all">
                         <input
                             type="number"
@@ -191,8 +195,8 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
                 )}
 
                 <div className="bg-gray-50 rounded-xl p-4 text-xs text-gray-500 font-medium leading-relaxed border border-gray-100">
-                    <span className="font-bold text-gray-700">You are about to make a donation.</span><br />
-                    Pressing "Confirm" will begin the donation process. You will need to confirm using your connected wallet.
+                    <span className="font-bold text-gray-700">You are about to send a tip.</span><br />
+                    Pressing "Confirm" will begin the tipping process. You will need to confirm using your connected wallet.
                 </div>
 
                 <button

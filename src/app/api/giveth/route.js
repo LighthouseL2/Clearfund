@@ -120,59 +120,17 @@ const CURATED_REFI_PROJECTS = [
         description: "Contaminated water sources are one of the leading severe health crises in rural Uganda. Many communities walk miles daily to collect water, which frequently carries aggressive pathogens that stall economic and educational opportunities, particularly for young children.\n\nThis campaign bridges the infrastructure gap by sourcing and deploying rugged, solar-powered water filtration machinery directly into the heart of drought-affected villages. The systems run entirely off-grid, stripping out heavy pollutants and biological hazards to produce clean, safe drinking water. Your direct tips immediately reduce local disease rates, return thousands of hours to the community, and establish a foundational layer for public health."
     },
     {
-        _id: "g1",
-        name: "Ocean Plastic Removal",
-        tagline: "Deploying tech-enabled boats to collect and recycle ocean plastic in coastal waters.",
-        category: "CLIMATE",
-        logo: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-        totalRaised: 0,
-        fundingGoal: 250,
-        donationCount: 0,
-        featured: false,
-        slug: "ocean-plastic-sea",
-        website: "https://giveth.io",
-        location: "Southeast Asia"
-    },
-    {
         _id: "g2",
-        name: "Solar Microgrids",
-        tagline: "Funding community-owned solar microgrids that power schools, clinics, and small businesses.",
-        category: "CLIMATE",
-        logo: "https://images.unsplash.com/photo-1509391366360-fe5bb584850a?w=800&q=80",
+        name: "Greenpill Nigeria",
+        tagline: "Empowering local communities with regenerative finance tools and sustainable initiatives across Nigeria.",
+        category: "SOCIAL_IMPACT",
+        logo: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80",
         totalRaised: 0,
         fundingGoal: 200,
         donationCount: 0,
-        featured: false,
-        slug: "solar-microgrids-ghana",
-        website: "https://giveth.io",
-        location: "Ghana"
-    },
-    {
-        _id: "g3",
-        name: "Digital Literacy for Rural Youth",
-        tagline: "Teaching coding and digital skills to teenagers in underserved communities.",
-        category: "EDUCATION",
-        logo: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80",
-        totalRaised: 0,
-        fundingGoal: 100,
-        donationCount: 0,
-        featured: false,
-        slug: "digital-literacy-youth",
-        website: "https://giveth.io",
-        location: "Sub-Saharan Africa"
-    },
-    {
-        _id: "g4",
-        name: "STEM Schools Initiative",
-        tagline: "Providing science labs and mathematics resources to secondary schools in underserved states.",
-        category: "EDUCATION",
-        logo: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80",
-        totalRaised: 0,
-        fundingGoal: 90,
-        donationCount: 0,
-        featured: false,
-        slug: "stem-nigeria",
-        website: "https://giveth.io",
+        featured: true,
+        slug: "greenpill-nigeria",
+        website: "https://greenpill.network",
         location: "Nigeria"
     }
 ];
@@ -183,76 +141,76 @@ export async function GET(request) {
     const search = searchParams.get('search') || '';
     const featured = searchParams.get('featured');
 
-    try {
-        // Query Giveth GraphQL for ReFi/Environmental/Social projects
-        const query = `{
-            projects(
-                limit: 20,
-                sortingBy: MostFunded,
-                filters: [Verified],
-                searchTerm: "environment"
-            ) {
-                projects {
-                    id
-                    title
-                    descriptionSummary
-                    categories { name }
-                    image
-                    totalDonations
-                    slug
-                }
-            }
-        }`;
+    // try {
+    //     // Query Giveth GraphQL for ReFi/Environmental/Social projects
+    //     const query = `{
+    //         projects(
+    //             limit: 20,
+    //             sortingBy: MostFunded,
+    //             filters: [Verified],
+    //             searchTerm: "environment"
+    //         ) {
+    //             projects {
+    //                 id
+    //                 title
+    //                 descriptionSummary
+    //                 categories { name }
+    //                 image
+    //                 totalDonations
+    //                 slug
+    //             }
+    //         }
+    //     }`;
 
-        const response = await fetch(GIVETH_GRAPHQL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query }),
-            signal: AbortSignal.timeout(6000),
-            next: { revalidate: 300 }, // cache 5 min
-        });
+    //     const response = await fetch(GIVETH_GRAPHQL, {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ query }),
+    //         signal: AbortSignal.timeout(6000),
+    //         next: { revalidate: 300 }, // cache 5 min
+    //     });
 
-        if (response.ok) {
-            const json = await response.json();
-            const raw = json?.data?.projects?.projects || [];
+    //     if (response.ok) {
+    //         const json = await response.json();
+    //         const raw = json?.data?.projects?.projects || [];
 
-            if (raw.length > 0) {
-                const mapped = raw
-                    .map((p, i) => {
-                        const cat = mapCategory(p.categories);
-                        if (!cat) return null; // only include ReFi-relevant projects
-                        return {
-                            _id: `giveth-${p.id}`,
-                            name: p.title,
-                            tagline: p.descriptionSummary || 'A high-impact ReFi project on Giveth.',
-                            category: cat,
-                            logo: p.image || `https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80`,
-                            totalRaised: 0,
-                            fundingGoal: 200,
-                            donationCount: 0,
-                            featured: i < 3,
-                            slug: p.slug || `giveth-${p.id}`,
-                            website: `https://giveth.io/project/${p.slug}`,
-                            location: 'Global'
-                        };
-                    })
-                    .filter(Boolean);
+    //         if (raw.length > 0) {
+    //             const mapped = raw
+    //                 .map((p, i) => {
+    //                     const cat = mapCategory(p.categories);
+    //                     if (!cat) return null; // only include ReFi-relevant projects
+    //                     return {
+    //                         _id: `giveth-${p.id}`,
+    //                         name: p.title,
+    //                         tagline: p.descriptionSummary || 'A high-impact ReFi project on Giveth.',
+    //                         category: cat,
+    //                         logo: p.image || `https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80`,
+    //                         totalRaised: 0,
+    //                         fundingGoal: 200,
+    //                         donationCount: 0,
+    //                         featured: i < 3,
+    //                         slug: p.slug || `giveth-${p.id}`,
+    //                         website: `https://giveth.io/project/${p.slug}`,
+    //                         location: 'Global'
+    //                     };
+    //                 })
+    //                 .filter(Boolean);
 
-                if (mapped.length > 0) {
-                    let results = mapped;
-                    if (featured === 'true') results = results.filter(p => p.featured).slice(0, 3);
-                    if (category !== 'ALL') results = results.filter(p => p.category === category);
-                    if (search) {
-                        const q = search.toLowerCase();
-                        results = results.filter(p => p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q));
-                    }
-                    return NextResponse.json({ success: true, data: results, source: 'giveth' });
-                }
-            }
-        }
-    } catch (err) {
-        // Silently fall through to curated data
-    }
+    //             if (mapped.length > 0) {
+    //                 let results = mapped;
+    //                 if (featured === 'true') results = results.filter(p => p.featured).slice(0, 3);
+    //                 if (category !== 'ALL') results = results.filter(p => p.category === category);
+    //                 if (search) {
+    //                     const q = search.toLowerCase();
+    //                     results = results.filter(p => p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q));
+    //                 }
+    //                 return NextResponse.json({ success: true, data: results, source: 'giveth' });
+    //             }
+    //         }
+    //     }
+    // } catch (err) {
+    //     // Silently fall through to curated data
+    // }
 
     // ─── Local Database Projects ──────────────────────────────────
     let dbProjects = [];
