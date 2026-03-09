@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import DonationWidget from '@/components/DonationWidget';
+import TipWidget from '@/components/TipWidget';
 import { Share2, Heart, Info, MapPin, ArrowLeft, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import { FaTwitter, FaWhatsapp, FaFacebook, FaLinkedin, FaReddit, FaTelegramPlane } from 'react-icons/fa';
@@ -37,10 +37,7 @@ const InfoPopup = ({ project, onClose }) => {
                         <span className="text-gray-500 text-sm font-medium">Status</span>
                         <span className="font-bold text-[#00AFAA] text-sm">Active</span>
                     </div>
-                    <div className="flex justify-between items-center p-4 border-b border-gray-100">
-                        <span className="text-gray-500 text-sm font-medium">Launch</span>
-                        <span className="font-bold text-gray-800 text-sm">{new Date(project.createdAt || Date.now()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                    </div>
+
                     <div className="flex justify-between items-center p-4 border-b border-gray-100">
                         <span className="text-gray-500 text-sm font-medium">Location</span>
                         <span className="font-bold text-gray-800 text-sm">{project.location || 'Global'}</span>
@@ -50,7 +47,7 @@ const InfoPopup = ({ project, onClose }) => {
                         <span className="font-bold text-gray-800 text-sm capitalize">{project.category?.toLowerCase() || 'Environmental Conservation'}</span>
                     </div>
                     <div className="flex justify-between items-center p-4 border-b border-gray-100">
-                        <span className="text-gray-500 text-sm font-medium">Created</span>
+                        <span className="text-gray-500 text-sm font-medium">Added</span>
                         <span className="font-bold text-gray-800 text-sm">{new Date(project.createdAt || Date.now()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                     <div className="flex justify-between items-center p-4">
@@ -152,7 +149,7 @@ const SharePopup = ({ project, onClose }) => {
 const ProjectDetailPage = ({ params }) => {
     const { slug } = React.use(params);
     const [project, setProject] = useState(null);
-    const [donations, setDonations] = useState([]);
+    const [tips, setTips] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showInfo, setShowInfo] = useState(false);
     const [showShare, setShowShare] = useState(false);
@@ -171,11 +168,38 @@ const ProjectDetailPage = ({ params }) => {
                 setProject(pData.data);
 
                 // Fetch recent tips for this project
-                const dResp = await fetch(`/api/donations?projectId=${pData.data._id}`);
-                const dData = await dResp.json();
-                if (dData.success) {
-                    setDonations(dData.data);
+                let remoteTips = [];
+                try {
+                    const dResp = await fetch(`/api/tips?projectId=${pData.data._id}`);
+                    const dData = await dResp.json();
+                    if (dData.success) {
+                        remoteTips = dData.data;
+                    }
+                } catch (err) {
+                    console.warn("DB fetch failed for project tips", err);
                 }
+
+                // Fetch local tips for this project
+                let localTips = [];
+                try {
+                    const allLocal = JSON.parse(localStorage.getItem('clearfund_tips') || '[]');
+                    localTips = allLocal.filter(t => t.projectId === pData.data._id);
+                } catch (lErr) {
+                    console.error("Local storage tips fetch failed", lErr);
+                }
+
+                // Merge and deduplicate
+                const mergedProjectTips = [...remoteTips];
+                const seenPT = new Set(mergedProjectTips.map(t => t.txHash));
+                localTips.forEach(t => {
+                    if (!seenPT.has(t.txHash)) {
+                        mergedProjectTips.push(t);
+                        seenPT.add(t.txHash);
+                    }
+                });
+
+                mergedProjectTips.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setTips(mergedProjectTips);
             } else {
                 // If not found in DB, maybe it's a Giveth project. Let's fetch from Giveth API fallback
                 const givethResp = await fetch(`/api/giveth`);
@@ -186,11 +210,32 @@ const ProjectDetailPage = ({ params }) => {
                         setProject({ ...found, description: found.tagline, createdAt: new Date().toISOString() });
 
                         // Fetch tips even for fallback projects
-                        const dResp = await fetch(`/api/donations?projectId=${found._id}`);
-                        const dData = await dResp.json();
-                        if (dData.success) {
-                            setDonations(dData.data);
-                        }
+                        let remFallback = [];
+                        try {
+                            const dResp = await fetch(`/api/tips?projectId=${found._id}`);
+                            const dData = await dResp.json();
+                            if (dData.success) {
+                                remFallback = dData.data;
+                            }
+                        } catch (err) { }
+
+                        let locFallback = [];
+                        try {
+                            const allLocal = JSON.parse(localStorage.getItem('clearfund_tips') || '[]');
+                            locFallback = allLocal.filter(t => t.projectId === found._id);
+                        } catch (lErr) { }
+
+                        const mergedFallback = [...remFallback];
+                        const seenFB = new Set(mergedFallback.map(t => t.txHash));
+                        locFallback.forEach(t => {
+                            if (!seenFB.has(t.txHash)) {
+                                mergedFallback.push(t);
+                                seenFB.add(t.txHash);
+                            }
+                        });
+
+                        mergedFallback.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                        setTips(mergedFallback);
                     }
                 }
             }
@@ -220,7 +265,7 @@ const ProjectDetailPage = ({ params }) => {
         );
     }
 
-    const displayTips = donations;
+    const displayTips = tips;
 
     return (
         <div className="bg-[#FAFBFD] min-h-screen pb-32 font-sans">
@@ -228,11 +273,15 @@ const ProjectDetailPage = ({ params }) => {
             {showShare && <SharePopup project={project} onClose={() => setShowShare(false)} />}
 
             {/* Minimal Header / Back Button */}
-            <div className="bg-white border-b border-gray-100 py-4 px-6 md:px-12 sticky top-0 z-50">
-                <Link href="/projects" className="inline-flex items-center gap-2 text-gray-500 hover:text-[#00AFAA] transition-colors font-bold text-sm">
-                    <ArrowLeft className="h-4 w-4" />
-                    Back to Projects
-                </Link>
+            <div className="bg-white border-b border-gray-100 py-4 px-6 md:px-12 sticky top-0 z-50 flex justify-between items-center">
+                <div className="flex items-center gap-6">
+                    <Link href="/" className="p-2 hover:bg-gray-50 rounded-full transition-colors group" title="Home">
+                        <ArrowLeft className="h-5 w-5 text-gray-400 group-hover:text-[#00AFAA]" />
+                    </Link>
+                    <Link href="/projects" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">
+                        Back to Projects
+                    </Link>
+                </div>
             </div>
 
             {/* Banner Image */}
@@ -379,10 +428,10 @@ const ProjectDetailPage = ({ params }) => {
 
                     {/* RIGHT COLUMN: DONATE WIDGET */}
                     <div className="lg:col-span-4 mt-8 lg:mt-0 sticky top-24">
-                        <DonationWidget
+                        <TipWidget
                             project={project}
-                            onDonationSuccess={(d) => {
-                                setDonations(prev => [d, ...prev]);
+                            onTipSuccess={(d) => {
+                                setTips(prev => [d, ...prev]);
                                 setProject(prev => ({
                                     ...prev,
                                     totalRaised: (prev.totalRaised || 0) + d.amount,

@@ -27,13 +27,46 @@ export default function ProfilePage() {
     const fetchUserTips = async () => {
         setLoading(true)
         try {
-            const resp = await fetch(`/api/donations?donorWallet=${address}&t=${Date.now()}`, { cache: 'no-store' })
-            const data = await resp.json()
-            if (data.success) {
-                setTips(data.data)
+            // 1. Fetch from API
+            let remoteTips = []
+            try {
+                const resp = await fetch(`/api/tips?donorWallet=${address}&t=${Date.now()}`, { cache: 'no-store' })
+                const data = await resp.json()
+                if (data.success) {
+                    remoteTips = data.data
+                }
+            } catch (err) {
+                console.warn("DB fetch failed, using local fallback", err)
             }
+
+            // 2. Fetch from Local Storage
+            let localTips = []
+            try {
+                localTips = JSON.parse(localStorage.getItem('clearfund_tips') || '[]')
+                // Filter by current user address just in case
+                localTips = localTips.filter(t => t.donorWallet?.toLowerCase() === address?.toLowerCase())
+            } catch (lErr) {
+                console.error("Local storage read failed", lErr)
+            }
+
+            // 3. Merge and deduplicate by txHash
+            const merged = [...remoteTips]
+            const seen = new Set(merged.map(t => t.txHash))
+
+            localTips.forEach(t => {
+                if (!seen.has(t.txHash)) {
+                    merged.push(t)
+                    seen.add(t.txHash)
+                }
+            })
+
+            // Sort by createdAt desc
+            merged.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+            setTips(merged)
+
         } catch (err) {
-            console.error("Failed to fetch tips", err)
+            console.error("Failed to merge tips", err)
         } finally {
             setLoading(false)
         }

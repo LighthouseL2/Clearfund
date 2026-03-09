@@ -19,13 +19,9 @@ const NavHeader = () => {
       <div className="flex items-center gap-2">
         <Link href="/" className="flex items-center gap-2 group">
           <img
-            src="/clearfund-dashboard-logo.svg"
+            src="/assets/clearfund_logo.png"
             alt="ClearFund"
-            className="h-9 w-auto"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/projectLogo.png";
-            }}
+            className="h-10 w-auto"
           />
         </Link>
       </div>

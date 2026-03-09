@@ -11,7 +11,7 @@ const TOKENS = [
     { symbol: 'cUSD', name: 'cUSD', icon: '/assets/cusd.png' }
 ];
 
-const DonationWidget = ({ project, onDonationSuccess }) => {
+const TipWidget = ({ project, onTipSuccess }) => {
     const { authenticated, login, user } = usePrivy();
     const [amount, setAmount] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
@@ -19,11 +19,11 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
     const [showTokenMenu, setShowTokenMenu] = useState(false);
 
     const { balance, isLoading: balanceLoading, refetch: refetchBalance } = useTokenBalance(selectedToken, user?.wallet?.address);
-    const { donate, status, txHash, error, reset, isLoading: donationLoading } = useDonate();
+    const { donate, status, txHash, error, reset, isLoading: tipLoading } = useDonate();
 
     const progress = project.fundingGoal ? Math.min(Math.round((project.totalRaised / project.fundingGoal) * 100), 100) : 0;
 
-    const handleDonate = async () => {
+    const handleTip = async () => {
         if (!authenticated) {
             login();
             return;
@@ -45,39 +45,44 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
             });
 
             if (hash) {
-                // Record donation in DB
-                await fetch('/api/donations', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        projectId: project._id,
-                        donorWallet: user?.wallet?.address,
-                        amount: parseFloat(finalAmount),
-                        txHash: hash,
-                        network: 'celo',
-                        token: selectedToken,
-                        anonymous: false,
-                        projectName: project.name,
-                        projectLogo: project.logo,
-                    }),
-                });
+                const tipData = {
+                    projectId: project._id,
+                    donorWallet: user?.wallet?.address,
+                    amount: parseFloat(finalAmount),
+                    txHash: hash,
+                    network: 'celo',
+                    token: selectedToken,
+                    anonymous: false,
+                    projectName: project.name,
+                    projectLogo: project.logo,
+                    createdAt: new Date().toISOString()
+                };
 
-                if (onDonationSuccess) {
-                    onDonationSuccess({
-                        _id: hash,
-                        donorWallet: user?.wallet?.address,
-                        amount: parseFloat(finalAmount),
-                        txHash: hash,
-                        network: 'celo',
-                        token: selectedToken,
-                        projectName: project.name,
-                        projectLogo: project.logo,
-                        createdAt: new Date().toISOString()
+                // Record tip in DB
+                try {
+                    await fetch('/api/tips', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(tipData),
                     });
+                } catch (dbErr) {
+                    console.error("DB record failed, falling back to local storage", dbErr);
+                }
+
+                // Persistence Fallback: Save to Local Storage
+                try {
+                    const localTips = JSON.parse(localStorage.getItem('clearfund_tips') || '[]');
+                    localStorage.setItem('clearfund_tips', JSON.stringify([tipData, ...localTips].slice(0, 50)));
+                } catch (lsErr) {
+                    console.error("Local storage save failed", lsErr);
+                }
+
+                if (onTipSuccess) {
+                    onTipSuccess(tipData);
                 }
 
                 setIsSuccess(true);
-                refetchBalance(); // Refresh balance after donation
+                refetchBalance(); // Refresh balance after tip
             }
         } catch (err) {
             console.error(err);
@@ -213,11 +218,11 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
                 </div>
 
                 <button
-                    onClick={handleDonate}
-                    disabled={donationLoading || !amount || parseFloat(amount) <= 0}
+                    onClick={handleTip}
+                    disabled={tipLoading || !amount || parseFloat(amount) <= 0}
                     className="w-full py-4 bg-[#00AFAA] hover:bg-[#003E52] text-white font-black text-xs uppercase tracking-widest rounded-3xl transition-all shadow-2xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98]"
                 >
-                    {donationLoading ? (
+                    {tipLoading ? (
                         <>
                             <Loader2 className="h-5 w-5 animate-spin" />
                             {status === 'sending' ? 'Signing...' : 'Confirming'}
@@ -231,4 +236,4 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
     );
 };
 
-export default DonationWidget;
+export default TipWidget;

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Project from '@/models/Project';
-import Donation from '@/models/Donation';
+import Tip from '@/models/Tip';
 
 export async function GET() {
     try {
@@ -13,7 +13,7 @@ export async function GET() {
                 success: true,
                 data: {
                     totalGDonated: 0,
-                    projectCount: 0,
+                    projectCount: 6,
                     donorCount: 0,
                     isMock: true
                 },
@@ -28,17 +28,18 @@ export async function GET() {
 
         // Real number of projects: Curated (6) + Approved in DB
         const dbProjectCount = await Project.countDocuments({ status: 'APPROVED' });
-        const projectCount = 6 + dbProjectCount;
+        const projectCount = Math.max(6, 6 + dbProjectCount);
 
         // Count unique donor wallets (tippers)
-        const donors = await Donation.distinct('donorWallet');
+        const donors = await Tip.distinct('donorWallet');
+        const donorCount = donors.length;
 
         return NextResponse.json({
             success: true,
             data: {
                 totalGDonated: totalRaised[0]?.total || 0,
                 projectCount: projectCount,
-                donorCount: donors.length,
+                donorCount: donorCount,
             },
         });
     } catch (error) {

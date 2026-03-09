@@ -52,8 +52,11 @@ export default function ProjectsPage() {
 
             {/* ── HEADER ────────────────────────────────────────────── */}
             <header className="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-[100]">
-                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center">
-                    <div className="flex items-center gap-8">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center text-[#003E52]">
+                    <div className="flex items-center gap-6">
+                        <Link href="/" className="p-2 hover:bg-gray-50 rounded-full transition-colors group" title="Home">
+                            <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-[#00AFAA] rotate-180" />
+                        </Link>
                         <nav className="flex items-center gap-8">
                             <Link href="/projects" className="text-sm font-bold text-[#00AFAA] border-b-2 border-[#00AFAA] pb-1 translate-y-0.5">
                                 Impact projects

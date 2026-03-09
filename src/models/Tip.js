@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const DonationSchema = new mongoose.Schema(
+const TipSchema = new mongoose.Schema(
     {
         projectId: {
             type: String, // Accepts both ObjectId string and custom IDs like 'gc1'
@@ -8,7 +8,7 @@ const DonationSchema = new mongoose.Schema(
             ref: 'Project'
         },
         donorWallet: {
-            type: String, // Wallet address of the donor
+            type: String, // Wallet address of the tipper
             required: true,
         },
         amount: {
@@ -16,7 +16,7 @@ const DonationSchema = new mongoose.Schema(
             required: true,
         },
         amountUSD: {
-            type: Number, // Optional USD equivalent at time of donation
+            type: Number, // Optional USD equivalent at time of tip
             required: false,
         },
         txHash: {
@@ -54,4 +54,4 @@ const DonationSchema = new mongoose.Schema(
     }
 );
 
-export default mongoose.models.Donation || mongoose.model('Donation', DonationSchema);
+export default mongoose.models.Tip || mongoose.model('Tip', TipSchema);

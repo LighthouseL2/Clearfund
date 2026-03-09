@@ -59,9 +59,9 @@ export default function Sidebar({ authenticated, address, login }) {
     <>
       {/* Mobile top bar */}
       <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
-        <div className="relative w-[120px] h-[30px]">
+        <div className="relative w-[150px] h-[50px]">
           <Image
-            src="/clearfund-dashboard-logo.svg"
+            src="/assets/clearfund_logo.png"
             alt="ClearFund Logo"
             fill
             className="object-contain"
@@ -84,9 +84,9 @@ export default function Sidebar({ authenticated, address, login }) {
         <div>
           {/* Logo */}
           <div className="hidden md:flex items-end mb-12 px-6">
-            <div className="relative w-[150px] h-[40px]">
+            <div className="relative w-[180px] h-[60px]">
               <Image
-                src="/clearfund-dashboard-logo.svg"
+                src="/assets/clearfund_logo.png"
                 alt="ClearFund Logo"
                 fill
                 className="object-contain"

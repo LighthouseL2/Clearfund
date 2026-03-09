@@ -23,7 +23,7 @@ const DonationFeed = () => {
     useEffect(() => {
         const fetchRecent = async () => {
             try {
-                const resp = await fetch('/api/donations?limit=10');
+                const resp = await fetch('/api/tips?limit=10');
                 const data = await resp.json();
                 if (data.success) {
                     setDonations(data.data);

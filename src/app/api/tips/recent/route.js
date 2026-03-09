@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
-import Donation from '@/models/Donation';
+import Tip from '@/models/Tip';
 
 export async function GET(request) {
     try {
@@ -9,8 +9,8 @@ export async function GET(request) {
 
         await dbConnect();
 
-        // Get recent donations
-        const donations = await Donation.find({})
+        // Get recent tips
+        const tips = await Tip.find({})
             .sort({ createdAt: -1 })
             .limit(limit)
             .populate('projectId', 'name slug logo');
@@ -19,14 +19,14 @@ export async function GET(request) {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        const todayStats = await Donation.aggregate([
+        const todayStats = await Tip.aggregate([
             { $match: { createdAt: { $gte: today } } },
             { $group: { _id: null, total: { $sum: '$amount' } } },
         ]);
 
         return NextResponse.json({
             success: true,
-            data: donations,
+            data: tips,
             todayTotal: todayStats[0]?.total || 0,
         });
     } catch (error) {

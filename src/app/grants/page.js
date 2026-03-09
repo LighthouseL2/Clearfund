@@ -23,8 +23,13 @@ export default function GrantsPage() {
     <div className="min-h-screen bg-[#F9FAFB] text-[#003E52] font-sans selection:bg-[#00AFAA] selection:text-white">
       {/* Light Theme Header (consistent with projects page) */}
       <header className="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-[100]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center text-[#003E52]">
+          <div className="flex items-center gap-6">
+            <Link href="/" className="p-2 hover:bg-gray-50 rounded-full transition-colors group" title="Home">
+              <svg className="h-5 w-5 text-gray-400 group-hover:text-[#00AFAA] rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
             <nav className="flex items-center gap-8">
               <Link href="/projects" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">Impact projects</Link>
               <Link href="/grants" className="text-sm font-bold text-[#00AFAA] transition-colors border-b-2 border-[#00AFAA] pb-1 translate-y-0.5">Funding</Link>

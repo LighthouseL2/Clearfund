@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
-import Donation from '@/models/Donation';
+import Tip from '@/models/Tip';
 import Project from '@/models/Project';
 
 export const dynamic = 'force-dynamic';
@@ -27,12 +27,12 @@ export async function GET(request) {
             query.donorWallet = donorWallet;
         }
 
-        const donations = await Donation.find(query)
+        const tips = await Tip.find(query)
             .sort({ createdAt: -1 })
             .limit(limit)
             .populate('projectId', 'name slug logo');
 
-        return NextResponse.json({ success: true, data: donations });
+        return NextResponse.json({ success: true, data: tips });
     } catch (error) {
         return NextResponse.json({ success: false, error: error.message }, { status: 400 });
     }
@@ -43,7 +43,7 @@ export async function POST(request) {
         const data = await request.json();
         await dbConnect();
 
-        const donation = await Donation.create(data);
+        const tip = await Tip.create(data);
         const { projectId, amount } = data;
 
         // Update Project totals only if it's a valid MongoDB ID
@@ -60,7 +60,7 @@ export async function POST(request) {
             }
         }
 
-        return NextResponse.json({ success: true, data: donation });
+        return NextResponse.json({ success: true, data: tip });
     } catch (error) {
         return NextResponse.json({ success: false, error: error.message }, { status: 400 });
     }
