@@ -229,6 +229,42 @@ export async function GET(request) {
     // ─── Curated fallback ───────────────────────────────────────────
     let results = [...dbProjects, ...CURATED_REFI_PROJECTS];
 
+    // ─── Real-time Tip Aggregation ──────────────────────────────────
+    try {
+        await dbConnect();
+        // Calculate totals for EVERY project in our DB
+        const tipStats = await Tip.aggregate([
+            {
+                $group: {
+                    _id: "$projectId",
+                    totalAmount: { $sum: "$amount" },
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        // Map tip stats for easy lookup
+        const statsMap = {};
+        tipStats.forEach(stat => {
+            statsMap[stat._id] = stat;
+        });
+
+        // Merge stats into results
+        results = results.map(p => {
+            const stats = statsMap[p._id];
+            if (stats) {
+                return {
+                    ...p,
+                    totalRaised: stats.totalAmount,
+                    donationCount: stats.count
+                };
+            }
+            return p;
+        });
+    } catch (statError) {
+        console.warn("Failed to aggregate tip stats:", statError);
+    }
+
     if (featured === 'true') results = results.filter(p => p.featured).slice(0, 3);
     if (category !== 'ALL') results = results.filter(p => p.category === category);
     if (search) {

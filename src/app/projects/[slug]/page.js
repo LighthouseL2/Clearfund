@@ -396,10 +396,10 @@ const ProjectDetailPage = ({ params }) => {
                             </button>
                         </div>
 
-                        {/* Tip History Card */}
-                        {displayTips.length > 0 && (
-                            <div className="bg-[#F8F9FA] rounded-[1.5rem] border border-gray-200 p-6 shadow-sm">
-                                <h2 className="text-lg font-bold text-[#111827] mb-4 px-2">Recent Tips</h2>
+                        {/* Tip History Card - Visible to all */}
+                        <div className="bg-[#F8F9FA] rounded-[1.5rem] border border-gray-200 p-6 shadow-sm">
+                            <h2 className="text-lg font-bold text-[#111827] mb-4 px-2">Recent Tips</h2>
+                            {displayTips.length > 0 ? (
                                 <div className="space-y-3">
                                     {displayTips.map((d, i) => (
                                         <div key={i} className="flex justify-between items-center bg-white border border-gray-200 rounded-xl p-4">
@@ -424,8 +424,16 @@ const ProjectDetailPage = ({ params }) => {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-                        )}
+                            ) : (
+                                <div className="py-10 text-center bg-white border border-dashed border-gray-200 rounded-xl">
+                                    <div className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <Heart className="w-5 h-5 text-gray-200" />
+                                    </div>
+                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">No tips received yet</p>
+                                    <p className="text-[11px] text-gray-400 mt-1">Be the first to support this project!</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* RIGHT COLUMN: DONATE WIDGET */}

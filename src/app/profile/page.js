@@ -170,11 +170,6 @@ export default function ProfilePage() {
                             </div>
                             <h3 className="text-lg font-bold text-[#003E52] mb-2 text-center">No tips yet</h3>
                             <p className="text-gray-500 mb-6 text-center">Your impact history is empty. Support a project to see shared transitions here!</p>
-                            <div className="flex justify-center">
-                                <Link href="/projects" className="px-8 py-3 bg-[#00AFAA] text-white font-black text-[10px] uppercase tracking-widest rounded-2xl hover:bg-[#003E52] transition-all shadow-lg active:scale-95">
-                                    Browse Projects
-                                </Link>
-                            </div>
                         </div>
                     ) : (
                         <div className="divide-y divide-gray-50">

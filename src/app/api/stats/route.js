@@ -20,15 +20,16 @@ export async function GET() {
             });
         }
 
-        // Aggregated stats
-        const totalRaised = await Project.aggregate([
-            { $match: { status: 'APPROVED' } },
-            { $group: { _id: null, total: { $sum: '$totalRaised' } } },
+        // Aggregated stats: Sum of ALL tips across the entire platform
+        const tipSummary = await Tip.aggregate([
+            { $group: { _id: null, total: { $sum: '$amount' } } },
         ]);
+        const totalAmount = tipSummary[0]?.total || 0;
 
-        // Real number of projects: Curated (6) + Approved in DB
+        // Real number of projects: Approved in DB + Curated Hardcoded ones
         const dbProjectCount = await Project.countDocuments({ status: 'APPROVED' });
-        const projectCount = Math.max(6, 6 + dbProjectCount);
+        // We have 6 curated ReFi projects defined in the hybrid API
+        const projectCount = 6 + dbProjectCount;
 
         // Count unique donor wallets (tippers)
         const donors = await Tip.distinct('donorWallet');
@@ -37,7 +38,7 @@ export async function GET() {
         return NextResponse.json({
             success: true,
             data: {
-                totalGDonated: totalRaised[0]?.total || 0,
+                totalGDonated: totalAmount,
                 projectCount: projectCount,
                 donorCount: donorCount,
             },

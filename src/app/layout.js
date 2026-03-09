@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet">
         </link>
         <title>ClearFund</title>
-        <link rel="shortcut icon" href="/assets/clearfund%20logo.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon" />
         {/* google analytics script */}
         <Script
           strategy="afterInteractive"
