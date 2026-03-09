@@ -81,13 +81,13 @@ export default function GrantsPage() {
       </main>
 
       {/* Footer consistent with projects page */}
-      <footer className="border-t border-gray-100 py-20 px-[10%] mt-20 bg-white text-[#003E52]">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">© 2026 Portal</p>
+      <footer className="border-t border-gray-100 py-20 px-6 md:px-12 lg:px-16 mt-20 bg-white text-[#003E52]">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">© 2026 ClearFund</p>
           <div className="flex gap-8">
-            <Link href="#" className="text-xs font-black text-gray-400 hover:text-[#00AFAA] transition-colors">GitHub</Link>
-            <Link href="#" className="text-xs font-black text-gray-400 hover:text-[#00AFAA] transition-colors">Twitter</Link>
-            <Link href="#" className="text-xs font-black text-gray-400 hover:text-[#00AFAA] transition-colors">Discord</Link>
+            <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">GitHub</Link>
+            <Link href="https://x.com/Clear_Fund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Twitter</Link>
+            <Link href="https://discord.gg/4ePswVpuvd" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Discord</Link>
           </div>
         </div>
       </footer>

@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { usePrivy } from '@privy-io/react-auth';
 import { isAdmin } from '@/lib/admin';
-import { Check, X, Star, Trash2, ExternalLink, ShieldAlert, ShieldCheck, Info } from 'lucide-react';
+import { Check, X, Star, Trash2, ExternalLink, ShieldAlert, ShieldCheck, Info, LogOut } from 'lucide-react';
 
 const AdminDashboard = () => {
-    const { authenticated, user, login } = usePrivy();
+    const { authenticated, user, login, logout } = usePrivy();
     const [pending, setPending] = useState([]);
     const [allProjects, setAllProjects] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -113,9 +113,18 @@ const AdminDashboard = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div className="flex-1">
-                        <div className="flex items-center gap-2 text-gd-teal mb-2">
-                            <ShieldCheck className="h-5 w-5" />
-                            <span className="text-xs font-black uppercase tracking-[0.2em]">Authorized Session</span>
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2 text-gd-teal">
+                                <ShieldCheck className="h-5 w-5" />
+                                <span className="text-xs font-black uppercase tracking-[0.2em]">Authorized Session</span>
+                            </div>
+                            <button
+                                onClick={logout}
+                                className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                                <LogOut className="h-4 w-4" />
+                                Logout
+                            </button>
                         </div>
                         <h1 className="text-4xl font-black text-gd-dark-blue mb-4">Project Management</h1>
 

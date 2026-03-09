@@ -40,7 +40,7 @@ const Footer = () => {
                         <Link href="/privacy" className="hover:text-[#00AFAA] transition-colors">
                             Privacy policy
                         </Link>
-                        <Link href="https://github.com/ClearFund" target="_blank" className="hover:text-[#00AFAA] transition-colors">
+                        <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="hover:text-[#00AFAA] transition-colors">
                             GitHub
                         </Link>
                     </div>
