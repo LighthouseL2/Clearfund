@@ -53,17 +53,9 @@ export default function ProjectsPage() {
             {/* ── HEADER ────────────────────────────────────────────── */}
             <header className="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-[100]">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                        <Link href="/" className="flex items-center gap-2 group">
-                            <img
-                                src="/clearfund-dashboard-logo.svg"
-                                alt="ClearFund"
-                                className="h-9 w-auto"
-                                onError={e => { e.target.src = "/projectLogo.png" }}
-                            />
-                        </Link>
-                        <nav className="hidden md:flex items-center gap-8 ml-8">
-                            <Link href="/projects" className="text-sm font-bold text-[#00AFAA] border-b-2 border-[#00AFAA] pb-0.5">
+                    <div className="flex items-center gap-8">
+                        <nav className="flex items-center gap-8">
+                            <Link href="/projects" className="text-sm font-bold text-[#00AFAA] border-b-2 border-[#00AFAA] pb-1 translate-y-0.5">
                                 Impact projects
                             </Link>
                             <Link href="/grants" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">

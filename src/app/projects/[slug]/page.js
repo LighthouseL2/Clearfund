@@ -184,6 +184,13 @@ const ProjectDetailPage = ({ params }) => {
                     const found = givethData.data.find(p => p.slug === slug);
                     if (found) {
                         setProject({ ...found, description: found.tagline, createdAt: new Date().toISOString() });
+
+                        // Fetch tips even for fallback projects
+                        const dResp = await fetch(`/api/donations?projectId=${found._id}`);
+                        const dData = await dResp.json();
+                        if (dData.success) {
+                            setDonations(dData.data);
+                        }
                     }
                 }
             }

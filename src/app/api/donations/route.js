@@ -44,14 +44,21 @@ export async function POST(request) {
         await dbConnect();
 
         const donation = await Donation.create(data);
+        const { projectId, amount } = data;
 
-        // Update Project totals
-        await Project.findByIdAndUpdate(data.projectId, {
-            $inc: {
-                totalRaised: data.amount,
-                donationCount: 1,
-            },
-        });
+        // Update Project totals only if it's a valid MongoDB ID
+        if (projectId && projectId.match(/^[0-9a-fA-F]{24}$/)) {
+            try {
+                await Project.findByIdAndUpdate(projectId, {
+                    $inc: {
+                        totalRaised: amount,
+                        donationCount: 1,
+                    },
+                });
+            } catch (pError) {
+                console.error("Failed to update project totals:", pError);
+            }
+        }
 
         return NextResponse.json({ success: true, data: donation });
     } catch (error) {

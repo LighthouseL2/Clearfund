@@ -149,7 +149,7 @@ export default function ProfilePage() {
                                 <div key={d._id || index} className="p-6 px-8 hover:bg-gray-50 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
                                     <div>
                                         <div className="text-[#111827] font-bold mb-1 line-clamp-1">
-                                            {d.projectId?.name || d.project?.name || "Impact Campaign"}
+                                            {d.projectId?.name || d.projectName || "Impact Campaign"}
                                         </div>
                                         <div className="text-sm text-gray-400 font-medium">
                                             {new Date(d.createdAt).toLocaleString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}

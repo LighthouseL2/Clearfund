@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 const DonationSchema = new mongoose.Schema(
     {
         projectId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Project',
+            type: String, // Accepts both ObjectId string and custom IDs like 'gc1'
             required: true,
+            ref: 'Project'
         },
         donorWallet: {
             type: String, // Wallet address of the donor
@@ -39,6 +39,14 @@ const DonationSchema = new mongoose.Schema(
         anonymous: {
             type: Boolean,
             default: false,
+        },
+        projectName: {
+            type: String,
+            required: false,
+        },
+        projectLogo: {
+            type: String,
+            required: false,
         },
     },
     {

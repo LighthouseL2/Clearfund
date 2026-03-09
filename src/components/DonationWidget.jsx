@@ -57,6 +57,8 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
                         network: 'celo',
                         token: selectedToken,
                         anonymous: false,
+                        projectName: project.name,
+                        projectLogo: project.logo,
                     }),
                 });
 
@@ -68,6 +70,8 @@ const DonationWidget = ({ project, onDonationSuccess }) => {
                         txHash: hash,
                         network: 'celo',
                         token: selectedToken,
+                        projectName: project.name,
+                        projectLogo: project.logo,
                         createdAt: new Date().toISOString()
                     });
                 }

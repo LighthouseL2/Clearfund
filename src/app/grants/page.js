@@ -26,7 +26,7 @@ export default function GrantsPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center">
           <div className="flex items-center gap-8">
             <nav className="flex items-center gap-8">
-              <Link href="/projects" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">Projects</Link>
+              <Link href="/projects" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">Impact projects</Link>
               <Link href="/grants" className="text-sm font-bold text-[#00AFAA] transition-colors border-b-2 border-[#00AFAA] pb-1 translate-y-0.5">Funding</Link>
             </nav>
           </div>
