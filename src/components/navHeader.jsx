@@ -1,52 +1,57 @@
 "use client"
 
-
-import { MenuIcon, X } from "lucide-react"
+import { MenuIcon, X, ArrowRight, Wallet } from "lucide-react"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { usePrivy } from "@privy-io/react-auth"
+import UserDetails from "./userDetails"
 
-
-
-const NavHeader = ({ toggle, setToggle, setOpenMenu, openMenu, setBlur }) => {
-
-
-  const [modalOpen, setModalOpen] = useState(false)
+const NavHeader = () => {
   const router = useRouter()
-  // const { isConnected, account } = useAccount()
-
-
-  useEffect(() => {
-    if (modalOpen) {
-      // setRedirected(false)
-      router.push("/dashboard")
-      setModalOpen(false)
-    }
-  }, [router, modalOpen])
-
+  const { login, authenticated, user, logout } = usePrivy()
+  const wallet = user?.wallet?.address
 
 
   return (
-    <nav className="px-[5%] flex justify-between items-center py-0 mt-0 sticky top-0 z-50 bg-white">
-      <div className="md:w-[150px] w-[100px] relative flex items-center justify-center">
-        <Link href="/"><img src="/projectLogo.png" alt="logo" /></Link>
+    <nav className="px-[5%] md:px-8 lg:px-12 flex justify-between items-center h-24 sticky top-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-gray-100/50">
+      {/* LOGO */}
+      <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 group">
+          <img
+            src="/clearfund-dashboard-logo.svg"
+            alt="ClearFund"
+            className="h-9 w-auto"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/projectLogo.png";
+            }}
+          />
+        </Link>
       </div>
 
-      <ul className="md:flex md:w-[45%] lg:w-[55%] xl:w-[65%] gap-10 hidden items-center">
-        <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" target="_blank" href={"https://github.com/LighthouseL2/Clearfund"}>Github</Link></li>
-        <li><Link className="font-sans font-bold text-[16px] hover:scale-105 transition-all block hover:text-[#198038]" href={"/about"}>About</Link></li>
+      {/* NAV LINKS */}
+      <ul className="flex gap-4 md:gap-8 lg:gap-12 items-center ml-auto mr-4 pl-4">
       </ul>
 
-
-      <Link href={"/grants"} className="w-[159.16796875] h-[52px] bg-[#39B54A] md:flex items-center justify-center text-white
-          text-[16px] font-sans rounded-full font-black hidden hover:bg-black ">
-        Open App
-      </Link>
-
-      <div className="flex items-center md:hidden" onClick={() => setOpenMenu(!openMenu)}>
-        {!openMenu ? <MenuIcon /> :
-          <X />}
+      <div className="flex items-center gap-4">
+        {authenticated && wallet ? (
+          <UserDetails
+            walletAddress={wallet}
+            logout={logout}
+            balance="0" // Placeholder, balance usually fetched in a hook
+          />
+        ) : (
+          <Link
+            href="/projects"
+            className="px-10 py-5 bg-[#00AFAA] text-white font-black rounded-3xl flex items-center justify-center gap-3 hover:bg-[#003E52] transition-all transform hover:scale-[1.05] active:scale-95 text-[10px] uppercase tracking-widest shadow-2xl"
+          >
+            Tip
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        )}
       </div>
+
     </nav>
   )
 }

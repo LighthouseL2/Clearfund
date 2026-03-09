@@ -5,47 +5,17 @@ import PastGrant from "@/components/PastGrant";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import UserDetails from "@/components/userDetails";
 import ModalConnect from "@/components/modalConnect";
-import Sidebar from "@/components/SideBar2";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 export default function ArchivePage() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { authenticated, login, logout } = usePrivy();
   const { wallets } = useWallets();
   const address = wallets[0]?.address;
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
-
-      {/* Mobile Header */}
-      <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
-        <div className="relative w-[120px] h-[30px]">
-          <Image
-            src="/clearfund-dashboard-logo.svg"
-            alt="ClearFund Logo"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-lg hover:bg-gray-100"
-        >
-          {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Sidebar */}
-      <Sidebar
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-        authenticated={authenticated}
-        address={address}
-        login={login}
-      />
+    <div className="min-h-screen flex flex-col bg-white text-gray-800 relative">
 
       {/* Desktop Sidebar (Rendered within the Sidebar component logic usually, 
           but Sidebar2 seems to handle both desktop and mobile if passed correct props) */}
@@ -66,7 +36,7 @@ export default function ArchivePage() {
           )}
         </div>
 
-        <div className="flex-1 p-4 md:p-6 lg:ml-64">
+        <div className="flex-1 p-4 md:p-6">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row md:justify-between items-start mb-8">
               <div>

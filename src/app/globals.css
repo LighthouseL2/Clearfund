@@ -41,6 +41,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* GoodDollar Brand Colors */
+  --color-gd-teal: #00AFAA;
+  --color-gd-dark-blue: #003E52;
+  --color-gd-gold: #FDB92C;
 }
 
 :root {
@@ -153,7 +158,5 @@
   body {
     @apply bg-background text-foreground;
     @apply font-sans;
-    /* Account for fixed NetworkAlert when it appears */
-    padding-top: 3.5rem;
   }
 }

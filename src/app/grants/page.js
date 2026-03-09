@@ -1,17 +1,14 @@
 "use client";
 
 import { useState } from 'react';
-import Sidebar from '../../components/SideBar2';
-import HeroBanner from '../../components/HeroBanner';
+import Link from 'next/link';
 import AirtableEmbed from '../../components/AirtableEmbed';
-import { Form } from '../../components/Form';
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import UserDetails from "../../components/userDetails";
 import ModalConnect from "../../components/modalConnect";
 import Image from "next/image";
 
 export default function GrantsPage() {
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const { authenticated, login, logout } = usePrivy();
   const { wallets } = useWallets();
@@ -22,69 +19,82 @@ export default function GrantsPage() {
   const AIRTABLE_EMBED_URL = process.env.NEXT_PUBLIC_AIRTABLE_GRANTS_EMBED_URL;
 
   return (
-    <div className="bg-white min-h-screen relative">
-      {/* Sidebar */}
-      <Sidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
+    <div className="min-h-screen bg-[#F9FAFB] text-[#003E52] font-sans selection:bg-[#00AFAA] selection:text-white">
+      {/* Light Theme Header (consistent with projects page) */}
+      <header className="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-[100]">
+        <div className="max-w-[1180px] mx-auto px-12 md:px-16 lg:px-20 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-8">
+            <nav className="flex items-center gap-8">
+              <Link href="/projects" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors">Projects</Link>
+              <Link href="/grants" className="text-sm font-bold text-[#00AFAA] transition-colors border-b-2 border-[#00AFAA] pb-1 translate-y-0.5">Funding</Link>
+            </nav>
+          </div>
 
-      {/* Main Content */}
-      <div className="lg:ml-64 w-full lg:w-auto flex-1">
+          <div className="flex items-center gap-4">
+            {!authenticated ? (
+              <button
+                onClick={login}
+                className="px-6 py-2.5 bg-[#00AFAA] text-white rounded-xl font-bold text-sm hover:bg-[#003E52] transition-all shadow-sm"
+              >
+                Connect Wallet
+              </button>
+            ) : (
+              <UserDetails walletAddress={address} logout={logout} />
+            )}
+          </div>
+        </div>
+      </header>
 
-        {/* Wallet Connection Header */}
-        <div className="flex justify-end items-center gap-4 bg-white py-3 px-6 shadow-sm">
-          {toggle && <ModalConnect setCloseModal={setToggle} />}
-          {!authenticated ? (
-            <button
-              onClick={login}
-              className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[160px] hover:bg-black transition-colors"
-            >
-              Connect wallet
-            </button>
-          ) : (
-            <UserDetails walletAddress={address} logout={logout} />
-          )}
+      <main className="max-w-[1180px] mx-auto px-12 md:px-16 lg:px-20 py-16 flex-1">
+        {/* HERO SECTION */}
+        <div className="mb-20">
+          <h1 className="text-6xl md:text-7xl font-black tracking-tighter mb-6 leading-[0.9]">
+            Funding <span className="text-gray-300">Portal</span>
+          </h1>
+          <p className="text-gray-500 text-lg font-medium max-w-xl leading-relaxed">
+            Explore active funding opportunities across the Web3 ecosystem in one place.
+          </p>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMobileSidebarOpen(true)}
-          className="lg:hidden fixed top-4 left-4 z-40 bg-white p-2 rounded-lg shadow-md"
-        >
-          <svg className="w-6 h-6 text-[#39b54a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
 
         {/* Form Modal */}
         {isHidden && <Form setIsHidden={setIsHidden} />}
 
-        <div className={isHidden ? "opacity-60" : undefined}>
-          <HeroBanner />
+        <div className={isHidden ? "opacity-60" : ""}>
+          {/* Header Section */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 border-b border-gray-100 pb-12">
+            <h2 className="text-2xl font-black tracking-tight mb-3">
+              Available Funding
+            </h2>
+            <button
+              onClick={() => setIsHidden(!isHidden)}
+              className="bg-[#003E52] hover:bg-[#00AFAA] text-white transition-all rounded-2xl h-[44px] px-8 flex items-center justify-center whitespace-nowrap font-bold text-sm uppercase tracking-widest shadow-lg active:scale-95"
+            >
+              Add new funding
+            </button>
+          </div>
 
-          {/* Main Section */}
-          <div className="bg-[#f5f7fa] min-h-[calc(100vh-323px)]">
-            <div className="max-w-[1191px] mx-auto px-4 sm:px-6 lg:px-9 py-8 lg:py-12">
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-                <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[24px] sm:text-[32px] text-black">
-                  Explore
-                </h2>
-                <button onClick={() => setIsHidden(!isHidden)}
-                  className="bg-[#00cd5d] hover:bg-[#00b851] transition-colors rounded-[50px] h-[44px] px-6 flex items-center justify-center whitespace-nowrap">
-                  <span className="font-['Modern_Era:Bold',sans-serif] text-[14px] text-white">
-                    Add new grant
-                  </span>
-                </button>
-              </div>
-
-              {/* Airtable Embed */}
-              <AirtableEmbed
-                embedUrl={AIRTABLE_EMBED_URL}
-                height="1000px"
-              />
-            </div>
+          {/* Airtable Embed */}
+          <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden p-8">
+            <AirtableEmbed
+              embedUrl={AIRTABLE_EMBED_URL}
+              height="1000px"
+            />
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* Footer consistent with projects page */}
+      <footer className="border-t border-gray-100 py-20 px-[10%] mt-20 bg-white">
+        <div className="max-w-[1180px] mx-auto flex justify-between items-center text-[#003E52]">
+          <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">© 2026 Portal</p>
+          <div className="flex gap-8">
+            <Link href="#" className="text-xs font-black text-gray-400 hover:text-[#00AFAA] transition-colors">GitHub</Link>
+            <Link href="#" className="text-xs font-black text-gray-400 hover:text-[#00AFAA] transition-colors">Twitter</Link>
+            <Link href="#" className="text-xs font-black text-gray-400 hover:text-[#00AFAA] transition-colors">Discord</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

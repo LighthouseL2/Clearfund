@@ -200,46 +200,6 @@ export default function Sidebar({ authenticated, address, login }) {
               </button>
             </Link>
 
-            <Link href={"/archive"}>
-              <button
-
-                className={`flex text-[#39B54A] items-center cursor-pointer h-[71px] w-[203px]
-                rounded-r-full px-9 py-3  font-bold mb-4  ${pathname === "/archive"
-                    ? "bg-[#EAF9EE]"
-                    : " hover:bg-gray-50"
-                  }`}
-              >
-                <span className="flex items-center gap-3">
-                  {/* <Image
-                    src={
-                      pathname === "/dashboard/past-funding"
-                        ? "/sidebar-icons/grant-history-white-icon.svg"
-                        : "/sidebar-icons/past-grants.svg"
-                    }
-                    alt="Past Grant Data"
-                    width={18}
-                    height={18}
-                  /> */}
-
-                  <span>
-                    <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9.35714 24.7857H5.5C4.30653 24.7857 3.16193 24.3116 2.31802 23.4677C1.47411 22.6238 1 21.4792 1 20.2857V5.5C1 4.30653 1.47411 3.16193 2.31802 2.31802C3.16193 1.47411 4.30653 1 5.5 1H17.7143C18.9078 1 20.0524 1.47411 20.8963 2.31802C21.7402 3.16193 22.2143 4.30653 22.2143 5.5V8.07143" stroke="#39B54A" strokeWidth="1.5" strokeLinecap="round" />
-                      <path d="M6.78564 1H16.4285V4.21429C16.4285 4.89627 16.1576 5.55032 15.6753 6.03256C15.1931 6.5148 14.5391 6.78571 13.8571 6.78571H9.35707C8.67509 6.78571 8.02104 6.5148 7.5388 6.03256C7.05656 5.55032 6.78564 4.89627 6.78564 4.21429V1Z" stroke="#39B54A" strokeWidth="1.5" />
-                      <path d="M12.5713 14.5004C12.5713 13.6479 12.9099 12.8304 13.5127 12.2276C14.1155 11.6248 14.9331 11.2861 15.7856 11.2861H20.2856C21.1381 11.2861 21.9556 11.6248 22.5584 12.2276C23.1612 12.8304 23.4999 13.6479 23.4999 14.5004V21.5718C23.4999 22.4243 23.1612 23.2419 22.5584 23.8447C21.9556 24.4475 21.1381 24.7861 20.2856 24.7861H15.7856C14.9331 24.7861 14.1155 24.4475 13.5127 23.8447C12.9099 23.2419 12.5713 22.4243 12.5713 21.5718V14.5004Z" stroke="#39B54A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-
-                  </span>
-
-                  Archive
-                </span>
-                {/* <ChevronRight
-                  size={16}
-                  className={pathname === "/dashboard/past-funding" ? "text-white" : "text-gray-400"}
-                /> */}
-              </button>
-            </Link>
-
-
 
             <Link href="/donate">
               <button

@@ -7,34 +7,27 @@ import { useState } from "react";
 import Footer from "@/components/Footer";
 
 export default function TermsAndConditions() {
-
-  const [open, setOpen] = useState(true)
-  const [openMenu, setOpenMenu] = useState(false)
-  const [blur, setBlur] = useState(false)
-
-
-
   const terms = {
+
     title: "Terms and Conditions",
-    effectiveDate: "Effective Date: July 1, 2025",
+    effectiveDate: "Effective Date: March 9, 2026",
     content: [
       {
-        heading: "1. Use of the Platform",
-        text: `ClearFund is an open platform that connects web3 builders and communities with grants and other funding opportunities. You agree to use the Platform only for lawful purposes and in compliance with all applicable regulations.`,
+        heading: "1. The ClearFund Mission",
+        text: `ClearFund is a decentralized impact discovery platform designed to connect global tippers with high-impact projects in education, climate action, and social equity. Our mission is to facilitate transparent, direct tipping (in USD/Crypto) to builders and organizations creating verifiable real-world change.`,
       },
       {
         heading: "2. Eligibility",
         text: `To use ClearFund, you must: Be at least 18 years old (or meet your country’s age of majority). Have the legal right and capacity to enter into these Terms. Comply with all applicable laws, regulations, and community guidelines.
-`,
+      `,
       },
       {
         heading: "3. Use of Information",
         text: `Information provided on ClearFund is for general informational purposes only. While we aim to curate accurate opportunities, we do not guarantee completeness, reliability, or outcomes. Any reliance you place on such information is at your own risk.`,
       },
       {
-        heading: "4. Funding Opportunities",
-        text: `ClearFund curates and lists opportunities; we do not control or guarantee the outcome of third-party grants.
-Any agreement, contract, or funding between you and an external party is independent of ClearFund. We are not responsible for losses, delays, or disputes that arise from third-party opportunities.`,
+        heading: "4. Contributions and Tips",
+        text: `ClearFund provides a 'Tip' and 'Support' mechanism for direct project tipping. All contributions are processed transparently on-chain. While we aim to list only high-integrity projects, ClearFund does not guarantee the success or specific deliverables of any project. Tippers are encouraged to perform their own due diligence.`,
       },
       {
         heading: "5. Wallet & Payments",
@@ -50,7 +43,7 @@ Any agreement, contract, or funding between you and an external party is indepen
       },
       {
         heading: "8. No Financial or Investment Advice",
-        text: `ClearFund does not provide financial, legal, or investment advice. Opportunities listed are independent third-party offerings. You are solely responsible for conducting your own due diligence before engaging in any funding, bounty, or gig.`,
+        text: `ClearFund does not provide financial, legal, or investment advice. Opportunities listed are independent third-party offerings. You are solely responsible for conducting your own due diligence before engaging in any tipping, bounty, or gig.`,
       },
       {
         heading: "9. Limitation of Liability",
@@ -58,12 +51,12 @@ Any agreement, contract, or funding between you and an external party is indepen
       },
       {
         heading: "10. Third-Party Links",
-        text: `The Platform may contain links to third-party websites or funding platforms. We do not endorse or take responsibility for the content, terms, or policies of those third-party platforms.`,
+        text: `The Platform may contain links to third-party websites or tipping platforms. We do not endorse or take responsibility for the content, terms, or policies of those third-party platforms.`,
       },
       {
         heading: "11. Intellectual Property",
         text: `All ClearFund branding, design, and content are the intellectual property of ClearFund unless otherwise stated. You may not copy, modify, or distribute our materials without prior written permission.
-`,
+      `,
       },
 
       {
@@ -94,41 +87,34 @@ Any agreement, contract, or funding between you and an external party is indepen
         heading: "16. Governing Law",
         text: `These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which the ClearFund project is primarily maintained, without regard to its conflict of law provisions. However, since ClearFund is an open-source, global platform, users agree that any legal matters shall be resolved in a fair and neutral manner, prioritizing cooperative resolution.
 
-               By using ClearFund, you acknowledge that local laws may apply depending on your location, and you are responsible for compliance with them.`
+      By using ClearFund, you acknowledge that local laws may apply depending on your location, and you are responsible for compliance with them.`
       },
 
-      
+
     ],
   };
 
   return (
     <section className="bg-[#FAFAFA]">
-      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-            setOpenMenu={setOpenMenu} setBlur={setBlur}
-        />
-        <MenuDropdown
-            openMenu={openMenu}
-            setOpenMenu={setOpenMenu}
-            toggle={open}
-            setToggle={setOpen}
-        />
-        
+      <NavHeader />
+
       <div className="min-h-screen font-sans flex items-center justify-center px-4 pb-[8rem] pt-[5rem]">
+
         <div className="max-w-4xl w-full p-8">
           <h1 className="text-3xl font-bold mb-4">{terms.title}</h1>
           <p className="text-[16px] text-black mb-6">{terms.effectiveDate}</p>
           <p className="text-[16px] text-black mb-6">
-          {`Welcome to ClearFund ("we", "our", or "us"). These Terms and Conditions ("Terms") govern your access to and use of our platform `}
-  <a
-    href="https://clearfund.netlify.app"
-    className="text-blue-600 underline"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    clearfund.netlify.app
-  </a>{" "}
-  and any related services (collectively, the &quot;Platform&quot;). By using or accessing ClearFund, you agree to be bound by these Terms. If you do not agree, please do not use the Platform.
-</p>
+            {`Welcome to ClearFund ("we", "our", or "us"). These Terms and Conditions ("Terms") govern your access to and use of our platform `}
+            <a
+              href="https://clearfund.netlify.app"
+              className="text-blue-600 underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              clearfund.netlify.app
+            </a>{" "}
+            and any related services (collectively, the &quot;Platform&quot;). By using or accessing ClearFund, you agree to be bound by these Terms. If you do not agree, please do not use the Platform.
+          </p>
 
 
           {terms.content.map((section, index) => (

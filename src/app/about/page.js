@@ -8,23 +8,10 @@ import MenuDropdown from "@/components/menuDropdown";
 import Link from 'next/link';
 
 export default function HomePage() {
-
-  const [open, setOpen] = useState(true)
-  const [openMenu, setOpenMenu] = useState(false)
-  const [blur, setBlur] = useState(false)
-
-
   return (
     <div className="bg-white text-black">
-      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-        setOpenMenu={setOpenMenu} setBlur={setBlur}
-      />
-      <MenuDropdown
-        openMenu={openMenu}
-        setOpenMenu={setOpenMenu}
-        toggle={open}
-        setToggle={setOpen}
-      />
+      <NavHeader />
+
 
 
 

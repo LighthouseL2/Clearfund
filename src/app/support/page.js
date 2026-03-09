@@ -45,22 +45,12 @@ const cards = [
 
 export default function SupportSection() {
 
-  const [open, setOpen] = useState(true)
-  const [openMenu, setOpenMenu] = useState(false)
-  const [blur, setBlur] = useState(false)
 
 
   return (
     <section>
-      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-        setOpenMenu={setOpenMenu} setBlur={setBlur}
-      />
-      <MenuDropdown
-        openMenu={openMenu}
-        setOpenMenu={setOpenMenu}
-        toggle={open}
-        setToggle={setOpen}
-      />
+      <NavHeader />
+
       <HeroSection />
 
       <div className="px-4 py-16 bg-gray-50 font-sans">

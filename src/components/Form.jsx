@@ -152,8 +152,8 @@ export function Form({ setIsHidden }) {
                     <div className="flex flex-col items-center justify-center py-4 px-2">
                         {/* Glow effect container */}
                         <div className="relative mb-6">
-                            <div className="absolute inset-0 bg-[#39B54A] opacity-20 blur-xl rounded-full"></div>
-                            <div className="relative w-24 h-24 bg-[#39B54A] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(57,181,74,0.4)]">
+                            <div className="absolute inset-0 bg-[#00AFAA] opacity-20 blur-xl rounded-full"></div>
+                            <div className="relative w-24 h-24 bg-[#00AFAA] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,175,170,0.4)]">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
@@ -166,7 +166,7 @@ export function Form({ setIsHidden }) {
 
                         <button
                             onClick={() => setIsHidden(false)}
-                            className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-[#2e943c] transition-all shadow-lg active:scale-[0.98]"
+                            className="w-full bg-[#00AFAA] text-white font-bold py-4 rounded-full hover:bg-opacity-90 transition-all shadow-lg active:scale-[0.98]"
                         >
                             Continue
                         </button>
@@ -333,7 +333,7 @@ export function Form({ setIsHidden }) {
                             <button
                                 onClick={handleSubmit}
                                 disabled={!grantName || !grantLink || isSubmitting || isConfirming || isUploading || isSwitching}
-                                className="group relative flex h-[48px] w-full items-center justify-center gap-3 rounded-full bg-black px-8 transition-all hover:bg-gray-900 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed shadow-lg"
+                                className="group relative flex h-[48px] w-full items-center justify-center gap-3 rounded-full bg-[#00AFAA] px-8 transition-all hover:bg-[#003E52] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed shadow-lg"
                             >
                                 <span className="text-[15px] font-bold text-white font-sans">
                                     {isSwitching ? "Switching network..." : isSubmitting ? "Sending transaction..." : isConfirming ? "Confirming..." : "Add Grant"}

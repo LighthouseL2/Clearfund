@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { MoveDown, LogOut } from "lucide-react";
 import { usePrivy } from '@privy-io/react-auth';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 
@@ -49,7 +50,7 @@ const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
 
                 {/* Address Button */}
                 <button
-                    className='flex gap-2 rounded-full items-center px-4 py-2 bg-[#EAF9EE] text-[#1E3A2A] hover:bg-[#dff5e5] transition-colors relative z-10'
+                    className='flex gap-2 rounded-full items-center px-4 py-2 bg-[#00AFAA]/10 text-[#003E52] hover:bg-[#00AFAA]/20 transition-colors relative z-10'
                     onClick={() => setToggle(!toggle)}
                 >
                     {/* User Icon SVG */}
@@ -71,6 +72,15 @@ const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
                 {/* Dropdown Menu */}
                 {toggle && (
                     <ul className='w-[160px] absolute bg-white shadow-[0px_4px_16px_rgba(0,0,0,0.08)] border border-gray-100 rounded-xl text-left right-0 top-[110%] z-30 overflow-hidden'>
+                        <li className='w-full border-b border-gray-100'>
+                            <Link href="/profile" className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-gray-700 hover:bg-gray-50 flex items-center transition-colors' onClick={() => setToggle(false)}>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                Profile
+                            </Link>
+                        </li>
                         <li className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-gray-700 hover:bg-gray-50 flex items-center cursor-pointer transition-colors border-b border-gray-100' onClick={handleCopy}>
                             {isCopied ? (
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#39b54a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -92,7 +92,7 @@ export default function RootLayout({ children }) {
                     <span key="privy-title" style={{ fontFamily: 'monospace', fontSize: '24px', fontWeight: 'bold' }}>Log in or sign up</span>
                   </div>
                 ),
-                accentColor: "#39B54A",
+                accentColor: "#00AFAA",
                 fontFamily: "monospace",
                 showWalletLoginFirst: true,
                 walletList: [

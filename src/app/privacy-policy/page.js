@@ -6,17 +6,11 @@ import Footer from "@/components/Footer";
 import MenuDropdown from "@/components/menuDropdown";
 
 export default function PrivacyPolicy() {
-
-  const [open, setOpen] = useState(true)
-  const [openMenu, setOpenMenu] = useState(false)
-  const [blur, setBlur] = useState(false)
-
-
-
   const policy = {
+
     title: "Privacy Policy",
-    effectiveDate: "Effective Date: July 1, 2025",
-    paragraph: `At ClearFund ("we", "us", or "our"), your privacy matters. This Privacy Policy outlines how we handle information when you access or use our platform`,
+    effectiveDate: "Effective Date: March 9, 2026",
+    paragraph: `Your privacy is our priority. This policy outlines how ClearFund ("we", "us", or "our") manages information during your tipping journey to global impact projects.`,
     content: [
       {
         heading: "1. Information We Collect",
@@ -24,8 +18,10 @@ export default function PrivacyPolicy() {
       },
       {
         heading: "2. How We Use Information",
-        text: `We use collected information to: Connect users with grants and funding opportunities. Improve and personalize the Platform.
-Communicate updates, opportunities, or platform-related notices. Ensure security and prevent misuse of the Platform.`,
+        text: `We use information to:
+        - Facilitate direct tips to impact projects.
+        - Verify community impact through on-chain transparency.
+        - Improve platform discovery for high-impact initiatives in climate, education, and social sectors.`,
       },
       {
         heading: "3. Wallet & Blockchain Data",
@@ -63,21 +59,14 @@ Communicate updates, opportunities, or platform-related notices. Ensure security
   return (
 
     <section>
-      <NavHeader setToggle={setOpen} toggle={open} openMenu={openMenu}
-            setOpenMenu={setOpenMenu} setBlur={setBlur}
-        />
-      <MenuDropdown
-            openMenu={openMenu}
-            setOpenMenu={setOpenMenu}
-            toggle={open}
-            setToggle={setOpen}
-        />
+      <NavHeader />
 
- <div className="min-h-screen flex items-center font-sans justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
-      <div className="max-w-4xl w-full  p-8 ">
-        <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
-        <p className="text-[16px] text-black mb-10">{policy.effectiveDate}</p>
-        <p className="text-[16px] text-black mb-10">{policy.paragraph} {' '}<a
+
+      <div className="min-h-screen flex items-center font-sans justify-center px-4 pb-[7rem] pt-[5rem] bg-[#FAFAFA]">
+        <div className="max-w-4xl w-full  p-8 ">
+          <h1 className="text-3xl font-bold mb-4">{policy.title}</h1>
+          <p className="text-[16px] text-black mb-10">{policy.effectiveDate}</p>
+          <p className="text-[16px] text-black mb-10">{policy.paragraph} {' '}<a
             href="https://clearfund.netlify.app"
             className="text-blue-600 underline"
             target="_blank"
@@ -85,24 +74,24 @@ Communicate updates, opportunities, or platform-related notices. Ensure security
           >
             clearfund.netlify.app
           </a>
-        </p>
+          </p>
 
 
-        {policy.content.map((section, index) => (
-          <div key={index} className="mb-10">
-            <h2 className="font-bold text-lg mb-1">{section.heading}</h2>
-            <p className="text-black text-[16px] whitespace-pre-line">{section.text}</p>
-          </div>
-        ))}
+          {policy.content.map((section, index) => (
+            <div key={index} className="mb-10">
+              <h2 className="font-bold text-lg mb-1">{section.heading}</h2>
+              <p className="text-black text-[16px] whitespace-pre-line">{section.text}</p>
+            </div>
+          ))}
+        </div>
+
       </div>
-    
-      </div>
-     
+
       <Footer />
     </section>
 
-   
-    
+
+
   );
 }
 

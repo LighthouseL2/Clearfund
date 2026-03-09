@@ -3,13 +3,14 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import svgPaths from "../components/imports/svgProp";
+import { isAdmin } from "@/lib/admin";
 
 // interface SidebarProps {
 //   isOpen?: boolean;
 //   onClose?: () => void;
 // }
 
-export default function Sidebar({ isOpen = false, onClose }) {
+export default function Sidebar({ isOpen = false, onClose, authenticated, address }) {
   const pathname = usePathname() || "";
 
   return (
@@ -32,36 +33,9 @@ export default function Sidebar({ isOpen = false, onClose }) {
 
         {/* Navigation */}
         <nav className="mt-8">
-          <div className={`rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/grants' ? 'bg-[#eaf9ee]' : ''}`}>
+          <div className={`rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/projects' ? 'bg-[#eaf9ee]' : ''}`}>
             <a
-              href="/grants"
-              className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
-            >
-              <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
-                <path d={svgPaths.p31f78de0} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
-                <path d={svgPaths.p1004f80} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
-              </svg>
-              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Grants</span>
-            </a>
-          </div>
-
-          <div className={`mt-8 rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/archive' ? 'bg-[#eaf9ee]' : ''}`}>
-            <a
-              href="/archive"
-              className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 26">
-                <path d={svgPaths.pc466180} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
-                <path d={svgPaths.p12c72500} stroke="#39B54A" strokeWidth="1.5" />
-                <path d={svgPaths.p22093f00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-              </svg>
-              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Archive</span>
-            </a>
-          </div>
-
-          <div className={`mt-8 rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/donate' ? 'bg-[#eaf9ee]' : ''}`}>
-            <a
-              href="/donate"
+              href="/projects"
               className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 25 26">
@@ -70,9 +44,36 @@ export default function Sidebar({ isOpen = false, onClose }) {
                 <path d={svgPaths.p39240cc0} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
               </svg>
 
-              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Donate</span>
+              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Projects</span>
             </a>
           </div>
+
+          <div className={`mt-8 rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/grants' ? 'bg-[#eaf9ee]' : ''}`}>
+            <a
+              href="/grants"
+              className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
+            >
+              <svg className="w-7 h-7" fill="none" viewBox="0 0 28 28">
+                <path d={svgPaths.p31f78de0} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
+                <path d={svgPaths.p1004f80} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
+              </svg>
+              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Funding</span>
+            </a>
+          </div>
+
+          {authenticated && isAdmin(address) && (
+            <div className={`mt-8 rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/admin/projects' ? 'bg-[#eaf9ee]' : ''}`}>
+              <a
+                href="/admin/projects"
+                className="flex items-center gap-4 px-8 py-6 text-gd-dark-blue"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Admin Panel</span>
+              </a>
+            </div>
+          )}
         </nav>
 
         {/* Logout & Socials */}
@@ -121,7 +122,22 @@ export default function Sidebar({ isOpen = false, onClose }) {
 
         {/* Navigation */}
         <nav className="mt-8">
-          <div className={`rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/grants' ? 'bg-[#eaf9ee]' : ''}`}>
+          <div className={`rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/projects' ? 'bg-[#eaf9ee]' : ''}`}>
+            <a
+              href="/projects"
+              className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
+              onClick={onClose}
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 26">
+                <path d={svgPaths.pc466180} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
+                <path d={svgPaths.p12c72500} stroke="#39B54A" strokeWidth="1.5" />
+                <path d={svgPaths.p22093f00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+              </svg>
+              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Projects</span>
+            </a>
+          </div>
+
+          <div className={`mt-8 rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/grants' ? 'bg-[#eaf9ee]' : ''}`}>
             <a
               href="/grants"
               className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
@@ -131,37 +147,7 @@ export default function Sidebar({ isOpen = false, onClose }) {
                 <path d={svgPaths.p31f78de0} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
                 <path d={svgPaths.p1004f80} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
               </svg>
-              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Grants</span>
-            </a>
-          </div>
-
-          <div className={`mt-8 rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/archive' ? 'bg-[#eaf9ee]' : ''}`}>
-            <a
-              href="/archive"
-              className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
-              onClick={onClose}
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 25 26">
-                <path d={svgPaths.p1da46600} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-                <path d={svgPaths.p2f3cba00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-                <path d={svgPaths.p39240cc0} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-              </svg>
-              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Archive</span>
-            </a>
-          </div>
-
-          <div className={`mt-8 rounded-br-[50px] rounded-tr-[50px] w-[203px] ${pathname === '/donate' ? 'bg-[#eaf9ee]' : ''}`}>
-            <a
-              href="/donate"
-              className="flex items-center gap-4 px-8 py-6 text-[#39b54a]"
-              onClick={onClose}
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 26">
-                <path d={svgPaths.pc466180} stroke="#39B54A" strokeLinecap="round" strokeWidth="1.5" />
-                <path d={svgPaths.p12c72500} stroke="#39B54A" strokeWidth="1.5" />
-                <path d={svgPaths.p22093f00} stroke="#39B54A" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
-              </svg>
-              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Donate</span>
+              <span className="font-['Modern_Era:Bold',sans-serif] text-[16px] tracking-[-0.16px]">Funding</span>
             </a>
           </div>
         </nav>

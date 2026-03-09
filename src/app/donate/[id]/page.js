@@ -5,7 +5,6 @@ import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
-import Sidebar from "@/components/SideBar2"
 import UserDetails from "@/components/userDetails"
 import ModalConnect from "@/components/modalConnect"
 import CampaignInfoModal from "@/components/CampaignInfoModal"
@@ -138,37 +137,10 @@ export default function CampaignDonatePage() {
     }
 
     return (
-        <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative">
-            {/* Mobile Header */}
-            <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
-                <div className="relative w-[120px] h-[30px]">
-                    <Image
-                        src="/clearfund-dashboard-logo.svg"
-                        alt="ClearFund Logo"
-                        fill
-                        className="object-contain"
-                        priority
-                    />
-                </div>
-                <button
-                    onClick={() => setSidebarOpen(true)}
-                    className="p-2 rounded-lg hover:bg-gray-100"
-                >
-                    <Menu size={24} />
-                </button>
-            </div>
-
-            {/* Unified Sidebar */}
-            <Sidebar
-                isOpen={sidebarOpen}
-                onClose={() => setSidebarOpen(false)}
-                authenticated={authenticated}
-                address={address}
-                login={login}
-            />
+        <div className="min-h-screen flex flex-col bg-white text-gray-800 relative">
 
             {/* Main Content */}
-            <div className="lg:ml-64 w-full lg:w-auto flex-1">
+            <div className="w-full flex-1">
                 {/* Top bar */}
                 <div className="flex justify-end items-center gap-4 bg-white py-2 px-6 shadow-sm">
                     {toggle && <ModalConnect setCloseModal={setToggle} />}

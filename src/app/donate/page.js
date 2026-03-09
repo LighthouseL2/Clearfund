@@ -1,155 +1,149 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
-import Sidebar from "@/components/SideBar2"
 import UserDetails from "@/components/userDetails"
-import { Menu, X } from "lucide-react"
-import ModalConnect from "@/components/modalConnect"
+import { Menu, Search, Filter, ArrowRight, Heart, Users, MapPin } from "lucide-react"
 import { collectives } from "@/lib/collectivesData"
-import DonationHistory from "@/components/DonationHistory"
-import { useTokenBalance } from "@/hooks/useDonation"
 
-const GoodCollective = () => {
-    const { ready, authenticated, login, logout } = usePrivy()
-    const [toggle, setToggle] = useState(false)
+const CollectiveImpactPage = () => {
+    const { authenticated, login, logout } = usePrivy()
     const [sidebarOpen, setSidebarOpen] = useState(false)
-    const pathname = usePathname()
     const { wallets } = useWallets()
     const router = useRouter()
     const address = wallets?.[0]?.address
 
-    const handleDonate = (collective) => {
-        router.push(`/donate/${collective.id}`)
-    }
-
-    // After login, redirect to pending donation page if applicable
-    if (ready && authenticated) {
-        const pendingId = typeof window !== 'undefined' ? sessionStorage.getItem('pendingDonateId') : null
-        if (pendingId) {
-            sessionStorage.removeItem('pendingDonateId')
-            router.push(`/donate/${pendingId}`)
-        }
+    const handleDonate = (id) => {
+        router.push(`/donate/${id}`)
     }
 
     return (
-        <div className="min-h-screen flex flex-col md:flex-row bg-white text-gray-800 relative ">
-            {/* Unified Sidebar */}
-            <Sidebar
-                isOpen={sidebarOpen}
-                onClose={() => setSidebarOpen(false)}
-                authenticated={authenticated}
-                address={address}
-                login={login}
-            />
+        <div className="min-h-screen bg-[#F9FAFB] text-[#111827] font-sans selection:bg-[#39B54A] selection:text-white flex flex-col">
 
-            {/* Mobile Header */}
-            <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
-                <div className="relative w-[120px] h-[30px]">
-                    <Image
-                        src="/clearfund-dashboard-logo.svg"
-                        alt="ClearFund Logo"
-                        fill
-                        className="object-contain"
-                        priority
-                    />
-                </div>
-                <button
-                    onClick={() => setSidebarOpen(true)}
-                    className="p-2 rounded-lg hover:bg-gray-100"
-                >
-                    <Menu size={24} />
-                </button>
-            </div>
+            <div className="flex-1">
+                {/* Header (Relay Inspired) */}
+                <header className="bg-white border-b border-gray-100 flex justify-between items-center py-4 px-8 sticky top-0 z-50">
+                    <div className="flex items-center gap-6">
+                        <div className="relative hidden md:block">
+                            <input
+                                type="text"
+                                placeholder="Search collectives..."
+                                className="pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm w-80 focus:ring-2 focus:ring-[#39B54A]/20 focus:border-[#39B54A] transition-all"
+                            />
+                            <Search className="absolute left-3 top-2.5 text-gray-400 w-4 h-4" />
+                        </div>
+                    </div>
 
-            <div className="lg:ml-64 w-full lg:w-auto flex-1">
-                {/* Wallet Connection Header */}
-                <div className="flex justify-end items-center gap-4 bg-white py-3 px-6 shadow-sm">
-                    {toggle && <ModalConnect setCloseModal={setToggle} />}
-                    {!authenticated ? (
-                        <button
-                            onClick={login}
-                            className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[160px] hover:bg-black transition-colors"
-                        >
-                            Connect wallet
-                        </button>
-                    ) : (
-                        <UserDetails walletAddress={address} logout={logout} />
-                    )}
-                </div>
+                    <div className="flex items-center gap-4">
+                        {!authenticated ? (
+                            <button
+                                onClick={login}
+                                className="px-6 py-2.5 bg-[#39B54A] text-white rounded-xl font-bold text-sm hover:bg-black transition-all shadow-sm"
+                            >
+                                Connect Wallet
+                            </button>
+                        ) : (
+                            <UserDetails walletAddress={address} logout={logout} />
+                        )}
+                    </div>
+                </header>
 
-                {/* Good Collective Hero Banner */}
-                <div className="relative w-full">
-                    <Image
-                        src="/assets/goodcollective_banner.png"
-                        alt="Good Collective Banner"
-                        width={1600}
-                        height={600}
-                        className="w-full h-auto object-contain"
-                        priority
-                    />
-                </div>
+                <main className="max-w-[1240px] mx-auto px-8 py-12">
+                    {/* HERO TITLE */}
+                    <div className="mb-12">
+                        <h1 className="text-4xl font-extrabold tracking-tight mb-3">Collective Impact</h1>
+                        <p className="text-gray-500 font-medium">Pool your resources with the community to drive scalable change.</p>
+                    </div>
 
-                <div className="bg-white min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-280px)]">
-                    <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-9 py-8 lg:py-12">
-                        <section className="pb-10">
-                            <h1 className="text-[24px] lg:text-[32px] text-[#0000004D] mb-6 lg:mb-10 font-black">
-                                Projects: {collectives.length}
-                            </h1>
+                    {/* CAMPAIGN GRID (Relay Inspired) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                        {collectives.map((collective) => {
+                            // Mock progress data for Relay impact
+                            const raised = Math.floor(Math.random() * 50000) + 10000;
+                            const goal = 75000;
+                            const progress = Math.min((raised / goal) * 100, 100);
+                            const contributors = Math.floor(Math.random() * 200) + 50;
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
-                                {collectives.map((collective) => (
-                                    <div key={collective.id} className="w-full border border-gray-300 rounded-xl flex flex-col hover:shadow-sm transition-shadow">
-                                        <div className="relative w-full h-[166px] rounded-t-xl flex-shrink-0">
-                                            <Image
-                                                alt={collective.title}
-                                                src={collective.image}
-                                                fill
-                                                className="rounded-t-xl object-cover"
-                                            />
+                            return (
+                                <div key={collective.id} className="group bg-white rounded-[2rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
+                                    {/* Cover Image */}
+                                    <div className="relative h-64 overflow-hidden">
+                                        <Image
+                                            src={collective.image || "/donate-images/happy.png"}
+                                            alt={collective.title}
+                                            fill
+                                            className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                        />
+                                        <div className="absolute top-4 left-4 flex gap-2">
+                                            <span className="bg-white/95 backdrop-blur-sm text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm text-[#39B54A]">
+                                                {collective.category}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="p-8 flex flex-col flex-1">
+                                        <div className="flex items-center gap-2 text-gray-400 text-xs font-bold uppercase tracking-widest mb-3">
+                                            <MapPin size={12} className="text-[#39B54A]" />
+                                            {collective.location}
                                         </div>
 
-                                        <div className="flex flex-col flex-1 px-5 pt-7 pb-4">
-                                            <h2 className="text-[16px] font-black min-h-[48px]">{collective.title}</h2>
-                                            <p className="text-[15px] mt-5 flex-1">{collective.description}</p>
+                                        <h2 className="text-2xl font-black mb-4 leading-[1.1] group-hover:text-[#39B54A] transition-colors line-clamp-2 min-h-[56px]">
+                                            {collective.title}
+                                        </h2>
 
-                                            <button
-                                                onClick={() => handleDonate(collective)}
-                                                className="bg-[#95EED8] hover:bg-[#D5F8EE] cursor-pointer transition-colors w-full max-w-[251px] h-[40px] flex items-center justify-center font-extrabold rounded-full mt-8 mx-auto"
-                                            >
-                                                Donate
-                                            </button>
-
-                                            <div className="border-t mt-6">
-                                                <div className="flex py-2 justify-between items-center w-full">
-                                                    <p className="border text-[10px] rounded-full px-2">{collective.date}</p>
-                                                    <div className="flex gap-2">
-                                                        <Link href={collective.web} target="_blank">
-                                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_2937_140)"><path d="M20.1328 9.88991C20.1328 4.42786 15.705 0 10.2429 0C4.78089 0 0.353027 4.42786 0.353027 9.88991C0.353027 15.352 4.78089 19.7798 10.2429 19.7798C15.705 19.7798 20.1328 15.352 20.1328 9.88991Z" fill="#E2EAFF" /><path fillRule="evenodd" clipRule="evenodd" d="M8.92729 5.73698C8.80854 5.77459 8.69127 5.81735 8.57577 5.86517C8.0473 6.0841 7.56707 6.40498 7.1625 6.8095C6.758 7.21404 6.43713 7.69427 6.2182 8.22274C6.04446 8.64222 5.93764 9.08557 5.90095 9.53662H8.01099C8.0261 9.0205 8.07414 8.51188 8.15404 8.02989C8.25195 7.43883 8.39662 6.89421 8.5829 6.42856C8.68456 6.17433 8.79949 5.94161 8.92729 5.73698ZM10.2429 4.82715C9.57804 4.82715 8.91973 4.9581 8.30549 5.21252C7.69126 5.46695 7.13311 5.83986 6.663 6.30998C6.19289 6.78009 5.81998 7.33823 5.56555 7.95246C5.31113 8.5667 5.18018 9.22501 5.18018 9.88983C5.18018 10.5547 5.31113 11.213 5.56555 11.8273C5.81998 12.4415 6.19289 12.9996 6.663 13.4697C7.13311 13.9398 7.69126 14.3127 8.30549 14.5672C8.91973 14.8216 9.57804 14.9525 10.2429 14.9525C10.9077 14.9525 11.5661 14.8216 12.1803 14.5672C12.7945 14.3127 13.3526 13.9398 13.8227 13.4697C14.2928 12.9996 14.6658 12.4415 14.9202 11.8273C15.1746 11.213 15.3056 10.5547 15.3056 9.88983C15.3056 9.22501 15.1746 8.5667 14.9202 7.95246C14.6658 7.33823 14.2928 6.78009 13.8227 6.30998C13.3526 5.83986 12.7945 5.46695 12.1803 5.21252C11.5661 4.9581 10.9077 4.82715 10.2429 4.82715ZM10.2429 5.53357C10.1198 5.53357 9.96085 5.59281 9.77605 5.78421C9.58984 5.97702 9.40348 6.27921 9.23875 6.69092C9.07521 7.09988 8.94233 7.5936 8.85092 8.14532C8.77759 8.58796 8.7326 9.05773 8.71776 9.53662H11.7679C11.7531 9.05773 11.7081 8.58796 11.6348 8.14532C11.5434 7.5936 11.4106 7.09988 11.247 6.69092C11.0823 6.27921 10.8959 5.97702 10.7097 5.78421C10.5249 5.59281 10.3659 5.53357 10.2429 5.53357ZM12.4747 9.53662C12.4597 9.0205 12.4116 8.51188 12.3317 8.02989C12.2338 7.43883 12.0891 6.89421 11.9029 6.42856C11.8012 6.17433 11.6863 5.94161 11.5585 5.73698C11.6772 5.77459 11.7945 5.81735 11.9099 5.86517C12.4385 6.0841 12.9187 6.40498 13.3232 6.8095C13.7277 7.21404 14.0486 7.69427 14.2676 8.22274C14.4413 8.64222 14.5481 9.08557 14.5848 9.53662H12.4747ZM11.7679 10.243H8.71776C8.7326 10.7219 8.77759 11.1917 8.85092 11.6343C8.94233 12.1861 9.07521 12.6798 9.23875 13.0888C9.40348 13.5005 9.58984 13.8026 9.77605 13.9955C9.96085 14.1869 10.1198 14.2461 10.2429 14.2461C10.3659 14.2461 10.5249 14.1869 10.7097 13.9955C10.8959 13.8026 11.0823 13.5005 11.247 13.0888C11.4106 12.6798 11.5434 12.1861 11.6348 11.6343C11.7081 11.1917 11.7531 10.7219 11.7679 10.243ZM11.5585 14.0427C11.6863 13.8381 11.8012 13.6053 11.9029 13.3512C12.0891 12.8855 12.2338 12.3408 12.3317 11.7498C12.4116 11.2678 12.4597 10.7592 12.4747 10.243H14.5848C14.5481 10.6942 14.4413 11.1374 14.2676 11.5569C14.0486 12.0855 13.7277 12.5657 13.3232 12.9702C12.9187 13.3747 12.4385 13.6956 11.9099 13.9145C11.7945 13.9624 11.6772 14.0051 11.5585 14.0427ZM8.92729 14.0427C8.79949 13.8381 8.68456 13.6053 8.5829 13.3512C8.39662 12.8855 8.25195 12.3408 8.15404 11.7498C8.07414 11.2678 8.0261 10.7592 8.01099 10.243H5.90095C5.93764 10.6942 6.04446 11.1374 6.2182 11.5569C6.43713 12.0855 6.758 12.5657 7.1625 12.9702C7.56707 13.3747 8.0473 13.6956 8.57577 13.9145C8.69127 13.9624 8.80854 14.0051 8.92729 14.0427Z" fill="#2B4483" /></g><defs><clipPath id="clip0_2937_140"><rect width="20.4862" height="19.7798" fill="white" /></clipPath></defs></svg>
-                                                        </Link>
-                                                        <Link href={collective.twitter} target="_blank">
-                                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_2937_143)"><path d="M10.4998 19.7798C15.9618 19.7798 20.3897 15.352 20.3897 9.88991C20.3897 4.42786 15.9618 0 10.4998 0C5.03773 0 0.609863 4.42786 0.609863 9.88991C0.609863 15.352 5.03773 19.7798 10.4998 19.7798Z" fill="#E2EAFF" /><path d="M11.441 9.22504L15.1228 4.94531H14.2503L11.0534 8.66134L8.50013 4.94531H5.55518L9.41629 10.5646L5.55518 15.0526H6.42768L9.80364 11.1283L12.5001 15.0526H15.4451L11.4408 9.22504H11.441ZM10.246 10.6141L9.85479 10.0546L6.74206 5.60212H8.08217L10.5942 9.19538L10.9854 9.75493L14.2507 14.4256H12.9106L10.246 10.6143V10.6141Z" fill="#2B4483" /></g><defs><clipPath id="clip0_2937_143"><rect width="20.4862" height="19.7798" fill="white" transform="translate(0.256836)" /></clipPath></defs></svg>
-                                                        </Link>
-                                                        <Link href={collective.scan} target="_blank">
-                                                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_2937_135)"><path d="M20.6465 9.88991C20.6465 4.42786 16.2187 0 10.7566 0C5.29456 0 0.866699 4.42786 0.866699 9.88991C0.866699 15.352 5.29456 19.7798 10.7566 19.7798C16.2187 19.7798 20.6465 15.352 20.6465 9.88991Z" fill="#E2EAFF" /><path d="M12.6404 6.12207C13.6647 6.12777 14.2195 6.17319 14.5813 6.53507C14.9951 6.94887 14.9951 7.61492 14.9951 8.94695V11.7726C14.9951 13.1047 14.9951 13.7707 14.5813 14.1845C14.1675 14.5983 13.5015 14.5983 12.1694 14.5983H9.34375C8.01173 14.5983 7.34569 14.5983 6.93188 14.1845C6.51807 13.7707 6.51807 13.1047 6.51807 11.7726V8.94695C6.51807 7.61492 6.51807 6.94887 6.93188 6.53507C7.29375 6.17319 7.84847 6.12777 8.87278 6.12207" stroke="#2B4483" /><path d="M9.34375 10.5492L10.1511 11.3027L12.1694 9.41895" stroke="#2B4483" strokeLinecap="round" strokeLinejoin="round" /><path d="M8.87305 5.88709C8.87305 5.49694 9.18931 5.18066 9.57947 5.18066H11.9342C12.3243 5.18066 12.6406 5.49694 12.6406 5.88709V6.35804C12.6406 6.74818 12.3243 7.06446 11.9342 7.06446H9.57947C9.18931 7.06446 8.87305 6.74818 8.87305 6.35804V5.88709Z" stroke="#2B4483" /></g><defs><clipPath id="clip0_2937_135"><rect width="20.4862" height="19.7798" fill="white" transform="translate(0.513672)" /></clipPath></defs></svg>
-                                                        </Link>
-                                                    </div>
+                                        {/* PROGRESS SECTION (Relay Key Feature) */}
+                                        <div className="mt-auto pt-6 border-t border-gray-50">
+                                            <div className="flex justify-between items-end mb-3">
+                                                <div>
+                                                    <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Raised</span>
+                                                    <span className="text-xl font-black text-[#111827]">${raised.toLocaleString()} <span className="text-gray-300 font-bold ml-1">/ ${goal.toLocaleString()}</span></span>
                                                 </div>
+                                                <div className="text-right">
+                                                    <span className="block text-[#39B54A] font-black text-lg">{Math.round(progress)}%</span>
+                                                </div>
+                                            </div>
+
+                                            {/* Bar */}
+                                            <div className="h-3 bg-gray-100 rounded-full overflow-hidden mb-6">
+                                                <div
+                                                    className="h-full bg-[#39B54A] rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(57,181,74,0.3)]"
+                                                    style={{ width: `${progress}%` }}
+                                                ></div>
+                                            </div>
+
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="flex -space-x-2">
+                                                        {[1, 2, 3].map(i => (
+                                                            <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
+                                                                <img src={`https://i.pravatar.cc/100?u=${collective.id + i}`} alt="avatar" />
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                    <span className="text-xs font-bold text-gray-500">+{contributors} contributors</span>
+                                                </div>
+
+                                                <button
+                                                    onClick={() => handleDonate(collective.id)}
+                                                    className="p-3 bg-gray-900 text-white rounded-xl hover:bg-[#39B54A] transition-all transform hover:scale-105 active:scale-95 shadow-lg"
+                                                >
+                                                    <ArrowRight size={20} />
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                        </section>
-                        <DonationHistory />
+                                </div>
+                            )
+                        })}
                     </div>
-                </div>
+                </main>
             </div>
         </div>
-    );
+    )
 }
 
-export default GoodCollective
+export default CollectiveImpactPage

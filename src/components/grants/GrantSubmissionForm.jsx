@@ -20,19 +20,16 @@ import { TransactionSuccessModal } from './TransactionSuccessModal'
 export function GrantSubmissionForm({ onSuccess, onCancel }) {
   const [formData, setFormData] = useState({
     title: '',
+    tagline: '',
+    description: '',
+    category: 'SOCIAL_IMPACT',
+    walletAddress: '',
     url: '',
     deadline: '',
   })
   const [showSuccessModal, setShowSuccessModal] = useState(false)
   const { login } = usePrivy()
   const [shouldSubmitAfterLogin, setShouldSubmitAfterLogin] = useState(false)
-
-  useEffect(() => {
-    if (isConnected && shouldSubmitAfterLogin) {
-      setShouldSubmitAfterLogin(false)
-      handleSubmit()
-    }
-  }, [isConnected, shouldSubmitAfterLogin])
 
   const { uploadFile, isUploading, uploadedCID, uploadError, reset: resetUpload } = useIPFSUpload()
   const limits = useGrantLimits()
@@ -49,6 +46,13 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
     receipt
   } = useGrantSubmission()
 
+  useEffect(() => {
+    if (isConnected && shouldSubmitAfterLogin) {
+      setShouldSubmitAfterLogin(false)
+      handleSubmit()
+    }
+  }, [isConnected, shouldSubmitAfterLogin])
+
   // Handle successful transaction confirmation
   useEffect(() => {
     if (isConfirmed && hash) {
@@ -61,7 +65,15 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false)
     // Reset form after user closes the modal
-    setFormData({ title: '', url: '', deadline: '' })
+    setFormData({
+      title: '',
+      tagline: '',
+      description: '',
+      category: 'SOCIAL_IMPACT',
+      walletAddress: '',
+      url: '',
+      deadline: ''
+    })
     resetUpload()
     onSuccess?.()
   }
@@ -73,7 +85,6 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
       await uploadFile(file)
     } catch (error) {
       console.error('Upload failed:', error)
-      // Error is already handled in useIPFSUpload hook
     }
   }
 
@@ -86,18 +97,31 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
       return
     }
 
-    // if (!uploadedCID) {
-    //   alert('Please upload an image first')
-    //   return
-    // }
-
     try {
+      // 1. Blockchain Submission
       await submitGrant(formData, uploadedCID, limits)
-      // Network validation and switching is handled automatically in useContractWrite
-      // Don't reset here - let useEffect handle it when isConfirmed changes
+
+      // 2. Database Sync (for immediate feed visibility)
+      // Since we want it immediate, we'll sync it to the DB as APPROVED
+      const dbPayload = {
+        name: formData.title,
+        tagline: formData.tagline,
+        description: formData.description,
+        category: formData.category,
+        logo: uploadedCID ? `https://ipfs.io/ipfs/${uploadedCID}` : "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80",
+        walletAddress: formData.walletAddress,
+        website: formData.url,
+        status: 'APPROVED'
+      };
+
+      await fetch('/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dbPayload)
+      });
+
     } catch (error) {
       console.error('Submission failed:', error)
-      // Error is already handled in useGrantSubmission hook
     }
   }
 
@@ -113,31 +137,30 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
       />
 
       <div className="mb-8">
-        <label className="block text-sm font-medium mb-1">Grant Image (Optional)</label>
-        <input
-          type="file"
-          accept="image/*"
-          className="w-full border rounded-[5px] p-2 text-sm"
-          onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file) {
-              handleFileChange(file)
-            }
-          }}
-        />
+        <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">Project Image (Optional)</label>
+        <div className="relative group">
+          <input
+            type="file"
+            accept="image/*"
+            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA] transition-all cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-black file:uppercase file:bg-[#00AFAA] file:text-white hover:file:bg-[#003E52]"
+            onChange={(e) => {
+              const file = e.target.files?.[0]
+              if (file) {
+                handleFileChange(file)
+              }
+            }}
+          />
+        </div>
         {isUploading && (
-          <p className="text-xs text-gray-500 mt-1">Uploading to IPFS...</p>
+          <p className="text-xs text-[#00AFAA] mt-2 font-bold animate-pulse">Uploading to IPFS...</p>
         )}
         {uploadedCID && (
-          <p className="text-xs text-green-600 mt-1">
-            Uploaded: {uploadedCID.substring(0, 20)}...
+          <p className="text-xs text-green-600 mt-2 font-bold">
+            ✓ Image verified on IPFS
           </p>
         )}
         {uploadError && (
-          <p className="text-red-500 text-xs mt-1">{uploadError}</p>
-        )}
-        {validationErrors.image && (
-          <p className="text-red-500 text-xs mt-1">{validationErrors.image}</p>
+          <p className="text-red-500 text-xs mt-2">{uploadError}</p>
         )}
       </div>
 
@@ -146,35 +169,31 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
         maxGrants={limits.maxGrants}
       />
 
-      {validationErrors.limits && (
-        <p className="text-red-500 text-sm mb-4">{validationErrors.limits}</p>
-      )}
-
-      <p className="text-[10px] text-[#000000]/50 mb-8">
-        Please note that grant will only be added after verification.
+      <p className="text-[11px] text-gray-400 font-medium mb-8 leading-relaxed">
+        Your project will be submitted both to the blockchain and our discovery feed. Ensure all details are accurate.
       </p>
 
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-between items-center gap-4 mt-10">
         <button
           type="button"
           onClick={onCancel}
-          className="px-6 py-2 rounded-full border border-gray-400 text-gray-600 disabled:opacity-50"
-          disabled={isPending || isConfirming || isConfirmed}
+          className="px-8 py-3 bg-white border border-gray-200 text-gray-500 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-gray-50 transition-all flex-1"
+          disabled={isPending || isConfirming}
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-6 py-2 rounded-full bg-[#39B54A] text-white font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-8 py-3 bg-[#39B54A] text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-lg flex-1 disabled:opacity-50"
           disabled={isPending || isConfirming || isUploading || isSwitching}
         >
-          {isSwitching ? 'Switching network...' : isPending ? 'Sending transaction...' : isConfirming ? 'Confirming transaction...' : 'Submit'}
+          {isSwitching ? 'Switching...' : isPending ? 'Securing...' : isConfirming ? 'Finalizing...' : 'Submit Project'}
         </button>
       </div>
 
       {error && (
-        <div className="text-red-600 text-sm mt-2">
-          Error: {error.message || 'Transaction failed'}
+        <div className="text-red-600 text-[11px] mt-4 font-bold bg-red-50 p-4 rounded-xl border border-red-100">
+          Submission failed: {error.message || 'Check your wallet or inputs'}
         </div>
       )}
 
@@ -188,4 +207,3 @@ export function GrantSubmissionForm({ onSuccess, onCancel }) {
     </form>
   )
 }
-

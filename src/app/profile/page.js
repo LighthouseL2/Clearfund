@@ -1,0 +1,182 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { usePrivy, useWallets } from "@privy-io/react-auth"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { ArrowLeft, ExternalLink, LogOut, Wallet, Activity, Heart, ArrowRight } from "lucide-react"
+
+export default function ProfilePage() {
+    const { authenticated, login, logout, ready } = usePrivy()
+    const { wallets } = useWallets()
+    const address = wallets?.[0]?.address
+    const router = useRouter()
+
+    const [donations, setDonations] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        if (ready && authenticated && address) {
+            fetchUserDonations()
+        } else if (ready && !authenticated) {
+            // If they just logged out or aren't logged in, redirect to projects
+            router.push('/projects')
+        }
+    }, [ready, authenticated, address, router])
+
+    const fetchUserDonations = async () => {
+        setLoading(true)
+        try {
+            const resp = await fetch(`/api/donations?donorWallet=${address}`)
+            const data = await resp.json()
+            if (data.success) {
+                setDonations(data.data)
+            }
+        } catch (err) {
+            console.error("Failed to fetch donations", err)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    if (!ready || loading) {
+        return (
+            <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center">
+                <div className="w-16 h-16 border-4 border-[#00AFAA] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        )
+    }
+
+    if (!authenticated) {
+        return (
+            <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-8 text-center text-[#111827]">
+                <Wallet className="w-16 h-16 text-gray-300 mb-6" />
+                <h1 className="text-3xl font-black mb-4">Connect Your Wallet</h1>
+                <p className="text-gray-500 mb-8 max-w-md">You need to connect your wallet to view your profile and donation history.</p>
+                <button
+                    onClick={login}
+                    className="px-8 py-4 bg-[#00AFAA] text-white font-black text-[10px] uppercase tracking-[0.2em] rounded-2xl hover:bg-[#003E52] transition-all shadow-xl active:scale-95 flex items-center gap-3"
+                >
+                    Connect Wallet <ArrowRight className="w-4 h-4" />
+                </button>
+            </div>
+        )
+    }
+
+    // Calculate total G$ and cUSD donated
+    const totals = donations.reduce((acc, d) => {
+        const t = d.token || 'G$'
+        acc[t] = (acc[t] || 0) + parseFloat(d.amount)
+        return acc
+    }, {})
+
+    return (
+        <div className="min-h-screen bg-[#F9FAFB] font-sans pb-24">
+            <header className="bg-white border-b border-gray-100 py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
+                <Link href="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-[#00AFAA] transition-colors font-bold text-sm">
+                    <ArrowLeft className="h-4 w-4" />
+                    Back to Home
+                </Link>
+                <div className="flex items-center gap-4">
+                    <span className="hidden md:block font-mono text-xs text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-100">
+                        {address}
+                    </span>
+                    <button
+                        onClick={logout}
+                        className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition-colors rounded-xl font-bold text-sm"
+                    >
+                        <LogOut className="w-4 h-4" />
+                        Disconnect
+                    </button>
+                </div>
+            </header>
+
+            <main className="max-w-[1000px] mx-auto px-6 lg:px-8 mt-12">
+                <div className="mb-10 text-center md:text-left">
+                    <h1 className="text-3xl md:text-4xl font-black text-[#111827] mb-2 tracking-tight">Your Impact Profile</h1>
+                    <p className="text-gray-500 font-medium">Track your donations and on-chain contributions</p>
+                </div>
+
+                {/* Dashboard Stats */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center">
+                        <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Total Tips</span>
+                        <span className="text-3xl font-black text-[#111827]">{donations.length}</span>
+                    </div>
+                    {donations.length > 0 ? (
+                        Object.entries(totals).map(([token, amount]) => (
+                            <div key={token} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center border-l-4 border-l-[#00AFAA]">
+                                <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Total Tipped ({token})</span>
+                                <span className="text-3xl font-black text-[#00AFAA]">${amount.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</span>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm md:col-span-2 flex items-center gap-4 bg-[#00AFAA]/5 text-[#003E52]">
+                            <Heart className="w-8 h-8 text-[#00AFAA]" />
+                            <div>
+                                <div className="text-xs font-black uppercase tracking-widest mb-0.5 opacity-50">Impact Status</div>
+                                <div className="font-bold">No tips sent yet. Start backing projects today!</div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Donation History List */}
+                <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden">
+                    <div className="p-6 md:p-8 border-b border-gray-100 flex items-center justify-between">
+                        <h2 className="text-xl font-bold text-[#003E52] flex items-center gap-2">
+                            <Activity className="w-5 h-5 text-[#00AFAA]" />
+                            Donation History
+                        </h2>
+                    </div>
+
+                    {donations.length === 0 ? (
+                        <div className="p-12 text-center">
+                            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Heart className="w-8 h-8 text-gray-300" />
+                            </div>
+                            <h3 className="text-lg font-bold text-[#003E52] mb-2 text-center">No tips yet</h3>
+                            <p className="text-gray-500 mb-6 text-center">Your impact history is empty. Support a project to see shared transitions here!</p>
+                            <div className="flex justify-center">
+                                <Link href="/projects" className="px-8 py-3 bg-[#00AFAA] text-white font-black text-[10px] uppercase tracking-widest rounded-2xl hover:bg-[#003E52] transition-all shadow-lg active:scale-95">
+                                    Browse Projects
+                                </Link>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="divide-y divide-gray-50">
+                            {donations.map((d, index) => (
+                                <div key={d._id || index} className="p-6 px-8 hover:bg-gray-50 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                    <div>
+                                        <div className="text-[#111827] font-bold mb-1 line-clamp-1">
+                                            {d.projectId?.name || d.project?.name || "Impact Campaign"}
+                                        </div>
+                                        <div className="text-sm text-gray-400 font-medium">
+                                            {new Date(d.createdAt).toLocaleString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-6 justify-between md:justify-end">
+                                        <div className="text-right">
+                                            <div className="text-lg font-black text-[#00AFAA]">${parseFloat(d.amount).toLocaleString()} {d.token || 'G$'}</div>
+                                        </div>
+                                        {d.txHash && (
+                                            <a
+                                                href={`https://celoscan.io/tx/${d.txHash}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-[#00AFAA] hover:border-[#00AFAA] transition-all shadow-sm"
+                                                title="View transaction"
+                                            >
+                                                <ExternalLink className="w-4 h-4" />
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </main>
+        </div>
+    )
+}

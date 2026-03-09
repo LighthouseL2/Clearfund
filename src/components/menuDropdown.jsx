@@ -8,11 +8,14 @@ const MenuDropdown = ({ openMenu, setOpenMenu, toggle, setToggle, setModalOpen }
                 : "translate-y-14 -translate-x-0"} transform`}>
 
             <ul className="w-full bg-white h-fit space-y-5 font-sans">
-                <li className="hover:bg-white/50 block w-full p-3 rounded-md font-bold hover:scale-105 transition-all hover:text-[#198038]">
-                    <Link target="_blank" href={"https://github.com/LighthouseL2/Clearfund"} onClick={() => setOpenMenu(false)}>Github</Link>
+                <li className="hover:bg-white/50 block w-full p-3 rounded-md font-bold hover:scale-105 transition-all hover:text-[#00AFAA]">
+                    <Link href={"/projects"} onClick={() => setOpenMenu(false)}>Impact projects</Link>
                 </li>
-                <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#198038] w-full p-3 rounded-md font-bold ">
-                    <Link href={"/about"} onClick={() => setOpenMenu(false)}>About</Link>
+                <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#00AFAA] w-full p-3 rounded-md font-bold ">
+                    <Link href={"/grants"} onClick={() => setOpenMenu(false)}>Funding</Link>
+                </li>
+                <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#00AFAA] w-full p-3 rounded-md font-bold ">
+                    <Link href={"/projects"} onClick={() => setOpenMenu(false)}>Donate</Link>
                 </li>
             </ul>
 
