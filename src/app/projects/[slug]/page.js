@@ -354,8 +354,8 @@ const ProjectDetailPage = ({ params }) => {
                                         </p>
                                     ) : (
                                         <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5">
-                                            <li><strong className="text-gray-700">Direct Empowerment:</strong> Your contribution is sent directly to the project's regional leads to fund their ongoing operations.</li>
-                                            <li><strong className="text-gray-700">Tangible Action:</strong> Funds are utilized for the physical resources, tools, and labor necessary to execute the campaign's core objectives locally.</li>
+                                            <li><strong className="text-gray-700">Direct Empowerment:</strong> Your contribution is sent directly to the project&apos;s regional leads to fund their ongoing operations.</li>
+                                            <li><strong className="text-gray-700">Tangible Action:</strong> Funds are utilized for the physical resources, tools, and labor necessary to execute the campaign&apos;s core objectives locally.</li>
                                             <li><strong className="text-gray-700">Sustainable Development:</strong> Supporting infrastructural advancement, grassroots education, and sustained environmental equilibrium in target areas.</li>
                                         </ul>
                                     )}
