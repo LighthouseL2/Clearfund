@@ -30,6 +30,7 @@ const AdminDashboard = () => {
         try {
             if (activeTab === 'pending') {
                 const resp = await fetch('/api/admin/projects/pending');
+                if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
                 const data = await resp.json();
                 if (data.success) {
                     setPending(data.data);
@@ -38,6 +39,7 @@ const AdminDashboard = () => {
                 }
             } else {
                 const respAll = await fetch('/api/projects?status=ALL');
+                if (!respAll.ok) throw new Error(`Server returned ${respAll.status}`);
                 const dataAll = await respAll.json();
                 if (dataAll.success) {
                     setAllProjects(dataAll.data);

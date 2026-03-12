@@ -22,6 +22,7 @@ const TipFeed = () => {
         const fetchRecent = async () => {
             try {
                 const resp = await fetch('/api/tips?limit=10');
+                if (!resp.ok) throw new Error(`Status: ${resp.status}`);
                 const data = await resp.json();
                 if (data.success) {
                     setTips(data.data);

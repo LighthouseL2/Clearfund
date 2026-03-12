@@ -95,12 +95,16 @@ export async function GET(request) {
         console.warn('Failed to aggregate tip stats:', statError);
     }
 
-    if (featured === 'true') results = results.filter(p => p.featured).slice(0, 3);
+    if (featured === 'true') {
+        results = results.filter(p => p.featured);
+        // Only slice if we have enough results, otherwise return what we have
+        if (results.length > 3) results = results.slice(0, 3);
+    }
     if (category !== 'ALL') results = results.filter(p => p.category === category);
     if (search) {
         const q = search.toLowerCase();
         results = results.filter(p =>
-            p.name.toLowerCase().includes(q) || (p.description || '').toLowerCase().includes(q)
+            (p.name || '').toLowerCase().includes(q) || (p.description || '').toLowerCase().includes(q)
         );
     }
 

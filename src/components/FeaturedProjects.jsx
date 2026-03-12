@@ -13,6 +13,7 @@ const FeaturedProjects = () => {
         const fetchFeatured = async () => {
             try {
                 const resp = await fetch('/api/giveth?featured=true');
+                if (!resp.ok) throw new Error(`Status: ${resp.status}`);
                 const data = await resp.json();
                 if (data.success) {
                     // Show exactly 3 for landing page

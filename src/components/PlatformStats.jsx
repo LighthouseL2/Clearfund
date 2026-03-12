@@ -11,15 +11,17 @@ const PlatformStats = () => {
     });
 
     useEffect(() => {
-        const fetchStats = () => {
-            fetch('/api/stats')
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        setStats(data.data);
-                    }
-                })
-                .catch(err => console.error("Error fetching stats:", err));
+        const fetchStats = async () => {
+            try {
+                const res = await fetch('/api/stats');
+                if (!res.ok) throw new Error(`Status: ${res.status}`);
+                const data = await res.json();
+                if (data.success) {
+                    setStats(data.data);
+                }
+            } catch (err) {
+                console.error("Error fetching stats:", err);
+            }
         };
 
         fetchStats(); // initial fetch
