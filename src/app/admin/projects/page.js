@@ -10,8 +10,8 @@ const AdminDashboard = () => {
     const [pending, setPending] = useState([]);
     const [allProjects, setAllProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [fetchError, setFetchError] = useState(null);
     const [activeTab, setActiveTab] = useState('pending');
-
     const [selectedProject, setSelectedProject] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -26,28 +26,38 @@ const AdminDashboard = () => {
 
     const fetchData = async () => {
         setLoading(true);
+        setFetchError(null);
         try {
             if (activeTab === 'pending') {
                 const resp = await fetch('/api/admin/projects/pending');
                 const data = await resp.json();
-                if (data.success) setPending(data.data);
+                if (data.success) {
+                    setPending(data.data);
+                } else {
+                    setFetchError(data.error || 'Failed to fetch pending projects');
+                }
             } else {
                 const respAll = await fetch('/api/projects?status=ALL');
                 const dataAll = await respAll.json();
-                if (dataAll.success) setAllProjects(dataAll.data);
+                if (dataAll.success) {
+                    setAllProjects(dataAll.data);
+                } else {
+                    setFetchError(dataAll.error || 'Failed to fetch all projects');
+                }
             }
         } catch (err) {
             console.error(err);
+            setFetchError('Network error. Check your connection to the database.');
         } finally {
             setLoading(false);
         }
     };
 
     const filteredProjects = (activeTab === 'pending' ? pending : allProjects).filter(project =>
-        project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (project.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
         (project.description || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
         (project.tagline || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.category.toLowerCase().includes(searchTerm.toLowerCase())
+        (project.category || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const updateStatus = async (id, status) => {
@@ -163,6 +173,21 @@ const AdminDashboard = () => {
                         </button>
                     </div>
                 </div>
+
+                {fetchError && (
+                    <div className="mb-8 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center justify-between gap-4 animate-in slide-in-from-top-2">
+                        <div className="flex items-center gap-3 text-red-600">
+                            <ShieldAlert className="h-5 w-5 shrink-0" />
+                            <p className="text-sm font-bold">API Error: {fetchError}</p>
+                        </div>
+                        <button
+                            onClick={fetchData}
+                            className="px-4 py-2 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-red-700 transition-colors shadow-lg shadow-red-600/20"
+                        >
+                            Retry
+                        </button>
+                    </div>
+                )}
 
                 {loading ? (
                     <div className="py-40 flex flex-col items-center justify-center">

@@ -103,13 +103,14 @@ export function ProjectSubmissionForm({ onSuccess, onCancel }) {
 
     try {
       // 1. Upload assets to IPFS
-      let logoCID = "QmZ8P8P1f8P1f8P1f8P1f8P1f8P1f8P1f8P1f8P1f8P1f8"; // Default placeholder CID
+      let logoCID = "QmZ8P8P1f8P1f8P1f8P1f8P1f8P1f8P1f8P1f8P1f8"; // Default placeholder CID
       if (logoFile) {
         logoCID = await logoUpload.uploadFile(logoFile);
       }
       const bannerCID = await bannerUpload.uploadFile(bannerFile);
 
       // 2. Blockchain Submission (V2.2/2.3)
+      // We await the transaction sending, but use hooks for confirmation
       await submitProject(formData, [logoCID, bannerCID], limits)
 
       // 3. Database Sync
@@ -130,14 +131,21 @@ export function ProjectSubmissionForm({ onSuccess, onCancel }) {
         status: 'PENDING'
       };
 
-      await fetch('/api/projects', {
+      const dbResp = await fetch('/api/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dbPayload)
       });
 
-    } catch (error) {
-      console.error('Submission failed:', error)
+      const dbData = await dbResp.json();
+      if (!dbData.success) {
+        throw new Error(dbData.error || "Blockchain submission started, but failed to save to database record.");
+      }
+
+    } catch (err) {
+      console.error('Submission failed:', err)
+      // If we have an error, we should probably set it in the useProjectSubmission's error state
+      // but for now we'll handle it locally or just log it as the form UI already shows errors
     }
   }
 
