@@ -7,6 +7,8 @@ const TipSchema = new mongoose.Schema(
             required: true,
             ref: 'Project'
         },
+        // NOTE: Field kept as 'donorWallet' for backward compatibility with existing DB records.
+        // UI and API accept both 'donorWallet' and 'tipperWallet' query params.
         donorWallet: {
             type: String, // Wallet address of the tipper
             required: true,

@@ -4,11 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { Heart, ArrowUpRight, Coins } from 'lucide-react';
 import Link from 'next/link';
 
-const DonationFeed = () => {
-    const [donations, setDonations] = useState([]);
+const TipFeed = () => {
+    const [tips, setTips] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const [todayTotal, setTodayTotal] = useState(0);
 
     const formatTimeAgo = (date) => {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
@@ -26,7 +24,7 @@ const DonationFeed = () => {
                 const resp = await fetch('/api/tips?limit=10');
                 const data = await resp.json();
                 if (data.success) {
-                    setDonations(data.data);
+                    setTips(data.data);
                 }
             } catch (err) {
                 console.error(err);
@@ -39,7 +37,7 @@ const DonationFeed = () => {
         return () => clearInterval(interval);
     }, []);
 
-    if (loading && donations.length === 0) return (
+    if (loading && tips.length === 0) return (
         <div className="bg-white rounded-[40px] p-12 border border-gray-100 shadow-sm animate-pulse">
             <div className="h-8 w-48 bg-gray-100 mb-8 rounded-full"></div>
             {[1, 2, 3, 4, 5].map(i => (
@@ -65,7 +63,7 @@ const DonationFeed = () => {
             </div>
 
             <div className="space-y-4 max-h-[600px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-gray-200 hover:scrollbar-thumb-gd-teal scrollbar-track-transparent">
-                {donations.length === 0 ? (
+                {tips.length === 0 ? (
                     <div className="py-32 text-center flex flex-col items-center gap-4">
                         <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center text-gray-200">
                             <Heart className="w-8 h-8" />
@@ -73,7 +71,7 @@ const DonationFeed = () => {
                         <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Awaiting First G$ Transaction</p>
                     </div>
                 ) : (
-                    donations.map((d, idx) => (
+                    tips.map((d, idx) => (
                         <div
                             key={d._id}
                             style={{ animationDelay: `${idx * 100}ms` }}
@@ -118,4 +116,4 @@ const DonationFeed = () => {
     );
 };
 
-export default DonationFeed;
+export default TipFeed;

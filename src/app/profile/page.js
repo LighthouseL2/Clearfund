@@ -154,7 +154,7 @@ export default function ProfilePage() {
                     )}
                 </div>
 
-                {/* Donation History List */}
+                {/* Tip History List */}
                 <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden">
                     <div className="p-6 md:p-8 border-b border-gray-100 flex items-center justify-between">
                         <h2 className="text-xl font-bold text-[#003E52] flex items-center gap-2">

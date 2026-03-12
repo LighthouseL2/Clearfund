@@ -49,7 +49,7 @@ const ProjectSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
-        donationCount: {
+        tipCount: {
             type: Number,
             default: 0,
         },

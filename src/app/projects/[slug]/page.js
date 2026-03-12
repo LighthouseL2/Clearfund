@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import TipWidget from '@/components/TipWidget';
-import { Share2, Heart, Info, MapPin, ArrowLeft, ExternalLink } from 'lucide-react';
+import { Share2, Heart, Info, MapPin, ArrowLeft, ExternalLink, Target } from 'lucide-react';
 import Link from 'next/link';
 import { FaTwitter, FaWhatsapp, FaFacebook, FaLinkedin, FaReddit, FaTelegramPlane } from 'react-icons/fa';
 
@@ -156,10 +156,10 @@ const ProjectDetailPage = ({ params }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     useEffect(() => {
-        fetchProjectAndDonations();
+        fetchProjectAndTips();
     }, [slug]);
 
-    const fetchProjectAndDonations = async () => {
+    const fetchProjectAndTips = async () => {
         setLoading(true);
         try {
             const pResp = await fetch(`/api/projects/${slug}`);
@@ -288,7 +288,7 @@ const ProjectDetailPage = ({ params }) => {
 
             {/* Banner Image */}
             <div className="w-full h-[300px] md:h-[400px] bg-gray-200 relative overflow-hidden">
-                <img src={project.logo} alt={project.name} className="w-full h-full object-cover" />
+                <img src={project.banner || project.logo} alt={project.name} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/10"></div>
             </div>
 
@@ -319,11 +319,11 @@ const ProjectDetailPage = ({ params }) => {
                             <div className="mt-6 flex gap-12 border-t border-gray-100 pt-6">
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Tipped</div>
-                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">(G$) {(project.totalRaised || 0).toLocaleString()}</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">(G$) {(project.totalTipped || 0).toLocaleString()}</div>
                                 </div>
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Backers</div>
-                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">{project.donationCount || 0}</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">{project.tipCount || 0}</div>
                                 </div>
                             </div>
                             <div className="flex items-center gap-1.5 text-gray-500 mt-6 pt-4 border-t border-gray-50/50">
@@ -347,12 +347,28 @@ const ProjectDetailPage = ({ params }) => {
                                     <p className="text-gray-600 text-sm leading-relaxed mb-4">
                                         This campaign addresses critical challenges through verified on-ground initiatives in <strong>{project.location || 'various communities globally'}</strong>. By backing ({project.name}), you are actively supporting their mission to drive real-world change within the <strong>{project.category ? project.category.replace('_', ' ').toLowerCase() : 'social impact'}</strong> sector.
                                     </p>
-                                    <h4 className="font-bold text-gray-800 text-sm mb-1 mt-4">Where your tip goes:</h4>
-                                    <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5">
-                                        <li><strong className="text-gray-700">Direct Empowerment:</strong> Your contribution is sent directly to the project's regional leads to fund their ongoing operations.</li>
-                                        <li><strong className="text-gray-700">Tangible Action:</strong> Funds are utilized for the physical resources, tools, and labor necessary to execute the campaign's core objectives locally.</li>
-                                        <li><strong className="text-gray-700">Sustainable Development:</strong> Supporting infrastructural advancement, grassroots education, and sustained environmental equilibrium in target areas.</li>
-                                    </ul>
+                                    <h4 className="font-bold text-gray-800 text-sm mb-2 mt-4">Where your tip goes:</h4>
+                                    {project.impactDescription ? (
+                                        <p className="text-sm text-gray-600 whitespace-pre-wrap leading-relaxed">
+                                            {project.impactDescription}
+                                        </p>
+                                    ) : (
+                                        <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5">
+                                            <li><strong className="text-gray-700">Direct Empowerment:</strong> Your contribution is sent directly to the project's regional leads to fund their ongoing operations.</li>
+                                            <li><strong className="text-gray-700">Tangible Action:</strong> Funds are utilized for the physical resources, tools, and labor necessary to execute the campaign's core objectives locally.</li>
+                                            <li><strong className="text-gray-700">Sustainable Development:</strong> Supporting infrastructural advancement, grassroots education, and sustained environmental equilibrium in target areas.</li>
+                                        </ul>
+                                    )}
+                                    {project.milestones && (
+                                        <>
+                                            <h4 className="font-bold text-gray-800 text-sm mb-2 mt-6 flex items-center gap-2">
+                                                <Target className="w-4 h-4 text-[#00AFAA]" /> Project Milestones
+                                            </h4>
+                                            <p className="text-sm text-gray-600 whitespace-pre-wrap leading-relaxed">
+                                                {project.milestones}
+                                            </p>
+                                        </>
+                                    )}
                                 </div>
                             )}
 
@@ -371,6 +387,13 @@ const ProjectDetailPage = ({ params }) => {
                                             <FaTwitter className="w-4 h-4 text-[#1DA1F2]" />
                                             <span className="text-gray-400 text-sm font-bold w-16">Social:</span>
                                             <a href={project.socialLink} target="_blank" rel="noopener noreferrer" className="text-[#00AFAA] font-medium text-sm hover:underline">{project.socialLink}</a>
+                                        </div>
+                                    )}
+                                    {project.karmaLink && (
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-4 h-4 bg-[#00AFAA] rounded-full flex items-center justify-center text-[8px] font-black text-white italic">K</div>
+                                            <span className="text-gray-400 text-sm font-bold w-16">Karma:</span>
+                                            <a href={project.karmaLink} target="_blank" rel="noopener noreferrer" className="text-[#00AFAA] font-medium text-sm hover:underline">{project.karmaLink.length > 30 ? project.karmaLink.substring(0, 30) + '...' : project.karmaLink}</a>
                                         </div>
                                     )}
                                     {project.contactEmail && (
@@ -436,7 +459,7 @@ const ProjectDetailPage = ({ params }) => {
                         </div>
                     </div>
 
-                    {/* RIGHT COLUMN: DONATE WIDGET */}
+                    {/* RIGHT COLUMN: TIP WIDGET */}
                     <div className="lg:col-span-4 mt-8 lg:mt-0 sticky top-24">
                         <TipWidget
                             project={project}
@@ -444,8 +467,8 @@ const ProjectDetailPage = ({ params }) => {
                                 setTips(prev => [d, ...prev]);
                                 setProject(prev => ({
                                     ...prev,
-                                    totalRaised: (prev.totalRaised || 0) + d.amount,
-                                    donationCount: (prev.donationCount || 0) + 1
+                                    totalTipped: (prev.totalTipped || 0) + d.amount,
+                                    tipCount: (prev.tipCount || 0) + 1
                                 }));
                             }}
                         />

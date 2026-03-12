@@ -4,9 +4,9 @@ import React from 'react'
 import Image from 'next/image'
 
 /**
- * Donation Successful modal — matches the design with green checkmark, stars, and "Donate again" button.
+ * Tip Successful modal — matches the design with green checkmark, stars, and "Tip again" button.
  */
-export default function DonationSuccessModal({ onClose, onDonateAgain }) {
+export default function TipSuccessModal({ onClose, onTipAgain }) {
     return (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
             <div
@@ -35,15 +35,15 @@ export default function DonationSuccessModal({ onClose, onDonateAgain }) {
 
                 {/* Text */}
                 <h2 className="text-[18px] leading-tight font-bold text-gray-800 text-center mb-10 w-full px-4">
-                    Your donation has been processed<br />successfully!
+                    Your tip has been processed<br />successfully!
                 </h2>
 
                 {/* Button */}
                 <button
-                    onClick={onDonateAgain || onClose}
+                    onClick={onTipAgain || onClose}
                     className="w-full bg-[#95EED8] text-gray-900 font-bold py-4 rounded-full hover:bg-[#D5F8EE] transition-all shadow-lg active:scale-[0.98] cursor-pointer"
                 >
-                    Donate again
+                    Tip again
                 </button>
             </div>
         </div>

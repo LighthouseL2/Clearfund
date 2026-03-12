@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import Project from '@/models/Project';
+import prisma from '@/lib/db';
 import { slugify } from '@/lib/utils/slugify';
 
 export async function GET(request) {
@@ -12,124 +11,121 @@ export async function GET(request) {
         const status = searchParams.get('status') || 'APPROVED';
         const sort = searchParams.get('sort') || 'recent';
 
-        try {
-            await dbConnect();
-        } catch (dbError) {
-            const mockProjects = [
-                {
-                    _id: "1",
-                    name: "Amazon Reforestation",
-                    tagline: "Directly funding local communities to plant and protect native trees in the Amazon.",
-                    category: "CLIMATE",
-                    logo: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80",
-                    totalRaised: 0,
-                    fundingGoal: 100,
-                    donationCount: 0,
-                    featured: true,
-                    slug: "amazon-reforestation",
-                    website: "https://amazonreforestation.org",
-                    socialLink: "https://twitter.com/amazonref",
-                    contactEmail: "contact@amazonreforestation.org",
-                    description: "The Amazon rainforest is a crucial buffer against global climate change, yet deforestation rates continue to threaten this vital ecosystem. This campaign directly funds local indigenous communities on the frontlines of conservation. By providing them with resources, tools, and direct crypto compensation, we empower them to cultivate native tree species, restore degraded lands, and patrol protected areas. \n\nYour contribution not only aids in carbon sequestration and biodiversity protection but also supports sustainable economic models that make forest preservation more viable than logging. Together, we can regenerate the 'lungs of the Earth' and ensure these communities thrive alongside their natural environment."
-                },
-                {
-                    _id: "2",
-                    name: "Global Literacy Initiative",
-                    tagline: "Providing digital learning tools and books to children in underserved regions.",
-                    category: "EDUCATION",
-                    logo: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80",
-                    totalRaised: 0,
-                    fundingGoal: 80,
-                    donationCount: 0,
-                    featured: true,
-                    slug: "global-literacy",
-                    website: "https://globalliteracy.org",
-                    socialLink: "https://twitter.com/globalliteracy",
-                    contactEmail: "info@globalliteracy.org",
-                    description: "Access to quality education remains a profound global challenge, particularly in remote and underserved regions. The Global Literacy Initiative is dedicated to bridging the educational divide by delivering foundational learning materials and digital tools to children who need them most. \n\nWe partner with established local educators to distribute tablets pre-loaded with interactive offline curriculums, establish pop-up libraries, and provide critical teacher training. By tipping this campaign, you are actively democratizing education and providing the next generation with the knowledge and literacy skills necessary to escape the cycle of poverty and participate meaningfully in the global economy."
-                },
-                {
-                    _id: "3",
-                    name: "Clean Water Access",
-                    tagline: "Installing solar-powered water filtration systems in remote villages.",
-                    category: "SOCIAL_IMPACT",
-                    logo: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=800&q=80",
-                    totalRaised: 0,
-                    fundingGoal: 150,
-                    donationCount: 0,
-                    featured: true,
-                    slug: "clean-water-access",
-                    website: "https://cleanwateraccess.org",
-                    socialLink: "https://twitter.com/cleanwater",
-                    contactEmail: "support@cleanwateraccess.org",
-                    description: "Millions of people worldwide still lack basic access to safe, clean drinking water, leading to severe health complications and stunted economic growth. This campaign addresses the water crisis directly by deploying robust, solar-powered water filtration systems in remote villages and drought-affected regions.\n\nOur off-grid technology pumps and purifies groundwater without relying on fossil fuels or fragile centralized infrastructure. By supporting this initiative, you are ensuring entire communities gain sustainable access to clean water, which immediately reduces waterborne diseases, frees women and children from hours of daily water collection, and creates a foundation for local agriculture and long-term public health."
-                }
-            ];
+        const where = {};
 
-
-            return NextResponse.json({ success: true, data: mockProjects });
-        }
-
-
-
-        let query = {};
         if (status !== 'ALL') {
-            query.status = status;
+            where.status = status;
         }
-
         if (category && category !== 'ALL') {
-            query.category = category;
+            where.category = category;
         }
-
         if (search) {
-            query.$or = [
-                { name: { $regex: search, $options: 'i' } },
-                { tagline: { $regex: search, $options: 'i' } },
-                { description: { $regex: search, $options: 'i' } },
+            where.OR = [
+                { name: { contains: search, mode: 'insensitive' } },
+                { description: { contains: search, mode: 'insensitive' } },
             ];
         }
-
         if (featured === 'true') {
-            query.featured = true;
+            where.featured = true;
         }
 
-        let sortOption = { createdAt: -1 };
+        let orderBy = { createdAt: 'desc' };
         if (sort === 'most-funded') {
-            sortOption = { totalRaised: -1 };
+            orderBy = { totalRaised: 'desc' };
         } else if (sort === 'alphabetical') {
-            sortOption = { name: 1 };
+            orderBy = { name: 'asc' };
         }
 
-        const projects = await Project.find(query).sort(sortOption);
+        const projects = await prisma.project.findMany({
+            where,
+            orderBy,
+        });
 
-        return NextResponse.json({ success: true, data: projects });
+        const data = projects.map(p => ({
+            ...p,
+            _id: p.id,
+            totalTipped: p.totalRaised || 0,
+            tipCount: p.tipCount || 0,
+        }));
+
+        return NextResponse.json({ success: true, data });
     } catch (error) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        console.error('Projects GET error:', error.message);
+        // Return mock data on failure
+        const mockProjects = [
+            {
+                _id: '1',
+                name: 'Amazon Reforestation',
+                tagline: 'Directly funding local communities to plant and protect native trees in the Amazon.',
+                category: 'CLIMATE',
+                logo: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80',
+                totalTipped: 0, fundingGoal: 100, tipCount: 0, featured: true,
+                slug: 'amazon-reforestation',
+                description: 'The Amazon rainforest is a crucial buffer against global climate change.',
+            },
+            {
+                _id: '2',
+                name: 'Global Literacy Initiative',
+                tagline: 'Providing digital learning tools and books to children in underserved regions.',
+                category: 'EDUCATION',
+                logo: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80',
+                totalTipped: 0, fundingGoal: 80, tipCount: 0, featured: true,
+                slug: 'global-literacy',
+                description: 'Access to quality education remains a profound global challenge.',
+            },
+            {
+                _id: '3',
+                name: 'Clean Water Access',
+                tagline: 'Installing solar-powered water filtration systems in remote villages.',
+                category: 'SOCIAL_IMPACT',
+                logo: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=800&q=80',
+                totalTipped: 0, fundingGoal: 150, tipCount: 0, featured: true,
+                slug: 'clean-water-access',
+                description: 'Millions of people worldwide still lack basic access to safe, clean drinking water.',
+            },
+        ];
+        return NextResponse.json({ success: true, data: mockProjects });
     }
 }
 
 export async function POST(request) {
     try {
         const data = await request.json();
-        await dbConnect();
 
         // Generate unique slug
         let slug = slugify(data.name);
-        const existingProjectWithSlug = await Project.findOne({ slug });
-        if (existingProjectWithSlug) {
+        const existing = await prisma.project.findUnique({ where: { slug } });
+        if (existing) {
             slug = `${slug}-${Math.floor(Math.random() * 1000)}`;
         }
 
-        const project = await Project.create({
-            ...data,
-            slug,
-            status: 'APPROVED', // Set to APPROVED for immediate visibility
-            featured: false,
-            totalRaised: 0,
-            donationCount: 0,
+        const project = await prisma.project.create({
+            data: {
+                name: data.name,
+                slug,
+                description: data.description,
+                category: data.category,
+                location: data.location || null,
+                website: data.website || null,
+                twitter: data.twitter || null,
+                github: data.github || null,
+                karmaLink: data.karmaLink || null,
+                milestones: data.milestones || null,
+                impactDescription: data.impactDescription || null,
+                logo: data.logo,
+                banner: data.banner || null,
+                images: data.images || [],
+                fundingGoal: data.fundingGoal || null,
+                walletAddress: data.walletAddress,
+                status: 'PENDING',
+                featured: false,
+                totalRaised: 0,
+                tipCount: 0,
+                submittedBy: data.submittedBy || null,
+            },
         });
 
-        return NextResponse.json({ success: true, data: project });
+        return NextResponse.json({ success: true, data: { ...project, _id: project.id } });
     } catch (error) {
         return NextResponse.json({ success: false, error: error.message }, { status: 400 });
     }

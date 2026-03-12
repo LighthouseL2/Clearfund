@@ -8,7 +8,7 @@ import FeaturedProjects from "@/components/FeaturedProjects";
 import NewHero from "@/components/NewHero";
 import PlatformStats from "@/components/PlatformStats";
 import CTASection from "@/components/CTASection";
-import DonationFeed from "@/components/DonationFeed";
+import TipFeed from "@/components/TipFeed";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
 
         {/* LIVE IMPACT FEED - Visibility for all users */}
         <div className="px-6 md:px-12 lg:px-16 mb-32">
-          <DonationFeed />
+          <TipFeed />
         </div>
 
         {/* PLATFORM STATISTICS SECTION */}

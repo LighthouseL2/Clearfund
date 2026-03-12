@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
 import ProjectCard from "@/components/ProjectCard"
-import { GrantSubmissionForm } from "@/components/grants/GrantSubmissionForm"
+import { ProjectSubmissionForm } from "@/components/projects/ProjectSubmissionForm"
 
 const CATEGORIES = [
     { id: "ALL", name: "All projects" },
@@ -166,18 +166,18 @@ export default function ProjectsPage() {
             {/* Submission Modal */}
             {showSubmitModal && (
                 <div className="fixed inset-0 z-[200] bg-[#003E52]/40 backdrop-blur-sm flex items-center justify-center p-4">
-                    <div className="bg-white max-w-lg w-full rounded-[2.5rem] p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+                    <div className="bg-white max-w-4xl w-full rounded-[2.5rem] p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto">
                         <button
                             onClick={() => setShowSubmitModal(false)}
                             className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full hover:bg-gray-200 transition-colors font-bold z-10"
                         >
                             ×
                         </button>
-                        <h2 className="text-2xl font-black text-[#003E52] mb-1">Submit Impact Project</h2>
+                        <h2 className="text-3xl font-black text-[#003E52] mb-1">Submit Your Project</h2>
                         <p className="text-sm text-gray-500 font-medium mb-8">
-                            Propose a verified community project directly to the blockchain registry.
+                            Share your project with the community and start receiving tips directly to your wallet.
                         </p>
-                        <GrantSubmissionForm
+                        <ProjectSubmissionForm
                             onSuccess={() => {
                                 setShowSubmitModal(false);
                                 fetchProjects();

@@ -61,7 +61,7 @@ export default function Sidebar({ authenticated, address, login }) {
       <div className="md:hidden flex items-center justify-between p-4 bg-white shadow-md font-sans">
         <div className="relative w-[160px] h-[55px]">
           <Image
-            src="/assets/clearfund%20logo.png"
+            src="/assets/clearfund_logo.png"
             alt="ClearFund Logo"
             fill
             className="object-contain"
@@ -86,7 +86,7 @@ export default function Sidebar({ authenticated, address, login }) {
           <div className="hidden md:flex items-end mb-12 px-6">
             <div className="relative w-[190px] h-[65px]">
               <Image
-                src="/assets/clearfund%20logo.png"
+                src="/assets/clearfund_logo.png"
                 alt="ClearFund Logo"
                 fill
                 className="object-contain"
@@ -230,7 +230,7 @@ export default function Sidebar({ authenticated, address, login }) {
 
                   </span>
 
-                  Donate
+                  Tip
                 </span>
 
                 {/* <ChevronRight

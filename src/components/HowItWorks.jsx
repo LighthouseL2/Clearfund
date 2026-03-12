@@ -37,7 +37,7 @@ const HowItWorks = () => {
                         Impact in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00AFAA] to-blue-600">Three Steps</span>
                     </h2>
                     <p className="max-w-xl mx-auto text-gray-500 font-medium text-lg leading-relaxed px-4">
-                        We've removed the barriers to giving. Direct, transparent, and accessible donations for everyone.
+                        We've removed the barriers to giving. Direct, transparent, and accessible tipping for everyone.
                     </p>
                 </div>
 

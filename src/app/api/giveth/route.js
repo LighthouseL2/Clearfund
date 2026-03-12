@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import Project from '@/models/Project';
+import prisma from '@/lib/db';
+import { CURATED_REFI_PROJECTS } from '@/lib/curatedProjects';
 
 const GIVETH_GRAPHQL = 'https://mainnet.serve.giveth.io/graphql';
 
@@ -35,195 +35,27 @@ function mapCategory(categories = []) {
     return null; // exclude projects that don't fit our pillars
 }
 
-//  Curated ReFi projects sourced from Giveth / real initiatives, including 5 GoodCollective projects
-const CURATED_REFI_PROJECTS = [
-    {
-        _id: "gc1",
-        name: "GoodDollar UBI+ for Women – Colombia",
-        tagline: "Bridging the financial exclusion gap for Colombian women by providing a sustainable, daily GoodDollar basic income to fuel community growth and personal economic autonomy.",
-        category: "SOCIAL_IMPACT",
-        logo: "/donate-images/happy.png",
-        totalRaised: 0,
-        fundingGoal: 1000,
-        donationCount: 0,
-        featured: true,
-        slug: "gooddollar-women-colombia",
-        website: "https://gooddapp.org/",
-        location: "Colombia",
-        walletAddress: "0x0d43131f1577310D6349bAF9D6Da4fC1Cd39764C",
-        description: "Women represent the majority of unpaid labor worldwide caregiving, household management, community organizing yet this work remains largely invisible to traditional economic systems. Despite being central to the functioning of families and societies, women continue to face systemic barriers to capital, representation, and opportunity: wage gaps, limited access to credit, underrepresentation in financial and political institutions, and disproportionate vulnerability to economic shocks.\n\nThis pool provides additional daily G$ to women in columiba through a segmented basic income model a framework that directs resources to those who have historically been underserved by traditional financial systems."
-    },
-    {
-        _id: "gc2",
-        name: "Silvi - Kenya's Kakamega forest",
-        tagline: "Restoring the vital canopy of Kenya's last tropical rainforest through direct micro-grants to smallholder farmers implementing sustainable agroforestry and native restoration.",
-        category: "CLIMATE",
-        logo: "/donate-images/grass.jpg",
-        totalRaised: 0,
-        fundingGoal: 1000,
-        donationCount: 0,
-        featured: true,
-        slug: "silvi-kakamega-forest",
-        website: "https://gooddapp.org/",
-        location: "Kenya",
-        walletAddress: "0xC1dCdf8E70acB44CDbB688C91A4883Cf9052Ea9c",
-        description: "Kenya's Kakamega forest is one of the last remnants of the great tropical rainforest that once spanned the African continent. The forest is home to an incredible diversity of plant and animal species, many of which are found nowhere else on Earth.\n\nThis Collective directly supports smallholder farmers around Kenya's Kakamega forest through sustainable agroforestry practices, providing daily G$ distributions to those working on reforestation and conservation efforts."
-    },
-    {
-        _id: "gc3",
-        name: "GoodDollar UBI+ for Women – Nigeria",
-        tagline: "Empowering female entrepreneurs across Nigeria with direct blockchain-based basic income to foster localized mutual-aid networks and drive grassroots financial independence.",
-        category: "SOCIAL_IMPACT",
-        logo: "/donate-images/laugh.png",
-        totalRaised: 0,
-        fundingGoal: 1000,
-        donationCount: 0,
-        featured: false,
-        slug: "gooddollar-women-nigeria",
-        website: "https://gooddapp.org/",
-        location: "Nigeria",
-        walletAddress: "0xDd1c12f197E6D1E2FBA15487AaAE500eF6e07BCA",
-        description: "Nigeria stands as one of Africa’s leading economic powerhouses, yet a significant gap remains in financial inclusion for women. By expanding access to modern banking, credit, and sustainable economic pathways, we empower Nigerian women to achieve financial independence and drive transformative growth within their communities.\n\nThis pool provides additional daily G$ to women in Nigeria through a segmented basic income model, empowering them with digital assets that can be used for daily needs, savings, and micro-enterprise development."
-    },
-    {
-        _id: "gc4",
-        name: "Pesia's Kitchen EAT Initiative",
-        tagline: "Combating food insecurity and urban waste by rescuing surplus nutritional resources from local markets and redistributing them directly to the most vulnerable families.",
-        category: "SOCIAL_IMPACT",
-        logo: "/donate-images/cooking.jpg",
-        totalRaised: 0,
-        fundingGoal: 1000,
-        donationCount: 0,
-        featured: false,
-        slug: "pesias-kitchen-eat",
-        website: "https://gooddapp.org/",
-        location: "Global",
-        walletAddress: "0xE4f65e8644C0f3a1C7ef0BA0F1428A82cDc0E7Bc",
-        description: "Pesia's Kitchen EAT Initiative is a community-powered food rescue initiative committed to reducing waste and ensuring food security for underserved populations. Working at the intersection of sustainability and social impact, the initiative rescues surplus food from local markets and restaurants.\n\nThrough partnerships with community organizations, the recovered food is redistributed to families and individuals in need, ensuring that nutritious meals reach those who need them most."
-    },
-    {
-        _id: "gc5",
-        name: "Global Classrooms Environmental Education",
-        tagline: "Connecting students across the globe to collaborate on environmental restoration and climate solutions through a transparent, gamified digital learning curriculum.",
-        category: "EDUCATION",
-        logo: "/donate-images/cartoon.jpg",
-        totalRaised: 0,
-        fundingGoal: 1000,
-        donationCount: 0,
-        featured: false,
-        slug: "global-classrooms-education",
-        website: "https://gooddapp.org/",
-        location: "Global",
-        walletAddress: "0xf3d629a2c198fC91d7D3F18217684166C83C7312",
-        description: "Global Classrooms connects students worldwide to collaborate on environmental projects aligned with UN Sustainable Development Goals. Through digital platforms and in-person exchanges, students learn about climate change, biodiversity loss, and sustainable development.\n\nThe program provides resources, mentorship, and funding for student-led environmental projects, fostering a new generation of environmentally conscious leaders who can drive meaningful change in their communities."
-    },
-    {
-        _id: "g2",
-        name: "Greenpill Nigeria",
-        tagline: "Decentralizing impact through Regenerative Finance (ReFi) tools, empowering local Nigerian builders to create high-impact, transparent public goods for their own communities.",
-        category: "SOCIAL_IMPACT",
-        logo: "/assets/greenpill-nigeria.jfif",
-        totalRaised: 0,
-        fundingGoal: 200,
-        donationCount: 0,
-        featured: true,
-        slug: "greenpill-nigeria",
-        website: "https://greenpill.network",
-        socialLink: "https://x.com/greenpillnaija",
-        location: "Nigeria",
-        walletAddress: "0xDd1c12f197E6D1E2FBA15487AaAE500eF6e07BCA"
-    }
-];
-
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category') || 'ALL';
     const search = searchParams.get('search') || '';
     const featured = searchParams.get('featured');
 
-    // try {
-    //     // Query Giveth GraphQL for ReFi/Environmental/Social projects
-    //     const query = `{
-    //         projects(
-    //             limit: 20,
-    //             sortingBy: MostFunded,
-    //             filters: [Verified],
-    //             searchTerm: "environment"
-    //         ) {
-    //             projects {
-    //                 id
-    //                 title
-    //                 descriptionSummary
-    //                 categories { name }
-    //                 image
-    //                 totalDonations
-    //                 slug
-    //             }
-    //         }
-    //     }`;
-
-    //     const response = await fetch(GIVETH_GRAPHQL, {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({ query }),
-    //         signal: AbortSignal.timeout(6000),
-    //         next: { revalidate: 300 }, // cache 5 min
-    //     });
-
-    //     if (response.ok) {
-    //         const json = await response.json();
-    //         const raw = json?.data?.projects?.projects || [];
-
-    //         if (raw.length > 0) {
-    //             const mapped = raw
-    //                 .map((p, i) => {
-    //                     const cat = mapCategory(p.categories);
-    //                     if (!cat) return null; // only include ReFi-relevant projects
-    //                     return {
-    //                         _id: `giveth-${p.id}`,
-    //                         name: p.title,
-    //                         tagline: p.descriptionSummary || 'A high-impact ReFi project on Giveth.',
-    //                         category: cat,
-    //                         logo: p.image || `https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80`,
-    //                         totalRaised: 0,
-    //                         fundingGoal: 200,
-    //                         donationCount: 0,
-    //                         featured: i < 3,
-    //                         slug: p.slug || `giveth-${p.id}`,
-    //                         website: `https://giveth.io/project/${p.slug}`,
-    //                         location: 'Global'
-    //                     };
-    //                 })
-    //                 .filter(Boolean);
-
-    //             if (mapped.length > 0) {
-    //                 let results = mapped;
-    //                 if (featured === 'true') results = results.filter(p => p.featured).slice(0, 3);
-    //                 if (category !== 'ALL') results = results.filter(p => p.category === category);
-    //                 if (search) {
-    //                     const q = search.toLowerCase();
-    //                     results = results.filter(p => p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q));
-    //                 }
-    //                 return NextResponse.json({ success: true, data: results, source: 'giveth' });
-    //             }
-    //         }
-    //     }
-    // } catch (err) {
-    //     // Silently fall through to curated data
-    // }
-
     // ─── Local Database Projects ──────────────────────────────────
     let dbProjects = [];
     try {
-        await dbConnect();
-        const localProjects = await Project.find({ status: 'APPROVED' }).lean();
+        const localProjects = await prisma.project.findMany({
+            where: { status: 'APPROVED' },
+        });
         dbProjects = localProjects.map(p => ({
             ...p,
-            _id: p._id.toString(),
-            source: 'local'
+            _id: p.id,
+            totalTipped: p.totalRaised || 0,
+            tipCount: p.tipCount || 0,
+            source: 'local',
         }));
     } catch (dbErr) {
-        console.error("Local DB fetch failed:", dbErr);
+        console.error('Local DB fetch failed:', dbErr);
     }
 
     // ─── Curated fallback ───────────────────────────────────────────
@@ -231,38 +63,36 @@ export async function GET(request) {
 
     // ─── Real-time Tip Aggregation ──────────────────────────────────
     try {
-        await dbConnect();
-        // Calculate totals for EVERY project in our DB
-        const tipStats = await Tip.aggregate([
-            {
-                $group: {
-                    _id: "$projectId",
-                    totalAmount: { $sum: "$amount" },
-                    count: { $sum: 1 }
-                }
-            }
-        ]);
+        const tipStats = await prisma.tip.groupBy({
+            by: ['projectId'],
+            _sum: { amount: true },
+            _count: { _all: true },
+        });
 
         // Map tip stats for easy lookup
         const statsMap = {};
         tipStats.forEach(stat => {
-            statsMap[stat._id] = stat;
+            statsMap[stat.projectId] = {
+                totalAmount: stat._sum.amount || 0,
+                count: stat._count._all,
+            };
         });
 
         // Merge stats into results
         results = results.map(p => {
-            const stats = statsMap[p._id];
+            const pid = p._id || p.id;
+            const stats = statsMap[pid];
             if (stats) {
                 return {
                     ...p,
-                    totalRaised: stats.totalAmount,
-                    donationCount: stats.count
+                    totalTipped: stats.totalAmount,
+                    tipCount: stats.count,
                 };
             }
             return p;
         });
     } catch (statError) {
-        console.warn("Failed to aggregate tip stats:", statError);
+        console.warn('Failed to aggregate tip stats:', statError);
     }
 
     if (featured === 'true') results = results.filter(p => p.featured).slice(0, 3);
@@ -270,7 +100,7 @@ export async function GET(request) {
     if (search) {
         const q = search.toLowerCase();
         results = results.filter(p =>
-            p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q)
+            p.name.toLowerCase().includes(q) || (p.description || '').toLowerCase().includes(q)
         );
     }
 

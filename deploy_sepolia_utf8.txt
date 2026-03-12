@@ -1,0 +1,29 @@
+﻿
+[1/4] Compiling ClearFundRegistry.sol...
+  Compiled successfully! Bytecode size: 13,084 bytes
+
+[2/4] Connecting to Celo Sepolia Testnet...
+  RPC: https://forno.celo-sepolia.celo-testnet.org
+  Chain ID: 11142220
+  Deployer: 0xb4044a66E1d4780398AeF38Af56b4D51797Aea49
+  Balance: 3.3 CELO
+
+[3/4] Deploying contract...
+  Transaction sent: 0x8ecff6c94b37cfaf7d06ad462ac29951cc3a87a824c9c78104e651a9e0cfa570
+  Waiting for confirmation...
+
+[4/4] Verifying deployment...
+
+=======================================================
+  DEPLOYMENT SUCCESSFUL!
+=======================================================
+  Contract:  ClearFund Registry
+  Version:   2.3.0
+  Address:   0xDA79ADdD7a2191b8484D1f02E9138625ACbE9Ea8
+  Network:   Celo Sepolia Testnet
+  Explorer:  https://celo-sepolia.celoscan.io/address/0xDA79ADdD7a2191b8484D1f02E9138625ACbE9Ea8
+=======================================================
+
+  Add this to your .env file:
+  NEXT_PUBLIC_CLEARFUND_REGISTRY_ADDRESS=0xDA79ADdD7a2191b8484D1f02E9138625ACbE9Ea8
+

@@ -17,8 +17,8 @@ const HeroSection = ({ setModalOpen }) => {
     },
     {
       heading: "Support GoodCollective \n And Empower Communities.",
-      subtext: "Donate tokens today to directly fund essential initiatives and create lasting\nsocial change.",
-      btnText: "Donate Now",
+      subtext: "Tip tokens today to directly fund essential initiatives and create lasting\nsocial change.",
+      btnText: "Tip Now",
       btnLink: "/donate"
     }
   ]

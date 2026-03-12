@@ -6,12 +6,12 @@ const ProjectCard = ({ project }) => {
     const {
         name,
         slug,
-        tagline,
+        description,
         category,
         logo,
-        totalRaised = 0,
+        totalTipped = 0,
         fundingGoal,
-        donationCount = 0,
+        tipCount = 0,
         location,
     } = project;
 
@@ -58,8 +58,8 @@ const ProjectCard = ({ project }) => {
                                 <span className="text-xs font-bold">{location}</span>
                             </div>
                         )}
-                        <p className="text-gray-400 font-medium text-[14px] line-clamp-4 leading-relaxed tracking-tight group-hover/card:text-gray-600 transition-colors">
-                            {tagline}
+                        <p className="text-gray-400 font-medium text-[13px] line-clamp-3 leading-relaxed tracking-tight group-hover/card:text-gray-600 transition-colors">
+                            {description || tagline}
                         </p>
                     </div>
 
@@ -75,11 +75,11 @@ const ProjectCard = ({ project }) => {
                     <div className="flex items-center pt-6 mt-4 border-t border-gray-100/50 justify-between">
                         <div>
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Total Tipped</div>
-                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">(G$) {totalRaised.toLocaleString()}</div>
+                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">(G$) {totalTipped.toLocaleString()}</div>
                         </div>
                         <div className="text-center">
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Backers</div>
-                            <div className="text-xl font-black text-[#003E52] tracking-tight">{donationCount}</div>
+                            <div className="text-xl font-black text-[#003E52] tracking-tight">{tipCount}</div>
                         </div>
                         <div className="text-right">
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Category</div>

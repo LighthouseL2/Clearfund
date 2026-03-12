@@ -15,7 +15,7 @@ const MenuDropdown = ({ openMenu, setOpenMenu, toggle, setToggle, setModalOpen }
                     <Link href={"/grants"} onClick={() => setOpenMenu(false)}>Funding</Link>
                 </li>
                 <li className="hover:bg-white/50 hover:scale-105 transition-all block hover:text-[#00AFAA] w-full p-3 rounded-md font-bold ">
-                    <Link href={"/projects"} onClick={() => setOpenMenu(false)}>Donate</Link>
+                    <Link href={"/projects"} onClick={() => setOpenMenu(false)}>Tip</Link>
                 </li>
             </ul>
 

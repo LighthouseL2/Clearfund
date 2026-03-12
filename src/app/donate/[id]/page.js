@@ -8,12 +8,12 @@ import { usePrivy, useWallets } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
 import ModalConnect from "@/components/modalConnect"
 import CampaignInfoModal from "@/components/CampaignInfoModal"
-import DonationSuccessModal from "@/components/DonationSuccessModal"
-import DonationErrorModal from "@/components/DonationErrorModal"
+import TipSuccessModal from "@/components/TipSuccessModal"
+import TipErrorModal from "@/components/TipErrorModal"
 import ShareCampaignModal from "@/components/ShareCampaignModal"
 import WalletNotConnectedModal from "@/components/WalletNotConnectedModal"
-import { useTokenBalance, useDonate } from "@/hooks/useDonation"
-import { COLLECTIVE_ADDRESSES, DEFAULT_COLLECTIVE_ADDRESS, SUPPORTED_TOKENS } from "@/lib/contracts/donation"
+import { useTokenBalance, useTip } from "@/hooks/useTip"
+import { COLLECTIVE_ADDRESSES, DEFAULT_COLLECTIVE_ADDRESS, SUPPORTED_TOKENS } from "@/lib/contracts/tip"
 import { getCollectiveById } from "@/lib/collectivesData"
 import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
@@ -56,8 +56,8 @@ export default function CampaignDonatePage() {
     // Balance hooks — use selectedToken
     const activeBalanceHook = useTokenBalance(selectedToken.symbol, address)
 
-    // Donation hook
-    const { donate, status, txHash, error, reset, isLoading, isSuccess, isError } = useDonate()
+    // Tip hook
+    const { tip, status, txHash, error, reset, isLoading, isSuccess, isError } = useTip()
 
     const balance = activeBalanceHook.balance || 0
     const parsedAmount = parseFloat(amount) || 0
@@ -76,7 +76,7 @@ export default function CampaignDonatePage() {
         }
     }
 
-    // Handle donation
+    // Handle tip
     const handleConfirm = async () => {
         if (!authenticated) {
             setShowWalletModal(true)
@@ -85,7 +85,7 @@ export default function CampaignDonatePage() {
 
         if (!isConfirmEnabled) return
 
-        const hash = await donate({
+        const hash = await tip({
             tokenSymbol: selectedToken.symbol,
             amount: parsedAmount,
             collectiveAddress,
@@ -97,8 +97,8 @@ export default function CampaignDonatePage() {
         }
     }
 
-    // Handle donate again — navigate to main donate page
-    const handleDonateAgain = () => {
+    // Handle tip again — navigate to main donate page
+    const handleTipAgain = () => {
         reset()
         setAmount('')
         setShowSuccessModal(false)
@@ -234,11 +234,11 @@ export default function CampaignDonatePage() {
                             </div>
                         </div>
 
-                        {/* RIGHT COLUMN — Donation Panel */}
+                        {/* RIGHT COLUMN — Tip Panel */}
                         <div className="w-full lg:w-[400px] shrink-0">
                             <div className="bg-white rounded-[28px] border border-gray-300 shadow-[0px_8px_30px_rgba(0,0,0,0.04)] p-9 lg:sticky lg:top-8">
                                 <h2 className="text-[22px] font-black text-gray-900 mb-2 tracking-tight">How much?</h2>
-                                <p className="text-[14px] text-gray-500 mb-8 font-medium">Donate using Gooddollar on Celo</p>
+                                <p className="text-[14px] text-gray-500 mb-8 font-medium">Tip using Gooddollar on Celo</p>
 
                                 <div className="border border-gray-300 focus-within:border-black focus-within:ring-1 focus-within:ring-black/5 transition-all rounded-[24px] px-4 py-4 flex items-center justify-between mb-8 relative bg-gray-50/30">
                                     <div className="relative" ref={dropdownRef}>
@@ -324,10 +324,10 @@ export default function CampaignDonatePage() {
 
                                 <div className="border border-gray-300 rounded-xl px-4 py-4">
                                     <h3 className="text-[13px] font-semibold text-gray-900 mb-1.5">
-                                        You are about to make a donation.
+                                        You are about to send a tip.
                                     </h3>
                                     <p className="text-[12px] text-gray-400 leading-relaxed">
-                                        Pressing &quot;Confirm&quot; will begin the donation process. You will need to confirm using your connected wallet.
+                                        Pressing &quot;Confirm&quot; will begin the tipping process. You will need to confirm using your connected wallet.
                                     </p>
                                 </div>
                             </div>
@@ -344,17 +344,17 @@ export default function CampaignDonatePage() {
                 />
             )}
 
-            {/* Donation Success Modal */}
+            {/* Tip Success Modal */}
             {showSuccessModal && (
-                <DonationSuccessModal
+                <TipSuccessModal
                     onClose={() => { setShowSuccessModal(false); reset(); }}
-                    onDonateAgain={handleDonateAgain}
+                    onTipAgain={handleTipAgain}
                 />
             )}
 
-            {/* Donation Error Modal */}
+            {/* Tip Error Modal */}
             {showErrorModal && (
-                <DonationErrorModal
+                <TipErrorModal
                     onClose={() => { setShowErrorModal(false); reset(); }}
                     onRetry={() => { setShowErrorModal(false); handleConfirm(); }}
                     error={error}

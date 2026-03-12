@@ -5,9 +5,9 @@ import { Coins, Heart, Users, Globe } from 'lucide-react';
 
 const StatSection = () => {
     const [stats, setStats] = useState({
-        totalGDonated: 0,
+        totalGTipped: 0,
         projectCount: 0,
-        donorCount: 0,
+        tipperCount: 0,
     });
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const StatSection = () => {
     const items = [
         {
             label: 'Total G$ Tipped',
-            value: stats.totalGDonated.toLocaleString(),
+            value: stats.totalGTipped.toLocaleString(),
             icon: <Coins className="h-6 w-6 text-gd-teal" />,
             color: 'bg-gd-teal/10',
         },
@@ -40,7 +40,7 @@ const StatSection = () => {
         },
         {
             label: 'Tippers',
-            value: stats.donorCount,
+            value: stats.tipperCount,
             icon: <Heart className="h-6 w-6 text-pink-500 fill-current" />,
             color: 'bg-pink-50',
         },

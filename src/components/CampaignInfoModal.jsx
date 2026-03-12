@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { COLLECTIVE_ADDRESSES, CELOSCAN_ADDRESS_URL, DEFAULT_COLLECTIVE_ADDRESS } from '@/lib/contracts/donation'
+import { COLLECTIVE_ADDRESSES, CELOSCAN_ADDRESS_URL, DEFAULT_COLLECTIVE_ADDRESS } from '@/lib/contracts/tip'
 import Link from 'next/link'
 import { shortAddress } from '@/components/userDetails'
 

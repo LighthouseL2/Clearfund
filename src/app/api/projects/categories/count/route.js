@@ -1,38 +1,31 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import Project from '@/models/Project';
+import prisma from '@/lib/db';
 
 export async function GET() {
     try {
-        try {
-            await dbConnect();
-        } catch (dbError) {
-            return NextResponse.json({
-                success: true,
-                counts: {
-                    CLIMATE: 12,
-                    REFI: 8,
-                    SOCIAL_IMPACT: 15,
-                    PUBLIC_GOODS: 24,
-                    GOODDOLLAR_GRANTEE: 10,
-                    GRANT_SEEKER: 20,
-                    GOODCOLLECTIVE: 5
-                }
-            });
-        }
-
-        const counts = await Project.aggregate([
-            { $match: { status: 'APPROVED' } },
-            { $group: { _id: '$category', count: { $sum: 1 } } },
-        ]);
+        const counts = await prisma.project.groupBy({
+            by: ['category'],
+            where: { status: 'APPROVED' },
+            _count: { _all: true },
+        });
 
         const formattedCounts = counts.reduce((acc, curr) => {
-            acc[curr._id] = curr.count;
+            acc[curr.category] = curr._count._all;
             return acc;
         }, {});
 
         return NextResponse.json({ success: true, counts: formattedCounts });
     } catch (error) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        console.error('Category count error:', error.message);
+        return NextResponse.json({
+            success: true,
+            counts: {
+                CLIMATE: 0,
+                SOCIAL_IMPACT: 0,
+                EDUCATION: 0,
+                GOODDOLLAR_GRANTEE: 0,
+                GRANT_SEEKER: 0,
+            },
+        });
     }
 }

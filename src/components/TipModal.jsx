@@ -1,11 +1,11 @@
 'use client'
 import React, { useState, useRef, useEffect } from "react";
 import { useWallets } from "@privy-io/react-auth";
-import { useTokenBalance, useDonate } from "@/hooks/useDonation";
-import { SUPPORTED_TOKENS, CELOSCAN_TX_URL } from "@/lib/contracts/donation";
+import { useTokenBalance, useTip } from "@/hooks/useTip";
+import { SUPPORTED_TOKENS, CELOSCAN_TX_URL } from "@/lib/contracts/tip";
 import Link from "next/link";
 
-export default function DonationModal({ onClose, collectiveAddress, onDonationSuccess }) {
+export default function TipModal({ onClose, collectiveAddress, onTipSuccess }) {
     const { wallets } = useWallets();
     const address = wallets[0]?.address;
 
@@ -17,8 +17,8 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
     // Real balance hooks
     const gDollarBalance = useTokenBalance('G$', address);
 
-    // Donation hook
-    const { donate, status, txHash, error, reset, isLoading, isSuccess, isError } = useDonate();
+    // Tip hook
+    const { tip, status, txHash, error, reset, isLoading, isSuccess, isError } = useTip();
 
     const getBalance = (symbol) => {
         if (symbol === 'G$') return gDollarBalance.balance;
@@ -55,18 +55,18 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
     const handleConfirm = async () => {
         if (!isConfirmEnabled) return;
 
-        const hash = await donate({
+        const hash = await tip({
             tokenSymbol: selectedCurrency.symbol,
             amount: parseFloat(amount),
             collectiveAddress,
         });
 
         if (hash) {
-            // Refetch balances after successful donation
+            // Refetch balances after successful tip
             gDollarBalance.refetch();
 
-            if (onDonationSuccess) {
-                onDonationSuccess({
+            if (onTipSuccess) {
+                onTipSuccess({
                     txHash: hash,
                     amount: parseFloat(amount),
                     symbol: selectedCurrency.symbol,
@@ -112,14 +112,14 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
                         </div>
 
                         <h2 className="text-[22px] leading-tight font-bold text-gray-800 text-center mb-8 max-w-[260px]">
-                            Your donation has been processed successfully!
+                            Your tip has been processed successfully!
                         </h2>
 
                         <button
                             onClick={() => { reset(); setAmount(""); }}
                             className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-[#2e943c] transition-all shadow-lg active:scale-[0.98]"
                         >
-                            Donate again
+                            Tip again
                         </button>
                         <button
                             onClick={() => { reset(); onClose(); }}
@@ -142,7 +142,7 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
 
                         <h2 className="text-[24px] font-black text-gray-800 text-center mb-1">Error!</h2>
                         <p className="text-[16px] text-gray-500 text-center mb-8 font-medium">
-                            Your donation request could not be processed.
+                            Your tip request could not be processed.
                         </p>
 
                         <button
@@ -160,7 +160,7 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
                     <>
                         <h2 className="text-[22px] font-black tracking-tight mb-1.5">How much?</h2>
                         <p className="text-sm text-gray-500 mb-8 font-medium">
-                            Donate using Gooddollar on celo
+                            Tip using Gooddollar on Celo
                         </p>
 
                         <div className="relative mb-8" ref={dropdownRef}>
@@ -277,11 +277,11 @@ export default function DonationModal({ onClose, collectiveAddress, onDonationSu
 
                         <div className="border border-[#D9D9D9] px-4 py-4 my-2 rounded-lg">
                             <h1 className="mb-2 text-sm font-medium text-black leading-tight">
-                                You are about to make a donation.
+                                You are about to send a tip.
                             </h1>
                             <p className="text-xs font-medium text-black/50 leading-snug">
-                                Pressing &quot;Confirm&quot; will begin the donation process. You will need to
-                                confirm using your connected wallet. Your donation will be sent on the Celo blockchain.
+                                Pressing &quot;Confirm&quot; will begin the tipping process. You will need to
+                                confirm using your connected wallet. Your tip will be sent on the Celo blockchain.
                             </p>
                         </div>
                     </>

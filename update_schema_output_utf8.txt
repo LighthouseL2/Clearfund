@@ -1,0 +1,30 @@
+﻿Connected to database.
+Applying schema updates...
+node : Error updating schema: 
+error: relation 
+"tips_txhash_key" already 
+exists
+At line:1 char:1
++ node update-db-schema.mjs > 
+update_schema_output.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: (Error upd  
+  ating ... already exists:   
+ String) [], RemoteExcepti    
+on
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
+    at C:\Users\hp\.gemini\ant
+igravity\scratch\Clearfund\nod
+e_modules\pg\lib\client.js:631
+:17
+    at process.processTicksAnd
+Rejections (node:internal/proc
+ess/task_queues:103:5)
+    at async updateSchema (fil
+e:///C:/Users/hp/.gemini/antig
+ravity/scratch/Clearfund/updat
+e-db-schema.mjs:52:9)

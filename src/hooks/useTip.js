@@ -11,7 +11,7 @@ import {
     SUPPORTED_TOKENS,
     DEFAULT_COLLECTIVE_ADDRESS,
     CELO_CHAIN_ID,
-} from '@/lib/contracts/donation'
+} from '@/lib/contracts/tip'
 
 /**
  * Hook to fetch the user's balance for a specific token
@@ -77,15 +77,15 @@ export function useAllTokenBalances(userAddress) {
 }
 
 /**
- * Hook to execute a donation transaction using Privy's embedded wallet
+ * Hook to execute a tip transaction using Privy's embedded wallet
  */
-export function useDonate() {
+export function useTip() {
     const [status, setStatus] = useState('idle') // idle | sending | confirming | success | error
     const [txHash, setTxHash] = useState(null)
     const [error, setError] = useState(null)
     const { wallets } = useWallets()
 
-    const donate = useCallback(
+    const tip = useCallback(
         async ({ tokenSymbol, amount, collectiveAddress }) => {
             const token = SUPPORTED_TOKENS.find((t) => t.symbol === tokenSymbol)
             if (!token) {
@@ -217,7 +217,7 @@ export function useDonate() {
                 setStatus('success')
                 return hash
             } catch (err) {
-                console.error('Detailed Donation Error:', err?.message || err)
+                console.error('Detailed Tip Error:', err?.message || err)
 
                 // Detailed error mapping
                 let message = err.shortMessage || err.message || 'Transaction failed'
@@ -230,7 +230,7 @@ export function useDonate() {
                     // Provide actually helpful advice for common RPC issues
                     message = 'Network connectivity issue. Please ensure your wallet is on Celo Mainnet and your internet is stable. If the problem persists, try again in a few minutes.'
                 } else if (message.includes('exceeds the balance')) {
-                    message = `Insufficient ${tokenSymbol} balance for this donation.`
+                    message = `Insufficient ${tokenSymbol} balance for this tip.`
                 } else {
                     // Fallback to the short message if possible
                     message = err.shortMessage || "The transaction couldn't be simulated. This usually happens if you don't have enough CELO for gas or if the amount is too high."
@@ -251,7 +251,7 @@ export function useDonate() {
     }, [])
 
     return {
-        donate,
+        tip,
         status,
         txHash,
         error,

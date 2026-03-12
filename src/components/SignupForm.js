@@ -77,7 +77,7 @@ const SignupForm = ({ open, setOpen }) => {
                             <Image
                                 width={180}
                                 height={45}
-                                src={"/assets/clearfund%20logo.png"}
+                                src={"/assets/clearfund_logo.png"}
                                 alt='clearfund logo'
                                 className="h-auto"
                             />

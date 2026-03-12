@@ -88,7 +88,6 @@ export default function RootLayout({ children }) {
                 theme: "light",
                 landingHeader: (
                   <div key="custom-privy-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0.5rem', marginBottom: '1rem', width: '100%' }}>
-                    <img key="privy-logo" src="/assets/clearfund%20logo.png" alt="ClearFund" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain' }} />
                     <span key="privy-title" style={{ fontFamily: 'monospace', fontSize: '24px', fontWeight: 'bold' }}>Log in or sign up</span>
                   </div>
                 ),

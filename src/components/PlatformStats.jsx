@@ -5,9 +5,9 @@ import { Globe, Users, ArrowUpRight, TrendingUp, ShieldCheck } from "lucide-reac
 
 const PlatformStats = () => {
     const [stats, setStats] = useState({
-        totalGDonated: 0,
+        totalGTipped: 0,
         projectCount: 0,
-        donorCount: 0
+        tipperCount: 0
     });
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const PlatformStats = () => {
         },
         {
             label: "Tippers",
-            value: stats.donorCount.toString(),
+            value: stats.tipperCount.toString(),
             suffix: "+",
             icon: <Users className="w-8 h-8" />,
             color: "text-[#00AFAA]",

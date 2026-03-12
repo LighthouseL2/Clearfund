@@ -1,49 +1,52 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import Project from '@/models/Project';
-import Tip from '@/models/Tip';
+import prisma from '@/lib/db';
+import { CURATED_REFI_PROJECTS } from '@/lib/curatedProjects';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
     try {
-        try {
-            await dbConnect();
-        } catch (dbError) {
-            console.warn("Database connection failed, returning mock data:", dbError.message);
-            return NextResponse.json({
-                success: true,
-                data: {
-                    totalGDonated: 0,
-                    projectCount: 6,
-                    donorCount: 0,
-                    isMock: true
-                },
-            });
-        }
-
         // Aggregated stats: Sum of ALL tips across the entire platform
-        const tipSummary = await Tip.aggregate([
-            { $group: { _id: null, total: { $sum: '$amount' } } },
-        ]);
-        const totalAmount = tipSummary[0]?.total || 0;
+        const tipSummary = await prisma.tip.aggregate({
+            _sum: { amount: true },
+        });
+        const totalGTipped = tipSummary._sum.amount || 0;
 
         // Real number of projects: Approved in DB + Curated Hardcoded ones
-        const dbProjectCount = await Project.countDocuments({ status: 'APPROVED' });
-        // We have 6 curated ReFi projects defined in the hybrid API
-        const projectCount = 6 + dbProjectCount;
+        const dbProjectCount = await prisma.project.count({
+            where: { status: 'APPROVED' },
+        });
+        const projectCount = CURATED_REFI_PROJECTS.length + dbProjectCount;
 
-        // Count unique donor wallets (tippers)
-        const donors = await Tip.distinct('donorWallet');
-        const donorCount = donors.length;
+        // Count unique tipper wallets
+        const tippers = await prisma.tip.findMany({
+            distinct: ['donorWallet'],
+            select: { donorWallet: true },
+        });
+        const tipperCount = tippers.length;
 
         return NextResponse.json({
             success: true,
             data: {
-                totalGDonated: totalAmount,
-                projectCount: projectCount,
-                donorCount: donorCount,
+                totalGTipped,
+                projectCount,
+                tipperCount,
+                timestamp: new Date().toISOString(),
             },
         });
     } catch (error) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+        console.error('Stats API error:', error.message);
+        // Graceful fallback with curated data
+        return NextResponse.json({
+            success: true,
+            data: {
+                totalGTipped: 0,
+                projectCount: CURATED_REFI_PROJECTS.length,
+                tipperCount: 0,
+                timestamp: new Date().toISOString(),
+            },
+            isMock: true,
+        });
     }
 }

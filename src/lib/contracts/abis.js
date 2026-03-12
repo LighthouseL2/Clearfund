@@ -1,48 +1,44 @@
 /**
  * Contract ABIs - Minimal ABI exports for ClearFundRegistry
- * Only includes functions and events we actually use
+ * Updated for V2.3 (Deadline Removed)
  */
 
 export const CLEARFUND_REGISTRY_ABI = [
   // Write functions
   {
     inputs: [
-      { name: "title", type: "string", internalType: "string" },
-      { name: "url", type: "string", internalType: "string" },
-      { name: "deadline", type: "uint256", internalType: "uint256" },
-      { name: "imageCID", type: "string", internalType: "string" }
+      { name: "textInfo", type: "string[8]", internalType: "string[8]" },
+      { name: "assets", type: "string[2]", internalType: "string[2]" }
     ],
-    name: "submitGrant",
+    name: "submitProject",
     outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
     stateMutability: "nonpayable",
     type: "function"
   },
   {
     inputs: [
-      { name: "grantId", type: "uint256", internalType: "uint256" },
-      { name: "newTitle", type: "string", internalType: "string" },
-      { name: "newUrl", type: "string", internalType: "string" },
-      { name: "newDeadline", type: "uint256", internalType: "uint256" },
-      { name: "newImageCID", type: "string", internalType: "string" }
+      { name: "projectId", type: "uint256", internalType: "uint256" },
+      { name: "textInfo", type: "string[8]", internalType: "string[8]" },
+      { name: "assets", type: "string[2]", internalType: "string[2]" }
     ],
-    name: "updateGrant",
+    name: "updateProject",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function"
   },
   {
     inputs: [
-      { name: "grantId", type: "uint256", internalType: "uint256" },
+      { name: "projectId", type: "uint256", internalType: "uint256" },
       { name: "reason", type: "string", internalType: "string" }
     ],
-    name: "deactivateGrant",
+    name: "deactivateProject",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function"
   },
   {
-    inputs: [{ name: "grantId", type: "uint256", internalType: "uint256" }],
-    name: "reactivateGrant",
+    inputs: [{ name: "projectId", type: "uint256", internalType: "uint256" }],
+    name: "reactivateProject",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function"
@@ -51,7 +47,7 @@ export const CLEARFUND_REGISTRY_ABI = [
   // Read functions
   {
     inputs: [{ name: "", type: "address", internalType: "address" }],
-    name: "submitterGrantCount",
+    name: "submitterProjectCount",
     outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
     stateMutability: "view",
     type: "function"
@@ -65,7 +61,7 @@ export const CLEARFUND_REGISTRY_ABI = [
   },
   {
     inputs: [],
-    name: "MAX_GRANTS_PER_SUBMITTER",
+    name: "MAX_PROJECTS_PER_SUBMITTER",
     outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
     stateMutability: "view",
     type: "function"
@@ -78,28 +74,27 @@ export const CLEARFUND_REGISTRY_ABI = [
     type: "function"
   },
   {
-    inputs: [],
-    name: "MIN_DEADLINE_DURATION",
-    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [{ name: "grantId", type: "uint256", internalType: "uint256" }],
-    name: "getGrant",
+    inputs: [{ name: "projectId", type: "uint256", internalType: "uint256" }],
+    name: "getProject",
     outputs: [
       {
         components: [
           { name: "title", type: "string", internalType: "string" },
-          { name: "url", type: "string", internalType: "string" },
-          { name: "deadline", type: "uint256", internalType: "uint256" },
+          { name: "description", type: "string", internalType: "string" },
+          { name: "location", type: "string", internalType: "string" },
+          { name: "website", type: "string", internalType: "string" },
+          { name: "twitter", type: "string", internalType: "string" },
+          { name: "github", type: "string", internalType: "string" },
+          { name: "impactDescription", type: "string", internalType: "string" },
+          { name: "category", type: "string", internalType: "string" },
           { name: "submitter", type: "address", internalType: "address" },
-          { name: "imageCID", type: "string", internalType: "string" },
+          { name: "logoCID", type: "string", internalType: "string" },
+          { name: "bannerCID", type: "string", internalType: "string" },
           { name: "active", type: "bool", internalType: "bool" }
         ],
         name: "",
         type: "tuple",
-        internalType: "struct ClearFundRegistry.Grant"
+        internalType: "struct ClearFundRegistry.ReFiProject"
       }
     ],
     stateMutability: "view",
@@ -110,20 +105,26 @@ export const CLEARFUND_REGISTRY_ABI = [
       { name: "offset", type: "uint256", internalType: "uint256" },
       { name: "limit", type: "uint256", internalType: "uint256" }
     ],
-    name: "getActiveGrants",
+    name: "getActiveProjects",
     outputs: [
       {
         components: [
           { name: "title", type: "string", internalType: "string" },
-          { name: "url", type: "string", internalType: "string" },
-          { name: "deadline", type: "uint256", internalType: "uint256" },
+          { name: "description", type: "string", internalType: "string" },
+          { name: "location", type: "string", internalType: "string" },
+          { name: "website", type: "string", internalType: "string" },
+          { name: "twitter", type: "string", internalType: "string" },
+          { name: "github", type: "string", internalType: "string" },
+          { name: "impactDescription", type: "string", internalType: "string" },
+          { name: "category", type: "string", internalType: "string" },
           { name: "submitter", type: "address", internalType: "address" },
-          { name: "imageCID", type: "string", internalType: "string" },
+          { name: "logoCID", type: "string", internalType: "string" },
+          { name: "bannerCID", type: "string", internalType: "string" },
           { name: "active", type: "bool", internalType: "bool" }
         ],
-        name: "grantData",
+        name: "projectData",
         type: "tuple[]",
-        internalType: "struct ClearFundRegistry.Grant[]"
+        internalType: "struct ClearFundRegistry.ReFiProject[]"
       },
       { name: "totalActive", type: "uint256", internalType: "uint256" }
     ],
@@ -132,20 +133,26 @@ export const CLEARFUND_REGISTRY_ABI = [
   },
   {
     inputs: [{ name: "submitter", type: "address", internalType: "address" }],
-    name: "getGrantsBySubmitter",
+    name: "getProjectsBySubmitter",
     outputs: [
       {
         components: [
           { name: "title", type: "string", internalType: "string" },
-          { name: "url", type: "string", internalType: "string" },
-          { name: "deadline", type: "uint256", internalType: "uint256" },
+          { name: "description", type: "string", internalType: "string" },
+          { name: "location", type: "string", internalType: "string" },
+          { name: "website", type: "string", internalType: "string" },
+          { name: "twitter", type: "string", internalType: "string" },
+          { name: "github", type: "string", internalType: "string" },
+          { name: "impactDescription", type: "string", internalType: "string" },
+          { name: "category", type: "string", internalType: "string" },
           { name: "submitter", type: "address", internalType: "address" },
-          { name: "imageCID", type: "string", internalType: "string" },
+          { name: "logoCID", type: "string", internalType: "string" },
+          { name: "bannerCID", type: "string", internalType: "string" },
           { name: "active", type: "bool", internalType: "bool" }
         ],
         name: "",
         type: "tuple[]",
-        internalType: "struct ClearFundRegistry.Grant[]"
+        internalType: "struct ClearFundRegistry.ReFiProject[]"
       }
     ],
     stateMutability: "view",
@@ -156,43 +163,43 @@ export const CLEARFUND_REGISTRY_ABI = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: "grantId", type: "uint256", internalType: "uint256" },
+      { indexed: true, name: "projectId", type: "uint256", internalType: "uint256" },
       { indexed: true, name: "submitter", type: "address", internalType: "address" },
       { indexed: false, name: "title", type: "string", internalType: "string" },
-      { indexed: false, name: "deadline", type: "uint256", internalType: "uint256" }
+      { indexed: false, name: "location", type: "string", internalType: "string" },
+      { indexed: false, name: "category", type: "string", internalType: "string" }
     ],
-    name: "GrantSubmitted",
+    name: "ProjectSubmitted",
     type: "event"
   },
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: "grantId", type: "uint256", internalType: "uint256" },
+      { indexed: true, name: "projectId", type: "uint256", internalType: "uint256" },
       { indexed: true, name: "updater", type: "address", internalType: "address" },
       { indexed: false, name: "newTitle", type: "string", internalType: "string" },
-      { indexed: false, name: "newDeadline", type: "uint256", internalType: "uint256" }
+      { indexed: false, name: "newLocation", type: "string", internalType: "string" }
     ],
-    name: "GrantUpdated",
+    name: "ProjectUpdated",
     type: "event"
   },
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: "grantId", type: "uint256", internalType: "uint256" },
+      { indexed: true, name: "projectId", type: "uint256", internalType: "uint256" },
       { indexed: true, name: "deactivatedBy", type: "address", internalType: "address" },
       { indexed: false, name: "reason", type: "string", internalType: "string" }
     ],
-    name: "GrantDeactivated",
+    name: "ProjectDeactivated",
     type: "event"
   },
   {
     anonymous: false,
     inputs: [
-      { indexed: true, name: "grantId", type: "uint256", internalType: "uint256" },
+      { indexed: true, name: "projectId", type: "uint256", internalType: "uint256" },
       { indexed: true, name: "reactivatedBy", type: "address", internalType: "address" }
     ],
-    name: "GrantReactivated",
+    name: "ProjectReactivated",
     type: "event"
   }
 ]
-

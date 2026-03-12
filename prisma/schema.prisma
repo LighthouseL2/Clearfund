@@ -1,0 +1,62 @@
+// Prisma schema for ClearFund — Supabase (PostgreSQL)
+// Updated for ReFi Project V2.2 (Banner Image)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Project {
+  id                String   @id @default(cuid())
+  name              String
+  slug              String   @unique
+  tagline           String?
+  description       String?
+  category          String?
+  logo              String?
+  banner            String?  // NEW: banner image URL
+  images            String[] @default([])
+  
+  // Custom ReFi Fields
+  location          String?
+  website           String?
+  twitter           String?
+  github            String?
+  karmaLink         String?
+  impactDescription String? // "Where your tip goes"
+  milestones        String? // Optional milestones description
+  
+  fundingGoal       Float?
+  totalRaised       Float    @default(0)
+  tipCount          Int      @default(0)
+  walletAddress     String
+  status            String?  @default("PENDING")
+  featured          Boolean? @default(false)
+  
+  tips              Tip[]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @default(now()) @updatedAt
+
+  @@map("projects")
+}
+
+model Tip {
+  id            String   @id @default(cuid())
+  projectId     String
+  project       Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  donorWallet   String
+  amount        Float
+  txHash        String   @unique
+  network       String?  @default("celo")
+  anonymous     Boolean? @default(false)
+
+  createdAt     DateTime @default(now())
+
+  @@map("tips")
+}

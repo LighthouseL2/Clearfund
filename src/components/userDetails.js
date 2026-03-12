@@ -72,46 +72,57 @@ const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
 
                 {/* Dropdown Menu */}
                 {toggle && (
-                    <ul className='w-[160px] absolute bg-white shadow-[0px_4px_16px_rgba(0,0,0,0.08)] border border-gray-100 rounded-xl text-left right-0 top-[110%] z-30 overflow-hidden'>
-                        <li className='w-full border-b border-gray-100'>
-                            <Link href="/profile" className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-gray-700 hover:bg-gray-50 flex items-center transition-colors' onClick={() => setToggle(false)}>
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <ul className='w-[220px] absolute bg-white shadow-[0px_12px_40px_rgba(0,0,0,0.12)] border border-gray-100 rounded-[2rem] text-left right-0 top-[125%] z-30 overflow-hidden p-2 animate-in fade-in slide-in-from-top-3 duration-300 selection:bg-transparent'>
+                        <li className='w-full'>
+                            <Link href="/profile" className='w-full px-5 py-3.5 gap-4 text-[14px] font-bold text-[#003E52]/70 hover:bg-gray-50 rounded-2xl flex items-center transition-all' onClick={() => setToggle(false)}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-80">
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                     <circle cx="12" cy="7" r="4" />
                                 </svg>
                                 Profile
                             </Link>
                         </li>
+
                         {isAdmin(walletAddress) && (
-                            <li className='w-full border-b border-gray-100'>
-                                <Link href="/admin/projects" className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-gd-teal hover:bg-gd-teal/5 flex items-center transition-colors' onClick={() => setToggle(false)}>
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <li className='w-full mt-1 border-t border-gray-50 pt-1'>
+                                <Link href="/admin/projects" className='w-full px-5 py-3.5 gap-4 text-[14px] font-bold text-[#00AFAA] hover:bg-[#00AFAA]/5 rounded-2xl flex items-center transition-all' onClick={() => setToggle(false)}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                                        <path d="M12 8v8" />
-                                        <path d="M8 12h8" />
+                                        <line x1="12" y1="8" x2="12" y2="16" />
+                                        <line x1="8" y1="12" x2="16" y2="12" />
                                     </svg>
                                     Admin Panel
                                 </Link>
                             </li>
                         )}
-                        <li className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-gray-700 hover:bg-gray-50 flex items-center cursor-pointer transition-colors border-b border-gray-100' onClick={handleCopy}>
-                            {isCopied ? (
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#39b54a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M5 13l4 4L19 7" />
-                                </svg>
-                            ) : (
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 0 012-2h9a2 0 012 2v1" />
-                                </svg>
-                            )}
-                            <span className={isCopied ? "text-[#39b54a]" : ""}>
-                                {isCopied ? "Copied!" : "Copy address"}
-                            </span>
+
+                        <li className='w-full mt-1 border-t border-gray-50 pt-1'>
+                            <div className='w-full px-5 py-3.5 gap-4 text-[14px] font-bold text-[#003E52]/70 hover:bg-gray-50 rounded-2xl flex items-center cursor-pointer transition-all' onClick={handleCopy}>
+                                {isCopied ? (
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                ) : (
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-80">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                                        <path d="M5 15H4a2 2 0 01-2-2V4a2 0 012-2h9a2 0 012 2v1" />
+                                    </svg>
+                                )}
+                                <span className={isCopied ? "text-[#22c55e]" : ""}>
+                                    {isCopied ? "Copied!" : "Copy address"}
+                                </span>
+                            </div>
                         </li>
-                        <li className='w-full px-4 py-3.5 gap-2.5 text-[14px] font-semibold text-red-600 hover:bg-red-50 flex items-center cursor-pointer transition-colors' onClick={handleLogout}>
-                            <LogOut size={16} />
-                            Disconnect
+
+                        <li className='w-full mt-1 border-t border-gray-50 pt-1'>
+                            <div className='w-full px-5 py-3.5 gap-4 text-[14px] font-bold text-red-500 hover:bg-red-50 rounded-2xl flex items-center cursor-pointer transition-all' onClick={handleLogout}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 0 0 1 2-2h4" />
+                                    <polyline points="16 17 21 12 16 7" />
+                                    <line x1="21" y1="12" x2="9" y2="12" />
+                                </svg>
+                                Disconnect
+                            </div>
                         </li>
                     </ul>
                 )}

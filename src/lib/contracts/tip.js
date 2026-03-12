@@ -1,13 +1,13 @@
 /**
- * Donation contract configuration
- * Token addresses and ABIs for G$ and CELO donations on the Celo network
+ * Tipping contract configuration
+ * Token addresses and ABIs for G$ and CELO tips on the Celo network
  */
 
 // GoodDollar (G$) token on Celo mainnet
 export const G_DOLLAR_ADDRESS = '0x62B8B11039FcfE5aB0C56E502b1C372A3d2a9c7A'
 
 // CELO native token wrapper (for balance checks via ERC20 interface)
-// CELO is the native gas token, so native transfers are used for CELO donations
+// CELO is the native gas token, so native transfers are used for CELO tips
 export const CELO_TOKEN_ADDRESS = '0x471EcE3750Da237f93B8E339c536989b8978a438'
 
 // Minimal ERC20 ABI for token interactions
@@ -53,7 +53,7 @@ export const ERC20_ABI = [
         stateMutability: 'view',
         type: 'function',
     },
-    // Transfer event for querying donation history
+    // Transfer event for querying tip history
     {
         anonymous: false,
         inputs: [
@@ -94,8 +94,8 @@ export const SUPPORTED_TOKENS = [
     },
 ]
 
-// Collective pool addresses (the addresses that receive donations)
-// These correspond to the collectives displayed on the donate page
+// Collective pool addresses (the addresses that receive tips)
+// These correspond to the collectives displayed on the tip page
 export const COLLECTIVE_ADDRESSES = {
     1: '0x0d43131f1577310D6349bAF9D6Da4fC1Cd39764C', // GoodDollar UBI+ for Women – Colombia
     2: '0xC1dCdf8E70acB44CDbB688C91A4883Cf9052Ea9c', // Silvi - Kenya's Kakamega forest

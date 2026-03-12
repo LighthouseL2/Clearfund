@@ -143,7 +143,7 @@ export default function ShareCampaignModal({ collective, onClose }) {
                         <p className="text-[13px] text-gray-600 leading-[1.65]">
                             Every share brings this campaign closer to its goal. When you spread the word,
                             you connect people who care with causes that matter. Share this campaign with
-                            your network and help channel GoodDollar donations to those who need it most.
+                            your network and help channel GoodDollar tips to those who need it most.
                         </p>
                     </div>
 
@@ -174,8 +174,8 @@ export default function ShareCampaignModal({ collective, onClose }) {
                         <button
                             onClick={handleCopy}
                             className={`shrink-0 px-4 py-3 border-l border-gray-200 text-[12px] font-semibold transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${copied
-                                    ? 'bg-[#39B54A] text-white'
-                                    : 'bg-white text-gray-600 hover:bg-[#EAF9EE] hover:text-[#39B54A]'
+                                ? 'bg-[#39B54A] text-white'
+                                : 'bg-white text-gray-600 hover:bg-[#EAF9EE] hover:text-[#39B54A]'
                                 }`}
                         >
                             {copied ? (

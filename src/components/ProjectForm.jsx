@@ -131,7 +131,7 @@ const ProjectForm = () => {
                     <ul className="space-y-4">
                         <li className="flex items-start gap-3">
                             <div className="mt-1 bg-gd-teal p-1 rounded-full"><CheckCircle2 className="h-3 w-3" /></div>
-                            <span className="text-sm font-medium">Direct G$ donations</span>
+                            <span className="text-sm font-medium">Direct G$ tips</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <div className="mt-1 bg-gd-teal p-1 rounded-full"><CheckCircle2 className="h-3 w-3" /></div>

@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePrivy } from '@privy-io/react-auth';
-import { useTokenBalance, useDonate } from '@/hooks/useDonation';
+import { useTokenBalance, useTip } from '@/hooks/useTip';
+import { SUPPORTED_TOKENS, DEFAULT_COLLECTIVE_ADDRESS } from '@/lib/contracts/tip';
 import { CheckCircle2, AlertCircle, Loader2, Wallet, Coins, ChevronDown } from 'lucide-react';
 
 const TOKENS = [
@@ -14,16 +15,22 @@ const TOKENS = [
 const TipWidget = ({ project, onTipSuccess }) => {
     const { authenticated, login, user } = usePrivy();
     const [amount, setAmount] = useState('');
-    const [isSuccess, setIsSuccess] = useState(false);
+    const [showSuccessScreen, setShowSuccessScreen] = useState(false); // Renamed to avoid conflict with useTip's isSuccess
     const [selectedToken, setSelectedToken] = useState('G$');
     const [showTokenMenu, setShowTokenMenu] = useState(false);
 
     const { balance, isLoading: balanceLoading, refetch: refetchBalance } = useTokenBalance(selectedToken, user?.wallet?.address);
-    const { donate, status, txHash, error, reset, isLoading: tipLoading } = useDonate();
+    const { tip, isLoading: isTipping, status: tipStatus, error: txError, isSuccess: tipTxSuccess, txHash, reset } = useTip(); // Renamed isSuccess to tipTxSuccess
 
-    const progress = project.fundingGoal ? Math.min(Math.round((project.totalRaised / project.fundingGoal) * 100), 100) : 0;
+    const totalTipped = project.totalTipped || project.totalRaised || 0;
+    const progress = project.fundingGoal ? Math.min(Math.round((totalTipped / project.fundingGoal) * 100), 100) : 0;
 
-    const handleTip = async () => {
+    const handleTipSubmit = async (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        // Check if tipping is disabled based on loading state
+        if (isTipping) return;
+
         if (!authenticated) {
             login();
             return;
@@ -38,10 +45,14 @@ const TipWidget = ({ project, onTipSuccess }) => {
         }
 
         try {
-            const hash = await donate({
+            const collectiveAddress = (project?.collectiveAddress && /^0x[a-fA-F0-9]{40}$/.test(project?.collectiveAddress))
+                ? project?.collectiveAddress
+                : DEFAULT_COLLECTIVE_ADDRESS;
+
+            const hash = await tip({
                 tokenSymbol: selectedToken,
                 amount: finalAmount,
-                collectiveAddress: project.walletAddress || '0x4267b622288d81a49ab3145554c9bf8e2150e68c', // mock address if undefined
+                collectiveAddress: collectiveAddress,
             });
 
             if (hash) {
@@ -81,7 +92,7 @@ const TipWidget = ({ project, onTipSuccess }) => {
                     onTipSuccess(tipData);
                 }
 
-                setIsSuccess(true);
+                setShowSuccessScreen(true); // Use the local state for showing success screen
                 refetchBalance(); // Refresh balance after tip
             }
         } catch (err) {
@@ -89,7 +100,11 @@ const TipWidget = ({ project, onTipSuccess }) => {
         }
     };
 
-    if (isSuccess) {
+    const isSubmitDisabled = () => {
+        return isTipping || !amount || parseFloat(amount) <= 0 || parseFloat(amount) > balance;
+    };
+
+    if (showSuccessScreen) { // Use the local state for showing success screen
         return (
             <div className="bg-[#F8F9FA] rounded-[1.5rem] shadow-sm p-8 border border-gray-200 text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -113,7 +128,7 @@ const TipWidget = ({ project, onTipSuccess }) => {
                 <div className="flex flex-col gap-3">
                     <button
                         onClick={() => {
-                            setIsSuccess(false);
+                            setShowSuccessScreen(false); // Use the local state for showing success screen
                             setAmount('');
                             reset();
                         }}
@@ -137,7 +152,7 @@ const TipWidget = ({ project, onTipSuccess }) => {
             <p className="text-gray-500 text-sm mb-4">
                 Tip with GoodDollar, cUSD on Celo network
             </p>
-            <div className="space-y-6">
+            <form onSubmit={handleTipSubmit} className="space-y-6">
                 {/* Token Selector */}
                 <div>
                     <label className="text-xs font-bold text-gray-800 mb-2 block">Tip Token</label>
@@ -204,10 +219,10 @@ const TipWidget = ({ project, onTipSuccess }) => {
                     )}
                 </div>
 
-                {error && (
+                {txError && (
                     <div className="p-3 bg-red-50 border border-red-100 rounded-xl flex items-start gap-2 text-red-600 text-xs font-medium">
                         <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
-                        {error}
+                        {txError}
                         <button onClick={reset} className="ml-auto underline">Dismiss</button>
                     </div>
                 )}
@@ -218,20 +233,20 @@ const TipWidget = ({ project, onTipSuccess }) => {
                 </div>
 
                 <button
-                    onClick={handleTip}
-                    disabled={tipLoading || !amount || parseFloat(amount) <= 0}
+                    type="submit"
+                    disabled={isSubmitDisabled()}
                     className="w-full py-4 bg-[#00AFAA] hover:bg-[#003E52] text-white font-black text-xs uppercase tracking-widest rounded-3xl transition-all shadow-2xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98]"
                 >
-                    {tipLoading ? (
+                    {isTipping ? (
                         <>
                             <Loader2 className="h-5 w-5 animate-spin" />
-                            {status === 'sending' ? 'Signing...' : 'Confirming'}
+                            {tipStatus === 'sending' ? 'Signing...' : 'Confirming'}
                         </>
                     ) : (
                         authenticated ? `Confirm` : 'Connect Wallet'
                     )}
                 </button>
-            </div>
+            </form>
         </div>
     );
 };

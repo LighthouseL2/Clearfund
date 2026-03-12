@@ -45,7 +45,8 @@ const AdminDashboard = () => {
 
     const filteredProjects = (activeTab === 'pending' ? pending : allProjects).filter(project =>
         project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.tagline.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (project.description || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (project.tagline || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -131,7 +132,7 @@ const AdminDashboard = () => {
                         <div className="max-w-md relative">
                             <input
                                 type="text"
-                                placeholder="Search projects by name, tagline or category..."
+                                placeholder="Search projects by name, description or category..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="w-full pl-4 pr-10 py-3 bg-white border border-gray-100 rounded-2xl shadow-sm focus:ring-2 focus:ring-gd-teal outline-none transition-all text-sm font-medium"
@@ -192,7 +193,7 @@ const AdminDashboard = () => {
                                                             {project.name}
                                                             {project.featured && <Star className="h-3 w-3 text-gd-gold fill-current" />}
                                                         </div>
-                                                        <div className="text-xs text-gray-400 font-medium truncate max-w-[200px]">{project.tagline}</div>
+                                                        <div className="text-xs text-gray-400 font-medium truncate max-w-[200px]">{project.description || project.tagline}</div>
                                                     </div>
                                                 </div>
                                             </td>
@@ -315,8 +316,8 @@ const AdminDashboard = () => {
                                         {selectedProject.name}
                                         {selectedProject.featured && <Star className="h-6 w-6 text-gd-gold fill-current" />}
                                     </h2>
-                                    <p className="text-xl text-gray-500 font-medium leading-relaxed italic">
-                                        &quot;{selectedProject.tagline}&quot;
+                                    <p className="text-sm text-gray-500 font-medium leading-relaxed italic line-clamp-2">
+                                        {selectedProject.tagline ? `"${selectedProject.tagline}"` : (selectedProject.description?.substring(0, 100) + '...')}
                                     </p>
                                 </div>
                             </div>

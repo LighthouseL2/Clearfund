@@ -108,7 +108,7 @@ export default function GrantDashboard() {
                     {/* <span className="text-[14px] font-bold">G$ 122.10</span> */}
                     <div className="flex items-center gap-1">
                         <ConnectButton
-                            
+
                         />
                     </div>
                 </div>
@@ -182,7 +182,7 @@ export default function GrantDashboard() {
 
                             <div>
                                 <Link href={"/donate"} className="mt-10 text-[#3A7768] py-2 px-13 font-black items-center justify-center rounded-full bg-[#95EED8] text-[16px] font-sans inline-flex">
-                                    Donate Now
+                                    Tip Now
                                 </Link>
                                 <p className="text-[12px] text-gray-500 py-8 mt-4">
                                     Powered by <a href="#">GoodDollar</a>

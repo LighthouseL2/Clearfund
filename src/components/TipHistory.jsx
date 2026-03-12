@@ -11,7 +11,7 @@ import {
     COLLECTIVE_ADDRESSES,
     CELOSCAN_TX_URL,
     CELOSCAN_ADDRESS_URL,
-} from "@/lib/contracts/donation";
+} from "@/lib/contracts/tip";
 
 // Create a public client for reading blockchain data
 const publicClient = createPublicClient({
@@ -53,17 +53,17 @@ function ExternalLinkIcon() {
     );
 }
 
-export default function DonationHistory() {
-    const [donations, setDonations] = useState([]);
+export default function TipHistory() {
+    const [tips, setTips] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [displayCount, setDisplayCount] = useState(15);
 
     useEffect(() => {
-        fetchDonationHistory();
+        fetchTipHistory();
     }, []);
 
-    async function fetchDonationHistory() {
+    async function fetchTipHistory() {
         try {
             setLoading(true);
             setError(null);
@@ -73,7 +73,7 @@ export default function DonationHistory() {
                 ...new Set(Object.values(COLLECTIVE_ADDRESSES)),
             ];
 
-            const allDonations = [];
+            const allTips = [];
 
             // Fetch G$ Transfer events to collective addresses
             for (const collectiveAddr of collectiveAddresses) {
@@ -94,13 +94,13 @@ export default function DonationHistory() {
                         toBlock: "latest",
                     });
 
-                    // Process G$ donations
+                    // Process G$ tips
                     for (const log of gDollarLogs) {
                         const block = await publicClient.getBlock({
                             blockNumber: log.blockNumber,
                         });
 
-                        allDonations.push({
+                        allTips.push({
                             address: log.args.from,
                             amount: parseFloat(formatUnits(log.args.value, 18)).toFixed(2), // G$ has 18 decimals on Celo
                             symbol: "G$",
@@ -112,7 +112,6 @@ export default function DonationHistory() {
                     }
 
                     // Fetch CELO (native) transfers to the collective
-                    // For native transfers we check internal transactions via block scanning
                     // Using the wrapped CELO token transfers as a proxy
                     const celoLogs = await publicClient.getLogs({
                         address: CELO_TOKEN_ADDRESS,
@@ -124,13 +123,13 @@ export default function DonationHistory() {
                         toBlock: "latest",
                     });
 
-                    // Process CELO donations
+                    // Process CELO tips
                     for (const log of celoLogs) {
                         const block = await publicClient.getBlock({
                             blockNumber: log.blockNumber,
                         });
 
-                        allDonations.push({
+                        allTips.push({
                             address: log.args.from,
                             amount: parseFloat(formatUnits(log.args.value, 18)).toFixed(4),
                             symbol: "CELO",
@@ -146,19 +145,19 @@ export default function DonationHistory() {
             }
 
             // Sort by timestamp descending (newest first)
-            allDonations.sort((a, b) => b.timestamp - a.timestamp);
+            allTips.sort((a, b) => b.timestamp - a.timestamp);
 
-            // Store all donations; display will be handled by displayCount
-            setDonations(allDonations);
+            // Store all tips; display will be handled by displayCount
+            setTips(allTips);
         } catch (err) {
-            console.error("Error fetching donation history:", err);
-            setError("Failed to load donation history");
+            console.error("Error fetching tip history:", err);
+            setError("Failed to load tip history");
         } finally {
             setLoading(false);
         }
     }
 
-    const displayedDonations = donations.slice(0, displayCount);
+    const displayedTips = tips.slice(0, displayCount);
 
     return (
         <div className="w-full max-w-3xl py-6 pt-28">
@@ -175,42 +174,42 @@ export default function DonationHistory() {
                         </div>
                     ))}
                     <p className="text-center text-sm text-gray-400 mt-2">
-                        Loading donations from Celo blockchain...
+                        Loading tips from Celo blockchain...
                     </p>
                 </div>
             ) : error ? (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
                     <p className="text-red-600 text-sm">{error}</p>
                     <button
-                        onClick={fetchDonationHistory}
+                        onClick={fetchTipHistory}
                         className="mt-3 text-sm text-blue-600 hover:underline"
                     >
                         Try again
                     </button>
                 </div>
-            ) : displayedDonations.length === 0 ? (
+            ) : displayedTips.length === 0 ? (
                 <div className="bg-gray-50 rounded-lg p-8 text-center">
-                    <p className="text-gray-500 text-sm">No donations found yet. Be the first to donate!</p>
+                    <p className="text-gray-500 text-sm">No tips found yet. Be the first to tip!</p>
                 </div>
             ) : (
                 <div className="flex flex-col gap-6">
-                    {displayedDonations.map((donation, i) => (
+                    {displayedTips.map((tip, i) => (
                         <div
-                            key={`${donation.txHash}-${i}`}
+                            key={`${tip.txHash}-${i}`}
                             className={`flex items-center justify-between px-6 ${i % 2 === 0 ? "bg-[#F3F4F6] rounded-lg py-5" : "bg-white"}`}
                         >
                             <span className="text-[24px] font-black text-[#082553] space-y-4">
                                 <Link
-                                    href={CELOSCAN_ADDRESS_URL(donation.address)}
+                                    href={CELOSCAN_ADDRESS_URL(tip.address)}
                                     target="_blank"
                                     className="hover:text-blue-600 transition-colors"
                                 >
-                                    {shortAddress(donation.address)}
+                                    {shortAddress(tip.address)}
                                 </Link>
-                                {" "}donated {donation.amount}{donation.symbol} {donation.time}
+                                {" "}tipped {tip.amount}{tip.symbol} {tip.time}
                             </span>
                             <Link
-                                href={CELOSCAN_TX_URL(donation.txHash)}
+                                href={CELOSCAN_TX_URL(tip.txHash)}
                                 target="_blank"
                                 className="ml-4 text-[#1e3a5f] hover:opacity-60 transition-opacity"
                                 title="View transaction on Celoscan"
@@ -221,7 +220,7 @@ export default function DonationHistory() {
                     ))}
 
 
-                    {donations.length > displayCount && (
+                    {tips.length > displayCount && (
                         <div className="flex justify-center mt-4">
                             <button
                                 onClick={() => setDisplayCount(prev => prev + 15)}

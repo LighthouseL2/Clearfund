@@ -3,9 +3,9 @@
 import React from 'react'
 
 /**
- * Donation Error modal — matches the design with red X and "Try again" button.
+ * Tip Error modal — matches the design with red X and "Try again" button.
  */
-export default function DonationErrorModal({ onClose, onRetry, error }) {
+export default function TipErrorModal({ onClose, onRetry, error }) {
     return (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
             <div
@@ -35,7 +35,7 @@ export default function DonationErrorModal({ onClose, onRetry, error }) {
                 {/* Text */}
                 <h2 className="text-[24px] font-black text-gray-800 text-center mb-1">Error!</h2>
                 <p className="text-[16px] text-gray-500 text-center mb-10 font-medium">
-                    Your donation request could not be processed.
+                    Your tip request could not be processed.
                 </p>
 
                 {/* Button */}

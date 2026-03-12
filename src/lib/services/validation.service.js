@@ -36,34 +36,6 @@ export function validateGrantUrl(url) {
 }
 
 /**
- * Validates grant deadline
- * @param {string|Date} deadline - Deadline date (string or Date object)
- * @param {number} minDeadlineTimestamp - Minimum deadline as Unix timestamp (optional)
- * @returns {{valid: boolean, error?: string, deadlineTimestamp?: number}}
- */
-export function validateDeadline(deadline, minDeadlineTimestamp) {
-  if (!deadline) {
-    return { valid: false, error: 'Deadline is required' }
-  }
-  
-  const deadlineTimestamp = typeof deadline === 'string' 
-    ? Math.floor(new Date(deadline).getTime() / 1000)
-    : Math.floor(deadline.getTime() / 1000)
-  
-  const minDeadline = minDeadlineTimestamp || (Math.floor(Date.now() / 1000) + 604800) // Default 7 days
-  
-  if (deadlineTimestamp < minDeadline) {
-    const daysRequired = Math.ceil((minDeadline - Math.floor(Date.now() / 1000)) / 86400)
-    return { 
-      valid: false, 
-      error: `Deadline must be at least ${daysRequired} days from now` 
-    }
-  }
-  
-  return { valid: true, deadlineTimestamp }
-}
-
-/**
  * Validates grant limits (count, max, submission interval)
  * @param {number} grantCount - Current number of grants
  * @param {number} maxGrants - Maximum allowed grants
@@ -73,23 +45,23 @@ export function validateDeadline(deadline, minDeadlineTimestamp) {
  */
 export function validateGrantLimits(grantCount, maxGrants, lastSubmission, minInterval) {
   if (grantCount >= maxGrants) {
-    return { 
-      valid: false, 
-      error: `You have reached the maximum of ${maxGrants} grants` 
+    return {
+      valid: false,
+      error: `You have reached the maximum of ${maxGrants} grants`
     }
   }
-  
+
   if (lastSubmission > 0) {
     const timeSinceLastSubmission = Math.floor(Date.now() / 1000) - lastSubmission
     if (timeSinceLastSubmission < minInterval) {
       const hoursRemaining = Math.ceil((minInterval - timeSinceLastSubmission) / 3600)
-      return { 
-        valid: false, 
-        error: `Please wait ${hoursRemaining} hour(s) before submitting another grant` 
+      return {
+        valid: false,
+        error: `Please wait ${hoursRemaining} hour(s) before submitting another grant`
       }
     }
   }
-  
+
   return { valid: true }
 }
 

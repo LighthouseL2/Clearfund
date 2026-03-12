@@ -1,0 +1,6 @@
+[compiler.solc]
+exclude_paths = ["node_modules", ".next", "public"]
+include_paths = ["node_modules"]
+
+[generate]
+paths = ["src/contracts"]
