@@ -54,7 +54,7 @@ const PlatformStats = () => {
         {
             label: "Total Tip",
             value: totalDisplayValue,
-            prefix: "$",
+            prefix: "",
             suffix: "",
             icon: <DollarSign className="w-8 h-8" />,
             color: "text-[#00AFAA]",
