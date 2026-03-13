@@ -9,6 +9,7 @@ import "./globals.css";
 import { Suspense } from 'react';
 import Providers from '@/components/Provider';
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 // import code for google analytics tag
 import * as gtag from "@/lib/gtag";
@@ -108,6 +109,7 @@ export default function RootLayout({ children }) {
             </Suspense>
           </PrivyProvider>
         </Providers>
+        <Analytics />
 
       </body>
     </html>
