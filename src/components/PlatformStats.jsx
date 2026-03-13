@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { Globe, Users, ArrowUpRight, TrendingUp, ShieldCheck } from "lucide-react";
+import { Globe, Users, ArrowUpRight, TrendingUp, DollarSign } from "lucide-react";
 
 const PlatformStats = () => {
     const [stats, setStats] = useState({
@@ -35,26 +35,35 @@ const PlatformStats = () => {
         return num.toString();
     };
 
+    // Convert G$ to USD (1 G$ = $0.0001)
+    const totalUSD = (stats.totalGTipped * 0.0001).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+
     const statItems = [
         {
             label: "Impact Projects",
             value: stats.projectCount.toString(),
+            prefix: "",
             suffix: "+",
             icon: <Globe className="w-8 h-8" />,
             color: "text-[#00AFAA]",
             bgColor: "bg-[#00AFAA]/5"
         },
         {
-            label: "Platform Fees",
-            value: "0",
-            suffix: "%",
-            icon: <ShieldCheck className="w-8 h-8" />,
+            label: "Total Tip",
+            value: totalUSD,
+            prefix: "$",
+            suffix: " USD",
+            icon: <DollarSign className="w-8 h-8" />,
             color: "text-[#00AFAA]",
             bgColor: "bg-[#00AFAA]/5"
         },
         {
             label: "Tippers",
             value: stats.tipperCount.toString(),
+            prefix: "",
             suffix: "+",
             icon: <Users className="w-8 h-8" />,
             color: "text-[#00AFAA]",
@@ -86,8 +95,8 @@ const PlatformStats = () => {
                                 <div className={`w-20 h-20 ${item.bgColor} rounded-3xl flex items-center justify-center ${item.color} mb-8 group-hover:scale-110 transition-transform`}>
                                     {item.icon}
                                 </div>
-                                <div className="text-6xl font-black text-[#003E52] tracking-tighter mb-4 tabular-nums">
-                                    {item.value}<span className="text-[#00AFAA]">{item.suffix}</span>
+                                <div className="text-5xl font-black text-[#003E52] tracking-tighter mb-4 tabular-nums">
+                                    <span className="text-[#00AFAA]">{item.prefix}</span>{item.value}<span className="text-[#00AFAA] text-2xl ml-1">{item.suffix}</span>
                                 </div>
                                 <div className="text-xs font-black uppercase tracking-[0.2em] text-gray-400">
                                     {item.label}
