@@ -27,8 +27,8 @@ const StatSection = () => {
 
     const items = [
         {
-            label: 'Total G$ Tipped',
-            value: stats.totalGTipped.toLocaleString(),
+            label: 'Total Impact (USD)',
+            value: `$${(stats.totalGTipped * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}`,
             icon: <Coins className="h-6 w-6 text-gd-teal" />,
             color: 'bg-gd-teal/10',
         },

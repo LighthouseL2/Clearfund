@@ -13,18 +13,17 @@ export async function GET() {
         });
         const totalGTipped = tipSummary._sum.amount || 0;
 
-        // Real number of projects: Approved in DB + Curated Hardcoded ones
-        const dbProjectCount = await prisma.project.count({
+        // Real number of projects: Deduplicated count between DB + Curated
+        const dbSlugs = await prisma.project.findMany({
             where: { status: 'APPROVED' },
+            select: { slug: true }
         });
-        const projectCount = CURATED_REFI_PROJECTS.length + dbProjectCount;
+        const dbSlugSet = new Set(dbSlugs.map(p => p.slug));
+        const uniqueCuratedCount = CURATED_REFI_PROJECTS.filter(p => !dbSlugSet.has(p.slug)).length;
+        const projectCount = dbSlugs.length + uniqueCuratedCount;
 
-        // Count unique tipper wallets
-        const tippers = await prisma.tip.findMany({
-            distinct: ['donorWallet'],
-            select: { donorWallet: true },
-        });
-        const tipperCount = tippers.length;
+        // Count total number of tips as "Tippers" to match project-level "Backers" logic
+        const tipperCount = await prisma.tip.count();
 
         return NextResponse.json({
             success: true,

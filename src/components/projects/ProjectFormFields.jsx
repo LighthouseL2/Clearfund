@@ -7,12 +7,7 @@
 export function ProjectFormFields({ formData, onChange, errors }) {
   return (
     <div className="space-y-6">
-      <div className="p-4 bg-[#00AFAA]/5 border border-[#00AFAA]/10 rounded-2xl mb-8">
-        <p className="text-[11px] font-bold text-[#00AFAA] uppercase tracking-wider flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00AFAA] animate-pulse"></span>
-          ReFi Submission Portal (Only ReFi Projects allowed)
-        </p>
-      </div>
+
       <div className="mb-6">
         <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
           Project Name *
@@ -92,7 +87,7 @@ export function ProjectFormFields({ formData, onChange, errors }) {
           </label>
           <input
             type="text"
-            placeholder="e.g. Nairobi, Kenya"
+            placeholder="e.g. Nairobi, Kenya or Global/Remote"
             className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA] transition-all"
             value={formData.location || ''}
             onChange={(e) => onChange('location', e.target.value)}

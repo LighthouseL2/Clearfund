@@ -13,11 +13,18 @@ export async function GET(request, { params }) {
             return NextResponse.json({ success: false, error: 'Project not found' }, { status: 404 });
         }
 
+        // Fetch tip stats for this project
+        const tipStats = await prisma.tip.aggregate({
+            where: { projectId: project.id },
+            _sum: { amount: true },
+            _count: { _all: true }
+        });
+
         const data = {
             ...project,
             _id: project.id,
-            totalTipped: project.totalRaised || 0,
-            tipCount: project.tipCount || 0,
+            totalTipped: tipStats._sum.amount || 0,
+            tipCount: tipStats._count._all || 0,
         };
 
         return NextResponse.json({ success: true, data });

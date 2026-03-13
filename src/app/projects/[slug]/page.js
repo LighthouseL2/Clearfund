@@ -319,11 +319,14 @@ const ProjectDetailPage = ({ params }) => {
                             <div className="mt-6 flex gap-12 border-t border-gray-100 pt-6">
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Tipped</div>
-                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">(G$) {(project.totalTipped || 0).toLocaleString()}</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">
+                                        ${((project.totalTipped || 0) * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}
+                                        <span className="text-xs text-gray-400 ml-1 font-medium">USD</span>
+                                    </div>
                                 </div>
                                 <div>
                                     <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Backers</div>
-                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">{project.tipCount || 0}</div>
+                                    <div className="text-2xl font-black text-[#003E52] tracking-tighter">{tips.length}</div>
                                 </div>
                             </div>
                             <div className="flex items-center gap-1.5 text-gray-500 mt-6 pt-4 border-t border-gray-50/50">
@@ -421,7 +424,9 @@ const ProjectDetailPage = ({ params }) => {
 
                         {/* Tip History Card - Visible to all */}
                         <div className="bg-[#F8F9FA] rounded-[1.5rem] border border-gray-200 p-6 shadow-sm">
-                            <h2 className="text-lg font-bold text-[#111827] mb-4 px-2">Recent Tips</h2>
+                            <h2 className="text-lg font-bold text-[#111827] mb-4 px-2 transition-all duration-300">
+                                Recent Tips
+                            </h2>
                             {displayTips.length > 0 ? (
                                 <div className="space-y-3">
                                     {displayTips.map((d, i) => (
@@ -438,7 +443,7 @@ const ProjectDetailPage = ({ params }) => {
                                             </div>
                                             <div className="flex items-center gap-3">
                                                 <span className="text-sm font-bold text-gray-700 font-mono">
-                                                    (G$) {parseFloat(d.amount).toFixed(1)}
+                                                    ${(parseFloat(d.amount) * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })} USD
                                                 </span>
                                                 <a href={`https://celoscan.io/tx/${d.txHash || d._id || ''}`} target="_blank" rel="noopener noreferrer">
                                                     <ExternalLink className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600" />

@@ -139,8 +139,11 @@ export default function ProfilePage() {
                     {tips.length > 0 ? (
                         Object.entries(totals).map(([token, amount]) => (
                             <div key={token} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-center border-l-4 border-l-[#00AFAA]">
-                                <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Total Tipped ({token})</span>
-                                <span className="text-3xl font-black text-[#00AFAA]">(G$) {amount.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</span>
+                                <span className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Total Tipped</span>
+                                <span className="text-3xl font-black text-[#00AFAA]">
+                                    ${(amount * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}
+                                    <span className="text-xs text-gray-400 ml-1 font-medium">USD</span>
+                                </span>
                             </div>
                         ))
                     ) : (
@@ -185,7 +188,9 @@ export default function ProfilePage() {
                                     </div>
                                     <div className="flex items-center gap-6 justify-between md:justify-end">
                                         <div className="text-right">
-                                            <div className="text-lg font-black text-[#00AFAA]">(G$) {parseFloat(d.amount).toLocaleString()}</div>
+                                            <div className="text-lg font-black text-[#00AFAA]">
+                                                ${(parseFloat(d.amount) * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })} USD
+                                            </div>
                                         </div>
                                         {d.txHash && (
                                             <a

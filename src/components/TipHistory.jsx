@@ -206,7 +206,7 @@ export default function TipHistory() {
                                 >
                                     {shortAddress(tip.address)}
                                 </Link>
-                                {" "}tipped {tip.amount}{tip.symbol} {tip.time}
+                                {" "}tipped {tip.symbol === 'G$' ? `$${(parseFloat(tip.amount) * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })} USD` : `${tip.amount}${tip.symbol}`} {tip.time}
                             </span>
                             <Link
                                 href={CELOSCAN_TX_URL(tip.txHash)}

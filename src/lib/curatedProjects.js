@@ -81,7 +81,7 @@ export const CURATED_REFI_PROJECTS = [
     },
     {
         _id: "g2",
-        name: "Greenpill Nigeria",
+        name: "Green Pill Nigeria",
         tagline: "Decentralizing impact through Regenerative Finance (ReFi) tools, empowering local Nigerian builders to create high-impact, transparent public goods for their own communities.",
         category: "SOCIAL_IMPACT",
         logo: "/assets/greenpill-nigeria.jfif",
@@ -93,6 +93,7 @@ export const CURATED_REFI_PROJECTS = [
         website: "https://greenpill.network",
         socialLink: "https://x.com/greenpillnaija",
         location: "Nigeria",
-        walletAddress: "0xDd1c12f197E6D1E2FBA15487AaAE500eF6e07BCA"
+        walletAddress: "0xDd1c12f197E6D1E2FBA15487AaAE500eF6e07BCA",
+        description: "Greenpill Nigeria is a community-driven initiative focused on decentralizing impact through Regenerative Finance (ReFi) tools. We empower local builders and communities to create sustainable public goods using blockchain technology, fostering transparency and localized growth across the region."
     }
 ];

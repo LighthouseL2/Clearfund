@@ -13,6 +13,7 @@ const ProjectCard = ({ project }) => {
         fundingGoal,
         tipCount = 0,
         location,
+        tagline,
     } = project;
 
     const categoryLabels = {
@@ -29,7 +30,7 @@ const ProjectCard = ({ project }) => {
                 {/* CARD IMAGE SECTION (Landscape-oriented) */}
                 <div className="relative w-full aspect-[16/10] overflow-hidden shrink-0">
                     <img
-                        src={logo || 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80'}
+                        src={project.banner || logo || 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80'}
                         alt={name}
                         className="w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-1000 ease-in-out"
                     />
@@ -75,7 +76,10 @@ const ProjectCard = ({ project }) => {
                     <div className="flex items-center pt-6 mt-4 border-t border-gray-100/50 justify-between">
                         <div>
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Total Tipped</div>
-                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">(G$) {totalTipped.toLocaleString()}</div>
+                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">
+                                ${(totalTipped * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}
+                                <span className="text-[10px] text-gray-400 ml-1 font-medium">USD</span>
+                            </div>
                         </div>
                         <div className="text-center">
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Backers</div>

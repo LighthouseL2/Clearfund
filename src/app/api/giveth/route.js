@@ -58,8 +58,10 @@ export async function GET(request) {
         console.error('Local DB fetch failed:', dbErr);
     }
 
-    // ─── Curated fallback ───────────────────────────────────────────
-    let results = [...dbProjects, ...CURATED_REFI_PROJECTS];
+    // ─── Curated fallback + Deduplication ───────────────────────────
+    const existingSlugs = new Set(dbProjects.map(p => p.slug));
+    const uniqueCurated = CURATED_REFI_PROJECTS.filter(p => !existingSlugs.has(p.slug));
+    let results = [...dbProjects, ...uniqueCurated];
 
     // ─── Real-time Tip Aggregation ──────────────────────────────────
     try {
@@ -96,7 +98,12 @@ export async function GET(request) {
     }
 
     if (featured === 'true') {
-        results = results.filter(p => p.featured);
+        results = results.filter(p => p.featured || (p.totalTipped && p.totalTipped > 0));
+        // Sort by totalTipped desc or featured first
+        results.sort((a, b) => {
+            if (a.featured !== b.featured) return b.featured ? 1 : -1;
+            return (b.totalTipped || 0) - (a.totalTipped || 0);
+        });
         // Only slice if we have enough results, otherwise return what we have
         if (results.length > 3) results = results.slice(0, 3);
     }
@@ -104,7 +111,8 @@ export async function GET(request) {
     if (search) {
         const q = search.toLowerCase();
         results = results.filter(p =>
-            (p.name || '').toLowerCase().includes(q) || (p.description || '').toLowerCase().includes(q)
+            (p.name || '').toLowerCase().includes(q) ||
+            (p.location || '').toLowerCase().includes(q)
         );
     }
 

@@ -31,20 +31,30 @@ export default function ProjectsPage() {
         try {
             const resp = await fetch(`/api/giveth?category=${cat}&search=${encodeURIComponent(q)}`)
             const data = await resp.json()
-            if (data.success) setProjects(data.data)
+            if (data.success) {
+                setProjects(data.data)
+            }
         } catch (err) {
-            console.error(err)
+            console.error('Fetch Projects error:', err)
         } finally {
             setLoading(false)
         }
     }, [activeCategory, search])
 
+    // Live Search Effect with Debounce
     useEffect(() => {
-        fetchProjects(activeCategory, "")
-    }, [activeCategory])
+        const timer = setTimeout(() => {
+            fetchProjects(activeCategory, search);
+        }, 500); // 500ms debounce
+
+        return () => clearTimeout(timer);
+    }, [search, activeCategory, fetchProjects]);
 
     const handleSearch = (e) => {
-        if (e.key === "Enter") fetchProjects(activeCategory, search)
+        if (e.key === "Enter") {
+            e.preventDefault();
+            fetchProjects(activeCategory, search);
+        }
     }
 
     return (
@@ -90,9 +100,14 @@ export default function ProjectsPage() {
 
                 {/* Page Hero */}
                 <div className="mb-16">
-                    <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#00AFAA]/5 border border-[#00AFAA]/10 mb-8">
-                        <span className="w-2 h-2 rounded-full bg-[#00AFAA] animate-ping inline-block" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#00AFAA]">Impact Project Discovery</span>
+                    <div className="flex flex-wrap items-center gap-3 mb-8">
+                        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#00AFAA]/5 border border-[#00AFAA]/10">
+                            <span className="w-2 h-2 rounded-full bg-[#00AFAA] animate-ping inline-block" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#00AFAA]">Impact Project Discovery</span>
+                        </div>
+                        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gray-900 text-white border border-gray-800 shadow-xl">
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">{projects.length} Projects</span>
+                        </div>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-6">
                         Explore <span className="text-[#00AFAA]">Impact</span>
@@ -125,13 +140,21 @@ export default function ProjectsPage() {
                         <div className="relative w-full sm:w-80">
                             <input
                                 type="text"
-                                placeholder="Search projects..."
+                                placeholder="Search by name or location..."
                                 value={search}
                                 onChange={e => setSearch(e.target.value)}
                                 onKeyDown={handleSearch}
                                 className="w-full bg-white border border-gray-200 rounded-2xl px-12 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA]/50 transition-all shadow-sm"
                             />
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            {search && (
+                                <button
+                                    onClick={() => setSearch("")}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center bg-gray-100 text-gray-400 rounded-full hover:bg-gray-200 transition-colors text-[10px] font-bold"
+                                >
+                                    ✕
+                                </button>
+                            )}
                         </div>
                         <button
                             onClick={() => setShowSubmitModal(true)}

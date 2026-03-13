@@ -101,6 +101,7 @@ const TipWidget = ({ project, onTipSuccess }) => {
     };
 
     const isSubmitDisabled = () => {
+        if (!authenticated) return false;
         return isTipping || !amount || parseFloat(amount) <= 0 || parseFloat(amount) > balance;
     };
 
@@ -202,6 +203,11 @@ const TipWidget = ({ project, onTipSuccess }) => {
                         />
                         <span className="font-bold pr-4 text-gray-400">{selectedToken}</span>
                     </div>
+                    {amount && parseFloat(amount) > 0 && selectedToken === 'G$' && (
+                        <p className="mt-1 text-[10px] text-gray-400 font-bold ml-1">
+                            ≈ ${(parseFloat(amount) * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })} USD
+                        </p>
+                    )}
                 </div>
 
                 {/* Balance Display */}
@@ -213,9 +219,16 @@ const TipWidget = ({ project, onTipSuccess }) => {
                     {balanceLoading ? (
                         <Loader2 className="h-3 w-3 text-gray-400 animate-spin" />
                     ) : (
-                        <span className="text-xs font-black text-gray-800 flex items-center gap-1">
-                            {balance.toLocaleString()} {selectedToken}
-                        </span>
+                        <div className="text-right">
+                            <span className="text-xs font-black text-gray-800 flex items-center gap-1 justify-end">
+                                {balance.toLocaleString()} {selectedToken}
+                            </span>
+                            {selectedToken === 'G$' && (
+                                <p className="text-[9px] text-gray-400 font-bold mt-0.5">
+                                    ≈ ${(balance * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })} USD
+                                </p>
+                            )}
+                        </div>
                     )}
                 </div>
 

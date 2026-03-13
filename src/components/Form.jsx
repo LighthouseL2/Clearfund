@@ -165,7 +165,7 @@ export function Form({ setIsHidden }) {
                 <button onClick={() => setIsHidden(false)} className="absolute right-6 top-6 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-100"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg></button>
 
                 <div className="flex w-full shrink-0 flex-col items-start justify-center p-8 md:w-2/5 bg-gray-50/50">
-                    <h1 className="text-[32px] leading-tight font-black tracking-tighter mb-4">Submit your <br /><span className="text-[#00AFAA]">ReFi Project</span></h1>
+                    <h1 className="text-[32px] leading-tight font-black tracking-tighter mb-4">Submit your <br /><span className="text-[#00AFAA]">Project</span></h1>
                     <p className="text-gray-500 text-sm font-medium mb-8">Join the regenerative finance movement. Banner and logo are now mandatory.</p>
                     <Image src="/assets/add_grant_form_image.png" alt="Illustration" width={300} height={250} className="object-contain" />
                 </div>
@@ -250,7 +250,7 @@ export function Form({ setIsHidden }) {
                         </div>
 
                         <button onClick={handleSubmit} disabled={isSubmitting || isConfirming || isUploading || isSwitching} className="w-full bg-[#00AFAA] text-white font-bold py-4 rounded-full mt-4 hover:bg-[#003E52] transition-colors shadow-lg disabled:opacity-50">
-                            {isSwitching ? "Switching..." : isUploading ? "Uploading Images..." : isSubmitting ? "Submitting..." : isConfirming ? "Confirming..." : "Submit ReFi Project"}
+                            {isSwitching ? "Switching..." : isUploading ? "Uploading Images..." : isSubmitting ? "Submitting..." : isConfirming ? "Confirming..." : "Submit Project"}
                         </button>
 
                         {isError && <p className="text-red-500 text-[11px] text-center font-bold mt-2">{errorMessage}</p>}

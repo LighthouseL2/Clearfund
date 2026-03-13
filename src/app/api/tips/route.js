@@ -25,17 +25,23 @@ export async function GET(request) {
             where,
             orderBy: { createdAt: 'desc' },
             take: limit,
-            include: {
-                project: {
-                    select: { id: true, name: true, slug: true, logo: true },
-                },
-            },
         });
+
+        const neededProjectIds = [...new Set(tips.map(t => t.projectId).filter(id => !curatedMap[id]))];
+        let dbProjectMap = {};
+        if (neededProjectIds.length > 0) {
+            const dbProjects = await prisma.project.findMany({
+                where: { id: { in: neededProjectIds } },
+                select: { id: true, name: true, slug: true, logo: true }
+            });
+            dbProjectMap = dbProjects.reduce((acc, p) => { acc[p.id] = p; return acc; }, {});
+        }
 
         // Enrich each tip with project metadata (DB project or curated fallback)
         const enrichedTips = tips.map(t => {
-            const projectInfo = t.project
-                ? { _id: t.project.id, name: t.project.name, slug: t.project.slug, logo: t.project.logo }
+            const dbP = dbProjectMap[t.projectId];
+            const projectInfo = dbP
+                ? { _id: dbP.id, name: dbP.name, slug: dbP.slug, logo: dbP.logo }
                 : curatedMap[t.projectId]
                     ? { _id: t.projectId, ...curatedMap[t.projectId] }
                     : { _id: t.projectId, name: 'ReFi Project', slug: t.projectId, logo: '/donate-images/grass.jpg' };

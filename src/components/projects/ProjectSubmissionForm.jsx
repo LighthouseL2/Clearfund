@@ -202,7 +202,7 @@ export function ProjectSubmissionForm({ onSuccess, onCancel }) {
           className="px-8 py-3 bg-[#00AFAA] text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#003E52] transition-all shadow-lg flex-1 disabled:opacity-50"
           disabled={isPending || isConfirming || isUploading || isSwitching}
         >
-          {isSwitching ? 'Switching...' : isUploading ? 'Uploading...' : isPending ? 'Securing...' : isConfirming ? 'Finalizing...' : 'Submit ReFi Project'}
+          {isSwitching ? 'Switching...' : isUploading ? 'Uploading...' : isPending ? 'Securing...' : isConfirming ? 'Finalizing...' : 'Submit Project'}
         </button>
       </div>
 

@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { slugify } from '@/lib/utils/slugify';
 
+console.log("Forcing HMR on /api/projects");
+
 export async function GET(request) {
     try {
         const { searchParams } = new URL(request.url);
@@ -41,12 +43,31 @@ export async function GET(request) {
             orderBy,
         });
 
-        const data = projects.map(p => ({
-            ...p,
-            _id: p.id,
-            totalTipped: p.totalRaised || 0,
-            tipCount: p.tipCount || 0,
-        }));
+        // ─── Real-time Tip Aggregation ──────────────────────────────────
+        const tipStats = await prisma.tip.groupBy({
+            by: ['projectId'],
+            _sum: { amount: true },
+            _count: { _all: true },
+        });
+
+        // Map tip stats for easy lookup
+        const statsMap = {};
+        tipStats.forEach(stat => {
+            statsMap[stat.projectId] = {
+                totalAmount: stat._sum.amount || 0,
+                count: stat._count._all,
+            };
+        });
+
+        const data = projects.map(p => {
+            const stats = statsMap[p.id];
+            return {
+                ...p,
+                _id: p.id,
+                totalTipped: stats ? stats.totalAmount : (p.totalRaised || 0),
+                tipCount: stats ? stats.count : (p.tipCount || 0),
+            };
+        });
 
         return NextResponse.json({ success: true, data });
     } catch (error) {
