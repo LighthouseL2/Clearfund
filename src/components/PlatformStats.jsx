@@ -35,10 +35,10 @@ const PlatformStats = () => {
         return num.toString();
     };
 
-    // Convert G$ to USD (1 G$ = $0.0001)
-    const totalUSD = (stats.totalGTipped * 0.0001).toLocaleString('en-US', {
+    // Convert G$ to Cents (1 G$ = 1 cent / 100, which is 0.01 cents)
+    const totalCents = (stats.totalGTipped * 0.01).toLocaleString('en-US', {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 4,
+        maximumFractionDigits: 2,
     });
 
     const statItems = [
@@ -53,9 +53,9 @@ const PlatformStats = () => {
         },
         {
             label: "Total Tip",
-            value: totalUSD,
-            prefix: "$",
-            suffix: " USD",
+            value: totalCents,
+            prefix: "",
+            suffix: " cents",
             icon: <DollarSign className="w-8 h-8" />,
             color: "text-[#00AFAA]",
             bgColor: "bg-[#00AFAA]/5"
