@@ -38,7 +38,7 @@ const PlatformStats = () => {
     // Convert G$ to USD (1 G$ = $0.0001)
     const totalUSD = (stats.totalGTipped * 0.0001).toLocaleString('en-US', {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        maximumFractionDigits: 4,
     });
 
     const statItems = [
