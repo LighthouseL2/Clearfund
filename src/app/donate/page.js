@@ -31,7 +31,7 @@ const CollectiveImpactPage = () => {
                             <input
                                 type="text"
                                 placeholder="Search collectives..."
-                                className="pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm w-80 focus:ring-2 focus:ring-[#39B54A]/20 focus:border-[#39B54A] transition-all"
+                                className="pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm w-80 focus:ring-2 focus:ring-[#00AFAA]/20 focus:border-[#00AFAA] transition-all"
                             />
                             <Search className="absolute left-3 top-2.5 text-gray-400 w-4 h-4" />
                         </div>
@@ -41,7 +41,7 @@ const CollectiveImpactPage = () => {
                         {!authenticated ? (
                             <button
                                 onClick={login}
-                                className="px-6 py-2.5 bg-[#39B54A] text-white rounded-xl font-bold text-sm hover:bg-black transition-all shadow-sm"
+                                className="px-6 py-2.5 bg-[#00AFAA] text-white rounded-xl font-bold text-sm hover:bg-black transition-all shadow-sm"
                             >
                                 Connect Wallet
                             </button>
@@ -78,7 +78,7 @@ const CollectiveImpactPage = () => {
                                             className="object-cover group-hover:scale-110 transition-transform duration-700"
                                         />
                                         <div className="absolute top-4 left-4 flex gap-2">
-                                            <span className="bg-white/95 backdrop-blur-sm text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm text-[#39B54A]">
+                                            <span className="bg-white/95 backdrop-blur-sm text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm text-[#00AFAA]">
                                                 {collective.category}
                                             </span>
                                         </div>
@@ -87,11 +87,11 @@ const CollectiveImpactPage = () => {
                                     {/* Content */}
                                     <div className="p-8 flex flex-col flex-1">
                                         <div className="flex items-center gap-2 text-gray-400 text-xs font-bold uppercase tracking-widest mb-3">
-                                            <MapPin size={12} className="text-[#39B54A]" />
+                                            <MapPin size={12} className="text-[#00AFAA]" />
                                             {collective.location}
                                         </div>
 
-                                        <h2 className="text-2xl font-black mb-4 leading-[1.1] group-hover:text-[#39B54A] transition-colors line-clamp-2 min-h-[56px]">
+                                        <h2 className="text-2xl font-black mb-4 leading-[1.1] group-hover:text-[#00AFAA] transition-colors line-clamp-2 min-h-[56px]">
                                             {collective.title}
                                         </h2>
 
@@ -103,14 +103,14 @@ const CollectiveImpactPage = () => {
                                                     <span className="text-xl font-black text-[#111827]">${raised.toLocaleString()} <span className="text-gray-300 font-bold ml-1">/ ${goal.toLocaleString()}</span></span>
                                                 </div>
                                                 <div className="text-right">
-                                                    <span className="block text-[#39B54A] font-black text-lg">{Math.round(progress)}%</span>
+                                                    <span className="block text-[#00AFAA] font-black text-lg">{Math.round(progress)}%</span>
                                                 </div>
                                             </div>
 
                                             {/* Bar */}
                                             <div className="h-3 bg-gray-100 rounded-full overflow-hidden mb-6">
                                                 <div
-                                                    className="h-full bg-[#39B54A] rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(57,181,74,0.3)]"
+                                                    className="h-full bg-[#00AFAA] rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(0,175,170,0.3)]"
                                                     style={{ width: `${progress}%` }}
                                                 ></div>
                                             </div>
@@ -129,7 +129,7 @@ const CollectiveImpactPage = () => {
 
                                                 <button
                                                     onClick={() => handleTip(collective.id)}
-                                                    className="p-3 bg-gray-900 text-white rounded-xl hover:bg-[#39B54A] transition-all transform hover:scale-105 active:scale-95 shadow-lg"
+                                                    className="p-3 bg-gray-900 text-white rounded-xl hover:bg-[#00AFAA] transition-all transform hover:scale-105 active:scale-95 shadow-lg"
                                                 >
                                                     <ArrowRight size={20} />
                                                 </button>
