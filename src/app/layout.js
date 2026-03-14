@@ -17,8 +17,9 @@ export default function RootLayout({ children }) {
         <link href="https://db.onlinewebfonts.com/c/74613e9d0612d09be09dd6de7c898d50?family=Modern+Era"
           rel="stylesheet">
         </link>
-        <link rel="icon" href="/assets/favicon.png" type="image/png" />
-        <link rel="shortcut icon" href="/assets/favicon.png" type="image/png" />
+        <link rel="icon" href="/assets/favicon.png?v=2" type="image/png" sizes="32x32" />
+        <link rel="shortcut icon" href="/assets/favicon.png?v=2" type="image/png" />
+        <link rel="apple-touch-icon" href="/assets/favicon.png?v=2" />
         <title>ClearFund</title>
         {/* google analytics script */}
         <Script

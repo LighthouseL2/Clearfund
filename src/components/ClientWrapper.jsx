@@ -37,8 +37,14 @@ export default function ClientWrapper({ children }) {
                 loginMethods: ["wallet"],
                 defaultChain: celoWithRpc,
                 supportedChains: [celoWithRpc, baseSepolia],
+                walletConnectCloudProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
                 embeddedWallets: {
                     createOnLogin: "users-without-wallets"
+                },
+                externalWallets: {
+                    coinbaseWallet: {
+                        connectionOptions: "all"
+                    }
                 },
                 appearance: {
                     theme: "light",
@@ -46,10 +52,11 @@ export default function ClientWrapper({ children }) {
                     fontFamily: "monospace",
                     showWalletLoginFirst: true,
                     walletList: [
-                        "detected_ethereum_wallets",
                         "metamask",
                         "wallet_connect",
-                        "coinbase_wallet"
+                        "detected_ethereum_wallets",
+                        "coinbase_wallet",
+                        "rainbow",
                     ],
                 },
             }}
