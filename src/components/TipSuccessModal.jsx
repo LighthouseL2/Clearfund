@@ -7,12 +7,6 @@ import Image from 'next/image'
  * Tip Successful modal — matches the design with green checkmark, stars, and "Tip again" button.
  */
 export default function TipSuccessModal({ onClose, onTipAgain, onShare, amount, tokenSymbol, txHash }) {
-    const handleCopyTx = () => {
-        if (txHash) {
-            navigator.clipboard.writeText(txHash);
-            alert("Transaction hash copied!");
-        }
-    };
 
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[200] p-4" onClick={onClose}>
@@ -50,23 +44,6 @@ export default function TipSuccessModal({ onClose, onTipAgain, onShare, amount, 
                     </p>
                 </div>
 
-                {/* Tx Hash Box */}
-                {txHash && (
-                    <div className="w-full bg-gray-50 rounded-2xl p-4 border border-gray-100 mb-8">
-                        <div className="flex justify-between items-center mb-1">
-                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Transaction Hash</span>
-                            <button onClick={handleCopyTx} className="text-[10px] font-bold text-[#00AFAA] hover:underline uppercase tracking-widest">Copy</button>
-                        </div>
-                        <a
-                            href={`https://celoscan.io/tx/${txHash}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-mono text-gray-600 hover:text-[#00AFAA] break-all block leading-relaxed"
-                        >
-                            {txHash}
-                        </a>
-                    </div>
-                )}
 
                 {/* Buttons */}
                 <div className="w-full flex flex-col gap-3">

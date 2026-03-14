@@ -120,30 +120,6 @@ export default function TipModal({ onClose, collectiveAddress, onTipSuccess }) {
                             </p>
                         </div>
 
-                        {txHash && (
-                            <div className="w-full bg-gray-50 rounded-2xl p-5 border border-gray-100 mb-8 text-left">
-                                <div className="flex justify-between items-center mb-2">
-                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Transaction Hash</span>
-                                    <button
-                                        onClick={() => {
-                                            navigator.clipboard.writeText(txHash);
-                                            alert("Copied!");
-                                        }}
-                                        className="text-[10px] font-bold text-[#39B54A] hover:underline uppercase tracking-widest"
-                                    >
-                                        Copy
-                                    </button>
-                                </div>
-                                <a
-                                    href={`${CELOSCAN_TX_URL}${txHash}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-xs font-mono text-gray-600 hover:text-[#39B54A] break-all block leading-relaxed"
-                                >
-                                    {txHash}
-                                </a>
-                            </div>
-                        )}
 
                         <div className="w-full flex flex-col gap-3">
                             <button
