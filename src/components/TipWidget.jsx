@@ -12,7 +12,7 @@ const TOKENS = [
     { symbol: 'cUSD', name: 'cUSD', icon: '/assets/cusd.png' }
 ];
 
-const TipWidget = ({ project, onTipSuccess }) => {
+const TipWidget = ({ project, onTipSuccess, onShare }) => {
     const { authenticated, login, user } = usePrivy();
     const [amount, setAmount] = useState('');
     const [showSuccessScreen, setShowSuccessScreen] = useState(false); // Renamed to avoid conflict with useTip's isSuccess
@@ -128,6 +128,12 @@ const TipWidget = ({ project, onTipSuccess }) => {
                 </div>
                 <div className="flex flex-col gap-3">
                     <button
+                        onClick={onShare}
+                        className="w-full py-4 bg-[#00AFAA] text-white font-black rounded-3xl hover:bg-[#003E52] transition-all block text-center text-[10px] uppercase tracking-widest shadow-lg"
+                    >
+                        Share this project
+                    </button>
+                    <button
                         onClick={() => {
                             setShowSuccessScreen(false); // Use the local state for showing success screen
                             setAmount('');
@@ -139,7 +145,7 @@ const TipWidget = ({ project, onTipSuccess }) => {
                     </button>
                     <Link
                         href="/profile"
-                        className="w-full py-4 bg-[#00AFAA] text-white font-black rounded-3xl hover:bg-[#003E52] transition-all block text-center text-[10px] uppercase tracking-widest shadow-lg"
+                        className="w-full py-4 bg-white border border-gray-200 text-gray-500 font-black rounded-3xl hover:bg-gray-50 transition-all block text-center text-[10px] uppercase tracking-widest"
                     >
                         View History
                     </Link>

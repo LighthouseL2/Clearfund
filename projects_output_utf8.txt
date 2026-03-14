@@ -1,0 +1,8 @@
+﻿--- ALL PROJECTS ---
+[cmmntvr200000al1ov9xmc148] Learn for Impact (learn-for-impact)
+[gc1] GoodDollar UBI+ for Women ΓÇô Colombia (gooddollar-women-colombia)
+[gc2] Silvi - Kenya's Kakamega forest (silvi-kakamega-forest)
+[gc3] GoodDollar UBI+ for Women ΓÇô Nigeria (gooddollar-women-nigeria)
+[gc4] Pesia's Kitchen EAT Initiative (pesias-kitchen-eat)
+[gc5] Global Classrooms Environmental Education (global-classrooms-education)
+[g2] Green Pill Nigeria (greenpill-nigeria)

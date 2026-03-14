@@ -1,0 +1,6 @@
+﻿Total Tips: 5
+Tip for ProjectID: gc1, Amount: 2
+Tip for ProjectID: gc2, Amount: 7
+Tip for ProjectID: g2, Amount: 3
+Tip for ProjectID: gc3, Amount: 1
+Tip for ProjectID: gc3, Amount: 1

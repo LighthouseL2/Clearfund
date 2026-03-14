@@ -349,6 +349,7 @@ export default function CampaignDonatePage() {
                 <TipSuccessModal
                     onClose={() => { setShowSuccessModal(false); reset(); }}
                     onTipAgain={handleTipAgain}
+                    onShare={handleShare}
                 />
             )}
 

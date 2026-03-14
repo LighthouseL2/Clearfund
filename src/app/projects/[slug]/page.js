@@ -67,10 +67,52 @@ const InfoPopup = ({ project, onClose }) => {
 const SharePopup = ({ project, onClose }) => {
     if (!project) return null;
 
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+    const shareText = `I'm supporting "${project.name}" on ClearFund — a GoodCollective campaign making real impact. Join me and donate G$ on Celo! 🌍💚`;
+
     const copyLink = () => {
-        navigator.clipboard.writeText(window.location.href);
+        navigator.clipboard.writeText(shareUrl);
         alert("Link copied!");
     };
+
+    const socialLinks = [
+        {
+            name: 'Twitter',
+            icon: <FaTwitter className="w-4 h-4" />,
+            color: 'bg-[#1DA1F2]',
+            url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`
+        },
+        {
+            name: 'WhatsApp',
+            icon: <FaWhatsapp className="w-4 h-4" />,
+            color: 'bg-[#25D366]',
+            url: `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`
+        },
+        {
+            name: 'Facebook',
+            icon: <FaFacebook className="w-4 h-4" />,
+            color: 'bg-[#1877F2]',
+            url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`
+        },
+        {
+            name: 'LinkedIn',
+            icon: <FaLinkedin className="w-4 h-4" />,
+            color: 'bg-[#0A66C2]',
+            url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`
+        },
+        {
+            name: 'Reddit',
+            icon: <FaReddit className="w-4 h-4" />,
+            color: 'bg-[#FF4500]',
+            url: `https://www.reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(project.name)}`
+        },
+        {
+            name: 'Telegram',
+            icon: <FaTelegramPlane className="w-4 h-4" />,
+            color: 'bg-[#0088cc]',
+            url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`
+        }
+    ];
 
     return (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300">
@@ -104,24 +146,17 @@ const SharePopup = ({ project, onClose }) => {
 
                 <div className="text-[11px] font-bold text-gray-400 tracking-wider uppercase mb-3 px-1">Share Via</div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                    <button className="flex items-center gap-2 py-2.5 px-4 bg-[#1DA1F2] text-white rounded-[10px] font-bold text-sm hover:opacity-90 transition-opacity">
-                        <FaTwitter className="w-4 h-4" /> Twitter
-                    </button>
-                    <button className="flex items-center gap-2 py-2.5 px-4 bg-[#25D366] text-white rounded-[10px] font-bold text-sm hover:opacity-90 transition-opacity">
-                        <FaWhatsapp className="w-4 h-4" /> WhatsApp
-                    </button>
-                    <button className="flex items-center gap-2 py-2.5 px-4 bg-[#1877F2] text-white rounded-[10px] font-bold text-sm hover:opacity-90 transition-opacity">
-                        <FaFacebook className="w-4 h-4" /> Facebook
-                    </button>
-                    <button className="flex items-center gap-2 py-2.5 px-4 bg-[#0A66C2] text-white rounded-[10px] font-bold text-sm hover:opacity-90 transition-opacity">
-                        <FaLinkedin className="w-4 h-4" /> LinkedIn
-                    </button>
-                    <button className="flex items-center gap-2 py-2.5 px-4 bg-[#FF4500] text-white rounded-[10px] font-bold text-sm hover:opacity-90 transition-opacity">
-                        <FaReddit className="w-4 h-4" /> Reddit
-                    </button>
-                    <button className="flex items-center gap-2 py-2.5 px-4 bg-[#0088cc] text-white rounded-[10px] font-bold text-sm hover:opacity-90 transition-opacity">
-                        <FaTelegramPlane className="w-4 h-4" /> Telegram
-                    </button>
+                    {socialLinks.map((link) => (
+                        <a
+                            key={link.name}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center gap-2 py-2.5 px-4 ${link.color} text-white rounded-[10px] font-bold text-sm hover:opacity-90 transition-opacity text-center justify-center`}
+                        >
+                            {link.icon} {link.name}
+                        </a>
+                    ))}
                 </div>
 
                 <div className="text-[11px] font-bold text-gray-400 tracking-wider uppercase mb-3 px-1">Campaign Link</div>
@@ -129,7 +164,7 @@ const SharePopup = ({ project, onClose }) => {
                     <input
                         type="text"
                         readOnly
-                        value={typeof window !== 'undefined' ? window.location.href : 'https://clearfund.netlify.app'}
+                        value={shareUrl || 'https://clearfund.netlify.app'}
                         className="bg-transparent px-4 py-3 text-sm text-gray-500 w-full outline-none"
                     />
                     <button onClick={copyLink} className="px-5 py-3 bg-white border-l border-gray-200 text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors flex items-center gap-2 whitespace-nowrap">
@@ -144,6 +179,7 @@ const SharePopup = ({ project, onClose }) => {
         </div>
     );
 };
+
 
 
 const ProjectDetailPage = ({ params }) => {
@@ -468,6 +504,7 @@ const ProjectDetailPage = ({ params }) => {
                     <div className="lg:col-span-4 mt-8 lg:mt-0 sticky top-24">
                         <TipWidget
                             project={project}
+                            onShare={() => setShowShare(true)}
                             onTipSuccess={(d) => {
                                 setTips(prev => [d, ...prev]);
                                 setProject(prev => ({

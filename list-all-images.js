@@ -1,0 +1,18 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
+async function main() {
+    const projects = await prisma.project.findMany({
+        select: {
+            id: true,
+            name: true,
+            slug: true,
+            logo: true,
+            banner: true,
+            status: true
+        }
+    });
+    console.log(JSON.stringify(projects, null, 2));
+}
+
+main();

@@ -6,7 +6,7 @@ import Image from 'next/image'
 /**
  * Tip Successful modal — matches the design with green checkmark, stars, and "Tip again" button.
  */
-export default function TipSuccessModal({ onClose, onTipAgain }) {
+export default function TipSuccessModal({ onClose, onTipAgain, onShare }) {
     return (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
             <div
@@ -38,13 +38,21 @@ export default function TipSuccessModal({ onClose, onTipAgain }) {
                     Your tip has been processed<br />successfully!
                 </h2>
 
-                {/* Button */}
-                <button
-                    onClick={onTipAgain || onClose}
-                    className="w-full bg-[#95EED8] text-gray-900 font-bold py-4 rounded-full hover:bg-[#D5F8EE] transition-all shadow-lg active:scale-[0.98] cursor-pointer"
-                >
-                    Tip again
-                </button>
+                {/* Buttons */}
+                <div className="w-full flex flex-col gap-3">
+                    <button
+                        onClick={onShare}
+                        className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-black transition-all shadow-lg active:scale-[0.98] cursor-pointer"
+                    >
+                        Share Campaign
+                    </button>
+                    <button
+                        onClick={onTipAgain || onClose}
+                        className="w-full bg-[#EAF9EE] text-[#39B54A] font-bold py-4 rounded-full hover:bg-[#D5F8EE] transition-all active:scale-[0.98] cursor-pointer"
+                    >
+                        Tip again
+                    </button>
+                </div>
             </div>
         </div>
     )

@@ -37,8 +37,7 @@ model Project {
   walletAddress     String
   status            String?  @default("PENDING")
   featured          Boolean? @default(false)
-  
-  tips              Tip[]
+  submittedBy       String?
 
   createdAt         DateTime @default(now())
   updatedAt         DateTime @default(now()) @updatedAt
@@ -49,7 +48,6 @@ model Project {
 model Tip {
   id            String   @id @default(cuid())
   projectId     String
-  project       Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
   donorWallet   String
   amount        Float
   txHash        String   @unique
@@ -60,3 +58,4 @@ model Tip {
 
   @@map("tips")
 }
+/* append */
