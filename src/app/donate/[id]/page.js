@@ -141,13 +141,20 @@ export default function CampaignDonatePage() {
 
             {/* Main Content */}
             <div className="w-full flex-1">
-                {/* Top bar */}
-                <div className="flex justify-end items-center gap-4 bg-white py-2 px-6 shadow-sm">
+                {/* Top bar — mobile: full width, desktop: same */}
+                <div className="flex justify-between items-center gap-4 bg-white py-3 px-6 shadow-sm">
+                    <Link href="/donate" className="text-sm font-bold text-gray-500 hover:text-[#00AFAA] transition-colors flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Back
+                    </Link>
                     {toggle && <ModalConnect setCloseModal={setToggle} />}
                     {!authenticated ? (
                         <button
                             onClick={login}
-                            className="font-sans font-black text-[16px] h-[52px] bg-[#00AFAA] text-white rounded-full w-[160px] hover:bg-black transition-colors"
+                            className="font-sans font-black text-[13px] h-[44px] bg-[#00AFAA] text-white rounded-full px-6 hover:bg-black transition-colors"
                         >
                             Connect wallet
                         </button>

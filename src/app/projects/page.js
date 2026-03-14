@@ -55,9 +55,9 @@ export default function ProjectsPage() {
             <CompactSidebar />
 
             {/* Main Content Area */}
-            <div className="flex-1 md:ml-20">
+            <div className="flex-1 md:ml-20 pt-16 md:pt-0">
                 {/* Top Header Bar */}
-                <div className="w-full h-20 flex items-center justify-end px-8 md:px-16">
+                <div className="w-full h-20 hidden md:flex items-center justify-end px-8 md:px-16">
                     {!authenticated ? (
                         <button
                             onClick={login}

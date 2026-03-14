@@ -40,9 +40,9 @@ const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
         }
     }
     return (
-        <div className='flex items-center gap-4'>
-            {/* Celo Icon Box */}
-            <div className='w-11 h-11 flex items-center justify-center bg-white shadow-sm rounded-2xl border border-gray-200 p-[3px] shrink-0'>
+        <div className='flex items-center gap-2'>
+            {/* Celo Icon Box — hidden on mobile */}
+            <div className='hidden md:flex w-11 h-11 items-center justify-center bg-white shadow-sm rounded-2xl border border-gray-200 p-[3px] shrink-0'>
                 <Image src="/round-icons/celo-round-icon.svg" alt="Celo Network" width={38} height={38} className='w-full h-full object-contain' />
             </div>
 
@@ -51,7 +51,7 @@ const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
 
                 {/* Address Button */}
                 <button
-                    className='flex gap-2 rounded-full items-center px-4 py-2 bg-[#00AFAA]/10 text-[#003E52] hover:bg-[#00AFAA]/20 transition-colors relative z-10'
+                    className='flex gap-2 rounded-full items-center px-3 py-1.5 md:px-4 md:py-2 bg-[#00AFAA]/10 text-[#003E52] hover:bg-[#00AFAA]/20 transition-colors relative z-10'
                     onClick={() => setToggle(!toggle)}
                 >
                     {/* User Icon SVG */}
@@ -60,7 +60,7 @@ const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
                         <path d="M20 21a8 8 0 00-16 0" />
                     </svg>
 
-                    <span className='text-[14px] font-semibold tracking-wide'>
+                    <span className='hidden md:inline text-[14px] font-semibold tracking-wide'>
                         {shortAddress(walletAddress)}
                     </span>
 
@@ -72,7 +72,7 @@ const UserDetails = ({ walletAddress, logout, balance, balanceLoading }) => {
 
                 {/* Dropdown Menu */}
                 {toggle && (
-                    <ul className='w-[220px] absolute bg-white shadow-[0px_12px_40px_rgba(0,0,0,0.12)] border border-gray-100 rounded-[2rem] text-left right-0 top-[125%] z-30 overflow-hidden p-2 animate-in fade-in slide-in-from-top-3 duration-300 selection:bg-transparent'>
+                    <ul className='w-[220px] absolute bg-white shadow-[0px_12px_40px_rgba(0,0,0,0.12)] border border-gray-100 rounded-[2rem] text-left right-0 top-[125%] z-[200] overflow-hidden p-2 animate-in fade-in slide-in-from-top-3 duration-300 selection:bg-transparent'>
                         <li className='w-full'>
                             <Link href="/profile" className='w-full px-5 py-3.5 gap-4 text-[14px] font-bold text-[#003E52]/70 hover:bg-gray-50 rounded-2xl flex items-center transition-all' onClick={() => setToggle(false)}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-80">
