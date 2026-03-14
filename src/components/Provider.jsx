@@ -1,10 +1,10 @@
 "use client"
 
+import React, { useRef } from "react"
 import "@rainbow-me/rainbowkit/styles.css"
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit"
 import { WagmiProvider } from "wagmi"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { useRef } from "react"
 import { config } from "@/lib/wagmiConfig"
 import { NetworkAlert } from "./NetworkAlert"
 
@@ -50,10 +50,10 @@ export default function Providers({ children }) {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClientRef.current}>
         <RainbowKitProvider>
-          <>
-            <NetworkAlert />
+          <React.Fragment>
+            <NetworkAlert key="network-alert" />
             {children}
-          </>
+          </React.Fragment>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

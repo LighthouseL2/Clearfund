@@ -68,7 +68,7 @@ const SharePopup = ({ project, onClose }) => {
     if (!project) return null;
 
     const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-    const shareText = `I'm supporting "${project.name}" on ClearFund — a GoodCollective campaign making real impact. Join me and donate G$ on Celo! 🌍💚`;
+    const shareText = `I'm supporting "${project.name}" on ClearFund — a GoodCollective initiative driving real impact. Join me and tip to support this cause! 🌍💚`;
 
     const copyLink = () => {
         navigator.clipboard.writeText(shareUrl);

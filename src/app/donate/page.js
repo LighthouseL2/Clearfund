@@ -16,7 +16,7 @@ const CollectiveImpactPage = () => {
     const router = useRouter()
     const address = wallets?.[0]?.address
 
-    const handleDonate = (id) => {
+    const handleTip = (id) => {
         router.push(`/donate/${id}`)
     }
 
@@ -99,7 +99,7 @@ const CollectiveImpactPage = () => {
                                         <div className="mt-auto pt-6 border-t border-gray-50">
                                             <div className="flex justify-between items-end mb-3">
                                                 <div>
-                                                    <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Raised</span>
+                                                    <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Tipped</span>
                                                     <span className="text-xl font-black text-[#111827]">${raised.toLocaleString()} <span className="text-gray-300 font-bold ml-1">/ ${goal.toLocaleString()}</span></span>
                                                 </div>
                                                 <div className="text-right">
@@ -128,7 +128,7 @@ const CollectiveImpactPage = () => {
                                                 </div>
 
                                                 <button
-                                                    onClick={() => handleDonate(collective.id)}
+                                                    onClick={() => handleTip(collective.id)}
                                                     className="p-3 bg-gray-900 text-white rounded-xl hover:bg-[#39B54A] transition-all transform hover:scale-105 active:scale-95 shadow-lg"
                                                 >
                                                     <ArrowRight size={20} />

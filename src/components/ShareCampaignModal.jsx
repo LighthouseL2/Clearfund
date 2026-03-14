@@ -17,7 +17,7 @@ export default function ShareCampaignModal({ collective, onClose }) {
 
     if (!collective) return null
 
-    const shareText = `I'm supporting "${collective.title}" on ClearFund — a GoodCollective campaign making real impact. Join me and donate G$ on Celo! 🌍💚`
+    const shareText = `I'm supporting "${collective.title}" on ClearFund — a GoodCollective initiative driving real impact. Join me and tip to support this cause! 🌍💚`
 
     const handleCopy = async () => {
         try {
