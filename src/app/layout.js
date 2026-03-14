@@ -17,7 +17,8 @@ export default function RootLayout({ children }) {
         <link href="https://db.onlinewebfonts.com/c/74613e9d0612d09be09dd6de7c898d50?family=Modern+Era"
           rel="stylesheet">
         </link>
-        <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon" />
+        <link rel="icon" href="/assets/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/assets/favicon.png" type="image/png" />
         <title>ClearFund</title>
         {/* google analytics script */}
         <Script
