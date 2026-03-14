@@ -41,20 +41,14 @@ export default function ClientWrapper({ children }) {
                 embeddedWallets: {
                     createOnLogin: "users-without-wallets"
                 },
-                externalWallets: {
-                    coinbaseWallet: {
-                        connectionOptions: "all"
-                    }
-                },
                 appearance: {
                     theme: "light",
                     accentColor: "#00AFAA",
-                    fontFamily: "monospace",
                     showWalletLoginFirst: true,
                     walletList: [
+                        "detected_ethereum_wallets",
                         "metamask",
                         "wallet_connect",
-                        "detected_ethereum_wallets",
                         "coinbase_wallet",
                         "rainbow",
                     ],

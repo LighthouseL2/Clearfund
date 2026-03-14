@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 const MenuDropdown = ({ openMenu, setOpenMenu, toggle, setToggle, setModalOpen }) => {
     return (

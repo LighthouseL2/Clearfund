@@ -1,37 +1,36 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, ArrowRight, DollarSign, Layers, RefreshCcw, Share2, Archive, CircleDollarSign, Bolt } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-
+import { usePrivy, useWallets } from "@privy-io/react-auth";
+import UserDetails from "./userDetails";
 
 export default function GrantDashboard() {
+    const { login, authenticated, logout } = usePrivy();
+    const { wallets } = useWallets();
+    const address = wallets?.[0]?.address;
 
     const metricData = [
-
         {
             title: "Total Amount",
             value: "$7,508,841",
             img: "/grant-icons/active-round-icon.svg",
             footer: { text: " Active Funding", icon: "/card-icons/funding-icon.svg" },
         },
-
         {
             title: "Opportunities",
             value: "10",
             img: "/grant-icons/ecosystem-icon.svg",
             footer: { text: "Open Applications", icon: "/card-icons/ongoing-round-icon.svg" },
         },
-
         {
             title: "Upcoming Round",
             value: "2",
             img: "/grant-icons/upcoming-round-icon.svg",
             footer: { text: "Next", icon: "/card-icons/upcoming-label-icon.svg" },
         },
-
-
-
     ];
 
     const sideCardData = [
@@ -41,79 +40,38 @@ export default function GrantDashboard() {
             img: "/grant-icons/previous-funding-icon.svg",
             footer: { text: "Archive", icon: "/card-icons/archive-round-icon.svg" },
         },
-
         {
             title: "Total Project",
             value: "5,853",
             img: "/grant-icons/total-project-icon.svg",
             footer: { text: "Funded", icon: "/card-icons/funded-icon.svg" },
         },
-
         {
             title: "Cumulative",
             value: "$20,649,987",
             img: "/grant-icons/cumulative-raise-icon.svg",
             footer: { text: "Payout", icon: "/card-icons/Vector.png" },
         },
-
-    ];
-
-
-
-
-    const timelineData = [
-        {
-            date: "July 24, 2025",
-            title: "Octant epoch 8",
-            description: "Octant epoch 8 ended with 787.2165 ETH raised",
-            link: ''
-        },
-        {
-            date: "July 24, 2025",
-            title: "Growthepie",
-            description: "Growthepie raised 23.875 ETH in octant epoch 8 round",
-            link: 'https://octant.app/project/8/0x9438b8B447179740cD97869997a2FCc9b4AA63a2'
-        },
-
-
-    ];
-    const timelineDatas = [
-        {
-            date: "July 24, 2025",
-            title: " Solidity ",
-            description: "raised 22.364 ETH in octant epoch 8 round",
-            link: 'https://octant.app/project/8/0xe2F7cF9C2b12c0BfcdAB571F9E50418fC08F4AD1'
-        },
-        {
-            date: "July 24, 2025",
-            title: "Dappnode",
-            description: "raised 22.868 ETH in octant epoch 8 round",
-            link: 'https://octant.app/project/8/0x54E38C5F55c1F7A9AfF534132544dA3e5b77cd89'
-        },
-        {
-            date: "July 24, 2025",
-            title: "Protocol Guild ",
-            description: "raised 17.215 ETH in octant epoch 8 round",
-            link: 'https://octant.app/project/8/0xdddd576bAF106bAAe54bDE40BCac602bB4a7cf79'
-        }
-
     ];
 
     return (
-
         <div className="font-sans">
             <div className="flex justify-end items-center gap-5 mb-10 px-8 text-[#008767]">
-                {/* <p className="rounded-full px-3 py-1 border font-bold text-[14px]">Celo</p> */}
                 <div className="flex items-center gap-5  py-1 px-2 rounded-full font-sans">
-                    {/* <span className="text-[14px] font-bold">G$ 122.10</span> */}
                     <div className="flex items-center gap-1">
-                        <ConnectButton
-
-                        />
+                        {!authenticated ? (
+                            <button
+                                onClick={login}
+                                className="px-6 py-2.5 bg-[#00AFAA] text-white rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#003E52] transition-all shadow-md"
+                            >
+                                Connect Wallet
+                            </button>
+                        ) : (
+                            <UserDetails walletAddress={address} logout={logout} />
+                        )}
                     </div>
                 </div>
             </div>
-
 
             <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
                 {/* Metric Cards */}
@@ -153,20 +111,17 @@ export default function GrantDashboard() {
                         </div>
                     ))}
                 </div>
-                {/* Timeline */}
+
+                {/* Timeline and other content would go here - restoring from original structure if needed */}
                 <div className="w-full flex flex-wrap gap-5 font-sans py-10">
-
-
                     <div className="lg:w-[43%] w-full border rounded-[20px] p-6 flex flex-col justify-between text-center h-auto">
                         <div>
                             <div className="w-full flex justify-center items-center py-2 mt-3">
                                 <img src="/grantDashboard-icons/good.png" alt="GoodDollar" />
                             </div>
-
                             <h1 className="text-center text-[24px] font-sans text-[#00AFFF] leading-7 font-black mt-5">
                                 Empower Communities. <br />Maximize Impact
                             </h1>
-
                             <div className="flex justify-center mt-8">
                                 <img
                                     src="/grantDashboard-icons/flower.png"
@@ -174,12 +129,10 @@ export default function GrantDashboard() {
                                     className="w-[220px] h-[200px]"
                                 />
                             </div>
-
                             <p className=" mt-8 text-[#00000080]/70 leading-3.5 mx-auto text-[14px] font-bold">
                                 GoodCollective is committed to empowering individuals and communities
                                 by providing direct digital payments to those who need it most.
                             </p>
-
                             <div>
                                 <Link href={"/donate"} className="mt-10 text-[#3A7768] py-2 px-13 font-black items-center justify-center rounded-full bg-[#95EED8] text-[16px] font-sans inline-flex">
                                     Tip Now
@@ -200,84 +153,17 @@ export default function GrantDashboard() {
                                         <Clock className="w-6 h-6 text-[#008767]" />
                                     </div>
                                     <span className="text-[16px] font-medium text-[#999999]">July 24, 2025</span>
-
                                     <div className="flex flex-col w-5/6 mt-1">
                                         <Link href={"/"} className="relative">
                                             <p className="text-[14px] text-[#008767]">
                                                 Octant epoch 8 ended with 787.2165 ETH raised
-
                                             </p>
                                         </Link>
                                     </div>
                                 </div>
-
-                                <div className="relative border-l-2 border-gray-200">
-                                    <div className="pl-8 relative mb-6">
-                                        <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
-                                            <Clock className="w-6 h-6 text-[#008767]" />
-                                        </div>
-                                        <span className="text-[16px] font-medium text-[#999999]">July 24, 2025</span>
-                                        <div className="flex flex-col w-5/6 mt-1">
-                                            <p className="text-[14px]">
-                                                <span className="text-[#008767]">Growthepie </span>
-                                                raised 23.875 ETH in octant epoch 8
-                                            </p>
-
-                                            <Link target="_blank" href={"https://octant.app/project/8/0x9438b8B447179740cD97869997a2FCc9b4AA63a2"}>
-                                                <div className="mt-1 flex items-center gap-2">
-                                                    <span className="text-[14px] font-medium">round</span>
-                                                    <svg
-                                                        width="14"
-                                                        height="14"
-                                                        viewBox="0 0 14 14"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M0 6.11616V7.88384H10.6061L5.74495 12.7449L7 14L14 7L7 0L5.74495 1.25505L10.6061 6.11616H0Z"
-                                                            fill="#008767"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </Link>
-
-                                        </div>
-                                    </div>
-
-                                    <div className="pl-8 relative mb-2">
-                                        <div className="absolute -left-6 top-0 w-11 h-11 bg-[#CDE1DD] rounded-full flex items-center justify-center">
-                                            <Clock className="w-6 h-6 text-[#008767]" />
-                                        </div>
-                                        <span className="text-[16px] font-medium text-[#999999]">July 24, 2025</span>
-                                        <div className="flex flex-col w-5/6 mt-1">
-                                            <p className="text-[14px]">
-                                                <span className="text-[#008767]"> Dappnode </span>
-                                                raised 22.868 ETH in octant epoch 8
-                                            </p>
-                                            <Link target="_blank" href={"https://octant.app/project/8/0x54E38C5F55c1F7A9AfF534132544dA3e5b77cd89"}>
-                                                <div className="mt-1 flex items-center gap-2">
-                                                    <span className="text-[14px] font-medium">round</span>
-                                                    <svg
-                                                        width="14"
-                                                        height="14"
-                                                        viewBox="0 0 14 14"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M0 6.11616V7.88384H10.6061L5.74495 12.7449L7 14L14 7L7 0L5.74495 1.25505L10.6061 6.11616H0Z"
-                                                            fill="#008767"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </Link>
-
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
+
                         <div
                             className="border rounded-2xl p-6 flex flex-col justify-between relative w-full h-auto"
                             style={{
@@ -303,15 +189,9 @@ export default function GrantDashboard() {
                                 </Link>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
-
             </div>
-
         </div>
-
     );
 }
