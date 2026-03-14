@@ -6,11 +6,18 @@ import Image from 'next/image'
 /**
  * Tip Successful modal — matches the design with green checkmark, stars, and "Tip again" button.
  */
-export default function TipSuccessModal({ onClose, onTipAgain, onShare }) {
+export default function TipSuccessModal({ onClose, onTipAgain, onShare, amount, tokenSymbol, txHash }) {
+    const handleCopyTx = () => {
+        if (txHash) {
+            navigator.clipboard.writeText(txHash);
+            alert("Transaction hash copied!");
+        }
+    };
+
     return (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[200] p-4" onClick={onClose}>
             <div
-                className="bg-white rounded-[32px] shadow-2xl w-full max-w-[420px] p-8 relative flex flex-col items-center animate-in fade-in zoom-in duration-300"
+                className="bg-white rounded-[48px] shadow-2xl w-full max-w-[520px] p-12 relative flex flex-col items-center animate-in fade-in zoom-in duration-500"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}
@@ -34,9 +41,32 @@ export default function TipSuccessModal({ onClose, onTipAgain, onShare }) {
                 </div>
 
                 {/* Text */}
-                <h2 className="text-[18px] leading-tight font-bold text-gray-800 text-center mb-10 w-full px-4">
-                    Your tip has been processed<br />successfully!
-                </h2>
+                <div className="text-center mb-8">
+                    <h2 className="text-[20px] leading-tight font-bold text-gray-800 mb-2">
+                        Tip Successful!
+                    </h2>
+                    <p className="text-gray-500 text-sm">
+                        Your tip of <span className="font-bold text-gray-800">{amount} {tokenSymbol}</span> has been processed successfully.
+                    </p>
+                </div>
+
+                {/* Tx Hash Box */}
+                {txHash && (
+                    <div className="w-full bg-gray-50 rounded-2xl p-4 border border-gray-100 mb-8">
+                        <div className="flex justify-between items-center mb-1">
+                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Transaction Hash</span>
+                            <button onClick={handleCopyTx} className="text-[10px] font-bold text-[#00AFAA] hover:underline uppercase tracking-widest">Copy</button>
+                        </div>
+                        <a
+                            href={`https://celoscan.io/tx/${txHash}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-mono text-gray-600 hover:text-[#00AFAA] break-all block leading-relaxed"
+                        >
+                            {txHash}
+                        </a>
+                    </div>
+                )}
 
                 {/* Buttons */}
                 <div className="w-full flex flex-col gap-3">

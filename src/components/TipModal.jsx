@@ -100,33 +100,65 @@ export default function TipModal({ onClose, collectiveAddress, onTipSuccess }) {
 
                 {/* Success State */}
                 {isSuccess ? (
-                    <div className="flex flex-col items-center justify-center py-6 px-4">
+                    <div className="flex flex-col items-center justify-center py-6 px-4 animate-in fade-in zoom-in duration-500">
                         {/* Glow effect container */}
-                        <div className="relative mb-6">
-                            <div className="absolute inset-0 bg-[#39B54A] opacity-20 blur-xl rounded-full"></div>
-                            <div className="relative w-24 h-24 bg-[#39B54A] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(57,181,74,0.4)]">
+                        <div className="relative mb-8">
+                            <div className="absolute inset-0 bg-[#39B54A] opacity-20 blur-xl rounded-full scale-150"></div>
+                            <div className="relative w-24 h-24 bg-[#39B54A] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(57,181,74,0.4)]">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </div>
                         </div>
 
-                        <h2 className="text-[22px] leading-tight font-bold text-gray-800 text-center mb-8 max-w-[260px]">
-                            Your tip has been processed successfully!
-                        </h2>
+                        <div className="text-center mb-8">
+                            <h2 className="text-[24px] leading-tight font-bold text-gray-800 mb-2">
+                                Tip Successful!
+                            </h2>
+                            <p className="text-gray-500 text-base">
+                                Your tip of <span className="font-bold text-gray-800">{amount} {selectedCurrency?.symbol}</span> has been processed successfully.
+                            </p>
+                        </div>
 
-                        <button
-                            onClick={() => { reset(); setAmount(""); }}
-                            className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-[#2e943c] transition-all shadow-lg active:scale-[0.98]"
-                        >
-                            Tip again
-                        </button>
-                        <button
-                            onClick={() => { reset(); onClose(); }}
-                            className="mt-4 text-gray-400 font-medium hover:text-gray-600 transition-colors text-sm"
-                        >
-                            Close
-                        </button>
+                        {txHash && (
+                            <div className="w-full bg-gray-50 rounded-2xl p-5 border border-gray-100 mb-8 text-left">
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Transaction Hash</span>
+                                    <button
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(txHash);
+                                            alert("Copied!");
+                                        }}
+                                        className="text-[10px] font-bold text-[#39B54A] hover:underline uppercase tracking-widest"
+                                    >
+                                        Copy
+                                    </button>
+                                </div>
+                                <a
+                                    href={`${CELOSCAN_TX_URL}${txHash}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs font-mono text-gray-600 hover:text-[#39B54A] break-all block leading-relaxed"
+                                >
+                                    {txHash}
+                                </a>
+                            </div>
+                        )}
+
+                        <div className="w-full flex flex-col gap-3">
+                            <button
+                                onClick={() => { reset(); setAmount(""); }}
+                                className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-black transition-all shadow-lg active:scale-[0.98]"
+                            >
+                                Tip again
+                            </button>
+                            <button
+                                onClick={() => { reset(); onClose(); }}
+                                className="w-full bg-gray-50 text-gray-500 font-bold py-4 rounded-full hover:bg-gray-100 transition-all active:scale-[0.98]"
+                            >
+                                Close
+                            </button>
+                        </div>
                     </div>
                 ) : isError ? (
                     <div className="flex flex-col items-center justify-center py-6 px-4">

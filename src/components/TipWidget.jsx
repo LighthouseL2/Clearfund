@@ -6,6 +6,7 @@ import { usePrivy } from '@privy-io/react-auth';
 import { useTokenBalance, useTip } from '@/hooks/useTip';
 import { SUPPORTED_TOKENS, DEFAULT_COLLECTIVE_ADDRESS } from '@/lib/contracts/tip';
 import { CheckCircle2, AlertCircle, Loader2, Wallet, Coins, ChevronDown } from 'lucide-react';
+import TipSuccessModal from './TipSuccessModal';
 
 const TOKENS = [
     { symbol: 'G$', name: 'GoodDollar', icon: '/donate-icons/Gooddollar-icon.svg' },
@@ -105,57 +106,28 @@ const TipWidget = ({ project, onTipSuccess, onShare }) => {
         return isTipping || !amount || parseFloat(amount) <= 0 || parseFloat(amount) > balance;
     };
 
-    if (showSuccessScreen) { // Use the local state for showing success screen
-        return (
-            <div className="bg-[#F8F9FA] rounded-[1.5rem] shadow-sm p-8 border border-gray-200 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="h-8 w-8 text-green-500" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
-                <p className="text-gray-500 text-sm mb-6">
-                    Your tip of {amount} {selectedToken} has been processed successfully.
-                </p>
-                <div className="bg-white rounded-xl p-3 mb-6 flex items-center justify-between text-xs border border-gray-200">
-                    <span className="text-gray-400 font-bold uppercase">Tx Hash</span>
-                    <a
-                        href={`https://celoscan.io/tx/${txHash}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#00AFAA] hover:underline max-w-[150px] truncate block"
-                    >
-                        {txHash}
-                    </a>
-                </div>
-                <div className="flex flex-col gap-3">
-                    <button
-                        onClick={onShare}
-                        className="w-full py-4 bg-[#00AFAA] text-white font-black rounded-3xl hover:bg-[#003E52] transition-all block text-center text-[10px] uppercase tracking-widest shadow-lg"
-                    >
-                        Share this project
-                    </button>
-                    <button
-                        onClick={() => {
-                            setShowSuccessScreen(false); // Use the local state for showing success screen
-                            setAmount('');
-                            reset();
-                        }}
-                        className="w-full py-4 bg-gray-100 text-[#003E52] font-black rounded-3xl hover:bg-gray-200 transition-all block text-center text-[10px] uppercase tracking-widest"
-                    >
-                        Tip Again
-                    </button>
-                    <Link
-                        href="/profile"
-                        className="w-full py-4 bg-white border border-gray-200 text-gray-500 font-black rounded-3xl hover:bg-gray-50 transition-all block text-center text-[10px] uppercase tracking-widest"
-                    >
-                        View History
-                    </Link>
-                </div>
-            </div>
-        );
-    }
+    // No longer returning inline success screen. It will be a modal.
 
     return (
         <div className="bg-[#F8F9FA] rounded-[1.5rem] shadow-sm p-6 lg:p-8 border border-gray-200">
+            {showSuccessScreen && (
+                <TipSuccessModal
+                    amount={amount}
+                    tokenSymbol={selectedToken}
+                    txHash={txHash}
+                    onClose={() => {
+                        setShowSuccessScreen(false);
+                        setAmount('');
+                        reset();
+                    }}
+                    onTipAgain={() => {
+                        setShowSuccessScreen(false);
+                        setAmount('');
+                        reset();
+                    }}
+                    onShare={onShare}
+                />
+            )}
             <p className="text-gray-500 text-sm mb-4">
                 Tip with GoodDollar, cUSD on Celo network
             </p>

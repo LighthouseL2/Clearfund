@@ -347,6 +347,9 @@ export default function CampaignDonatePage() {
             {/* Tip Success Modal */}
             {showSuccessModal && (
                 <TipSuccessModal
+                    amount={amount}
+                    tokenSymbol={selectedToken.symbol}
+                    txHash={txHash}
                     onClose={() => { setShowSuccessModal(false); reset(); }}
                     onTipAgain={handleTipAgain}
                     onShare={handleShare}
