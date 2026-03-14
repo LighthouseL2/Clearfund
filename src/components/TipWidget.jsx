@@ -154,7 +154,7 @@ const TipWidget = ({ project, onTipSuccess, onShare }) => {
                                     <button
                                         key={token.symbol}
                                         onClick={() => { setSelectedToken(token.symbol); setShowTokenMenu(false); }}
-                                        className={`w-full text-left p-3 text-sm font-bold hover:bg-gray-50 flex items-center justify-between transition-colors ${selectedToken === token.symbol ? 'text-[#00AFAA] bg-gray-50/50' : 'text-gray-700'}`}
+                                        className={`w-full text-left p-3 text-sm font-bold hover:bg-gray-50 flex items-center justify-between transition-colors ${selectedToken === token.symbol ? 'text-[#00AFAA] bg-[#00AFAA]/5' : 'text-gray-700'}`}
                                     >
                                         <div className="flex items-center gap-2">
                                             <img src={token.icon} alt={token.name} className="w-5 h-5 rounded-full object-cover" />

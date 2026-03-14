@@ -103,8 +103,8 @@ export default function TipModal({ onClose, collectiveAddress, onTipSuccess }) {
                     <div className="flex flex-col items-center justify-center py-6 px-4 animate-in fade-in zoom-in duration-500">
                         {/* Glow effect container */}
                         <div className="relative mb-8">
-                            <div className="absolute inset-0 bg-[#39B54A] opacity-20 blur-xl rounded-full scale-150"></div>
-                            <div className="relative w-24 h-24 bg-[#39B54A] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(57,181,74,0.4)]">
+                            <div className="absolute inset-0 bg-[#00AFAA] opacity-20 blur-xl rounded-full scale-150"></div>
+                            <div className="relative w-24 h-24 bg-[#00AFAA] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,175,170,0.4)]">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
@@ -124,7 +124,7 @@ export default function TipModal({ onClose, collectiveAddress, onTipSuccess }) {
                         <div className="w-full flex flex-col gap-3">
                             <button
                                 onClick={() => { reset(); setAmount(""); }}
-                                className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-black transition-all shadow-lg active:scale-[0.98]"
+                                className="w-full bg-[#00AFAA] text-white font-bold py-4 rounded-full hover:bg-black transition-all shadow-lg active:scale-[0.98]"
                             >
                                 Tip again
                             </button>
@@ -266,7 +266,7 @@ export default function TipModal({ onClose, collectiveAddress, onTipSuccess }) {
                             disabled={!isConfirmEnabled}
                             onClick={handleConfirm}
                             className={`w-full py-4 rounded-full text-[16px] font-black transition-all duration-200 mt-2 mb-8 shadow-lg active:scale-[0.98] ${isConfirmEnabled
-                                ? "bg-[#39B54A] text-white hover:bg-black cursor-pointer"
+                                ? "bg-[#00AFAA] text-white hover:bg-black cursor-pointer"
                                 : "bg-gray-100 text-gray-300 cursor-not-allowed"
                                 }`}
                         >

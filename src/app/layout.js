@@ -1,4 +1,5 @@
-// import { Geist, Geist_Mono } from "next/font/google";
+"use client"
+
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import Script from "next/script";
@@ -6,11 +7,6 @@ import { Analytics } from "@vercel/analytics/next";
 import ClientWrapper from '@/components/ClientWrapper';
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata = {
-  title: "ClearFund",
-  description: "Impact Project Tipping Platform",
-};
 
 export default function RootLayout({ children }) {
   return (
@@ -22,6 +18,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet">
         </link>
         <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon" />
+        <title>ClearFund</title>
         {/* google analytics script */}
         <Script
           strategy="afterInteractive"

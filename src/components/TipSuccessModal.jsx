@@ -26,9 +26,9 @@ export default function TipSuccessModal({ onClose, onTipAgain, onShare, amount, 
 
                 {/* Glow effect container */}
                 <div className="relative mb-6 mt-4">
-                    <div className="absolute inset-0 bg-[#95EED8] opacity-20 blur-xl rounded-full scale-150"></div>
-                    <div className="relative w-24 h-24 bg-[#95EED8] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(149,238,216,0.4)]">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                    <div className="absolute inset-0 bg-[#00AFAA] opacity-20 blur-xl rounded-full scale-150"></div>
+                    <div className="relative w-24 h-24 bg-[#00AFAA] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(0,175,170,0.4)]">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M20 6L9 17l-5-5" />
                         </svg>
                     </div>
@@ -49,13 +49,13 @@ export default function TipSuccessModal({ onClose, onTipAgain, onShare, amount, 
                 <div className="w-full flex flex-col gap-3">
                     <button
                         onClick={onShare}
-                        className="w-full bg-[#39B54A] text-white font-bold py-4 rounded-full hover:bg-black transition-all shadow-lg active:scale-[0.98] cursor-pointer"
+                        className="w-full bg-[#00AFAA] text-white font-bold py-4 rounded-full hover:bg-black transition-all shadow-lg active:scale-[0.98] cursor-pointer"
                     >
                         Share Campaign
                     </button>
                     <button
                         onClick={onTipAgain || onClose}
-                        className="w-full bg-[#EAF9EE] text-[#39B54A] font-bold py-4 rounded-full hover:bg-[#D5F8EE] transition-all active:scale-[0.98] cursor-pointer"
+                        className="w-full bg-[#00AFAA]/10 text-[#00AFAA] font-bold py-4 rounded-full hover:bg-[#00AFAA]/20 transition-all active:scale-[0.98] cursor-pointer"
                     >
                         Tip again
                     </button>

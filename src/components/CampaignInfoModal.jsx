@@ -41,7 +41,7 @@ export default function CampaignInfoModal({ collective, onClose }) {
                 style={{ animation: 'infoFadeIn 0.3s ease-out' }}
             >
                 {/* Top accent */}
-                <div className="bg-gradient-to-r from-[#39B54A] via-[#95EED8] to-[#39B54A] h-1" />
+                <div className="bg-gradient-to-r from-[#00AFAA] via-[#00AFAA]/40 to-[#00AFAA] h-1" />
 
                 {/* Close button */}
                 <button
@@ -56,15 +56,15 @@ export default function CampaignInfoModal({ collective, onClose }) {
                 <div className="p-6">
                     {/* Icon + Title */}
                     <div className="flex items-center gap-3 mb-5">
-                        <div className="w-10 h-10 rounded-full bg-[#EAF9EE] flex items-center justify-center shrink-0">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#39B54A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <div className="w-10 h-10 rounded-full bg-[#00AFAA]/10 flex items-center justify-center shrink-0">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00AFAA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                 <circle cx="12" cy="12" r="10" />
                                 <path d="M12 16v-4" />
                                 <path d="M12 8h.01" />
                             </svg>
                         </div>
                         <div className="pr-6">
-                            <p className="text-[11px] font-bold text-[#39B54A] uppercase tracking-wider mb-0.5">Campaign Info</p>
+                            <p className="text-[11px] font-bold text-[#00AFAA] uppercase tracking-wider mb-0.5">Campaign Info</p>
                             <h2 className="text-[15px] font-bold text-gray-900 leading-snug">{collective.title}</h2>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ export default function CampaignInfoModal({ collective, onClose }) {
                                     } ${i % 2 === 0 ? 'bg-[#FAFBFC]' : 'bg-white'}`}
                             >
                                 <span className="text-[13px] text-gray-500">{row.label}</span>
-                                <span className={`text-[13px] font-semibold ${row.accent ? 'text-[#39B54A]' : 'text-gray-900'
+                                <span className={`text-[13px] font-semibold ${row.accent ? 'text-[#00AFAA]' : 'text-gray-900'
                                     }`}>
                                     {row.value}
                                 </span>

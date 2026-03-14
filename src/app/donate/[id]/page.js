@@ -147,7 +147,7 @@ export default function CampaignDonatePage() {
                     {!authenticated ? (
                         <button
                             onClick={login}
-                            className="font-sans font-black text-[16px] h-[52px] bg-[#39B54A] text-white rounded-full w-[160px] hover:bg-black transition-colors"
+                            className="font-sans font-black text-[16px] h-[52px] bg-[#00AFAA] text-white rounded-full w-[160px] hover:bg-black transition-colors"
                         >
                             Connect wallet
                         </button>
@@ -304,7 +304,7 @@ export default function CampaignDonatePage() {
                                         onClick={handleConfirm}
                                         disabled={!isConfirmEnabled}
                                         className={`w-full py-4 rounded-full text-[16px] font-black transition-all duration-200 mb-8 shadow-lg active:scale-[0.98] ${isConfirmEnabled
-                                            ? 'bg-[#95EED8] text-gray-900 hover:bg-[#D5F8EE] cursor-pointer'
+                                            ? 'bg-[#00AFAA] text-white hover:bg-black cursor-pointer'
                                             : 'bg-gray-200 text-gray-600 cursor-not-allowed'
                                             }`}
                                     >

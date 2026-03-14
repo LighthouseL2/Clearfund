@@ -58,7 +58,7 @@ const HeroSection = ({ setModalOpen }) => {
       <h1 className="font-black text-[40px] md:text-[56px] lg:text-[64px] leading-[1.12] mb-8 min-h-[140px] md:min-h-[160px] flex items-center justify-center text-[#111827] tracking-tighter whitespace-pre-line">
         <span>
           {text}
-          <span className="text-[#39B54A] font-light animate-pulse inline-block ml-1">|</span>
+          <span className="text-[#00AFAA] font-light animate-pulse inline-block ml-1">|</span>
         </span>
       </h1>
 
@@ -68,7 +68,7 @@ const HeroSection = ({ setModalOpen }) => {
 
       <Link
         href={currentContent.btnLink}
-        className={`flex items-center justify-center bg-[#39B54A] text-white w-[160px] h-[52px] rounded-full text-[16px] font-sans font-black hover:bg-black transition-all transform hover:scale-105 duration-300 shadow-sm mx-auto ${text.length < currentContent.heading.length / 2 && !isDeleting ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+        className={`flex items-center justify-center bg-[#00AFAA] text-white w-[160px] h-[52px] rounded-full text-[16px] font-sans font-black hover:bg-black transition-all transform hover:scale-105 duration-300 shadow-sm mx-auto ${text.length < currentContent.heading.length / 2 && !isDeleting ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
       >
         {currentContent.btnText}
       </Link>
