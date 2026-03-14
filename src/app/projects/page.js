@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react"
 import { Search, Plus } from "lucide-react"
+import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
 import ProjectCard from "@/components/ProjectCard"
