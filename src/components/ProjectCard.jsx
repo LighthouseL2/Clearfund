@@ -64,9 +64,9 @@ const ProjectCard = ({ project }) => {
                         </p>
                     </div>
 
-                    {/* CTA BUTTON (Animated on hover) */}
-                    <div className="mt-6 opacity-0 translate-y-4 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition-all duration-500">
-                        <div className="w-full py-4 bg-[#00AFAA] text-white font-black rounded-2xl flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest shadow-lg transform hover:scale-[1.02] active:scale-95">
+                    {/* CTA BUTTON (Always visible on mobile, animated on hover for desktop) */}
+                    <div className="mt-6 opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-4 lg:group-hover/card:opacity-100 lg:group-hover/card:translate-y-0 transition-all duration-500">
+                        <div className="w-full py-4 bg-[#00AFAA] text-white font-black rounded-2xl flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest shadow-lg transform lg:hover:scale-[1.02] active:scale-95">
                             Tip Project
                             <ArrowRight className="w-4 h-4" />
                         </div>
