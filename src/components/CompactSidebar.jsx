@@ -22,10 +22,10 @@ const CompactSidebar = () => {
     ]
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-20 bg-white border-r border-gray-100 flex flex-col items-center py-8 z-[150] hidden md:flex">
+        <aside className="fixed left-0 top-0 h-screen w-20 bg-white border-r border-gray-100 flex flex-col items-center pt-8 pb-8 z-[150] hidden md:flex">
             {/* Logo Icon */}
-            <Link href="/" className="mb-8">
-                <img src="/assets/favicon.png" alt="ClearFund" className="w-5 h-5 object-contain" />
+            <Link href="/" className="mb-12">
+                <img src="/assets/favicon.png" alt="ClearFund" className="w-8 h-8 object-contain" />
             </Link>
 
             {/* Nav Items */}
