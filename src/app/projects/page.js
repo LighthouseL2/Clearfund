@@ -149,6 +149,18 @@ export default function ProjectsPage() {
                         </div>
                     )}
                 </div>
+
+                {/* RESTORED FOOTER */}
+                <footer className="border-t border-gray-100 py-10 px-10 md:px-16 bg-white text-[#003E52] mt-20">
+                    <div className="max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-6">
+                        <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">© 2026 ClearFund</p>
+                        <div className="flex gap-8">
+                            <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">GitHub</Link>
+                            <Link href="https://x.com/Clear_Fund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Twitter</Link>
+                            <Link href="https://t.me/+fU2kPPjZ50MxMTE0" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Telegram</Link>
+                        </div>
+                    </div>
+                </footer>
             </div>
 
             {/* Submission Modal */}
@@ -175,20 +187,6 @@ export default function ProjectsPage() {
                     </div>
                 </div>
             )}
-
-            {/* RESTORED FOOTER */}
-            <div className="fixed bottom-0 right-0 left-20 bg-white">
-                <footer className="border-t border-gray-100 py-10 px-8  md:px-16 bg-white text-[#003E52]">
-                    <div className="max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-6">
-                        <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">© 2026 ClearFund</p>
-                        <div className="flex gap-8">
-                            <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">GitHub</Link>
-                            <Link href="https://x.com/Clear_Fund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Twitter</Link>
-                            <Link href="https://t.me/+fU2kPPjZ50MxMTE0" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Telegram</Link>
-                        </div>
-                    </div>
-                </footer>
-            </div>
         </div>
     )
 }

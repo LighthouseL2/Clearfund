@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutGrid, CircleDollarSign } from 'lucide-react'
+import { LayoutGrid, HandCoins } from 'lucide-react'
 
 const CompactSidebar = () => {
     const pathname = usePathname()
@@ -17,7 +17,7 @@ const CompactSidebar = () => {
         {
             name: 'Funding',
             href: '/grants',
-            icon: <CircleDollarSign />,
+            icon: <HandCoins />,
         },
     ]
 
