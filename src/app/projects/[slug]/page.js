@@ -5,7 +5,6 @@ import TipWidget from '@/components/TipWidget';
 import { Share2, Heart, Info, MapPin, ArrowLeft, ExternalLink, Target } from 'lucide-react';
 import Link from 'next/link';
 import { FaTwitter, FaWhatsapp, FaFacebook, FaLinkedin, FaReddit, FaTelegramPlane } from 'react-icons/fa';
-import CompactSidebar from '@/components/CompactSidebar';
 
 // --- Info Popup Component ---
 const InfoPopup = ({ project, onClose }) => {
@@ -191,6 +190,39 @@ const ProjectDetailPage = ({ params }) => {
     const [showInfo, setShowInfo] = useState(false);
     const [showShare, setShowShare] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        if (!project) return;
+        try {
+            const favs = JSON.parse(localStorage.getItem('clearfund_favorites') || '[]');
+            setIsFavorite(favs.some(f => f._id === project._id || f.slug === project.slug));
+        } catch (e) { }
+    }, [project]);
+
+    const toggleFavorite = () => {
+        if (!project) return;
+        try {
+            let favs = JSON.parse(localStorage.getItem('clearfund_favorites') || '[]');
+            if (isFavorite) {
+                favs = favs.filter(f => f._id !== project._id && f.slug !== project.slug);
+                setIsFavorite(false);
+            } else {
+                favs.push({
+                    _id: project._id,
+                    slug: project.slug,
+                    name: project.name,
+                    logo: project.logo,
+                    banner: project.banner,
+                    category: project.category
+                });
+                setIsFavorite(true);
+            }
+            localStorage.setItem('clearfund_favorites', JSON.stringify(favs));
+        } catch (e) {
+            console.error("Save favorite failed", e);
+        }
+    };
 
     useEffect(() => {
         fetchProjectAndTips();
@@ -305,15 +337,13 @@ const ProjectDetailPage = ({ params }) => {
     const displayTips = tips;
 
     return (
-        <div className="bg-[#FAFBFD] min-h-screen pb-32 font-sans flex">
-            <CompactSidebar />
-
-            <div className="flex-1 md:ml-20 pt-16 md:pt-0">
+        <div className="bg-[#FAFBFD] min-h-screen pb-32 font-sans flex flex-col">
+            <div className="flex-1 w-full flex flex-col">
                 {showInfo && <InfoPopup project={project} onClose={() => setShowInfo(false)} />}
                 {showShare && <SharePopup project={project} onClose={() => setShowShare(false)} />}
 
                 {/* Minimal Header / Back Button */}
-                <div className="bg-white border-b border-gray-100 py-4 px-6 md:px-12 sticky top-0 z-50 hidden md:flex justify-between items-center shadow-sm">
+                <div className="bg-white border-b border-gray-100 py-4 px-6 md:px-12 sticky top-0 z-50 flex justify-between items-center shadow-sm">
                     <div className="flex items-center relative">
                         {/* Home Arrow - absolute to not push the back link */}
                         <Link href="/" className="md:absolute md:right-full md:mr-10 p-2 hover:bg-gray-50 rounded-full transition-colors group flex items-center gap-2" title="Home">
@@ -348,8 +378,11 @@ const ProjectDetailPage = ({ params }) => {
                                         <button onClick={() => setShowShare(true)} className="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors shadow-sm">
                                             <Share2 className="w-4 h-4" />
                                         </button>
-                                        <button className="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors shadow-sm">
-                                            <Heart className="w-4 h-4" />
+                                        <button
+                                            onClick={toggleFavorite}
+                                            className={`w-10 h-10 bg-white border ${isFavorite ? 'border-red-500 text-red-500' : 'border-gray-200 text-gray-500'} rounded-full flex items-center justify-center hover:text-red-500 hover:border-red-500 transition-colors shadow-sm`}
+                                        >
+                                            <Heart className={`w-4 h-4 ${isFavorite ? 'fill-red-500' : ''}`} />
                                         </button>
                                         <button onClick={() => setShowInfo(true)} className="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-blue-500 transition-colors shadow-sm">
                                             <Info className="w-5 h-5" />

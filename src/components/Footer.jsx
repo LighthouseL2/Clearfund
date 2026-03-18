@@ -25,11 +25,8 @@ const Footer = () => {
                 </div>
 
                 {/* BOTTOM LEGAL ROW */}
-                <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-lg text-sm font-medium text-gray-400 gap-4 text-center">
-                    <span>
-                        ClearFund &mdash; &copy; 2026
-                    </span>
-                    <div className="flex items-center gap-6">
+                <div className="flex items-center justify-center w-full text-sm font-medium text-gray-400 gap-4 text-center">
+                    <div className="flex items-center gap-6 flex-wrap justify-center">
                         <Link href="/terms" className="hover:text-[#00AFAA] transition-colors">
                             Terms of use
                         </Link>
@@ -39,8 +36,10 @@ const Footer = () => {
                         <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="hover:text-[#00AFAA] transition-colors">
                             GitHub
                         </Link>
+                        <Link href="/grants" target="_blank" className="hover:text-[#00AFAA] transition-colors">
+                            Funding
+                        </Link>
                     </div>
-
                 </div>
 
             </div>

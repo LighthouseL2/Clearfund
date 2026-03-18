@@ -21,7 +21,7 @@ const NavHeader = () => {
           <img
             src="/assets/clearfund_logo.png"
             alt="ClearFund"
-            className="h-12 w-auto"
+            className="h-8 md:h-10 w-auto"
           />
         </Link>
       </div>

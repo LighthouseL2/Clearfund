@@ -6,6 +6,74 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, ExternalLink, LogOut, Wallet, Activity, Heart, ArrowRight } from "lucide-react"
 
+const FavoritesSection = () => {
+    const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        try {
+            const favs = JSON.parse(localStorage.getItem('clearfund_favorites') || '[]');
+            setFavorites(favs);
+        } catch (e) { }
+    }, []);
+
+    const removeFavorite = (slug) => {
+        try {
+            const favs = favorites.filter(f => f.slug !== slug);
+            setFavorites(favs);
+            localStorage.setItem('clearfund_favorites', JSON.stringify(favs));
+        } catch (e) { }
+    };
+
+    return (
+        <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden mt-8">
+            <div className="p-6 md:p-8 border-b border-gray-100 flex items-center justify-between">
+                <h2 className="text-xl font-bold text-[#003E52] flex items-center gap-2">
+                    <Heart className="w-5 h-5 text-red-500 fill-red-500" />
+                    Saved Projects
+                </h2>
+            </div>
+
+            {favorites.length === 0 ? (
+                <div className="p-12 text-center text-gray-500">
+                    <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Heart className="w-8 h-8 text-red-200" />
+                    </div>
+                    <h3 className="text-lg font-bold text-[#003E52] mb-2 text-center">No saved projects</h3>
+                    <p className="text-sm">You haven't saved any projects yet. Click the heart icon on a project to save it here!</p>
+                </div>
+            ) : (
+                <div className="divide-y divide-gray-50">
+                    {favorites.map((f, i) => (
+                        <div key={i} className="p-6 px-8 hover:bg-gray-50 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div className="flex items-center gap-4">
+                                <img src={f.logo || f.banner || '/assets/clearfund_logo.png'} alt={f.name} className="w-12 h-12 rounded-full object-cover border border-gray-100" />
+                                <div>
+                                    <div className="text-[#111827] font-bold mb-1 line-clamp-1">{f.name}</div>
+                                    <div className="text-xs text-gray-400 font-medium capitalize">{f.category?.replace('_', ' ').toLowerCase() || 'Impact'}</div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4 justify-between md:justify-end mt-2 md:mt-0">
+                                <Link
+                                    href={`/projects/${f.slug}`}
+                                    className="px-4 py-2 bg-gray-100 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-200 transition-colors shrink-0"
+                                >
+                                    View Project
+                                </Link>
+                                <button
+                                    onClick={() => removeFavorite(f.slug)}
+                                    className="text-red-500 text-xs font-bold hover:underline shrink-0"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
 export default function ProfilePage() {
     const { authenticated, login, logout, ready } = usePrivy()
     const { wallets } = useWallets()
@@ -209,6 +277,9 @@ export default function ProfilePage() {
                         </div>
                     )}
                 </div>
+
+                {/* Saved Favorites Section */}
+                <FavoritesSection />
 
                 {/* CTA — Explore Projects */}
                 <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-[#003E52] rounded-[2rem] text-white">

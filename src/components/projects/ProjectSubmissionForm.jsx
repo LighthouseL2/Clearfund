@@ -162,7 +162,7 @@ export function ProjectSubmissionForm({ onSuccess, onCancel }) {
       {/* Asset Upload Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">Project Logo (Optional)</label>
+          <label className="block text-sm font-black text-[#003E52] mb-2">Project logo (optional)</label>
           <input
             type="file"
             accept="image/*"
@@ -173,7 +173,7 @@ export function ProjectSubmissionForm({ onSuccess, onCancel }) {
         </div>
 
         <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">Banner Image *</label>
+          <label className="block text-sm font-black text-[#003E52] mb-2">Banner image *</label>
           <input
             type="file"
             accept="image/*"

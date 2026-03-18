@@ -6,7 +6,6 @@ import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
 import ProjectCard from "@/components/ProjectCard"
-import CompactSidebar from "@/components/CompactSidebar"
 import { ProjectSubmissionForm } from "@/components/projects/ProjectSubmissionForm"
 
 const CATEGORIES = [
@@ -50,14 +49,20 @@ export default function ProjectsPage() {
     }, [search, activeCategory, fetchProjects]);
 
     return (
-        <div className="min-h-screen bg-white text-[#003E52] font-sans flex">
-            {/* Sidebar */}
-            <CompactSidebar />
-
+        <div className="min-h-screen bg-white text-[#003E52] font-sans flex flex-col">
             {/* Main Content Area */}
-            <div className="flex-1 md:ml-20 pt-16 md:pt-0">
+            <div className="flex-1 w-full max-w-7xl mx-auto">
                 {/* Top Header Bar */}
-                <div className="w-full h-20 hidden md:flex items-center justify-end px-8 md:px-16">
+                <div className="w-full h-24 flex items-center justify-between px-6 md:px-16 pt-4 md:pt-0">
+                    <div className="flex items-center gap-2">
+                        <Link href="/" className="flex items-center gap-2 group">
+                            <img
+                                src="/assets/clearfund_logo.png"
+                                alt="ClearFund"
+                                className="h-8 md:h-10 w-auto"
+                            />
+                        </Link>
+                    </div>
                     {!authenticated ? (
                         <button
                             onClick={login}
@@ -70,9 +75,9 @@ export default function ProjectsPage() {
                     )}
                 </div>
 
-                <div className="max-w-7xl pl-8 md:pl-10 pr-16 pb-20">
+                <div className="px-6 md:px-16 pb-20">
                     {/* Page Hero */}
-                    <div className="pt-8 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                    <div className="pt-24 md:pt-40 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                         <h1 className="text-[64px] md:text-[84px] font-black tracking-tighter leading-[0.9] mb-8">
                             Explore <span className="text-[#00AFAA]">Impact</span>
                         </h1>
@@ -149,45 +154,41 @@ export default function ProjectsPage() {
                         </div>
                     )}
                 </div>
-
-                {/* RESTORED FOOTER */}
-                <footer className="border-t border-gray-100 py-10 px-10 md:px-16 bg-white text-[#003E52] mt-20">
-                    <div className="max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-6">
-                        <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em]">© 2026 ClearFund</p>
-                        <div className="flex gap-8">
-                            <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">GitHub</Link>
-                            <Link href="https://x.com/Clear_Fund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Twitter</Link>
-                            <Link href="https://t.me/+fU2kPPjZ50MxMTE0" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Telegram</Link>
-                        </div>
-                    </div>
-                </footer>
             </div>
 
             {/* Submission Modal */}
-            {showSubmitModal && (
-                <div className="fixed inset-0 z-[200] bg-[#003E52]/40 backdrop-blur-sm flex items-center justify-center p-4">
-                    <div className="bg-white max-w-4xl w-full rounded-[2.5rem] p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-                        <button
-                            onClick={() => setShowSubmitModal(false)}
-                            className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full hover:bg-gray-200 transition-colors font-bold z-10"
+            {
+                showSubmitModal && (
+                    <div
+                        className="fixed inset-0 z-[200] bg-[#003E52]/40 backdrop-blur-sm flex items-center justify-center p-4"
+                        onClick={() => setShowSubmitModal(false)}
+                    >
+                        <div
+                            className="bg-white max-w-4xl w-full rounded-[2.5rem] p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            ×
-                        </button>
-                        <h2 className="text-3xl font-black text-[#003E52] mb-1">Submit Your Project</h2>
-                        <p className="text-sm text-gray-500 font-medium mb-8">
-                            Share your project with the community and start receiving tips directly to your wallet.
-                        </p>
-                        <ProjectSubmissionForm
-                            onSuccess={() => {
-                                setShowSubmitModal(false);
-                                fetchProjects();
-                            }}
-                            onCancel={() => setShowSubmitModal(false)}
-                        />
+                            <button
+                                onClick={() => setShowSubmitModal(false)}
+                                className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full hover:bg-gray-200 transition-colors font-bold z-10"
+                            >
+                                ×
+                            </button>
+                            <h2 className="text-3xl font-black text-[#003E52] mb-1">Submit Your Project</h2>
+                            <p className="text-sm text-gray-500 font-medium mb-8">
+                                Share your project with the community and start receiving tips directly to your wallet.
+                            </p>
+                            <ProjectSubmissionForm
+                                onSuccess={() => {
+                                    setShowSubmitModal(false);
+                                    fetchProjects();
+                                }}
+                                onCancel={() => setShowSubmitModal(false)}
+                            />
+                        </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     )
 }
 

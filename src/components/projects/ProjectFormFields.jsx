@@ -9,8 +9,8 @@ export function ProjectFormFields({ formData, onChange, errors }) {
     <div className="space-y-6">
 
       <div className="mb-6">
-        <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-          Project Name *
+        <label className="block text-sm font-black text-[#003E52] mb-2">
+          Project name *
         </label>
         <input
           type="text"
@@ -27,8 +27,8 @@ export function ProjectFormFields({ formData, onChange, errors }) {
 
 
       <div className="mb-6">
-        <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-          About this campaign *
+        <label className="block text-sm font-black text-[#003E52] mb-2">
+          About *
         </label>
         <textarea
           placeholder="Tell us more about the project and its goals..."
@@ -40,7 +40,7 @@ export function ProjectFormFields({ formData, onChange, errors }) {
       </div>
 
       <div className="mb-6">
-        <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
+        <label className="block text-sm font-black text-[#003E52] mb-2">
           Where your tip goes *
         </label>
         <textarea
@@ -51,21 +51,9 @@ export function ProjectFormFields({ formData, onChange, errors }) {
           required
         />
       </div>
-      <div className="mb-6">
-        <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-          Project Milestones (Optional)
-        </label>
-        <textarea
-          placeholder="List key milestones or progress goals..."
-          className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA] transition-all min-h-[80px]"
-          value={formData.milestones || ''}
-          onChange={(e) => onChange('milestones', e.target.value)}
-        />
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
+          <label className="block text-sm font-black text-[#003E52] mb-2">
             Category *
           </label>
           <select
@@ -77,12 +65,11 @@ export function ProjectFormFields({ formData, onChange, errors }) {
             <option value="CLIMATE">Climate</option>
             <option value="SOCIAL_IMPACT">Social Impact</option>
             <option value="EDUCATION">Education</option>
-            <option value="OTHERS">Others</option>
           </select>
         </div>
 
         <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
+          <label className="block text-sm font-black text-[#003E52] mb-2">
             Location *
           </label>
           <input
@@ -97,8 +84,8 @@ export function ProjectFormFields({ formData, onChange, errors }) {
       </div>
 
       <div className="mb-6">
-        <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-          Recipient Wallet (Celo Network Only) *
+        <label className="block text-sm font-black text-[#003E52] mb-2">
+          Recipient wallet (Celo network only) *
         </label>
         <input
           type="text"
@@ -112,8 +99,8 @@ export function ProjectFormFields({ formData, onChange, errors }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-            Website Link *
+          <label className="block text-sm font-black text-[#003E52] mb-2">
+            Website link *
           </label>
           <input
             type="url"
@@ -125,7 +112,7 @@ export function ProjectFormFields({ formData, onChange, errors }) {
           />
         </div>
         <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
+          <label className="block text-sm font-black text-[#003E52] mb-2">
             Twitter (X)
           </label>
           <input
@@ -138,31 +125,17 @@ export function ProjectFormFields({ formData, onChange, errors }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-            GitHub Link
-          </label>
-          <input
-            type="url"
-            placeholder="https://github.com/..."
-            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA] transition-all"
-            value={formData.github || ''}
-            onChange={(e) => onChange('github', e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-black text-[#003E52] uppercase tracking-widest mb-2">
-            Karma Link
-          </label>
-          <input
-            type="url"
-            placeholder="https://karma.gap.xyz/..."
-            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA] transition-all"
-            value={formData.karmaLink || ''}
-            onChange={(e) => onChange('karmaLink', e.target.value)}
-          />
-        </div>
+      <div className="mb-6">
+        <label className="block text-sm font-black text-[#003E52] mb-2">
+          GitHub link
+        </label>
+        <input
+          type="url"
+          placeholder="https://github.com/..."
+          className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA] transition-all"
+          value={formData.github || ''}
+          onChange={(e) => onChange('github', e.target.value)}
+        />
       </div>
 
     </div>
