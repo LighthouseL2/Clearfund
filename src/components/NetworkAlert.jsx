@@ -1,5 +1,6 @@
 "use client"
 
+import React, { Fragment } from "react"
 import { useNetworkCheck } from "@/hooks/web3/useNetworkCheck"
 import { AlertCircle, Loader } from "lucide-react"
 

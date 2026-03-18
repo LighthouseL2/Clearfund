@@ -1,6 +1,6 @@
 /**
  * ClearFundRegistry Deployment Script (Node.js + ethers.js)
- * Deploys to Celo Sepolia Testnet (Alfajores is deprecated since Sep 2025)
+ * Deploys to Celo Mainnet
  * 
  * Usage: node scripts/deploy_node.mjs
  */
@@ -19,8 +19,8 @@ const ROOT = path.resolve(__dirname, "..");
 dotenv.config({ path: path.join(ROOT, ".env") });
 
 // --- Configuration ---
-const RPC_URL = "https://forno.celo-sepolia.celo-testnet.org";
-const CHAIN_ID = 11142220;
+const RPC_URL = "https://forno.celo.org";
+const CHAIN_ID = 42220;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 if (!PRIVATE_KEY) {
@@ -100,7 +100,7 @@ function compileSolidity() {
 async function deploy() {
     const { abi, bytecode } = compileSolidity();
 
-    console.log(`\n[2/4] Connecting to Celo Sepolia Testnet...`);
+    console.log(`\n[2/4] Connecting to Celo Mainnet...`);
     console.log(`  RPC: ${RPC_URL}`);
     console.log(`  Chain ID: ${CHAIN_ID}`);
 
@@ -115,7 +115,8 @@ async function deploy() {
     console.log(`  Balance: ${balanceCelo} CELO`);
 
     if (balanceWei === 0n) {
-        console.error("\n  ERROR: Wallet has 0 CELO. Get testnet tokens from https://faucet.celo.org/celo-sepolia");
+        console.error("\n  ERROR: Wallet has 0 CELO. You need real CELO tokens for mainnet deployment.");
+        console.error("  Purchase CELO from an exchange or bridge funds to your wallet.");
         process.exit(1);
     }
 
@@ -141,8 +142,8 @@ async function deploy() {
     console.log(`  Contract:  ${contractName}`);
     console.log(`  Version:   ${version}`);
     console.log(`  Address:   ${contractAddress}`);
-    console.log(`  Network:   Celo Sepolia Testnet`);
-    console.log(`  Explorer:  https://celo-sepolia.celoscan.io/address/${contractAddress}`);
+    console.log(`  Network:   Celo Mainnet`);
+    console.log(`  Explorer:  https://celoscan.io/address/${contractAddress}`);
     console.log("=".repeat(55));
     console.log(`\n  Add this to your .env file:`);
     console.log(`  NEXT_PUBLIC_CLEARFUND_REGISTRY_ADDRESS=${contractAddress}`);

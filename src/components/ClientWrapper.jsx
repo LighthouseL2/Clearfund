@@ -1,21 +1,34 @@
 "use client"
 
-import { useEffect } from "react"
+import React, { useEffect, Suspense } from "react"
 import { usePathname } from "next/navigation"
-import { Suspense } from 'react'
 import Providers from '@/components/Provider'
 import { PrivyProvider } from "@privy-io/react-auth"
+import { Analytics } from "@vercel/analytics/next"
 import * as gtag from "@/lib/gtag"
-import { celo, baseSepolia } from "viem/chains"
+import { celo } from "viem/chains"
 
-const celoWithRpc = {
-    ...celo,
-    rpcUrls: {
-        ...celo.rpcUrls,
-        default: { http: ["https://1rpc.io/celo", "https://forno.celo.org"] },
-        public: { http: ["https://1rpc.io/celo", "https://forno.celo.org"] },
-    }
-}
+// Define stable config outside to prevent re-renders
+const PRIVY_CONFIG = {
+    loginMethods: ["wallet"],
+    defaultChain: celo,
+    supportedChains: [celo],
+    walletConnectCloudProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
+    embeddedWallets: {
+        createOnLogin: "users-without-wallets"
+    },
+    appearance: {
+        theme: "light",
+        accentColor: "#00AFAA",
+        showWalletLoginFirst: true,
+        walletList: [
+            "metamask",
+            "wallet_connect",
+            "coinbase_wallet",
+            "rainbow",
+        ],
+    },
+};
 
 function AnalyticsWrapper({ children }) {
     const pathname = usePathname();
@@ -26,38 +39,33 @@ function AnalyticsWrapper({ children }) {
         }
     }, [pathname]);
 
-    return <>{children}</>;
+    return (
+        <>
+            <div className="contents">
+                {children}
+            </div>
+            <Analytics />
+        </>
+    );
 }
 
 export default function ClientWrapper({ children }) {
+    const privyAppId = process.env.NEXT_PUBLIC_PRIVY_APP_ID;
+
+    if (!privyAppId) {
+        console.error("PRIVY_APP_ID is missing from environment variables.");
+    }
+
     return (
         <PrivyProvider
-            appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
-            config={{
-                loginMethods: ["wallet"],
-                defaultChain: celoWithRpc,
-                supportedChains: [celoWithRpc, baseSepolia],
-                walletConnectCloudProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
-                embeddedWallets: {
-                    createOnLogin: "users-without-wallets"
-                },
-                appearance: {
-                    theme: "light",
-                    accentColor: "#00AFAA",
-                    showWalletLoginFirst: true,
-                    walletList: [
-                        "detected_ethereum_wallets",
-                        "metamask",
-                        "wallet_connect",
-                        "coinbase_wallet",
-                        "rainbow",
-                    ],
-                },
-            }}
+            appId={privyAppId}
+            config={PRIVY_CONFIG}
         >
             <Providers>
-                <Suspense fallback={<div>Loading ...</div>}>
-                    <AnalyticsWrapper>{children}</AnalyticsWrapper>
+                <Suspense fallback={<div className="global-loader">Loading ...</div>}>
+                    <AnalyticsWrapper>
+                        {children}
+                    </AnalyticsWrapper>
                 </Suspense>
             </Providers>
         </PrivyProvider>

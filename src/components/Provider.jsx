@@ -31,10 +31,12 @@ export default function Providers({ children }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClientRef.current}>
-        <React.Fragment>
-          <NetworkAlert key="network-alert" />
-          {children}
-        </React.Fragment>
+        <div className="contents">
+          <NetworkAlert />
+          <div className="contents">
+            {children}
+          </div>
+        </div>
       </QueryClientProvider>
     </WagmiProvider>
   )

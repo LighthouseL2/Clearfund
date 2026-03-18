@@ -14,7 +14,8 @@ export async function POST(request) {
   try {
     const formData = await request.formData()
     const file = formData.get('file')
-    const provider = formData.get('provider') || process.env.NEXT_PUBLIC_IPFS_PROVIDER || 'pinata'
+    const rawProvider = formData.get('provider') || process.env.NEXT_PUBLIC_IPFS_PROVIDER || 'pinata'
+    const provider = String(rawProvider).toLowerCase().trim()
 
     if (!file) {
       return NextResponse.json(
@@ -27,7 +28,7 @@ export async function POST(request) {
 
     if (provider === 'pinata') {
       // PINATA_JWT must be server-side only (no NEXT_PUBLIC_ prefix)
-      const jwt = process.env.PINATA_JWT
+      const jwt = process.env.PINATA_JWT?.trim()
 
       if (!jwt) {
         return NextResponse.json(
@@ -42,17 +43,17 @@ export async function POST(request) {
         pinataGateway: process.env.NEXT_PUBLIC_PINATA_GATEWAY,
       })
 
-      // Upload file using the current SDK method (pinata.upload.public.file)
+      // Upload file using the current SDK method (pinata.upload.file)
       // File object from formData is already a File/Blob that the SDK accepts directly
-      const result = await pinata.upload.public.file(file)
+      const result = await pinata.upload.file(file)
 
       // The response contains 'cid' field (not IpfsHash)
       cid = result.cid
-    } 
+    }
     else if (provider === 'nft-storage') {
       // NFT_STORAGE_KEY must be server-side only (no NEXT_PUBLIC_ prefix)
       const token = process.env.NFT_STORAGE_KEY
-      
+
       if (!token) {
         return NextResponse.json(
           { error: 'NFT.Storage API token is not configured. Set NFT_STORAGE_KEY in server environment variables.' },
