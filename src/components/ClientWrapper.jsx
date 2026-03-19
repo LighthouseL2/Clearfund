@@ -4,7 +4,7 @@ import React, { useEffect, Suspense } from "react"
 import { usePathname } from "next/navigation"
 import Providers from '@/components/Provider'
 import { PrivyProvider } from "@privy-io/react-auth"
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import * as gtag from "@/lib/gtag"
 import { celo } from "viem/chains"
 
