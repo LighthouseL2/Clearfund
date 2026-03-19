@@ -1,35 +1,29 @@
 "use client"
 
-
-// import imgBanner1 from "../../public/assets/banner.png";
 import Image from "next/image";
 
 export default function HeroBanner() {
-
   return (
-    <div className="relative h-[323px] w-full overflow-hidden">
-      {/* <img 
-        src={imgBanner1} 
-        alt="Banner" 
-        className="absolute inset-0 w-full h-full object-cover"
-      /> */}
+    <div className="relative h-[240px] md:h-[300px] w-full overflow-hidden rounded-[2.5rem] mb-16 shadow-xl border border-gray-100 group">
       <Image
-        src={"/assets/banner.png"}
-        alt="Banner"
+        src="/assets/banner_image.png"
+        alt="Projects Banner"
         fill
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[10s] ease-out"
+        priority
       />
-
-      {/* Content overlay */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between h-full px-6 lg:px-11 py-8 lg:py-0 w-full gap-6">
-        <div className="text-white max-w-2xl">
-          <h1 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] lg:text-[48px] leading-normal mb-4 lg:mb-6">
-            All Funding. One Dashboard.
-          </h1>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[18px] lg:text-[24px] leading-[28px] lg:leading-[35px]">
-            Explore active funding opportunities across the Web3 ecosystem
-            in one place.
-          </p>
+      {/* Premium Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#003E52]/40 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent" />
+      
+      {/* Content overlay - Subtle hint of color to match the brand */}
+      <div className="relative z-10 flex items-center h-full px-12">
+        <div className="w-1.5 h-12 bg-[#00AFAA] rounded-full mr-6 shadow-[0_0_20px_rgba(0,175,170,0.5)]" />
+        <div className="md:max-w-xl">
+           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/80 mb-2 block">
+             Verified Registry
+           </span>
+           <div className="h-px w-12 bg-[#00AFAA]/50 mt-4" />
         </div>
       </div>
     </div>

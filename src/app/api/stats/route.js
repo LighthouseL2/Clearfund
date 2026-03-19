@@ -7,6 +7,21 @@ export const revalidate = 0;
 
 export async function GET() {
     try {
+<<<<<<< HEAD
+=======
+        try {
+            await dbConnect();
+        } catch (dbError) {
+            console.error("Database connection failed:", dbError.message);
+            return NextResponse.json({
+                success: false,
+                error: dbError.message,
+                message: "Database connection failed. Please check your MONGODB_URI and IP Whitelist in Atlas.",
+                isMock: true
+            });
+        }
+
+>>>>>>> 90bf5dd (feat: restore and refine project submission form and footer. update branding and typography.)
         // Aggregated stats: Sum of ALL tips across the entire platform
         const tipSummary = await prisma.tip.aggregate({
             _sum: { amount: true },

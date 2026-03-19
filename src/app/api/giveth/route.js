@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
+<<<<<<< HEAD
 import prisma from '@/lib/db';
 import { CURATED_REFI_PROJECTS } from '@/lib/curatedProjects';
+=======
+import dbConnect from '@/lib/db';
+import Project from '@/models/Project';
+import Tip from '@/models/Tip';
+>>>>>>> 90bf5dd (feat: restore and refine project submission form and footer. update branding and typography.)
 
 const GIVETH_GRAPHQL = 'https://mainnet.serve.giveth.io/graphql';
 

@@ -1,12 +1,13 @@
 "use client"
 
 import React, { useState, useEffect, useCallback } from "react"
-import { Search, Plus } from "lucide-react"
+import { Search, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
 import UserDetails from "@/components/userDetails"
 import ProjectCard from "@/components/ProjectCard"
-import { ProjectSubmissionForm } from "@/components/projects/ProjectSubmissionForm"
+import ProjectForm from "@/components/ProjectForm"
+import Image from "next/image"
 
 const CATEGORIES = [
     { id: "ALL", name: "All projects" },
@@ -20,175 +21,220 @@ export default function ProjectsPage() {
     const { wallets } = useWallets()
     const address = wallets?.[0]?.address
 
+    const [allProjects, setAllProjects] = useState([])
     const [projects, setProjects] = useState([])
     const [loading, setLoading] = useState(true)
+    const [counts, setCounts] = useState({ ALL: 0, CLIMATE: 0, SOCIAL_IMPACT: 0, EDUCATION: 0 })
     const [activeCategory, setActiveCategory] = useState("ALL")
     const [search, setSearch] = useState("")
     const [showSubmitModal, setShowSubmitModal] = useState(false)
 
-    const fetchProjects = useCallback(async (cat = activeCategory, q = search) => {
+    // 1. Fetch EVERYTHING once
+    const fetchAll = useCallback(async () => {
         setLoading(true)
         try {
-            const resp = await fetch(`/api/giveth?category=${cat}&search=${encodeURIComponent(q)}`)
+            const resp = await fetch(`/api/giveth`)
             const data = await resp.json()
             if (data.success) {
-                setProjects(data.data)
+                const limited = data.data.slice(0, 7) // Project count you met on ground: 7
+                setAllProjects(limited)
+                setProjects(limited)
+
+                // Calculate accurate local counts
+                const raw = limited
+                setCounts({
+                    ALL: raw.length,
+                    CLIMATE: raw.filter(p => p.category === 'CLIMATE').length,
+                    SOCIAL_IMPACT: raw.filter(p => p.category === 'SOCIAL_IMPACT').length,
+                    EDUCATION: raw.filter(p => p.category === 'EDUCATION').length,
+                })
             }
         } catch (err) {
             console.error('Fetch Projects error:', err)
         } finally {
             setLoading(false)
         }
-    }, [activeCategory, search])
+    }, [])
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            fetchProjects(activeCategory, search);
-        }, 500);
-        return () => clearTimeout(timer);
-    }, [search, activeCategory, fetchProjects]);
+        fetchAll()
+    }, [fetchAll])
+
+    // 2. Local filtering for responsiveness
+    useEffect(() => {
+        let filtered = [...allProjects]
+        if (activeCategory !== "ALL") {
+            filtered = filtered.filter(p => p.category === activeCategory)
+        }
+        if (search) {
+            const q = search.toLowerCase()
+            filtered = filtered.filter(p =>
+                p.name.toLowerCase().includes(q) ||
+                (p.tagline && p.tagline.toLowerCase().includes(q))
+            )
+        }
+        setProjects(filtered)
+    }, [activeCategory, search, allProjects])
 
     return (
-        <div className="min-h-screen bg-white text-[#003E52] font-sans flex flex-col">
-            {/* Main Content Area */}
-            <div className="flex-1 w-full max-w-7xl mx-auto">
-                {/* Top Header Bar */}
-                <div className="w-full h-24 flex items-center justify-between px-6 md:px-16 pt-4 md:pt-0">
-                    <div className="flex items-center gap-2">
-                        <Link href="/" className="flex items-center gap-2 group">
-                            <img
+        <div className="min-h-screen bg-[#F9FAFB] text-[#003E52] font-sans selection:bg-[#00AFAA] selection:text-white">
+
+            {/* ── HEADER ────────────────────────────────────────────── */}
+            <header className="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-[100]">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-4 flex justify-between items-center text-[#003E52]">
+                    <div className="flex items-center">
+                        <Link href="/" className="flex items-center gap-2">
+                            <Image
                                 src="/assets/clearfund_logo.png"
-                                alt="ClearFund"
-                                className="h-8 md:h-10 w-auto"
+                                alt="ClearFund Logo"
+                                width={180}
+                                height={54}
+                                className="h-10 w-auto object-contain"
                             />
                         </Link>
                     </div>
-                    {!authenticated ? (
-                        <button
-                            onClick={login}
-                            className="px-10 py-3.5 bg-[#00AFAA] text-white rounded-full font-black text-[12px] uppercase tracking-widest hover:bg-[#003E52] transition-all flex items-center gap-2 shadow-sm"
-                        >
-                            Connect Wallet <span>→</span>
-                        </button>
-                    ) : (
-                        <UserDetails walletAddress={address} logout={logout} />
-                    )}
-                </div>
 
-                <div className="px-6 md:px-16 pb-20">
-                    {/* Page Hero */}
-                    <div className="pt-24 md:pt-40 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                        <h1 className="text-[64px] md:text-[84px] font-black tracking-tighter leading-[0.9] mb-8">
-                            Explore <span className="text-[#00AFAA]">Impact</span>
+                    <div className="flex items-center gap-4">
+                        {!authenticated ? (
+                            <button
+                                onClick={login}
+                                className="px-8 py-3 bg-[#00AFAA] text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#003E52] transition-all flex items-center gap-2 shadow-lg"
+                            >
+                                Connect Wallet <ArrowRight className="w-4 h-4" />
+                            </button>
+                        ) : (
+                            <UserDetails walletAddress={address} logout={logout} />
+                        )}
+                    </div>
+                </div>
+            </header>
+
+            {/* ── MAIN ──────────────────────────────────────────────── */}
+            <main className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-12">
+
+                {/* TEAL HERO BANNER with HIGH-SHARP IMAGE ON RIGHT */}
+                <div className="relative w-full bg-[#00AFAA] rounded-[2.5rem] overflow-hidden mb-16 min-h-[440px] shadow-2xl flex items-center">
+                    {/* The slanted transition area */}
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-[#11B7B2] transform -skew-x-12 translate-x-1/4 hidden md:block" />
+
+                    <div className="relative z-10 p-12 md:p-20 md:w-[65%] text-white">
+                        {/* Indicator Pill inside Banner */}
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-8 backdrop-blur-sm">
+                            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Impact Project Discovery</span>
+                        </div>
+
+                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 text-white">
+                            Explore Impact
                         </h1>
-                        <p className="text-gray-400 text-xl font-medium max-w-2xl leading-relaxed">
-                            Discover Climate, Education, and Social Impact projects — tip directly
-                            with crypto, zero fees, full transparency.
+                        <p className="text-white text-lg md:text-xl font-medium max-w-xl leading-relaxed opacity-95">
+                            Discover Climate, Education, and Social Impact projects — tip directly with crypto, zero fees, full transparency.
                         </p>
                     </div>
 
-                    {/* Filter + Search controls */}
-                    <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between mb-14 border-b border-gray-100 pb-10">
-                        {/* Category tabs */}
-                        <div className="flex items-center gap-2 flex-wrap">
-                            {CATEGORIES.map(cat => (
-                                <button
-                                    key={cat.id}
-                                    onClick={() => setActiveCategory(cat.id)}
-                                    className={`px-6 py-2.5 rounded-2xl font-black text-[10px] uppercase tracking-[0.1em] transition-all whitespace-nowrap ${activeCategory === cat.id
-                                        ? "bg-[#003E52] text-white shadow-lg"
-                                        : "bg-white text-gray-500 hover:bg-gray-50 border border-gray-100"
-                                        }`}
-                                >
-                                    {cat.name}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Search & Submit Action */}
-                        <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                            <div className="relative w-full sm:w-80">
-                                <input
-                                    type="text"
-                                    placeholder="Search by name or location..."
-                                    value={search}
-                                    onChange={e => setSearch(e.target.value)}
-                                    className="w-full bg-white border border-gray-200 rounded-2xl px-12 py-3 text-sm font-medium focus:outline-none focus:border-[#00AFAA]/50 transition-all shadow-sm"
-                                />
-                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                                {search && (
-                                    <button
-                                        onClick={() => setSearch("")}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center bg-gray-100 text-gray-400 rounded-full hover:bg-gray-200 transition-colors text-[10px] font-bold"
-                                    >
-                                        ✕
-                                    </button>
-                                )}
-                            </div>
-                            <button
-                                onClick={() => setShowSubmitModal(true)}
-                                className="w-full sm:w-auto px-6 py-3 bg-[#00AFAA] text-white rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-[#003E52] transition-all shadow-lg whitespace-nowrap"
-                            >
-                                + Add Project
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Project Grid */}
-                    {loading ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                            {[1, 2, 3, 4, 5, 6].map(i => (
-                                <div key={i} className="bg-gray-50 rounded-[2rem] aspect-[1/1.2] animate-pulse" />
-                            ))}
-                        </div>
-                    ) : projects.length === 0 ? (
-                        <div className="text-center py-32 bg-gray-50/50 rounded-[3rem] border border-dashed border-gray-200">
-                            <p className="text-3xl font-black text-gray-200 mb-4">No projects found</p>
-                            <p className="text-gray-400 font-medium">Try a different category or search term.</p>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                            {projects.map(project => (
-                                <ProjectCard key={project._id} project={project} />
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* Submission Modal */}
-            {
-                showSubmitModal && (
-                    <div
-                        className="fixed inset-0 z-[200] bg-[#003E52]/40 backdrop-blur-sm flex items-center justify-center p-4"
-                        onClick={() => setShowSubmitModal(false)}
-                    >
-                        <div
-                            className="bg-white max-w-4xl w-full rounded-[2.5rem] p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button
-                                onClick={() => setShowSubmitModal(false)}
-                                className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full hover:bg-gray-200 transition-colors font-bold z-10"
-                            >
-                                ×
-                            </button>
-                            <h2 className="text-3xl font-black text-[#003E52] mb-1">Submit Your Project</h2>
-                            <p className="text-sm text-gray-500 font-medium mb-8">
-                                Share your project with the community and start receiving tips directly to your wallet.
-                            </p>
-                            <ProjectSubmissionForm
-                                onSuccess={() => {
-                                    setShowSubmitModal(false);
-                                    fetchProjects();
-                                }}
-                                onCancel={() => setShowSubmitModal(false)}
+                    <div className="absolute top-0 right-0 w-full md:w-[45%] h-full hidden md:block">
+                        <div className="relative w-full h-full" style={{ clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                            <Image
+                                src="/assets/banner_image.png"
+                                alt="Registry Banner"
+                                fill
+                                quality={100}
+                                className="object-cover"
+                                priority
                             />
                         </div>
                     </div>
-                )
-            }
-        </div >
+                </div>
+
+                {/* Filter Row with INTEGRATED COUNTS */}
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-16 border-b border-gray-100 pb-10">
+                    <div className="flex items-center gap-2.5 overflow-x-auto w-full lg:w-auto pb-4 lg:pb-0 no-scrollbar">
+                        {CATEGORIES.map(cat => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setActiveCategory(cat.id)}
+                                className={`px-6 py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all whitespace-nowrap flex items-center gap-3 border ${activeCategory === cat.id
+                                    ? "bg-[#003E52] text-white border-[#003E52] shadow-lg"
+                                    : "bg-white text-gray-400 hover:bg-gray-50 border-gray-100 hover:border-gray-200"
+                                    }`}
+                            >
+                                <span>{cat.name}</span>
+                                <span className={`px-2 py-0.5 rounded-full text-[8px] border ${activeCategory === cat.id
+                                    ? "bg-white/10 border-white/20 text-white"
+                                    : "bg-gray-50 border-gray-200 text-gray-400"
+                                    }`}>
+                                    {counts[cat.id] || 0}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                        <div className="relative w-full sm:w-80">
+                            <input
+                                type="text"
+                                placeholder="Search by name or location..."
+                                value={search}
+                                onChange={e => setSearch(e.target.value)}
+                                className="w-full bg-white border border-gray-200 rounded-2xl px-12 py-3.5 text-sm font-medium focus:outline-none focus:border-[#00AFAA]/50 shadow-sm"
+                            />
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        </div>
+                        <button
+                            onClick={() => setShowSubmitModal(true)}
+                            className="w-full sm:w-auto px-10 py-3.5 bg-[#00AFAA] text-white rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-[#003E52] transition-all shadow-lg"
+                        >
+                            + Add Project
+                        </button>
+                    </div>
+                </div>
+
+                {/* Project Grid */}
+                {loading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {[1, 2, 3, 4, 5, 6].map(i => (
+                            <div key={i} className="bg-white rounded-[2.5rem] h-[480px] animate-pulse border border-gray-100 shadow-sm" />
+                        ))}
+                    </div>
+                ) : projects.length === 0 ? (
+                    <div className="text-center py-32 bg-gray-50/50 rounded-[3rem] border border-dashed border-gray-200">
+                        <p className="text-3xl font-black text-gray-200 mb-4">No projects found</p>
+                        <p className="text-gray-400 font-medium">Try a different category or search term.</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {projects.map(project => (
+                            <ProjectCard key={project._id} project={project} />
+                        ))}
+                    </div>
+                )}
+            </main>
+
+            {/* Submission Modal */}
+            {showSubmitModal && (
+                <div className="fixed inset-0 z-[200] bg-[#003E52]/40 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div className="bg-white max-w-5xl w-full rounded-[2.5rem] p-4 lg:p-8 shadow-2xl relative max-h-[95vh] overflow-y-auto">
+                        <button
+                            onClick={() => setShowSubmitModal(false)}
+                            className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full hover:bg-gray-200 transition-colors font-bold z-[210]"
+                        >
+                            ×
+                        </button>
+                        <ProjectForm />
+                    </div>
+                </div>
+            )}
+
+            {/* Footer consistent with grants page */}
+            <footer className="border-t border-gray-100 py-8 px-6 md:px-12 lg:px-16 mt-20 bg-white text-[#003E52]">
+                <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <div className="flex gap-8">
+                        <Link href="https://github.com/LighthouseL2/Clearfund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">GitHub</Link>
+                        <Link href="https://x.com/Clear_Fund" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Twitter</Link>
+                        <Link href="https://t.me/+fU2kPPjZ50MxMTE0" target="_blank" className="text-[10px] font-black text-gray-400 hover:text-[#00AFAA] transition-colors uppercase tracking-widest">Telegram</Link>
+                    </div>
+                </div>
+            </footer>
+        </div>
     )
 }
-
