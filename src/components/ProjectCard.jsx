@@ -76,14 +76,7 @@ const ProjectCard = ({ project }) => {
                     <div className="flex items-center pt-6 mt-4 border-t border-gray-100/50 justify-between">
                         <div>
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Total Tipped</div>
-<<<<<<< HEAD
-                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">
-                                ${(totalTipped * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}
-                                <span className="text-[10px] text-gray-400 ml-1 font-medium">USD</span>
-                            </div>
-=======
-                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">${(totalRaised / 100).toFixed(2)}</div>
->>>>>>> 90bf5dd (feat: restore and refine project submission form and footer. update branding and typography.)
+                            <div className="text-xl font-black text-[#003E52] tabular-nums tracking-tighter">${(totalTipped / 100).toFixed(2)}</div>
                         </div>
                         <div className="text-center">
                             <div className="text-[8px] font-black text-gray-300 uppercase tracking-[0.3em] mb-1">Backers</div>
