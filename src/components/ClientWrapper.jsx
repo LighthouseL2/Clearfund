@@ -25,26 +25,6 @@ const PRIVY_CONFIG = {
         accentColor: "#00AFAA",
         showWalletLoginFirst: true,
         fontFamily: "Inter, sans-serif",
-        walletList: [
-            "metamask",
-            "trust_wallet",
-            "wallet_connect",
-            "rainbow",
-            "ledger",
-            "okx_wallet",
-            "phantom",
-            "zerion",
-            "rabby",
-            "brave_wallet",
-            "safe",
-            "argent",
-            "im_token",
-            "omni",
-            "bitget_wallet",
-            "bybit_wallet",
-            "xdefi",
-            "uniswap"
-        ],
     },
 };
 
