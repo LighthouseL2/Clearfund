@@ -89,7 +89,7 @@ const TipFeed = () => {
                                         </span>
                                         <span className="text-xs font-medium text-gray-400">sent</span>
                                         <span className="text-lg font-black text-gd-teal tabular-nums">
-                                            ${(d.amount * 0.0001).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })} USD
+                                            ${(d.amount / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-1.5 mt-1 overflow-hidden">
