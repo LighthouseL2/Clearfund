@@ -17,33 +17,14 @@ const PRIVY_CONFIG = {
     embeddedWallets: {
         createOnLogin: "users-without-wallets"
     },
+    externalWallets: {
+        coinbaseWallet: 'none',
+    },
     appearance: {
         theme: "light",
         accentColor: "#00AFAA",
         showWalletLoginFirst: true,
         fontFamily: "Inter, sans-serif",
-        walletList: [
-            "metamask",
-            "wallet_connect",
-            "rainbow",
-            "trust_wallet",
-            "ledger",
-            "okx_wallet",
-            "phantom",
-            "zerion",
-            "rabby",
-            "brave_wallet",
-            "safe",
-            "argent",
-            "im_token",
-            "omni",
-            "bitget_wallet",
-            "bybit_wallet",
-            "xdefi",
-            "uniswap",
-            "tally_ho",
-            "alpha_wallet"
-        ],
     },
 };
 
