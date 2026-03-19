@@ -8,13 +8,15 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { usePrivy, useWallets } from '@privy-io/react-auth'
+import { useAuthModal } from '@/components/ClientWrapper';
 import { ethers } from 'ethers'
 
 
 
 const LoginForm = ({ open, setOpen, blur, setBlur }) => {
 
-    const { login, authenticated, ready } = usePrivy()
+    const { authenticated, ready } = usePrivy();
+    const { openAuthModal } = useAuthModal();
     const { wallets } = useWallets()
     const router = useRouter()
 
@@ -48,8 +50,7 @@ const LoginForm = ({ open, setOpen, blur, setBlur }) => {
 
     const handleLoginPrivy = async () => {
         try {
-            login()
-
+            openAuthModal();
         } catch (error) {
             console.log("Error logging In", error);
         }

@@ -43,9 +43,9 @@ export async function POST(request) {
         pinataGateway: process.env.NEXT_PUBLIC_PINATA_GATEWAY,
       })
 
-      // Upload file using the current SDK method (pinata.upload.file)
+      // Upload file using the correct SDK method for this version (pinata.upload.public.file)
       // File object from formData is already a File/Blob that the SDK accepts directly
-      const result = await pinata.upload.file(file)
+      const result = await pinata.upload.public.file(file)
 
       // The response contains 'cid' field (not IpfsHash)
       cid = result.cid

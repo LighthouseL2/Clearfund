@@ -13,8 +13,12 @@ const TOKENS = [
     { symbol: 'cUSD', name: 'cUSD', icon: '/assets/cusd.png' }
 ];
 
+import { useAuthModal } from '@/components/ClientWrapper';
+
 const TipWidget = ({ project, onTipSuccess, onShare }) => {
-    const { authenticated, login, user } = usePrivy();
+    const { authenticated, user } = usePrivy();
+    const { openAuthModal } = useAuthModal();
+
     const [amount, setAmount] = useState('');
     const [showSuccessScreen, setShowSuccessScreen] = useState(false); // Renamed to avoid conflict with useTip's isSuccess
     const [selectedToken, setSelectedToken] = useState('G$');
@@ -33,7 +37,7 @@ const TipWidget = ({ project, onTipSuccess, onShare }) => {
         if (isTipping) return;
 
         if (!authenticated) {
-            login();
+            openAuthModal();
             return;
         }
 

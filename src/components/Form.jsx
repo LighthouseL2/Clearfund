@@ -6,12 +6,15 @@ import { useNetworkCheck } from "@/hooks/web3/useNetworkCheck";
 import { useIPFSUpload } from "@/hooks/ipfs/useIPFSUpload";
 import { dateToTimestamp } from "@/lib/services/grant.service";
 
+import { useAuthModal } from "@/components/ClientWrapper";
+
 /**
  * Form component for submitting ReFi Projects
  * Updated for V2.2 with Compulsory Banner & Logo
  */
 export function Form({ setIsHidden }) {
-    const { authenticated, login } = usePrivy();
+    const { authenticated } = usePrivy();
+    const { openAuthModal } = useAuthModal();
     const { execute, isPending: isSubmitting, isConfirmed, isConfirming, isSwitching } = useContractWrite();
     const { isCorrectNetwork, switchToCelo } = useNetworkCheck();
 
@@ -68,7 +71,7 @@ export function Form({ setIsHidden }) {
     const handleSubmit = async () => {
         if (!authenticated) {
             setShouldSubmitAfterLogin(true);
-            login();
+            openAuthModal();
             return;
         }
 

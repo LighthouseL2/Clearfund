@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 import { usePrivy } from '@privy-io/react-auth';
 import { useIPFSUpload } from '@/hooks/ipfs/useIPFSUpload';
 import { Upload, CheckCircle2, ChevronRight, Info, AlertCircle, X } from 'lucide-react';
+import { useAuthModal } from '@/components/ClientWrapper';
 
 const ProjectForm = () => {
-    const { authenticated, login, user } = usePrivy();
+    const { authenticated, user } = usePrivy();
+    const { openAuthModal } = useAuthModal();
     const { uploadFile, isUploading } = useIPFSUpload();
 
     const [formData, setFormData] = useState({
@@ -53,7 +55,7 @@ const ProjectForm = () => {
         setError('');
 
         if (!authenticated) {
-            login();
+            openAuthModal();
             return;
         }
 

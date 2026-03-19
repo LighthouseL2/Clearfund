@@ -30,6 +30,15 @@ const PRIVY_CONFIG = {
     },
 };
 
+import CustomPrivyModal from '@/components/CustomPrivyModal'
+
+// Create a simple context to trigger the auth modal from anywhere
+export const AuthModalContext = React.createContext({
+    openAuthModal: () => { }
+});
+
+export const useAuthModal = () => React.useContext(AuthModalContext);
+
 function AnalyticsWrapper({ children }) {
     const pathname = usePathname();
 
@@ -51,6 +60,10 @@ function AnalyticsWrapper({ children }) {
 
 export default function ClientWrapper({ children }) {
     const privyAppId = process.env.NEXT_PUBLIC_PRIVY_APP_ID;
+    const [isAuthModalOpen, setIsAuthModalOpen] = React.useState(false);
+
+    const openAuthModal = () => setIsAuthModalOpen(true);
+    const closeAuthModal = () => setIsAuthModalOpen(false);
 
     if (!privyAppId) {
         console.error("PRIVY_APP_ID is missing from environment variables.");
@@ -61,13 +74,20 @@ export default function ClientWrapper({ children }) {
             appId={privyAppId}
             config={PRIVY_CONFIG}
         >
-            <Providers>
-                <Suspense fallback={<div className="global-loader">Loading ...</div>}>
-                    <AnalyticsWrapper>
-                        {children}
-                    </AnalyticsWrapper>
-                </Suspense>
-            </Providers>
+            <AuthModalContext.Provider value={{ openAuthModal }}>
+                <Providers>
+                    <Suspense fallback={<div className="global-loader">Loading ...</div>}>
+                        <AnalyticsWrapper>
+                            {children}
+                        </AnalyticsWrapper>
+                    </Suspense>
+                    <CustomPrivyModal
+                        isOpen={isAuthModalOpen}
+                        onClose={closeAuthModal}
+                    />
+                </Providers>
+            </AuthModalContext.Provider>
         </PrivyProvider>
     )
 }
+

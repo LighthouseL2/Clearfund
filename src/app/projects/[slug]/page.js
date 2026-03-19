@@ -183,9 +183,13 @@ const SharePopup = ({ project, onClose }) => {
 
 
 
+import { useAuthModal } from '@/components/ClientWrapper';
+
 const ProjectDetailPage = ({ params }) => {
     const { slug } = React.use(params);
-    const { authenticated, login } = usePrivy();
+    const { authenticated } = usePrivy();
+    const { openAuthModal } = useAuthModal();
+
     const [project, setProject] = useState(null);
     const [tips, setTips] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -205,7 +209,7 @@ const ProjectDetailPage = ({ params }) => {
     const toggleFavorite = () => {
         if (!project) return;
         if (!authenticated) {
-            login();
+            openAuthModal();
             return;
         }
         try {
