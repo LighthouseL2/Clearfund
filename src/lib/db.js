@@ -45,4 +45,6 @@ async function dbConnect() {
   return cached.conn;
 }
 
-export default dbConnect;
+// Standardizing exports: Prisma as default for most API use cases
+export default prisma;
+export { dbConnect };
