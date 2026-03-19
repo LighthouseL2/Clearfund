@@ -26,12 +26,7 @@ const PRIVY_CONFIG = {
             "metamask",
             "wallet_connect",
             "rainbow",
-            "trust_wallet",
-            "ledger",
-            "okx_wallet",
-            "rabby",
-            "brave_wallet",
-            "safe"
+            "trust_wallet"
         ],
     },
 };
