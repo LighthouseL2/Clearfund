@@ -29,9 +29,11 @@ const PRIVY_CONFIG = {
             "trust_wallet",
             "ledger",
             "okx_wallet",
-            "rabby_wallet",
+            "rabby",
             "brave_wallet",
-            "safe"
+            "safe",
+            "phantom",
+            "zerion"
         ],
     },
 };
