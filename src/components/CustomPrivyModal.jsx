@@ -128,7 +128,7 @@ export default function CustomPrivyModal({ isOpen, onClose }) {
             <div className="flex items-center gap-3">
               <span className="font-bold text-gray-700">Rainbow</span>
             </div>
-          </div>
+          </button>
 
           <button
             onClick={handlePhantomLogin}
@@ -137,7 +137,7 @@ export default function CustomPrivyModal({ isOpen, onClose }) {
             <div className="flex items-center gap-3">
               <span className="font-bold text-gray-700">Phantom</span>
             </div>
-          </div>
+          </button>
 
           <button
             onClick={handleWalletConnectLogin}
@@ -146,32 +146,32 @@ export default function CustomPrivyModal({ isOpen, onClose }) {
             <div className="flex items-center gap-3">
               <span className="font-bold text-gray-700">Other wallets</span>
             </div>
-          </div>
+          </button>
 
           <div className="h-px bg-gray-200 my-4"></div>
 
-          {/* Social Options */ }
-  <div className="grid grid-cols-2 gap-3">
-    <button
-      onClick={handleGoogleLogin}
-      className="py-3 px-4 bg-white border border-gray-100 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-50 transition-all font-bold text-sm text-gray-600"
-    >
-      Google
-    </button>
-    <button
-      onClick={handleTwitterLogin}
-      className="py-3 px-4 bg-white border border-gray-100 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-50 transition-all font-bold text-sm text-gray-600"
-    >
-      Twitter
-    </button>
-  </div>
+          {/* Social Options */}
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={handleGoogleLogin}
+              className="py-3 px-4 bg-white border border-gray-100 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-50 transition-all font-bold text-sm text-gray-600"
+            >
+              Google
+            </button>
+            <button
+              onClick={handleTwitterLogin}
+              className="py-3 px-4 bg-white border border-gray-100 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-50 transition-all font-bold text-sm text-gray-600"
+            >
+              Twitter
+            </button>
+          </div>
         </div >
 
-    <div className="mt-8 text-center">
-      <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest flex items-center justify-center gap-2">
-        Protected by <span className="text-[#00AFAA]">Privy</span>
-      </p>
-    </div>
+        <div className="mt-8 text-center">
+          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest flex items-center justify-center gap-2">
+            Protected by <span className="text-[#00AFAA]">Privy</span>
+          </p>
+        </div>
       </div >
     </div >
   );
