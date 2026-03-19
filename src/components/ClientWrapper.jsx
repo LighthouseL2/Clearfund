@@ -26,7 +26,12 @@ const PRIVY_CONFIG = {
             "wallet_connect",
             "coinbase_wallet",
             "rainbow",
-            "trust_wallet"
+            "trust_wallet",
+            "ledger",
+            "zerion",
+            "okx_wallet",
+            "rabby_wallet",
+            "safe"
         ],
     },
 };
