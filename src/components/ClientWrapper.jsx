@@ -26,7 +26,17 @@ const PRIVY_CONFIG = {
             "metamask",
             "wallet_connect",
             "rainbow",
-            "trust_wallet"
+            "trust_wallet",
+            "ledger",
+            "okx_wallet",
+            "rabby",
+            "brave_wallet",
+            "safe",
+            "zerion",
+            "phantom",
+            "argent",
+            "im_token",
+            "omni"
         ],
     },
 };
