@@ -31,9 +31,7 @@ const PRIVY_CONFIG = {
             "okx_wallet",
             "rabby",
             "brave_wallet",
-            "safe",
-            "phantom",
-            "zerion"
+            "safe"
         ],
     },
 };
