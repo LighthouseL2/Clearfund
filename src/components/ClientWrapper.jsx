@@ -21,6 +21,13 @@ const PRIVY_CONFIG = {
         theme: "light",
         accentColor: "#00AFAA",
         showWalletLoginFirst: true,
+        walletList: [
+            "metamask",
+            "wallet_connect",
+            "coinbase_wallet",
+            "rainbow",
+            "trust_wallet"
+        ],
     },
 };
 
