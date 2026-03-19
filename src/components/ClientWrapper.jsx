@@ -26,12 +26,10 @@ const PRIVY_CONFIG = {
             "wallet_connect",
             "rainbow",
             "trust_wallet",
-            "phantom",
-            "zerion",
             "ledger",
-            "brave_wallet",
             "okx_wallet",
             "rabby_wallet",
+            "brave_wallet",
             "safe"
         ],
     },
