@@ -21,6 +21,7 @@ const PRIVY_CONFIG = {
         theme: "light",
         accentColor: "#00AFAA",
         showWalletLoginFirst: true,
+        fontFamily: "'Modern Era', sans-serif",
         walletList: [
             "metamask",
             "wallet_connect",
