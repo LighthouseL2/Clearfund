@@ -55,6 +55,22 @@ export default function CustomPrivyModal({ isOpen, onClose }) {
     }
   };
 
+  const handleCoinbaseLogin = async () => {
+    try {
+      await connect({ provider: "coinbase_wallet" });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handlePhantomLogin = async () => {
+    try {
+      await connect({ provider: "phantom" });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleTwitterLogin = async () => {
     try {
       await connect({ provider: "twitter" });
@@ -76,10 +92,24 @@ export default function CustomPrivyModal({ isOpen, onClose }) {
         </button>
 
         <button
+          onClick={handleCoinbaseLogin}
+          className="w-full py-3 mb-3 rounded-lg border border-gray-300 bg-[#0052FF] text-white hover:bg-[#0047E0] transition"
+        >
+          Coinbase Wallet
+        </button>
+
+        <button
+          onClick={handlePhantomLogin}
+          className="w-full py-3 mb-3 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+        >
+          Phantom
+        </button>
+
+        <button
           onClick={handleWalletConnectLogin}
           className="w-full py-3 mb-3 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
         >
-          WalletConnect
+          Other Wallets (Desktop/Mobile)
         </button>
 
         <button

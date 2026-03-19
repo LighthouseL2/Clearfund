@@ -18,7 +18,9 @@ const PRIVY_CONFIG = {
         createOnLogin: "users-without-wallets"
     },
     externalWallets: {
-        coinbaseWallet: 'none',
+        coinbaseWallet: 'all-users',
+        phantom: 'all-users',
+        rainbow: 'all-users',
     },
     appearance: {
         theme: "light",
