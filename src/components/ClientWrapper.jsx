@@ -29,14 +29,20 @@ const PRIVY_CONFIG = {
             "trust_wallet",
             "ledger",
             "okx_wallet",
+            "phantom",
+            "zerion",
             "rabby",
             "brave_wallet",
             "safe",
-            "zerion",
-            "phantom",
             "argent",
             "im_token",
-            "omni"
+            "omni",
+            "bitget_wallet",
+            "bybit_wallet",
+            "xdefi",
+            "uniswap",
+            "tally_ho",
+            "alpha_wallet"
         ],
     },
 };
