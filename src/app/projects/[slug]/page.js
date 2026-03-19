@@ -5,6 +5,7 @@ import TipWidget from '@/components/TipWidget';
 import { Share2, Heart, Info, MapPin, ArrowLeft, ExternalLink, Target } from 'lucide-react';
 import Link from 'next/link';
 import { FaTwitter, FaWhatsapp, FaFacebook, FaLinkedin, FaReddit, FaTelegramPlane } from 'react-icons/fa';
+import { usePrivy } from "@privy-io/react-auth";
 
 // --- Info Popup Component ---
 const InfoPopup = ({ project, onClose }) => {
@@ -184,6 +185,7 @@ const SharePopup = ({ project, onClose }) => {
 
 const ProjectDetailPage = ({ params }) => {
     const { slug } = React.use(params);
+    const { authenticated, login } = usePrivy();
     const [project, setProject] = useState(null);
     const [tips, setTips] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -202,6 +204,10 @@ const ProjectDetailPage = ({ params }) => {
 
     const toggleFavorite = () => {
         if (!project) return;
+        if (!authenticated) {
+            login();
+            return;
+        }
         try {
             let favs = JSON.parse(localStorage.getItem('clearfund_favorites') || '[]');
             if (isFavorite) {
