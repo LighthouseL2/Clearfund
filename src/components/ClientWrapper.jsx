@@ -49,12 +49,12 @@ function AnalyticsWrapper({ children }) {
     }, [pathname]);
 
     return (
-        <>
-            <div className="contents">
+        <React.Fragment key="analytics-wrapper-fragment">
+            <div key="analytics-child" className="contents">
                 {children}
             </div>
-            <Analytics />
-        </>
+            <Analytics key="vercel-analytics" />
+        </React.Fragment>
     );
 }
 
@@ -76,12 +76,13 @@ export default function ClientWrapper({ children }) {
         >
             <AuthModalContext.Provider value={{ openAuthModal }}>
                 <Providers>
-                    <Suspense fallback={<div className="global-loader">Loading ...</div>}>
-                        <AnalyticsWrapper>
+                    <Suspense key="suspense-wrapper" fallback={<div className="global-loader">Loading ...</div>}>
+                        <AnalyticsWrapper key="analytics-wrapper">
                             {children}
                         </AnalyticsWrapper>
                     </Suspense>
                     <CustomPrivyModal
+                        key="privy-modal"
                         isOpen={isAuthModalOpen}
                         onClose={closeAuthModal}
                     />

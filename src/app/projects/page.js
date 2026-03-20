@@ -112,37 +112,30 @@ export default function ProjectsPage() {
             {/* ── MAIN ──────────────────────────────────────────────── */}
             <main className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-12">
 
-                {/* TEAL HERO BANNER with HIGH-SHARP IMAGE ON RIGHT */}
-                <div className="relative w-full bg-[#00AFAA] rounded-[2.5rem] overflow-hidden mb-16 min-h-[440px] shadow-2xl flex items-center">
-                    {/* The slanted transition area */}
-                    <div className="absolute top-0 right-0 w-1/2 h-full bg-[#11B7B2] transform -skew-x-12 translate-x-1/4 hidden md:block" />
-
-                    <div className="relative z-10 p-12 md:p-20 md:w-[65%] text-white">
-                        {/* Indicator Pill inside Banner */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-8 backdrop-blur-sm">
-                            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Impact Project Discovery</span>
-                        </div>
-
-                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 text-white">
+                {/* Banner Section */}
+                <div
+                    className="w-full rounded-2xl px-8 py-10 md:px-12 md:py-14 mb-8 flex items-center justify-between overflow-hidden relative"
+                    style={{
+                        background: 'linear-gradient(135deg, #00BFAF 0%, #00AFAA 50%, #00C9B8 100%)',
+                    }}
+                >
+                    {/* Text Content */}
+                    <div className="relative z-10 flex-1">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-3">
                             Explore Impact
                         </h1>
-                        <p className="text-white text-lg md:text-xl font-medium max-w-xl leading-relaxed opacity-95">
+                        <p className="text-white/90 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed">
                             Discover Climate, Education, and Social Impact projects — tip directly with crypto, zero fees, full transparency.
                         </p>
                     </div>
 
-                    <div className="absolute top-0 right-0 w-full md:w-[45%] h-full hidden md:block">
-                        <div className="relative w-full h-full" style={{ clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)" }}>
-                            <Image
-                                src="/assets/banner_image.png"
-                                alt="Registry Banner"
-                                fill
-                                quality={100}
-                                className="object-cover"
-                                priority
-                            />
-                        </div>
+                    {/* Banner Image */}
+                    <div className="hidden md:block absolute right-0 top-0 bottom-0">
+                        <img
+                            src="/assets/refi_image.png"
+                            alt="Registry Banner"
+                            className="h-full w-auto object-cover"
+                        />
                     </div>
                 </div>
 

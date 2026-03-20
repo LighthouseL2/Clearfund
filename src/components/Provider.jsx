@@ -31,9 +31,9 @@ export default function Providers({ children }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClientRef.current}>
-        <div className="contents">
-          <NetworkAlert />
-          <div className="contents">
+        <div key="provider-layout" className="contents">
+          <NetworkAlert key="network-alert" />
+          <div key="provider-children" className="contents">
             {children}
           </div>
         </div>
