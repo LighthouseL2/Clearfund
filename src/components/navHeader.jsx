@@ -14,7 +14,7 @@ const NavHeader = () => {
 
 
   return (
-    <nav className="px-[5%] md:px-8 lg:px-12 flex justify-between items-center h-24 sticky top-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-gray-100/50">
+    <nav className="px-[5%] md:px-8 lg:px-12 flex justify-between items-center h-24 sticky top-0 z-[100] bg-white border-b border-gray-100/50">
       {/* LOGO */}
       <div className="flex items-center gap-2">
         <Link href="/" className="flex items-center gap-2 group">
