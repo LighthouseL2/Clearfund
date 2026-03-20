@@ -205,11 +205,17 @@ export default function ProjectsPage() {
 
             {/* Submission Modal */}
             {showSubmitModal && (
-                <div className="fixed inset-0 z-[200] bg-[#003E52]/40 backdrop-blur-sm flex items-center justify-center p-4">
-                    <div className="bg-white max-w-5xl w-full rounded-[2.5rem] p-4 lg:p-8 shadow-2xl relative max-h-[95vh] overflow-y-auto">
+                <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6" style={{ fontFamily: '"Inter", sans-serif' }}>
+                    {/* Sophisticated blurred gradient background (Shadow kind of background) */}
+                    <div className="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onClick={() => setShowSubmitModal(false)}></div>
+                    <div className="absolute inset-0 max-w-5xl mx-auto flex items-center justify-center opacity-60 pointer-events-none">
+                        <div className="absolute w-[600px] h-[600px] bg-gradient-to-tr from-pink-300/40 via-purple-300/40 to-teal-300/40 rounded-full blur-[100px] animate-pulse"></div>
+                    </div>
+
+                    <div className="bg-[#fcfaf5] max-w-5xl w-full rounded-[2.5rem] p-6 lg:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative max-h-[95vh] overflow-y-auto z-10 border border-white/50">
                         <button
                             onClick={() => setShowSubmitModal(false)}
-                            className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-500 rounded-full hover:bg-gray-200 transition-colors font-bold z-[210]"
+                            className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-transparent border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-colors font-black text-xl z-[210]"
                         >
                             ×
                         </button>
