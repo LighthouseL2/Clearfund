@@ -24,6 +24,7 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
         string github;
         string impactDescription; // Where your tip goes
         string category; // e.g., "ReFi Project"
+        string contactEmail; // New field for admin contact purposes
         address submitter;
         string logoCID;
         string bannerCID; // Compulsory banner image
@@ -42,6 +43,7 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
     // Configuration
     uint256 public constant MAX_PROJECTS_PER_SUBMITTER = 10;
     uint256 public constant MIN_SUBMISSION_INTERVAL = 1 hours;
+    uint256 public submissionFee = 0.05 ether; // 0.05 CELO
 
     // Events
     event ProjectSubmitted(
@@ -70,6 +72,9 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
         address indexed reactivatedBy
     );
 
+    event FeeUpdated(uint256 newFee);
+    event FeesWithdrawn(address indexed admin, uint256 amount);
+
     // Custom Errors
     error InvalidProjectId(uint256 projectId);
     error EmptyField(string field);
@@ -82,6 +87,8 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
     error SubmissionTooFrequent(address submitter, uint256 timeRemaining);
     error ProjectNotActive(uint256 projectId);
     error ProjectAlreadyActive(uint256 projectId);
+    error IncorrectFee(uint256 expected, uint256 provided);
+    error TransferFailed();
 
     constructor() {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -92,16 +99,20 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
 
     /**
      * @dev Submit a new ReFi Project proposal with extended details
-     * @param textInfo Array of strings [title, description, location, website, twitter, github, impactDescription, category]
+     * @param textInfo Array of strings [title, description, location, website, twitter, github, impactDescription, category, contactEmail]
      * @param assets Array of strings [logoCID, bannerCID]
      */
     function submitProject(
-        string[8] calldata textInfo,
+        string[9] calldata textInfo,
         string[2] calldata assets
-    ) external nonReentrant returns (uint256) {
+    ) external payable nonReentrant returns (uint256) {
+        if (msg.value != submissionFee)
+            revert IncorrectFee(submissionFee, msg.value);
+
         if (bytes(textInfo[0]).length == 0) revert EmptyField("title");
         if (bytes(textInfo[2]).length == 0) revert EmptyField("location");
         if (bytes(textInfo[7]).length == 0) revert EmptyField("category");
+        if (bytes(textInfo[8]).length == 0) revert EmptyField("contactEmail");
         if (bytes(assets[0]).length == 0) revert EmptyField("logoCID");
         if (bytes(assets[1]).length == 0) revert EmptyField("bannerCID");
 
@@ -113,9 +124,16 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
             );
         }
 
-        uint256 timeSinceLastSubmission = block.timestamp - lastSubmissionTime[msg.sender];
-        if (lastSubmissionTime[msg.sender] > 0 && timeSinceLastSubmission < MIN_SUBMISSION_INTERVAL) {
-            revert SubmissionTooFrequent(msg.sender, MIN_SUBMISSION_INTERVAL - timeSinceLastSubmission);
+        uint256 timeSinceLastSubmission = block.timestamp -
+            lastSubmissionTime[msg.sender];
+        if (
+            lastSubmissionTime[msg.sender] > 0 &&
+            timeSinceLastSubmission < MIN_SUBMISSION_INTERVAL
+        ) {
+            revert SubmissionTooFrequent(
+                msg.sender,
+                MIN_SUBMISSION_INTERVAL - timeSinceLastSubmission
+            );
         }
 
         uint256 projectId = nextProjectId++;
@@ -129,6 +147,7 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
             github: textInfo[5],
             impactDescription: textInfo[6],
             category: textInfo[7],
+            contactEmail: textInfo[8],
             submitter: msg.sender,
             logoCID: assets[0],
             bannerCID: assets[1],
@@ -139,9 +158,36 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
         submitterProjectCount[msg.sender]++;
         lastSubmissionTime[msg.sender] = block.timestamp;
 
-        emit ProjectSubmitted(projectId, msg.sender, textInfo[0], textInfo[2], textInfo[7]);
+        emit ProjectSubmitted(
+            projectId,
+            msg.sender,
+            textInfo[0],
+            textInfo[2],
+            textInfo[7]
+        );
 
         return projectId;
+    }
+
+    /**
+     * @dev Allows admin to withdraw collected submission fees
+     */
+    function withdrawFees() external onlyRole(ADMIN_ROLE) nonReentrant {
+        uint256 balance = address(this).balance;
+        if (balance == 0) revert TransferFailed();
+        (bool success, ) = msg.sender.call{value: balance}("");
+        if (!success) revert TransferFailed();
+        emit FeesWithdrawn(msg.sender, balance);
+    }
+
+    /**
+     * @dev Allows admin to update the submission fee
+     */
+    function updateSubmissionFee(
+        uint256 _newFee
+    ) external onlyRole(ADMIN_ROLE) {
+        submissionFee = _newFee;
+        emit FeeUpdated(_newFee);
     }
 
     /**
@@ -149,14 +195,16 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
      */
     function updateProject(
         uint256 projectId,
-        string[8] calldata textInfo,
+        string[9] calldata textInfo,
         string[2] calldata assets
     ) external nonReentrant {
         if (!_projectExists(projectId)) revert InvalidProjectId(projectId);
 
         ReFiProject storage project = projects[projectId];
 
-        if (msg.sender != project.submitter && !hasRole(ADMIN_ROLE, msg.sender)) {
+        if (
+            msg.sender != project.submitter && !hasRole(ADMIN_ROLE, msg.sender)
+        ) {
             revert UnauthorizedSubmitter(msg.sender);
         }
 
@@ -168,17 +216,24 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
         project.github = textInfo[5];
         project.impactDescription = textInfo[6];
         project.category = textInfo[7];
+        project.contactEmail = textInfo[8];
         project.logoCID = assets[0];
         project.bannerCID = assets[1];
 
         emit ProjectUpdated(projectId, msg.sender, textInfo[0], textInfo[2]);
     }
 
-    function deactivateProject(uint256 projectId, string calldata reason) external {
+    function deactivateProject(
+        uint256 projectId,
+        string calldata reason
+    ) external {
         if (!_projectExists(projectId)) revert InvalidProjectId(projectId);
         ReFiProject storage project = projects[projectId];
         if (!project.active) revert ProjectNotActive(projectId);
-        if (msg.sender != project.submitter && !hasRole(MODERATOR_ROLE, msg.sender)) {
+        if (
+            msg.sender != project.submitter &&
+            !hasRole(MODERATOR_ROLE, msg.sender)
+        ) {
             revert UnauthorizedSubmitter(msg.sender);
         }
         project.active = false;
@@ -188,19 +243,30 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
         emit ProjectDeactivated(projectId, msg.sender, reason);
     }
 
-    function reactivateProject(uint256 projectId) external onlyRole(ADMIN_ROLE) {
+    function reactivateProject(
+        uint256 projectId
+    ) external onlyRole(ADMIN_ROLE) {
         if (!_projectExists(projectId)) revert InvalidProjectId(projectId);
         ReFiProject storage project = projects[projectId];
         if (project.active) revert ProjectAlreadyActive(projectId);
-        if (submitterProjectCount[project.submitter] >= MAX_PROJECTS_PER_SUBMITTER) {
-            revert ProjectLimitExceeded(project.submitter, submitterProjectCount[project.submitter], MAX_PROJECTS_PER_SUBMITTER);
+        if (
+            submitterProjectCount[project.submitter] >=
+            MAX_PROJECTS_PER_SUBMITTER
+        ) {
+            revert ProjectLimitExceeded(
+                project.submitter,
+                submitterProjectCount[project.submitter],
+                MAX_PROJECTS_PER_SUBMITTER
+            );
         }
         project.active = true;
         submitterProjectCount[project.submitter]++;
         emit ProjectReactivated(projectId, msg.sender);
     }
 
-    function getProject(uint256 projectId) external view returns (ReFiProject memory) {
+    function getProject(
+        uint256 projectId
+    ) external view returns (ReFiProject memory) {
         if (!_projectExists(projectId)) revert InvalidProjectId(projectId);
         return projects[projectId];
     }
@@ -209,7 +275,14 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
         return projectIds;
     }
 
-    function getActiveProjects(uint256 offset, uint256 limit) external view returns (ReFiProject[] memory projectData, uint256 totalActive) {
+    function getActiveProjects(
+        uint256 offset,
+        uint256 limit
+    )
+        external
+        view
+        returns (ReFiProject[] memory projectData, uint256 totalActive)
+    {
         uint256 activeCount = 0;
         for (uint256 i = 0; i < projectIds.length; i++) {
             if (projects[projectIds[i]].active) {
@@ -235,7 +308,9 @@ contract ClearFundRegistry is AccessControl, ReentrancyGuard {
         return (projectData, totalActive);
     }
 
-    function getProjectsBySubmitter(address submitter) external view returns (ReFiProject[] memory) {
+    function getProjectsBySubmitter(
+        address submitter
+    ) external view returns (ReFiProject[] memory) {
         uint256 count = 0;
         for (uint256 i = 0; i < projectIds.length; i++) {
             if (projects[projectIds[i]].submitter == submitter) count++;

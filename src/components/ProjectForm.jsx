@@ -1,13 +1,31 @@
 'use client';
 
 import React, { useState } from 'react';
-import { usePrivy } from '@privy-io/react-auth';
+import { usePrivy, useWallets } from '@privy-io/react-auth';
 import { useIPFSUpload } from '@/hooks/ipfs/useIPFSUpload';
 import { Upload, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useAuthModal } from '@/components/ClientWrapper';
+import { custom, createWalletClient, createPublicClient, http, parseEther } from 'viem';
+import { celo } from 'viem/chains';
+
+const REGISTRY_ABI = [
+    {
+        "inputs": [
+            { "internalType": "string[9]", "name": "textInfo", "type": "string[9]" },
+            { "internalType": "string[2]", "name": "assets", "type": "string[2]" }
+        ],
+        "name": "submitProject",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "payable",
+        "type": "function"
+    }
+];
+
+const REGISTRY_ADDRESS = process.env.NEXT_PUBLIC_CLEARFUND_REGISTRY_ADDRESS;
 
 const ProjectForm = () => {
     const { authenticated, user } = usePrivy();
+    const { wallets } = useWallets();
     const { openAuthModal } = useAuthModal();
     const { uploadFile, isUploading } = useIPFSUpload();
 
@@ -87,6 +105,71 @@ const ProjectForm = () => {
                 logoUrl = '/assets/projectIcon.png';
             }
 
+            // --- 1. BLOCKCHAIN TRANSACTION (0.05 CELO SECURE FEE) ---
+            const wallet = wallets[0];
+            if (!wallet) throw new Error("No Web3 wallet connected. Ensure your wallet is connected.");
+
+            // Switch network to Celo if required
+            if (wallet.chainId !== `eip155:${celo.id}`) {
+                try {
+                    await wallet.switchChain(celo.id);
+                    await new Promise(res => setTimeout(res, 1500)); // wait for provider sync
+                } catch (e) {
+                    throw new Error("Failed to switch to Celo network. Please switch manually in your wallet.");
+                }
+            }
+
+            const provider = await wallet.getEthereumProvider();
+            const publicClient = createPublicClient({ chain: celo, transport: http("https://forno.celo.org") });
+            const walletClient = createWalletClient({ chain: celo, transport: custom(provider), account: wallet.address });
+
+            const textInfo = [
+                formData.name,
+                formData.description,
+                formData.location,
+                formData.website,
+                formData.twitter || "",
+                formData.github || "",
+                formData.whereTipGoes,
+                formData.category,
+                formData.email
+            ];
+            const assetsArr = [logoUrl, logoUrl]; // We enforce banner, use it for both slots on contract to save users gas.
+
+            // Estimate Gas and Execute interaction
+            let gasLimit = 600000n; // Fallback safe limit
+            try {
+                const estimate = await publicClient.estimateContractGas({
+                    address: REGISTRY_ADDRESS,
+                    abi: REGISTRY_ABI,
+                    functionName: 'submitProject',
+                    args: [textInfo, assetsArr],
+                    value: parseEther("0.05"),
+                    account: wallet.address
+                });
+                gasLimit = (estimate * 120n) / 100n; // 20% buffer
+            } catch (estimateError) {
+                console.warn("Gas estimation warning, using fallback:", estimateError);
+                // Check if it's an insufficient funds error to give a better popup
+                if (estimateError.message && estimateError.message.includes("insufficient funds")) {
+                    throw new Error("Insufficient CELO for the 0.05 CELO fee + gas.");
+                }
+            }
+
+            const txHash = await walletClient.writeContract({
+                address: REGISTRY_ADDRESS,
+                abi: REGISTRY_ABI,
+                functionName: 'submitProject',
+                args: [textInfo, assetsArr],
+                value: parseEther("0.05"),
+                gas: gasLimit
+            });
+
+            // Wait for confirmation
+            await publicClient.waitForTransactionReceipt({ hash: txHash, confirmations: 1 });
+
+
+            // --- 2. BACKEND DATABASE SUBMISSION (For Admin Dashboard) ---
             const response = await fetch('/api/projects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -94,6 +177,7 @@ const ProjectForm = () => {
                     ...formData,
                     logo: logoUrl,
                     submittedBy: user?.wallet?.address,
+                    onChainTxHash: txHash, // Log the proof of fee
                 }),
             });
 
@@ -400,9 +484,14 @@ const ProjectForm = () => {
                         <svg className="w-5 h-5 mt-0.5 shrink-0 text-[#003E52]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <p className="text-[0.95rem] text-[#003E52] font-medium leading-snug">
-                            Your project will be reviewed by our team before it goes live on the platform. You'll be notified once it's approved.
-                        </p>
+                        <div className="flex flex-col gap-1.5">
+                            <p className="text-[0.95rem] text-[#003E52] font-medium leading-snug">
+                                Your project will be reviewed by our team before it goes live on the platform. You'll be notified once it's approved.
+                            </p>
+                            <p className="text-[0.85rem] text-[#003E52]/80 font-bold">
+                                🛡️ A one-time <span className="text-[#00AFAA]">0.05 CELO</span> security fee is required to submit. This acts as an anti-spam measure to ensure the high quality of projects reviewing.
+                            </p>
+                        </div>
                     </div>
                     <button
                         type="submit"
@@ -410,9 +499,12 @@ const ProjectForm = () => {
                         className="w-full py-[1.15rem] bg-[#00AFAA] hover:bg-[#009e99] text-white font-bold text-[1.25rem] tracking-wide rounded-[0.8rem] border-[2px] border-transparent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 outline-none"
                     >
                         {isSubmitting || isUploading ? (
-                            <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                <span className="text-[1rem] font-medium">Please sign the transaction in your wallet...</span>
+                            </div>
                         ) : (
-                            "Submit"
+                            "Submit Project (0.05 CELO)"
                         )}
                     </button>
                     <button

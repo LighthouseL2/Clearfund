@@ -144,6 +144,7 @@ export async function POST(request) {
                 tipCount: 0,
                 submittedBy: data.submittedBy || null,
                 contactEmail: data.email || null,
+                // onChainTxHash: data.onChainTxHash || null, // Temporarily commented out until db push succeeds
             },
         });
 

@@ -39,6 +39,7 @@ model Project {
   featured          Boolean? @default(false)
   submittedBy       String?
   contactEmail      String?  // Submitter's contact email for review notifications
+  onChainTxHash     String?  // NEW: Proof of 0.05 CELO submission fee payment
 
   createdAt         DateTime @default(now())
   updatedAt         DateTime @default(now()) @updatedAt
