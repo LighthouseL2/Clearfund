@@ -38,6 +38,7 @@ model Project {
   status            String?  @default("PENDING")
   featured          Boolean? @default(false)
   submittedBy       String?
+  contactEmail      String?  // Submitter's contact email for review notifications
 
   createdAt         DateTime @default(now())
   updatedAt         DateTime @default(now()) @updatedAt

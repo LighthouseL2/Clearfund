@@ -49,8 +49,8 @@ export async function GET(request) {
             if (stats) {
                 return {
                     ...p,
-                    totalTipped: (p.totalTipped || 0) + stats.total,
-                    tipCount: (p.tipCount || 0) + stats.count
+                    totalTipped: p.source === 'local' ? stats.total : (p.totalTipped || 0) + stats.total,
+                    tipCount: p.source === 'local' ? stats.count : (p.tipCount || 0) + stats.count
                 };
             }
             return p;

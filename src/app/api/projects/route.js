@@ -143,6 +143,7 @@ export async function POST(request) {
                 totalRaised: 0,
                 tipCount: 0,
                 submittedBy: data.submittedBy || null,
+                contactEmail: data.email || null,
             },
         });
 

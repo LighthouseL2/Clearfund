@@ -104,20 +104,100 @@ const ProjectForm = () => {
 
     if (isSubmitted) {
         return (
-            <div className="max-w-md mx-auto bg-[#fcfaf5] p-10 rounded-[2rem] border-[2px] border-black text-center text-black">
-                <div className="w-20 h-20 bg-black/5 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="h-10 w-10 text-black" />
+            <div className="fixed inset-0 z-[999] flex items-center justify-center p-4" style={{ fontFamily: '"Inter", sans-serif' }}>
+                {/* Blurred dark backdrop */}
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+
+                {/* Animated gradient glow behind card */}
+                <div className="absolute w-[500px] h-[500px] rounded-full opacity-30 pointer-events-none"
+                    style={{ background: 'radial-gradient(circle, #00AFAA 0%, #003E52 60%, transparent 80%)', filter: 'blur(80px)' }}>
                 </div>
-                <h2 className="text-2xl font-black mb-4">SUBMISSION SUCCESSFUL!</h2>
-                <p className="text-gray-800 mb-8 font-medium">
-                    Your project has been submitted for review. You'll be notified once it's live on the platform.
-                </p>
-                <button
-                    onClick={() => window.location.href = '/projects'}
-                    className="w-full bg-[#0a6682] text-white font-black py-4 rounded-[1rem] transition-all uppercase tracking-widest text-sm hover:-translate-y-1 active:translate-y-0"
-                >
-                    Browse Projects
-                </button>
+
+                {/* Popup card */}
+                <div className="relative bg-white rounded-[2rem] p-10 max-w-md w-full shadow-[0_30px_80px_rgba(0,0,0,0.35)] border border-gray-100 text-center"
+                    style={{ animation: 'popIn 0.45s cubic-bezier(0.34,1.56,0.64,1) both' }}>
+
+                    {/* Animated check icon with rings */}
+                    <div className="relative flex items-center justify-center mx-auto mb-8 w-28 h-28">
+                        {/* Outer pulse ring */}
+                        <div className="absolute w-28 h-28 rounded-full bg-[#00AFAA]/10"
+                            style={{ animation: 'pingRing 2s ease-in-out infinite' }}></div>
+                        {/* Mid ring */}
+                        <div className="absolute w-20 h-20 rounded-full bg-[#00AFAA]/20"></div>
+                        {/* Inner filled circle */}
+                        <div className="w-14 h-14 rounded-full bg-[#00AFAA] flex items-center justify-center shadow-[0_8px_24px_rgba(0,175,170,0.4)]">
+                            <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}
+                                style={{ animation: 'drawCheck 0.5s ease 0.3s both' }}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {/* Headline */}
+                    <h2 className="text-[2rem] font-black text-[#003E52] tracking-tight leading-tight mb-2">
+                        Project Submitted!
+                    </h2>
+                    <p className="text-gray-400 text-sm font-medium uppercase tracking-widest mb-6">
+                        You're on your way 🌍
+                    </p>
+
+                    {/* Divider */}
+                    <div className="w-12 h-[2px] bg-[#00AFAA] mx-auto mb-6 rounded-full"></div>
+
+                    {/* Description */}
+                    <p className="text-gray-600 text-[1rem] leading-relaxed mb-8">
+                        Your project has been received and is now under review by our team.
+                        Once approved, it will go live on the ClearFund platform and start
+                        receiving support from the community.
+                    </p>
+
+                    {/* What happens next */}
+                    <div className="bg-[#f7fafa] border border-[#00AFAA]/20 rounded-[1rem] p-5 mb-8 text-left space-y-3">
+                        <p className="text-xs font-black text-[#003E52] uppercase tracking-widest mb-2">What happens next</p>
+                        {[
+                            { step: '01', text: 'Our team reviews your submission' },
+                            { step: '02', text: 'You receive an email notification' },
+                            { step: '03', text: 'Your project goes live on ClearFund' },
+                        ].map(({ step, text }) => (
+                            <div key={step} className="flex items-center gap-3">
+                                <span className="w-7 h-7 rounded-full bg-[#003E52] text-white text-[0.7rem] font-black flex items-center justify-center shrink-0">{step}</span>
+                                <span className="text-sm text-gray-600 font-medium">{text}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* CTAs */}
+                    <div className="space-y-3">
+                        <button
+                            onClick={() => window.location.href = '/projects'}
+                            className="w-full py-4 bg-[#00AFAA] hover:bg-[#009e99] text-white font-black text-[1rem] rounded-[0.9rem] transition-all hover:-translate-y-[2px] active:translate-y-0 shadow-[0_6px_20px_rgba(0,175,170,0.35)]"
+                        >
+                            Explore Projects
+                        </button>
+                        <button
+                            onClick={() => { setIsSubmitted(false); setFormData({ name: '', category: '', description: '', location: '', email: '', whereTipGoes: '', logo: '', walletAddress: '', website: '', twitter: '', github: '' }); setLogoFile(null); }}
+                            className="w-full py-4 bg-transparent border-[2px] border-[#003E52] text-[#003E52] font-black text-[1rem] rounded-[0.9rem] transition-all hover:bg-[#003E52] hover:text-white"
+                        >
+                            Submit Another Project
+                        </button>
+                    </div>
+                </div>
+
+                {/* Inline keyframe styles */}
+                <style>{`
+                    @keyframes popIn {
+                        from { opacity: 0; transform: scale(0.85) translateY(20px); }
+                        to   { opacity: 1; transform: scale(1) translateY(0); }
+                    }
+                    @keyframes pingRing {
+                        0%, 100% { transform: scale(1); opacity: 0.6; }
+                        50% { transform: scale(1.18); opacity: 0.15; }
+                    }
+                    @keyframes drawCheck {
+                        from { stroke-dashoffset: 40; opacity: 0; }
+                        to   { stroke-dashoffset: 0; opacity: 1; }
+                    }
+                `}</style>
             </div>
         );
     }

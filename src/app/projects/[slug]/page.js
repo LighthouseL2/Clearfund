@@ -409,7 +409,7 @@ const ProjectDetailPage = ({ params }) => {
                                     </div>
                                     <div>
                                         <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Backers</div>
-                                        <div className="text-2xl font-black text-[#003E52] tracking-tighter">{tips.length}</div>
+                                        <div className="text-2xl font-black text-[#003E52] tracking-tighter">{project.tipCount || 0}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-1.5 text-gray-500 mt-6 pt-4 border-t border-gray-50/50">
