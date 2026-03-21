@@ -37,7 +37,15 @@ const ProjectForm = () => {
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setLogoFile(e.target.files[0]);
+            const file = e.target.files[0];
+            const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+            if (!validTypes.includes(file.type)) {
+                setError('Please upload a valid image file (PNG or JPEG only).');
+                e.target.value = ''; // Reset the input
+                return;
+            }
+            setError(''); // Clear any previous error
+            setLogoFile(file);
         }
     };
 

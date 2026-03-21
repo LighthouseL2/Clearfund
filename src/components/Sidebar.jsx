@@ -7,7 +7,6 @@ import Notification from "@/components/Notification";
 import { usePathname } from "next/navigation";
 import { LogOut, Settings, ChevronRight, Menu, X, Bell } from "lucide-react";
 import { shortAddress } from "./userDetails";
-import { set } from "mongoose";
 // import { usePrivy } from "@privy-io/react-auth";
 
 

@@ -36,7 +36,32 @@ export default function ProjectsPage() {
             const resp = await fetch(`/api/giveth`)
             const data = await resp.json()
             if (data.success) {
-                const limited = data.data.slice(0, 7) // Project count you met on ground: 7
+                let limited = data.data.slice(0, 7) // Project count you met on ground: 7
+
+                // Merge optimistic local tip counts to match the tip page
+                try {
+                    const localTips = JSON.parse(localStorage.getItem('clearfund_tips') || '[]');
+                    if (localTips.length > 0) {
+                        // Count local tips per project
+                        const localTipCounts = {};
+                        localTips.forEach(t => {
+                            localTipCounts[t.projectId] = (localTipCounts[t.projectId] || 0) + 1;
+                        });
+
+                        // Override if local count is higher
+                        limited = limited.map(p => {
+                            const localCount = localTipCounts[p._id] || 0;
+                            return {
+                                ...p,
+                                tipCount: Math.max(p.tipCount || 0, localCount),
+                                // We can also optionally bump totalTipped if needed, but for backers count this handles it
+                            };
+                        });
+                    }
+                } catch (e) {
+                    console.error("Failed to parse local tips on projects page", e);
+                }
+
                 setAllProjects(limited)
                 setProjects(limited)
 
